@@ -26,15 +26,34 @@ export function transitionLifecycle(
 export function replayLifecycle(
   events: { category: Category; at: Date }[],
   current: Category,
+  observed: Lifecycle = emptyLifecycle(),
 ): Lifecycle {
   const result = events.reduce(
     (state, event) => transitionLifecycle(state, event.category, event.at),
     emptyLifecycle(),
   );
-  // Never invent terminal dates for tasks without a matching recorded transition.
+  // A historical start may predate live tracking; a newer live terminal event
+  // may not yet appear in activity. Preserve both without keeping stale dates.
+  const startedAt =
+    result.startedAt && observed.startedAt
+      ? new Date(
+          Math.min(result.startedAt.getTime(), observed.startedAt.getTime()),
+        )
+      : (result.startedAt ?? observed.startedAt);
+  const latest = (historical: Date | null, live: Date | null) => {
+    if (!historical) return live;
+    if (!live) return historical;
+    return historical > live ? historical : live;
+  };
   return {
-    ...result,
-    completedAt: current === "completed" ? result.completedAt : null,
-    canceledAt: current === "canceled" ? result.canceledAt : null,
+    startedAt,
+    completedAt:
+      current === "completed"
+        ? latest(result.completedAt, observed.completedAt)
+        : null,
+    canceledAt:
+      current === "canceled"
+        ? latest(result.canceledAt, observed.canceledAt)
+        : null,
   };
 }

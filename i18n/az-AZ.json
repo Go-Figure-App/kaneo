@@ -5188,21 +5188,21 @@
 			"photos": "Kaneo şəkillərinizdən tapşırıqlara və şərhlərə şəkil əlavə etmək, həmçinin profil şəkliniz üçün istifadə edir."
 		},
 		"parity": {
-			"signInTagline": "Sign in to Go Figure’s project workspace."
+			"signInTagline": "Go Figure layihə iş sahəsinə daxil olun."
 		}
 	},
 	"parity": {
 		"categories": {
-			"backlog": "Backlog",
-			"canceled": "Canceled",
-			"completed": "Completed",
-			"description": "Categories define how planning features count work. Kaneo’s final-state setting continues to control its existing automations.",
-			"error": "Could not save or load categories. Try again.",
-			"label": "Category for {{name}}",
-			"loading": "Loading state categories…",
-			"started": "Started",
-			"title": "State categories",
-			"unstarted": "Unstarted"
+			"title": "Vəziyyət kateqoriyaları",
+			"description": "Kateqoriyalar planlaşdırma funksiyalarında işin necə hesablandığını müəyyən edir. Kaneo-nun son vəziyyət ayarı mövcud avtomatlaşdırmaları idarə etməyə davam edir.",
+			"backlog": "Gözləyən işlər",
+			"unstarted": "Başlanmayıb",
+			"started": "Başlanıb",
+			"completed": "Tamamlanıb",
+			"canceled": "Ləğv edilib",
+			"label": "{{name}} üçün kateqoriya",
+			"loading": "Vəziyyət kateqoriyaları yüklənir…",
+			"error": "Kateqoriyaları saxlamaq və ya yükləmək mümkün olmadı. Yenidən cəhd edin."
 		}
 	}
 }

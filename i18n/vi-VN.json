@@ -5096,21 +5096,21 @@
 			"photos": "Kaneo dùng ảnh của bạn để đính kèm hình ảnh vào công việc và bình luận, cũng như làm ảnh hồ sơ."
 		},
 		"parity": {
-			"signInTagline": "Sign in to Go Figure’s project workspace."
+			"signInTagline": "Đăng nhập vào không gian làm việc dự án của Go Figure."
 		}
 	},
 	"parity": {
 		"categories": {
-			"backlog": "Backlog",
-			"canceled": "Canceled",
-			"completed": "Completed",
-			"description": "Categories define how planning features count work. Kaneo’s final-state setting continues to control its existing automations.",
-			"error": "Could not save or load categories. Try again.",
-			"label": "Category for {{name}}",
-			"loading": "Loading state categories…",
-			"started": "Started",
-			"title": "State categories",
-			"unstarted": "Unstarted"
+			"title": "Nhóm trạng thái",
+			"description": "Các nhóm xác định cách tính công việc trong các tính năng lập kế hoạch. Thiết lập trạng thái cuối của Kaneo vẫn điều khiển các quy trình tự động hiện có.",
+			"backlog": "Công việc tồn đọng",
+			"unstarted": "Chưa bắt đầu",
+			"started": "Đã bắt đầu",
+			"completed": "Hoàn thành",
+			"canceled": "Đã hủy",
+			"label": "Nhóm cho {{name}}",
+			"loading": "Đang tải các nhóm trạng thái…",
+			"error": "Không thể lưu hoặc tải các nhóm. Vui lòng thử lại."
 		}
 	}
 }

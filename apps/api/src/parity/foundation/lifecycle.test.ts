@@ -55,4 +55,34 @@ describe("planning foundation", () => {
         .completedAt,
     ).toBeNull();
   });
+  it("recovers an earlier historical start and a missed recompletion while retaining newer live observations", () => {
+    const first = new Date("2026-01-01T00:00:00Z");
+    const second = new Date("2026-01-02T00:00:00Z");
+    const third = new Date("2026-01-03T00:00:00Z");
+    const fourth = new Date("2026-01-04T00:00:00Z");
+    const fifth = new Date("2026-01-05T00:00:00Z");
+    const events = [
+      { category: "started" as const, at: first },
+      { category: "completed" as const, at: second },
+      { category: "started" as const, at: third },
+      { category: "completed" as const, at: fourth },
+    ];
+    const observed = {
+      startedAt: third,
+      completedAt: second,
+      canceledAt: null,
+    };
+    expect(replayLifecycle(events, "completed", observed)).toEqual({
+      startedAt: first,
+      completedAt: fourth,
+      canceledAt: null,
+    });
+    expect(
+      replayLifecycle(events, "completed", { ...observed, completedAt: fifth })
+        .completedAt,
+    ).toEqual(fifth);
+    expect(
+      replayLifecycle(events, "unstarted", observed).completedAt,
+    ).toBeNull();
+  });
 });

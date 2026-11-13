@@ -5096,21 +5096,21 @@
 			"photos": "Kaneo 會使用你的照片，為任務和留言附加圖片，以及設定你的個人頭像。"
 		},
 		"parity": {
-			"signInTagline": "Sign in to Go Figure’s project workspace."
+			"signInTagline": "登入 Go Figure 的專案工作區。"
 		}
 	},
 	"parity": {
 		"categories": {
-			"backlog": "Backlog",
-			"canceled": "Canceled",
-			"completed": "Completed",
-			"description": "Categories define how planning features count work. Kaneo’s final-state setting continues to control its existing automations.",
-			"error": "Could not save or load categories. Try again.",
-			"label": "Category for {{name}}",
-			"loading": "Loading state categories…",
-			"started": "Started",
-			"title": "State categories",
-			"unstarted": "Unstarted"
+			"title": "狀態類別",
+			"description": "類別決定規劃功能如何統計工作。Kaneo 的最終狀態設定仍控制現有的自動化流程。",
+			"backlog": "待辦清單",
+			"unstarted": "未開始",
+			"started": "已開始",
+			"completed": "已完成",
+			"canceled": "已取消",
+			"label": "{{name}} 的類別",
+			"loading": "正在載入狀態類別…",
+			"error": "無法儲存或載入類別。請再試一次。"
 		}
 	}
 }

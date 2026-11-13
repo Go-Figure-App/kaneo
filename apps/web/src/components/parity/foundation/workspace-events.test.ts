@@ -1,5 +1,5 @@
 import { QueryClient } from "@tanstack/react-query";
-import { expect, it } from "vite-plus/test";
+import { expect, it, vi } from "vite-plus/test";
 import { invalidateParity } from "./workspace-events";
 
 it("invalidates planning data without accepting payload data or invalidating board queries", () => {
@@ -25,5 +25,18 @@ it("invalidates planning data without accepting payload data or invalidating boa
     workspaceId: "workspace",
   });
   expect(client.getQueryData(["parity", "columns", "project"])).toBeUndefined();
+  client.clear();
+});
+
+it("leaves upstream cache handling alone when no planning queries exist", () => {
+  const client = new QueryClient();
+  client.setQueryData(["tasks", "project"], []);
+  const remove = vi.spyOn(client, "removeQueries");
+  invalidateParity(client, {
+    type: "WORKSPACE_ACCESS_REVOKED",
+    workspaceId: "workspace",
+  });
+  expect(remove).not.toHaveBeenCalled();
+  expect(client.getQueryData(["tasks", "project"])).toEqual([]);
   client.clear();
 });

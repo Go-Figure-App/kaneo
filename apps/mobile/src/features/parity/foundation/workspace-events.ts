@@ -17,7 +17,13 @@ export function invalidateParity(client: QueryClient, event: { type: string }) {
       "USER_ACCESS_REVOKED",
     ].includes(event.type)
   ) {
-    client.removeQueries({ queryKey: ["parity"] });
+    if (
+      client
+        .getQueryCache()
+        .getAll()
+        .some((query) => query.queryKey[0] === "parity")
+    )
+      client.removeQueries({ queryKey: ["parity"] });
     return;
   }
   if (events.has(event.type))

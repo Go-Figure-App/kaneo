@@ -5096,21 +5096,21 @@
 			"photos": "Kaneo는 작업과 댓글에 이미지를 첨부하고 프로필 사진을 설정하기 위해 사진을 사용합니다."
 		},
 		"parity": {
-			"signInTagline": "Sign in to Go Figure’s project workspace."
+			"signInTagline": "Go Figure의 프로젝트 워크스페이스에 로그인하세요."
 		}
 	},
 	"parity": {
 		"categories": {
-			"backlog": "Backlog",
-			"canceled": "Canceled",
-			"completed": "Completed",
-			"description": "Categories define how planning features count work. Kaneo’s final-state setting continues to control its existing automations.",
-			"error": "Could not save or load categories. Try again.",
-			"label": "Category for {{name}}",
-			"loading": "Loading state categories…",
-			"started": "Started",
-			"title": "State categories",
-			"unstarted": "Unstarted"
+			"title": "상태 범주",
+			"description": "범주는 계획 기능에서 작업을 집계하는 방식을 정의합니다. Kaneo의 최종 상태 설정은 기존 자동화를 계속 제어합니다.",
+			"backlog": "백로그",
+			"unstarted": "시작 전",
+			"started": "시작됨",
+			"completed": "완료",
+			"canceled": "취소됨",
+			"label": "{{name}}의 범주",
+			"loading": "상태 범주 불러오는 중…",
+			"error": "범주를 저장하거나 불러올 수 없습니다. 다시 시도해 주세요."
 		}
 	}
 }

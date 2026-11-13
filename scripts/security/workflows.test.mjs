@@ -14,7 +14,7 @@ import { test } from "node:test";
 const root = path.resolve(import.meta.dirname, "../..");
 function runBlock(file, step) {
   const source = readFileSync(
-    path.join(root, ".github/workflows", file),
+    path.join(root, ".github/upstream-workflows", file),
     "utf8",
   );
   const lines = source.slice(source.indexOf(`- name: ${step}`)).split("\n");
@@ -178,16 +178,15 @@ test("release packages reject a tag outside reviewed main history", () => {
 });
 
 test("Blacksmith actions use immutable commits with no scanner exemption", () => {
-  for (const file of readdirSync(path.join(root, ".github/workflows"))) {
-    if (!file.endsWith(".yml")) continue;
-    const source = readFileSync(
-      path.join(root, ".github/workflows", file),
-      "utf8",
-    );
-    for (const match of source.matchAll(
-      /uses: (useblacksmith\/[^@\s]+)@([^\s]+)/g,
-    )) {
-      assert.match(match[2], /^[a-f0-9]{40}$/, `${file}: ${match[1]}`);
+  for (const directory of [".github/workflows", ".github/upstream-workflows"]) {
+    for (const file of readdirSync(path.join(root, directory))) {
+      if (!file.endsWith(".yml")) continue;
+      const source = readFileSync(path.join(root, directory, file), "utf8");
+      for (const match of source.matchAll(
+        /uses: (useblacksmith\/[^@\s]+)@([^\s]+)/g,
+      )) {
+        assert.match(match[2], /^[a-f0-9]{40}$/, `${file}: ${match[1]}`);
+      }
     }
   }
   assert.doesNotMatch(

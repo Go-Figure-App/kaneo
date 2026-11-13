@@ -17,8 +17,30 @@ export async function initializeParity() {
     "task.moved",
     "task.updated",
   ]) {
-    await subscribeToEvent<{ taskId: string }>(name, async ({ taskId }) => {
-      if (enabledFeatures().includes("foundation")) await syncLifecycle(taskId);
+    await subscribeToEvent<{
+      taskId: string;
+      projectId?: string;
+      toProjectId?: string;
+      status?: string;
+      newStatus?: string;
+    }>(name, async (event) => {
+      if (!enabledFeatures().includes("foundation")) return;
+      const status =
+        name === "task.created"
+          ? event.status
+          : name === "task.updated"
+            ? undefined
+            : event.newStatus;
+      // Capture before awaiting database work; the row may advance again
+      // before this handler acquires its lock.
+      const transition = status
+        ? {
+            projectId: event.toProjectId ?? event.projectId,
+            status,
+            at: new Date(),
+          }
+        : undefined;
+      await syncLifecycle(event.taskId, transition);
     });
   }
   await subscribeToEvent<WorkspaceEvent>(

@@ -47,7 +47,11 @@ it("applies both migration sets to upstream's shape, preserves its schema and re
         },
         logInfo: () => {},
       });
-    await startup();
+    // A failed attempt must release its session lock for the next startup.
+    await expect(
+      migrateParity(database, `${parity}/missing`),
+    ).rejects.toThrow();
+    await Promise.all([startup(), startup()]);
     await startup();
     expect((await snapshot()).rows).toEqual(before);
     expect(

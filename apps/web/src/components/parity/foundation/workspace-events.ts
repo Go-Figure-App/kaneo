@@ -21,7 +21,13 @@ export function invalidateParity(
       "USER_ACCESS_REVOKED",
     ].includes(message.type)
   ) {
-    client.removeQueries({ queryKey: ["parity"] });
+    if (
+      client
+        .getQueryCache()
+        .getAll()
+        .some((query) => query.queryKey[0] === "parity")
+    )
+      client.removeQueries({ queryKey: ["parity"] });
     return;
   }
   if (

@@ -12,13 +12,13 @@ Phase 0 implements the foundation from the technical design attached to [GOF-272
 - React to mutations through the existing event bus. Do not modify task controllers.
 - Reuse existing permissions. Project data and event recipients must respect project access restrictions. Socket messages carry only a type and workspace ID; clients refetch authorized endpoints and discard parity caches on access changes.
 - Target fewer than 20 shared integration edits. Record generated locale synchronization separately and count it in the total; upstream's required locale check needs every catalog to contain the source keys. Ask before a large change to a shared file or a design/model change.
-- No Railway changes, production migration/import, paid services, TestFlight or App Store submission without explicit permission. Phase work stops at a pull request for review.
+- No Railway changes, production migration/import, paid services, TestFlight or App Store submission without explicit permission. The maintainer authorized review fixes, merging approved green PRs, and continuing to the next phase; deployment remains separate.
 
 ## Phase 0 spike findings
 
 Validated against upstream `cb70ff64` (v2.49.0), with the existing Go Figure mobile identity commit `104f1f6f` preserved.
 
-1. **Separate migrations work.** A disposable PostgreSQL database applied 74 upstream migrations followed by an independent migration through `prepareDatabaseStartup`. Repeating startup did not reapply either set. The integration test checks that upstream columns and its migration ledger remain identical and that the previous migration sequence still runs.
+1. **Separate migrations work.** A disposable PostgreSQL database applied 74 upstream migrations followed by an independent migration through `prepareDatabaseStartup`. Concurrent and repeated startup do not reapply either set. A dedicated PostgreSQL session holds an advisory lock before reading the parity ledger and releases it on success or failure. The integration test checks that upstream columns and its migration ledger remain identical and that the previous migration sequence still runs.
 2. **Task properties support small insertions.** `components/task/properties/properties-rail.tsx` already composes `PropertyRow`; `property-chips.tsx` handles compact layouts. Later phases can mount parity components in those two places, just like custom fields. No task-panel changes are needed in Phase 0.
 3. **The importer cannot transparently carry planning metadata.** `packages/importers/src/linear/source.ts` lists Linear teams, not Linear projects, and `ImportedProject`/`ImportedTask` have no planning metadata. `writeProjectContent` constructs its source-to-destination task map internally and returns counts, not that map. Phase 7 needs a parity source/writer path or an explicit hook exposing that mapping. No shared importer types were changed in this phase.
 
@@ -36,7 +36,7 @@ Endpoints (all require authentication):
 - `GET /api/parity/columns/{projectId}`: readable project's workflow categories.
 - `PUT /api/parity/columns/{projectId}/{columnId}`: set a category with existing `project:update` permission; rejects columns from another project.
 
-Lifecycle semantics: retain the first observed start, retain a terminal timestamp while the task stays in that category, clear terminal timestamps on reopening, and record a new timestamp on recompletion. Current task rows are locked during updates so delayed events cannot overwrite the present state with an old status. Category changes reconcile history for that project. The existing event bus is asynchronous and not a durable queue; the backfill is also a reconciliation tool.
+Lifecycle semantics: retain the first observed start, retain a terminal timestamp while the task stays in that category, clear terminal timestamps on reopening, and record a new timestamp on recompletion. Live subscribers capture the triggering transition before awaiting database work, replay recorded status/move history, and lock current task rows. This preserves rapid transitions even when handlers run late or out of order, while the current category clears stale terminal dates. Reconciliation chooses the earliest known start and the latest applicable terminal transition. Category changes reconcile history for that project. The existing event bus is asynchronous and not a durable queue; the backfill is also a reconciliation tool.
 
 The four side tables contain the design's fields. Missing task/project/workspace rows mean defaults. Cycle and milestone IDs are nullable reserved text fields; their target tables and assignment validation arrive in their own phases. No Phase 0 endpoint writes them.
 
@@ -58,7 +58,7 @@ The existing fork config retains name `GF Kaneo` and bundle/package ID `io.gofig
 
 For local simulator testing only, `GOFIGURE_LOCAL_SERVER_URL=http://localhost:18173` overrides the fixed address at build/Metro startup. Do not set that override for distribution builds. The existing device-login URL scheme remains `kaneo://` to match the server's approval page. Expo SDK 58 [app configuration](https://docs.expo.dev/versions/v58.0.0/config/app/) and [Constants](https://docs.expo.dev/versions/v58.0.0/sdk/constants/) docs were checked. Native builds must be rebuilt after removing the purchases library.
 
-## Shared-file register (38 files: 18 integration/config files, 20 generated catalogs)
+## Shared-file register (70 files: 19 integration/config files, 20 catalogs, 28 workflow moves, 3 fixture paths)
 
 | File | Change and reason |
 | --- | --- |
@@ -70,7 +70,7 @@ For local simulator testing only, `GOFIGURE_LOCAL_SERVER_URL=http://localhost:18
 | `apps/docs/openapi.json` | Generated contract for the three foundation routes. |
 | `apps/web/src/routes/_layout/_authenticated/dashboard/settings/projects/$projectId/workflow.tsx` | Mount the parity category component. |
 | `apps/web/src/hooks/use-user-websocket.ts` | Forward hints and access changes to parity cache handling. |
-| `i18n/en-US.json` | Source copy for category settings and the fixed-server mobile sign-in. Other locales retain the existing English fallback. |
+| `i18n/en-US.json` | Source copy for category settings and the fixed-server mobile sign-in. The 20 other catalogs contain translations of the new strings. |
 | `apps/mobile/app.config.js` | Add the fixed server URL to the existing fork-owned config. |
 | `apps/mobile/package.json` | Remove the purchases native dependency. |
 | `pnpm-lock.yaml` | Remove purchases and its unused transitive packages. |
@@ -80,37 +80,74 @@ For local simulator testing only, `GOFIGURE_LOCAL_SERVER_URL=http://localhost:18
 | `apps/mobile/src/lib/session.ts` | Enforce the build's server for persisted credentials. |
 | `apps/mobile/src/app/(app)/index.tsx` | Forward workspace hints and access changes to parity cache handling. |
 | `.coderabbit.yaml` | Enable automatic reviews and the review approval workflow for this fork. |
+| `apps/mobile/src/lib/api/client.ts` | Re-export the pure parity URL normalizer so connection and persisted sessions use the same canonical address without a circular import. |
 
-The following 20 existing catalogs each receive the same 11 new English fallback strings (17 added lines per file), generated by `pnpm i18n:check:fix`. This exceeds the original total-file target because upstream CI requires locale key parity; no existing translation is replaced. The source remains `i18n/en-US.json`.
+The following 20 existing catalogs each receive translations for the 11 new source strings (17 added lines per file). Key synchronization began with `pnpm i18n:check:fix`; review then added locale-specific translations. Upstream CI requires locale key parity; no pre-existing translation is replaced. The source remains `i18n/en-US.json`.
 
 | Generated catalog | Change and reason |
 | --- | --- |
-| `i18n/az-AZ.json` | Add the new source keys for locale validation. |
-| `i18n/de-DE.json` | Add the new source keys for locale validation. |
-| `i18n/el-GR.json` | Add the new source keys for locale validation. |
-| `i18n/es-ES.json` | Add the new source keys for locale validation. |
-| `i18n/fr-FR.json` | Add the new source keys for locale validation. |
-| `i18n/hi-IN.json` | Add the new source keys for locale validation. |
-| `i18n/id-ID.json` | Add the new source keys for locale validation. |
-| `i18n/it-IT.json` | Add the new source keys for locale validation. |
-| `i18n/ja-JP.json` | Add the new source keys for locale validation. |
-| `i18n/ko-KR.json` | Add the new source keys for locale validation. |
-| `i18n/mk-MK.json` | Add the new source keys for locale validation. |
-| `i18n/nl-NL.json` | Add the new source keys for locale validation. |
-| `i18n/pl-PL.json` | Add the new source keys for locale validation. |
-| `i18n/pt-BR.json` | Add the new source keys for locale validation. |
-| `i18n/ru-RU.json` | Add the new source keys for locale validation. |
-| `i18n/tr-TR.json` | Add the new source keys for locale validation. |
-| `i18n/uk-UA.json` | Add the new source keys for locale validation. |
-| `i18n/vi-VN.json` | Add the new source keys for locale validation. |
-| `i18n/zh-CN.json` | Add the new source keys for locale validation. |
-| `i18n/zh-TW.json` | Add the new source keys for locale validation. |
+| `i18n/az-AZ.json` | Translate the new category and sign-in strings. |
+| `i18n/de-DE.json` | Translate the new category and sign-in strings. |
+| `i18n/el-GR.json` | Translate the new category and sign-in strings. |
+| `i18n/es-ES.json` | Translate the new category and sign-in strings. |
+| `i18n/fr-FR.json` | Translate the new category and sign-in strings. |
+| `i18n/hi-IN.json` | Translate the new category and sign-in strings. |
+| `i18n/id-ID.json` | Translate the new category and sign-in strings. |
+| `i18n/it-IT.json` | Translate the new category and sign-in strings. |
+| `i18n/ja-JP.json` | Translate the new category and sign-in strings. |
+| `i18n/ko-KR.json` | Translate the new category and sign-in strings. |
+| `i18n/mk-MK.json` | Translate the new category and sign-in strings. |
+| `i18n/nl-NL.json` | Translate the new category and sign-in strings. |
+| `i18n/pl-PL.json` | Translate the new category and sign-in strings. |
+| `i18n/pt-BR.json` | Translate the new category and sign-in strings. |
+| `i18n/ru-RU.json` | Translate the new category and sign-in strings. |
+| `i18n/tr-TR.json` | Translate the new category and sign-in strings. |
+| `i18n/uk-UA.json` | Translate the new category and sign-in strings. |
+| `i18n/vi-VN.json` | Translate the new category and sign-in strings. |
+| `i18n/zh-CN.json` | Translate the new category and sign-in strings. |
+| `i18n/zh-TW.json` | Translate the new category and sign-in strings. |
+
+The maintainer explicitly authorized retiring irrelevant CI/CD. These additional infrastructure edits exceed the original shared-file target and keep upstream automation from running or publishing on the fork. Workflow contents are preserved unchanged in `.github/upstream-workflows/` for reference; GitHub only discovers `.github/workflows/`. The archived workflows are not runnable from their new location.
+
+| Upstream file | Change and reason |
+| --- | --- |
+| `.github/workflows/agentscan.yml` | Move unchanged to `.github/upstream-workflows/agentscan.yml`; replaced by fork CI or unrelated upstream automation. |
+| `.github/workflows/android.yml` | Move unchanged to `.github/upstream-workflows/android.yml`; replaced by fork CI or unrelated upstream automation. |
+| `.github/workflows/auto-assign.yml` | Move unchanged to `.github/upstream-workflows/auto-assign.yml`; replaced by fork CI or unrelated upstream automation. |
+| `.github/workflows/browserstack.yml` | Move unchanged to `.github/upstream-workflows/browserstack.yml`; replaced by fork CI or unrelated upstream automation. |
+| `.github/workflows/build-images.yml` | Move unchanged to `.github/upstream-workflows/build-images.yml`; replaced by fork CI or unrelated upstream automation. |
+| `.github/workflows/ci.yml` | Move unchanged to `.github/upstream-workflows/ci.yml`; replaced by fork CI or unrelated upstream automation. |
+| `.github/workflows/code-review.yml` | Move unchanged to `.github/upstream-workflows/code-review.yml`; replaced by fork CI or unrelated upstream automation. |
+| `.github/workflows/contribution-eligibility.yml` | Move unchanged to `.github/upstream-workflows/contribution-eligibility.yml`; replaced by fork CI or unrelated upstream automation. |
+| `.github/workflows/dependency-graph.yml` | Move unchanged to `.github/upstream-workflows/dependency-graph.yml`; replaced by fork CI or unrelated upstream automation. |
+| `.github/workflows/deploy-site.yml` | Move unchanged to `.github/upstream-workflows/deploy-site.yml`; replaced by fork CI or unrelated upstream automation. |
+| `.github/workflows/docker.yml` | Move unchanged to `.github/upstream-workflows/docker.yml`; replaced by fork CI or unrelated upstream automation. |
+| `.github/workflows/helm-chart.yml` | Move unchanged to `.github/upstream-workflows/helm-chart.yml`; replaced by fork CI or unrelated upstream automation. |
+| `.github/workflows/helm-validate.yml` | Move unchanged to `.github/upstream-workflows/helm-validate.yml`; replaced by fork CI or unrelated upstream automation. |
+| `.github/workflows/issue-notify.yml` | Move unchanged to `.github/upstream-workflows/issue-notify.yml`; replaced by fork CI or unrelated upstream automation. |
+| `.github/workflows/issue-priority.yml` | Move unchanged to `.github/upstream-workflows/issue-priority.yml`; replaced by fork CI or unrelated upstream automation. |
+| `.github/workflows/mellon.yml` | Move unchanged to `.github/upstream-workflows/mellon.yml`; replaced by fork CI or unrelated upstream automation. |
+| `.github/workflows/nightly.yml` | Move unchanged to `.github/upstream-workflows/nightly.yml`; replaced by fork CI or unrelated upstream automation. |
+| `.github/workflows/pr-size-labeler.yml` | Move unchanged to `.github/upstream-workflows/pr-size-labeler.yml`; replaced by fork CI or unrelated upstream automation. |
+| `.github/workflows/pr-title.yml` | Move unchanged to `.github/upstream-workflows/pr-title.yml`; replaced by fork CI or unrelated upstream automation. |
+| `.github/workflows/publish-cli.yml` | Move unchanged to `.github/upstream-workflows/publish-cli.yml`; replaced by fork CI or unrelated upstream automation. |
+| `.github/workflows/publish-mcp.yml` | Move unchanged to `.github/upstream-workflows/publish-mcp.yml`; replaced by fork CI or unrelated upstream automation. |
+| `.github/workflows/publish-planka-import.yml` | Move unchanged to `.github/upstream-workflows/publish-planka-import.yml`; replaced by fork CI or unrelated upstream automation. |
+| `.github/workflows/release-notify.yml` | Move unchanged to `.github/upstream-workflows/release-notify.yml`; replaced by fork CI or unrelated upstream automation. |
+| `.github/workflows/release.yml` | Move unchanged to `.github/upstream-workflows/release.yml`; replaced by fork CI or unrelated upstream automation. |
+| `.github/workflows/slop-labeler.yml` | Move unchanged to `.github/upstream-workflows/slop-labeler.yml`; replaced by fork CI or unrelated upstream automation. |
+| `.github/workflows/ui-review-run.yml` | Move unchanged to `.github/upstream-workflows/ui-review-run.yml`; replaced by fork CI or unrelated upstream automation. |
+| `.github/workflows/ui-review.yml` | Move unchanged to `.github/upstream-workflows/ui-review.yml`; replaced by fork CI or unrelated upstream automation. |
+| `.github/workflows/update-contributors.yml` | Move unchanged to `.github/upstream-workflows/update-contributors.yml`; replaced by fork CI or unrelated upstream automation. |
+| `scripts/security/release-inputs.test.mjs` | Read the archived build workflow fixture; retain all security assertions. |
+| `scripts/ci/mcp-registry.test.mjs` | Read the archived publish workflow fixture; retain all registry assertions. |
+| `scripts/security/workflows.test.mjs` | Read archived fixture commands and scan both workflow directories; retain all security assertions. |
 
 ## Fork CI and review
 
-`.github/workflows/parity-ci.yml` runs on pull requests, pushes to `main` and manual dispatches in `Go-Figure-App/kaneo`. It uses standard GitHub-hosted Ubuntu runners, read-only repository permissions, pinned actions, and synthetic PostgreSQL data. Checks cover lint, locale parity, OpenAPI, typecheck, all workspace unit suites, four integration shards, the bundled Docker build, upstream browser flows with parity disabled, and parity browser flows with it enabled. The final result requires every job to succeed; skipped or cancelled jobs fail the gate. Packages run serially inside the unit job to avoid import-time resource contention.
+`.github/workflows/parity-ci.yml` runs on pull requests, pushes to `main` and manual dispatches in `Go-Figure-App/kaneo`. It uses standard GitHub-hosted Ubuntu runners, read-only repository permissions, pinned actions, and synthetic PostgreSQL data. Checks cover active-workflow validation with checksum-verified actionlint, lint, locale parity, OpenAPI, typecheck, all workspace unit suites, four integration shards, the bundled Docker build, upstream browser flows with parity disabled, and parity browser flows with it enabled. The final result requires every job to succeed; skipped or cancelled jobs fail the gate. Packages run serially inside the unit job to avoid import-time resource contention.
 
-CI does not publish images, upload artifacts, deploy to Railway or submit mobile builds. The inherited workflows target upstream's Blacksmith runners and release infrastructure; keep them disabled in this fork. CodeRabbit reviews are enabled, and maintainers can also request `@coderabbitai review`. Review findings and the latest commit's checks must be addressed before merging. Production deployment remains a separate approval step.
+CI does not publish images, upload artifacts, deploy to Railway or submit mobile builds. The 28 inherited workflows have been removed from the active directory. The six that GitHub registered before this change were also disabled, and their queued runs were canceled. This prevents inherited Blacksmith, publishing, Pages, release, sponsor, labeling, and review jobs from activating after merge. CodeRabbit reviews are enabled, and maintainers can also request `@coderabbitai review`. Review findings and the latest commit's checks must be addressed before merging. Production deployment remains a separate approval step.
 
 ## Verification commands
 
@@ -159,6 +196,17 @@ Failures encountered and resolved without changing upstream assertions:
 - The file-secret fixture reported `POSTGRES_PASSWORD_FILE points to an empty file` because the initial local connection URL omitted a password. The fixture passed with a nonempty test password.
 - Development-server browser runs encountered `net::ERR_ABORTED` and a detached button while navigating. The first production preview also retained Docker's placeholder CAPTCHA key and displayed `The security check didn't load`. Building with explicit local configuration and running against the built bundle produced four passing browser flows.
 
-Not verified: production data or deployment, a built Docker image, Redis fan-out across replicas, physical-device/APNs behavior, OAuth/OTP mobile sign-in, TestFlight/App Store distribution or Android execution. Android identity configuration remains in place and shared mobile code passes typecheck; Android-specific testing is outside this phase's requested scope. Incomplete historical activity cannot recover exact old workflow categories; the backfill limitations above apply.
+The first Go Figure CI run additionally passed the bundled Docker build, all four browser flows, quality/contracts, and all four API integration shards. Its unit job caught four existing web assertions affected by unconditional parity cache removal; the fix avoids touching caches when no parity queries exist and retains the upstream assertions.
 
-Phase 1 waits for review of this phase. No new product decision is required before triage work; the importer boundary must be settled before Phase 7.
+Not verified: production data or deployment, Redis fan-out across replicas, physical-device/APNs behavior, OAuth/OTP mobile sign-in, TestFlight/App Store distribution or Android execution. Android identity configuration remains in place and shared mobile code passes typecheck; Android-specific testing is outside this phase's requested scope. Incomplete historical activity cannot recover exact old workflow categories; the backfill limitations above apply.
+
+### Review regression checks (2026-11-13)
+
+- All 22 typecheck tasks, root lint/formatting, and 21 locale catalogs passed.
+- All 9 parity integration cases passed, including delayed/out-of-order transitions, concurrent migration startup and lock release after failure. The migration case passed again after the final lock-cleanup change.
+- Workspace suites ran 5,151 cases: 5,147 passed initially and four existing editor cases hit local timing failures. Both affected files passed all 15 cases with two workers and unchanged assertions/timeouts. The 25 focused socket/cache cases passed, including the four regressions caught by the first CI run.
+- All 176 security, workflow, release and contribution-script cases passed after installing their pinned disposable nginx image and relocating three fixture paths.
+- All 28 archived workflow files are byte-for-byte copies of the inherited definitions. Existing translations are unchanged; all 20 non-English locales now translate the 11 new strings.
+- Merge remains gated on approval and the latest commit's complete GitHub CI run.
+
+Phase 1 starts after this phase receives approval and its latest CI run is green, as authorized by the maintainer. No new product decision is required before triage work; the importer boundary must be settled before Phase 7.

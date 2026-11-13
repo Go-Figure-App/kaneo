@@ -5280,21 +5280,21 @@
 			"photos": "Kaneo usa tus fotos para adjuntar imágenes a tareas y comentarios, y para tu foto de perfil."
 		},
 		"parity": {
-			"signInTagline": "Sign in to Go Figure’s project workspace."
+			"signInTagline": "Inicia sesión en el espacio de trabajo de proyectos de Go Figure."
 		}
 	},
 	"parity": {
 		"categories": {
-			"backlog": "Backlog",
-			"canceled": "Canceled",
-			"completed": "Completed",
-			"description": "Categories define how planning features count work. Kaneo’s final-state setting continues to control its existing automations.",
-			"error": "Could not save or load categories. Try again.",
-			"label": "Category for {{name}}",
-			"loading": "Loading state categories…",
-			"started": "Started",
-			"title": "State categories",
-			"unstarted": "Unstarted"
+			"title": "Categorías de estado",
+			"description": "Las categorías definen cómo las funciones de planificación contabilizan el trabajo. La configuración de estado final de Kaneo sigue controlando las automatizaciones existentes.",
+			"backlog": "Trabajo pendiente",
+			"unstarted": "Sin iniciar",
+			"started": "Iniciado",
+			"completed": "Completado",
+			"canceled": "Cancelado",
+			"label": "Categoría de {{name}}",
+			"loading": "Cargando categorías de estado…",
+			"error": "No se pudieron guardar o cargar las categorías. Inténtalo de nuevo."
 		}
 	}
 }

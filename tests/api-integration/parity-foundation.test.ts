@@ -208,9 +208,12 @@ it("backfills actual activity dates, is repeatable, and retains unrelated task e
     .update(schema.taskTable)
     .set({ status: "done", columnId: done.id })
     .where(eq(schema.taskTable.id, ctx.alphaTask.id));
-  await db
-    .insert(taskExtTable)
-    .values({ taskId: ctx.alphaTask.id, estimate: 5 });
+  await db.insert(taskExtTable).values({
+    taskId: ctx.alphaTask.id,
+    estimate: 5,
+    startedAt: new Date("2026-01-01T12:00:00Z"),
+    completedAt: new Date("2026-01-01T18:00:00Z"),
+  });
   const startedAt = new Date("2026-01-01T00:00:00Z");
   const completedAt = new Date("2026-01-02T00:00:00Z");
   await db.insert(schema.activityTable).values([
@@ -254,6 +257,61 @@ it("backfills actual activity dates, is repeatable, and retains unrelated task e
     completedAt: null,
     canceledAt: null,
     estimate: 5,
+  });
+});
+
+it("retains rapid transitions when handlers arrive after the task advances and out of order", async () => {
+  const { workspace } = await createWorkspaceMember({ role: "owner" });
+  const { project, columns } = await createProjectFixture({
+    workspaceId: workspace.id,
+  });
+  const [task] = await db
+    .insert(schema.taskTable)
+    .values({
+      projectId: project.id,
+      title: "Rapid transitions",
+      status: "to-do",
+      columnId: columns.todo.id,
+      number: 1,
+    })
+    .returning();
+  await db
+    .update(schema.taskTable)
+    .set({ status: "done", columnId: columns.done.id })
+    .where(eq(schema.taskTable.id, task.id));
+  const startedAt = new Date("2026-01-01T00:00:00Z");
+  const firstCompletion = new Date("2026-01-02T00:00:00Z");
+  const reopenedAt = new Date("2026-01-03T00:00:00Z");
+  const completedAt = new Date("2026-01-04T00:00:00Z");
+  const observe = (status: string, at: Date) =>
+    syncLifecycle(task.id, { projectId: project.id, status, at });
+  // Neither the intermediate row nor the asynchronous activity insert is
+  // available when these delayed handlers run.
+  await observe("done", firstCompletion);
+  await observe("in-progress", startedAt);
+  await observe("done", completedAt);
+  await observe("in-progress", reopenedAt);
+  const extension = async () =>
+    (
+      await db
+        .select()
+        .from(taskExtTable)
+        .where(eq(taskExtTable.taskId, task.id))
+    )[0];
+  expect(await extension()).toMatchObject({
+    startedAt,
+    completedAt,
+    canceledAt: null,
+  });
+  await db
+    .update(schema.taskTable)
+    .set({ status: "to-do", columnId: columns.todo.id })
+    .where(eq(schema.taskTable.id, task.id));
+  await observe("done", completedAt);
+  expect(await extension()).toMatchObject({
+    startedAt,
+    completedAt: null,
+    canceledAt: null,
   });
 });
 

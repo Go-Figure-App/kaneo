@@ -5372,21 +5372,21 @@
 			"photos": "Kaneo використовує ваші фото, щоб додавати зображення до завдань і коментарів, а також для фото профілю."
 		},
 		"parity": {
-			"signInTagline": "Sign in to Go Figure’s project workspace."
+			"signInTagline": "Увійдіть у робочий простір проєктів Go Figure."
 		}
 	},
 	"parity": {
 		"categories": {
-			"backlog": "Backlog",
-			"canceled": "Canceled",
-			"completed": "Completed",
-			"description": "Categories define how planning features count work. Kaneo’s final-state setting continues to control its existing automations.",
-			"error": "Could not save or load categories. Try again.",
-			"label": "Category for {{name}}",
-			"loading": "Loading state categories…",
-			"started": "Started",
-			"title": "State categories",
-			"unstarted": "Unstarted"
+			"title": "Категорії статусів",
+			"description": "Категорії визначають, як функції планування враховують роботу. Налаштування кінцевого статусу Kaneo й надалі керує наявними автоматизаціями.",
+			"backlog": "Беклог",
+			"unstarted": "Не розпочато",
+			"started": "Розпочато",
+			"completed": "Завершено",
+			"canceled": "Скасовано",
+			"label": "Категорія для {{name}}",
+			"loading": "Завантаження категорій статусів…",
+			"error": "Не вдалося зберегти або завантажити категорії. Спробуйте ще раз."
 		}
 	}
 }
