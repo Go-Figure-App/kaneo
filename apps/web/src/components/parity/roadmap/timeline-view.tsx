@@ -173,7 +173,7 @@ export function TimelineView({
                   )}
                 </div>
                 <div
-                  className="relative h-16"
+                  className="relative h-16 overflow-hidden"
                   style={grid}
                   onDrop={drop}
                   onDragOver={dragOver}

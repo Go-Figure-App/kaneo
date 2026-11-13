@@ -55,7 +55,8 @@ export function ProjectBar({
   if (!range) return null;
   const left = dateOffset(range.start, window),
     right = dateOffset(range.end, window) + window.dayWidth;
-  if (right <= 0 || left >= window.width) return null;
+  const outside = right <= 0 || left >= window.width;
+  if (outside && !move.active && !start.active && !end.active) return null;
   const percent = project.progress.pointsPercent ?? project.progress.percent;
   return (
     <div
@@ -69,8 +70,10 @@ export function ProjectBar({
             : "border-emerald-400/60 bg-emerald-100 dark:bg-emerald-950",
       )}
       style={{
-        left: Math.max(0, left),
-        width: Math.min(window.width, right) - Math.max(0, left),
+        left: Math.max(0, Math.min(window.width, left)),
+        width: Math.max(1, Math.min(window.width, right) - Math.max(0, left)),
+        opacity: outside ? 0 : undefined,
+        pointerEvents: outside ? "none" : undefined,
       }}
     >
       <div
@@ -101,21 +104,23 @@ export function ProjectBar({
           {Math.round(percent)}%
         </span>
       </button>
-      {!disabled && left >= 0 && (
+      {!disabled && (left >= 0 || start.active) && (
         <button
           type="button"
           {...start.handlers}
           aria-label={t("parity:roadmap.resizeStart", { name: project.name })}
           aria-describedby="roadmap-edit-help"
+          style={{ opacity: left < 0 ? 0 : undefined }}
           className="absolute inset-y-0 left-0 w-2 cursor-ew-resize touch-none rounded-l-md bg-current/10 focus-visible:outline-2 focus-visible:outline-ring"
         />
       )}
-      {!disabled && right <= window.width && (
+      {!disabled && (right <= window.width || end.active) && (
         <button
           type="button"
           {...end.handlers}
           aria-label={t("parity:roadmap.resizeEnd", { name: project.name })}
           aria-describedby="roadmap-edit-help"
+          style={{ opacity: right > window.width ? 0 : undefined }}
           className="absolute inset-y-0 right-0 w-2 cursor-ew-resize touch-none rounded-r-md bg-current/10 focus-visible:outline-2 focus-visible:outline-ring"
         />
       )}

@@ -26,7 +26,8 @@ export function MilestoneMarker({
   const parsed = parseTaskDate(date || null);
   if (!parsed) return null;
   const left = dateOffset(parsed, window) + window.dayWidth / 2;
-  if (left < 0 || left > window.width) return null;
+  const outside = left < 0 || left > window.width;
+  if (outside && !drag.active) return null;
   const percent =
     milestone.progress.pointsPercent ?? milestone.progress.percent;
   return (
@@ -38,7 +39,11 @@ export function MilestoneMarker({
       aria-describedby="roadmap-edit-help"
       title={`${milestone.name} · ${date} · ${Math.round(percent)}%`}
       className="absolute top-9 z-10 flex size-6 -translate-x-1/2 touch-none items-center justify-center rounded focus-visible:outline-2 focus-visible:outline-ring disabled:cursor-default"
-      style={{ left }}
+      style={{
+        left: Math.max(0, Math.min(window.width, left)),
+        opacity: outside ? 0 : undefined,
+        pointerEvents: outside ? "none" : undefined,
+      }}
     >
       <span
         className={cn(

@@ -67,7 +67,11 @@ test("roadmap moves, resizes and schedules projects, drags milestones and update
   await second.getByLabel("Jump to date").fill("2026-11-15");
   const readPlan = async (id: string) =>
     (await page.request.get(`/api/parity/project-plan/${id}`)).json();
-  const drag = async (target: Locator, pixels: number) => {
+  const drag = async (
+    target: Locator,
+    pixels: number,
+    during?: () => Promise<void>,
+  ) => {
     await expect(target).toBeEnabled();
     await target.click({ trial: true });
     await target.scrollIntoViewIfNeeded();
@@ -76,6 +80,7 @@ test("roadmap moves, resizes and schedules projects, drags milestones and update
       y = box.y + box.height / 2;
     await page.mouse.move(x, y);
     await page.mouse.down();
+    await during?.();
     await page.mouse.move(x + pixels, y, { steps: 8 });
     await page.mouse.up();
   };
@@ -168,5 +173,83 @@ test("roadmap moves, resizes and schedules projects, drags milestones and update
   await expect
     .poll(() => readPlan(unscheduled.id))
     .toMatchObject({ startDate: null, targetDate: null });
+
+  // Keep the complete weekly grid in view while dragging outside its bounds.
+  await page.setViewportSize({ width: 2000, height: 1000 });
+  await page
+    .getByRole("combobox", { name: "Timeline zoom" })
+    .selectOption("week");
+  await page.getByLabel("Jump to date").fill("2026-11-12");
+  await put(`parity/project-plan/${project.id}`, {
+    startDate: "2026-11-10",
+    targetDate: "2026-11-14",
+  });
+  await expect(bar).toHaveAttribute("title", /2026-11-10.*2026-11-14/);
+  await drag(bar, 112, async () => {
+    await put(`parity/project-plan/${project.id}`, {
+      startDate: "2026-11-11",
+      targetDate: "2026-11-15",
+    });
+    await expect(bar).toHaveAttribute("title", /2026-11-11.*2026-11-15/);
+  });
+  await expect
+    .poll(() => readPlan(project.id))
+    .toMatchObject({
+      startDate: "2026-11-12",
+      targetDate: "2026-11-16",
+    });
+  await put(`parity/project-plan/${project.id}`, {
+    startDate: "2026-11-10",
+    targetDate: "2026-11-14",
+  });
+  await expect(bar).toHaveAttribute("title", /2026-11-10.*2026-11-14/);
+  await drag(
+    page.getByRole("button", {
+      name: "Resize start of Roadmap launch",
+      exact: true,
+    }),
+    -224,
+  );
+  await expect
+    .poll(() => readPlan(project.id))
+    .toMatchObject({ startDate: "2026-11-08" });
+  await drag(
+    page.getByRole("button", {
+      name: "Resize target of Roadmap launch",
+      exact: true,
+    }),
+    224,
+  );
+  await expect
+    .poll(() => readPlan(project.id))
+    .toMatchObject({ targetDate: "2026-11-16" });
+  await drag(bar, 896);
+  await expect
+    .poll(() => readPlan(project.id))
+    .toMatchObject({
+      startDate: "2026-11-16",
+      targetDate: "2026-11-24",
+    });
+  await expect(bar).toHaveCount(0);
+  const marker = page.getByRole("button", {
+    name: "Move milestone Roadmap beta",
+    exact: true,
+  });
+  await put(`parity/milestone/item/${milestone.id}`, {
+    targetDate: "2026-11-12",
+  });
+  await expect(marker).toHaveAttribute("title", /2026-11-12/);
+  await drag(marker, 112, async () => {
+    await put(`parity/milestone/item/${milestone.id}`, {
+      targetDate: "2026-11-13",
+    });
+    await expect(marker).toHaveAttribute("title", /2026-11-13/);
+  });
+  await expect(marker).toHaveAttribute("title", /2026-11-14/);
+  await drag(marker, 224);
+  await expect(marker).toHaveCount(0);
+  await page.getByRole("button", { name: "Next period", exact: true }).click();
+  await expect(marker).toHaveAttribute("title", /2026-11-16/);
+  await expect(bar).toHaveAttribute("title", /2026-11-16.*2026-11-24/);
   await second.close();
 });

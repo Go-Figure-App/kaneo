@@ -94,3 +94,68 @@ it("exposes no editable handles or keyboard writes for a viewer", () => {
   fireEvent.keyDown(bar, { key: "ArrowLeft" });
   expect(onChange).not.toHaveBeenCalled();
 });
+
+it.each([
+  ["resizeStart", -12, "2026-10-29", "2026-11-20"],
+  ["resizeEnd", 12, "2026-11-10", "2026-12-02"],
+  ["moveProject", 25, "2026-12-05", "2026-12-15"],
+] as const)(
+  "keeps %s captured across the window boundary until pointerup",
+  (control, days, startDate, targetDate) => {
+    const onChange = vi.fn();
+    render(
+      <ProjectBar
+        project={roadmapProject()}
+        window={window}
+        disabled={false}
+        onChange={onChange}
+      />,
+    );
+    const button = screen.getByRole("button", {
+      name: `parity:roadmap.${control}`,
+    });
+    const clientX = 100 + days * window.dayWidth;
+    fireEvent.pointerDown(button, { button: 0, clientX: 100 });
+    fireEvent.pointerMove(button, { clientX });
+    expect(button).toBeInTheDocument();
+    fireEvent.pointerUp(button, { clientX });
+    expect(onChange).toHaveBeenCalledExactlyOnceWith({ startDate, targetDate });
+    expect(
+      screen.getByRole("button", { name: "parity:roadmap.moveProject" }),
+    ).toHaveAttribute(
+      "title",
+      expect.stringContaining("2026-11-10 – 2026-11-20"),
+    );
+  },
+);
+
+it("previews and commits a drag against dates refreshed while it is active", () => {
+  const onChange = vi.fn();
+  const props = { window, disabled: false, onChange };
+  const { rerender } = render(
+    <ProjectBar {...props} project={roadmapProject()} />,
+  );
+  const button = screen.getByRole("button", {
+    name: "parity:roadmap.moveProject",
+  });
+  fireEvent.pointerDown(button, { button: 0, clientX: 100 });
+  fireEvent.pointerMove(button, { clientX: 172 });
+  rerender(
+    <ProjectBar
+      {...props}
+      project={roadmapProject({
+        startDate: "2026-11-15",
+        targetDate: "2026-11-25",
+      })}
+    />,
+  );
+  expect(button).toHaveAttribute(
+    "title",
+    expect.stringContaining("2026-11-17 – 2026-11-27"),
+  );
+  fireEvent.pointerUp(button, { clientX: 172 });
+  expect(onChange).toHaveBeenCalledExactlyOnceWith({
+    startDate: "2026-11-17",
+    targetDate: "2026-11-27",
+  });
+});
