@@ -57,8 +57,8 @@ function captureCacheError(error: unknown, context: "query" | "mutation") {
 
 const queryClient = new QueryClient({
   queryCache: new QueryCache({
-    onError: (error) => {
-      clearParityOnAccessError(queryClient, error);
+    onError: (error, query) => {
+      clearParityOnAccessError(queryClient, error, query.queryKey);
       if (isUnauthorizedError(error)) {
         // Keep the 401 in query state so polling guards stay stopped while
         // navigation completes. Better Auth's session is a separate store.
@@ -69,8 +69,12 @@ const queryClient = new QueryClient({
     },
   }),
   mutationCache: new MutationCache({
-    onError: (error) => {
-      clearParityOnAccessError(queryClient, error);
+    onError: (error, _variables, _context, mutation) => {
+      clearParityOnAccessError(
+        queryClient,
+        error,
+        mutation.options.mutationKey,
+      );
       if (isUnauthorizedError(error)) {
         handleUnauthorized();
         return;

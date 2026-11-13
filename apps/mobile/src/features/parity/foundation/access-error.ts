@@ -1,13 +1,20 @@
 import type { QueryClient } from "@tanstack/react-query";
 
-export function clearParityOnAccessError(client: QueryClient, error: unknown) {
-  if (
-    !error ||
-    typeof error !== "object" ||
-    !("status" in error) ||
-    (error.status !== 403 && error.status !== 404)
-  )
-    return;
+export function isAccessError(error: unknown) {
+  return Boolean(
+    error &&
+    typeof error === "object" &&
+    "status" in error &&
+    (error.status === 401 || error.status === 403 || error.status === 404),
+  );
+}
+
+export function clearParityOnAccessError(
+  client: QueryClient,
+  error: unknown,
+  operationKey: readonly unknown[] | undefined,
+) {
+  if (operationKey?.[0] !== "parity" || !isAccessError(error)) return;
   // Feature flags contain server configuration, not workspace content. Keep
   // them available so protected screens can still show an error and retry.
   const filter = {

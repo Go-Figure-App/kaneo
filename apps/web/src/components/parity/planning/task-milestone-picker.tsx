@@ -30,6 +30,7 @@ export function TaskMilestonePicker({
     enabled,
   });
   const mutation = useMutation({
+    mutationKey: ["parity"],
     mutationFn: (milestoneId: string | null) =>
       setTaskMilestone(taskId, milestoneId),
     onSuccess: () => refreshPlanning(client),

@@ -59,6 +59,7 @@ export function TriageDecisionForm({
     columns.data?.find((column) => column.category === "unstarted")?.id ??
     columns.data?.[0]?.id;
   const mutation = useMutation({
+    mutationKey: ["parity"],
     mutationFn: (decision: TriageDecision) => decideTriage(item.id, decision),
     onSuccess: async () => {
       await refreshTriage(client);

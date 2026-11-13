@@ -42,6 +42,7 @@ export function InitiativesPage({ workspaceId }: { workspaceId: string }) {
   });
   const items = query.isError ? [] : uniquePageItems(query.data?.pages);
   const reorder = useMutation({
+    mutationKey: ["parity"],
     mutationFn: ({ index, offset }: { index: number; offset: number }) => {
       const ids = items.map((item) => item.id);
       [ids[index], ids[index + offset]] = [ids[index + offset], ids[index]];
@@ -132,8 +133,8 @@ export function InitiativesPage({ workspaceId }: { workspaceId: string }) {
                       <ProgressMeter progress={initiative.progress} compact />
                       {canUpdateProjects() &&
                         !archived &&
-                        !!query.isError &&
-                        query.hasNextPage && (
+                        !query.isError &&
+                        !query.hasNextPage && (
                           <div className="flex">
                             <Button
                               variant="ghost"

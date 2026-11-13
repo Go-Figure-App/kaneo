@@ -29,6 +29,7 @@ export function MilestoneEditor({
   const client = useQueryClient();
   const [description, setDescription] = useState(milestone?.description ?? "");
   const mutation = useMutation({
+    mutationKey: ["parity"],
     mutationFn: (form: FormData) => {
       const input = {
         name: String(form.get("name")),

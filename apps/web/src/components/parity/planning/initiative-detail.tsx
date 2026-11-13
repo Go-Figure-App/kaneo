@@ -55,16 +55,19 @@ export function InitiativeDetail({
       ? query.data
       : undefined;
   const archive = useMutation({
+    mutationKey: ["parity"],
     mutationFn: (archived: boolean) =>
       updateInitiative(initiativeId, { archived }),
     onSuccess: () => refreshPlanning(client),
   });
   const unlink = useMutation({
+    mutationKey: ["parity"],
     mutationFn: (projectId: string) =>
       unlinkInitiativeProject(initiativeId, projectId),
     onSuccess: () => refreshPlanning(client),
   });
   const remove = useMutation({
+    mutationKey: ["parity"],
     mutationFn: () => deleteInitiative(initiativeId),
     onSuccess: async () => {
       await refreshPlanning(client);

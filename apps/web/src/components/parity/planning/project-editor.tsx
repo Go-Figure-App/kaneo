@@ -33,6 +33,7 @@ export function ProjectEditor({
     projectId: project.id,
   });
   const mutation = useMutation({
+    mutationKey: ["parity"],
     mutationFn: (form: FormData) =>
       updateProjectPlan(project.id, {
         status: String(form.get("status")) as ProjectPlan["status"],

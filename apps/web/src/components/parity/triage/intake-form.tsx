@@ -10,6 +10,7 @@ export function IntakeForm({ token }: { token: string }) {
   const [description, setDescription] = useState("");
   const [reporterEmail, setReporterEmail] = useState("");
   const mutation = useMutation({
+    mutationKey: ["parity"],
     mutationFn: () =>
       submitIntake(token, { title, description, reporterEmail }),
   });

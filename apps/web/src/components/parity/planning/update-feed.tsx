@@ -47,6 +47,7 @@ export function UpdateFeed({
     getNextPageParam: (page) => (page.hasMore ? page.page + 1 : undefined),
   });
   const mutation = useMutation({
+    mutationKey: ["parity"],
     mutationFn: () =>
       createStatusUpdate(parentType, parentId, { body, health }),
     onSuccess: async () => {

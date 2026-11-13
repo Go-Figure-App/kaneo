@@ -34,6 +34,7 @@ export function Milestones({
   const [editing, setEditing] = useState<Milestone | "new" | null>(null);
   const [deleting, setDeleting] = useState<Milestone | null>(null);
   const remove = useMutation({
+    mutationKey: ["parity"],
     mutationFn: deleteMilestone,
     onSuccess: async () => {
       setDeleting(null);
@@ -41,6 +42,7 @@ export function Milestones({
     },
   });
   const reorder = useMutation({
+    mutationKey: ["parity"],
     mutationFn: async ({
       index,
       offset,

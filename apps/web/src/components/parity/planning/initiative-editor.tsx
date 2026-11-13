@@ -37,6 +37,7 @@ export function InitiativeEditor({
   const [selectedOwnerId, setOwnerId] = useState<string>();
   const ownerId = selectedOwnerId ?? initiative?.ownerId ?? "";
   const mutation = useMutation({
+    mutationKey: ["parity"],
     mutationFn: (form: FormData) => {
       const input = {
         name: String(form.get("name")),

@@ -3,13 +3,28 @@ import {
   QueryClient,
   QueryClientProvider,
 } from "@tanstack/react-query";
-import { act, cleanup, render, screen, waitFor } from "@testing-library/react";
+import {
+  act,
+  cleanup,
+  fireEvent,
+  render,
+  screen,
+  waitFor,
+} from "@testing-library/react";
 import type { ReactNode } from "react";
-import { afterEach, expect, it, vi } from "vite-plus/test";
-import { getInitiatives } from "@/fetchers/parity/initiatives";
+import { afterEach, beforeEach, expect, it, vi } from "vite-plus/test";
+import {
+  getInitiatives,
+  reorderInitiatives,
+} from "@/fetchers/parity/initiatives";
 import { HttpError } from "@/lib/http-error";
 import { clearParityOnAccessError } from "../foundation/access-error";
 import { InitiativesPage } from "./initiatives-page";
+
+const permissions = vi.hoisted(() => ({
+  canUpdateProjects: vi.fn(() => false),
+}));
+beforeEach(() => permissions.canUpdateProjects.mockReturnValue(false));
 
 vi.mock("react-i18next", async (importOriginal) => ({
   ...(await importOriginal<typeof import("react-i18next")>()),
@@ -26,7 +41,7 @@ vi.mock("@/components/common/workspace-layout", () => ({
 }));
 vi.mock("@/components/page-title", () => ({ default: () => null }));
 vi.mock("@/hooks/use-workspace-permission", () => ({
-  useWorkspacePermission: () => ({ canUpdateProjects: () => false }),
+  useWorkspacePermission: () => permissions,
 }));
 vi.mock("./queries", () => ({
   usePlanningEnabled: () => true,
@@ -47,7 +62,8 @@ it.each([403, 404, 500])(
   async (status) => {
     const client = new QueryClient({
       queryCache: new QueryCache({
-        onError: (error) => clearParityOnAccessError(client, error),
+        onError: (error, query) =>
+          clearParityOnAccessError(client, error, query.queryKey),
       }),
       defaultOptions: { queries: { staleTime: Infinity, retry: false } },
     });
@@ -95,3 +111,50 @@ it.each([403, 404, 500])(
     client.clear();
   },
 );
+
+it("enables reordering only after all pages are loaded and submits the new order", async () => {
+  permissions.canUpdateProjects.mockReturnValue(true);
+  const client = new QueryClient({
+    defaultOptions: { queries: { staleTime: Infinity, retry: false } },
+  });
+  const key = ["parity", "initiatives", "workspace", false];
+  const item = (id: string) => ({
+    id,
+    name: id,
+    status: "active",
+    health: "on_track",
+    progress: { total: 1, completed: 0, percent: 0 },
+  });
+  const first = { items: [item("first")], hasMore: true, page: 1, pageSize: 1 };
+  client.setQueryData(key, { pages: [first], pageParams: [1] });
+  render(
+    <QueryClientProvider client={client}>
+      <InitiativesPage workspaceId="workspace" />
+    </QueryClientProvider>,
+  );
+  expect(
+    screen.queryByRole("button", { name: "parity:planning.moveUp" }),
+  ).not.toBeInTheDocument();
+  await act(async () => {
+    client.setQueryData(key, {
+      pages: [
+        first,
+        { items: [item("second")], hasMore: false, page: 2, pageSize: 1 },
+      ],
+      pageParams: [1, 2],
+    });
+  });
+  const moveUp = await screen.findAllByRole("button", {
+    name: "parity:planning.moveUp",
+  });
+  expect(moveUp).toHaveLength(2);
+  expect(moveUp[0]).toBeDisabled();
+  fireEvent.click(moveUp[1]);
+  await waitFor(() =>
+    expect(reorderInitiatives).toHaveBeenCalledWith("workspace", [
+      "second",
+      "first",
+    ]),
+  );
+  client.clear();
+});

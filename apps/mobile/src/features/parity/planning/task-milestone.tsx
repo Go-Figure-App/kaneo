@@ -24,7 +24,7 @@ export function TaskMilestone({
 }) {
   const { t } = useTranslation(["mobile"]);
   const c = useColors();
-  const { run, busy } = useAction();
+  const { run, busy } = useAction("parity");
   const enabled = usePlanningEnabled();
   const permissions = usePlanningPermissions(workspaceId ?? undefined);
   const [open, setOpen] = useState(false);

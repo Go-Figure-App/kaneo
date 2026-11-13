@@ -253,6 +253,29 @@ test("initiatives link projects, roll up progress, post updates and restore arch
   await dialog.getByRole("button", { name: "Save", exact: true }).click();
   await expect(dialog).toHaveCount(0);
   await expect(page.getByText("No owner", { exact: true })).toBeVisible();
+
+  const second = await f.post(`parity/initiative/${f.workspace.id}`, {
+    name: "Second initiative",
+    description: "",
+  });
+  await page.goto(`${f.path}/initiatives`);
+  const secondCard = page
+    .getByRole("article")
+    .filter({ hasText: "Second initiative" });
+  await secondCard
+    .getByRole("button", { name: "Move up", exact: true })
+    .click();
+  await expect(
+    page
+      .getByRole("article")
+      .first()
+      .getByRole("link", { name: "Second initiative", exact: true }),
+  ).toBeVisible();
+  const ordered = await page.request.get(
+    `/api/parity/initiative/${f.workspace.id}`,
+  );
+  await expect(ordered).toBeOK();
+  expect((await ordered.json()).items[0].id).toBe(second.id);
 });
 
 test("a denied background refresh clears initiative content and can be retried", async ({

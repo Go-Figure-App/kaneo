@@ -28,6 +28,7 @@ export function NewTriageItem({ workspaceId }: { workspaceId: string }) {
     projects.data?.find((project) => project.id === projectId)?.id ??
     projects.data?.[0]?.id;
   const mutation = useMutation({
+    mutationKey: ["parity"],
     mutationFn: () => createTriage(selected!, { title, description }),
     onSuccess: async () => {
       setOpen(false);

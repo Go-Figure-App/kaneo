@@ -1,4 +1,4 @@
-import { uniquePageItems } from "./unique-page-items";
+import { planningListState } from "./list-state";
 import { useInfiniteQuery } from "@tanstack/react-query";
 import { router } from "expo-router";
 import { useState } from "react";
@@ -35,7 +35,7 @@ export function InitiativeList({ workspaceId }: { workspaceId: string }) {
     getNextPageParam: (page) => (page.hasMore ? page.page + 1 : undefined),
     enabled,
   });
-  const items = query.isError ? [] : uniquePageItems(query.data?.pages);
+  const { items, showEmpty } = planningListState(query);
   return (
     <Screen>
       <PageHeader title={t("mobile:parity.planning.initiatives")} />
@@ -87,7 +87,11 @@ export function InitiativeList({ workspaceId }: { workspaceId: string }) {
                 paddingBottom: 40,
               }}
               ListEmptyComponent={
-                <EmptyState title={t("mobile:parity.planning.noInitiatives")} />
+                showEmpty ? (
+                  <EmptyState
+                    title={t("mobile:parity.planning.noInitiatives")}
+                  />
+                ) : undefined
               }
               renderItem={({ item }) => (
                 <Group>

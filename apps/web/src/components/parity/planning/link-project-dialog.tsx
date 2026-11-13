@@ -38,6 +38,7 @@ export function LinkProjectDialog({
     getNextPageParam: (page) => (page.hasMore ? page.page + 1 : undefined),
   });
   const mutation = useMutation({
+    mutationKey: ["parity"],
     mutationFn: () => linkInitiativeProject(initiativeId, selected),
     onSuccess: async () => {
       await refreshPlanning(client);

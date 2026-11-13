@@ -7,7 +7,8 @@ it.each([403, 404])(
   async (status) => {
     const client = new QueryClient({
       queryCache: new QueryCache({
-        onError: (error) => clearParityOnAccessError(client, error),
+        onError: (error, query) =>
+          clearParityOnAccessError(client, error, query.queryKey),
       }),
     });
     const key = ["parity", "initiatives", "workspace"];
@@ -35,6 +36,7 @@ it("retains cached data for transient failures", () => {
   clearParityOnAccessError(
     client,
     Object.assign(new Error("Retry later"), { status: 500 }),
+    ["parity"],
   );
   expect(client.getQueryData(["parity", "project-plan", "id"])).toBe("Plan");
   client.clear();
@@ -56,7 +58,7 @@ it("cancels in-flight reads and retains a retryable error without cached content
   });
   const unsubscribe = observer.subscribe(() => {});
   const error = Object.assign(new Error("No access"), { status: 403 });
-  clearParityOnAccessError(client, error);
+  clearParityOnAccessError(client, error, key);
   complete("Late response must not reappear");
   await pending;
   await Promise.resolve();
@@ -73,3 +75,33 @@ it("cancels in-flight reads and retains a retryable error without cached content
   unsubscribe();
   client.clear();
 });
+
+it.each([
+  { operationKey: undefined },
+  { operationKey: ["unrelated"] },
+  { operationKey: ["integration", "configuration"] },
+])(
+  "ignores access failures from unrelated or untagged operations (%s)",
+  ({ operationKey }) => {
+    const client = new QueryClient();
+    const key = ["parity", "project-plan", "id"];
+    client.setQueryData(key, "Keep this plan and its open draft");
+    const observer = new QueryObserver(client, {
+      queryKey: key,
+      enabled: false,
+    });
+    const unsubscribe = observer.subscribe(() => {});
+    for (const status of [403, 404])
+      clearParityOnAccessError(
+        client,
+        Object.assign(new Error("Unrelated failure"), { status }),
+        operationKey,
+      );
+    expect(observer.getCurrentResult()).toMatchObject({
+      data: "Keep this plan and its open draft",
+      status: "success",
+    });
+    unsubscribe();
+    client.clear();
+  },
+);

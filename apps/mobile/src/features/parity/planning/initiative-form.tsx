@@ -23,7 +23,7 @@ export function InitiativeForm({
 }) {
   const { t } = useTranslation(["mobile"]);
   const labels = usePlanningLabels();
-  const { run, busy } = useAction();
+  const { run, busy } = useAction("parity");
   const [name, setName] = useState(initiative?.name ?? "");
   const [status, setStatus] = useState<InitiativeStatus>(
     initiative?.status ?? "planned",

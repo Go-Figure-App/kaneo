@@ -1,4 +1,4 @@
-import { uniquePageItems } from "./unique-page-items";
+import { planningListState } from "./list-state";
 import { useInfiniteQuery } from "@tanstack/react-query";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
@@ -33,7 +33,7 @@ export function PlanningUpdates({
     queryFn: ({ pageParam }) => planningApi.updates(kind, id, pageParam),
     getNextPageParam: (page) => (page.hasMore ? page.page + 1 : undefined),
   });
-  const items = query.isError ? [] : uniquePageItems(query.data?.pages);
+  const { items, showEmpty } = planningListState(query);
   return (
     <View style={{ gap: 16 }}>
       <Txt variant="section">{t("mobile:parity.planning.updates")}</Txt>
@@ -51,7 +51,7 @@ export function PlanningUpdates({
           message={userMessage(query.error)}
           onRetry={query.refetch}
         />
-      ) : !items.length ? (
+      ) : showEmpty ? (
         <Txt tone="muted">{t("mobile:parity.planning.noUpdates")}</Txt>
       ) : null}
       {items.map((update) => (

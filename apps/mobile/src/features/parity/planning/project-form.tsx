@@ -16,7 +16,7 @@ import type { ProjectPlan } from "./types";
 export function ProjectPlanForm({ project }: { project: ProjectPlan }) {
   const { t } = useTranslation(["mobile"]);
   const labels = usePlanningLabels();
-  const { run, busy } = useAction();
+  const { run, busy } = useAction("parity");
   const [picker, setPicker] = useState<
     "status" | "lead" | "start" | "target" | "priority" | null
   >(null);

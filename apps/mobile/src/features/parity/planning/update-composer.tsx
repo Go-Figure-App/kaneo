@@ -24,7 +24,7 @@ export function UpdateComposer({
   const { t } = useTranslation(["mobile"]);
   const labels = usePlanningLabels();
   const c = useColors();
-  const { run, busy } = useAction();
+  const { run, busy } = useAction("parity");
   const [health, setHealth] = useState(initialHealth);
   const [body, setBody] = useState("");
   return (

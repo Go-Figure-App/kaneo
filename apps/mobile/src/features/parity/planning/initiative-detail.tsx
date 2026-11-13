@@ -31,7 +31,7 @@ export function InitiativeDetailScreen({
   const { t } = useTranslation(["mobile"]);
   const labels = usePlanningLabels();
   const enabled = usePlanningEnabled("initiatives");
-  const { run, busy } = useAction();
+  const { run, busy } = useAction("parity");
   const query = useQuery({
     queryKey: ["parity", "initiative", initiativeId],
     queryFn: () => planningApi.initiative(initiativeId),
