@@ -294,7 +294,7 @@ test("a denied background refresh clears initiative content and can be retried",
     }),
   ).toHaveCount(0);
   await page.unroute(endpoint);
-  await page.getByRole("button", { name: "Retry", exact: true }).click();
+  await page.getByRole("button", { name: "Try again", exact: true }).click();
   await expect(
     page.getByRole("link", {
       name: "Previously visible initiative",
