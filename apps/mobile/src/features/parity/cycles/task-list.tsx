@@ -16,7 +16,7 @@ import { estimateLabel } from "./estimates";
 import { groupCycleTasks, type CycleGroup } from "./group-tasks";
 import { CycleTaskFiltersBar } from "./task-filters";
 import type { CycleSettings, CycleTaskFilters } from "./types";
-import { useCycleFocus } from "./use-cycle-focus";
+import { useCycleFocus } from "./queries";
 
 export function CycleTaskList({
   cycleId,

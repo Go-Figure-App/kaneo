@@ -1,9 +1,10 @@
 import { useInfiniteQuery, useQuery } from "@tanstack/react-query";
+import { useFocusEffect } from "expo-router";
+import { useCallback } from "react";
 import { usePlanningEnabled } from "../planning/queries";
 import { uniquePageItems } from "../planning/unique-page-items";
 import { cyclesApi } from "./api";
 import { sortCycleOptions } from "./sort-options";
-import { useCycleFocus } from "./use-cycle-focus";
 
 export function useCurrentCycle(workspaceId: string) {
   const enabled = usePlanningEnabled("cycles");
@@ -33,4 +34,14 @@ export function useCycleOptions(workspaceId: string, enabled: boolean) {
       ? []
       : sortCycleOptions(uniquePageItems(query.data?.pages)),
   };
+}
+
+export function useCycleFocus(refetch: () => Promise<unknown>, enabled = true) {
+  // Native stacks retain screens while task editors cover them. Refresh on
+  // return even when the hidden screen's query observer missed invalidation.
+  useFocusEffect(
+    useCallback(() => {
+      if (enabled) void refetch();
+    }, [enabled, refetch]),
+  );
 }

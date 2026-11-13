@@ -18,7 +18,7 @@ import { uniquePageItems } from "../planning/unique-page-items";
 import { cyclesApi } from "./api";
 import { CycleProgress } from "./progress";
 import type { CyclePhase } from "./types";
-import { useCycleFocus } from "./use-cycle-focus";
+import { useCycleFocus } from "./queries";
 
 export function CycleList({ workspaceId }: { workspaceId: string }) {
   const { t } = useTranslation(["mobile"]);

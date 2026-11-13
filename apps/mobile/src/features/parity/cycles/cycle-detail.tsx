@@ -9,7 +9,7 @@ import { cyclesApi } from "./api";
 import { CycleBurndown } from "./burndown-chart";
 import { CycleProgress } from "./progress";
 import { CycleTaskList } from "./task-list";
-import { useCycleFocus } from "./use-cycle-focus";
+import { useCycleFocus } from "./queries";
 
 export function CycleDetailScreen({ cycleId }: { cycleId: string }) {
   const { t } = useTranslation(["mobile"]);
