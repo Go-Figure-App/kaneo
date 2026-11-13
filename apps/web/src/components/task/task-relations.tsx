@@ -57,6 +57,8 @@ const relationOrder: Record<RelationKind, number> = {
   blocked_by: 0,
   blocks: 1,
   related: 2,
+  duplicate: 3,
+  duplicated_by: 4,
 };
 
 type TaskRelationsProps = {
@@ -135,7 +137,11 @@ export default function TaskRelations({
           ? isSource
             ? "blocks"
             : "blocked_by"
-          : "related";
+          : rel.relationType === "duplicate"
+            ? isSource
+              ? "duplicate"
+              : "duplicated_by"
+            : "related";
       return [{ id: rel.id, kind, task: linkedTask }];
     })
     .sort((a, b) => relationOrder[a.kind] - relationOrder[b.kind]);

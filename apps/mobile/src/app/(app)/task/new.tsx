@@ -36,6 +36,8 @@ import { qk, useAction } from "@/lib/query";
 import { useRequiredSession } from "@/lib/session";
 import { PRIORITIES, priorityLabel, STATUS_PLANNED } from "@/lib/style";
 import { font, useColors } from "@/theme";
+import { triageApi } from "@/features/parity/triage/api";
+import { TriageCreateOption } from "@/features/parity/triage/create-option";
 
 type Picker =
   | "status"
@@ -71,6 +73,7 @@ export default function NewTaskScreen() {
     workspaceId: string;
     status?: string;
     parentTaskId?: string;
+    triage?: string;
   }>();
   const c = useColors();
   const session = useRequiredSession();
@@ -78,6 +81,7 @@ export default function NewTaskScreen() {
   const toast = useToast();
   const [projectId, setProjectId] = useState(params.projectId);
   const workspaceId = params.workspaceId;
+  const [sendToTriage, setSendToTriage] = useState(params.triage === "true");
 
   const columns = useQuery({
     queryKey: qk.columns(projectId),
@@ -133,16 +137,19 @@ export default function NewTaskScreen() {
   const create = async () => {
     // Once the task exists the form must not create it again, so failed follow-ups only warn.
     const result = await run(async () => {
-      const task = await api.createTask(projectId, {
-        title: title.trim(),
-        description,
-        startDate: start ? toApiDate(start) : null,
-        dueDate: due ? toApiDate(due) : null,
-        priority,
-        status: effectiveStatus,
-        userId: assignee,
-        customFields: customFieldsPayload(sortedFields, fieldValues),
-      });
+      const task = await (sendToTriage ? triageApi.create : api.createTask)(
+        projectId,
+        {
+          title: title.trim(),
+          description,
+          startDate: start ? toApiDate(start) : null,
+          dueDate: due ? toApiDate(due) : null,
+          priority,
+          status: effectiveStatus,
+          userId: assignee,
+          customFields: customFieldsPayload(sortedFields, fieldValues),
+        },
+      );
       const [labelResults, linked] = await Promise.all([
         Promise.allSettled(labelIds.map((id) => api.attachLabel(id, task.id))),
         params.parentTaskId
@@ -291,6 +298,12 @@ export default function NewTaskScreen() {
           keyboardShouldPersistTaps="handled"
           contentContainerStyle={{ paddingBottom: 40 }}
         >
+          <TriageCreateOption
+            workspaceId={workspaceId}
+            projectId={projectId}
+            value={sendToTriage}
+            onChange={setSendToTriage}
+          />
           <View
             style={{
               paddingHorizontal: 20,

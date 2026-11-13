@@ -5372,7 +5372,30 @@
 			"photos": "Kaneo używa Twoich zdjęć, aby dołączać obrazy do zadań i komentarzy oraz jako zdjęcie profilowe."
 		},
 		"parity": {
-			"signInTagline": "Zaloguj się do obszaru roboczego projektów Go Figure."
+			"signInTagline": "Zaloguj się do obszaru roboczego projektów Go Figure.",
+			"triage": {
+				"title": "Wstępna ocena",
+				"newItem": "Nowe zgłoszenie do oceny",
+				"send": "Wyślij do oceny",
+				"accept": "Zaakceptuj",
+				"duplicate": "Oznacz jako duplikat",
+				"decline": "Odrzuć",
+				"snooze": "Odłóż",
+				"owner": "Osoba odpowiedzialna za ocenę",
+				"enabled": "Włącz wstępną ocenę",
+				"intake": "Link do zgłoszeń",
+				"rotate": "Odnowienie linku do zgłoszeń",
+				"comment": "Powód odrzucenia",
+				"until": "Odłóż do",
+				"original": "Oryginalne zadanie",
+				"received": "Otrzymano zgłoszenie",
+				"intakeDescription": "Każda osoba mająca ten link może zgłosić zadanie do oceny.",
+				"unavailable": "Wstępna ocena jest niedostępna",
+				"description": "Sprawdź nowe zgłoszenia przed dodaniem ich do projektu.",
+				"integration": "Wysyłaj nowe zadania z integracji do oceny",
+				"duplicateOf": "Duplikat zadania",
+				"duplicatedBy": "Zduplikowane przez"
+			}
 		}
 	},
 	"parity": {
@@ -5387,6 +5410,29 @@
 			"label": "Kategoria dla {{name}}",
 			"loading": "Wczytywanie kategorii statusów…",
 			"error": "Nie udało się zapisać lub wczytać kategorii. Spróbuj ponownie."
+		},
+		"triage": {
+			"title": "Wstępna ocena",
+			"newItem": "Nowe zgłoszenie do oceny",
+			"send": "Wyślij do oceny",
+			"accept": "Zaakceptuj",
+			"duplicate": "Oznacz jako duplikat",
+			"decline": "Odrzuć",
+			"snooze": "Odłóż",
+			"owner": "Osoba odpowiedzialna za ocenę",
+			"enabled": "Włącz wstępną ocenę",
+			"intake": "Link do zgłoszeń",
+			"rotate": "Odnowienie linku do zgłoszeń",
+			"comment": "Powód odrzucenia",
+			"until": "Odłóż do",
+			"original": "Oryginalne zadanie",
+			"received": "Otrzymano zgłoszenie",
+			"intakeDescription": "Każda osoba mająca ten link może zgłosić zadanie do oceny.",
+			"unavailable": "Wstępna ocena jest niedostępna",
+			"description": "Sprawdź nowe zgłoszenia przed dodaniem ich do projektu.",
+			"integration": "Wysyłaj nowe zadania z integracji do oceny",
+			"duplicateOf": "Duplikat zadania",
+			"duplicatedBy": "Zduplikowane przez"
 		}
 	}
 }

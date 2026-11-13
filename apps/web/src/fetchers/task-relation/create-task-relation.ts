@@ -9,7 +9,7 @@ async function createTaskRelation({
 }: {
   sourceTaskId: string;
   targetTaskId: string;
-  relationType: "subtask" | "blocks" | "related";
+  relationType: "subtask" | "blocks" | "related" | "duplicate";
 }) {
   const response = await client["task-relation"].$post({
     json: {

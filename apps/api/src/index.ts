@@ -1,5 +1,8 @@
 import parity from "./parity";
 import { initializeParity } from "./parity/foundation/initialize";
+import { initializeTriage } from "./parity/triage/initialize";
+import triageIntake from "./parity/triage/intake";
+import { acceptedTaskCondition } from "./parity/triage/visibility";
 import { migrateParity } from "./parity/foundation/migrate";
 import { startWebhookWorker } from "./admin/webhooks/start-webhook-worker";
 import integrationSync from "./integration-sync";
@@ -547,7 +550,7 @@ export function createApp() {
           createdBy: schema.assetTable.createdBy,
           workspaceId: schema.assetTable.workspaceId,
           projectId: schema.assetTable.projectId,
-          isPublic: schema.projectTable.isPublic,
+          isPublic: sql<boolean>`${schema.projectTable.isPublic} AND ${acceptedTaskCondition(schema.assetTable.taskId)}`,
           workspaceArchived: sql<boolean>`${schema.workspaceTable.archivedAt} is not null`,
         })
         .from(schema.assetTable)
@@ -783,6 +786,7 @@ export function createApp() {
   );
 
   api.route("/", mcpRoutes);
+  api.route("/parity", triageIntake);
 
   api.use("*", async (c, next) => {
     const path = c.req.path;
@@ -1061,6 +1065,7 @@ export async function runStartupTasks() {
   initializeScheduler();
   await initializeWebSocketAdapter();
   await initializeParity();
+  await initializeTriage();
 }
 
 export async function startServer(

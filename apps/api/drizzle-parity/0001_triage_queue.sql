@@ -1,0 +1,1 @@
+CREATE INDEX "task_ext_triage_pending_idx" ON "task_ext" USING btree ("snoozed_until","task_id") WHERE "task_ext"."triage_state" = 'pending';

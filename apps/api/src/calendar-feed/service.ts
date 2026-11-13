@@ -1,5 +1,6 @@
 import { randomBytes } from "node:crypto";
 import { setImmediate } from "node:timers/promises";
+import { acceptedTaskCondition } from "../parity/triage/visibility";
 import {
   and,
   asc,
@@ -204,6 +205,7 @@ export async function getCalendarFeed(token: string) {
           .where(
             and(
               eq(taskTable.projectId, project.id),
+              acceptedTaskCondition(taskTable.id),
               after ? gt(taskTable.id, after) : undefined,
               or(isNotNull(taskTable.startDate), isNotNull(taskTable.dueDate)),
               feed.labelIds.length

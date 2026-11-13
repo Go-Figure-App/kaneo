@@ -5188,7 +5188,30 @@
 			"photos": "Kaneo şəkillərinizdən tapşırıqlara və şərhlərə şəkil əlavə etmək, həmçinin profil şəkliniz üçün istifadə edir."
 		},
 		"parity": {
-			"signInTagline": "Go Figure layihə iş sahəsinə daxil olun."
+			"signInTagline": "Go Figure layihə iş sahəsinə daxil olun.",
+			"triage": {
+				"title": "İlkin baxış",
+				"newItem": "Yeni baxış elementi",
+				"send": "İlkin baxışa göndər",
+				"accept": "Qəbul et",
+				"duplicate": "Dublikat kimi işarələ",
+				"decline": "Rədd et",
+				"snooze": "Təxirə sal",
+				"owner": "İlkin baxış üzrə məsul şəxs",
+				"enabled": "İlkin baxışı aktivləşdir",
+				"intake": "Müraciət keçidi",
+				"rotate": "Müraciət keçidini yenilə",
+				"comment": "Rədd edilmə səbəbi",
+				"until": "Bu vaxta qədər təxirə sal",
+				"original": "Əsas tapşırıq",
+				"received": "Müraciət qəbul edildi",
+				"intakeDescription": "Bu keçidi olan hər kəs baxış üçün tapşırıq göndərə bilər.",
+				"unavailable": "İlkin baxış əlçatan deyil",
+				"description": "Yeni müraciətləri layihəyə əlavə etməzdən əvvəl nəzərdən keçirin.",
+				"integration": "İnteqrasiyalardan yeni tapşırıqları ilkin baxışa göndər",
+				"duplicateOf": "Bunun dublikatıdır",
+				"duplicatedBy": "Bu tapşırıq tərəfindən təkrarlanır"
+			}
 		}
 	},
 	"parity": {
@@ -5203,6 +5226,29 @@
 			"label": "{{name}} üçün kateqoriya",
 			"loading": "Vəziyyət kateqoriyaları yüklənir…",
 			"error": "Kateqoriyaları saxlamaq və ya yükləmək mümkün olmadı. Yenidən cəhd edin."
+		},
+		"triage": {
+			"title": "İlkin baxış",
+			"newItem": "Yeni baxış elementi",
+			"send": "İlkin baxışa göndər",
+			"accept": "Qəbul et",
+			"duplicate": "Dublikat kimi işarələ",
+			"decline": "Rədd et",
+			"snooze": "Təxirə sal",
+			"owner": "İlkin baxış üzrə məsul şəxs",
+			"enabled": "İlkin baxışı aktivləşdir",
+			"intake": "Müraciət keçidi",
+			"rotate": "Müraciət keçidini yenilə",
+			"comment": "Rədd edilmə səbəbi",
+			"until": "Bu vaxta qədər təxirə sal",
+			"original": "Əsas tapşırıq",
+			"received": "Müraciət qəbul edildi",
+			"intakeDescription": "Bu keçidi olan hər kəs baxış üçün tapşırıq göndərə bilər.",
+			"unavailable": "İlkin baxış əlçatan deyil",
+			"description": "Yeni müraciətləri layihəyə əlavə etməzdən əvvəl nəzərdən keçirin.",
+			"integration": "İnteqrasiyalardan yeni tapşırıqları ilkin baxışa göndər",
+			"duplicateOf": "Bunun dublikatıdır",
+			"duplicatedBy": "Bu tapşırıq tərəfindən təkrarlanır"
 		}
 	}
 }

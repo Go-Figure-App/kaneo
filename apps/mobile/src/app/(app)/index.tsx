@@ -11,7 +11,8 @@ import { Button, Touch } from "@/components/ui";
 import { ActivityTab } from "@/features/home/activity-tab";
 import { BottomNav, type HomeTab } from "@/features/home/bottom-nav";
 import { HomeTabView } from "@/features/home/home-tab";
-import { InboxTab } from "@/features/home/inbox-tab";
+import { PlanningInbox } from "@/features/parity/triage/inbox";
+import { useTriageCount } from "@/features/parity/triage/queries";
 import { MyTasksTab } from "@/features/home/my-tasks-tab";
 import { WorkspaceSheet } from "@/features/home/workspace-sheet";
 import { userMessage } from "@/lib/api/client";
@@ -28,6 +29,7 @@ export default function HomeScreen() {
   const [switcher, setSwitcher] = useState(false);
   const { workspace, isLoading, error, refetch } = useCurrentWorkspace();
   const unread = useUnreadCount(workspace?.id);
+  const triage = useTriageCount(workspace?.id);
 
   useRealtime("api/ws/user", (event) => {
     invalidateParity(client, event);
@@ -76,12 +78,16 @@ export default function HomeScreen() {
         ) : tab === "tasks" ? (
           <MyTasksTab workspaceId={workspace.id} />
         ) : tab === "inbox" ? (
-          <InboxTab workspaceId={workspace.id} />
+          <PlanningInbox workspaceId={workspace.id} />
         ) : (
           <ActivityTab workspace={workspace} />
         )}
       </View>
-      <BottomNav tab={tab} onChange={setTab} unread={unread} />
+      <BottomNav
+        tab={tab}
+        onChange={setTab}
+        unread={unread + (triage.data?.count ?? 0)}
+      />
       <WorkspaceSheet
         visible={switcher}
         onClose={() => setSwitcher(false)}

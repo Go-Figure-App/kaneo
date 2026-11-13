@@ -5188,7 +5188,30 @@
 			"photos": "Kaneo uses your photos to attach images to tasks and comments, and for your profile photo."
 		},
 		"parity": {
-			"signInTagline": "Sign in to Go Figure’s project workspace."
+			"signInTagline": "Sign in to Go Figure’s project workspace.",
+			"triage": {
+				"title": "Triage",
+				"newItem": "New triage item",
+				"send": "Send to triage",
+				"accept": "Accept",
+				"duplicate": "Mark as duplicate",
+				"decline": "Decline",
+				"snooze": "Snooze",
+				"owner": "Triage owner",
+				"enabled": "Enable triage",
+				"intake": "Intake link",
+				"rotate": "Rotate intake link",
+				"comment": "Reason for declining",
+				"until": "Snooze until",
+				"original": "Original task",
+				"received": "Submission received",
+				"intakeDescription": "Anyone with this link can submit a task for review.",
+				"unavailable": "Triage is unavailable",
+				"description": "Review new submissions before adding them to your project.",
+				"integration": "Send new integration tasks to triage",
+				"duplicateOf": "Duplicate of",
+				"duplicatedBy": "Duplicated by"
+			}
 		}
 	},
 	"parity": {
@@ -5203,6 +5226,29 @@
 			"label": "Category for {{name}}",
 			"loading": "Loading state categories…",
 			"error": "Could not save or load categories. Try again."
+		},
+		"triage": {
+			"title": "Triage",
+			"newItem": "New triage item",
+			"send": "Send to triage",
+			"accept": "Accept",
+			"duplicate": "Mark as duplicate",
+			"decline": "Decline",
+			"snooze": "Snooze",
+			"owner": "Triage owner",
+			"enabled": "Enable triage",
+			"intake": "Intake link",
+			"rotate": "Rotate intake link",
+			"comment": "Reason for declining",
+			"until": "Snooze until",
+			"original": "Original task",
+			"received": "Submission received",
+			"intakeDescription": "Anyone with this link can submit a task for review.",
+			"unavailable": "Triage is unavailable",
+			"description": "Review new submissions before adding them to your project.",
+			"integration": "Send new integration tasks to triage",
+			"duplicateOf": "Duplicate of",
+			"duplicatedBy": "Duplicated by"
 		}
 	}
 }

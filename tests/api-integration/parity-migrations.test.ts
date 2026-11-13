@@ -64,7 +64,7 @@ it("applies both migration sets to upstream's shape, preserves its schema and re
     expect(
       (await pool.query("SELECT * FROM drizzle.__drizzle_parity_migrations"))
         .rows,
-    ).toHaveLength(1);
+    ).toHaveLength(2);
     const tables = await pool.query(
       "SELECT table_name FROM information_schema.tables WHERE table_schema = 'public' AND table_name IN ('task_ext', 'column_ext', 'workspace_ext', 'project_ext')",
     );

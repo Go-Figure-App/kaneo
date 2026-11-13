@@ -5280,7 +5280,30 @@
 			"photos": "Kaneo utilise vos photos pour joindre des images aux tâches et aux commentaires, et pour votre photo de profil."
 		},
 		"parity": {
-			"signInTagline": "Connectez-vous à l’espace de travail des projets de Go Figure."
+			"signInTagline": "Connectez-vous à l’espace de travail des projets de Go Figure.",
+			"triage": {
+				"title": "Triage",
+				"newItem": "Nouvel élément à trier",
+				"send": "Envoyer au triage",
+				"accept": "Accepter",
+				"duplicate": "Marquer comme doublon",
+				"decline": "Refuser",
+				"snooze": "Reporter",
+				"owner": "Responsable du triage",
+				"enabled": "Activer le triage",
+				"intake": "Lien de réception",
+				"rotate": "Renouveler le lien de réception",
+				"comment": "Motif du refus",
+				"until": "Reporter jusqu’au",
+				"original": "Tâche d’origine",
+				"received": "Demande reçue",
+				"intakeDescription": "Toute personne disposant de ce lien peut soumettre une tâche à examiner.",
+				"unavailable": "Le triage est indisponible",
+				"description": "Examinez les nouvelles demandes avant de les ajouter à votre projet.",
+				"integration": "Envoyer les nouvelles tâches des intégrations au triage",
+				"duplicateOf": "Doublon de",
+				"duplicatedBy": "Dupliquée par"
+			}
 		}
 	},
 	"parity": {
@@ -5295,6 +5318,29 @@
 			"label": "Catégorie de {{name}}",
 			"loading": "Chargement des catégories de statut…",
 			"error": "Impossible d’enregistrer ou de charger les catégories. Réessayez."
+		},
+		"triage": {
+			"title": "Triage",
+			"newItem": "Nouvel élément à trier",
+			"send": "Envoyer au triage",
+			"accept": "Accepter",
+			"duplicate": "Marquer comme doublon",
+			"decline": "Refuser",
+			"snooze": "Reporter",
+			"owner": "Responsable du triage",
+			"enabled": "Activer le triage",
+			"intake": "Lien de réception",
+			"rotate": "Renouveler le lien de réception",
+			"comment": "Motif du refus",
+			"until": "Reporter jusqu’au",
+			"original": "Tâche d’origine",
+			"received": "Demande reçue",
+			"intakeDescription": "Toute personne disposant de ce lien peut soumettre une tâche à examiner.",
+			"unavailable": "Le triage est indisponible",
+			"description": "Examinez les nouvelles demandes avant de les ajouter à votre projet.",
+			"integration": "Envoyer les nouvelles tâches des intégrations au triage",
+			"duplicateOf": "Doublon de",
+			"duplicatedBy": "Dupliquée par"
 		}
 	}
 }

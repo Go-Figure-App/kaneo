@@ -2,9 +2,24 @@ import { Ban, Link2, OctagonAlert } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import { cn } from "@/lib/cn";
 
-export type RelationKind = "blocked_by" | "blocks" | "related";
+export type RelationKind =
+  | "blocked_by"
+  | "blocks"
+  | "related"
+  | "duplicate"
+  | "duplicated_by";
 
 const tones = {
+  duplicate: {
+    className: "bg-accent text-muted-foreground",
+    icon: Link2,
+    labelKey: "parity:triage.duplicateOf",
+  },
+  duplicated_by: {
+    className: "bg-accent text-muted-foreground",
+    icon: Link2,
+    labelKey: "parity:triage.duplicatedBy",
+  },
   blocked_by: {
     className: "bg-destructive/8 text-destructive-foreground",
     icon: Ban,

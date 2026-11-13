@@ -5,6 +5,7 @@ import { publishEvent } from "../../events";
 import duplicateTask from "../controllers/duplicate-task";
 import { taskIsCompleted } from "../task-is-completed";
 import { OccurrenceProjectChangedError } from "./occurrence-project-changed-error";
+import { acceptedTaskCondition } from "../../parity/triage/visibility";
 
 // Creates the next task of a recurring series once the task sits in a final
 // column. The copy lands in the project's first open column, with its dates
@@ -21,6 +22,7 @@ async function createInCurrentProject(
       and(
         eq(taskTable.id, taskId),
         isNotNull(taskTable.recurrence),
+        acceptedTaskCondition(taskTable.id),
         taskIsCompleted,
       ),
     )

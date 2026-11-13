@@ -1,6 +1,7 @@
 import { outgoingPredicate } from "./task-predicate";
 import { sameConfig } from "./same-config";
-import { and, eq } from "drizzle-orm";
+import { and, eq, sql } from "drizzle-orm";
+import { acceptedTaskCondition } from "../../parity/triage/visibility";
 import db from "../../database";
 import {
   externalLinkTable,
@@ -53,9 +54,18 @@ export async function canSyncTask(
   database: IntegrationDatabase = db,
   expectedConfig?: string,
 ): Promise<boolean> {
-  const integration = await database.query.integrationTable.findFirst({
-    where: eq(integrationTable.id, integrationId),
-  });
+  // Pending intake must not write to a provider or acquire a filter-paused
+  // marker: accepting it should restore the existing sync rules immediately.
+  const [integration] = await database
+    .select()
+    .from(integrationTable)
+    .where(
+      and(
+        eq(integrationTable.id, integrationId),
+        acceptedTaskCondition(sql`${taskId}`),
+      ),
+    )
+    .limit(1);
   if (
     !integration?.isActive ||
     (expectedConfig !== undefined &&

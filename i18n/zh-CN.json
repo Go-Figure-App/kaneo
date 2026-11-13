@@ -5096,7 +5096,30 @@
 			"photos": "Kaneo 使用你的照片为任务和评论添加图片，以及设置你的头像。"
 		},
 		"parity": {
-			"signInTagline": "登录 Go Figure 的项目工作区。"
+			"signInTagline": "登录 Go Figure 的项目工作区。",
+			"triage": {
+				"title": "分流",
+				"newItem": "新建分流事项",
+				"send": "发送至分流",
+				"accept": "接受",
+				"duplicate": "标记为重复",
+				"decline": "拒绝",
+				"snooze": "稍后处理",
+				"owner": "分流负责人",
+				"enabled": "启用分流",
+				"intake": "提交链接",
+				"rotate": "更新提交链接",
+				"comment": "拒绝原因",
+				"until": "推迟至",
+				"original": "原始任务",
+				"received": "已收到提交",
+				"intakeDescription": "任何拥有此链接的人都可以提交任务供审核。",
+				"unavailable": "分流不可用",
+				"description": "审核新提交的事项后，再将其添加到项目中。",
+				"integration": "将集成创建的新任务发送至分流",
+				"duplicateOf": "重复于",
+				"duplicatedBy": "被以下任务重复"
+			}
 		}
 	},
 	"parity": {
@@ -5111,6 +5134,29 @@
 			"label": "{{name}} 的类别",
 			"loading": "正在加载状态类别…",
 			"error": "无法保存或加载类别。请重试。"
+		},
+		"triage": {
+			"title": "分流",
+			"newItem": "新建分流事项",
+			"send": "发送至分流",
+			"accept": "接受",
+			"duplicate": "标记为重复",
+			"decline": "拒绝",
+			"snooze": "稍后处理",
+			"owner": "分流负责人",
+			"enabled": "启用分流",
+			"intake": "提交链接",
+			"rotate": "更新提交链接",
+			"comment": "拒绝原因",
+			"until": "推迟至",
+			"original": "原始任务",
+			"received": "已收到提交",
+			"intakeDescription": "任何拥有此链接的人都可以提交任务供审核。",
+			"unavailable": "分流不可用",
+			"description": "审核新提交的事项后，再将其添加到项目中。",
+			"integration": "将集成创建的新任务发送至分流",
+			"duplicateOf": "重复于",
+			"duplicatedBy": "被以下任务重复"
 		}
 	}
 }

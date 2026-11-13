@@ -1,3 +1,4 @@
+import { stageIntegrationTriage } from "../../../parity/triage/integration-intake";
 import { acceptsIssue } from "../../sync/rules";
 import { importIssueLabels } from "../../sync/issue-labels";
 import { canSyncTask } from "../../sync/eligibility";
@@ -156,26 +157,34 @@ export async function handleIssueOpened(
         issue.labels,
         tx,
       );
+      const stagedForTriage = await stageIntegrationTriage(
+        tx,
+        task,
+        integration,
+      );
       const eligible = await canSyncTask(
         task.id,
         integration.id,
         tx,
         integration.config,
       );
-      return { task, link, eligible };
+      return { task, link, eligible, stagedForTriage };
     });
     if (!result) continue;
-    const { task: createdTask, link, eligible } = result;
-    await publishEvent("task.created", {
-      ...createdTask,
-      taskId: createdTask.id,
-      userId: createdTask.userId ?? "",
-      type: "task",
-      content: null,
-      source: "github",
-      externalId: issue.number.toString(),
-      actor: issue.user?.login ?? "github-webhook",
-    });
+    const { task: createdTask, link, eligible, stagedForTriage } = result;
+    await publishEvent(
+      stagedForTriage ? "parity.triage_created" : "task.created",
+      {
+        ...createdTask,
+        taskId: createdTask.id,
+        userId: createdTask.userId ?? "",
+        type: "task",
+        content: null,
+        source: "github",
+        externalId: issue.number.toString(),
+        actor: issue.user?.login ?? "github-webhook",
+      },
+    );
     if (!eligible) continue;
     const write = createIssueWrite(
       { id: link.id, taskId: createdTask.id, integrationId: integration.id },

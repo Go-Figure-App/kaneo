@@ -33,6 +33,7 @@ import {
 import { taskIsCompleted } from "../task-is-completed";
 import { isSubtask } from "../is-subtask";
 import { getSubtaskCounts } from "../get-subtask-counts";
+import { acceptedTaskCondition } from "../../parity/triage/visibility";
 
 export type GetTasksOptions = {
   publicOnly?: boolean;
@@ -119,7 +120,10 @@ async function getTasksPage(
     });
   }
 
-  const conditions = [eq(taskTable.projectId, projectId)];
+  const conditions = [
+    eq(taskTable.projectId, projectId),
+    acceptedTaskCondition(taskTable.id),
+  ];
 
   if (options.status) {
     conditions.push(eq(taskTable.status, options.status));

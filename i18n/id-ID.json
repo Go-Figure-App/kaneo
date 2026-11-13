@@ -5096,7 +5096,30 @@
 			"photos": "Kaneo menggunakan foto Anda untuk melampirkan gambar ke tugas dan komentar, serta untuk foto profil Anda."
 		},
 		"parity": {
-			"signInTagline": "Masuk ke ruang kerja proyek Go Figure."
+			"signInTagline": "Masuk ke ruang kerja proyek Go Figure.",
+			"triage": {
+				"title": "Triase",
+				"newItem": "Item triase baru",
+				"send": "Kirim ke triase",
+				"accept": "Terima",
+				"duplicate": "Tandai sebagai duplikat",
+				"decline": "Tolak",
+				"snooze": "Tunda",
+				"owner": "Penanggung jawab triase",
+				"enabled": "Aktifkan triase",
+				"intake": "Tautan penerimaan",
+				"rotate": "Perbarui tautan penerimaan",
+				"comment": "Alasan penolakan",
+				"until": "Tunda hingga",
+				"original": "Tugas asli",
+				"received": "Kiriman diterima",
+				"intakeDescription": "Siapa pun yang memiliki tautan ini dapat mengirim tugas untuk ditinjau.",
+				"unavailable": "Triase tidak tersedia",
+				"description": "Tinjau kiriman baru sebelum menambahkannya ke proyek.",
+				"integration": "Kirim tugas baru dari integrasi ke triase",
+				"duplicateOf": "Duplikat dari",
+				"duplicatedBy": "Diduplikasi oleh"
+			}
 		}
 	},
 	"parity": {
@@ -5111,6 +5134,29 @@
 			"label": "Kategori untuk {{name}}",
 			"loading": "Memuat kategori status…",
 			"error": "Tidak dapat menyimpan atau memuat kategori. Coba lagi."
+		},
+		"triage": {
+			"title": "Triase",
+			"newItem": "Item triase baru",
+			"send": "Kirim ke triase",
+			"accept": "Terima",
+			"duplicate": "Tandai sebagai duplikat",
+			"decline": "Tolak",
+			"snooze": "Tunda",
+			"owner": "Penanggung jawab triase",
+			"enabled": "Aktifkan triase",
+			"intake": "Tautan penerimaan",
+			"rotate": "Perbarui tautan penerimaan",
+			"comment": "Alasan penolakan",
+			"until": "Tunda hingga",
+			"original": "Tugas asli",
+			"received": "Kiriman diterima",
+			"intakeDescription": "Siapa pun yang memiliki tautan ini dapat mengirim tugas untuk ditinjau.",
+			"unavailable": "Triase tidak tersedia",
+			"description": "Tinjau kiriman baru sebelum menambahkannya ke proyek.",
+			"integration": "Kirim tugas baru dari integrasi ke triase",
+			"duplicateOf": "Duplikat dari",
+			"duplicatedBy": "Diduplikasi oleh"
 		}
 	}
 }

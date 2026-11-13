@@ -1,0 +1,471 @@
+{
+	"id": "b2853c5b-85da-4049-81b7-05d081aeffd9",
+	"prevId": "ec65247a-9610-49f9-bc6e-19be26dd2a25",
+	"version": "7",
+	"dialect": "postgresql",
+	"tables": {
+		"public.column_ext": {
+			"name": "column_ext",
+			"schema": "",
+			"columns": {
+				"column_id": {
+					"name": "column_id",
+					"type": "text",
+					"primaryKey": true,
+					"notNull": true
+				},
+				"category": {
+					"name": "category",
+					"type": "text",
+					"primaryKey": false,
+					"notNull": true
+				}
+			},
+			"indexes": {},
+			"foreignKeys": {
+				"column_ext_column_id_column_id_fk": {
+					"name": "column_ext_column_id_column_id_fk",
+					"tableFrom": "column_ext",
+					"tableTo": "column",
+					"columnsFrom": ["column_id"],
+					"columnsTo": ["id"],
+					"onDelete": "cascade",
+					"onUpdate": "cascade"
+				}
+			},
+			"compositePrimaryKeys": {},
+			"uniqueConstraints": {},
+			"policies": {},
+			"checkConstraints": {
+				"column_ext_category_check": {
+					"name": "column_ext_category_check",
+					"value": "\"column_ext\".\"category\" IN ('backlog', 'unstarted', 'started', 'completed', 'canceled')"
+				}
+			},
+			"isRLSEnabled": false
+		},
+		"public.project_ext": {
+			"name": "project_ext",
+			"schema": "",
+			"columns": {
+				"project_id": {
+					"name": "project_id",
+					"type": "text",
+					"primaryKey": true,
+					"notNull": true
+				},
+				"status": {
+					"name": "status",
+					"type": "text",
+					"primaryKey": false,
+					"notNull": true,
+					"default": "'backlog'"
+				},
+				"health": {
+					"name": "health",
+					"type": "text",
+					"primaryKey": false,
+					"notNull": true,
+					"default": "'on_track'"
+				},
+				"lead_id": {
+					"name": "lead_id",
+					"type": "text",
+					"primaryKey": false,
+					"notNull": false
+				},
+				"start_date": {
+					"name": "start_date",
+					"type": "date",
+					"primaryKey": false,
+					"notNull": false
+				},
+				"target_date": {
+					"name": "target_date",
+					"type": "date",
+					"primaryKey": false,
+					"notNull": false
+				},
+				"priority": {
+					"name": "priority",
+					"type": "text",
+					"primaryKey": false,
+					"notNull": true,
+					"default": "'no-priority'"
+				},
+				"triage_enabled": {
+					"name": "triage_enabled",
+					"type": "boolean",
+					"primaryKey": false,
+					"notNull": true,
+					"default": false
+				},
+				"triage_owner_id": {
+					"name": "triage_owner_id",
+					"type": "text",
+					"primaryKey": false,
+					"notNull": false
+				},
+				"intake_token": {
+					"name": "intake_token",
+					"type": "text",
+					"primaryKey": false,
+					"notNull": false
+				}
+			},
+			"indexes": {},
+			"foreignKeys": {
+				"project_ext_project_id_project_id_fk": {
+					"name": "project_ext_project_id_project_id_fk",
+					"tableFrom": "project_ext",
+					"tableTo": "project",
+					"columnsFrom": ["project_id"],
+					"columnsTo": ["id"],
+					"onDelete": "cascade",
+					"onUpdate": "cascade"
+				},
+				"project_ext_lead_id_user_id_fk": {
+					"name": "project_ext_lead_id_user_id_fk",
+					"tableFrom": "project_ext",
+					"tableTo": "user",
+					"columnsFrom": ["lead_id"],
+					"columnsTo": ["id"],
+					"onDelete": "set null",
+					"onUpdate": "cascade"
+				},
+				"project_ext_triage_owner_id_user_id_fk": {
+					"name": "project_ext_triage_owner_id_user_id_fk",
+					"tableFrom": "project_ext",
+					"tableTo": "user",
+					"columnsFrom": ["triage_owner_id"],
+					"columnsTo": ["id"],
+					"onDelete": "set null",
+					"onUpdate": "cascade"
+				}
+			},
+			"compositePrimaryKeys": {},
+			"uniqueConstraints": {
+				"project_ext_intake_token_unique": {
+					"name": "project_ext_intake_token_unique",
+					"nullsNotDistinct": false,
+					"columns": ["intake_token"]
+				}
+			},
+			"policies": {},
+			"checkConstraints": {
+				"project_ext_status_check": {
+					"name": "project_ext_status_check",
+					"value": "\"project_ext\".\"status\" IN ('backlog', 'planned', 'started', 'paused', 'completed', 'canceled')"
+				},
+				"project_ext_health_check": {
+					"name": "project_ext_health_check",
+					"value": "\"project_ext\".\"health\" IN ('on_track', 'at_risk', 'off_track')"
+				},
+				"project_ext_priority_check": {
+					"name": "project_ext_priority_check",
+					"value": "\"project_ext\".\"priority\" IN ('no-priority', 'low', 'medium', 'high', 'urgent')"
+				},
+				"project_ext_dates_check": {
+					"name": "project_ext_dates_check",
+					"value": "\"project_ext\".\"target_date\" >= \"project_ext\".\"start_date\""
+				}
+			},
+			"isRLSEnabled": false
+		},
+		"public.task_ext": {
+			"name": "task_ext",
+			"schema": "",
+			"columns": {
+				"task_id": {
+					"name": "task_id",
+					"type": "text",
+					"primaryKey": true,
+					"notNull": true
+				},
+				"estimate": {
+					"name": "estimate",
+					"type": "integer",
+					"primaryKey": false,
+					"notNull": false
+				},
+				"cycle_id": {
+					"name": "cycle_id",
+					"type": "text",
+					"primaryKey": false,
+					"notNull": false
+				},
+				"milestone_id": {
+					"name": "milestone_id",
+					"type": "text",
+					"primaryKey": false,
+					"notNull": false
+				},
+				"triage_state": {
+					"name": "triage_state",
+					"type": "text",
+					"primaryKey": false,
+					"notNull": false
+				},
+				"triage_source": {
+					"name": "triage_source",
+					"type": "text",
+					"primaryKey": false,
+					"notNull": false
+				},
+				"triaged_by": {
+					"name": "triaged_by",
+					"type": "text",
+					"primaryKey": false,
+					"notNull": false
+				},
+				"triaged_at": {
+					"name": "triaged_at",
+					"type": "timestamp with time zone",
+					"primaryKey": false,
+					"notNull": false
+				},
+				"snoozed_until": {
+					"name": "snoozed_until",
+					"type": "timestamp with time zone",
+					"primaryKey": false,
+					"notNull": false
+				},
+				"duplicate_of_task_id": {
+					"name": "duplicate_of_task_id",
+					"type": "text",
+					"primaryKey": false,
+					"notNull": false
+				},
+				"started_at": {
+					"name": "started_at",
+					"type": "timestamp with time zone",
+					"primaryKey": false,
+					"notNull": false
+				},
+				"completed_at": {
+					"name": "completed_at",
+					"type": "timestamp with time zone",
+					"primaryKey": false,
+					"notNull": false
+				},
+				"canceled_at": {
+					"name": "canceled_at",
+					"type": "timestamp with time zone",
+					"primaryKey": false,
+					"notNull": false
+				}
+			},
+			"indexes": {
+				"task_ext_completed_at_idx": {
+					"name": "task_ext_completed_at_idx",
+					"columns": [
+						{
+							"expression": "completed_at",
+							"isExpression": false,
+							"asc": true,
+							"nulls": "last"
+						}
+					],
+					"isUnique": false,
+					"concurrently": false,
+					"method": "btree",
+					"with": {}
+				},
+				"task_ext_cycle_id_idx": {
+					"name": "task_ext_cycle_id_idx",
+					"columns": [
+						{
+							"expression": "cycle_id",
+							"isExpression": false,
+							"asc": true,
+							"nulls": "last"
+						}
+					],
+					"isUnique": false,
+					"concurrently": false,
+					"method": "btree",
+					"with": {}
+				},
+				"task_ext_triage_pending_idx": {
+					"name": "task_ext_triage_pending_idx",
+					"columns": [
+						{
+							"expression": "snoozed_until",
+							"isExpression": false,
+							"asc": true,
+							"nulls": "last"
+						},
+						{
+							"expression": "task_id",
+							"isExpression": false,
+							"asc": true,
+							"nulls": "last"
+						}
+					],
+					"isUnique": false,
+					"where": "\"task_ext\".\"triage_state\" = 'pending'",
+					"concurrently": false,
+					"method": "btree",
+					"with": {}
+				}
+			},
+			"foreignKeys": {
+				"task_ext_task_id_task_id_fk": {
+					"name": "task_ext_task_id_task_id_fk",
+					"tableFrom": "task_ext",
+					"tableTo": "task",
+					"columnsFrom": ["task_id"],
+					"columnsTo": ["id"],
+					"onDelete": "cascade",
+					"onUpdate": "cascade"
+				},
+				"task_ext_triaged_by_user_id_fk": {
+					"name": "task_ext_triaged_by_user_id_fk",
+					"tableFrom": "task_ext",
+					"tableTo": "user",
+					"columnsFrom": ["triaged_by"],
+					"columnsTo": ["id"],
+					"onDelete": "set null",
+					"onUpdate": "cascade"
+				},
+				"task_ext_duplicate_of_task_id_task_id_fk": {
+					"name": "task_ext_duplicate_of_task_id_task_id_fk",
+					"tableFrom": "task_ext",
+					"tableTo": "task",
+					"columnsFrom": ["duplicate_of_task_id"],
+					"columnsTo": ["id"],
+					"onDelete": "set null",
+					"onUpdate": "cascade"
+				}
+			},
+			"compositePrimaryKeys": {},
+			"uniqueConstraints": {},
+			"policies": {},
+			"checkConstraints": {
+				"task_ext_estimate_check": {
+					"name": "task_ext_estimate_check",
+					"value": "\"task_ext\".\"estimate\" >= 0"
+				},
+				"task_ext_triage_state_check": {
+					"name": "task_ext_triage_state_check",
+					"value": "\"task_ext\".\"triage_state\" IN ('pending', 'accepted', 'declined', 'duplicate')"
+				},
+				"task_ext_duplicate_check": {
+					"name": "task_ext_duplicate_check",
+					"value": "\"task_ext\".\"duplicate_of_task_id\" <> \"task_ext\".\"task_id\""
+				}
+			},
+			"isRLSEnabled": false
+		},
+		"public.workspace_ext": {
+			"name": "workspace_ext",
+			"schema": "",
+			"columns": {
+				"workspace_id": {
+					"name": "workspace_id",
+					"type": "text",
+					"primaryKey": true,
+					"notNull": true
+				},
+				"estimate_scale": {
+					"name": "estimate_scale",
+					"type": "text",
+					"primaryKey": false,
+					"notNull": true,
+					"default": "'none'"
+				},
+				"cycles_enabled": {
+					"name": "cycles_enabled",
+					"type": "boolean",
+					"primaryKey": false,
+					"notNull": true,
+					"default": false
+				},
+				"cycle_weeks": {
+					"name": "cycle_weeks",
+					"type": "integer",
+					"primaryKey": false,
+					"notNull": true,
+					"default": 2
+				},
+				"cooldown_weeks": {
+					"name": "cooldown_weeks",
+					"type": "integer",
+					"primaryKey": false,
+					"notNull": true,
+					"default": 0
+				},
+				"cycle_start_day": {
+					"name": "cycle_start_day",
+					"type": "integer",
+					"primaryKey": false,
+					"notNull": true,
+					"default": 1
+				},
+				"upcoming_cycles": {
+					"name": "upcoming_cycles",
+					"type": "integer",
+					"primaryKey": false,
+					"notNull": true,
+					"default": 2
+				},
+				"auto_rollover": {
+					"name": "auto_rollover",
+					"type": "boolean",
+					"primaryKey": false,
+					"notNull": true,
+					"default": true
+				}
+			},
+			"indexes": {},
+			"foreignKeys": {
+				"workspace_ext_workspace_id_workspace_id_fk": {
+					"name": "workspace_ext_workspace_id_workspace_id_fk",
+					"tableFrom": "workspace_ext",
+					"tableTo": "workspace",
+					"columnsFrom": ["workspace_id"],
+					"columnsTo": ["id"],
+					"onDelete": "cascade",
+					"onUpdate": "cascade"
+				}
+			},
+			"compositePrimaryKeys": {},
+			"uniqueConstraints": {},
+			"policies": {},
+			"checkConstraints": {
+				"workspace_ext_scale_check": {
+					"name": "workspace_ext_scale_check",
+					"value": "\"workspace_ext\".\"estimate_scale\" IN ('none', 'linear', 'fibonacci', 't-shirt')"
+				},
+				"workspace_ext_cycle_weeks_check": {
+					"name": "workspace_ext_cycle_weeks_check",
+					"value": "\"workspace_ext\".\"cycle_weeks\" > 0"
+				},
+				"workspace_ext_cooldown_check": {
+					"name": "workspace_ext_cooldown_check",
+					"value": "\"workspace_ext\".\"cooldown_weeks\" >= 0"
+				},
+				"workspace_ext_start_day_check": {
+					"name": "workspace_ext_start_day_check",
+					"value": "\"workspace_ext\".\"cycle_start_day\" BETWEEN 0 AND 6"
+				},
+				"workspace_ext_upcoming_check": {
+					"name": "workspace_ext_upcoming_check",
+					"value": "\"workspace_ext\".\"upcoming_cycles\" > 0"
+				}
+			},
+			"isRLSEnabled": false
+		}
+	},
+	"enums": {},
+	"schemas": {},
+	"sequences": {},
+	"roles": {},
+	"policies": {},
+	"views": {},
+	"_meta": {
+		"columns": {},
+		"schemas": {},
+		"tables": {}
+	}
+}

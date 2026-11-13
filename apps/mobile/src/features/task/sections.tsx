@@ -412,11 +412,16 @@ export function Relations({
         const other = outgoing ? r.targetTask : r.sourceTask;
         if (!other) return null;
         const isRelated = r.relationType !== "blocks";
-        const kind = isRelated
-          ? t("mobile:taskDetail.relations.related")
-          : outgoing
-            ? t("mobile:taskDetail.relations.blocks")
-            : t("mobile:taskDetail.relations.blockedBy");
+        const kind =
+          r.relationType === "duplicate"
+            ? outgoing
+              ? t("mobile:parity.triage.duplicateOf")
+              : t("mobile:parity.triage.duplicatedBy")
+            : isRelated
+              ? t("mobile:taskDetail.relations.related")
+              : outgoing
+                ? t("mobile:taskDetail.relations.blocks")
+                : t("mobile:taskDetail.relations.blockedBy");
         return (
           <Touch
             key={r.id}

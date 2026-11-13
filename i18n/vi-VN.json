@@ -5096,7 +5096,30 @@
 			"photos": "Kaneo dùng ảnh của bạn để đính kèm hình ảnh vào công việc và bình luận, cũng như làm ảnh hồ sơ."
 		},
 		"parity": {
-			"signInTagline": "Đăng nhập vào không gian làm việc dự án của Go Figure."
+			"signInTagline": "Đăng nhập vào không gian làm việc dự án của Go Figure.",
+			"triage": {
+				"title": "Phân loại",
+				"newItem": "Mục phân loại mới",
+				"send": "Gửi để phân loại",
+				"accept": "Chấp nhận",
+				"duplicate": "Đánh dấu trùng lặp",
+				"decline": "Từ chối",
+				"snooze": "Tạm hoãn",
+				"owner": "Người phụ trách phân loại",
+				"enabled": "Bật phân loại",
+				"intake": "Liên kết tiếp nhận",
+				"rotate": "Đổi liên kết tiếp nhận",
+				"comment": "Lý do từ chối",
+				"until": "Hoãn đến",
+				"original": "Công việc gốc",
+				"received": "Đã nhận yêu cầu",
+				"intakeDescription": "Bất kỳ ai có liên kết này đều có thể gửi công việc để xem xét.",
+				"unavailable": "Không thể sử dụng phân loại",
+				"description": "Xem xét các yêu cầu mới trước khi thêm vào dự án.",
+				"integration": "Gửi công việc mới từ tích hợp để phân loại",
+				"duplicateOf": "Trùng lặp với",
+				"duplicatedBy": "Bị trùng lặp bởi"
+			}
 		}
 	},
 	"parity": {
@@ -5111,6 +5134,29 @@
 			"label": "Nhóm cho {{name}}",
 			"loading": "Đang tải các nhóm trạng thái…",
 			"error": "Không thể lưu hoặc tải các nhóm. Vui lòng thử lại."
+		},
+		"triage": {
+			"title": "Phân loại",
+			"newItem": "Mục phân loại mới",
+			"send": "Gửi để phân loại",
+			"accept": "Chấp nhận",
+			"duplicate": "Đánh dấu trùng lặp",
+			"decline": "Từ chối",
+			"snooze": "Tạm hoãn",
+			"owner": "Người phụ trách phân loại",
+			"enabled": "Bật phân loại",
+			"intake": "Liên kết tiếp nhận",
+			"rotate": "Đổi liên kết tiếp nhận",
+			"comment": "Lý do từ chối",
+			"until": "Hoãn đến",
+			"original": "Công việc gốc",
+			"received": "Đã nhận yêu cầu",
+			"intakeDescription": "Bất kỳ ai có liên kết này đều có thể gửi công việc để xem xét.",
+			"unavailable": "Không thể sử dụng phân loại",
+			"description": "Xem xét các yêu cầu mới trước khi thêm vào dự án.",
+			"integration": "Gửi công việc mới từ tích hợp để phân loại",
+			"duplicateOf": "Trùng lặp với",
+			"duplicatedBy": "Bị trùng lặp bởi"
 		}
 	}
 }

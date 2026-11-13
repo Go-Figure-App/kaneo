@@ -5280,7 +5280,30 @@
 			"photos": "Kaneo usa tus fotos para adjuntar imágenes a tareas y comentarios, y para tu foto de perfil."
 		},
 		"parity": {
-			"signInTagline": "Inicia sesión en el espacio de trabajo de proyectos de Go Figure."
+			"signInTagline": "Inicia sesión en el espacio de trabajo de proyectos de Go Figure.",
+			"triage": {
+				"title": "Triaje",
+				"newItem": "Nuevo elemento de triaje",
+				"send": "Enviar a triaje",
+				"accept": "Aceptar",
+				"duplicate": "Marcar como duplicado",
+				"decline": "Rechazar",
+				"snooze": "Posponer",
+				"owner": "Responsable de triaje",
+				"enabled": "Activar triaje",
+				"intake": "Enlace de recepción",
+				"rotate": "Renovar enlace de recepción",
+				"comment": "Motivo del rechazo",
+				"until": "Posponer hasta",
+				"original": "Tarea original",
+				"received": "Solicitud recibida",
+				"intakeDescription": "Cualquier persona con este enlace puede enviar una tarea para revisión.",
+				"unavailable": "El triaje no está disponible",
+				"description": "Revisa las nuevas solicitudes antes de añadirlas al proyecto.",
+				"integration": "Enviar nuevas tareas de integraciones a triaje",
+				"duplicateOf": "Duplicado de",
+				"duplicatedBy": "Duplicado por"
+			}
 		}
 	},
 	"parity": {
@@ -5295,6 +5318,29 @@
 			"label": "Categoría de {{name}}",
 			"loading": "Cargando categorías de estado…",
 			"error": "No se pudieron guardar o cargar las categorías. Inténtalo de nuevo."
+		},
+		"triage": {
+			"title": "Triaje",
+			"newItem": "Nuevo elemento de triaje",
+			"send": "Enviar a triaje",
+			"accept": "Aceptar",
+			"duplicate": "Marcar como duplicado",
+			"decline": "Rechazar",
+			"snooze": "Posponer",
+			"owner": "Responsable de triaje",
+			"enabled": "Activar triaje",
+			"intake": "Enlace de recepción",
+			"rotate": "Renovar enlace de recepción",
+			"comment": "Motivo del rechazo",
+			"until": "Posponer hasta",
+			"original": "Tarea original",
+			"received": "Solicitud recibida",
+			"intakeDescription": "Cualquier persona con este enlace puede enviar una tarea para revisión.",
+			"unavailable": "El triaje no está disponible",
+			"description": "Revisa las nuevas solicitudes antes de añadirlas al proyecto.",
+			"integration": "Enviar nuevas tareas de integraciones a triaje",
+			"duplicateOf": "Duplicado de",
+			"duplicatedBy": "Duplicado por"
 		}
 	}
 }

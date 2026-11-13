@@ -1,3 +1,4 @@
+import { stageIntegrationTriage } from "../../../parity/triage/integration-intake";
 import { confirmedFieldLabels } from "../../sync/field-labels";
 import { acceptsIssue } from "../../sync/rules";
 import { importIssueLabels } from "../../sync/issue-labels";
@@ -172,27 +173,35 @@ export async function handleGiteaIssueOpened(
         issue.labels,
         tx,
       );
+      const stagedForTriage = await stageIntegrationTriage(
+        tx,
+        task,
+        integration,
+      );
       const eligible = await canSyncTask(
         task.id,
         integration.id,
         tx,
         integration.config,
       );
-      return { task, link, linkMetadata, eligible };
+      return { task, link, linkMetadata, eligible, stagedForTriage };
     });
     if (!result) continue;
-    const { task: createdTask, link, eligible } = result;
+    const { task: createdTask, link, eligible, stagedForTriage } = result;
 
-    await publishEvent("task.created", {
-      ...createdTask,
-      taskId: createdTask.id,
-      userId: createdTask.userId ?? "",
-      type: "task",
-      content: null,
-      source: "gitea",
-      externalId: issue.number.toString(),
-      actor: issue.user?.login ?? issue.user?.username ?? "gitea-webhook",
-    });
+    await publishEvent(
+      stagedForTriage ? "parity.triage_created" : "task.created",
+      {
+        ...createdTask,
+        taskId: createdTask.id,
+        userId: createdTask.userId ?? "",
+        type: "task",
+        content: null,
+        source: "gitea",
+        externalId: issue.number.toString(),
+        actor: issue.user?.login ?? issue.user?.username ?? "gitea-webhook",
+      },
+    );
     if (!eligible) continue;
     const write = createIssueWrite(
       { id: link.id, taskId: createdTask.id, integrationId: integration.id },

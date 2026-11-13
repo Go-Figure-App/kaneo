@@ -51,6 +51,9 @@ export const taskExtTable = pgTable(
   (table) => [
     index("task_ext_completed_at_idx").on(table.completedAt),
     index("task_ext_cycle_id_idx").on(table.cycleId),
+    index("task_ext_triage_pending_idx")
+      .on(table.snoozedUntil, table.taskId)
+      .where(sql`${table.triageState} = 'pending'`),
     check("task_ext_estimate_check", sql`${table.estimate} >= 0`),
     check(
       "task_ext_triage_state_check",

@@ -5188,7 +5188,30 @@
 			"photos": "Kaneo, taleplere ve yorumlara görsel eklemek ve profil fotoğrafınız için fotoğraflarınızı kullanır."
 		},
 		"parity": {
-			"signInTagline": "Go Figure proje çalışma alanına giriş yapın."
+			"signInTagline": "Go Figure proje çalışma alanına giriş yapın.",
+			"triage": {
+				"title": "Ön değerlendirme",
+				"newItem": "Yeni değerlendirme öğesi",
+				"send": "Ön değerlendirmeye gönder",
+				"accept": "Kabul et",
+				"duplicate": "Yinelenen olarak işaretle",
+				"decline": "Reddet",
+				"snooze": "Ertele",
+				"owner": "Değerlendirme sorumlusu",
+				"enabled": "Ön değerlendirmeyi etkinleştir",
+				"intake": "Başvuru bağlantısı",
+				"rotate": "Başvuru bağlantısını yenile",
+				"comment": "Reddetme nedeni",
+				"until": "Şu zamana kadar ertele",
+				"original": "Asıl görev",
+				"received": "Başvuru alındı",
+				"intakeDescription": "Bu bağlantıya sahip herkes incelenmek üzere görev gönderebilir.",
+				"unavailable": "Ön değerlendirme kullanılamıyor",
+				"description": "Yeni başvuruları projenize eklemeden önce inceleyin.",
+				"integration": "Entegrasyonlardan gelen yeni görevleri ön değerlendirmeye gönder",
+				"duplicateOf": "Şunun kopyası",
+				"duplicatedBy": "Şu görev tarafından yineleniyor"
+			}
 		}
 	},
 	"parity": {
@@ -5203,6 +5226,29 @@
 			"label": "{{name}} için kategori",
 			"loading": "Durum kategorileri yükleniyor…",
 			"error": "Kategoriler kaydedilemedi veya yüklenemedi. Tekrar deneyin."
+		},
+		"triage": {
+			"title": "Ön değerlendirme",
+			"newItem": "Yeni değerlendirme öğesi",
+			"send": "Ön değerlendirmeye gönder",
+			"accept": "Kabul et",
+			"duplicate": "Yinelenen olarak işaretle",
+			"decline": "Reddet",
+			"snooze": "Ertele",
+			"owner": "Değerlendirme sorumlusu",
+			"enabled": "Ön değerlendirmeyi etkinleştir",
+			"intake": "Başvuru bağlantısı",
+			"rotate": "Başvuru bağlantısını yenile",
+			"comment": "Reddetme nedeni",
+			"until": "Şu zamana kadar ertele",
+			"original": "Asıl görev",
+			"received": "Başvuru alındı",
+			"intakeDescription": "Bu bağlantıya sahip herkes incelenmek üzere görev gönderebilir.",
+			"unavailable": "Ön değerlendirme kullanılamıyor",
+			"description": "Yeni başvuruları projenize eklemeden önce inceleyin.",
+			"integration": "Entegrasyonlardan gelen yeni görevleri ön değerlendirmeye gönder",
+			"duplicateOf": "Şunun kopyası",
+			"duplicatedBy": "Şu görev tarafından yineleniyor"
 		}
 	}
 }

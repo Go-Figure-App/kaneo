@@ -16,17 +16,23 @@ import { getColumnIcon } from "@/lib/column";
 import { getPriorityLabel, getStatusDisplayLabel } from "@/lib/i18n/domain";
 import { getPriorityIcon } from "@/lib/priority";
 import { useShortcut } from "@/lib/shortcuts/use-shortcut";
+import { MarkdownRenderer } from "@/components/public-project/markdown-renderer";
 
 type InboxTaskProps = {
   taskId: string;
   workspaceId?: string;
+  showDescription?: boolean;
 };
 
 const VISIBLE_ACTIVITIES = 6;
 
 // The task a notification points at, with enough of its thread to answer
 // without leaving the inbox.
-export function InboxTask({ taskId, workspaceId }: InboxTaskProps) {
+export function InboxTask({
+  taskId,
+  workspaceId,
+  showDescription = false,
+}: InboxTaskProps) {
   const { t } = useTranslation();
   const {
     data: task,
@@ -169,6 +175,9 @@ export function InboxTask({ taskId, workspaceId }: InboxTaskProps) {
         </dl>
       </div>
 
+      {showDescription && task.description && (
+        <MarkdownRenderer content={task.description} />
+      )}
       <div className="flex flex-col gap-3 border-border/60 border-t pt-5">
         <h3 className="font-medium text-muted-foreground text-xs">
           {t("notifications:inbox.recentActivity")}
