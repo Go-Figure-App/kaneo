@@ -70,11 +70,11 @@ it("applies both migration sets to upstream's shape, preserves its schema and re
     expect(
       (await pool.query("SELECT * FROM drizzle.__drizzle_parity_migrations"))
         .rows,
-    ).toHaveLength(4);
+    ).toHaveLength(5);
     const tables = await pool.query(
-      "SELECT table_name FROM information_schema.tables WHERE table_schema = 'public' AND table_name IN ('task_ext', 'column_ext', 'workspace_ext', 'project_ext', 'project_milestone', 'initiative', 'initiative_project', 'status_update', 'cycle', 'cycle_day')",
+      "SELECT table_name FROM information_schema.tables WHERE table_schema = 'public' AND table_name IN ('task_ext', 'column_ext', 'workspace_ext', 'project_ext', 'project_milestone', 'initiative', 'initiative_project', 'status_update', 'cycle', 'cycle_day', 'saved_view', 'favorite', 'task_template')",
     );
-    expect(tables.rows).toHaveLength(10);
+    expect(tables.rows).toHaveLength(13);
     // A previous API build can still execute the original migration sequence.
     await migrate(database, { migrationsFolder: upstream });
   } finally {

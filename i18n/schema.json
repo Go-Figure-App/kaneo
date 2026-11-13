@@ -10543,6 +10543,514 @@
 						"categories",
 						"items"
 					]
+				},
+				"shortcuts": {
+					"type": "object",
+					"additionalProperties": false,
+					"properties": {
+						"categories": {
+							"type": "object",
+							"additionalProperties": false,
+							"properties": {
+								"general": {
+									"type": "string"
+								},
+								"navigation": {
+									"type": "string"
+								},
+								"create": {
+									"type": "string"
+								},
+								"views": {
+									"type": "string"
+								},
+								"tasks": {
+									"type": "string"
+								},
+								"list": {
+									"type": "string"
+								},
+								"inbox": {
+									"type": "string"
+								},
+								"filters": {
+									"type": "string"
+								},
+								"editor": {
+									"type": "string"
+								}
+							},
+							"required": [
+								"general",
+								"navigation",
+								"create",
+								"views",
+								"tasks",
+								"list",
+								"inbox",
+								"filters",
+								"editor"
+							]
+						},
+						"items": {
+							"type": "object",
+							"additionalProperties": false,
+							"properties": {
+								"openCommandMenu": {
+									"type": "string"
+								},
+								"openSearch": {
+									"type": "string"
+								},
+								"openShortcuts": {
+									"type": "string"
+								},
+								"submit": {
+									"type": "string"
+								},
+								"back": {
+									"type": "string"
+								},
+								"switchWorkspace": {
+									"type": "string"
+								},
+								"logOut": {
+									"type": "string"
+								},
+								"showDisplayOptions": {
+									"type": "string"
+								},
+								"dismissToasts": {
+									"type": "string"
+								},
+								"toggleSidebar": {
+									"type": "string"
+								},
+								"goToHome": {
+									"type": "string"
+								},
+								"goToInbox": {
+									"type": "string"
+								},
+								"goToMyTasks": {
+									"type": "string"
+								},
+								"goToProjects": {
+									"type": "string"
+								},
+								"goToSettings": {
+									"type": "string"
+								},
+								"goToTasks": {
+									"type": "string"
+								},
+								"goToBacklog": {
+									"type": "string"
+								},
+								"goToProject": {
+									"type": "string"
+								},
+								"openTask": {
+									"type": "string"
+								},
+								"openProject": {
+									"type": "string"
+								},
+								"createTask": {
+									"type": "string"
+								},
+								"createProject": {
+									"type": "string"
+								},
+								"toggleLayout": {
+									"type": "string"
+								},
+								"deleteTask": {
+									"type": "string"
+								},
+								"copyTaskUrl": {
+									"type": "string"
+								},
+								"copyBranchName": {
+									"type": "string"
+								},
+								"nextTask": {
+									"type": "string"
+								},
+								"previousTask": {
+									"type": "string"
+								},
+								"openFocusedTask": {
+									"type": "string"
+								},
+								"selectAll": {
+									"type": "string"
+								},
+								"clearSelection": {
+									"type": "string"
+								},
+								"changeStatus": {
+									"type": "string"
+								},
+								"changePriority": {
+									"type": "string"
+								},
+								"assignTask": {
+									"type": "string"
+								},
+								"assignToMe": {
+									"type": "string"
+								},
+								"changeLabels": {
+									"type": "string"
+								},
+								"setDueDate": {
+									"type": "string"
+								},
+								"removeDueDate": {
+									"type": "string"
+								},
+								"renameTask": {
+									"type": "string"
+								},
+								"editDescription": {
+									"type": "string"
+								},
+								"commentOnTask": {
+									"type": "string"
+								},
+								"moveToProject": {
+									"type": "string"
+								},
+								"createSubtask": {
+									"type": "string"
+								},
+								"setParent": {
+									"type": "string"
+								},
+								"openParent": {
+									"type": "string"
+								},
+								"openSubtask": {
+									"type": "string"
+								},
+								"markBlockedBy": {
+									"type": "string"
+								},
+								"markBlocking": {
+									"type": "string"
+								},
+								"markRelated": {
+									"type": "string"
+								},
+								"addLink": {
+									"type": "string"
+								},
+								"toggleResources": {
+									"type": "string"
+								},
+								"copyTaskId": {
+									"type": "string"
+								},
+								"copyTaskTitle": {
+									"type": "string"
+								},
+								"copyAsMarkdown": {
+									"type": "string"
+								},
+								"peekTask": {
+									"type": "string"
+								},
+								"selectTask": {
+									"type": "string"
+								},
+								"selectGroup": {
+									"type": "string"
+								},
+								"copyPageUrl": {
+									"type": "string"
+								},
+								"focusRight": {
+									"type": "string"
+								},
+								"focusLeft": {
+									"type": "string"
+								},
+								"moveTaskTop": {
+									"type": "string"
+								},
+								"moveTaskUp": {
+									"type": "string"
+								},
+								"moveTaskDown": {
+									"type": "string"
+								},
+								"moveTaskBottom": {
+									"type": "string"
+								},
+								"moveTaskLeft": {
+									"type": "string"
+								},
+								"moveTaskRight": {
+									"type": "string"
+								},
+								"toggleGroup": {
+									"type": "string"
+								},
+								"toggleAllGroups": {
+									"type": "string"
+								},
+								"deleteNotification": {
+									"type": "string"
+								},
+								"deleteReadNotifications": {
+									"type": "string"
+								},
+								"toggleNotificationRead": {
+									"type": "string"
+								},
+								"markAllNotificationsRead": {
+									"type": "string"
+								},
+								"addFilter": {
+									"type": "string"
+								},
+								"clearAllFilters": {
+									"type": "string"
+								},
+								"clearLastFilter": {
+									"type": "string"
+								},
+								"editorBold": {
+									"type": "string"
+								},
+								"editorItalic": {
+									"type": "string"
+								},
+								"editorUnderline": {
+									"type": "string"
+								},
+								"editorStrike": {
+									"type": "string"
+								},
+								"editorAttach": {
+									"type": "string"
+								},
+								"editorInlineCode": {
+									"type": "string"
+								},
+								"editorLink": {
+									"type": "string"
+								},
+								"editorQuote": {
+									"type": "string"
+								},
+								"editorParagraph": {
+									"type": "string"
+								},
+								"editorHeading1": {
+									"type": "string"
+								},
+								"editorHeading2": {
+									"type": "string"
+								},
+								"editorHeading3": {
+									"type": "string"
+								},
+								"editorChecklist": {
+									"type": "string"
+								},
+								"editorToggleChecklist": {
+									"type": "string"
+								},
+								"editorBulletList": {
+									"type": "string"
+								},
+								"editorNumberedList": {
+									"type": "string"
+								},
+								"editorCodeBlock": {
+									"type": "string"
+								},
+								"editorUndo": {
+									"type": "string"
+								},
+								"editorRedo": {
+									"type": "string"
+								},
+								"changeCycle": {
+									"type": "string"
+								},
+								"changeEstimate": {
+									"type": "string"
+								},
+								"goToTriage": {
+									"type": "string"
+								},
+								"goToCurrentCycle": {
+									"type": "string"
+								},
+								"goToRoadmap": {
+									"type": "string"
+								},
+								"goToViews": {
+									"type": "string"
+								},
+								"changeMilestone": {
+									"type": "string"
+								}
+							},
+							"required": [
+								"openCommandMenu",
+								"openSearch",
+								"openShortcuts",
+								"submit",
+								"back",
+								"switchWorkspace",
+								"logOut",
+								"showDisplayOptions",
+								"dismissToasts",
+								"toggleSidebar",
+								"goToHome",
+								"goToInbox",
+								"goToMyTasks",
+								"goToProjects",
+								"goToSettings",
+								"goToTasks",
+								"goToBacklog",
+								"goToProject",
+								"openTask",
+								"openProject",
+								"createTask",
+								"createProject",
+								"toggleLayout",
+								"deleteTask",
+								"copyTaskUrl",
+								"copyBranchName",
+								"nextTask",
+								"previousTask",
+								"openFocusedTask",
+								"selectAll",
+								"clearSelection",
+								"changeStatus",
+								"changePriority",
+								"assignTask",
+								"assignToMe",
+								"changeLabels",
+								"setDueDate",
+								"removeDueDate",
+								"renameTask",
+								"editDescription",
+								"commentOnTask",
+								"moveToProject",
+								"createSubtask",
+								"setParent",
+								"openParent",
+								"openSubtask",
+								"markBlockedBy",
+								"markBlocking",
+								"markRelated",
+								"addLink",
+								"toggleResources",
+								"copyTaskId",
+								"copyTaskTitle",
+								"copyAsMarkdown",
+								"peekTask",
+								"selectTask",
+								"selectGroup",
+								"copyPageUrl",
+								"focusRight",
+								"focusLeft",
+								"moveTaskTop",
+								"moveTaskUp",
+								"moveTaskDown",
+								"moveTaskBottom",
+								"moveTaskLeft",
+								"moveTaskRight",
+								"toggleGroup",
+								"toggleAllGroups",
+								"deleteNotification",
+								"deleteReadNotifications",
+								"toggleNotificationRead",
+								"markAllNotificationsRead",
+								"addFilter",
+								"clearAllFilters",
+								"clearLastFilter",
+								"editorBold",
+								"editorItalic",
+								"editorUnderline",
+								"editorStrike",
+								"editorAttach",
+								"editorInlineCode",
+								"editorLink",
+								"editorQuote",
+								"editorParagraph",
+								"editorHeading1",
+								"editorHeading2",
+								"editorHeading3",
+								"editorChecklist",
+								"editorToggleChecklist",
+								"editorBulletList",
+								"editorNumberedList",
+								"editorCodeBlock",
+								"editorUndo",
+								"editorRedo",
+								"changeCycle",
+								"changeEstimate",
+								"goToTriage",
+								"goToCurrentCycle",
+								"goToRoadmap",
+								"goToViews",
+								"changeMilestone"
+							]
+						},
+						"title": {
+							"type": "string"
+						},
+						"searchPlaceholder": {
+							"type": "string"
+						},
+						"results_one": {
+							"type": "string"
+						},
+						"results_zero": {
+							"type": "string"
+						},
+						"results_two": {
+							"type": "string"
+						},
+						"results_few": {
+							"type": "string"
+						},
+						"results_many": {
+							"type": "string"
+						},
+						"results_other": {
+							"type": "string"
+						},
+						"noResults": {
+							"type": "string"
+						},
+						"then": {
+							"type": "string"
+						},
+						"or": {
+							"type": "string"
+						},
+						"thenEllipsis": {
+							"type": "string"
+						}
+					},
+					"required": [
+						"categories",
+						"items",
+						"title",
+						"searchPlaceholder",
+						"noResults",
+						"then",
+						"or",
+						"thenEllipsis"
+					]
 				}
 			},
 			"required": [
@@ -10555,7 +11063,8 @@
 				"workspaceSwitcher",
 				"page",
 				"projectSettings",
-				"keyboardShortcuts"
+				"keyboardShortcuts",
+				"shortcuts"
 			]
 		},
 		"notifications": {
@@ -19904,6 +20413,66 @@
 								"noCycles",
 								"enableCycles"
 							]
+						},
+						"views": {
+							"type": "object",
+							"additionalProperties": false,
+							"properties": {
+								"title": {
+									"type": "string"
+								},
+								"allIssues": {
+									"type": "string"
+								},
+								"subtitle": {
+									"type": "string"
+								},
+								"editOnWeb": {
+									"type": "string"
+								},
+								"noViews": {
+									"type": "string"
+								},
+								"noIssues": {
+									"type": "string"
+								},
+								"list": {
+									"type": "string"
+								},
+								"board": {
+									"type": "string"
+								},
+								"more": {
+									"type": "string"
+								},
+								"unassigned": {
+									"type": "string"
+								},
+								"personal": {
+									"type": "string"
+								},
+								"shared": {
+									"type": "string"
+								},
+								"datesIn": {
+									"type": "string"
+								}
+							},
+							"required": [
+								"title",
+								"allIssues",
+								"subtitle",
+								"editOnWeb",
+								"noViews",
+								"noIssues",
+								"list",
+								"board",
+								"more",
+								"unassigned",
+								"personal",
+								"shared",
+								"datesIn"
+							]
 						}
 					},
 					"required": [
@@ -19912,7 +20481,8 @@
 						"planning",
 						"roadmap",
 						"cycles",
-						"insights"
+						"insights",
+						"views"
 					]
 				}
 			},
@@ -21228,6 +21798,473 @@
 						"series",
 						"states"
 					]
+				},
+				"views": {
+					"type": "object",
+					"additionalProperties": false,
+					"properties": {
+						"title": {
+							"type": "string"
+						},
+						"allIssues": {
+							"type": "string"
+						},
+						"subtitle": {
+							"type": "string"
+						},
+						"newView": {
+							"type": "string"
+						},
+						"saveChanges": {
+							"type": "string"
+						},
+						"saveCopy": {
+							"type": "string"
+						},
+						"name": {
+							"type": "string"
+						},
+						"icon": {
+							"type": "string"
+						},
+						"shared": {
+							"type": "string"
+						},
+						"personal": {
+							"type": "string"
+						},
+						"workspace": {
+							"type": "string"
+						},
+						"edit": {
+							"type": "string"
+						},
+						"delete": {
+							"type": "string"
+						},
+						"deleteConfirm": {
+							"type": "string"
+						},
+						"noViews": {
+							"type": "string"
+						},
+						"search": {
+							"type": "string"
+						},
+						"addFilter": {
+							"type": "string"
+						},
+						"removeFilter": {
+							"type": "string"
+						},
+						"clearFilters": {
+							"type": "string"
+						},
+						"field": {
+							"type": "string"
+						},
+						"operator": {
+							"type": "string"
+						},
+						"filterValue": {
+							"type": "string"
+						},
+						"missing": {
+							"type": "string"
+						},
+						"is": {
+							"type": "string"
+						},
+						"is-not": {
+							"type": "string"
+						},
+						"before": {
+							"type": "string"
+						},
+						"after": {
+							"type": "string"
+						},
+						"lessThan": {
+							"type": "string"
+						},
+						"greaterThan": {
+							"type": "string"
+						},
+						"invalidFilters": {
+							"type": "string"
+						},
+						"display": {
+							"type": "string"
+						},
+						"layout": {
+							"type": "string"
+						},
+						"list": {
+							"type": "string"
+						},
+						"board": {
+							"type": "string"
+						},
+						"groupBy": {
+							"type": "string"
+						},
+						"orderBy": {
+							"type": "string"
+						},
+						"direction": {
+							"type": "string"
+						},
+						"ascending": {
+							"type": "string"
+						},
+						"descending": {
+							"type": "string"
+						},
+						"properties": {
+							"type": "string"
+						},
+						"more": {
+							"type": "string"
+						},
+						"noIssues": {
+							"type": "string"
+						},
+						"loaded": {
+							"type": "string"
+						},
+						"partial": {
+							"type": "string"
+						},
+						"unknown": {
+							"type": "string"
+						},
+						"unassigned": {
+							"type": "string"
+						},
+						"noLabel": {
+							"type": "string"
+						},
+						"noCycle": {
+							"type": "string"
+						},
+						"noMilestone": {
+							"type": "string"
+						},
+						"optionsTruncated": {
+							"type": "string"
+						},
+						"datesIn": {
+							"type": "string"
+						},
+						"favorite": {
+							"type": "string"
+						},
+						"unfavorite": {
+							"type": "string"
+						},
+						"favorites": {
+							"type": "string"
+						},
+						"favoriteActions": {
+							"type": "string"
+						},
+						"moveUp": {
+							"type": "string"
+						},
+						"moveDown": {
+							"type": "string"
+						},
+						"templates": {
+							"type": "string"
+						},
+						"newTemplate": {
+							"type": "string"
+						},
+						"editTemplate": {
+							"type": "string"
+						},
+						"templateReplace": {
+							"type": "string"
+						},
+						"templateName": {
+							"type": "string"
+						},
+						"templateTitle": {
+							"type": "string"
+						},
+						"templateDescription": {
+							"type": "string"
+						},
+						"applyTemplate": {
+							"type": "string"
+						},
+						"noTemplate": {
+							"type": "string"
+						},
+						"templateApplied": {
+							"type": "string"
+						},
+						"templateEstimateError": {
+							"type": "string"
+						},
+						"deleteTemplateConfirm": {
+							"type": "string"
+						},
+						"noTemplates": {
+							"type": "string"
+						},
+						"manageTemplates": {
+							"type": "string"
+						},
+						"templateDefaults": {
+							"type": "string"
+						},
+						"chooseProject": {
+							"type": "string"
+						},
+						"changesSaved": {
+							"type": "string"
+						},
+						"templateSaved": {
+							"type": "string"
+						},
+						"filters": {
+							"type": "object",
+							"additionalProperties": false,
+							"properties": {
+								"category": {
+									"type": "string"
+								},
+								"priority": {
+									"type": "string"
+								},
+								"assignee": {
+									"type": "string"
+								},
+								"creator": {
+									"type": "string"
+								},
+								"label": {
+									"type": "string"
+								},
+								"project": {
+									"type": "string"
+								},
+								"cycle": {
+									"type": "string"
+								},
+								"milestone": {
+									"type": "string"
+								},
+								"estimate": {
+									"type": "string"
+								},
+								"due": {
+									"type": "string"
+								},
+								"created": {
+									"type": "string"
+								},
+								"completed": {
+									"type": "string"
+								}
+							},
+							"required": [
+								"category",
+								"priority",
+								"assignee",
+								"creator",
+								"label",
+								"project",
+								"cycle",
+								"milestone",
+								"estimate",
+								"due",
+								"created",
+								"completed"
+							]
+						},
+						"groups": {
+							"type": "object",
+							"additionalProperties": false,
+							"properties": {
+								"state": {
+									"type": "string"
+								},
+								"assignee": {
+									"type": "string"
+								},
+								"project": {
+									"type": "string"
+								},
+								"priority": {
+									"type": "string"
+								},
+								"cycle": {
+									"type": "string"
+								},
+								"label": {
+									"type": "string"
+								}
+							},
+							"required": [
+								"state",
+								"assignee",
+								"project",
+								"priority",
+								"cycle",
+								"label"
+							]
+						},
+						"orders": {
+							"type": "object",
+							"additionalProperties": false,
+							"properties": {
+								"priority": {
+									"type": "string"
+								},
+								"created": {
+									"type": "string"
+								},
+								"updated": {
+									"type": "string"
+								},
+								"due": {
+									"type": "string"
+								}
+							},
+							"required": ["priority", "created", "updated", "due"]
+						},
+						"propertyNames": {
+							"type": "object",
+							"additionalProperties": false,
+							"properties": {
+								"identifier": {
+									"type": "string"
+								},
+								"status": {
+									"type": "string"
+								},
+								"priority": {
+									"type": "string"
+								},
+								"assignee": {
+									"type": "string"
+								},
+								"project": {
+									"type": "string"
+								},
+								"cycle": {
+									"type": "string"
+								},
+								"milestone": {
+									"type": "string"
+								},
+								"estimate": {
+									"type": "string"
+								},
+								"labels": {
+									"type": "string"
+								},
+								"due": {
+									"type": "string"
+								}
+							},
+							"required": [
+								"identifier",
+								"status",
+								"priority",
+								"assignee",
+								"project",
+								"cycle",
+								"milestone",
+								"estimate",
+								"labels",
+								"due"
+							]
+						}
+					},
+					"required": [
+						"title",
+						"allIssues",
+						"subtitle",
+						"newView",
+						"saveChanges",
+						"saveCopy",
+						"name",
+						"icon",
+						"shared",
+						"personal",
+						"workspace",
+						"edit",
+						"delete",
+						"deleteConfirm",
+						"noViews",
+						"search",
+						"addFilter",
+						"removeFilter",
+						"clearFilters",
+						"field",
+						"operator",
+						"filterValue",
+						"missing",
+						"is",
+						"is-not",
+						"before",
+						"after",
+						"lessThan",
+						"greaterThan",
+						"invalidFilters",
+						"display",
+						"layout",
+						"list",
+						"board",
+						"groupBy",
+						"orderBy",
+						"direction",
+						"ascending",
+						"descending",
+						"properties",
+						"more",
+						"noIssues",
+						"loaded",
+						"partial",
+						"unknown",
+						"unassigned",
+						"noLabel",
+						"noCycle",
+						"noMilestone",
+						"optionsTruncated",
+						"datesIn",
+						"favorite",
+						"unfavorite",
+						"favorites",
+						"favoriteActions",
+						"moveUp",
+						"moveDown",
+						"templates",
+						"newTemplate",
+						"editTemplate",
+						"templateReplace",
+						"templateName",
+						"templateTitle",
+						"templateDescription",
+						"applyTemplate",
+						"noTemplate",
+						"templateApplied",
+						"templateEstimateError",
+						"deleteTemplateConfirm",
+						"noTemplates",
+						"manageTemplates",
+						"templateDefaults",
+						"chooseProject",
+						"changesSaved",
+						"templateSaved",
+						"filters",
+						"groups",
+						"orders",
+						"propertyNames"
+					]
 				}
 			},
 			"required": [
@@ -21236,7 +22273,8 @@
 				"planning",
 				"roadmap",
 				"cycles",
-				"insights"
+				"insights",
+				"views"
 			]
 		}
 	},

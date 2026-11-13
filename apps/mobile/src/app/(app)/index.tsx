@@ -35,7 +35,8 @@ export default function HomeScreen() {
   const projects = usePlanningEnabled();
   const cycles = usePlanningEnabled("cycles");
   const insights = usePlanningEnabled("insights");
-  const planning = projects || cycles || insights;
+  const views = usePlanningEnabled("views");
+  const planning = projects || cycles || insights || views;
 
   useRealtime("api/ws/user", (event) => {
     invalidateParity(client, event);

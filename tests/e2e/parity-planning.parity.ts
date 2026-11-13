@@ -100,15 +100,25 @@ test("project properties, milestone assignment and status updates stay in sync",
 
   const taskPage = await context.newPage();
   await taskPage.goto(`${f.path}/project/${f.project.id}/task/${f.done.id}`);
-  const picker = taskPage.getByRole("combobox", {
-    name: "Milestone",
-    exact: true,
-  });
-  await picker.selectOption({ label: "Feature complete" });
+  await expect(
+    taskPage.getByRole("button", {
+      name: "Milestone: No milestone",
+      exact: true,
+    }),
+  ).toBeEnabled();
+  await taskPage.keyboard.press("Shift+M");
+  await taskPage
+    .getByRole("option", { name: "Feature complete", exact: true })
+    .click();
   await expect(
     milestone.getByText("1 of 1 issues completed", { exact: true }),
   ).toBeVisible();
-  await picker.selectOption("");
+  await taskPage
+    .getByRole("button", { name: "Milestone: Feature complete", exact: true })
+    .click();
+  await taskPage
+    .getByRole("option", { name: "No milestone", exact: true })
+    .click();
   await expect(
     milestone.getByText("0 of 0 issues completed", { exact: true }),
   ).toBeVisible();
@@ -317,7 +327,10 @@ test("a denied background refresh clears initiative content and can be retried",
     }),
   ).toHaveCount(0);
   await page.unroute(endpoint);
-  await page.getByRole("button", { name: "Try again", exact: true }).click();
+  await page
+    .getByRole("alert")
+    .getByRole("button", { name: "Try again", exact: true })
+    .click();
   await expect(
     page.getByRole("link", {
       name: "Previously visible initiative",

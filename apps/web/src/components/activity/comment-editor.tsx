@@ -952,7 +952,9 @@ export default function CommentEditor({
 
   useEffect(() => {
     if (!editor) return;
-    editor.setEditable(!readOnly && !disabled);
+    // Changing editability is not a content edit. A replacement editor is
+    // still empty here, before the hydration effect restores its value.
+    editor.setEditable(!readOnly && !disabled, false);
   }, [disabled, editor, readOnly]);
 
   useEffect(() => {

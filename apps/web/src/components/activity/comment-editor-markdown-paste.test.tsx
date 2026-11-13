@@ -95,6 +95,26 @@ beforeEach(() => {
 });
 
 describe("CommentEditor Markdown paste", () => {
+  it("does not report empty content while hydrating or replacing an editor", async () => {
+    const onChange = vi.fn();
+    const props = {
+      value: "Check migration and rollback instructions.",
+      onChange,
+      placeholder: "first",
+    };
+    const { rerender } = render(<CommentEditor {...props} />);
+    await waitFor(() => expect(latestEditor().getText()).toBe(props.value));
+    await act(async () => {});
+    expect(onChange).not.toHaveBeenCalled();
+
+    const initialEditor = latestEditor();
+    rerender(<CommentEditor {...props} placeholder="second" />);
+    await waitFor(() => expect(latestEditor()).not.toBe(initialEditor));
+    await act(async () => {});
+    expect(latestEditor().getText()).toBe(props.value);
+    expect(onChange).not.toHaveBeenCalled();
+  });
+
   it.each([
     "Status\n---\n22/tcp ALLOW Anywhere",
     "Status\n\n    22/tcp ALLOW Anywhere",

@@ -1,6 +1,8 @@
 import { useLocation, useNavigate } from "@tanstack/react-router";
 import {
   CircleCheck,
+  CircleDashed,
+  LayoutList,
   House,
   Inbox,
   type LucideIcon,
@@ -51,6 +53,8 @@ export function NavMain() {
   const projects = usePlanningEnabled("projects");
   const roadmap = usePlanningEnabled("roadmap");
   const insights = usePlanningEnabled("insights");
+  const views = usePlanningEnabled("views");
+  const cycles = usePlanningEnabled("cycles");
 
   if (!workspace) return null;
 
@@ -94,12 +98,6 @@ export function NavMain() {
     (item) => item.url === `${homeUrl}/members`,
   );
   const planningItems: NavItem[] = [];
-  if (insights)
-    planningItems.push({
-      title: t("parity:insights.title"),
-      icon: ChartNoAxesCombined,
-      url: `${homeUrl}/insights`,
-    });
   if (initiatives)
     planningItems.push({
       title: t("parity:planning.initiatives"),
@@ -112,13 +110,31 @@ export function NavMain() {
       icon: FolderKanban,
       url: `${homeUrl}/projects`,
     });
-  navItems.splice(planningIndex, 0, ...planningItems);
+  if (cycles)
+    planningItems.push({
+      title: t("parity:cycles.title"),
+      icon: CircleDashed,
+      url: `${homeUrl}/cycles`,
+    });
+  if (views)
+    planningItems.push({
+      title: t("parity:views.title"),
+      icon: LayoutList,
+      url: `${homeUrl}/views`,
+    });
   if (roadmap)
-    navItems.splice(planningIndex + planningItems.length, 0, {
+    planningItems.push({
       title: t("parity:roadmap.title"),
       icon: GanttChart,
       url: `${homeUrl}/roadmap`,
     });
+  if (insights)
+    planningItems.push({
+      title: t("parity:insights.title"),
+      icon: ChartNoAxesCombined,
+      url: `${homeUrl}/insights`,
+    });
+  navItems.splice(planningIndex, 0, ...planningItems);
   if (invitations.length > 0) {
     navItems.push({
       title: t("navigation:sidebar.invitations"),
@@ -133,33 +149,36 @@ export function NavMain() {
     <SidebarGroup className="gap-1 p-2">
       <SidebarGroupContent>
         <SidebarMenu className="gap-0.5">
-          {navItems.map((item) => (
-            <SidebarMenuItem key={item.url}>
-              <SidebarMenuButton
-                tooltip={item.title}
-                isActive={pathname === item.url}
-                size="default"
-                className="h-8 text-sm"
-                onClick={() => navigate({ to: item.url })}
-              >
-                <item.icon aria-hidden="true" />
-                <span>{item.title}</span>
-                {item.count ? (
-                  <span
-                    className={cn(
-                      "ml-auto flex h-4.5 min-w-4.5 shrink-0 items-center justify-center rounded-full px-1 text-[11px] tabular-nums",
-                      item.emphasizeCount
-                        ? "bg-foreground font-semibold text-background"
-                        : "font-medium text-muted-foreground",
-                    )}
-                  >
-                    {item.count > 99 ? "99+" : item.count}
-                  </span>
-                ) : null}
-              </SidebarMenuButton>
-            </SidebarMenuItem>
-          ))}
-          <CycleNavigation workspaceId={workspace.id} />
+          {navItems.map((item) =>
+            item.url === `${homeUrl}/cycles` ? (
+              <CycleNavigation key={item.url} workspaceId={workspace.id} />
+            ) : (
+              <SidebarMenuItem key={item.url}>
+                <SidebarMenuButton
+                  tooltip={item.title}
+                  isActive={pathname === item.url}
+                  size="default"
+                  className="h-8 text-sm"
+                  onClick={() => navigate({ to: item.url })}
+                >
+                  <item.icon aria-hidden="true" />
+                  <span>{item.title}</span>
+                  {item.count ? (
+                    <span
+                      className={cn(
+                        "ml-auto flex h-4.5 min-w-4.5 shrink-0 items-center justify-center rounded-full px-1 text-[11px] tabular-nums",
+                        item.emphasizeCount
+                          ? "bg-foreground font-semibold text-background"
+                          : "font-medium text-muted-foreground",
+                      )}
+                    >
+                      {item.count > 99 ? "99+" : item.count}
+                    </span>
+                  ) : null}
+                </SidebarMenuButton>
+              </SidebarMenuItem>
+            ),
+          )}
         </SidebarMenu>
       </SidebarGroupContent>
     </SidebarGroup>

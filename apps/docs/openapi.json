@@ -15255,6 +15255,4864 @@
         }
       }
     },
+    "/parity/tasks/{workspaceId}/options": {
+      "get": {
+        "operationId": "getWorkspaceTaskOptions",
+        "tags": [
+          "Views"
+        ],
+        "summary": "Read accessible filter choices",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 128
+            },
+            "required": true,
+            "name": "workspaceId",
+            "in": "path"
+          },
+          {
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 128
+            },
+            "required": false,
+            "name": "projectId",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Filter choices",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "projects": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "id": {
+                            "type": "string",
+                            "minLength": 1,
+                            "maxLength": 128
+                          },
+                          "name": {
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "id",
+                          "name"
+                        ]
+                      }
+                    },
+                    "users": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "id": {
+                            "type": "string",
+                            "minLength": 1,
+                            "maxLength": 128
+                          },
+                          "name": {
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "id",
+                          "name"
+                        ]
+                      }
+                    },
+                    "labels": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "name": {
+                            "type": "string"
+                          },
+                          "color": {
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "name",
+                          "color"
+                        ]
+                      }
+                    },
+                    "cycles": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "id": {
+                            "type": "string",
+                            "minLength": 1,
+                            "maxLength": 128
+                          },
+                          "name": {
+                            "type": [
+                              "string",
+                              "null"
+                            ]
+                          },
+                          "number": {
+                            "type": "number"
+                          }
+                        },
+                        "required": [
+                          "id",
+                          "name",
+                          "number"
+                        ]
+                      }
+                    },
+                    "milestones": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "id": {
+                            "type": "string",
+                            "minLength": 1,
+                            "maxLength": 128
+                          },
+                          "name": {
+                            "type": "string"
+                          },
+                          "projectId": {
+                            "type": "string",
+                            "minLength": 1,
+                            "maxLength": 128
+                          },
+                          "projectName": {
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "id",
+                          "name",
+                          "projectId",
+                          "projectName"
+                        ]
+                      }
+                    },
+                    "estimateScale": {
+                      "type": "string",
+                      "enum": [
+                        "none",
+                        "linear",
+                        "fibonacci",
+                        "t-shirt"
+                      ]
+                    },
+                    "timeZone": {
+                      "type": "string"
+                    },
+                    "truncated": {
+                      "type": "boolean"
+                    }
+                  },
+                  "required": [
+                    "projects",
+                    "users",
+                    "labels",
+                    "cycles",
+                    "milestones",
+                    "estimateScale",
+                    "timeZone",
+                    "truncated"
+                  ]
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid planning input",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Authentication required",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Insufficient permission or project access",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Resource unavailable or feature disabled",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Planning resource changed; refresh and try again",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "429": {
+            "$ref": "#/components/responses/ApiKeyRateLimited"
+          }
+        }
+      }
+    },
+    "/parity/tasks/{workspaceId}": {
+      "get": {
+        "operationId": "listWorkspaceTasks",
+        "tags": [
+          "Views"
+        ],
+        "summary": "List issues across readable projects with rich filters",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 128
+            },
+            "required": true,
+            "name": "workspaceId",
+            "in": "path"
+          },
+          {
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 100000,
+              "default": 1
+            },
+            "required": false,
+            "name": "page",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 100,
+              "default": 50
+            },
+            "required": false,
+            "name": "pageSize",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "string",
+              "maxLength": 16000
+            },
+            "required": false,
+            "name": "filters",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "string",
+              "maxLength": 200
+            },
+            "required": false,
+            "name": "search",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "string",
+              "enum": [
+                "priority",
+                "created",
+                "updated",
+                "due"
+              ],
+              "default": "priority"
+            },
+            "required": false,
+            "name": "orderBy",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "string",
+              "enum": [
+                "asc",
+                "desc"
+              ],
+              "default": "asc"
+            },
+            "required": false,
+            "name": "direction",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 128
+            },
+            "required": false,
+            "name": "projectId",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Workspace issues",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "items": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "id": {
+                            "type": "string",
+                            "minLength": 1,
+                            "maxLength": 128
+                          },
+                          "projectId": {
+                            "type": "string",
+                            "minLength": 1,
+                            "maxLength": 128
+                          },
+                          "projectName": {
+                            "type": "string"
+                          },
+                          "projectSlug": {
+                            "type": "string"
+                          },
+                          "title": {
+                            "type": "string"
+                          },
+                          "number": {
+                            "type": [
+                              "number",
+                              "null"
+                            ]
+                          },
+                          "status": {
+                            "type": "string"
+                          },
+                          "statusName": {
+                            "type": "string"
+                          },
+                          "category": {
+                            "type": "string",
+                            "enum": [
+                              "backlog",
+                              "unstarted",
+                              "started",
+                              "completed",
+                              "canceled"
+                            ]
+                          },
+                          "priority": {
+                            "type": "string"
+                          },
+                          "userId": {
+                            "type": [
+                              "string",
+                              "null"
+                            ],
+                            "minLength": 1,
+                            "maxLength": 128
+                          },
+                          "assigneeName": {
+                            "type": [
+                              "string",
+                              "null"
+                            ]
+                          },
+                          "creatorId": {
+                            "type": [
+                              "string",
+                              "null"
+                            ],
+                            "minLength": 1,
+                            "maxLength": 128
+                          },
+                          "cycleId": {
+                            "type": [
+                              "string",
+                              "null"
+                            ],
+                            "minLength": 1,
+                            "maxLength": 128
+                          },
+                          "cycleName": {
+                            "type": [
+                              "string",
+                              "null"
+                            ]
+                          },
+                          "milestoneId": {
+                            "type": [
+                              "string",
+                              "null"
+                            ],
+                            "minLength": 1,
+                            "maxLength": 128
+                          },
+                          "milestoneName": {
+                            "type": [
+                              "string",
+                              "null"
+                            ]
+                          },
+                          "estimate": {
+                            "type": [
+                              "number",
+                              "null"
+                            ]
+                          },
+                          "labels": {
+                            "type": "array",
+                            "items": {
+                              "type": "object",
+                              "properties": {
+                                "name": {
+                                  "type": "string"
+                                },
+                                "color": {
+                                  "type": "string"
+                                }
+                              },
+                              "required": [
+                                "name",
+                                "color"
+                              ],
+                              "additionalProperties": false
+                            }
+                          },
+                          "dueDate": {
+                            "type": [
+                              "string",
+                              "null"
+                            ],
+                            "format": "date-time"
+                          },
+                          "createdAt": {
+                            "type": "string",
+                            "format": "date-time"
+                          },
+                          "updatedAt": {
+                            "type": "string",
+                            "format": "date-time"
+                          },
+                          "completedAt": {
+                            "type": [
+                              "string",
+                              "null"
+                            ],
+                            "format": "date-time"
+                          }
+                        },
+                        "required": [
+                          "id",
+                          "projectId",
+                          "projectName",
+                          "projectSlug",
+                          "title",
+                          "number",
+                          "status",
+                          "statusName",
+                          "category",
+                          "priority",
+                          "userId",
+                          "assigneeName",
+                          "creatorId",
+                          "cycleId",
+                          "cycleName",
+                          "milestoneId",
+                          "milestoneName",
+                          "estimate",
+                          "labels",
+                          "dueDate",
+                          "createdAt",
+                          "updatedAt",
+                          "completedAt"
+                        ],
+                        "additionalProperties": false
+                      }
+                    },
+                    "page": {
+                      "type": "number"
+                    },
+                    "pageSize": {
+                      "type": "number"
+                    },
+                    "hasMore": {
+                      "type": "boolean"
+                    },
+                    "timeZone": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "items",
+                    "page",
+                    "pageSize",
+                    "hasMore",
+                    "timeZone"
+                  ]
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid planning input",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Authentication required",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Insufficient permission or project access",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Resource unavailable or feature disabled",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Planning resource changed; refresh and try again",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "429": {
+            "$ref": "#/components/responses/ApiKeyRateLimited"
+          }
+        }
+      }
+    },
+    "/parity/views/{workspaceId}": {
+      "get": {
+        "tags": [
+          "Views"
+        ],
+        "operationId": "listSavedViews",
+        "summary": "List personal and shared readable views",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 128
+            },
+            "required": true,
+            "name": "workspaceId",
+            "in": "path"
+          },
+          {
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 100000,
+              "default": 1
+            },
+            "required": false,
+            "name": "page",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 100,
+              "default": 50
+            },
+            "required": false,
+            "name": "pageSize",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Saved views",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "items": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "name": {
+                            "type": "string",
+                            "minLength": 1,
+                            "maxLength": 200
+                          },
+                          "icon": {
+                            "type": [
+                              "string",
+                              "null"
+                            ],
+                            "maxLength": 100,
+                            "default": null
+                          },
+                          "projectId": {
+                            "type": [
+                              "string",
+                              "null"
+                            ],
+                            "minLength": 1,
+                            "maxLength": 128,
+                            "default": null
+                          },
+                          "shared": {
+                            "type": "boolean",
+                            "default": false
+                          },
+                          "filters": {
+                            "type": "array",
+                            "items": {
+                              "oneOf": [
+                                {
+                                  "type": "object",
+                                  "properties": {
+                                    "field": {
+                                      "type": "string",
+                                      "enum": [
+                                        "category"
+                                      ]
+                                    },
+                                    "operator": {
+                                      "type": "string",
+                                      "enum": [
+                                        "is",
+                                        "is-not"
+                                      ]
+                                    },
+                                    "values": {
+                                      "type": "array",
+                                      "items": {
+                                        "type": "string",
+                                        "enum": [
+                                          "backlog",
+                                          "unstarted",
+                                          "started",
+                                          "completed",
+                                          "canceled"
+                                        ]
+                                      },
+                                      "minItems": 1,
+                                      "maxItems": 5
+                                    }
+                                  },
+                                  "required": [
+                                    "field",
+                                    "operator",
+                                    "values"
+                                  ],
+                                  "additionalProperties": false
+                                },
+                                {
+                                  "type": "object",
+                                  "properties": {
+                                    "field": {
+                                      "type": "string",
+                                      "enum": [
+                                        "priority"
+                                      ]
+                                    },
+                                    "operator": {
+                                      "type": "string",
+                                      "enum": [
+                                        "is",
+                                        "is-not"
+                                      ]
+                                    },
+                                    "values": {
+                                      "type": "array",
+                                      "items": {
+                                        "type": "string",
+                                        "enum": [
+                                          "no-priority",
+                                          "low",
+                                          "medium",
+                                          "high",
+                                          "urgent"
+                                        ]
+                                      },
+                                      "minItems": 1,
+                                      "maxItems": 5
+                                    }
+                                  },
+                                  "required": [
+                                    "field",
+                                    "operator",
+                                    "values"
+                                  ],
+                                  "additionalProperties": false
+                                },
+                                {
+                                  "type": "object",
+                                  "properties": {
+                                    "field": {
+                                      "type": "string",
+                                      "enum": [
+                                        "assignee",
+                                        "creator",
+                                        "project",
+                                        "cycle",
+                                        "milestone"
+                                      ]
+                                    },
+                                    "operator": {
+                                      "type": "string",
+                                      "enum": [
+                                        "is",
+                                        "is-not"
+                                      ]
+                                    },
+                                    "values": {
+                                      "type": "array",
+                                      "items": {
+                                        "type": [
+                                          "string",
+                                          "null"
+                                        ],
+                                        "minLength": 1,
+                                        "maxLength": 128
+                                      },
+                                      "minItems": 1,
+                                      "maxItems": 50
+                                    }
+                                  },
+                                  "required": [
+                                    "field",
+                                    "operator",
+                                    "values"
+                                  ],
+                                  "additionalProperties": false
+                                },
+                                {
+                                  "type": "object",
+                                  "properties": {
+                                    "field": {
+                                      "type": "string",
+                                      "enum": [
+                                        "label"
+                                      ]
+                                    },
+                                    "operator": {
+                                      "type": "string",
+                                      "enum": [
+                                        "is",
+                                        "is-not"
+                                      ]
+                                    },
+                                    "values": {
+                                      "type": "array",
+                                      "items": {
+                                        "type": [
+                                          "string",
+                                          "null"
+                                        ],
+                                        "minLength": 1,
+                                        "maxLength": 200
+                                      },
+                                      "minItems": 1,
+                                      "maxItems": 50
+                                    }
+                                  },
+                                  "required": [
+                                    "field",
+                                    "operator",
+                                    "values"
+                                  ],
+                                  "additionalProperties": false
+                                },
+                                {
+                                  "type": "object",
+                                  "properties": {
+                                    "field": {
+                                      "type": "string",
+                                      "enum": [
+                                        "estimate"
+                                      ]
+                                    },
+                                    "operator": {
+                                      "type": "string",
+                                      "enum": [
+                                        "is",
+                                        "is-not",
+                                        "before",
+                                        "after"
+                                      ]
+                                    },
+                                    "value": {
+                                      "type": [
+                                        "integer",
+                                        "null"
+                                      ],
+                                      "minimum": 0,
+                                      "maximum": 1000000
+                                    }
+                                  },
+                                  "required": [
+                                    "field",
+                                    "operator",
+                                    "value"
+                                  ],
+                                  "additionalProperties": false
+                                },
+                                {
+                                  "type": "object",
+                                  "properties": {
+                                    "field": {
+                                      "type": "string",
+                                      "enum": [
+                                        "due",
+                                        "created",
+                                        "completed"
+                                      ]
+                                    },
+                                    "operator": {
+                                      "type": "string",
+                                      "enum": [
+                                        "is",
+                                        "is-not",
+                                        "before",
+                                        "after"
+                                      ]
+                                    },
+                                    "value": {
+                                      "type": [
+                                        "string",
+                                        "null"
+                                      ],
+                                      "format": "date"
+                                    }
+                                  },
+                                  "required": [
+                                    "field",
+                                    "operator",
+                                    "value"
+                                  ],
+                                  "additionalProperties": false
+                                }
+                              ]
+                            },
+                            "maxItems": 30,
+                            "default": []
+                          },
+                          "display": {
+                            "type": "object",
+                            "properties": {
+                              "layout": {
+                                "type": "string",
+                                "enum": [
+                                  "list",
+                                  "board"
+                                ],
+                                "default": "list"
+                              },
+                              "groupBy": {
+                                "type": "string",
+                                "enum": [
+                                  "state",
+                                  "assignee",
+                                  "project",
+                                  "priority",
+                                  "cycle",
+                                  "label"
+                                ],
+                                "default": "state"
+                              },
+                              "orderBy": {
+                                "type": "string",
+                                "enum": [
+                                  "priority",
+                                  "created",
+                                  "updated",
+                                  "due"
+                                ],
+                                "default": "priority"
+                              },
+                              "direction": {
+                                "type": "string",
+                                "enum": [
+                                  "asc",
+                                  "desc"
+                                ],
+                                "default": "asc"
+                              },
+                              "properties": {
+                                "type": "array",
+                                "items": {
+                                  "type": "string",
+                                  "enum": [
+                                    "identifier",
+                                    "status",
+                                    "priority",
+                                    "assignee",
+                                    "project",
+                                    "cycle",
+                                    "milestone",
+                                    "estimate",
+                                    "labels",
+                                    "due"
+                                  ]
+                                },
+                                "maxItems": 10,
+                                "default": [
+                                  "identifier",
+                                  "priority",
+                                  "assignee",
+                                  "project",
+                                  "labels"
+                                ]
+                              }
+                            },
+                            "default": {
+                              "layout": "list",
+                              "groupBy": "state",
+                              "orderBy": "priority",
+                              "direction": "asc",
+                              "properties": [
+                                "identifier",
+                                "priority",
+                                "assignee",
+                                "project",
+                                "labels"
+                              ]
+                            },
+                            "additionalProperties": false
+                          },
+                          "id": {
+                            "type": "string",
+                            "minLength": 1,
+                            "maxLength": 128
+                          },
+                          "workspaceId": {
+                            "type": "string",
+                            "minLength": 1,
+                            "maxLength": 128
+                          },
+                          "ownerId": {
+                            "type": "string",
+                            "minLength": 1,
+                            "maxLength": 128
+                          },
+                          "canEdit": {
+                            "type": "boolean"
+                          }
+                        },
+                        "required": [
+                          "name",
+                          "id",
+                          "workspaceId",
+                          "ownerId",
+                          "canEdit"
+                        ],
+                        "additionalProperties": false
+                      }
+                    },
+                    "page": {
+                      "type": "number"
+                    },
+                    "pageSize": {
+                      "type": "number"
+                    },
+                    "hasMore": {
+                      "type": "boolean"
+                    }
+                  },
+                  "required": [
+                    "items",
+                    "page",
+                    "pageSize",
+                    "hasMore"
+                  ]
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid planning input",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Authentication required",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Insufficient permission or project access",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Resource unavailable or feature disabled",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Planning resource changed; refresh and try again",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "429": {
+            "$ref": "#/components/responses/ApiKeyRateLimited"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Views"
+        ],
+        "operationId": "createSavedView",
+        "summary": "Save personal or workspace issue filters and display options",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 128
+            },
+            "required": true,
+            "name": "workspaceId",
+            "in": "path"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 200
+                  },
+                  "icon": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "maxLength": 100,
+                    "default": null
+                  },
+                  "projectId": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "minLength": 1,
+                    "maxLength": 128,
+                    "default": null
+                  },
+                  "shared": {
+                    "type": "boolean",
+                    "default": false
+                  },
+                  "filters": {
+                    "type": "array",
+                    "items": {
+                      "oneOf": [
+                        {
+                          "type": "object",
+                          "properties": {
+                            "field": {
+                              "type": "string",
+                              "enum": [
+                                "category"
+                              ]
+                            },
+                            "operator": {
+                              "type": "string",
+                              "enum": [
+                                "is",
+                                "is-not"
+                              ]
+                            },
+                            "values": {
+                              "type": "array",
+                              "items": {
+                                "type": "string",
+                                "enum": [
+                                  "backlog",
+                                  "unstarted",
+                                  "started",
+                                  "completed",
+                                  "canceled"
+                                ]
+                              },
+                              "minItems": 1,
+                              "maxItems": 5
+                            }
+                          },
+                          "required": [
+                            "field",
+                            "operator",
+                            "values"
+                          ],
+                          "additionalProperties": false
+                        },
+                        {
+                          "type": "object",
+                          "properties": {
+                            "field": {
+                              "type": "string",
+                              "enum": [
+                                "priority"
+                              ]
+                            },
+                            "operator": {
+                              "type": "string",
+                              "enum": [
+                                "is",
+                                "is-not"
+                              ]
+                            },
+                            "values": {
+                              "type": "array",
+                              "items": {
+                                "type": "string",
+                                "enum": [
+                                  "no-priority",
+                                  "low",
+                                  "medium",
+                                  "high",
+                                  "urgent"
+                                ]
+                              },
+                              "minItems": 1,
+                              "maxItems": 5
+                            }
+                          },
+                          "required": [
+                            "field",
+                            "operator",
+                            "values"
+                          ],
+                          "additionalProperties": false
+                        },
+                        {
+                          "type": "object",
+                          "properties": {
+                            "field": {
+                              "type": "string",
+                              "enum": [
+                                "assignee",
+                                "creator",
+                                "project",
+                                "cycle",
+                                "milestone"
+                              ]
+                            },
+                            "operator": {
+                              "type": "string",
+                              "enum": [
+                                "is",
+                                "is-not"
+                              ]
+                            },
+                            "values": {
+                              "type": "array",
+                              "items": {
+                                "type": [
+                                  "string",
+                                  "null"
+                                ],
+                                "minLength": 1,
+                                "maxLength": 128
+                              },
+                              "minItems": 1,
+                              "maxItems": 50
+                            }
+                          },
+                          "required": [
+                            "field",
+                            "operator",
+                            "values"
+                          ],
+                          "additionalProperties": false
+                        },
+                        {
+                          "type": "object",
+                          "properties": {
+                            "field": {
+                              "type": "string",
+                              "enum": [
+                                "label"
+                              ]
+                            },
+                            "operator": {
+                              "type": "string",
+                              "enum": [
+                                "is",
+                                "is-not"
+                              ]
+                            },
+                            "values": {
+                              "type": "array",
+                              "items": {
+                                "type": [
+                                  "string",
+                                  "null"
+                                ],
+                                "minLength": 1,
+                                "maxLength": 200
+                              },
+                              "minItems": 1,
+                              "maxItems": 50
+                            }
+                          },
+                          "required": [
+                            "field",
+                            "operator",
+                            "values"
+                          ],
+                          "additionalProperties": false
+                        },
+                        {
+                          "type": "object",
+                          "properties": {
+                            "field": {
+                              "type": "string",
+                              "enum": [
+                                "estimate"
+                              ]
+                            },
+                            "operator": {
+                              "type": "string",
+                              "enum": [
+                                "is",
+                                "is-not",
+                                "before",
+                                "after"
+                              ]
+                            },
+                            "value": {
+                              "type": [
+                                "integer",
+                                "null"
+                              ],
+                              "minimum": 0,
+                              "maximum": 1000000
+                            }
+                          },
+                          "required": [
+                            "field",
+                            "operator",
+                            "value"
+                          ],
+                          "additionalProperties": false
+                        },
+                        {
+                          "type": "object",
+                          "properties": {
+                            "field": {
+                              "type": "string",
+                              "enum": [
+                                "due",
+                                "created",
+                                "completed"
+                              ]
+                            },
+                            "operator": {
+                              "type": "string",
+                              "enum": [
+                                "is",
+                                "is-not",
+                                "before",
+                                "after"
+                              ]
+                            },
+                            "value": {
+                              "type": [
+                                "string",
+                                "null"
+                              ],
+                              "format": "date"
+                            }
+                          },
+                          "required": [
+                            "field",
+                            "operator",
+                            "value"
+                          ],
+                          "additionalProperties": false
+                        }
+                      ]
+                    },
+                    "maxItems": 30,
+                    "default": []
+                  },
+                  "display": {
+                    "type": "object",
+                    "properties": {
+                      "layout": {
+                        "type": "string",
+                        "enum": [
+                          "list",
+                          "board"
+                        ],
+                        "default": "list"
+                      },
+                      "groupBy": {
+                        "type": "string",
+                        "enum": [
+                          "state",
+                          "assignee",
+                          "project",
+                          "priority",
+                          "cycle",
+                          "label"
+                        ],
+                        "default": "state"
+                      },
+                      "orderBy": {
+                        "type": "string",
+                        "enum": [
+                          "priority",
+                          "created",
+                          "updated",
+                          "due"
+                        ],
+                        "default": "priority"
+                      },
+                      "direction": {
+                        "type": "string",
+                        "enum": [
+                          "asc",
+                          "desc"
+                        ],
+                        "default": "asc"
+                      },
+                      "properties": {
+                        "type": "array",
+                        "items": {
+                          "type": "string",
+                          "enum": [
+                            "identifier",
+                            "status",
+                            "priority",
+                            "assignee",
+                            "project",
+                            "cycle",
+                            "milestone",
+                            "estimate",
+                            "labels",
+                            "due"
+                          ]
+                        },
+                        "maxItems": 10,
+                        "default": [
+                          "identifier",
+                          "priority",
+                          "assignee",
+                          "project",
+                          "labels"
+                        ]
+                      }
+                    },
+                    "default": {
+                      "layout": "list",
+                      "groupBy": "state",
+                      "orderBy": "priority",
+                      "direction": "asc",
+                      "properties": [
+                        "identifier",
+                        "priority",
+                        "assignee",
+                        "project",
+                        "labels"
+                      ]
+                    },
+                    "additionalProperties": false
+                  }
+                },
+                "required": [
+                  "name"
+                ],
+                "additionalProperties": false
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Created view",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "name": {
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 200
+                    },
+                    "icon": {
+                      "type": [
+                        "string",
+                        "null"
+                      ],
+                      "maxLength": 100,
+                      "default": null
+                    },
+                    "projectId": {
+                      "type": [
+                        "string",
+                        "null"
+                      ],
+                      "minLength": 1,
+                      "maxLength": 128,
+                      "default": null
+                    },
+                    "shared": {
+                      "type": "boolean",
+                      "default": false
+                    },
+                    "filters": {
+                      "type": "array",
+                      "items": {
+                        "oneOf": [
+                          {
+                            "type": "object",
+                            "properties": {
+                              "field": {
+                                "type": "string",
+                                "enum": [
+                                  "category"
+                                ]
+                              },
+                              "operator": {
+                                "type": "string",
+                                "enum": [
+                                  "is",
+                                  "is-not"
+                                ]
+                              },
+                              "values": {
+                                "type": "array",
+                                "items": {
+                                  "type": "string",
+                                  "enum": [
+                                    "backlog",
+                                    "unstarted",
+                                    "started",
+                                    "completed",
+                                    "canceled"
+                                  ]
+                                },
+                                "minItems": 1,
+                                "maxItems": 5
+                              }
+                            },
+                            "required": [
+                              "field",
+                              "operator",
+                              "values"
+                            ],
+                            "additionalProperties": false
+                          },
+                          {
+                            "type": "object",
+                            "properties": {
+                              "field": {
+                                "type": "string",
+                                "enum": [
+                                  "priority"
+                                ]
+                              },
+                              "operator": {
+                                "type": "string",
+                                "enum": [
+                                  "is",
+                                  "is-not"
+                                ]
+                              },
+                              "values": {
+                                "type": "array",
+                                "items": {
+                                  "type": "string",
+                                  "enum": [
+                                    "no-priority",
+                                    "low",
+                                    "medium",
+                                    "high",
+                                    "urgent"
+                                  ]
+                                },
+                                "minItems": 1,
+                                "maxItems": 5
+                              }
+                            },
+                            "required": [
+                              "field",
+                              "operator",
+                              "values"
+                            ],
+                            "additionalProperties": false
+                          },
+                          {
+                            "type": "object",
+                            "properties": {
+                              "field": {
+                                "type": "string",
+                                "enum": [
+                                  "assignee",
+                                  "creator",
+                                  "project",
+                                  "cycle",
+                                  "milestone"
+                                ]
+                              },
+                              "operator": {
+                                "type": "string",
+                                "enum": [
+                                  "is",
+                                  "is-not"
+                                ]
+                              },
+                              "values": {
+                                "type": "array",
+                                "items": {
+                                  "type": [
+                                    "string",
+                                    "null"
+                                  ],
+                                  "minLength": 1,
+                                  "maxLength": 128
+                                },
+                                "minItems": 1,
+                                "maxItems": 50
+                              }
+                            },
+                            "required": [
+                              "field",
+                              "operator",
+                              "values"
+                            ],
+                            "additionalProperties": false
+                          },
+                          {
+                            "type": "object",
+                            "properties": {
+                              "field": {
+                                "type": "string",
+                                "enum": [
+                                  "label"
+                                ]
+                              },
+                              "operator": {
+                                "type": "string",
+                                "enum": [
+                                  "is",
+                                  "is-not"
+                                ]
+                              },
+                              "values": {
+                                "type": "array",
+                                "items": {
+                                  "type": [
+                                    "string",
+                                    "null"
+                                  ],
+                                  "minLength": 1,
+                                  "maxLength": 200
+                                },
+                                "minItems": 1,
+                                "maxItems": 50
+                              }
+                            },
+                            "required": [
+                              "field",
+                              "operator",
+                              "values"
+                            ],
+                            "additionalProperties": false
+                          },
+                          {
+                            "type": "object",
+                            "properties": {
+                              "field": {
+                                "type": "string",
+                                "enum": [
+                                  "estimate"
+                                ]
+                              },
+                              "operator": {
+                                "type": "string",
+                                "enum": [
+                                  "is",
+                                  "is-not",
+                                  "before",
+                                  "after"
+                                ]
+                              },
+                              "value": {
+                                "type": [
+                                  "integer",
+                                  "null"
+                                ],
+                                "minimum": 0,
+                                "maximum": 1000000
+                              }
+                            },
+                            "required": [
+                              "field",
+                              "operator",
+                              "value"
+                            ],
+                            "additionalProperties": false
+                          },
+                          {
+                            "type": "object",
+                            "properties": {
+                              "field": {
+                                "type": "string",
+                                "enum": [
+                                  "due",
+                                  "created",
+                                  "completed"
+                                ]
+                              },
+                              "operator": {
+                                "type": "string",
+                                "enum": [
+                                  "is",
+                                  "is-not",
+                                  "before",
+                                  "after"
+                                ]
+                              },
+                              "value": {
+                                "type": [
+                                  "string",
+                                  "null"
+                                ],
+                                "format": "date"
+                              }
+                            },
+                            "required": [
+                              "field",
+                              "operator",
+                              "value"
+                            ],
+                            "additionalProperties": false
+                          }
+                        ]
+                      },
+                      "maxItems": 30,
+                      "default": []
+                    },
+                    "display": {
+                      "type": "object",
+                      "properties": {
+                        "layout": {
+                          "type": "string",
+                          "enum": [
+                            "list",
+                            "board"
+                          ],
+                          "default": "list"
+                        },
+                        "groupBy": {
+                          "type": "string",
+                          "enum": [
+                            "state",
+                            "assignee",
+                            "project",
+                            "priority",
+                            "cycle",
+                            "label"
+                          ],
+                          "default": "state"
+                        },
+                        "orderBy": {
+                          "type": "string",
+                          "enum": [
+                            "priority",
+                            "created",
+                            "updated",
+                            "due"
+                          ],
+                          "default": "priority"
+                        },
+                        "direction": {
+                          "type": "string",
+                          "enum": [
+                            "asc",
+                            "desc"
+                          ],
+                          "default": "asc"
+                        },
+                        "properties": {
+                          "type": "array",
+                          "items": {
+                            "type": "string",
+                            "enum": [
+                              "identifier",
+                              "status",
+                              "priority",
+                              "assignee",
+                              "project",
+                              "cycle",
+                              "milestone",
+                              "estimate",
+                              "labels",
+                              "due"
+                            ]
+                          },
+                          "maxItems": 10,
+                          "default": [
+                            "identifier",
+                            "priority",
+                            "assignee",
+                            "project",
+                            "labels"
+                          ]
+                        }
+                      },
+                      "default": {
+                        "layout": "list",
+                        "groupBy": "state",
+                        "orderBy": "priority",
+                        "direction": "asc",
+                        "properties": [
+                          "identifier",
+                          "priority",
+                          "assignee",
+                          "project",
+                          "labels"
+                        ]
+                      },
+                      "additionalProperties": false
+                    },
+                    "id": {
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 128
+                    },
+                    "workspaceId": {
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 128
+                    },
+                    "ownerId": {
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 128
+                    },
+                    "canEdit": {
+                      "type": "boolean"
+                    }
+                  },
+                  "required": [
+                    "name",
+                    "id",
+                    "workspaceId",
+                    "ownerId",
+                    "canEdit"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid planning input",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Authentication required",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Insufficient permission or project access",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Resource unavailable or feature disabled",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Planning resource changed; refresh and try again",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "429": {
+            "$ref": "#/components/responses/ApiKeyRateLimited"
+          }
+        }
+      }
+    },
+    "/parity/views/{workspaceId}/{id}": {
+      "get": {
+        "tags": [
+          "Views"
+        ],
+        "operationId": "getSavedView",
+        "summary": "Read a saved view",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 128
+            },
+            "required": true,
+            "name": "workspaceId",
+            "in": "path"
+          },
+          {
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 128
+            },
+            "required": true,
+            "name": "id",
+            "in": "path"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Saved view",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "name": {
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 200
+                    },
+                    "icon": {
+                      "type": [
+                        "string",
+                        "null"
+                      ],
+                      "maxLength": 100,
+                      "default": null
+                    },
+                    "projectId": {
+                      "type": [
+                        "string",
+                        "null"
+                      ],
+                      "minLength": 1,
+                      "maxLength": 128,
+                      "default": null
+                    },
+                    "shared": {
+                      "type": "boolean",
+                      "default": false
+                    },
+                    "filters": {
+                      "type": "array",
+                      "items": {
+                        "oneOf": [
+                          {
+                            "type": "object",
+                            "properties": {
+                              "field": {
+                                "type": "string",
+                                "enum": [
+                                  "category"
+                                ]
+                              },
+                              "operator": {
+                                "type": "string",
+                                "enum": [
+                                  "is",
+                                  "is-not"
+                                ]
+                              },
+                              "values": {
+                                "type": "array",
+                                "items": {
+                                  "type": "string",
+                                  "enum": [
+                                    "backlog",
+                                    "unstarted",
+                                    "started",
+                                    "completed",
+                                    "canceled"
+                                  ]
+                                },
+                                "minItems": 1,
+                                "maxItems": 5
+                              }
+                            },
+                            "required": [
+                              "field",
+                              "operator",
+                              "values"
+                            ],
+                            "additionalProperties": false
+                          },
+                          {
+                            "type": "object",
+                            "properties": {
+                              "field": {
+                                "type": "string",
+                                "enum": [
+                                  "priority"
+                                ]
+                              },
+                              "operator": {
+                                "type": "string",
+                                "enum": [
+                                  "is",
+                                  "is-not"
+                                ]
+                              },
+                              "values": {
+                                "type": "array",
+                                "items": {
+                                  "type": "string",
+                                  "enum": [
+                                    "no-priority",
+                                    "low",
+                                    "medium",
+                                    "high",
+                                    "urgent"
+                                  ]
+                                },
+                                "minItems": 1,
+                                "maxItems": 5
+                              }
+                            },
+                            "required": [
+                              "field",
+                              "operator",
+                              "values"
+                            ],
+                            "additionalProperties": false
+                          },
+                          {
+                            "type": "object",
+                            "properties": {
+                              "field": {
+                                "type": "string",
+                                "enum": [
+                                  "assignee",
+                                  "creator",
+                                  "project",
+                                  "cycle",
+                                  "milestone"
+                                ]
+                              },
+                              "operator": {
+                                "type": "string",
+                                "enum": [
+                                  "is",
+                                  "is-not"
+                                ]
+                              },
+                              "values": {
+                                "type": "array",
+                                "items": {
+                                  "type": [
+                                    "string",
+                                    "null"
+                                  ],
+                                  "minLength": 1,
+                                  "maxLength": 128
+                                },
+                                "minItems": 1,
+                                "maxItems": 50
+                              }
+                            },
+                            "required": [
+                              "field",
+                              "operator",
+                              "values"
+                            ],
+                            "additionalProperties": false
+                          },
+                          {
+                            "type": "object",
+                            "properties": {
+                              "field": {
+                                "type": "string",
+                                "enum": [
+                                  "label"
+                                ]
+                              },
+                              "operator": {
+                                "type": "string",
+                                "enum": [
+                                  "is",
+                                  "is-not"
+                                ]
+                              },
+                              "values": {
+                                "type": "array",
+                                "items": {
+                                  "type": [
+                                    "string",
+                                    "null"
+                                  ],
+                                  "minLength": 1,
+                                  "maxLength": 200
+                                },
+                                "minItems": 1,
+                                "maxItems": 50
+                              }
+                            },
+                            "required": [
+                              "field",
+                              "operator",
+                              "values"
+                            ],
+                            "additionalProperties": false
+                          },
+                          {
+                            "type": "object",
+                            "properties": {
+                              "field": {
+                                "type": "string",
+                                "enum": [
+                                  "estimate"
+                                ]
+                              },
+                              "operator": {
+                                "type": "string",
+                                "enum": [
+                                  "is",
+                                  "is-not",
+                                  "before",
+                                  "after"
+                                ]
+                              },
+                              "value": {
+                                "type": [
+                                  "integer",
+                                  "null"
+                                ],
+                                "minimum": 0,
+                                "maximum": 1000000
+                              }
+                            },
+                            "required": [
+                              "field",
+                              "operator",
+                              "value"
+                            ],
+                            "additionalProperties": false
+                          },
+                          {
+                            "type": "object",
+                            "properties": {
+                              "field": {
+                                "type": "string",
+                                "enum": [
+                                  "due",
+                                  "created",
+                                  "completed"
+                                ]
+                              },
+                              "operator": {
+                                "type": "string",
+                                "enum": [
+                                  "is",
+                                  "is-not",
+                                  "before",
+                                  "after"
+                                ]
+                              },
+                              "value": {
+                                "type": [
+                                  "string",
+                                  "null"
+                                ],
+                                "format": "date"
+                              }
+                            },
+                            "required": [
+                              "field",
+                              "operator",
+                              "value"
+                            ],
+                            "additionalProperties": false
+                          }
+                        ]
+                      },
+                      "maxItems": 30,
+                      "default": []
+                    },
+                    "display": {
+                      "type": "object",
+                      "properties": {
+                        "layout": {
+                          "type": "string",
+                          "enum": [
+                            "list",
+                            "board"
+                          ],
+                          "default": "list"
+                        },
+                        "groupBy": {
+                          "type": "string",
+                          "enum": [
+                            "state",
+                            "assignee",
+                            "project",
+                            "priority",
+                            "cycle",
+                            "label"
+                          ],
+                          "default": "state"
+                        },
+                        "orderBy": {
+                          "type": "string",
+                          "enum": [
+                            "priority",
+                            "created",
+                            "updated",
+                            "due"
+                          ],
+                          "default": "priority"
+                        },
+                        "direction": {
+                          "type": "string",
+                          "enum": [
+                            "asc",
+                            "desc"
+                          ],
+                          "default": "asc"
+                        },
+                        "properties": {
+                          "type": "array",
+                          "items": {
+                            "type": "string",
+                            "enum": [
+                              "identifier",
+                              "status",
+                              "priority",
+                              "assignee",
+                              "project",
+                              "cycle",
+                              "milestone",
+                              "estimate",
+                              "labels",
+                              "due"
+                            ]
+                          },
+                          "maxItems": 10,
+                          "default": [
+                            "identifier",
+                            "priority",
+                            "assignee",
+                            "project",
+                            "labels"
+                          ]
+                        }
+                      },
+                      "default": {
+                        "layout": "list",
+                        "groupBy": "state",
+                        "orderBy": "priority",
+                        "direction": "asc",
+                        "properties": [
+                          "identifier",
+                          "priority",
+                          "assignee",
+                          "project",
+                          "labels"
+                        ]
+                      },
+                      "additionalProperties": false
+                    },
+                    "id": {
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 128
+                    },
+                    "workspaceId": {
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 128
+                    },
+                    "ownerId": {
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 128
+                    },
+                    "canEdit": {
+                      "type": "boolean"
+                    }
+                  },
+                  "required": [
+                    "name",
+                    "id",
+                    "workspaceId",
+                    "ownerId",
+                    "canEdit"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid planning input",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Authentication required",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Insufficient permission or project access",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Resource unavailable or feature disabled",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Planning resource changed; refresh and try again",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "429": {
+            "$ref": "#/components/responses/ApiKeyRateLimited"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Views"
+        ],
+        "operationId": "updateSavedView",
+        "summary": "Replace a saved view's settings",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 128
+            },
+            "required": true,
+            "name": "workspaceId",
+            "in": "path"
+          },
+          {
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 128
+            },
+            "required": true,
+            "name": "id",
+            "in": "path"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 200
+                  },
+                  "icon": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "maxLength": 100,
+                    "default": null
+                  },
+                  "projectId": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "minLength": 1,
+                    "maxLength": 128,
+                    "default": null
+                  },
+                  "shared": {
+                    "type": "boolean",
+                    "default": false
+                  },
+                  "filters": {
+                    "type": "array",
+                    "items": {
+                      "oneOf": [
+                        {
+                          "type": "object",
+                          "properties": {
+                            "field": {
+                              "type": "string",
+                              "enum": [
+                                "category"
+                              ]
+                            },
+                            "operator": {
+                              "type": "string",
+                              "enum": [
+                                "is",
+                                "is-not"
+                              ]
+                            },
+                            "values": {
+                              "type": "array",
+                              "items": {
+                                "type": "string",
+                                "enum": [
+                                  "backlog",
+                                  "unstarted",
+                                  "started",
+                                  "completed",
+                                  "canceled"
+                                ]
+                              },
+                              "minItems": 1,
+                              "maxItems": 5
+                            }
+                          },
+                          "required": [
+                            "field",
+                            "operator",
+                            "values"
+                          ],
+                          "additionalProperties": false
+                        },
+                        {
+                          "type": "object",
+                          "properties": {
+                            "field": {
+                              "type": "string",
+                              "enum": [
+                                "priority"
+                              ]
+                            },
+                            "operator": {
+                              "type": "string",
+                              "enum": [
+                                "is",
+                                "is-not"
+                              ]
+                            },
+                            "values": {
+                              "type": "array",
+                              "items": {
+                                "type": "string",
+                                "enum": [
+                                  "no-priority",
+                                  "low",
+                                  "medium",
+                                  "high",
+                                  "urgent"
+                                ]
+                              },
+                              "minItems": 1,
+                              "maxItems": 5
+                            }
+                          },
+                          "required": [
+                            "field",
+                            "operator",
+                            "values"
+                          ],
+                          "additionalProperties": false
+                        },
+                        {
+                          "type": "object",
+                          "properties": {
+                            "field": {
+                              "type": "string",
+                              "enum": [
+                                "assignee",
+                                "creator",
+                                "project",
+                                "cycle",
+                                "milestone"
+                              ]
+                            },
+                            "operator": {
+                              "type": "string",
+                              "enum": [
+                                "is",
+                                "is-not"
+                              ]
+                            },
+                            "values": {
+                              "type": "array",
+                              "items": {
+                                "type": [
+                                  "string",
+                                  "null"
+                                ],
+                                "minLength": 1,
+                                "maxLength": 128
+                              },
+                              "minItems": 1,
+                              "maxItems": 50
+                            }
+                          },
+                          "required": [
+                            "field",
+                            "operator",
+                            "values"
+                          ],
+                          "additionalProperties": false
+                        },
+                        {
+                          "type": "object",
+                          "properties": {
+                            "field": {
+                              "type": "string",
+                              "enum": [
+                                "label"
+                              ]
+                            },
+                            "operator": {
+                              "type": "string",
+                              "enum": [
+                                "is",
+                                "is-not"
+                              ]
+                            },
+                            "values": {
+                              "type": "array",
+                              "items": {
+                                "type": [
+                                  "string",
+                                  "null"
+                                ],
+                                "minLength": 1,
+                                "maxLength": 200
+                              },
+                              "minItems": 1,
+                              "maxItems": 50
+                            }
+                          },
+                          "required": [
+                            "field",
+                            "operator",
+                            "values"
+                          ],
+                          "additionalProperties": false
+                        },
+                        {
+                          "type": "object",
+                          "properties": {
+                            "field": {
+                              "type": "string",
+                              "enum": [
+                                "estimate"
+                              ]
+                            },
+                            "operator": {
+                              "type": "string",
+                              "enum": [
+                                "is",
+                                "is-not",
+                                "before",
+                                "after"
+                              ]
+                            },
+                            "value": {
+                              "type": [
+                                "integer",
+                                "null"
+                              ],
+                              "minimum": 0,
+                              "maximum": 1000000
+                            }
+                          },
+                          "required": [
+                            "field",
+                            "operator",
+                            "value"
+                          ],
+                          "additionalProperties": false
+                        },
+                        {
+                          "type": "object",
+                          "properties": {
+                            "field": {
+                              "type": "string",
+                              "enum": [
+                                "due",
+                                "created",
+                                "completed"
+                              ]
+                            },
+                            "operator": {
+                              "type": "string",
+                              "enum": [
+                                "is",
+                                "is-not",
+                                "before",
+                                "after"
+                              ]
+                            },
+                            "value": {
+                              "type": [
+                                "string",
+                                "null"
+                              ],
+                              "format": "date"
+                            }
+                          },
+                          "required": [
+                            "field",
+                            "operator",
+                            "value"
+                          ],
+                          "additionalProperties": false
+                        }
+                      ]
+                    },
+                    "maxItems": 30,
+                    "default": []
+                  },
+                  "display": {
+                    "type": "object",
+                    "properties": {
+                      "layout": {
+                        "type": "string",
+                        "enum": [
+                          "list",
+                          "board"
+                        ],
+                        "default": "list"
+                      },
+                      "groupBy": {
+                        "type": "string",
+                        "enum": [
+                          "state",
+                          "assignee",
+                          "project",
+                          "priority",
+                          "cycle",
+                          "label"
+                        ],
+                        "default": "state"
+                      },
+                      "orderBy": {
+                        "type": "string",
+                        "enum": [
+                          "priority",
+                          "created",
+                          "updated",
+                          "due"
+                        ],
+                        "default": "priority"
+                      },
+                      "direction": {
+                        "type": "string",
+                        "enum": [
+                          "asc",
+                          "desc"
+                        ],
+                        "default": "asc"
+                      },
+                      "properties": {
+                        "type": "array",
+                        "items": {
+                          "type": "string",
+                          "enum": [
+                            "identifier",
+                            "status",
+                            "priority",
+                            "assignee",
+                            "project",
+                            "cycle",
+                            "milestone",
+                            "estimate",
+                            "labels",
+                            "due"
+                          ]
+                        },
+                        "maxItems": 10,
+                        "default": [
+                          "identifier",
+                          "priority",
+                          "assignee",
+                          "project",
+                          "labels"
+                        ]
+                      }
+                    },
+                    "default": {
+                      "layout": "list",
+                      "groupBy": "state",
+                      "orderBy": "priority",
+                      "direction": "asc",
+                      "properties": [
+                        "identifier",
+                        "priority",
+                        "assignee",
+                        "project",
+                        "labels"
+                      ]
+                    },
+                    "additionalProperties": false
+                  }
+                },
+                "required": [
+                  "name"
+                ],
+                "additionalProperties": false
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Updated view",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "name": {
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 200
+                    },
+                    "icon": {
+                      "type": [
+                        "string",
+                        "null"
+                      ],
+                      "maxLength": 100,
+                      "default": null
+                    },
+                    "projectId": {
+                      "type": [
+                        "string",
+                        "null"
+                      ],
+                      "minLength": 1,
+                      "maxLength": 128,
+                      "default": null
+                    },
+                    "shared": {
+                      "type": "boolean",
+                      "default": false
+                    },
+                    "filters": {
+                      "type": "array",
+                      "items": {
+                        "oneOf": [
+                          {
+                            "type": "object",
+                            "properties": {
+                              "field": {
+                                "type": "string",
+                                "enum": [
+                                  "category"
+                                ]
+                              },
+                              "operator": {
+                                "type": "string",
+                                "enum": [
+                                  "is",
+                                  "is-not"
+                                ]
+                              },
+                              "values": {
+                                "type": "array",
+                                "items": {
+                                  "type": "string",
+                                  "enum": [
+                                    "backlog",
+                                    "unstarted",
+                                    "started",
+                                    "completed",
+                                    "canceled"
+                                  ]
+                                },
+                                "minItems": 1,
+                                "maxItems": 5
+                              }
+                            },
+                            "required": [
+                              "field",
+                              "operator",
+                              "values"
+                            ],
+                            "additionalProperties": false
+                          },
+                          {
+                            "type": "object",
+                            "properties": {
+                              "field": {
+                                "type": "string",
+                                "enum": [
+                                  "priority"
+                                ]
+                              },
+                              "operator": {
+                                "type": "string",
+                                "enum": [
+                                  "is",
+                                  "is-not"
+                                ]
+                              },
+                              "values": {
+                                "type": "array",
+                                "items": {
+                                  "type": "string",
+                                  "enum": [
+                                    "no-priority",
+                                    "low",
+                                    "medium",
+                                    "high",
+                                    "urgent"
+                                  ]
+                                },
+                                "minItems": 1,
+                                "maxItems": 5
+                              }
+                            },
+                            "required": [
+                              "field",
+                              "operator",
+                              "values"
+                            ],
+                            "additionalProperties": false
+                          },
+                          {
+                            "type": "object",
+                            "properties": {
+                              "field": {
+                                "type": "string",
+                                "enum": [
+                                  "assignee",
+                                  "creator",
+                                  "project",
+                                  "cycle",
+                                  "milestone"
+                                ]
+                              },
+                              "operator": {
+                                "type": "string",
+                                "enum": [
+                                  "is",
+                                  "is-not"
+                                ]
+                              },
+                              "values": {
+                                "type": "array",
+                                "items": {
+                                  "type": [
+                                    "string",
+                                    "null"
+                                  ],
+                                  "minLength": 1,
+                                  "maxLength": 128
+                                },
+                                "minItems": 1,
+                                "maxItems": 50
+                              }
+                            },
+                            "required": [
+                              "field",
+                              "operator",
+                              "values"
+                            ],
+                            "additionalProperties": false
+                          },
+                          {
+                            "type": "object",
+                            "properties": {
+                              "field": {
+                                "type": "string",
+                                "enum": [
+                                  "label"
+                                ]
+                              },
+                              "operator": {
+                                "type": "string",
+                                "enum": [
+                                  "is",
+                                  "is-not"
+                                ]
+                              },
+                              "values": {
+                                "type": "array",
+                                "items": {
+                                  "type": [
+                                    "string",
+                                    "null"
+                                  ],
+                                  "minLength": 1,
+                                  "maxLength": 200
+                                },
+                                "minItems": 1,
+                                "maxItems": 50
+                              }
+                            },
+                            "required": [
+                              "field",
+                              "operator",
+                              "values"
+                            ],
+                            "additionalProperties": false
+                          },
+                          {
+                            "type": "object",
+                            "properties": {
+                              "field": {
+                                "type": "string",
+                                "enum": [
+                                  "estimate"
+                                ]
+                              },
+                              "operator": {
+                                "type": "string",
+                                "enum": [
+                                  "is",
+                                  "is-not",
+                                  "before",
+                                  "after"
+                                ]
+                              },
+                              "value": {
+                                "type": [
+                                  "integer",
+                                  "null"
+                                ],
+                                "minimum": 0,
+                                "maximum": 1000000
+                              }
+                            },
+                            "required": [
+                              "field",
+                              "operator",
+                              "value"
+                            ],
+                            "additionalProperties": false
+                          },
+                          {
+                            "type": "object",
+                            "properties": {
+                              "field": {
+                                "type": "string",
+                                "enum": [
+                                  "due",
+                                  "created",
+                                  "completed"
+                                ]
+                              },
+                              "operator": {
+                                "type": "string",
+                                "enum": [
+                                  "is",
+                                  "is-not",
+                                  "before",
+                                  "after"
+                                ]
+                              },
+                              "value": {
+                                "type": [
+                                  "string",
+                                  "null"
+                                ],
+                                "format": "date"
+                              }
+                            },
+                            "required": [
+                              "field",
+                              "operator",
+                              "value"
+                            ],
+                            "additionalProperties": false
+                          }
+                        ]
+                      },
+                      "maxItems": 30,
+                      "default": []
+                    },
+                    "display": {
+                      "type": "object",
+                      "properties": {
+                        "layout": {
+                          "type": "string",
+                          "enum": [
+                            "list",
+                            "board"
+                          ],
+                          "default": "list"
+                        },
+                        "groupBy": {
+                          "type": "string",
+                          "enum": [
+                            "state",
+                            "assignee",
+                            "project",
+                            "priority",
+                            "cycle",
+                            "label"
+                          ],
+                          "default": "state"
+                        },
+                        "orderBy": {
+                          "type": "string",
+                          "enum": [
+                            "priority",
+                            "created",
+                            "updated",
+                            "due"
+                          ],
+                          "default": "priority"
+                        },
+                        "direction": {
+                          "type": "string",
+                          "enum": [
+                            "asc",
+                            "desc"
+                          ],
+                          "default": "asc"
+                        },
+                        "properties": {
+                          "type": "array",
+                          "items": {
+                            "type": "string",
+                            "enum": [
+                              "identifier",
+                              "status",
+                              "priority",
+                              "assignee",
+                              "project",
+                              "cycle",
+                              "milestone",
+                              "estimate",
+                              "labels",
+                              "due"
+                            ]
+                          },
+                          "maxItems": 10,
+                          "default": [
+                            "identifier",
+                            "priority",
+                            "assignee",
+                            "project",
+                            "labels"
+                          ]
+                        }
+                      },
+                      "default": {
+                        "layout": "list",
+                        "groupBy": "state",
+                        "orderBy": "priority",
+                        "direction": "asc",
+                        "properties": [
+                          "identifier",
+                          "priority",
+                          "assignee",
+                          "project",
+                          "labels"
+                        ]
+                      },
+                      "additionalProperties": false
+                    },
+                    "id": {
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 128
+                    },
+                    "workspaceId": {
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 128
+                    },
+                    "ownerId": {
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 128
+                    },
+                    "canEdit": {
+                      "type": "boolean"
+                    }
+                  },
+                  "required": [
+                    "name",
+                    "id",
+                    "workspaceId",
+                    "ownerId",
+                    "canEdit"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid planning input",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Authentication required",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Insufficient permission or project access",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Resource unavailable or feature disabled",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Planning resource changed; refresh and try again",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "429": {
+            "$ref": "#/components/responses/ApiKeyRateLimited"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Views"
+        ],
+        "operationId": "deleteSavedView",
+        "summary": "Delete a saved view without deleting its issues",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 128
+            },
+            "required": true,
+            "name": "workspaceId",
+            "in": "path"
+          },
+          {
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 128
+            },
+            "required": true,
+            "name": "id",
+            "in": "path"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Deleted view",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 128
+                    }
+                  },
+                  "required": [
+                    "id"
+                  ]
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid planning input",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Authentication required",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Insufficient permission or project access",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Resource unavailable or feature disabled",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Planning resource changed; refresh and try again",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "429": {
+            "$ref": "#/components/responses/ApiKeyRateLimited"
+          }
+        }
+      }
+    },
+    "/parity/favorites/{workspaceId}": {
+      "get": {
+        "tags": [
+          "Views"
+        ],
+        "operationId": "listFavorites",
+        "summary": "List the current user's readable favorites in this workspace",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 128
+            },
+            "required": true,
+            "name": "workspaceId",
+            "in": "path"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Favorites",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "items": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "kind": {
+                            "type": "string",
+                            "enum": [
+                              "view",
+                              "project",
+                              "initiative",
+                              "cycle",
+                              "task"
+                            ]
+                          },
+                          "targetId": {
+                            "type": "string",
+                            "minLength": 1,
+                            "maxLength": 128
+                          },
+                          "position": {
+                            "type": "number"
+                          },
+                          "title": {
+                            "type": "string"
+                          },
+                          "projectId": {
+                            "type": [
+                              "string",
+                              "null"
+                            ],
+                            "minLength": 1,
+                            "maxLength": 128
+                          }
+                        },
+                        "required": [
+                          "kind",
+                          "targetId",
+                          "position",
+                          "title",
+                          "projectId"
+                        ],
+                        "additionalProperties": false
+                      }
+                    }
+                  },
+                  "required": [
+                    "items"
+                  ]
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid planning input",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Authentication required",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Insufficient permission or project access",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Resource unavailable or feature disabled",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Planning resource changed; refresh and try again",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "429": {
+            "$ref": "#/components/responses/ApiKeyRateLimited"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Views"
+        ],
+        "operationId": "addFavorite",
+        "summary": "Favorite a readable planning resource",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 128
+            },
+            "required": true,
+            "name": "workspaceId",
+            "in": "path"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "kind": {
+                    "type": "string",
+                    "enum": [
+                      "view",
+                      "project",
+                      "initiative",
+                      "cycle",
+                      "task"
+                    ]
+                  },
+                  "targetId": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 128
+                  }
+                },
+                "required": [
+                  "kind",
+                  "targetId"
+                ],
+                "additionalProperties": false
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Favorite",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "kind": {
+                      "type": "string",
+                      "enum": [
+                        "view",
+                        "project",
+                        "initiative",
+                        "cycle",
+                        "task"
+                      ]
+                    },
+                    "targetId": {
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 128
+                    }
+                  },
+                  "required": [
+                    "kind",
+                    "targetId"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid planning input",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Authentication required",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Insufficient permission or project access",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Resource unavailable or feature disabled",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Planning resource changed; refresh and try again",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "429": {
+            "$ref": "#/components/responses/ApiKeyRateLimited"
+          }
+        }
+      }
+    },
+    "/parity/favorites/{workspaceId}/{kind}/{targetId}": {
+      "delete": {
+        "tags": [
+          "Views"
+        ],
+        "operationId": "removeFavorite",
+        "summary": "Remove a favorite",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 128
+            },
+            "required": true,
+            "name": "workspaceId",
+            "in": "path"
+          },
+          {
+            "schema": {
+              "type": "string",
+              "enum": [
+                "view",
+                "project",
+                "initiative",
+                "cycle",
+                "task"
+              ]
+            },
+            "required": true,
+            "name": "kind",
+            "in": "path"
+          },
+          {
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 128
+            },
+            "required": true,
+            "name": "targetId",
+            "in": "path"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Removed favorite",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "kind": {
+                      "type": "string",
+                      "enum": [
+                        "view",
+                        "project",
+                        "initiative",
+                        "cycle",
+                        "task"
+                      ]
+                    },
+                    "targetId": {
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 128
+                    }
+                  },
+                  "required": [
+                    "kind",
+                    "targetId"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid planning input",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Authentication required",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Insufficient permission or project access",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Resource unavailable or feature disabled",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Planning resource changed; refresh and try again",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "429": {
+            "$ref": "#/components/responses/ApiKeyRateLimited"
+          }
+        }
+      }
+    },
+    "/parity/favorites/{workspaceId}/order": {
+      "put": {
+        "tags": [
+          "Views"
+        ],
+        "operationId": "reorderFavorites",
+        "summary": "Reorder the current workspace's visible favorites",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 128
+            },
+            "required": true,
+            "name": "workspaceId",
+            "in": "path"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "items": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "kind": {
+                          "type": "string",
+                          "enum": [
+                            "view",
+                            "project",
+                            "initiative",
+                            "cycle",
+                            "task"
+                          ]
+                        },
+                        "targetId": {
+                          "type": "string",
+                          "minLength": 1,
+                          "maxLength": 128
+                        }
+                      },
+                      "required": [
+                        "kind",
+                        "targetId"
+                      ],
+                      "additionalProperties": false
+                    },
+                    "maxItems": 1000
+                  }
+                },
+                "required": [
+                  "items"
+                ],
+                "additionalProperties": false
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Favorites",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "items": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "kind": {
+                            "type": "string",
+                            "enum": [
+                              "view",
+                              "project",
+                              "initiative",
+                              "cycle",
+                              "task"
+                            ]
+                          },
+                          "targetId": {
+                            "type": "string",
+                            "minLength": 1,
+                            "maxLength": 128
+                          },
+                          "position": {
+                            "type": "number"
+                          },
+                          "title": {
+                            "type": "string"
+                          },
+                          "projectId": {
+                            "type": [
+                              "string",
+                              "null"
+                            ],
+                            "minLength": 1,
+                            "maxLength": 128
+                          }
+                        },
+                        "required": [
+                          "kind",
+                          "targetId",
+                          "position",
+                          "title",
+                          "projectId"
+                        ],
+                        "additionalProperties": false
+                      }
+                    }
+                  },
+                  "required": [
+                    "items"
+                  ]
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid planning input",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Authentication required",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Insufficient permission or project access",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Resource unavailable or feature disabled",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Planning resource changed; refresh and try again",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "429": {
+            "$ref": "#/components/responses/ApiKeyRateLimited"
+          }
+        }
+      }
+    },
+    "/parity/templates/{projectId}": {
+      "get": {
+        "operationId": "listTaskTemplates",
+        "tags": [
+          "Views"
+        ],
+        "summary": "List project issue templates",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 128
+            },
+            "required": true,
+            "name": "projectId",
+            "in": "path"
+          },
+          {
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 100000,
+              "default": 1
+            },
+            "required": false,
+            "name": "page",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 100,
+              "default": 50
+            },
+            "required": false,
+            "name": "pageSize",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Templates",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "items": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "name": {
+                            "type": "string",
+                            "minLength": 1,
+                            "maxLength": 200
+                          },
+                          "title": {
+                            "type": "string",
+                            "maxLength": 500
+                          },
+                          "description": {
+                            "type": "string",
+                            "maxLength": 50000
+                          },
+                          "defaults": {
+                            "type": "object",
+                            "properties": {
+                              "priority": {
+                                "type": "string",
+                                "enum": [
+                                  "no-priority",
+                                  "low",
+                                  "medium",
+                                  "high",
+                                  "urgent"
+                                ],
+                                "default": "no-priority"
+                              },
+                              "labels": {
+                                "type": "array",
+                                "items": {
+                                  "type": "string",
+                                  "minLength": 1,
+                                  "maxLength": 200
+                                },
+                                "maxItems": 50,
+                                "default": []
+                              },
+                              "assigneeId": {
+                                "type": [
+                                  "string",
+                                  "null"
+                                ],
+                                "minLength": 1,
+                                "maxLength": 128,
+                                "default": null
+                              },
+                              "estimate": {
+                                "type": [
+                                  "integer",
+                                  "null"
+                                ],
+                                "minimum": 0,
+                                "maximum": 1000000,
+                                "default": null
+                              }
+                            },
+                            "additionalProperties": false
+                          },
+                          "projectId": {
+                            "type": "string",
+                            "minLength": 1,
+                            "maxLength": 128
+                          }
+                        },
+                        "required": [
+                          "name",
+                          "title",
+                          "description",
+                          "defaults",
+                          "projectId"
+                        ],
+                        "additionalProperties": false
+                      }
+                    },
+                    "page": {
+                      "type": "number"
+                    },
+                    "pageSize": {
+                      "type": "number"
+                    },
+                    "hasMore": {
+                      "type": "boolean"
+                    }
+                  },
+                  "required": [
+                    "items",
+                    "page",
+                    "pageSize",
+                    "hasMore"
+                  ]
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid planning input",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Authentication required",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Insufficient permission or project access",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Resource unavailable or feature disabled",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Planning resource changed; refresh and try again",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "429": {
+            "$ref": "#/components/responses/ApiKeyRateLimited"
+          }
+        }
+      },
+      "post": {
+        "operationId": "createTaskTemplate",
+        "tags": [
+          "Views"
+        ],
+        "summary": "Create a project issue template",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 128
+            },
+            "required": true,
+            "name": "projectId",
+            "in": "path"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 200
+                  },
+                  "title": {
+                    "type": "string",
+                    "maxLength": 500
+                  },
+                  "description": {
+                    "type": "string",
+                    "maxLength": 50000
+                  },
+                  "defaults": {
+                    "type": "object",
+                    "properties": {
+                      "priority": {
+                        "type": "string",
+                        "enum": [
+                          "no-priority",
+                          "low",
+                          "medium",
+                          "high",
+                          "urgent"
+                        ],
+                        "default": "no-priority"
+                      },
+                      "labels": {
+                        "type": "array",
+                        "items": {
+                          "type": "string",
+                          "minLength": 1,
+                          "maxLength": 200
+                        },
+                        "maxItems": 50,
+                        "default": []
+                      },
+                      "assigneeId": {
+                        "type": [
+                          "string",
+                          "null"
+                        ],
+                        "minLength": 1,
+                        "maxLength": 128,
+                        "default": null
+                      },
+                      "estimate": {
+                        "type": [
+                          "integer",
+                          "null"
+                        ],
+                        "minimum": 0,
+                        "maximum": 1000000,
+                        "default": null
+                      }
+                    },
+                    "additionalProperties": false
+                  }
+                },
+                "required": [
+                  "name",
+                  "title",
+                  "description",
+                  "defaults"
+                ],
+                "additionalProperties": false
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Template",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "name": {
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 200
+                    },
+                    "title": {
+                      "type": "string",
+                      "maxLength": 500
+                    },
+                    "description": {
+                      "type": "string",
+                      "maxLength": 50000
+                    },
+                    "defaults": {
+                      "type": "object",
+                      "properties": {
+                        "priority": {
+                          "type": "string",
+                          "enum": [
+                            "no-priority",
+                            "low",
+                            "medium",
+                            "high",
+                            "urgent"
+                          ],
+                          "default": "no-priority"
+                        },
+                        "labels": {
+                          "type": "array",
+                          "items": {
+                            "type": "string",
+                            "minLength": 1,
+                            "maxLength": 200
+                          },
+                          "maxItems": 50,
+                          "default": []
+                        },
+                        "assigneeId": {
+                          "type": [
+                            "string",
+                            "null"
+                          ],
+                          "minLength": 1,
+                          "maxLength": 128,
+                          "default": null
+                        },
+                        "estimate": {
+                          "type": [
+                            "integer",
+                            "null"
+                          ],
+                          "minimum": 0,
+                          "maximum": 1000000,
+                          "default": null
+                        }
+                      },
+                      "additionalProperties": false
+                    },
+                    "projectId": {
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 128
+                    }
+                  },
+                  "required": [
+                    "name",
+                    "title",
+                    "description",
+                    "defaults",
+                    "projectId"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid planning input",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Authentication required",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Insufficient permission or project access",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Resource unavailable or feature disabled",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Planning resource changed; refresh and try again",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "429": {
+            "$ref": "#/components/responses/ApiKeyRateLimited"
+          }
+        }
+      }
+    },
+    "/parity/templates/{projectId}/{name}": {
+      "get": {
+        "operationId": "getTaskTemplate",
+        "tags": [
+          "Views"
+        ],
+        "summary": "Read an issue template",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 128
+            },
+            "required": true,
+            "name": "projectId",
+            "in": "path"
+          },
+          {
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200
+            },
+            "required": true,
+            "name": "name",
+            "in": "path"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Template",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "name": {
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 200
+                    },
+                    "title": {
+                      "type": "string",
+                      "maxLength": 500
+                    },
+                    "description": {
+                      "type": "string",
+                      "maxLength": 50000
+                    },
+                    "defaults": {
+                      "type": "object",
+                      "properties": {
+                        "priority": {
+                          "type": "string",
+                          "enum": [
+                            "no-priority",
+                            "low",
+                            "medium",
+                            "high",
+                            "urgent"
+                          ],
+                          "default": "no-priority"
+                        },
+                        "labels": {
+                          "type": "array",
+                          "items": {
+                            "type": "string",
+                            "minLength": 1,
+                            "maxLength": 200
+                          },
+                          "maxItems": 50,
+                          "default": []
+                        },
+                        "assigneeId": {
+                          "type": [
+                            "string",
+                            "null"
+                          ],
+                          "minLength": 1,
+                          "maxLength": 128,
+                          "default": null
+                        },
+                        "estimate": {
+                          "type": [
+                            "integer",
+                            "null"
+                          ],
+                          "minimum": 0,
+                          "maximum": 1000000,
+                          "default": null
+                        }
+                      },
+                      "additionalProperties": false
+                    },
+                    "projectId": {
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 128
+                    }
+                  },
+                  "required": [
+                    "name",
+                    "title",
+                    "description",
+                    "defaults",
+                    "projectId"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid planning input",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Authentication required",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Insufficient permission or project access",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Resource unavailable or feature disabled",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Planning resource changed; refresh and try again",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "429": {
+            "$ref": "#/components/responses/ApiKeyRateLimited"
+          }
+        }
+      },
+      "put": {
+        "operationId": "updateTaskTemplate",
+        "tags": [
+          "Views"
+        ],
+        "summary": "Edit or rename a project issue template",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 128
+            },
+            "required": true,
+            "name": "projectId",
+            "in": "path"
+          },
+          {
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200
+            },
+            "required": true,
+            "name": "name",
+            "in": "path"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 200
+                  },
+                  "title": {
+                    "type": "string",
+                    "maxLength": 500
+                  },
+                  "description": {
+                    "type": "string",
+                    "maxLength": 50000
+                  },
+                  "defaults": {
+                    "type": "object",
+                    "properties": {
+                      "priority": {
+                        "type": "string",
+                        "enum": [
+                          "no-priority",
+                          "low",
+                          "medium",
+                          "high",
+                          "urgent"
+                        ],
+                        "default": "no-priority"
+                      },
+                      "labels": {
+                        "type": "array",
+                        "items": {
+                          "type": "string",
+                          "minLength": 1,
+                          "maxLength": 200
+                        },
+                        "maxItems": 50,
+                        "default": []
+                      },
+                      "assigneeId": {
+                        "type": [
+                          "string",
+                          "null"
+                        ],
+                        "minLength": 1,
+                        "maxLength": 128,
+                        "default": null
+                      },
+                      "estimate": {
+                        "type": [
+                          "integer",
+                          "null"
+                        ],
+                        "minimum": 0,
+                        "maximum": 1000000,
+                        "default": null
+                      }
+                    },
+                    "additionalProperties": false
+                  }
+                },
+                "required": [
+                  "name",
+                  "title",
+                  "description",
+                  "defaults"
+                ],
+                "additionalProperties": false
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Template",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "name": {
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 200
+                    },
+                    "title": {
+                      "type": "string",
+                      "maxLength": 500
+                    },
+                    "description": {
+                      "type": "string",
+                      "maxLength": 50000
+                    },
+                    "defaults": {
+                      "type": "object",
+                      "properties": {
+                        "priority": {
+                          "type": "string",
+                          "enum": [
+                            "no-priority",
+                            "low",
+                            "medium",
+                            "high",
+                            "urgent"
+                          ],
+                          "default": "no-priority"
+                        },
+                        "labels": {
+                          "type": "array",
+                          "items": {
+                            "type": "string",
+                            "minLength": 1,
+                            "maxLength": 200
+                          },
+                          "maxItems": 50,
+                          "default": []
+                        },
+                        "assigneeId": {
+                          "type": [
+                            "string",
+                            "null"
+                          ],
+                          "minLength": 1,
+                          "maxLength": 128,
+                          "default": null
+                        },
+                        "estimate": {
+                          "type": [
+                            "integer",
+                            "null"
+                          ],
+                          "minimum": 0,
+                          "maximum": 1000000,
+                          "default": null
+                        }
+                      },
+                      "additionalProperties": false
+                    },
+                    "projectId": {
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 128
+                    }
+                  },
+                  "required": [
+                    "name",
+                    "title",
+                    "description",
+                    "defaults",
+                    "projectId"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid planning input",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Authentication required",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Insufficient permission or project access",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Resource unavailable or feature disabled",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Planning resource changed; refresh and try again",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "429": {
+            "$ref": "#/components/responses/ApiKeyRateLimited"
+          }
+        }
+      },
+      "delete": {
+        "operationId": "deleteTaskTemplate",
+        "tags": [
+          "Views"
+        ],
+        "summary": "Delete a project issue template",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 128
+            },
+            "required": true,
+            "name": "projectId",
+            "in": "path"
+          },
+          {
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200
+            },
+            "required": true,
+            "name": "name",
+            "in": "path"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Deleted template",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "projectId": {
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 128
+                    },
+                    "name": {
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 200
+                    }
+                  },
+                  "required": [
+                    "projectId",
+                    "name"
+                  ]
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid planning input",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Authentication required",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Insufficient permission or project access",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Resource unavailable or feature disabled",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Planning resource changed; refresh and try again",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "429": {
+            "$ref": "#/components/responses/ApiKeyRateLimited"
+          }
+        }
+      }
+    },
     "/parity/insights/{workspaceId}": {
       "get": {
         "operationId": "getInsights",
@@ -23919,6 +28777,14 @@
                     "type": "string",
                     "maxLength": 50000,
                     "default": ""
+                  },
+                  "estimate": {
+                    "type": [
+                      "integer",
+                      "null"
+                    ],
+                    "minimum": 0,
+                    "maximum": 1000000
                   },
                   "userId": {
                     "type": "string",

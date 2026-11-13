@@ -9,6 +9,12 @@ test("sign up, create a workspace with a starter project, and sign in again", as
   const email = `browser-${suffix}@example.com`;
   const password = `Browser-test-${suffix}`;
   const workspaceName = `Browser test ${suffix.slice(0, 8)}`;
+  // Global shortcuts may preload flags before onboarding finishes.
+  const featuresLoaded = page.waitForResponse(
+    (response) =>
+      new URL(response.url()).pathname === "/api/parity/features" &&
+      response.status() === 200,
+  );
 
   await page.goto("/auth/sign-up");
   await page.getByLabel("Name", { exact: true }).fill("Browser Tester");
@@ -35,17 +41,12 @@ test("sign up, create a workspace with a starter project, and sign in again", as
       exact: true,
     }),
   ).toBeVisible();
-  const featuresLoaded = page.waitForResponse(
-    (response) =>
-      new URL(response.url()).pathname === "/api/parity/features" &&
-      response.status() === 200,
-  );
   await page
     .getByRole("button", { name: `Open ${workspaceName}`, exact: true })
     .click();
-  expect((await (await featuresLoaded).json()).features).not.toContain(
-    "insights",
-  );
+  const features = (await (await featuresLoaded).json()).features;
+  expect(features).not.toContain("insights");
+  expect(features).not.toContain("views");
   await expect(page).toHaveURL(
     /\/dashboard\/workspace\/[^/]+\/project\/[^/]+\/board$/,
   );
@@ -58,6 +59,10 @@ test("sign up, create a workspace with a starter project, and sign in again", as
   const boardUrl = page.url();
   await expect(
     page.getByRole("button", { name: "Insights", exact: true }),
+  ).toHaveCount(0);
+
+  await expect(
+    page.getByRole("button", { name: "Views", exact: true }),
   ).toHaveCount(0);
 
   // A reload proves that the server persisted the workspace and session.

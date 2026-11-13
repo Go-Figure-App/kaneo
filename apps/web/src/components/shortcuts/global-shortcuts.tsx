@@ -3,8 +3,10 @@ import { toastManager } from "@/components/ui/toast";
 import useGetProjects from "@/hooks/queries/project/use-get-projects";
 import useActiveWorkspace from "@/hooks/queries/workspace/use-active-workspace";
 import { useShortcut } from "@/lib/shortcuts/use-shortcut";
+import { usePlanningNavigationShortcuts } from "@/components/parity/views/shortcuts";
 
 export function GlobalShortcuts() {
+  usePlanningNavigationShortcuts();
   const navigate = useNavigate();
   const { data: workspace } = useActiveWorkspace();
   const { data: projects = [] } = useGetProjects(

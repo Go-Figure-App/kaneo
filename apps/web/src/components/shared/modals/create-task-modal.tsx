@@ -1,3 +1,6 @@
+import { TemplatePicker } from "@/components/parity/views/template-picker";
+import { usePlanningEnabled } from "@/components/parity/planning/queries";
+import { applyCreatedEstimate } from "@/components/parity/views/apply-created-estimate";
 import { useLocation, useParams } from "@tanstack/react-router";
 import { produce } from "immer";
 import {
@@ -243,6 +246,10 @@ function CreateTaskModalContent({
   const [title, setTitle] = useState("");
   const titleRef = useAutoGrowTextarea(title);
   const [description, setDescription] = useState("");
+  const [templateEstimate, setTemplateEstimate] = useState<number | null>(null);
+  const creationEstimate = usePlanningEnabled("cycles")
+    ? templateEstimate
+    : null;
   const [priority, setPriority] = useState<Priority>("no-priority");
   const [assigneeId, setAssigneeId] = useState("");
   const [startDate, setStartDate] = useState<Date | undefined>(undefined);
@@ -411,6 +418,7 @@ function CreateTaskModalContent({
   );
 
   const hasUnsavedChanges = Boolean(
+    templateEstimate !== null ||
     title.trim() ||
     description.trim() ||
     priority !== "no-priority" ||
@@ -569,6 +577,7 @@ function CreateTaskModalContent({
       didSubmitRef.current = true;
       const savedTask = normalizeTask(
         await (sendToTriage ? createPending : createTask)({
+          ...(sendToTriage ? { estimate: creationEstimate } : {}),
           title: title.trim(),
           description: description.trim() || "",
           userId: selectedUser?.id ?? "",
@@ -596,6 +605,8 @@ function CreateTaskModalContent({
         }),
       );
 
+      await applyCreatedEstimate(savedTask.id, creationEstimate, sendToTriage);
+
       for (const label of labels) {
         try {
           await createLabel({
@@ -617,6 +628,7 @@ function CreateTaskModalContent({
       });
 
       if (createMore) {
+        setTemplateEstimate(null);
         setTitle("");
         setDescription("");
         setPriority("no-priority");
@@ -813,6 +825,31 @@ function CreateTaskModalContent({
           className="flex flex-col flex-1 min-h-0 space-y-6"
         >
           <div className="flex-1 min-h-0 overflow-y-auto space-y-6 px-6">
+            <TemplatePicker
+              workspaceId={workspace?.id ?? ""}
+              projectId={resolvedProjectId}
+              estimate={templateEstimate}
+              onEstimate={setTemplateEstimate}
+              disabled={isSubmitting || isPreparingDraft}
+              dirty={hasUnsavedChanges}
+              onApply={(template) => {
+                setTitle(template.title);
+                setDescription(template.description);
+                setPriority(template.defaults.priority);
+                setAssigneeId(template.defaults.assigneeId ?? "");
+                setTemplateEstimate(template.defaults.estimate);
+                setLabels(
+                  workspaceLabels
+                    .filter((label) =>
+                      template.defaults.labels.includes(label.name),
+                    )
+                    .map((label) => ({
+                      ...label,
+                      workspaceId: workspace?.id ?? "",
+                    })),
+                );
+              }}
+            />
             <textarea
               ref={titleRef}
               rows={1}
