@@ -8,12 +8,10 @@ import {
 import { columnExtTable, taskExtTable } from "../../../database/schema-parity";
 import { defaultCategory } from "../categories";
 import { emptyLifecycle, replayLifecycle } from "../lifecycle";
-
-export type LifecycleTransition = {
-  projectId?: string;
-  status: string;
-  at: Date;
-};
+import {
+  lifecycleHistory,
+  type LifecycleTransition,
+} from "../lifecycle-history";
 
 export async function syncLifecycle(
   taskId: string,
@@ -26,6 +24,28 @@ export async function syncLifecycle(
       .where(eq(taskTable.id, taskId))
       .for("update");
     if (!task) return;
+    const activities = await tx
+      .select({
+        type: activityTable.type,
+        createdAt: activityTable.createdAt,
+        eventData: activityTable.eventData,
+      })
+      .from(activityTable)
+      .where(
+        and(
+          eq(activityTable.taskId, taskId),
+          inArray(activityTable.type, ["status_changed", "moved"]),
+        ),
+      )
+      .orderBy(asc(activityTable.createdAt), asc(activityTable.id));
+    // Include the triggering transition before its asynchronous activity insert
+    // commits, with the source status needed to identify terminal-state entry.
+    const history = lifecycleHistory(activities, task.projectId, transition);
+    const projectIds = new Set([task.projectId]);
+    for (const event of history) {
+      projectIds.add(event.projectId);
+      projectIds.add(event.previousProjectId);
+    }
     const columns = await tx
       .select({
         id: columnTable.id,
@@ -36,12 +56,7 @@ export async function syncLifecycle(
       })
       .from(columnTable)
       .leftJoin(columnExtTable, eq(columnExtTable.columnId, columnTable.id))
-      .where(
-        inArray(columnTable.projectId, [
-          task.projectId,
-          transition?.projectId ?? task.projectId,
-        ]),
-      );
+      .where(inArray(columnTable.projectId, [...projectIds]));
     const categoryOf = (slug: string, projectId = task.projectId) => {
       const column = columns.find(
         (row) => row.slug === slug && row.projectId === projectId,
@@ -54,31 +69,14 @@ export async function syncLifecycle(
       .select()
       .from(taskExtTable)
       .where(eq(taskExtTable.taskId, taskId));
-    const activities = await tx
-      .select()
-      .from(activityTable)
-      .where(
-        and(
-          eq(activityTable.taskId, taskId),
-          inArray(activityTable.type, ["status_changed", "moved"]),
-        ),
-      )
-      .orderBy(asc(activityTable.createdAt), asc(activityTable.id));
-    const events = activities.flatMap((activity) => {
-      const data = activity.eventData as { newStatus?: unknown } | null;
-      return typeof data?.newStatus === "string"
-        ? [{ category: categoryOf(data.newStatus), at: activity.createdAt }]
-        : [];
-    });
-    // Activity subscribers run asynchronously too. Include the triggering
-    // transition even before its activity insert commits.
-    if (transition) {
-      events.push({
-        category: categoryOf(transition.status, transition.projectId),
-        at: transition.at,
-      });
-    }
-    events.sort((a, b) => a.at.getTime() - b.at.getTime());
+    const events = history.map((event) => ({
+      category: categoryOf(event.status, event.projectId),
+      fromCategory:
+        event.previousStatus === undefined
+          ? undefined
+          : categoryOf(event.previousStatus, event.previousProjectId),
+      at: event.at,
+    }));
     const lifecycle = replayLifecycle(
       events,
       current,

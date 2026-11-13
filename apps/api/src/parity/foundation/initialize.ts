@@ -20,8 +20,10 @@ export async function initializeParity() {
     await subscribeToEvent<{
       taskId: string;
       projectId?: string;
+      fromProjectId?: string;
       toProjectId?: string;
       status?: string;
+      oldStatus?: string;
       newStatus?: string;
     }>(name, async (event) => {
       if (!enabledFeatures().includes("foundation")) return;
@@ -36,6 +38,8 @@ export async function initializeParity() {
       const transition = status
         ? {
             projectId: event.toProjectId ?? event.projectId,
+            previousProjectId: event.fromProjectId ?? event.projectId,
+            previousStatus: event.oldStatus,
             status,
             at: new Date(),
           }

@@ -55,6 +55,27 @@ describe("planning foundation", () => {
         .completedAt,
     ).toBeNull();
   });
+  it("only advances a terminal timestamp when a transition enters its category", () => {
+    const first = new Date("2026-01-01T00:00:00Z");
+    const second = new Date("2026-01-02T00:00:00Z");
+    for (const category of ["completed", "canceled"] as const) {
+      const observed = transitionLifecycle(emptyLifecycle(), category, first);
+      expect(
+        replayLifecycle(
+          [{ category, fromCategory: category, at: second }],
+          category,
+          observed,
+        ),
+      ).toEqual(observed);
+      expect(
+        replayLifecycle(
+          [{ category, fromCategory: "started", at: second }],
+          category,
+          observed,
+        ),
+      ).toEqual(transitionLifecycle(emptyLifecycle(), category, second));
+    }
+  });
   it("recovers an earlier historical start and a missed recompletion while retaining newer live observations", () => {
     const first = new Date("2026-01-01T00:00:00Z");
     const second = new Date("2026-01-02T00:00:00Z");

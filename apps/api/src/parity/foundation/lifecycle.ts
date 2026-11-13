@@ -15,21 +15,28 @@ export function transitionLifecycle(
   previous: Lifecycle,
   category: Category,
   at: Date,
+  fromCategory?: Category,
 ): Lifecycle {
+  const terminalAt = (terminal: Category, known: Date | null) => {
+    if (category !== terminal) return null;
+    if (fromCategory === terminal) return known;
+    return fromCategory === undefined ? (known ?? at) : at;
+  };
   return {
     startedAt: previous.startedAt ?? (category === "started" ? at : null),
-    completedAt: category === "completed" ? (previous.completedAt ?? at) : null,
-    canceledAt: category === "canceled" ? (previous.canceledAt ?? at) : null,
+    completedAt: terminalAt("completed", previous.completedAt),
+    canceledAt: terminalAt("canceled", previous.canceledAt),
   };
 }
 
 export function replayLifecycle(
-  events: { category: Category; at: Date }[],
+  events: { category: Category; fromCategory?: Category; at: Date }[],
   current: Category,
   observed: Lifecycle = emptyLifecycle(),
 ): Lifecycle {
   const result = events.reduce(
-    (state, event) => transitionLifecycle(state, event.category, event.at),
+    (state, event) =>
+      transitionLifecycle(state, event.category, event.at, event.fromCategory),
     emptyLifecycle(),
   );
   // A historical start may predate live tracking; a newer live terminal event

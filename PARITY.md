@@ -36,7 +36,7 @@ Endpoints (all require authentication):
 - `GET /api/parity/columns/{projectId}`: readable project's workflow categories.
 - `PUT /api/parity/columns/{projectId}/{columnId}`: set a category with existing `project:update` permission; rejects columns from another project.
 
-Lifecycle semantics: retain the first observed start, retain a terminal timestamp while the task stays in that category, clear terminal timestamps on reopening, and record a new timestamp on recompletion. Live subscribers capture the triggering transition before awaiting database work, replay recorded status/move history, and lock current task rows. This preserves rapid transitions even when handlers run late or out of order, while the current category clears stale terminal dates. Reconciliation chooses the earliest known start and the latest applicable terminal transition. Category changes reconcile history for that project. The existing event bus is asynchronous and not a durable queue; the backfill is also a reconciliation tool.
+Lifecycle semantics: retain the first observed start, retain a terminal timestamp while the task stays in that category, clear terminal timestamps on reopening, and record a new timestamp on recompletion. Live subscribers capture the triggering transition before awaiting database work, replay recorded status/move history, and lock current task rows. The captured source status distinguishes entry into a terminal category from a move between two states in the same category. This preserves rapid transitions even when handlers run late or out of order, while the current category clears stale terminal dates. Reconciliation chooses the earliest known start and the latest applicable terminal transition. Category changes reconcile history for that project. The existing event bus is asynchronous and not a durable queue; the backfill is also a reconciliation tool.
 
 The four side tables contain the design's fields. Missing task/project/workspace rows mean defaults. Cycle and milestone IDs are nullable reserved text fields; their target tables and assignment validation arrive in their own phases. No Phase 0 endpoint writes them.
 
@@ -48,7 +48,7 @@ After starting the API against a **local database or approved copy**, run from `
 DATABASE_URL=postgresql://kaneo@127.0.0.1:55432/kaneo_parity_test pnpm exec tsx src/parity/foundation/backfill.ts
 ```
 
-This script pages tasks, reads `status_changed`/`moved` activity in chronological order, preserves unrelated extension fields and live observations, and can be rerun. Tasks without usable history retain null historical timestamps. Activity stores status slugs, not historical categories: deleted/renamed custom columns and workflows before project moves cannot be reconstructed exactly. No dates are synthesized for missing history. The script does not migrate the database.
+This script pages tasks, reads `status_changed`/`moved` activity in chronological order, preserves unrelated extension fields and live observations, and can be rerun. Tasks without usable history retain null historical timestamps. Move records reconstruct the project active at each historical transition, so identical slugs in different projects use their own categories. Activity does not preserve historical category configuration: deleted/renamed columns, missing move records, or later category redefinitions cannot be reconstructed exactly. No dates are synthesized for missing history. The script does not migrate the database.
 
 Generate future parity migrations from `apps/api` with `pnpm exec drizzle-kit generate --config drizzle-parity.config.ts`; inspect SQL before use. Keep SQL additive and ensure both migration folders are included in both API Docker images.
 
@@ -208,5 +208,11 @@ Not verified: production data or deployment, Redis fan-out across replicas, phys
 - All 176 security, workflow, release and contribution-script cases passed after installing their pinned disposable nginx image and relocating three fixture paths.
 - All 28 archived workflow files are byte-for-byte copies of the inherited definitions. Existing translations are unchanged; all 20 non-English locales now translate the 11 new strings.
 - Merge remains gated on approval and the latest commit's complete GitHub CI run.
+
+### Additional lifecycle review fixes (2026-11-13)
+
+The second review identified cross-project history interpretation and timestamp drift between two terminal states. Backfill now reconstructs project context backward through recorded moves, and both historical and live transitions carry their source category. A move within the same terminal category retains its entry date; reopening and recompletion record a new date even if the reopening activity is delayed.
+
+All 11 parity integration cases passed, including three project moves with conflicting custom-state categories and terminal-state events delivered before activity insertion and in reverse order. All 1,649 API unit cases and all 22 workspace typecheck tasks passed. The previous commit's full CI run passed all eight checks; the updated commit must pass CI and review again before merge.
 
 Phase 1 starts after this phase receives approval and its latest CI run is green, as authorized by the maintainer. No new product decision is required before triage work; the importer boundary must be settled before Phase 7.
