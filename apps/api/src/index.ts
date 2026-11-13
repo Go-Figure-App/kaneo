@@ -1,3 +1,6 @@
+import parity from "./parity";
+import { initializeParity } from "./parity/foundation/initialize";
+import { migrateParity } from "./parity/foundation/migrate";
 import { startWebhookWorker } from "./admin/webhooks/start-webhook-worker";
 import integrationSync from "./integration-sync";
 import { syncWorkspaceAccess } from "./ws/workspace-access";
@@ -817,6 +820,7 @@ export function createApp() {
   const calendarFeedApi = api.route("/calendar-feed", calendarFeed);
   const taskApi = api.route("/task", task);
   const columnApi = api.route("/column", column);
+  const parityApi = api.route("/parity", parity);
   const activityApi = api.route("/activity", activity);
   const commentApi = api.route("/comment", comment);
   const timeEntryApi = api.route("/time-entry", timeEntry);
@@ -985,6 +989,7 @@ export function createApp() {
     activityApi,
     billingApi,
     columnApi,
+    parityApi,
     commentApi,
     configApi,
     discordIntegrationApi,
@@ -1038,6 +1043,7 @@ export async function runStartupTasks() {
       await migrate(getDatabase(), {
         migrationsFolder: `${currentDir}/../drizzle`,
       });
+      await migrateParity(getDatabase(), `${currentDir}/../drizzle-parity`);
       console.log("✅ Database migrated successfully!");
     },
   });
@@ -1054,6 +1060,7 @@ export async function runStartupTasks() {
   initializePlugins();
   initializeScheduler();
   await initializeWebSocketAdapter();
+  await initializeParity();
 }
 
 export async function startServer(
@@ -1120,6 +1127,7 @@ const {
   activityApi,
   billingApi,
   columnApi,
+  parityApi,
   commentApi,
   configApi,
   discordIntegrationApi,
@@ -1169,6 +1177,7 @@ export type AppType =
   | typeof projectApi
   | typeof calendarFeedApi
   | typeof taskApi
+  | typeof parityApi
   | typeof columnApi
   | typeof activityApi
   | typeof commentApi

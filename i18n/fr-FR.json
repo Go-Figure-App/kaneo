@@ -5278,6 +5278,23 @@
 		},
 		"permissions": {
 			"photos": "Kaneo utilise vos photos pour joindre des images aux tâches et aux commentaires, et pour votre photo de profil."
+		},
+		"parity": {
+			"signInTagline": "Connectez-vous à l’espace de travail des projets de Go Figure."
+		}
+	},
+	"parity": {
+		"categories": {
+			"title": "Catégories de statut",
+			"description": "Les catégories définissent la façon dont les fonctions de planification comptabilisent le travail. Le paramètre de statut final de Kaneo continue de contrôler les automatisations existantes.",
+			"backlog": "À planifier",
+			"unstarted": "Non commencé",
+			"started": "Commencé",
+			"completed": "Terminé",
+			"canceled": "Annulé",
+			"label": "Catégorie de {{name}}",
+			"loading": "Chargement des catégories de statut…",
+			"error": "Impossible d’enregistrer ou de charger les catégories. Réessayez."
 		}
 	}
 }

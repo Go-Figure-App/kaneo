@@ -5370,6 +5370,23 @@
 		},
 		"permissions": {
 			"photos": "Kaneo używa Twoich zdjęć, aby dołączać obrazy do zadań i komentarzy oraz jako zdjęcie profilowe."
+		},
+		"parity": {
+			"signInTagline": "Zaloguj się do obszaru roboczego projektów Go Figure."
+		}
+	},
+	"parity": {
+		"categories": {
+			"title": "Kategorie statusów",
+			"description": "Kategorie określają, jak funkcje planowania zliczają pracę. Ustawienie statusu końcowego w Kaneo nadal steruje istniejącymi automatyzacjami.",
+			"backlog": "Zaległe zadania",
+			"unstarted": "Nierozpoczęte",
+			"started": "Rozpoczęte",
+			"completed": "Ukończone",
+			"canceled": "Anulowane",
+			"label": "Kategoria dla {{name}}",
+			"loading": "Wczytywanie kategorii statusów…",
+			"error": "Nie udało się zapisać lub wczytać kategorii. Spróbuj ponownie."
 		}
 	}
 }

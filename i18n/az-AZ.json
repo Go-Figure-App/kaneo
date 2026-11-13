@@ -5186,6 +5186,23 @@
 		},
 		"permissions": {
 			"photos": "Kaneo şəkillərinizdən tapşırıqlara və şərhlərə şəkil əlavə etmək, həmçinin profil şəkliniz üçün istifadə edir."
+		},
+		"parity": {
+			"signInTagline": "Go Figure layihə iş sahəsinə daxil olun."
+		}
+	},
+	"parity": {
+		"categories": {
+			"title": "Vəziyyət kateqoriyaları",
+			"description": "Kateqoriyalar planlaşdırma funksiyalarında işin necə hesablandığını müəyyən edir. Kaneo-nun son vəziyyət ayarı mövcud avtomatlaşdırmaları idarə etməyə davam edir.",
+			"backlog": "Gözləyən işlər",
+			"unstarted": "Başlanmayıb",
+			"started": "Başlanıb",
+			"completed": "Tamamlanıb",
+			"canceled": "Ləğv edilib",
+			"label": "{{name}} üçün kateqoriya",
+			"loading": "Vəziyyət kateqoriyaları yüklənir…",
+			"error": "Kateqoriyaları saxlamaq və ya yükləmək mümkün olmadı. Yenidən cəhd edin."
 		}
 	}
 }

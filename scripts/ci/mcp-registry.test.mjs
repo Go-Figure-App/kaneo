@@ -7,7 +7,7 @@ import { join } from "node:path";
 import test from "node:test";
 
 const workflow = await readFile(
-  new URL("../../.github/workflows/publish-mcp.yml", import.meta.url),
+  new URL("../../.github/upstream-workflows/publish-mcp.yml", import.meta.url),
   "utf8",
 );
 const step = workflow.slice(

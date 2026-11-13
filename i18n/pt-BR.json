@@ -5278,6 +5278,23 @@
 		},
 		"permissions": {
 			"photos": "O Kaneo usa suas fotos para anexar imagens a tarefas e comentários e para sua foto de perfil."
+		},
+		"parity": {
+			"signInTagline": "Entre no espaço de trabalho de projetos do Go Figure."
+		}
+	},
+	"parity": {
+		"categories": {
+			"title": "Categorias de status",
+			"description": "As categorias definem como os recursos de planejamento contabilizam o trabalho. A configuração de status final do Kaneo continua controlando as automações existentes.",
+			"backlog": "Trabalho pendente",
+			"unstarted": "Não iniciado",
+			"started": "Iniciado",
+			"completed": "Concluído",
+			"canceled": "Cancelado",
+			"label": "Categoria de {{name}}",
+			"loading": "Carregando categorias de status…",
+			"error": "Não foi possível salvar ou carregar as categorias. Tente novamente."
 		}
 	}
 }

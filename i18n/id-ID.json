@@ -5094,6 +5094,23 @@
 		},
 		"permissions": {
 			"photos": "Kaneo menggunakan foto Anda untuk melampirkan gambar ke tugas dan komentar, serta untuk foto profil Anda."
+		},
+		"parity": {
+			"signInTagline": "Masuk ke ruang kerja proyek Go Figure."
+		}
+	},
+	"parity": {
+		"categories": {
+			"title": "Kategori status",
+			"description": "Kategori menentukan cara fitur perencanaan menghitung pekerjaan. Pengaturan status akhir Kaneo tetap mengontrol otomatisasi yang ada.",
+			"backlog": "Antrean pekerjaan",
+			"unstarted": "Belum dimulai",
+			"started": "Dimulai",
+			"completed": "Selesai",
+			"canceled": "Dibatalkan",
+			"label": "Kategori untuk {{name}}",
+			"loading": "Memuat kategori status…",
+			"error": "Tidak dapat menyimpan atau memuat kategori. Coba lagi."
 		}
 	}
 }

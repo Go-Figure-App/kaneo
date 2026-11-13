@@ -1,0 +1,146 @@
+name: Go Figure CI
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: parity-ci-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: ${{ github.ref != 'refs/heads/main' }}
+
+jobs:
+  quality:
+    if: github.repository == 'Go-Figure-App/kaneo'
+    name: Quality and contracts
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: ./.github/actions/parity-setup
+      - name: Validate active workflows
+        run: |
+          curl --fail --silent --show-error --location --max-time 60 \
+            https://github.com/rhysd/actionlint/releases/download/v1.7.12/actionlint_1.7.12_linux_amd64.tar.gz \
+            -o "$RUNNER_TEMP/actionlint.tar.gz"
+          echo "8aca8db96f1b94770f1b0d72b6dddcb1ebb8123cb3712530b08cc387b349a3d8  $RUNNER_TEMP/actionlint.tar.gz" | sha256sum --check --strict
+          tar -xzf "$RUNNER_TEMP/actionlint.tar.gz" -C "$RUNNER_TEMP" actionlint
+          "$RUNNER_TEMP/actionlint" -color
+      - run: pnpm lint
+      - run: pnpm i18n:check
+      - run: pnpm openapi:check
+      - run: pnpm typecheck
+
+  unit:
+    if: github.repository == 'Go-Figure-App/kaneo'
+    name: Workspace unit tests
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    env:
+      NODE_OPTIONS: --no-experimental-webstorage
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: ./.github/actions/parity-setup
+      # Keep packages serial so module-heavy API tests retain their normal timeouts.
+      - run: pnpm -r --workspace-concurrency=1 test
+      - name: Test release and workflow controls
+        run: |
+          docker pull nginx:1.30.6-alpine
+          node --test scripts/security/*.test.mjs scripts/ci/*.test.mjs scripts/contribution-eligibility/*.test.mjs
+
+  integration:
+    if: github.repository == 'Go-Figure-App/kaneo'
+    name: API integration (${{ matrix.shard }}/4)
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    strategy:
+      fail-fast: false
+      matrix:
+        shard: [1, 2, 3, 4]
+    services:
+      postgres:
+        image: postgres:18
+        env:
+          POSTGRES_DB: kaneo_test
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+          TZ: UTC
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U postgres -d kaneo_test"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+    env:
+      NODE_ENV: test
+      AUTH_SECRET: test-secret-with-at-least-32-chars
+      DATABASE_URL: postgresql://postgres:postgres@localhost:5432/kaneo_test
+      KANEO_API_URL: http://localhost:1337
+      KANEO_CLIENT_URL: http://localhost:5173
+      DISABLE_GUEST_ACCESS: "false"
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: ./.github/actions/parity-setup
+      - run: pnpm --filter @kaneo/api exec vp run test:integration:run --shard=${{ matrix.shard }}/4
+
+  browser:
+    if: github.repository == 'Go-Figure-App/kaneo'
+    name: Docker and browser flows
+    runs-on: ubuntu-24.04
+    timeout-minutes: 45
+    env:
+      KANEO_E2E_HOST: localhost
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: ./.github/actions/parity-setup
+      - run: pnpm --dir tests/e2e install --frozen-lockfile --ignore-scripts
+      - run: pnpm --dir tests/e2e test:security
+      - run: pnpm --dir tests/e2e exec playwright install --with-deps chromium
+      - uses: docker/setup-buildx-action@f87e5991a6d7451dcb8d9637bfbc97413f497069 # v4
+      - name: Build the bundled image without publishing
+        uses: docker/build-push-action@c3c9e263c25d99ce0380d002d59b67737d91b0dc # v7
+        with:
+          context: .
+          file: Dockerfile.kaneo
+          platforms: linux/amd64
+          push: false
+          load: true
+          tags: kaneo-browserstack:test
+      - name: Start the disposable stack with parity disabled
+        run: docker compose -f tests/e2e/compose.yml up --no-build --wait --wait-timeout 180
+      - run: pnpm test:e2e
+      - name: Enable parity on the disposable stack
+        run: docker compose -f tests/e2e/compose.yml -f tests/e2e/compose.parity.yml up --no-build --wait --wait-timeout 180
+      - run: pnpm --dir tests/e2e exec playwright test --config playwright.parity.config.ts
+      - name: Print diagnostics on failure
+        if: failure()
+        run: docker compose -f tests/e2e/compose.yml logs --no-color --tail 200
+      - name: Stop the disposable stack
+        if: always()
+        run: docker compose -f tests/e2e/compose.yml down --volumes
+
+  result:
+    if: ${{ always() && github.repository == 'Go-Figure-App/kaneo' }}
+    name: Go Figure CI result
+    needs: [quality, unit, integration, browser]
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - name: Require every check to pass
+        env:
+          RESULTS: ${{ toJSON(needs) }}
+        run: |
+          printf '%s' "$RESULTS" | jq -e 'all(.[]; .result == "success")'

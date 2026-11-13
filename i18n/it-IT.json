@@ -5278,6 +5278,23 @@
 		},
 		"permissions": {
 			"photos": "Kaneo usa le tue foto per allegare immagini ad attività e commenti e per la tua foto profilo."
+		},
+		"parity": {
+			"signInTagline": "Accedi allo spazio di lavoro dei progetti di Go Figure."
+		}
+	},
+	"parity": {
+		"categories": {
+			"title": "Categorie di stato",
+			"description": "Le categorie definiscono come le funzioni di pianificazione conteggiano il lavoro. L’impostazione dello stato finale di Kaneo continua a controllare le automazioni esistenti.",
+			"backlog": "Da pianificare",
+			"unstarted": "Non iniziato",
+			"started": "Iniziato",
+			"completed": "Completato",
+			"canceled": "Annullato",
+			"label": "Categoria per {{name}}",
+			"loading": "Caricamento delle categorie di stato…",
+			"error": "Impossibile salvare o caricare le categorie. Riprova."
 		}
 	}
 }

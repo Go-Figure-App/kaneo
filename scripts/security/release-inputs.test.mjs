@@ -15,7 +15,7 @@ import test from "node:test";
 
 const root = resolve(import.meta.dirname, "../..");
 const workflow = readFileSync(
-  resolve(root, ".github/workflows/build-images.yml"),
+  resolve(root, ".github/upstream-workflows/build-images.yml"),
   "utf8",
 );
 const command = workflow.match(

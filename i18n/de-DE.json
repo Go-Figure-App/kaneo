@@ -5186,6 +5186,23 @@
 		},
 		"permissions": {
 			"photos": "Kaneo verwendet deine Fotos, um Bilder an Aufgaben und Kommentare anzuhängen, und für dein Profilbild."
+		},
+		"parity": {
+			"signInTagline": "Melde dich im Projektarbeitsbereich von Go Figure an."
+		}
+	},
+	"parity": {
+		"categories": {
+			"title": "Statuskategorien",
+			"description": "Kategorien legen fest, wie Planungsfunktionen Arbeit zählen. Kaneos Einstellung für den Endstatus steuert weiterhin die bestehenden Automatisierungen.",
+			"backlog": "Backlog",
+			"unstarted": "Nicht begonnen",
+			"started": "Begonnen",
+			"completed": "Abgeschlossen",
+			"canceled": "Abgebrochen",
+			"label": "Kategorie für {{name}}",
+			"loading": "Statuskategorien werden geladen…",
+			"error": "Kategorien konnten nicht gespeichert oder geladen werden. Versuche es erneut."
 		}
 	}
 }

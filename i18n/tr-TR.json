@@ -5186,6 +5186,23 @@
 		},
 		"permissions": {
 			"photos": "Kaneo, taleplere ve yorumlara görsel eklemek ve profil fotoğrafınız için fotoğraflarınızı kullanır."
+		},
+		"parity": {
+			"signInTagline": "Go Figure proje çalışma alanına giriş yapın."
+		}
+	},
+	"parity": {
+		"categories": {
+			"title": "Durum kategorileri",
+			"description": "Kategoriler, planlama özelliklerinin işleri nasıl sayacağını belirler. Kaneo’nun son durum ayarı mevcut otomasyonları kontrol etmeye devam eder.",
+			"backlog": "İş listesi",
+			"unstarted": "Başlanmadı",
+			"started": "Başlandı",
+			"completed": "Tamamlandı",
+			"canceled": "İptal edildi",
+			"label": "{{name}} için kategori",
+			"loading": "Durum kategorileri yükleniyor…",
+			"error": "Kategoriler kaydedilemedi veya yüklenemedi. Tekrar deneyin."
 		}
 	}
 }

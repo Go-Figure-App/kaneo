@@ -1,3 +1,4 @@
+import { invalidateParity } from "@/features/parity/foundation/workspace-events";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { router } from "expo-router";
 import { useState } from "react";
@@ -29,6 +30,7 @@ export default function HomeScreen() {
   const unread = useUnreadCount(workspace?.id);
 
   useRealtime("api/ws/user", (event) => {
+    invalidateParity(client, event);
     if (event.type === "NOTIFICATION_CREATED") {
       if (workspace)
         void client.invalidateQueries({

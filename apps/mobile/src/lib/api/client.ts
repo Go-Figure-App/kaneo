@@ -16,16 +16,7 @@ export class ApiError extends Error {
   }
 }
 
-/**
- * Normalizes what a person typed into an instance origin: adds a scheme, drops a trailing
- * slash and a trailing `/api`, so both `kaneo.example.com` and `https://kaneo.example.com/api` work.
- */
-export function normalizeServerUrl(input: string): string {
-  let url = input.trim().replace(/\/+$/, "");
-  if (!/^https?:\/\//i.test(url)) url = `https://${url}`;
-  if (url.endsWith("/api")) url = url.slice(0, -4);
-  return url.replace(/\/+$/, "");
-}
+export { normalizeServerUrl } from "@/features/parity/foundation/normalize-server-url";
 
 /** Resolves a possibly relative asset path (e.g. `/api/asset/...`) against the instance. */
 export function resolveUrl(

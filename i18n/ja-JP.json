@@ -5094,6 +5094,23 @@
 		},
 		"permissions": {
 			"photos": "Kaneo は、タスクやコメントへの画像の添付と、プロフィール写真のために写真を使用します。"
+		},
+		"parity": {
+			"signInTagline": "Go Figure のプロジェクトワークスペースにサインインしてください。"
+		}
+	},
+	"parity": {
+		"categories": {
+			"title": "状態カテゴリ",
+			"description": "カテゴリは、計画機能での作業の集計方法を定義します。Kaneo の最終状態の設定は、引き続き既存の自動化を制御します。",
+			"backlog": "バックログ",
+			"unstarted": "未着手",
+			"started": "着手済み",
+			"completed": "完了",
+			"canceled": "キャンセル",
+			"label": "{{name}} のカテゴリ",
+			"loading": "状態カテゴリを読み込み中…",
+			"error": "カテゴリを保存または読み込めませんでした。もう一度お試しください。"
 		}
 	}
 }
