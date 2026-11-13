@@ -1,3 +1,4 @@
+import { invalidateParity } from "@/components/parity/foundation/workspace-events";
 import { workspaceStatusQueryKey } from "@/hooks/queries/workspace/use-workspace-archived";
 import { windowId } from "@kaneo/libs";
 import { useQueryClient } from "@tanstack/react-query";
@@ -118,6 +119,7 @@ export function useUserWebSocket() {
             workspaceIds?: string[] | null;
             reason?: string;
           };
+          invalidateParity(queryClient, message);
           if (message.type === "USER_ACCESS_REVOKED") {
             leaveSession();
             return;

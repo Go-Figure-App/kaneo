@@ -1,3 +1,4 @@
+import { FIXED_SERVER_URL } from "@/features/parity/foundation/server";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import * as SecureStore from "expo-secure-store";
 import { useState, useSyncExternalStore } from "react";
@@ -65,6 +66,10 @@ export const sessionStore = {
     let prefs = defaultPrefs;
     try {
       session = rawSession ? (JSON.parse(rawSession) as Session) : null;
+      if (session && session.serverUrl !== FIXED_SERVER_URL) {
+        session = null;
+        await secure.remove(SESSION_KEY);
+      }
     } catch {
       session = null;
     }
@@ -82,6 +87,8 @@ export const sessionStore = {
   },
 
   async save(session: Session) {
+    if (session.serverUrl !== FIXED_SERVER_URL)
+      throw new Error("Unexpected server for this build");
     await secure.set(SESSION_KEY, JSON.stringify(session));
     const recent = [
       session.serverUrl,

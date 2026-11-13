@@ -1,3 +1,4 @@
+import { ColumnCategories } from "@/components/parity/foundation/column-categories";
 import { createFileRoute } from "@tanstack/react-router";
 import { useTranslation } from "react-i18next";
 import PageTitle from "@/components/page-title";
@@ -31,6 +32,7 @@ function RouteComponent() {
         >
           <ColumnList projectId={projectId} />
         </SettingsSection>
+        <ColumnCategories projectId={projectId} />
         <SettingsSection
           title={t("settings:projectWorkflow.automationTitle")}
           description={t("settings:projectWorkflow.automationDescription")}

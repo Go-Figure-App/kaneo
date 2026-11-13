@@ -1,3 +1,4 @@
+import { FIXED_SERVER_URL } from "@/features/parity/foundation/server";
 import * as Clipboard from "expo-clipboard";
 import * as Linking from "expo-linking";
 import * as WebBrowser from "expo-web-browser";
@@ -38,14 +39,12 @@ import {
 } from "@/lib/api/client";
 import type { DeviceCodeResponse, InstanceConfig } from "@/lib/api/types";
 import * as auth from "@/lib/auth";
-import { SelfHostedUnlock } from "@/features/sign-in/self-hosted-unlock";
 import { reachableDeviceLink } from "@/lib/device-link";
 import { i18n } from "@/lib/i18n";
-import { hasSelfHostedUnlock } from "@/lib/purchases";
 import { usePrefs } from "@/lib/session";
 import { font, useColors } from "@/theme";
 
-type Step = "start" | "otp" | "device" | "apiKey" | "signUp" | "unlock";
+type Step = "start" | "otp" | "device" | "apiKey" | "signUp";
 
 const CODE_SLOTS = [0, 1, 2, 3, 4, 5];
 // The scheme from app.json; the web approval page links back here after approving.
@@ -60,23 +59,14 @@ function friendly(e: unknown): string {
 }
 
 export default function SignInScreen() {
-  const prefs = usePrefs();
-  const [mode, setMode] = useState<"cloud" | "self">(
-    prefs.lastServerUrl && prefs.lastServerUrl !== CLOUD_URL ? "self" : "cloud",
-  );
-  const [serverUrl, setServerUrl] = useState<string | null>(
-    mode === "cloud" ? CLOUD_URL : null,
-  );
+  const [mode, setMode] = useState<"cloud" | "self">("self");
+  const [serverUrl, setServerUrl] = useState<string | null>(FIXED_SERVER_URL);
   const [config, setConfig] = useState<InstanceConfig | null>(null);
   const [step, setStep] = useState<Step>("start");
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
   const [otpEmail, setOtpEmail] = useState("");
   const [deviceAttempt, setDeviceAttempt] = useState(0);
-  const [locked, setLocked] = useState<{
-    url: string;
-    config: InstanceConfig;
-  } | null>(null);
 
   const run = async (block: () => Promise<void>) => {
     setLoading(true);
@@ -93,24 +83,17 @@ export default function SignInScreen() {
   // A slow probe must not land after switching mode or server.
   const modeRef = useRef(mode);
   const probeRef = useRef(0);
-  const connect = (raw: string) =>
+  const connect = (_raw: string) =>
     run(async () => {
       const probe = ++probeRef.current;
       const stale = () =>
         probeRef.current !== probe || modeRef.current !== "self";
-      const url = normalizeServerUrl(raw);
+      const url = normalizeServerUrl(FIXED_SERVER_URL);
       const cfg = await auth.probe(url).catch((e: unknown) => {
         if (stale()) return null;
         throw e;
       });
       if (!cfg || stale()) return;
-      const unlocked = url === CLOUD_URL || (await hasSelfHostedUnlock());
-      if (stale()) return;
-      if (!unlocked) {
-        setLocked({ url, config: cfg });
-        setStep("unlock");
-        return;
-      }
       setServerUrl(url);
       setConfig(cfg);
     });
@@ -129,14 +112,20 @@ export default function SignInScreen() {
     setServerUrl(next === "cloud" ? CLOUD_URL : null);
     if (next === "cloud") probeCloud();
   };
-  // Kaneo Cloud needs no address; check its sign-in options right away.
-  const [initialMode] = useState(mode);
   useEffect(() => {
-    if (initialMode !== "cloud") return;
-    const apply = (cfg: InstanceConfig) =>
-      modeRef.current === "cloud" && setConfig(cfg);
-    void auth.probe(CLOUD_URL).then(apply, () => apply({ isCloud: true }));
-  }, [initialMode]);
+    let active = true;
+    void auth.probe(FIXED_SERVER_URL).then(
+      (cfg) => {
+        if (active) setConfig(cfg);
+      },
+      (e: unknown) => {
+        if (active) setError(friendly(e));
+      },
+    );
+    return () => {
+      active = false;
+    };
+  }, []);
 
   const back = () => {
     setError(null);
@@ -163,6 +152,7 @@ export default function SignInScreen() {
         >
           {step === "start" ? (
             <StartStep
+              fixedServer
               mode={mode}
               setMode={changeMode}
               serverUrl={serverUrl}
@@ -201,17 +191,6 @@ export default function SignInScreen() {
                 if (config?.isCloud)
                   void WebBrowser.openBrowserAsync(`${serverUrl}/auth/sign-up`);
                 else setStep("signUp");
-              }}
-            />
-          ) : null}
-          {step === "unlock" && locked ? (
-            <SelfHostedUnlock
-              serverUrl={locked.url}
-              onUnlocked={() => {
-                setServerUrl(locked.url);
-                setConfig(locked.config);
-                setLocked(null);
-                setStep("start");
               }}
             />
           ) : null}
@@ -276,6 +255,7 @@ function ErrorText({ error }: { error: string | null }) {
 }
 
 function StartStep(props: {
+  fixedServer?: boolean;
   mode: "cloud" | "self";
   setMode: (m: "cloud" | "self") => void;
   serverUrl: string | null;
@@ -311,20 +291,35 @@ function StartStep(props: {
       <View style={{ gap: 12 }}>
         <KaneoLogo height={34} />
         <Txt variant="body" tone="muted" style={{ lineHeight: 22 }}>
-          {t("mobile:signIn.tagline")}
+          {props.fixedServer
+            ? t("mobile:parity.signInTagline")
+            : t("mobile:signIn.tagline")}
         </Txt>
       </View>
 
-      <Segmented
-        value={mode}
-        onChange={props.setMode}
-        options={[
-          { value: "cloud", label: t("mobile:signIn.cloud") },
-          { value: "self", label: t("mobile:signIn.selfHosted") },
-        ]}
-      />
+      {!props.fixedServer ? (
+        <Segmented
+          value={mode}
+          onChange={props.setMode}
+          options={[
+            { value: "cloud", label: t("mobile:signIn.cloud") },
+            { value: "self", label: t("mobile:signIn.selfHosted") },
+          ]}
+        />
+      ) : null}
 
-      {mode === "self" && !config ? (
+      {props.fixedServer && !config ? (
+        <View style={{ gap: 12 }}>
+          <ErrorText error={props.error} />
+          <Button
+            label={t("mobile:signIn.connect")}
+            loading={props.loading}
+            onPress={() => props.onConnect(FIXED_SERVER_URL)}
+          />
+        </View>
+      ) : null}
+
+      {!props.fixedServer && mode === "self" && !config ? (
         <View style={{ gap: 28 }}>
           <View style={{ gap: 12 }}>
             <TextField
@@ -396,11 +391,13 @@ function StartStep(props: {
               >
                 {serverUrl!.replace(/^https?:\/\//, "")}
               </Txt>
-              <Touch onPress={props.onChangeServer} hitSlop={8}>
-                <Txt variant="meta" weight="medium" tone="muted">
-                  {t("mobile:signIn.change")}
-                </Txt>
-              </Touch>
+              {!props.fixedServer ? (
+                <Touch onPress={props.onChangeServer} hitSlop={8}>
+                  <Txt variant="meta" weight="medium" tone="muted">
+                    {t("mobile:signIn.change")}
+                  </Txt>
+                </Touch>
+              ) : null}
             </View>
           ) : null}
 

@@ -89,9 +89,12 @@ import {
   workspaceUserTable,
 } from "./schema";
 
+import * as paritySchema from "./schema-parity";
+
 config();
 
 export const schema = {
+  ...paritySchema,
   dataMigrationTable,
   storageCleanupTable,
   accountTable,
