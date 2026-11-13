@@ -89,12 +89,11 @@ test("Insights filters, accessible chart data and errors reflect real reporting"
     name: "Throughput",
     exact: true,
   });
-  await expect(
-    throughput.locator(".recharts-responsive-container svg"),
-  ).toBeVisible();
+  await expect(throughput.getByRole("application")).toBeVisible();
   await expect(throughput.getByText("Dates in America/New_York")).toBeVisible();
   await throughput.getByText("View data", { exact: true }).click();
-  const table = throughput.getByRole("table");
+  const table = throughput.getByRole("table", { includeHidden: true });
+  await expect(table).toBeVisible();
   await expect(
     table.locator("tbody tr").last().locator("td").nth(1),
   ).toHaveText("1");
@@ -120,7 +119,7 @@ test("Insights filters, accessible chart data and errors reflect real reporting"
   await expect(
     page
       .getByRole("region", { name: "Velocity", exact: true })
-      .locator(".recharts-responsive-container svg"),
+      .getByRole("application"),
   ).toBeVisible();
   await page.getByLabel("From date", { exact: true }).fill("2026-11-20");
   await page.getByLabel("To date", { exact: true }).fill("2026-11-01");
@@ -131,9 +130,7 @@ test("Insights filters, accessible chart data and errors reflect real reporting"
   await page
     .getByRole("button", { name: "Reset filters", exact: true })
     .click();
-  await expect(
-    throughput.locator(".recharts-responsive-container svg"),
-  ).toBeVisible();
+  await expect(throughput.getByRole("application")).toBeVisible();
 
   await page.route("**/api/parity/insights/**", async (route) => {
     await route.fulfill({
@@ -151,14 +148,14 @@ test("Insights filters, accessible chart data and errors reflect real reporting"
     throughput.getByRole("table", { includeHidden: true }),
   ).toHaveCount(0);
   await page.unroute("**/api/parity/insights/**");
-  await throughput.getByRole("button", { name: "Retry", exact: true }).click();
-  await expect(
-    throughput.locator(".recharts-responsive-container svg"),
-  ).toBeVisible();
+  await throughput
+    .getByRole("button", { name: "Try again", exact: true })
+    .click();
+  await expect(throughput.getByRole("application")).toBeVisible();
   await page.goto(`${workspacePath}/project/${project.id}/overview`);
   await expect(
     page
       .getByRole("region", { name: "Progress over time", exact: true })
-      .locator(".recharts-responsive-container svg"),
+      .getByRole("application"),
   ).toBeVisible();
 });
