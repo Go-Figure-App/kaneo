@@ -1,5 +1,6 @@
 import { and, desc, eq, ilike, inArray, or, sql } from "drizzle-orm";
 import db from "../../database";
+import { acceptedTaskCondition } from "../../parity/triage/visibility";
 import {
   activityTable,
   projectTable,
@@ -203,6 +204,7 @@ async function globalSearch(params: SearchParams): Promise<{
         .where(
           and(
             workspaceFilter,
+            acceptedTaskCondition(taskTable.id),
             projectId ? eq(taskTable.projectId, projectId) : undefined,
             // A project key may hold `_`, which `ilike` reads as "any one
             // character", so `DE_-23` would also match a task in `DEP` and the
@@ -271,6 +273,7 @@ async function globalSearch(params: SearchParams): Promise<{
       .where(
         and(
           workspaceFilter,
+          acceptedTaskCondition(taskTable.id),
           projectId ? eq(taskTable.projectId, projectId) : undefined,
           or(
             ilike(taskTable.title, searchPattern),
@@ -442,6 +445,7 @@ async function globalSearch(params: SearchParams): Promise<{
       .where(
         and(
           workspaceFilter,
+          acceptedTaskCondition(taskTable.id),
           projectId ? eq(taskTable.projectId, projectId) : undefined,
           or(
             ilike(searchableActivityText, searchPattern),

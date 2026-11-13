@@ -4,6 +4,7 @@ import { encodeCustomFieldValue } from "../kaneo/custom-field-value.js";
 import { buildFullTaskUpdateBody } from "../kaneo/task-helpers.js";
 import { errorResult, textResult } from "../utils/mcp-result.js";
 import { getCurrentUser } from "./get-current-user.js";
+import { registerTriageTools } from "./parity/triage.js";
 
 export type ToolClient = {
   readonly usingApiKey?: boolean;
@@ -53,6 +54,7 @@ export function registerTools(
   ctx: { client: ToolClient },
 ): void {
   const { client } = ctx;
+  registerTriageTools(server, client);
   const registerTool = <S extends z.ZodObject>(
     name: string,
     config: { description: string; inputSchema: S },

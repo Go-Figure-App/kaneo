@@ -20,6 +20,7 @@ import useGetNotifications from "@/hooks/queries/notification/use-get-notificati
 import useGetAssignedTasks from "@/hooks/queries/task/use-get-assigned-tasks";
 import useActiveWorkspace from "@/hooks/queries/workspace/use-active-workspace";
 import { cn } from "@/lib/cn";
+import { useTriageCount } from "@/components/parity/triage/queries";
 
 type NavItem = {
   title: string;
@@ -39,6 +40,7 @@ export function NavMain() {
   const { data: invitations = [] } = usePendingInvitations();
   const { data: notifications = [] } = useGetNotifications(workspace?.id);
   const { data: assignedTasks } = useGetAssignedTasks(workspace?.id, true);
+  const triage = useTriageCount(workspace?.id);
 
   if (!workspace) return null;
 
@@ -70,6 +72,14 @@ export function NavMain() {
   ];
 
   // Invitations to other workspaces only matter while one is waiting.
+  if (triage.enabled)
+    navItems.splice(2, 0, {
+      title: t("parity:triage.title"),
+      icon: Inbox,
+      url: `${homeUrl}/triage`,
+      count: triage.data?.count,
+      emphasizeCount: true,
+    });
   if (invitations.length > 0) {
     navItems.push({
       title: t("navigation:sidebar.invitations"),

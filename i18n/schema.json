@@ -19026,6 +19026,108 @@
 						}
 					},
 					"required": ["photos"]
+				},
+				"parity": {
+					"type": "object",
+					"additionalProperties": false,
+					"properties": {
+						"signInTagline": {
+							"type": "string"
+						},
+						"triage": {
+							"type": "object",
+							"additionalProperties": false,
+							"properties": {
+								"title": {
+									"type": "string"
+								},
+								"newItem": {
+									"type": "string"
+								},
+								"send": {
+									"type": "string"
+								},
+								"accept": {
+									"type": "string"
+								},
+								"duplicate": {
+									"type": "string"
+								},
+								"decline": {
+									"type": "string"
+								},
+								"snooze": {
+									"type": "string"
+								},
+								"owner": {
+									"type": "string"
+								},
+								"enabled": {
+									"type": "string"
+								},
+								"intake": {
+									"type": "string"
+								},
+								"rotate": {
+									"type": "string"
+								},
+								"comment": {
+									"type": "string"
+								},
+								"until": {
+									"type": "string"
+								},
+								"original": {
+									"type": "string"
+								},
+								"received": {
+									"type": "string"
+								},
+								"intakeDescription": {
+									"type": "string"
+								},
+								"unavailable": {
+									"type": "string"
+								},
+								"description": {
+									"type": "string"
+								},
+								"integration": {
+									"type": "string"
+								},
+								"duplicateOf": {
+									"type": "string"
+								},
+								"duplicatedBy": {
+									"type": "string"
+								}
+							},
+							"required": [
+								"title",
+								"newItem",
+								"send",
+								"accept",
+								"duplicate",
+								"decline",
+								"snooze",
+								"owner",
+								"enabled",
+								"intake",
+								"rotate",
+								"comment",
+								"until",
+								"original",
+								"received",
+								"intakeDescription",
+								"unavailable",
+								"description",
+								"integration",
+								"duplicateOf",
+								"duplicatedBy"
+							]
+						}
+					},
+					"required": ["signInTagline", "triage"]
 				}
 			},
 			"required": [
@@ -19060,8 +19162,156 @@
 				"workspaceSettings",
 				"members",
 				"labels",
-				"permissions"
+				"permissions",
+				"parity"
 			]
+		},
+		"parity": {
+			"type": "object",
+			"additionalProperties": false,
+			"properties": {
+				"categories": {
+					"type": "object",
+					"additionalProperties": false,
+					"properties": {
+						"title": {
+							"type": "string"
+						},
+						"description": {
+							"type": "string"
+						},
+						"backlog": {
+							"type": "string"
+						},
+						"unstarted": {
+							"type": "string"
+						},
+						"started": {
+							"type": "string"
+						},
+						"completed": {
+							"type": "string"
+						},
+						"canceled": {
+							"type": "string"
+						},
+						"label": {
+							"type": "string"
+						},
+						"loading": {
+							"type": "string"
+						},
+						"error": {
+							"type": "string"
+						}
+					},
+					"required": [
+						"title",
+						"description",
+						"backlog",
+						"unstarted",
+						"started",
+						"completed",
+						"canceled",
+						"label",
+						"loading",
+						"error"
+					]
+				},
+				"triage": {
+					"type": "object",
+					"additionalProperties": false,
+					"properties": {
+						"title": {
+							"type": "string"
+						},
+						"newItem": {
+							"type": "string"
+						},
+						"send": {
+							"type": "string"
+						},
+						"accept": {
+							"type": "string"
+						},
+						"duplicate": {
+							"type": "string"
+						},
+						"decline": {
+							"type": "string"
+						},
+						"snooze": {
+							"type": "string"
+						},
+						"owner": {
+							"type": "string"
+						},
+						"enabled": {
+							"type": "string"
+						},
+						"intake": {
+							"type": "string"
+						},
+						"rotate": {
+							"type": "string"
+						},
+						"comment": {
+							"type": "string"
+						},
+						"until": {
+							"type": "string"
+						},
+						"original": {
+							"type": "string"
+						},
+						"received": {
+							"type": "string"
+						},
+						"intakeDescription": {
+							"type": "string"
+						},
+						"unavailable": {
+							"type": "string"
+						},
+						"description": {
+							"type": "string"
+						},
+						"integration": {
+							"type": "string"
+						},
+						"duplicateOf": {
+							"type": "string"
+						},
+						"duplicatedBy": {
+							"type": "string"
+						}
+					},
+					"required": [
+						"title",
+						"newItem",
+						"send",
+						"accept",
+						"duplicate",
+						"decline",
+						"snooze",
+						"owner",
+						"enabled",
+						"intake",
+						"rotate",
+						"comment",
+						"until",
+						"original",
+						"received",
+						"intakeDescription",
+						"unavailable",
+						"description",
+						"integration",
+						"duplicateOf",
+						"duplicatedBy"
+					]
+				}
+			},
+			"required": ["categories", "triage"]
 		}
 	},
 	"required": [
@@ -19078,6 +19328,7 @@
 		"publicProject",
 		"press",
 		"landing",
-		"mobile"
+		"mobile",
+		"parity"
 	]
 }

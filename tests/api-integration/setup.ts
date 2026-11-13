@@ -2,6 +2,40 @@ import { existsSync, readFileSync } from "node:fs";
 import { dirname, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 import { afterEach, vi } from "vite-plus/test";
+import {
+  drainBackgroundWork,
+  trackBackgroundWork,
+} from "./helpers/background-work";
+
+vi.mock("../../apps/api/src/events", async (importOriginal) => {
+  const actual =
+    await importOriginal<typeof import("../../apps/api/src/events")>();
+  return {
+    ...actual,
+    subscribeToEvent: <T>(
+      eventType: string,
+      handler: (data: T) => Promise<void>,
+    ) =>
+      actual.subscribeToEvent<T>(eventType, (data) =>
+        trackBackgroundWork(handler(data)),
+      ),
+  };
+});
+
+vi.mock(
+  "../../apps/api/src/notification-preferences/delivery",
+  async (importOriginal) => {
+    const actual =
+      await importOriginal<
+        typeof import("../../apps/api/src/notification-preferences/delivery")
+      >();
+    return {
+      ...actual,
+      deliverNotification: (id: string) =>
+        trackBackgroundWork(actual.deliverNotification(id)),
+    };
+  },
+);
 
 // Prevent dotenv-mono from loading the local .env file during tests.
 // All env vars are set explicitly below; the .env file must be ignored.
@@ -103,6 +137,7 @@ process.env.CUSTOM_OAUTH_MANAGED_PROFILE_FIELDS = "";
 process.env.CUSTOM_OAUTH_ACCOUNT_URL = "";
 process.env.DEVICE_AUTH_CLIENT_IDS = "kaneo-cli";
 
-afterEach(() => {
+afterEach(async () => {
+  await drainBackgroundWork();
   vi.restoreAllMocks();
 });

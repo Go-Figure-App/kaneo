@@ -6,6 +6,7 @@ import useGetConfig from "@/hooks/queries/config/use-get-config";
 import useGetProjects from "@/hooks/queries/project/use-get-projects";
 import useActiveWorkspace from "@/hooks/queries/workspace/use-active-workspace";
 import { useCanImport } from "@/hooks/use-can-import";
+import { useTriageEnabled } from "@/components/parity/triage/queries";
 
 export function useSettingsNav() {
   const { t } = useTranslation();
@@ -16,24 +17,32 @@ export function useSettingsNav() {
   const { data: config } = useGetConfig();
   const { permissions: adminPermissions } = useAdminAccess();
   const { canImport } = useCanImport();
+  const triageEnabled = useTriageEnabled();
 
-  return useMemo(
-    () =>
-      buildSettingsNav({
-        t,
-        workspaceName: workspace?.name,
-        billingEnabled: Boolean(config?.billingEnabled),
-        canImport,
-        adminPermissions,
-        projects: projects ?? [],
-      }),
-    [
+  return useMemo(() => {
+    const nav = buildSettingsNav({
       t,
-      workspace?.name,
-      config?.billingEnabled,
+      workspaceName: workspace?.name,
+      billingEnabled: Boolean(config?.billingEnabled),
       canImport,
       adminPermissions,
-      projects,
-    ],
-  );
+      projects: projects ?? [],
+    });
+    if (triageEnabled)
+      for (const project of nav.projects)
+        project.links.push({
+          id: `project-${project.id}-triage`,
+          label: t("parity:triage.title"),
+          to: `/dashboard/settings/projects/${project.id}/triage`,
+        });
+    return nav;
+  }, [
+    t,
+    workspace?.name,
+    config?.billingEnabled,
+    canImport,
+    adminPermissions,
+    projects,
+    triageEnabled,
+  ]);
 }

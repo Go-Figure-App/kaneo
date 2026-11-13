@@ -5188,7 +5188,30 @@
 			"photos": "Kaneo verwendet deine Fotos, um Bilder an Aufgaben und Kommentare anzuhängen, und für dein Profilbild."
 		},
 		"parity": {
-			"signInTagline": "Melde dich im Projektarbeitsbereich von Go Figure an."
+			"signInTagline": "Melde dich im Projektarbeitsbereich von Go Figure an.",
+			"triage": {
+				"title": "Triage",
+				"newItem": "Neues Triage-Ticket",
+				"send": "Zur Triage senden",
+				"accept": "Annehmen",
+				"duplicate": "Als Duplikat markieren",
+				"decline": "Ablehnen",
+				"snooze": "Zurückstellen",
+				"owner": "Triage-Verantwortliche Person",
+				"enabled": "Triage aktivieren",
+				"intake": "Eingangslink",
+				"rotate": "Eingangslink erneuern",
+				"comment": "Grund für die Ablehnung",
+				"until": "Zurückstellen bis",
+				"original": "Ursprüngliche Aufgabe",
+				"received": "Einreichung erhalten",
+				"intakeDescription": "Alle mit diesem Link können eine Aufgabe zur Prüfung einreichen.",
+				"unavailable": "Triage ist nicht verfügbar",
+				"description": "Prüfe neue Einreichungen, bevor du sie deinem Projekt hinzufügst.",
+				"integration": "Neue Aufgaben aus Integrationen zur Triage senden",
+				"duplicateOf": "Duplikat von",
+				"duplicatedBy": "Dupliziert durch"
+			}
 		}
 	},
 	"parity": {
@@ -5203,6 +5226,29 @@
 			"label": "Kategorie für {{name}}",
 			"loading": "Statuskategorien werden geladen…",
 			"error": "Kategorien konnten nicht gespeichert oder geladen werden. Versuche es erneut."
+		},
+		"triage": {
+			"title": "Triage",
+			"newItem": "Neues Triage-Ticket",
+			"send": "Zur Triage senden",
+			"accept": "Annehmen",
+			"duplicate": "Als Duplikat markieren",
+			"decline": "Ablehnen",
+			"snooze": "Zurückstellen",
+			"owner": "Triage-Verantwortliche Person",
+			"enabled": "Triage aktivieren",
+			"intake": "Eingangslink",
+			"rotate": "Eingangslink erneuern",
+			"comment": "Grund für die Ablehnung",
+			"until": "Zurückstellen bis",
+			"original": "Ursprüngliche Aufgabe",
+			"received": "Einreichung erhalten",
+			"intakeDescription": "Alle mit diesem Link können eine Aufgabe zur Prüfung einreichen.",
+			"unavailable": "Triage ist nicht verfügbar",
+			"description": "Prüfe neue Einreichungen, bevor du sie deinem Projekt hinzufügst.",
+			"integration": "Neue Aufgaben aus Integrationen zur Triage senden",
+			"duplicateOf": "Duplikat von",
+			"duplicatedBy": "Dupliziert durch"
 		}
 	}
 }

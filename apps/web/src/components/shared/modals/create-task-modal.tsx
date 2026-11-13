@@ -81,6 +81,10 @@ import useProjectStore from "@/store/project";
 import type Task from "@/types/task";
 import type { TaskRecurrence } from "@/types/task/recurrence";
 import { getInitialTaskColumn } from "./initial-task-column";
+import {
+  TriageCreateOption,
+  useCreatePendingTask,
+} from "@/components/parity/triage/create-task-option";
 
 type CreateTaskModalProps = {
   open: boolean;
@@ -332,6 +336,8 @@ function CreateTaskModalContent({
   const didSubmitRef = useRef(false);
 
   const { mutateAsync: createTask } = useCreateTask();
+  const { mutateAsync: createPending } = useCreatePendingTask();
+  const [sendToTriage, setSendToTriage] = useState(false);
 
   const { data: rawCustomFields } = useGetCustomFieldsByProject(
     resolvedProjectId,
@@ -531,7 +537,7 @@ function CreateTaskModalContent({
       submittingRef.current ||
       pendingUploadsRef.current > 0 ||
       !canCreateTaskCapability ||
-      awaitingColumns ||
+      (!sendToTriage && awaitingColumns) ||
       !title.trim() ||
       !resolvedProjectId ||
       assigneeUnconfirmed ||
@@ -553,7 +559,7 @@ function CreateTaskModalContent({
     setIsSubmitting(true);
     try {
       let submitStatus = taskStatus;
-      if (!status) {
+      if (!sendToTriage && !status) {
         const workflow = await refetchColumns();
         if (!activeRef.current) return;
         if (workflow.isError || !workflow.data)
@@ -562,7 +568,7 @@ function CreateTaskModalContent({
       }
       didSubmitRef.current = true;
       const savedTask = normalizeTask(
-        await createTask({
+        await (sendToTriage ? createPending : createTask)({
           title: title.trim(),
           description: description.trim() || "",
           userId: selectedUser?.id ?? "",
@@ -605,7 +611,7 @@ function CreateTaskModalContent({
 
       stagedAssetsRef.current = [];
       if (!activeRef.current) return;
-      syncTaskIntoProject(savedTask);
+      if (!sendToTriage) syncTaskIntoProject(savedTask);
       toast.success(t("common:modals.createTask.successCreated"), {
         icon: SquarePlusIcon,
       });
@@ -1285,7 +1291,7 @@ function CreateTaskModalContent({
             </div>
           </div>
 
-          {awaitingColumns && columnsError && (
+          {!sendToTriage && awaitingColumns && columnsError && (
             <div
               role="alert"
               className="flex items-center gap-2 px-6 py-2 text-sm text-muted-foreground"
@@ -1341,7 +1347,7 @@ function CreateTaskModalContent({
                 !resolvedProjectId ||
                 assigneeUnconfirmed ||
                 isSubmitting ||
-                awaitingColumns ||
+                (!sendToTriage && awaitingColumns) ||
                 isPreparingDraft
               }
               aria-busy={isPreparingDraft || isSubmitting}
@@ -1352,6 +1358,13 @@ function CreateTaskModalContent({
                 ? t("activity:comment.editor.uploadingFile")
                 : t("common:modals.createTask.createButton")}
             </Button>
+            <TriageCreateOption
+              workspaceId={workspace?.id}
+              projectId={resolvedProjectId}
+              checked={sendToTriage}
+              onChange={setSendToTriage}
+              disabled={isSubmitting}
+            />
           </DialogFooter>
         </form>
       </DialogContent>

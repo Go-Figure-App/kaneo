@@ -5096,7 +5096,30 @@
 			"photos": "Kaneo は、タスクやコメントへの画像の添付と、プロフィール写真のために写真を使用します。"
 		},
 		"parity": {
-			"signInTagline": "Go Figure のプロジェクトワークスペースにサインインしてください。"
+			"signInTagline": "Go Figure のプロジェクトワークスペースにサインインしてください。",
+			"triage": {
+				"title": "トリアージ",
+				"newItem": "新しいトリアージ項目",
+				"send": "トリアージに送信",
+				"accept": "承認",
+				"duplicate": "重複としてマーク",
+				"decline": "却下",
+				"snooze": "スヌーズ",
+				"owner": "トリアージ担当者",
+				"enabled": "トリアージを有効にする",
+				"intake": "受付リンク",
+				"rotate": "受付リンクを更新",
+				"comment": "却下の理由",
+				"until": "スヌーズ終了日時",
+				"original": "元のタスク",
+				"received": "送信を受け付けました",
+				"intakeDescription": "このリンクを持つ人は誰でも確認用のタスクを送信できます。",
+				"unavailable": "トリアージは利用できません",
+				"description": "新しい依頼を確認してからプロジェクトに追加します。",
+				"integration": "連携で作成された新しいタスクをトリアージに送信",
+				"duplicateOf": "重複元",
+				"duplicatedBy": "重複先"
+			}
 		}
 	},
 	"parity": {
@@ -5111,6 +5134,29 @@
 			"label": "{{name}} のカテゴリ",
 			"loading": "状態カテゴリを読み込み中…",
 			"error": "カテゴリを保存または読み込めませんでした。もう一度お試しください。"
+		},
+		"triage": {
+			"title": "トリアージ",
+			"newItem": "新しいトリアージ項目",
+			"send": "トリアージに送信",
+			"accept": "承認",
+			"duplicate": "重複としてマーク",
+			"decline": "却下",
+			"snooze": "スヌーズ",
+			"owner": "トリアージ担当者",
+			"enabled": "トリアージを有効にする",
+			"intake": "受付リンク",
+			"rotate": "受付リンクを更新",
+			"comment": "却下の理由",
+			"until": "スヌーズ終了日時",
+			"original": "元のタスク",
+			"received": "送信を受け付けました",
+			"intakeDescription": "このリンクを持つ人は誰でも確認用のタスクを送信できます。",
+			"unavailable": "トリアージは利用できません",
+			"description": "新しい依頼を確認してからプロジェクトに追加します。",
+			"integration": "連携で作成された新しいタスクをトリアージに送信",
+			"duplicateOf": "重複元",
+			"duplicatedBy": "重複先"
 		}
 	}
 }

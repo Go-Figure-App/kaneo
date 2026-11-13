@@ -26,7 +26,7 @@ Other design/code differences: startup must seed categories after upstream `migr
 
 ## Configuration and behavior
 
-`PARITY_FEATURES` is a comma-separated allowlist: `foundation,triage,projects,initiatives,roadmap,cycles,insights,views,import`. It defaults to empty. Any recognized feature implies `foundation`; unknown names have no effect. Only foundation functionality is implemented in Phase 0. Restart the API after changing configuration.
+`PARITY_FEATURES` is a comma-separated allowlist: `foundation,triage,projects,initiatives,roadmap,cycles,insights,views,import`. It defaults to empty. Any recognized feature implies `foundation`; unknown names have no effect. Foundation and triage are implemented; later capabilities remain gated until their phases land. Restart the API after changing configuration.
 
 With `PARITY_FEATURES=foundation`, project Workflow settings show state categories, and lifecycle subscribers are enabled. New columns without side rows use deterministic defaults; startup seeds existing columns without overriding manual choices. A canceled/declined/duplicate slug maps to canceled, final columns to completed, backlog/triage to backlog, in-progress/in-review/started/doing to started, and other columns to unstarted. Categories can be reversed in settings without modifying upstream final flags.
 
@@ -216,3 +216,86 @@ The second review identified cross-project history interpretation and timestamp 
 All 11 parity integration cases passed, including three project moves with conflicting custom-state categories and terminal-state events delivered before activity insertion and in reverse order. All 1,649 API unit cases and all 22 workspace typecheck tasks passed. The previous commit's full CI run passed all eight checks; the updated commit must pass CI and review again before merge.
 
 Phase 1 starts after this phase receives approval and its latest CI run is green, as authorized by the maintainer. No new product decision is required before triage work; the importer boundary must be settled before Phase 7.
+
+
+## Phase 0 merged
+
+[PR #1](https://github.com/Go-Figure-App/kaneo/pull/1) merged as `d7b7b71` after CodeRabbit approved the final head and all nine checks passed. The subsequent main-branch CI run `43390076716` passed all eight jobs.
+
+## Phase 1: triage
+
+Enable `PARITY_FEATURES=foundation,triage` to show the workspace Triage inbox, project settings and the iOS Inbox segment. Pending tasks remain excluded from normal boards, assigned-task lists, search, calendar feeds, public descriptions and public assets even if the flag is later disabled. Authorized members can still open their normal task detail to edit fields, comments, labels or attachments. Declined and duplicate submissions appear in the canceled column.
+
+The inbox supports paging and project filters, accept (`1`), duplicate (`2`), decline with a required comment (`3`), and snooze (`H`). Acceptance validates the destination column, assignment and required fields, materializes defaults, and publishes the normal task lifecycle events. Member creation preserves dates, priority, recurrence, custom fields and staged assets. API keys retain their explicit scopes, including assignment permission. Non-null cycle assignment is rejected until Phase 4.
+
+Project settings control triage, its owner, a revocable 256-bit intake token and the GitHub/GitLab/Gitea routing switches. Enabling triage creates a canceled-category column if the project has none. Integration configuration is merged without returning secrets. The anonymous intake route only returns a receipt; it never reveals the project or task. Duplicate notices to intake email addresses contain no private task identifiers, titles or links. Email requires the existing SMTP configuration.
+
+Intake limits apply per API process: 300 requests/minute globally, 20 per IP, 30 per token, with a bounded 2,048-entry map and a 64 KiB request body limit. Unknown client IPs share a bucket. Replicas do not share quotas; Redis remains optional. The five-minute snooze job uses the existing distributed job lease. Lists also treat expired snoozes as due immediately, so a delayed scheduler does not hide work.
+
+MCP adds `list_triage_items`, `create_triage_item`, `accept_triage_item` and `decline_triage_item` through the existing registrar, making them available to both stdio and the API's authenticated remote MCP transport.
+
+### Phase 1 shared-file additions and extensions
+
+Small read predicates are necessary to keep pending reports out of every existing public/list surface. A task-created subscriber alone cannot make integration intake atomic: the original task would already be committed and eligible for outbound sync. Each supported webhook producer therefore calls the parity staging helper inside its transaction and selects the triage event before publishing. Domain behavior stays in parity modules. These integration points exceed the original shared-file target; the maintainer authorized continuing with the closest Linear behavior. No upstream table or upstream migration is altered.
+
+| File | Change and reason |
+| --- | --- |
+| `apps/api/src/index.ts` | Mount anonymous intake before session auth, initialize triage subscribers, keep pending-task assets private. |
+| `apps/api/src/task/controllers/get-tasks.ts` | Exclude pending triage from board queries and their counts. |
+| `apps/api/src/task/controllers/get-task.ts` | Exclude pending tasks from board-card mode; retain authorized detail access. |
+| `apps/api/src/task/controllers/get-assigned-tasks.ts` | Exclude pending reports from assigned-task lists. |
+| `apps/api/src/task/recurrence/create-next-occurrence.ts` | Prevent pending intake from starting a recurring series through ordinary task editing. Decline/duplicate stop the rule atomically and retain it in decision activity. |
+| `apps/api/src/task/get-subtask-counts.ts` | Exclude pending children from visible task counts. |
+| `apps/api/src/task/description-pages.ts` | Exclude pending reports from public descriptions and description searches. |
+| `apps/api/src/project/controllers/get-projects.ts` | Exclude pending reports from project task statistics. |
+| `apps/api/src/search/controllers/global-search.ts` | Exclude pending reports from title, identifier, activity and comment search. |
+| `apps/api/src/calendar-feed/service.ts` | Exclude pending reports from published calendar feeds. |
+| `apps/api/src/scheduler/index.ts` | Register and stop the leased triage snooze job. |
+| `apps/api/src/task-relation/schema.ts` | Allow the design’s duplicate relation type. |
+| `apps/api/src/task-relation/response.ts` | Describe duplicate relations in the public contract. |
+| `apps/docs/openapi.json` | Generate the triage API contract and duplicate relation enum. |
+| `apps/mobile/src/app/(app)/index.tsx` | Mount the planning Inbox and combine unread and triage counts. |
+| `apps/mobile/src/app/(app)/task/new.tsx` | Mount the triage switch and route creation through the parity endpoint. |
+| `apps/mobile/src/features/task/sections.tsx` | Display duplicate relationships in native task detail. |
+| `apps/web/src/components/inbox/inbox-task.tsx` | Allow triage detail to show the existing Markdown description renderer. |
+| `apps/web/src/components/nav-main.tsx` | Add the feature-gated Triage entry and count. |
+| `apps/web/src/components/settings/nav/use-settings-nav.ts` | Add feature-gated project triage settings navigation. |
+| `apps/web/src/components/shared/modals/create-task-modal.tsx` | Mount the triage option; preserve task inputs and avoid optimistic board insertion for pending items. |
+| `apps/web/src/components/task/sections/relation-tag.tsx` | Display duplicate relation labels. |
+| `apps/web/src/components/task/task-relations.tsx` | Group duplicate relationships in both directions and navigate using the linked task’s project. |
+| `apps/web/src/fetchers/task-relation/create-task-relation.ts` | Include duplicate in the typed relation union. |
+| `apps/web/src/routeTree.gen.ts` | Generate the new inbox, settings and public-intake routes. |
+| `i18n/en-US.json` | Add web and mobile triage copy; all 20 existing locale catalogs translate the same new keys. |
+| `i18n/schema.json` | Synchronize only the parity namespaces; preserve unrelated inherited schema entries. |
+| `packages/mcp/src/tools/register.ts` | Register the four triage tools. |
+| `tests/api-integration/helpers/database.ts` | Apply additive parity migrations after upstream migrations; drain real background event/delivery work before truncating fixtures. |
+| `tests/api-integration/setup.ts` | Track real asynchronous event subscribers and notification deliveries in tests, draining before mock restoration to prevent teardown deadlocks and cross-test writes. |
+| `apps/api/src/billing/controllers/require-entitlement.ts` | Accept an existing database transaction for triage entitlement checks. |
+| `apps/api/src/billing/controllers/get-workspace-billing.ts` | Carry that transaction through billing lookup, trial claiming and conflict recovery to avoid nested pool acquisition. |
+| `tests/api-integration/mocks/email.ts` | Provide the existing notification-email export in the test mock. |
+| `apps/api/src/plugins/sync/eligibility.ts` | Prevent pending intake from outbound sync without setting a sticky filter-pause marker; acceptance restores normal eligibility. |
+| `apps/api/src/plugins/github/webhooks/issue-opened.ts` | Stage opted-in incoming tasks atomically and publish the triage event instead of outbound task creation. |
+| `apps/api/src/plugins/gitlab/webhooks/issue-opened.ts` | Stage opted-in incoming tasks atomically and publish the triage event instead of outbound task creation. |
+| `apps/api/src/plugins/gitea/webhooks/issue-opened.ts` | Stage opted-in incoming tasks atomically and publish the triage event instead of outbound task creation. |
+
+The feature-owned API/mobile/web modules, routes, tests, partial queue index and migration metadata live in the parity locations. The existing parity browser override now enables triage as well as foundation. CI already discovers new workspace tests, integration files and `*.parity.ts` browser flows; no new deployment workflow is introduced.
+
+### Phase 1 verification
+
+Automated public fixtures use synthetic local data. An additional private local rehearsal copied five authorized Linear issues, preserving titles and complete Markdown descriptions (up to 8,521 characters), hiding all five from the board before acceptance and showing them afterward. The source data is outside the repository. The browser flow checks anonymous intake, two-tab live updates, all four decisions and revoked-link rejection. Native iPhone 17 / iOS 27 verification includes the combined badge, swipe acceptance and decision sheets. A native modal-transition bug found during this check was fixed by retaining one sheet while changing its content.
+
+The focused API suite covers concurrent decisions, project access, API-key scopes, defaults, preserved member fields, staged-asset ownership, public asset privacy, integration rollback, token rotation and the leased snooze job. Provider regression suites passed 207 tests (three inherited skips), including all three integrations with the feature enabled, disabled and opted out. The final Docker image passed three upstream browser flows with parity disabled and both parity flows with it enabled. The complete local integration run passed 2,230 tests and exposed two failures (a cached pre-fix recurrence module and a connection timeout under load); both failed files plus upstream recurrence passed fresh against final source, 24/24, without changing assertions or timeouts. Exact final CI and review results are recorded on the phase PR before merge. No production migration, import, Railway change or distribution submission is included.
+
+Phase 1 review corrections add transaction-aware billing (including trial-claim race recovery), exclude pending activity/comment search, reject declined duplicate targets, separate the project-create route from workspace-list routes, and use the shared nullable timestamp contract. Web regression tests cover focused shortcuts, creating pending tasks while columns fail to load, and queue shrinkage across pages. Native duplicate search shows loading, empty and retry states. Cross-project duplicate links use the target project.
+
+The initial PR CI passed quality, workspace units, Docker/browser tests and three integration shards; one shard exposed an inherited background-notification query racing the next fixture's TRUNCATE. Integration setup now tracks real subscriber/delivery promises and drains them before reset and mock teardown without changing production event timing or test timeouts. Focused cleanup, triage, existing billing, modal and client-contract tests passed after these corrections.
+
+## Manufact MCP assessment
+
+Reviewed 2026-11-13. Kaneo already serves authenticated MCP at `/api/mcp`; both HTTP transports and stdio use `packages/mcp/src/tools/register.ts`. Extend that registrar with each planning phase so authorization continues through the same API. The published upstream npm package does not contain this fork's new tools; use our build or the fork's endpoint after an approved deployment.
+
+The proposed first integration is a direct external connection to the existing endpoint for inspection and evaluations. Manufact supports other MCP SDKs and existing OAuth, so this does not require rewriting Kaneo onto mcp-use. External connections currently require setup assistance. A proxy or separately hosted server is a later routing/deployment decision. See [integration options](https://docs.manufact.com/dashboard/framework-and-cloud) and [OAuth test accounts](https://docs.manufact.com/dashboard/dashboard-oauth).
+
+Published base usage rates are $0.10/1,000 tool calls, $0.70/evaluation, $0.07/build minute, $0.15/GB egress and $5/million managed-chat tokens. These consume a shared allowance; a $100 grant is not an unlimited plan. Account balance, grant terms and expiry have not been verified. The [billing documentation](https://docs.manufact.com/dashboard/billing) lists external connections on every plan, while the [pricing table](https://manufact.com/pricing) lists them only on Enterprise; confirm the account entitlement before choosing a plan. No subscription, deployment or credit consumption was initiated.
+
+Once the account and deployment are approved, verify the credit balance and overage limit, connect a dedicated test account through Kaneo OAuth, and evaluate tool discovery, pending-item creation, acceptance, required decline comments and hidden-project denial against a disposable workspace. Keep real Linear exports out of public fixtures and Manufact payload capture. Authenticate through the official sign-in flow, without putting credentials in source files or PR comments.

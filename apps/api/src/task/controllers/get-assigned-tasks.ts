@@ -18,6 +18,7 @@ import {
 } from "../../database/schema";
 import { projectAccessCondition } from "../../project-access/project-access-condition";
 import { taskIsCompleted } from "../task-is-completed";
+import { acceptedTaskCondition } from "../../parity/triage/visibility";
 
 // Home and My tasks render this list whole, so it stays one bounded page.
 export const ASSIGNED_TASKS_LIMIT = 100;
@@ -36,6 +37,7 @@ async function getAssignedTasks(
   countOnly = false,
 ) {
   const openAndMine = and(
+    acceptedTaskCondition(taskTable.id),
     eq(projectTable.workspaceId, workspaceId),
     isNull(projectTable.archivedAt),
     eq(taskTable.userId, userId),

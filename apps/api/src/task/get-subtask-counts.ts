@@ -3,6 +3,7 @@ import { projectTable, taskRelationTable, taskTable } from "../database/schema";
 import { projectAccessCondition } from "../project-access/project-access-condition";
 import type { TaskReadDatabase } from "./bounded-read";
 import { taskIsCompleted } from "./task-is-completed";
+import { acceptedTaskCondition } from "../parity/triage/visibility";
 
 /** Load direct-child progress for the entire page, independent of board filters. */
 export async function getSubtaskCounts(
@@ -30,6 +31,7 @@ export async function getSubtaskCounts(
     .innerJoin(projectTable, eq(taskTable.projectId, projectTable.id))
     .where(
       and(
+        acceptedTaskCondition(taskTable.id),
         inArray(taskRelationTable.sourceTaskId, taskIds),
         eq(taskRelationTable.relationType, "subtask"),
         eq(projectTable.workspaceId, workspaceId),

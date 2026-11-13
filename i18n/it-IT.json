@@ -5280,7 +5280,30 @@
 			"photos": "Kaneo usa le tue foto per allegare immagini ad attività e commenti e per la tua foto profilo."
 		},
 		"parity": {
-			"signInTagline": "Accedi allo spazio di lavoro dei progetti di Go Figure."
+			"signInTagline": "Accedi allo spazio di lavoro dei progetti di Go Figure.",
+			"triage": {
+				"title": "Triage",
+				"newItem": "Nuovo elemento da valutare",
+				"send": "Invia al triage",
+				"accept": "Accetta",
+				"duplicate": "Segna come duplicato",
+				"decline": "Rifiuta",
+				"snooze": "Posticipa",
+				"owner": "Responsabile del triage",
+				"enabled": "Abilita triage",
+				"intake": "Link di ricezione",
+				"rotate": "Rinnova il link di ricezione",
+				"comment": "Motivo del rifiuto",
+				"until": "Posticipa fino al",
+				"original": "Attività originale",
+				"received": "Richiesta ricevuta",
+				"intakeDescription": "Chiunque abbia questo link può inviare un’attività da esaminare.",
+				"unavailable": "Il triage non è disponibile",
+				"description": "Esamina le nuove richieste prima di aggiungerle al progetto.",
+				"integration": "Invia al triage le nuove attività delle integrazioni",
+				"duplicateOf": "Duplicato di",
+				"duplicatedBy": "Duplicato da"
+			}
 		}
 	},
 	"parity": {
@@ -5295,6 +5318,29 @@
 			"label": "Categoria per {{name}}",
 			"loading": "Caricamento delle categorie di stato…",
 			"error": "Impossibile salvare o caricare le categorie. Riprova."
+		},
+		"triage": {
+			"title": "Triage",
+			"newItem": "Nuovo elemento da valutare",
+			"send": "Invia al triage",
+			"accept": "Accetta",
+			"duplicate": "Segna come duplicato",
+			"decline": "Rifiuta",
+			"snooze": "Posticipa",
+			"owner": "Responsabile del triage",
+			"enabled": "Abilita triage",
+			"intake": "Link di ricezione",
+			"rotate": "Rinnova il link di ricezione",
+			"comment": "Motivo del rifiuto",
+			"until": "Posticipa fino al",
+			"original": "Attività originale",
+			"received": "Richiesta ricevuta",
+			"intakeDescription": "Chiunque abbia questo link può inviare un’attività da esaminare.",
+			"unavailable": "Il triage non è disponibile",
+			"description": "Esamina le nuove richieste prima di aggiungerle al progetto.",
+			"integration": "Invia al triage le nuove attività delle integrazioni",
+			"duplicateOf": "Duplicato di",
+			"duplicatedBy": "Duplicato da"
 		}
 	}
 }

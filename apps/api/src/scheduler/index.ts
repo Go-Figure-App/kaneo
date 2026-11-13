@@ -8,6 +8,7 @@ import { checkDueDateReminders } from "./due-date-reminders";
 import { checkProjectWebhookReminders } from "./project-webhook-reminders";
 import { reconcileWorkspaceSeats } from "./seat-reconciliation";
 import { checkTrialReminders } from "./trial-reminders";
+import { wakeSnoozedTriage } from "../parity/triage/snooze-tick";
 
 const jobs: Cron[] = [];
 
@@ -49,6 +50,13 @@ function withCheckIn<T>(name: string, fn: () => Promise<T>) {
 }
 
 export function initializeScheduler(): void {
+  jobs.push(
+    new Cron(
+      "*/5 * * * *",
+      { protect: true },
+      withCheckIn("parity-triage-snooze", wakeSnoozedTriage),
+    ),
+  );
   jobs.push(
     new Cron(
       "* * * * *",

@@ -33,6 +33,14 @@ export function isSmtpConfigured(): boolean {
   return false;
 }
 
+export async function sendNotificationEmail(
+  _to: string,
+  _subject: EmailSubject,
+  _data: unknown,
+): Promise<EmailResult> {
+  return { success: false, reason: "SMTP_NOT_CONFIGURED" };
+}
+
 export async function sendPasswordResetEmail(
   _to: string,
   _subject: EmailSubject,

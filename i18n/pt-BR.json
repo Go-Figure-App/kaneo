@@ -5280,7 +5280,30 @@
 			"photos": "O Kaneo usa suas fotos para anexar imagens a tarefas e comentários e para sua foto de perfil."
 		},
 		"parity": {
-			"signInTagline": "Entre no espaço de trabalho de projetos do Go Figure."
+			"signInTagline": "Entre no espaço de trabalho de projetos do Go Figure.",
+			"triage": {
+				"title": "Triagem",
+				"newItem": "Novo item de triagem",
+				"send": "Enviar para triagem",
+				"accept": "Aceitar",
+				"duplicate": "Marcar como duplicado",
+				"decline": "Recusar",
+				"snooze": "Adiar",
+				"owner": "Responsável pela triagem",
+				"enabled": "Ativar triagem",
+				"intake": "Link de entrada",
+				"rotate": "Renovar link de entrada",
+				"comment": "Motivo da recusa",
+				"until": "Adiar até",
+				"original": "Tarefa original",
+				"received": "Solicitação recebida",
+				"intakeDescription": "Qualquer pessoa com este link pode enviar uma tarefa para análise.",
+				"unavailable": "A triagem está indisponível",
+				"description": "Analise novas solicitações antes de adicioná-las ao projeto.",
+				"integration": "Enviar novas tarefas de integrações para triagem",
+				"duplicateOf": "Duplicado de",
+				"duplicatedBy": "Duplicado por"
+			}
 		}
 	},
 	"parity": {
@@ -5295,6 +5318,29 @@
 			"label": "Categoria de {{name}}",
 			"loading": "Carregando categorias de status…",
 			"error": "Não foi possível salvar ou carregar as categorias. Tente novamente."
+		},
+		"triage": {
+			"title": "Triagem",
+			"newItem": "Novo item de triagem",
+			"send": "Enviar para triagem",
+			"accept": "Aceitar",
+			"duplicate": "Marcar como duplicado",
+			"decline": "Recusar",
+			"snooze": "Adiar",
+			"owner": "Responsável pela triagem",
+			"enabled": "Ativar triagem",
+			"intake": "Link de entrada",
+			"rotate": "Renovar link de entrada",
+			"comment": "Motivo da recusa",
+			"until": "Adiar até",
+			"original": "Tarefa original",
+			"received": "Solicitação recebida",
+			"intakeDescription": "Qualquer pessoa com este link pode enviar uma tarefa para análise.",
+			"unavailable": "A triagem está indisponível",
+			"description": "Analise novas solicitações antes de adicioná-las ao projeto.",
+			"integration": "Enviar novas tarefas de integrações para triagem",
+			"duplicateOf": "Duplicado de",
+			"duplicatedBy": "Duplicado por"
 		}
 	}
 }

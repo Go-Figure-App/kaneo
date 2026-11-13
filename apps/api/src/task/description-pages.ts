@@ -3,6 +3,7 @@ import { HTTPException } from "hono/http-exception";
 import { projectTable, taskTable } from "../database/schema";
 import { workspaceIsActive } from "../workspace/archive/active-workspace-sql";
 import { boundedTaskRead } from "./bounded-read";
+import { acceptedTaskCondition } from "../parity/triage/visibility";
 
 export const BOARD_DESCRIPTION_MAX_BYTES = 64 * 1024;
 export const DESCRIPTION_CHUNK_CHARACTERS = 32 * 1024;
@@ -24,6 +25,7 @@ export async function getDescriptionPage(
     const conditions = [eq(taskTable.id, taskId)];
     if (options.publicProjectId)
       conditions.push(
+        acceptedTaskCondition(taskTable.id),
         eq(taskTable.projectId, options.publicProjectId),
         eq(projectTable.isPublic, true),
         workspaceIsActive(projectTable.workspaceId),
@@ -69,6 +71,7 @@ export async function getDeferredDescriptionMatches(
       .where(
         and(
           eq(taskTable.projectId, projectId),
+          acceptedTaskCondition(taskTable.id),
           descriptionDeferred,
           sql`strpos(lower(${taskTable.description}), lower(${query})) > 0`,
           after ? gt(taskTable.id, after) : undefined,

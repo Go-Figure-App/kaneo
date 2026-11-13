@@ -17,6 +17,7 @@ import {
   parityFeatures,
   requireParity,
 } from "./foundation/features";
+import triage from "./triage";
 
 const categorySchema = z.enum(categories);
 const columnSchema = z.object({
@@ -97,6 +98,7 @@ const updateRoute = createRoute({
 });
 
 export default apiRouter()
+  .route("/triage", triage)
   .openapi(featuresRoute, (c) => c.json({ features: enabledFeatures() }, 200))
   .openapi(columnsRoute, async (c) =>
     c.json(await getCategories(c.req.valid("param").projectId), 200),

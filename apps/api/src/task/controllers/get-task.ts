@@ -6,6 +6,7 @@ import { getSubtaskCounts } from "../get-subtask-counts";
 import { and, eq, sql } from "drizzle-orm";
 import { HTTPException } from "hono/http-exception";
 import db from "../../database";
+import { acceptedTaskCondition } from "../../parity/triage/visibility";
 import {
   taskTable,
   userTable,
@@ -42,7 +43,12 @@ async function getTask(taskId: string, board = false, userId?: string) {
     })
     .from(taskTable)
     .leftJoin(userTable, eq(taskTable.userId, userTable.id))
-    .where(eq(taskTable.id, taskId))
+    .where(
+      and(
+        eq(taskTable.id, taskId),
+        board ? acceptedTaskCondition(taskTable.id) : undefined,
+      ),
+    )
     .limit(1);
 
   if (!task.length || !task[0]) {

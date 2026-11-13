@@ -57,6 +57,8 @@ const relationOrder: Record<RelationKind, number> = {
   blocked_by: 0,
   blocks: 1,
   related: 2,
+  duplicate: 3,
+  duplicated_by: 4,
 };
 
 type TaskRelationsProps = {
@@ -135,7 +137,11 @@ export default function TaskRelations({
           ? isSource
             ? "blocks"
             : "blocked_by"
-          : "related";
+          : rel.relationType === "duplicate"
+            ? isSource
+              ? "duplicate"
+              : "duplicated_by"
+            : "related";
       return [{ id: rel.id, kind, task: linkedTask }];
     })
     .sort((a, b) => relationOrder[a.kind] - relationOrder[b.kind]);
@@ -228,10 +234,13 @@ export default function TaskRelations({
     deleteRelation.mutate(relationId);
   };
 
-  const handleNavigateToTask = (linkedTaskId: string) => {
+  const handleNavigateToTask = (
+    linkedTaskId: string,
+    linkedProjectId: string,
+  ) => {
     navigate({
       to: "/dashboard/workspace/$workspaceId/project/$projectId/task/$taskId",
-      params: { workspaceId, projectId, taskId: linkedTaskId },
+      params: { workspaceId, projectId: linkedProjectId, taskId: linkedTaskId },
     });
   };
 
@@ -317,7 +326,9 @@ export default function TaskRelations({
                     )}
                     title={item.task.title}
                     done={isFinal}
-                    onOpen={() => handleNavigateToTask(item.task.id)}
+                    onOpen={() =>
+                      handleNavigateToTask(item.task.id, item.task.projectId)
+                    }
                     tag={<RelationTag kind={item.kind} />}
                     assignee={
                       <ReferenceAssigneeButton
@@ -332,7 +343,9 @@ export default function TaskRelations({
 
                 <ContextMenuContent className="w-40">
                   <ContextMenuItem
-                    onClick={() => handleNavigateToTask(item.task.id)}
+                    onClick={() =>
+                      handleNavigateToTask(item.task.id, item.task.projectId)
+                    }
                   >
                     <span>{t("tasks:relations.openTask")}</span>
                   </ContextMenuItem>

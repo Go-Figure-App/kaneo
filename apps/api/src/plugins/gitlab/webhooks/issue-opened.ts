@@ -1,3 +1,4 @@
+import { stageIntegrationTriage } from "../../../parity/triage/integration-intake";
 import { acceptsIssue } from "../../sync/rules";
 import { importIssueLabels } from "../../sync/issue-labels";
 import { canSyncTask } from "../../sync/eligibility";
@@ -176,13 +177,18 @@ export async function handleGitlabIssueOpened(
         payload.labels,
         tx,
       );
+      const stagedForTriage = await stageIntegrationTriage(
+        tx,
+        task,
+        integration,
+      );
       const eligible = await canSyncTask(
         task.id,
         integration.id,
         tx,
         integration.config,
       );
-      return { task, link, linkMetadata, eligible };
+      return { task, link, linkMetadata, eligible, stagedForTriage };
     });
     if (!result) continue;
     const {
@@ -190,18 +196,22 @@ export async function handleGitlabIssueOpened(
       link: issueLink,
       linkMetadata,
       eligible,
+      stagedForTriage,
     } = result;
 
-    await publishEvent("task.created", {
-      ...createdTask,
-      taskId: createdTask.id,
-      userId: createdTask.userId ?? "",
-      type: "task",
-      content: null,
-      source: "gitlab",
-      externalId: issue.iid.toString(),
-      actor: author ?? "gitlab-webhook",
-    });
+    await publishEvent(
+      stagedForTriage ? "parity.triage_created" : "task.created",
+      {
+        ...createdTask,
+        taskId: createdTask.id,
+        userId: createdTask.userId ?? "",
+        type: "task",
+        content: null,
+        source: "gitlab",
+        externalId: issue.iid.toString(),
+        actor: author ?? "gitlab-webhook",
+      },
+    );
     if (!eligible) continue;
     const write = createIssueWrite(
       {

@@ -2,6 +2,7 @@ import { and, count, eq, isNull, min, sql } from "drizzle-orm";
 import db from "../../database";
 import { projectTable, taskTable } from "../../database/schema";
 import { projectAccessCondition } from "../../project-access/project-access-condition";
+import { acceptedTaskCondition } from "../../parity/triage/visibility";
 
 type ProjectStatistics = {
   completionPercentage: number;
@@ -40,12 +41,15 @@ async function getProjectStatistics(
     .from(taskTable)
     .innerJoin(projectTable, eq(taskTable.projectId, projectTable.id))
     .where(
-      includeArchived
-        ? eq(projectTable.workspaceId, workspaceId)
-        : and(
-            eq(projectTable.workspaceId, workspaceId),
-            isNull(projectTable.archivedAt),
-          ),
+      and(
+        acceptedTaskCondition(taskTable.id),
+        includeArchived
+          ? eq(projectTable.workspaceId, workspaceId)
+          : and(
+              eq(projectTable.workspaceId, workspaceId),
+              isNull(projectTable.archivedAt),
+            ),
+      ),
     )
     .groupBy(taskTable.projectId)
     .having(projectAccessCondition(userId, taskTable.projectId));

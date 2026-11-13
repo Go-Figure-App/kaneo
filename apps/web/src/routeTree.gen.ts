@@ -23,6 +23,7 @@ import { Route as AuthSignUpRouteImport } from './routes/auth/sign-up'
 import { Route as AuthVerifyOtpRouteImport } from './routes/auth/verify-otp'
 import { Route as DeviceIndexRouteImport } from './routes/device/index'
 import { Route as DeviceApproveRouteImport } from './routes/device/approve'
+import { Route as IntakeTokenRouteImport } from './routes/intake/$token'
 import { Route as McpAuthorizeRouteImport } from './routes/mcp.authorize'
 import { Route as PublicProjectProjectIdRouteImport } from './routes/public-project.$projectId'
 import { Route as LayoutAuthenticatedDashboardRouteImport } from './routes/_layout/_authenticated/dashboard'
@@ -65,10 +66,12 @@ import { Route as LayoutAuthenticatedDashboardWorkspaceWorkspaceIdMembersRouteIm
 import { Route as LayoutAuthenticatedDashboardWorkspaceWorkspaceIdMyTasksRouteImport } from './routes/_layout/_authenticated/dashboard/workspace/$workspaceId/my-tasks'
 import { Route as LayoutAuthenticatedDashboardWorkspaceWorkspaceIdProjectsRouteImport } from './routes/_layout/_authenticated/dashboard/workspace/$workspaceId/projects'
 import { Route as LayoutAuthenticatedDashboardWorkspaceWorkspaceIdSearchRouteImport } from './routes/_layout/_authenticated/dashboard/workspace/$workspaceId/search'
+import { Route as LayoutAuthenticatedDashboardWorkspaceWorkspaceIdTriageRouteImport } from './routes/_layout/_authenticated/dashboard/workspace/$workspaceId/triage'
 import { Route as LayoutAuthenticatedDashboardSettingsProjectsProjectIdCalendarRouteImport } from './routes/_layout/_authenticated/dashboard/settings/projects/$projectId/calendar'
 import { Route as LayoutAuthenticatedDashboardSettingsProjectsProjectIdCustomFieldsRouteImport } from './routes/_layout/_authenticated/dashboard/settings/projects/$projectId/custom-fields'
 import { Route as LayoutAuthenticatedDashboardSettingsProjectsProjectIdGeneralRouteImport } from './routes/_layout/_authenticated/dashboard/settings/projects/$projectId/general'
 import { Route as LayoutAuthenticatedDashboardSettingsProjectsProjectIdIntegrationsRouteImport } from './routes/_layout/_authenticated/dashboard/settings/projects/$projectId/integrations'
+import { Route as LayoutAuthenticatedDashboardSettingsProjectsProjectIdTriageRouteImport } from './routes/_layout/_authenticated/dashboard/settings/projects/$projectId/triage'
 import { Route as LayoutAuthenticatedDashboardSettingsProjectsProjectIdVisibilityRouteImport } from './routes/_layout/_authenticated/dashboard/settings/projects/$projectId/visibility'
 import { Route as LayoutAuthenticatedDashboardSettingsProjectsProjectIdWorkflowRouteImport } from './routes/_layout/_authenticated/dashboard/settings/projects/$projectId/workflow'
 import { Route as LayoutAuthenticatedDashboardWorkspaceWorkspaceIdProjectProjectIdIndexRouteImport } from './routes/_layout/_authenticated/dashboard/workspace/$workspaceId/project/$projectId/index'
@@ -145,6 +148,11 @@ const DeviceApproveRoute = DeviceApproveRouteImport.update({
   id: '/approve',
   path: '/approve',
   getParentRoute: () => DeviceRoute,
+} as any)
+const IntakeTokenRoute = IntakeTokenRouteImport.update({
+  id: '/intake/$token',
+  path: '/intake/$token',
+  getParentRoute: () => rootRouteImport,
 } as any)
 const McpAuthorizeRoute = McpAuthorizeRouteImport.update({
   id: '/mcp/authorize',
@@ -398,6 +406,12 @@ const LayoutAuthenticatedDashboardWorkspaceWorkspaceIdSearchRoute =
     path: '/search',
     getParentRoute: () => LayoutAuthenticatedDashboardWorkspaceWorkspaceIdRoute,
   } as any)
+const LayoutAuthenticatedDashboardWorkspaceWorkspaceIdTriageRoute =
+  LayoutAuthenticatedDashboardWorkspaceWorkspaceIdTriageRouteImport.update({
+    id: '/triage',
+    path: '/triage',
+    getParentRoute: () => LayoutAuthenticatedDashboardWorkspaceWorkspaceIdRoute,
+  } as any)
 const LayoutAuthenticatedDashboardSettingsProjectsProjectIdCalendarRoute =
   LayoutAuthenticatedDashboardSettingsProjectsProjectIdCalendarRouteImport.update(
     {
@@ -427,6 +441,14 @@ const LayoutAuthenticatedDashboardSettingsProjectsProjectIdIntegrationsRoute =
     {
       id: '/$projectId/integrations',
       path: '/$projectId/integrations',
+      getParentRoute: () => LayoutAuthenticatedDashboardSettingsProjectsRoute,
+    } as any,
+  )
+const LayoutAuthenticatedDashboardSettingsProjectsProjectIdTriageRoute =
+  LayoutAuthenticatedDashboardSettingsProjectsProjectIdTriageRouteImport.update(
+    {
+      id: '/$projectId/triage',
+      path: '/$projectId/triage',
       getParentRoute: () => LayoutAuthenticatedDashboardSettingsProjectsRoute,
     } as any,
   )
@@ -513,6 +535,7 @@ export interface FileRoutesByFullPath {
   '/auth/sign-up': typeof AuthSignUpRoute
   '/auth/verify-otp': typeof AuthVerifyOtpRoute
   '/device/approve': typeof DeviceApproveRoute
+  '/intake/$token': typeof IntakeTokenRoute
   '/mcp/authorize': typeof McpAuthorizeRoute
   '/public-project/$projectId': typeof PublicProjectProjectIdRoute
   '/device/': typeof DeviceIndexRoute
@@ -554,12 +577,14 @@ export interface FileRoutesByFullPath {
   '/dashboard/workspace/$workspaceId/my-tasks': typeof LayoutAuthenticatedDashboardWorkspaceWorkspaceIdMyTasksRoute
   '/dashboard/workspace/$workspaceId/projects': typeof LayoutAuthenticatedDashboardWorkspaceWorkspaceIdProjectsRoute
   '/dashboard/workspace/$workspaceId/search': typeof LayoutAuthenticatedDashboardWorkspaceWorkspaceIdSearchRoute
+  '/dashboard/workspace/$workspaceId/triage': typeof LayoutAuthenticatedDashboardWorkspaceWorkspaceIdTriageRoute
   '/dashboard/settings/admin/': typeof LayoutAuthenticatedDashboardSettingsAdminIndexRoute
   '/dashboard/workspace/$workspaceId/': typeof LayoutAuthenticatedDashboardWorkspaceWorkspaceIdIndexRoute
   '/dashboard/settings/projects/$projectId/calendar': typeof LayoutAuthenticatedDashboardSettingsProjectsProjectIdCalendarRoute
   '/dashboard/settings/projects/$projectId/custom-fields': typeof LayoutAuthenticatedDashboardSettingsProjectsProjectIdCustomFieldsRoute
   '/dashboard/settings/projects/$projectId/general': typeof LayoutAuthenticatedDashboardSettingsProjectsProjectIdGeneralRoute
   '/dashboard/settings/projects/$projectId/integrations': typeof LayoutAuthenticatedDashboardSettingsProjectsProjectIdIntegrationsRoute
+  '/dashboard/settings/projects/$projectId/triage': typeof LayoutAuthenticatedDashboardSettingsProjectsProjectIdTriageRoute
   '/dashboard/settings/projects/$projectId/visibility': typeof LayoutAuthenticatedDashboardSettingsProjectsProjectIdVisibilityRoute
   '/dashboard/settings/projects/$projectId/workflow': typeof LayoutAuthenticatedDashboardSettingsProjectsProjectIdWorkflowRoute
   '/dashboard/workspace/$workspaceId/project/$projectId/backlog': typeof LayoutAuthenticatedDashboardWorkspaceWorkspaceIdProjectProjectIdBacklogRoute
@@ -580,6 +605,7 @@ export interface FileRoutesByTo {
   '/auth/sign-up': typeof AuthSignUpRoute
   '/auth/verify-otp': typeof AuthVerifyOtpRoute
   '/device/approve': typeof DeviceApproveRoute
+  '/intake/$token': typeof IntakeTokenRoute
   '/mcp/authorize': typeof McpAuthorizeRoute
   '/public-project/$projectId': typeof PublicProjectProjectIdRoute
   '/device': typeof DeviceIndexRoute
@@ -618,12 +644,14 @@ export interface FileRoutesByTo {
   '/dashboard/workspace/$workspaceId/my-tasks': typeof LayoutAuthenticatedDashboardWorkspaceWorkspaceIdMyTasksRoute
   '/dashboard/workspace/$workspaceId/projects': typeof LayoutAuthenticatedDashboardWorkspaceWorkspaceIdProjectsRoute
   '/dashboard/workspace/$workspaceId/search': typeof LayoutAuthenticatedDashboardWorkspaceWorkspaceIdSearchRoute
+  '/dashboard/workspace/$workspaceId/triage': typeof LayoutAuthenticatedDashboardWorkspaceWorkspaceIdTriageRoute
   '/dashboard/settings/admin': typeof LayoutAuthenticatedDashboardSettingsAdminIndexRoute
   '/dashboard/workspace/$workspaceId': typeof LayoutAuthenticatedDashboardWorkspaceWorkspaceIdIndexRoute
   '/dashboard/settings/projects/$projectId/calendar': typeof LayoutAuthenticatedDashboardSettingsProjectsProjectIdCalendarRoute
   '/dashboard/settings/projects/$projectId/custom-fields': typeof LayoutAuthenticatedDashboardSettingsProjectsProjectIdCustomFieldsRoute
   '/dashboard/settings/projects/$projectId/general': typeof LayoutAuthenticatedDashboardSettingsProjectsProjectIdGeneralRoute
   '/dashboard/settings/projects/$projectId/integrations': typeof LayoutAuthenticatedDashboardSettingsProjectsProjectIdIntegrationsRoute
+  '/dashboard/settings/projects/$projectId/triage': typeof LayoutAuthenticatedDashboardSettingsProjectsProjectIdTriageRoute
   '/dashboard/settings/projects/$projectId/visibility': typeof LayoutAuthenticatedDashboardSettingsProjectsProjectIdVisibilityRoute
   '/dashboard/settings/projects/$projectId/workflow': typeof LayoutAuthenticatedDashboardSettingsProjectsProjectIdWorkflowRoute
   '/dashboard/workspace/$workspaceId/project/$projectId/backlog': typeof LayoutAuthenticatedDashboardWorkspaceWorkspaceIdProjectProjectIdBacklogRoute
@@ -648,6 +676,7 @@ export interface FileRoutesById {
   '/auth/sign-up': typeof AuthSignUpRoute
   '/auth/verify-otp': typeof AuthVerifyOtpRoute
   '/device/approve': typeof DeviceApproveRoute
+  '/intake/$token': typeof IntakeTokenRoute
   '/mcp/authorize': typeof McpAuthorizeRoute
   '/public-project/$projectId': typeof PublicProjectProjectIdRoute
   '/device/': typeof DeviceIndexRoute
@@ -689,12 +718,14 @@ export interface FileRoutesById {
   '/_layout/_authenticated/dashboard/workspace/$workspaceId/my-tasks': typeof LayoutAuthenticatedDashboardWorkspaceWorkspaceIdMyTasksRoute
   '/_layout/_authenticated/dashboard/workspace/$workspaceId/projects': typeof LayoutAuthenticatedDashboardWorkspaceWorkspaceIdProjectsRoute
   '/_layout/_authenticated/dashboard/workspace/$workspaceId/search': typeof LayoutAuthenticatedDashboardWorkspaceWorkspaceIdSearchRoute
+  '/_layout/_authenticated/dashboard/workspace/$workspaceId/triage': typeof LayoutAuthenticatedDashboardWorkspaceWorkspaceIdTriageRoute
   '/_layout/_authenticated/dashboard/settings/admin/': typeof LayoutAuthenticatedDashboardSettingsAdminIndexRoute
   '/_layout/_authenticated/dashboard/workspace/$workspaceId/': typeof LayoutAuthenticatedDashboardWorkspaceWorkspaceIdIndexRoute
   '/_layout/_authenticated/dashboard/settings/projects/$projectId/calendar': typeof LayoutAuthenticatedDashboardSettingsProjectsProjectIdCalendarRoute
   '/_layout/_authenticated/dashboard/settings/projects/$projectId/custom-fields': typeof LayoutAuthenticatedDashboardSettingsProjectsProjectIdCustomFieldsRoute
   '/_layout/_authenticated/dashboard/settings/projects/$projectId/general': typeof LayoutAuthenticatedDashboardSettingsProjectsProjectIdGeneralRoute
   '/_layout/_authenticated/dashboard/settings/projects/$projectId/integrations': typeof LayoutAuthenticatedDashboardSettingsProjectsProjectIdIntegrationsRoute
+  '/_layout/_authenticated/dashboard/settings/projects/$projectId/triage': typeof LayoutAuthenticatedDashboardSettingsProjectsProjectIdTriageRoute
   '/_layout/_authenticated/dashboard/settings/projects/$projectId/visibility': typeof LayoutAuthenticatedDashboardSettingsProjectsProjectIdVisibilityRoute
   '/_layout/_authenticated/dashboard/settings/projects/$projectId/workflow': typeof LayoutAuthenticatedDashboardSettingsProjectsProjectIdWorkflowRoute
   '/_layout/_authenticated/dashboard/workspace/$workspaceId/project/$projectId/backlog': typeof LayoutAuthenticatedDashboardWorkspaceWorkspaceIdProjectProjectIdBacklogRoute
@@ -718,6 +749,7 @@ export interface FileRouteTypes {
     | '/auth/sign-up'
     | '/auth/verify-otp'
     | '/device/approve'
+    | '/intake/$token'
     | '/mcp/authorize'
     | '/public-project/$projectId'
     | '/device/'
@@ -759,12 +791,14 @@ export interface FileRouteTypes {
     | '/dashboard/workspace/$workspaceId/my-tasks'
     | '/dashboard/workspace/$workspaceId/projects'
     | '/dashboard/workspace/$workspaceId/search'
+    | '/dashboard/workspace/$workspaceId/triage'
     | '/dashboard/settings/admin/'
     | '/dashboard/workspace/$workspaceId/'
     | '/dashboard/settings/projects/$projectId/calendar'
     | '/dashboard/settings/projects/$projectId/custom-fields'
     | '/dashboard/settings/projects/$projectId/general'
     | '/dashboard/settings/projects/$projectId/integrations'
+    | '/dashboard/settings/projects/$projectId/triage'
     | '/dashboard/settings/projects/$projectId/visibility'
     | '/dashboard/settings/projects/$projectId/workflow'
     | '/dashboard/workspace/$workspaceId/project/$projectId/backlog'
@@ -785,6 +819,7 @@ export interface FileRouteTypes {
     | '/auth/sign-up'
     | '/auth/verify-otp'
     | '/device/approve'
+    | '/intake/$token'
     | '/mcp/authorize'
     | '/public-project/$projectId'
     | '/device'
@@ -823,12 +858,14 @@ export interface FileRouteTypes {
     | '/dashboard/workspace/$workspaceId/my-tasks'
     | '/dashboard/workspace/$workspaceId/projects'
     | '/dashboard/workspace/$workspaceId/search'
+    | '/dashboard/workspace/$workspaceId/triage'
     | '/dashboard/settings/admin'
     | '/dashboard/workspace/$workspaceId'
     | '/dashboard/settings/projects/$projectId/calendar'
     | '/dashboard/settings/projects/$projectId/custom-fields'
     | '/dashboard/settings/projects/$projectId/general'
     | '/dashboard/settings/projects/$projectId/integrations'
+    | '/dashboard/settings/projects/$projectId/triage'
     | '/dashboard/settings/projects/$projectId/visibility'
     | '/dashboard/settings/projects/$projectId/workflow'
     | '/dashboard/workspace/$workspaceId/project/$projectId/backlog'
@@ -852,6 +889,7 @@ export interface FileRouteTypes {
     | '/auth/sign-up'
     | '/auth/verify-otp'
     | '/device/approve'
+    | '/intake/$token'
     | '/mcp/authorize'
     | '/public-project/$projectId'
     | '/device/'
@@ -893,12 +931,14 @@ export interface FileRouteTypes {
     | '/_layout/_authenticated/dashboard/workspace/$workspaceId/my-tasks'
     | '/_layout/_authenticated/dashboard/workspace/$workspaceId/projects'
     | '/_layout/_authenticated/dashboard/workspace/$workspaceId/search'
+    | '/_layout/_authenticated/dashboard/workspace/$workspaceId/triage'
     | '/_layout/_authenticated/dashboard/settings/admin/'
     | '/_layout/_authenticated/dashboard/workspace/$workspaceId/'
     | '/_layout/_authenticated/dashboard/settings/projects/$projectId/calendar'
     | '/_layout/_authenticated/dashboard/settings/projects/$projectId/custom-fields'
     | '/_layout/_authenticated/dashboard/settings/projects/$projectId/general'
     | '/_layout/_authenticated/dashboard/settings/projects/$projectId/integrations'
+    | '/_layout/_authenticated/dashboard/settings/projects/$projectId/triage'
     | '/_layout/_authenticated/dashboard/settings/projects/$projectId/visibility'
     | '/_layout/_authenticated/dashboard/settings/projects/$projectId/workflow'
     | '/_layout/_authenticated/dashboard/workspace/$workspaceId/project/$projectId/backlog'
@@ -915,6 +955,7 @@ export interface RootRouteChildren {
   AuthRoute: typeof AuthRouteWithChildren
   DeviceRoute: typeof DeviceRouteWithChildren
   TestErrorRoute: typeof TestErrorRoute
+  IntakeTokenRoute: typeof IntakeTokenRoute
   McpAuthorizeRoute: typeof McpAuthorizeRoute
   PublicProjectProjectIdRoute: typeof PublicProjectProjectIdRoute
   InvitationAcceptInviteIdRoute: typeof InvitationAcceptInviteIdRoute
@@ -1019,6 +1060,13 @@ declare module '@tanstack/react-router' {
       fullPath: '/device/approve'
       preLoaderRoute: typeof DeviceApproveRouteImport
       parentRoute: typeof DeviceRoute
+    }
+    '/intake/$token': {
+      id: '/intake/$token'
+      path: '/intake/$token'
+      fullPath: '/intake/$token'
+      preLoaderRoute: typeof IntakeTokenRouteImport
+      parentRoute: typeof rootRouteImport
     }
     '/mcp/authorize': {
       id: '/mcp/authorize'
@@ -1314,6 +1362,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LayoutAuthenticatedDashboardWorkspaceWorkspaceIdSearchRouteImport
       parentRoute: typeof LayoutAuthenticatedDashboardWorkspaceWorkspaceIdRoute
     }
+    '/_layout/_authenticated/dashboard/workspace/$workspaceId/triage': {
+      id: '/_layout/_authenticated/dashboard/workspace/$workspaceId/triage'
+      path: '/triage'
+      fullPath: '/dashboard/workspace/$workspaceId/triage'
+      preLoaderRoute: typeof LayoutAuthenticatedDashboardWorkspaceWorkspaceIdTriageRouteImport
+      parentRoute: typeof LayoutAuthenticatedDashboardWorkspaceWorkspaceIdRoute
+    }
     '/_layout/_authenticated/dashboard/settings/projects/$projectId/calendar': {
       id: '/_layout/_authenticated/dashboard/settings/projects/$projectId/calendar'
       path: '/$projectId/calendar'
@@ -1340,6 +1395,13 @@ declare module '@tanstack/react-router' {
       path: '/$projectId/integrations'
       fullPath: '/dashboard/settings/projects/$projectId/integrations'
       preLoaderRoute: typeof LayoutAuthenticatedDashboardSettingsProjectsProjectIdIntegrationsRouteImport
+      parentRoute: typeof LayoutAuthenticatedDashboardSettingsProjectsRoute
+    }
+    '/_layout/_authenticated/dashboard/settings/projects/$projectId/triage': {
+      id: '/_layout/_authenticated/dashboard/settings/projects/$projectId/triage'
+      path: '/$projectId/triage'
+      fullPath: '/dashboard/settings/projects/$projectId/triage'
+      preLoaderRoute: typeof LayoutAuthenticatedDashboardSettingsProjectsProjectIdTriageRouteImport
       parentRoute: typeof LayoutAuthenticatedDashboardSettingsProjectsRoute
     }
     '/_layout/_authenticated/dashboard/settings/projects/$projectId/visibility': {
@@ -1472,6 +1534,7 @@ interface LayoutAuthenticatedDashboardSettingsProjectsRouteChildren {
   LayoutAuthenticatedDashboardSettingsProjectsProjectIdCustomFieldsRoute: typeof LayoutAuthenticatedDashboardSettingsProjectsProjectIdCustomFieldsRoute
   LayoutAuthenticatedDashboardSettingsProjectsProjectIdGeneralRoute: typeof LayoutAuthenticatedDashboardSettingsProjectsProjectIdGeneralRoute
   LayoutAuthenticatedDashboardSettingsProjectsProjectIdIntegrationsRoute: typeof LayoutAuthenticatedDashboardSettingsProjectsProjectIdIntegrationsRoute
+  LayoutAuthenticatedDashboardSettingsProjectsProjectIdTriageRoute: typeof LayoutAuthenticatedDashboardSettingsProjectsProjectIdTriageRoute
   LayoutAuthenticatedDashboardSettingsProjectsProjectIdVisibilityRoute: typeof LayoutAuthenticatedDashboardSettingsProjectsProjectIdVisibilityRoute
   LayoutAuthenticatedDashboardSettingsProjectsProjectIdWorkflowRoute: typeof LayoutAuthenticatedDashboardSettingsProjectsProjectIdWorkflowRoute
 }
@@ -1486,6 +1549,8 @@ const LayoutAuthenticatedDashboardSettingsProjectsRouteChildren: LayoutAuthentic
       LayoutAuthenticatedDashboardSettingsProjectsProjectIdGeneralRoute,
     LayoutAuthenticatedDashboardSettingsProjectsProjectIdIntegrationsRoute:
       LayoutAuthenticatedDashboardSettingsProjectsProjectIdIntegrationsRoute,
+    LayoutAuthenticatedDashboardSettingsProjectsProjectIdTriageRoute:
+      LayoutAuthenticatedDashboardSettingsProjectsProjectIdTriageRoute,
     LayoutAuthenticatedDashboardSettingsProjectsProjectIdVisibilityRoute:
       LayoutAuthenticatedDashboardSettingsProjectsProjectIdVisibilityRoute,
     LayoutAuthenticatedDashboardSettingsProjectsProjectIdWorkflowRoute:
@@ -1554,6 +1619,7 @@ interface LayoutAuthenticatedDashboardWorkspaceWorkspaceIdRouteChildren {
   LayoutAuthenticatedDashboardWorkspaceWorkspaceIdMyTasksRoute: typeof LayoutAuthenticatedDashboardWorkspaceWorkspaceIdMyTasksRoute
   LayoutAuthenticatedDashboardWorkspaceWorkspaceIdProjectsRoute: typeof LayoutAuthenticatedDashboardWorkspaceWorkspaceIdProjectsRoute
   LayoutAuthenticatedDashboardWorkspaceWorkspaceIdSearchRoute: typeof LayoutAuthenticatedDashboardWorkspaceWorkspaceIdSearchRoute
+  LayoutAuthenticatedDashboardWorkspaceWorkspaceIdTriageRoute: typeof LayoutAuthenticatedDashboardWorkspaceWorkspaceIdTriageRoute
   LayoutAuthenticatedDashboardWorkspaceWorkspaceIdIndexRoute: typeof LayoutAuthenticatedDashboardWorkspaceWorkspaceIdIndexRoute
   LayoutAuthenticatedDashboardWorkspaceWorkspaceIdProjectProjectIdBacklogRoute: typeof LayoutAuthenticatedDashboardWorkspaceWorkspaceIdProjectProjectIdBacklogRoute
   LayoutAuthenticatedDashboardWorkspaceWorkspaceIdProjectProjectIdBoardRoute: typeof LayoutAuthenticatedDashboardWorkspaceWorkspaceIdProjectProjectIdBoardRoute
@@ -1575,6 +1641,8 @@ const LayoutAuthenticatedDashboardWorkspaceWorkspaceIdRouteChildren: LayoutAuthe
       LayoutAuthenticatedDashboardWorkspaceWorkspaceIdProjectsRoute,
     LayoutAuthenticatedDashboardWorkspaceWorkspaceIdSearchRoute:
       LayoutAuthenticatedDashboardWorkspaceWorkspaceIdSearchRoute,
+    LayoutAuthenticatedDashboardWorkspaceWorkspaceIdTriageRoute:
+      LayoutAuthenticatedDashboardWorkspaceWorkspaceIdTriageRoute,
     LayoutAuthenticatedDashboardWorkspaceWorkspaceIdIndexRoute:
       LayoutAuthenticatedDashboardWorkspaceWorkspaceIdIndexRoute,
     LayoutAuthenticatedDashboardWorkspaceWorkspaceIdProjectProjectIdBacklogRoute:
@@ -1694,6 +1762,7 @@ const rootRouteChildren: RootRouteChildren = {
   AuthRoute: AuthRouteWithChildren,
   DeviceRoute: DeviceRouteWithChildren,
   TestErrorRoute: TestErrorRoute,
+  IntakeTokenRoute: IntakeTokenRoute,
   McpAuthorizeRoute: McpAuthorizeRoute,
   PublicProjectProjectIdRoute: PublicProjectProjectIdRoute,
   InvitationAcceptInviteIdRoute: InvitationAcceptInviteIdRoute,
