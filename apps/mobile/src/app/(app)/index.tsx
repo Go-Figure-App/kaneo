@@ -34,7 +34,8 @@ export default function HomeScreen() {
   const triage = useTriageCount(workspace?.id);
   const projects = usePlanningEnabled();
   const cycles = usePlanningEnabled("cycles");
-  const planning = projects || cycles;
+  const insights = usePlanningEnabled("insights");
+  const planning = projects || cycles || insights;
 
   useRealtime("api/ws/user", (event) => {
     invalidateParity(client, event);

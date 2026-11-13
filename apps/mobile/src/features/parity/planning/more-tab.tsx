@@ -1,5 +1,11 @@
 import { router } from "expo-router";
-import { Activity, Flag, GanttChart, CircleDashed } from "lucide-react-native";
+import {
+  Activity,
+  Flag,
+  GanttChart,
+  CircleDashed,
+  ChartNoAxesCombined,
+} from "lucide-react-native";
 import { useTranslation } from "react-i18next";
 import { View } from "react-native";
 import { PageHeader, Scroll } from "@/components/screen";
@@ -20,11 +26,29 @@ export function MoreTab({
   const initiatives = usePlanningEnabled("initiatives");
   const roadmap = usePlanningEnabled("roadmap");
   const cycles = usePlanningEnabled("cycles");
+  const insights = usePlanningEnabled("insights");
   return (
     <Scroll>
       <PageHeader title={t("mobile:parity.planning.more")} back={false} />
       <View style={{ paddingHorizontal: 20 }}>
         <Group>
+          {insights && (
+            <Touch
+              accessibilityRole="button"
+              onPress={() =>
+                router.push({ pathname: "/insights", params: { workspaceId } })
+              }
+              style={{
+                padding: 18,
+                flexDirection: "row",
+                alignItems: "center",
+                gap: 12,
+              }}
+            >
+              <ChartNoAxesCombined size={20} color={c.ink2} />
+              <Txt>{t("mobile:parity.insights.title")}</Txt>
+            </Touch>
+          )}
           {cycles && (
             <Touch
               accessibilityRole="button"

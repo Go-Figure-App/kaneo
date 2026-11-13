@@ -437,3 +437,36 @@ Lint, localization, generated OpenAPI and all 22 workspace typecheck/build tasks
 Phase 4 review fixes resolve every cycle boundary from its local calendar date, including skipped midnight in America/Santiago, and wait for task event handlers before announcing the next rollover or bulk change. State grouping keeps project-local column slugs distinct. Cycle assignment and task filters remain clearable when metadata requests fail on web and native; the board clearing shortcuts include the cycle filter. Chart dates and native totals use the current locale. Request bodies reject unsupported fields, with regenerated OpenAPI schemas. Regression tests cover skipped midnight, bounded event delivery, cross-project grouping, metadata failures, shortcut composition, fresh-cache invalidation and a date-controlled disable scenario. Cycle total reducers share one owned module to keep the PR within the current review file limit.
 
 Review-fix verification passed 11 API unit tests, nine native cycle tests, 33 focused web tests, 27 PostgreSQL integration tests, and the seven-test scheduler/event-delivery rerun. All 22 workspace typecheck/build tasks, lint, localization and regenerated OpenAPI checks passed. The final bundled image passed the expanded cycle browser flow, including both clear-filter shortcuts. A fresh iOS development bundle verified clearing a cycle while its options endpoint returned 503, restoring the assignment, refreshed totals and localized daily-history dates. Local Docker disk exhaustion was resolved by removing only obsolete Kaneo test images and their build cache.
+
+## Phase 5: Insights
+
+`PARITY_FEATURES=insights` enables the permission-filtered reporting API, workspace dashboard and native cycle summaries. The foundation's lifecycle timestamps/backfill and completed-at/cycle indexes, cycle close summaries and per-project daily history supply the reports; no additional model or migration is needed. `GET /api/parity/insights/{workspaceId}` implements throughput, lead time, cycle time, velocity, burndown, scope change, created-versus-completed, time in state, workload and time to triage.
+
+Task reports use PostgreSQL `date_trunc` and `percentile_cont`, with week boundaries in the workspace timezone. Calendar filters include both end dates and cover at most two years; the default is the last 12 weeks, or the selected cycle. Task measures support week, cycle, assignee, project, label and priority slices. Unestimated work counts as one point when estimates are enabled, matching cycles. Label slicing can count an issue in multiple label groups, while other slices never multiply labeled issues. Missing lifecycle intervals remain unavailable; they are not zero-day observations.
+
+Historical cycle measures accept project/initiative filters and the cycle slice. They reject assignee filters because the approved history stores project totals, not historical assignments. Burndown requires a cycle and returns daily rows. Velocity uses immutable close totals and up to three most recent closed cycles for its average. Scope change compares the first day's recorded scope with closing scope; a missing first-day sample does not become an invented baseline. Aggregate-only imported history is unavailable when it cannot be permission-filtered. Time in state batches activity reads and averages each task's recorded time in each category, clipping to the requested dates and excluding history in inaccessible projects. Workload shows current open work; API date filters optionally select a creation cohort, while the dashboard leaves workload unbounded by dates.
+
+The bounded, per-user/query memory cache lasts 60 seconds. Every hit rechecks current readable projects, and task/project/planning events invalidate cached results. A revision guard prevents an in-flight report from restoring data invalidated while it was computed. The implementation requires no Redis or analytics service. Task reports limit groups to 2,000; cycle reports have the same bound. State history pages tasks and caps each activity batch, returning a filter-narrowing error instead of silently truncating results.
+
+Web adds project, initiative, cycle and date filters, fixed report panels, count/point toggles and accessible data tables. Recharts and its matching React peer are loaded through the chart module only when a report renders. Project overview embeds created-versus-completed progress; the cycle page retains its existing accessible burndown. Charts show workspace-local dates and locale-formatted numbers. Failed report requests hide cached results and offer retry; disabling estimates switches a previously selected points view back to issue counts.
+
+Native More opens current/last-cycle cards with velocity, throughput, median cycle time, the closed-cycle average and a small weekly SVG chart. Missing history is explicit. Focus and pull-to-refresh update the cards. The existing react-native-svg dependency is reused; no new native dependency or distribution change is needed. The design adds no Insights-specific MCP operation.
+
+### Phase 5 integration register
+
+| File | Change and reason |
+| --- | --- |
+| `apps/api/src/index.ts` | Initialize owned report cache invalidation subscribers. |
+| `apps/web/package.json`, `pnpm-lock.yaml` | Add Recharts and the React-version-matched react-is peer. |
+| `apps/web/src/components/nav-main.tsx` | Add feature-gated Insights navigation. |
+| `apps/web/src/routeTree.gen.ts` | Generate the workspace Insights route. |
+| `apps/mobile/src/app/(app)/index.tsx` | Show More when Insights is enabled independently. |
+| `apps/docs/openapi.json` | Generate the strict reporting query and response contract. |
+| `i18n/en-US.json`, the 20 other catalogs and `i18n/schema.json` | Add web/native reporting copy, retaining the permitted English fallback for new non-English keys. |
+| `tests/e2e/compose.parity.yml`, `tests/e2e/smoke.spec.ts` | Enable Insights on the disposable parity stack and assert its navigation stays absent in the feature-off smoke flow. |
+
+All other changes live in owned parity modules, new route files and tests. Go Figure CI discovers the additional unit, PostgreSQL and browser tests without a new workflow or service. Deployment/release workflows remain inactive.
+
+### Phase 5 verification
+
+Focused PostgreSQL tests cover every metric, all task slices, timestamp percentiles, missing history, readable-project totals, immutable history, API-key scopes, feature-off behavior, invalid filters and event-driven cache invalidation. Web tests cover missing versus zero values, points disabling, permission errors and retry. Native tests cover report requests and summary/chart calculations. Verification of the complete workspace and bundled browser flows is in progress.

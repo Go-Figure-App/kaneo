@@ -4,7 +4,12 @@ import { qk } from "@/lib/query";
 import { triageApi } from "../triage/api";
 
 export function usePlanningEnabled(
-  feature: "projects" | "initiatives" | "roadmap" | "cycles" = "projects",
+  feature:
+    | "projects"
+    | "initiatives"
+    | "roadmap"
+    | "cycles"
+    | "insights" = "projects",
 ) {
   const query = useQuery({
     queryKey: ["parity", "features"],

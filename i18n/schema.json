@@ -19836,6 +19836,74 @@
 								"retry",
 								"allTasks"
 							]
+						},
+						"insights": {
+							"type": "object",
+							"additionalProperties": false,
+							"properties": {
+								"title": {
+									"type": "string"
+								},
+								"subtitle": {
+									"type": "string"
+								},
+								"velocity": {
+									"type": "string"
+								},
+								"throughput": {
+									"type": "string"
+								},
+								"cycleTime": {
+									"type": "string"
+								},
+								"points": {
+									"type": "string"
+								},
+								"issues": {
+									"type": "string"
+								},
+								"days": {
+									"type": "string"
+								},
+								"noHistory": {
+									"type": "string"
+								},
+								"weekly": {
+									"type": "string"
+								},
+								"average": {
+									"type": "string"
+								},
+								"partialHistory": {
+									"type": "string"
+								},
+								"lastCycle": {
+									"type": "string"
+								},
+								"noCycles": {
+									"type": "string"
+								},
+								"enableCycles": {
+									"type": "string"
+								}
+							},
+							"required": [
+								"title",
+								"subtitle",
+								"velocity",
+								"throughput",
+								"cycleTime",
+								"points",
+								"issues",
+								"days",
+								"noHistory",
+								"weekly",
+								"average",
+								"partialHistory",
+								"lastCycle",
+								"noCycles",
+								"enableCycles"
+							]
 						}
 					},
 					"required": [
@@ -19843,7 +19911,8 @@
 						"triage",
 						"planning",
 						"roadmap",
-						"cycles"
+						"cycles",
+						"insights"
 					]
 				}
 			},
@@ -20859,9 +20928,316 @@
 						"value",
 						"chooseValue"
 					]
+				},
+				"insights": {
+					"type": "object",
+					"additionalProperties": false,
+					"properties": {
+						"title": {
+							"type": "string"
+						},
+						"subtitle": {
+							"type": "string"
+						},
+						"viewData": {
+							"type": "string"
+						},
+						"group": {
+							"type": "string"
+						},
+						"seriesLabel": {
+							"type": "string"
+						},
+						"value": {
+							"type": "string"
+						},
+						"samples": {
+							"type": "string"
+						},
+						"points": {
+							"type": "string"
+						},
+						"issues": {
+							"type": "string"
+						},
+						"days": {
+							"type": "string"
+						},
+						"noLabel": {
+							"type": "string"
+						},
+						"noData": {
+							"type": "string"
+						},
+						"chooseCycle": {
+							"type": "string"
+						},
+						"partialHistory": {
+							"type": "string"
+						},
+						"initiative": {
+							"type": "string"
+						},
+						"allInitiatives": {
+							"type": "string"
+						},
+						"allCycles": {
+							"type": "string"
+						},
+						"moreInitiatives": {
+							"type": "string"
+						},
+						"from": {
+							"type": "string"
+						},
+						"to": {
+							"type": "string"
+						},
+						"reset": {
+							"type": "string"
+						},
+						"defaultRange": {
+							"type": "string"
+						},
+						"invalidRange": {
+							"type": "string"
+						},
+						"projectProgress": {
+							"type": "string"
+						},
+						"timeZone": {
+							"type": "string"
+						},
+						"measures": {
+							"type": "object",
+							"additionalProperties": false,
+							"properties": {
+								"throughput": {
+									"type": "string"
+								},
+								"lead-time": {
+									"type": "string"
+								},
+								"cycle-time": {
+									"type": "string"
+								},
+								"velocity": {
+									"type": "string"
+								},
+								"burndown": {
+									"type": "string"
+								},
+								"scope-change": {
+									"type": "string"
+								},
+								"created-completed": {
+									"type": "string"
+								},
+								"time-in-state": {
+									"type": "string"
+								},
+								"workload": {
+									"type": "string"
+								},
+								"time-to-triage": {
+									"type": "string"
+								}
+							},
+							"required": [
+								"throughput",
+								"lead-time",
+								"cycle-time",
+								"velocity",
+								"burndown",
+								"scope-change",
+								"created-completed",
+								"time-in-state",
+								"workload",
+								"time-to-triage"
+							]
+						},
+						"descriptions": {
+							"type": "object",
+							"additionalProperties": false,
+							"properties": {
+								"throughput": {
+									"type": "string"
+								},
+								"lead-time": {
+									"type": "string"
+								},
+								"cycle-time": {
+									"type": "string"
+								},
+								"velocity": {
+									"type": "string"
+								},
+								"burndown": {
+									"type": "string"
+								},
+								"scope-change": {
+									"type": "string"
+								},
+								"created-completed": {
+									"type": "string"
+								},
+								"time-in-state": {
+									"type": "string"
+								},
+								"workload": {
+									"type": "string"
+								},
+								"time-to-triage": {
+									"type": "string"
+								}
+							},
+							"required": [
+								"throughput",
+								"lead-time",
+								"cycle-time",
+								"velocity",
+								"burndown",
+								"scope-change",
+								"created-completed",
+								"time-in-state",
+								"workload",
+								"time-to-triage"
+							]
+						},
+						"series": {
+							"type": "object",
+							"additionalProperties": false,
+							"properties": {
+								"total": {
+									"type": "string"
+								},
+								"median": {
+									"type": "string"
+								},
+								"p75": {
+									"type": "string"
+								},
+								"created": {
+									"type": "string"
+								},
+								"completed": {
+									"type": "string"
+								},
+								"average": {
+									"type": "string"
+								},
+								"remaining": {
+									"type": "string"
+								},
+								"ideal": {
+									"type": "string"
+								},
+								"start": {
+									"type": "string"
+								},
+								"end": {
+									"type": "string"
+								},
+								"backlog": {
+									"type": "string"
+								},
+								"unstarted": {
+									"type": "string"
+								},
+								"started": {
+									"type": "string"
+								},
+								"canceled": {
+									"type": "string"
+								}
+							},
+							"required": [
+								"total",
+								"median",
+								"p75",
+								"created",
+								"completed",
+								"average",
+								"remaining",
+								"ideal",
+								"start",
+								"end",
+								"backlog",
+								"unstarted",
+								"started",
+								"canceled"
+							]
+						},
+						"states": {
+							"type": "object",
+							"additionalProperties": false,
+							"properties": {
+								"backlog": {
+									"type": "string"
+								},
+								"unstarted": {
+									"type": "string"
+								},
+								"started": {
+									"type": "string"
+								},
+								"completed": {
+									"type": "string"
+								},
+								"canceled": {
+									"type": "string"
+								}
+							},
+							"required": [
+								"backlog",
+								"unstarted",
+								"started",
+								"completed",
+								"canceled"
+							]
+						}
+					},
+					"required": [
+						"title",
+						"subtitle",
+						"viewData",
+						"group",
+						"seriesLabel",
+						"value",
+						"samples",
+						"points",
+						"issues",
+						"days",
+						"noLabel",
+						"noData",
+						"chooseCycle",
+						"partialHistory",
+						"initiative",
+						"allInitiatives",
+						"allCycles",
+						"moreInitiatives",
+						"from",
+						"to",
+						"reset",
+						"defaultRange",
+						"invalidRange",
+						"projectProgress",
+						"timeZone",
+						"measures",
+						"descriptions",
+						"series",
+						"states"
+					]
 				}
 			},
-			"required": ["categories", "triage", "planning", "roadmap", "cycles"]
+			"required": [
+				"categories",
+				"triage",
+				"planning",
+				"roadmap",
+				"cycles",
+				"insights"
+			]
 		}
 	},
 	"required": [

@@ -9,6 +9,7 @@ import {
   Flag,
   FolderKanban,
   GanttChart,
+  ChartNoAxesCombined,
 } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import {
@@ -49,6 +50,7 @@ export function NavMain() {
   const initiatives = usePlanningEnabled("initiatives");
   const projects = usePlanningEnabled("projects");
   const roadmap = usePlanningEnabled("roadmap");
+  const insights = usePlanningEnabled("insights");
 
   if (!workspace) return null;
 
@@ -92,6 +94,12 @@ export function NavMain() {
     (item) => item.url === `${homeUrl}/members`,
   );
   const planningItems: NavItem[] = [];
+  if (insights)
+    planningItems.push({
+      title: t("parity:insights.title"),
+      icon: ChartNoAxesCombined,
+      url: `${homeUrl}/insights`,
+    });
   if (initiatives)
     planningItems.push({
       title: t("parity:planning.initiatives"),

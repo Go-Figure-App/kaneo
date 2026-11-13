@@ -16,6 +16,7 @@ import { ProjectEditor } from "./project-editor";
 import { ProgressMeter } from "./progress-meter";
 import { usePlanningEnabled } from "./queries";
 import { UpdateFeed } from "./update-feed";
+import { ReportPanel } from "../insights/report-panel";
 
 export function ProjectOverview({
   workspaceId,
@@ -108,6 +109,11 @@ export function ProjectOverview({
                 </header>
                 <div className="grid gap-10 lg:grid-cols-[minmax(0,1fr)_240px]">
                   <div className="min-w-0 space-y-9">
+                    <ReportPanel
+                      workspaceId={workspaceId}
+                      query={{ measure: "created-completed", projectId }}
+                      title={t("parity:insights.projectProgress")}
+                    />
                     <Milestones
                       projectId={projectId}
                       milestones={project.milestones}

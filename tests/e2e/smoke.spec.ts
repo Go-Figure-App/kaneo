@@ -48,6 +48,9 @@ test("sign up, create a workspace with a starter project, and sign in again", as
     page.getByText("My first project", { exact: true }).first(),
   ).toBeVisible();
   const boardUrl = page.url();
+  await expect(
+    page.getByRole("link", { name: "Insights", exact: true }),
+  ).toHaveCount(0);
 
   // A reload proves that the server persisted the workspace and session.
   await page.reload();
