@@ -1,11 +1,12 @@
 import { createHash } from "node:crypto";
-import { eq } from "drizzle-orm";
+import { eq, sql } from "drizzle-orm";
 import { afterEach, beforeEach, expect, it, vi } from "vite-plus/test";
 import db, { schema } from "../../apps/api/src/database";
 import { publishEvent } from "../../apps/api/src/events";
 import { taskExtTable } from "../../apps/api/src/database/schema-parity";
 import { invalidateInsights } from "../../apps/api/src/parity/insights/cache";
 import { initializeInsights } from "../../apps/api/src/parity/insights/initialize";
+import { syncLifecycle } from "../../apps/api/src/parity/foundation/controllers/sync-lifecycle";
 import { insightsSchema } from "../../apps/api/src/parity/insights/schema";
 import { mockAnonymousSession, mockAuthenticatedSession } from "./helpers/auth";
 import { resetTestDatabase } from "./helpers/database";
@@ -55,6 +56,42 @@ async function report(workspaceId: string, query: Record<string, string>) {
   expect(response.status, await response.clone().text()).toBe(200);
   return insightsSchema.parse(await response.json());
 }
+
+it("invalidates a report populated while lifecycle synchronization is waiting to commit", async () => {
+  const c = await insightsFixture();
+  mockAuthenticatedSession(c.restricted);
+  await initializeInsights();
+  await db
+    .update(schema.taskTable)
+    .set({ status: "done", columnId: null })
+    .where(eq(schema.taskTable.id, c.open.id));
+  const locked = Promise.withResolvers<void>();
+  const release = Promise.withResolvers<void>();
+  const blocker = db.transaction(async (tx) => {
+    await tx.execute(
+      sql`select id from ${schema.taskTable} where id = ${c.open.id} for update`,
+    );
+    locked.resolve();
+    await release.promise;
+  });
+  await locked.promise;
+  const pending = syncLifecycle(c.open.id, {
+    projectId: c.alpha.id,
+    status: "done",
+    previousStatus: "to-do",
+    at: new Date(),
+  });
+  try {
+    const stale = await report(c.workspace.id, { measure: "throughput" });
+    expect(stale.rows.reduce((sum, row) => sum + row.value, 0)).toBe(2);
+  } finally {
+    release.resolve();
+    await blocker;
+    await pending;
+  }
+  const fresh = await report(c.workspace.id, { measure: "throughput" });
+  expect(fresh.rows.reduce((sum, row) => sum + row.value, 0)).toBe(3);
+});
 
 it("groups completed counts and estimates without hidden projects or label multiplication", async () => {
   const c = await insightsFixture();

@@ -19,6 +19,7 @@ export async function initializeInsights() {
     "project.updated",
     "project.deleted",
     "parity.workspace_updated",
+    "parity.lifecycle_updated",
   ])
     await subscribeToEvent(event, async () => {
       // The bounded cache is tiny for a self-hosted team. Clearing it avoids extra

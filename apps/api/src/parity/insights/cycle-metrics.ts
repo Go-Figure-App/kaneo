@@ -197,8 +197,11 @@ export async function cycleMetrics(
       });
     }
     if (start)
-      for (const day of [startDay, endDay]) {
-        if (day < range.from || day > range.to) continue;
+      for (const day of new Set([
+        startDay < range.from ? range.from : startDay,
+        endDay > range.to ? range.to : endDay,
+      ])) {
+        if (day < startDay || day > endDay) continue;
         const fraction = Math.max(
           0,
           1 - (Date.parse(day) - Date.parse(startDay)) / duration,
@@ -213,5 +216,9 @@ export async function cycleMetrics(
         });
       }
   }
+  if (query.measure === "burndown")
+    rows.sort(
+      (a, b) => a.key.localeCompare(b.key) || a.series.localeCompare(b.series),
+    );
   return { rows, historyAvailable: rows.length > 0, partialHistory };
 }

@@ -117,4 +117,21 @@ it("sums recorded state intervals per task, clips the range and omits inaccessib
       date(13),
     ),
   ).toEqual({ totals: new Map(), missing: true });
+  const incomplete = stateDurations(
+    task,
+    [
+      {
+        type: "status_changed",
+        createdAt: date(3),
+        eventData: { oldStatus: "to-do", newStatus: "in-progress" },
+      },
+    ],
+    [],
+    new Set(["visible"]),
+    date(1),
+    date(10),
+    date(13),
+  );
+  expect(Object.fromEntries(incomplete.totals)).toEqual({ unstarted: 2 });
+  expect(incomplete.missing).toBe(true);
 });

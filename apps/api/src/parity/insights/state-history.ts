@@ -34,6 +34,9 @@ export function stateDurations(
     totals.set(category, (totals.get(category) ?? 0) + duration / 86_400_000);
   };
   const first = history[0];
+  const last = history.at(-1);
+  const tailKnown =
+    last?.status === task.status && last?.projectId === task.projectId;
   if (first?.previousStatus)
     add(
       first.previousProjectId,
@@ -43,8 +46,12 @@ export function stateDurations(
     );
   for (let index = 0; index < history.length; index++) {
     const event = history[index]!;
+    if (index === history.length - 1 && !tailKnown) break;
     add(event.projectId, event.status, event.at, history[index + 1]?.at ?? now);
   }
   // A current status alone cannot tell us how long a task has occupied it.
-  return { totals, missing: history.length === 0 || !first?.previousStatus };
+  return {
+    totals,
+    missing: history.length === 0 || !first?.previousStatus || !tailKnown,
+  };
 }

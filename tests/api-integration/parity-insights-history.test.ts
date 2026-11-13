@@ -123,6 +123,24 @@ it("uses filtered daily scope and marks aggregate-only or missing start history 
       (row) => row.series === "ideal" && row.key === "2026-11-16",
     ),
   ).toMatchObject({ value: 0, points: 0 });
+  const clipped = await getInsights(
+    who,
+    {
+      measure: "burndown",
+      cycleId: c.cycle.id,
+      from: "2026-11-11",
+      to: "2026-11-14",
+    },
+    now,
+  );
+  expect(clipped.rows.map((row) => row.key)).toEqual([
+    "2026-11-11",
+    "2026-11-13",
+    "2026-11-14",
+  ]);
+  const ideal = clipped.rows.filter((row) => row.series === "ideal");
+  expect(ideal[0]?.value).toBeCloseTo((2 * 5) / 7);
+  expect(ideal[1]?.value).toBeCloseTo((2 * 2) / 7);
   await db
     .update(cycleDayTable)
     .set({ projectTotals: {} })
