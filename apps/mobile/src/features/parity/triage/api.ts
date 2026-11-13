@@ -50,7 +50,7 @@ export const triageApi = {
       `api/parity/columns/${encodeURIComponent(projectId)}`,
     ),
   create: (projectId: string, body: Omit<CreateTaskBody, "status">) =>
-    request<Task>(`${path}/${encodeURIComponent(projectId)}`, {
+    request<Task>(`${path}/project/${encodeURIComponent(projectId)}`, {
       method: "POST",
       body,
     }),

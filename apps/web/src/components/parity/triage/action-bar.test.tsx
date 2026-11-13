@@ -29,7 +29,9 @@ it.each([
   ["h", "snooze"],
 ])("opens the %s decision without submitting it", (key, action) => {
   render(<TriageActionBar item={item} workspaceId="workspace" />);
-  fireEvent.keyDown(window, { key });
+  const button = screen.getByRole("button", { name: /parity:triage.accept/ });
+  button.focus();
+  fireEvent.keyDown(button, { key });
   expect(screen.getByRole("dialog")).toBeInTheDocument();
   expect(screen.getByTestId("decision")).toHaveTextContent(action);
 });
@@ -46,6 +48,8 @@ it("does not intercept typing, editor input, modifiers, composition or repeated 
     key: "1",
   });
   fireEvent.keyDown(screen.getByTestId("editor"), { key: "2" });
+  const button = screen.getByRole("button", { name: /parity:triage.accept/ });
+  button.focus();
   for (const options of [
     { ctrlKey: true },
     { metaKey: true },
@@ -53,7 +57,7 @@ it("does not intercept typing, editor input, modifiers, composition or repeated 
     { repeat: true },
     { isComposing: true },
   ])
-    fireEvent.keyDown(window, { key: "3", ...options });
+    fireEvent.keyDown(button, { key: "3", ...options });
   expect(screen.queryByRole("dialog")).not.toBeInTheDocument();
 });
 
@@ -62,5 +66,19 @@ it("hides decisions and ignores keyboard shortcuts without task-update permissio
   render(<TriageActionBar item={item} workspaceId="workspace" />);
   fireEvent.keyDown(window, { key: "1" });
   expect(screen.queryByRole("button")).not.toBeInTheDocument();
+  expect(screen.queryByRole("dialog")).not.toBeInTheDocument();
+});
+
+it("ignores character shortcuts while focus is outside the action bar", () => {
+  render(
+    <>
+      <button>Task list</button>
+      <TriageActionBar item={item} workspaceId="workspace" />
+    </>,
+  );
+  const list = screen.getByRole("button", { name: "Task list" });
+  list.focus();
+  fireEvent.keyDown(list, { key: "1" });
+  fireEvent.keyDown(window, { key: "h" });
   expect(screen.queryByRole("dialog")).not.toBeInTheDocument();
 });

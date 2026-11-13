@@ -11,6 +11,8 @@ import {
 import { foundingCutoff, isBillingEnabled, trialDays } from "../config";
 import { hashTrialEmail } from "../trial-identity";
 
+type BillingDatabase = Pick<typeof db, "select" | "insert" | "query">;
+
 const ACTIVE_STATUSES = new Set([
   "active",
   "trialing",
@@ -22,8 +24,9 @@ const PAID_THROUGH_PERIOD_STATUSES = new Set(["canceled"]);
 
 export async function resolveTrialEndsAt(
   workspaceId: string,
+  database: BillingDatabase = db,
 ): Promise<Date | null> {
-  const [owner] = await db
+  const [owner] = await database
     .select({
       userId: workspaceUserTable.userId,
       email: userTable.email,
@@ -39,7 +42,7 @@ export async function resolveTrialEndsAt(
     .limit(1);
 
   if (owner) {
-    const [earlier] = await db
+    const [earlier] = await database
       .select({ trialEndsAt: min(workspaceBillingTable.trialEndsAt) })
       .from(workspaceBillingTable)
       .innerJoin(
@@ -58,17 +61,20 @@ export async function resolveTrialEndsAt(
       return new Date(earlier.trialEndsAt);
     }
 
-    return claimTrial(owner.email);
+    return claimTrial(owner.email, database);
   }
 
   return new Date(Date.now() + trialDays() * 24 * 60 * 60 * 1000);
 }
 
-async function claimTrial(email: string): Promise<Date> {
+async function claimTrial(
+  email: string,
+  database: BillingDatabase,
+): Promise<Date> {
   const emailHash = hashTrialEmail(email);
   const trialEndsAt = new Date(Date.now() + trialDays() * 24 * 60 * 60 * 1000);
 
-  const [claimed] = await db
+  const [claimed] = await database
     .insert(trialGrantTable)
     .values({ emailHash, trialEndsAt })
     .onConflictDoNothing({ target: trialGrantTable.emailHash })
@@ -78,7 +84,7 @@ async function claimTrial(email: string): Promise<Date> {
     return claimed.trialEndsAt;
   }
 
-  const [granted] = await db
+  const [granted] = await database
     .select({ trialEndsAt: trialGrantTable.trialEndsAt })
     .from(trialGrantTable)
     .where(eq(trialGrantTable.emailHash, emailHash))
@@ -87,8 +93,11 @@ async function claimTrial(email: string): Promise<Date> {
   return granted?.trialEndsAt ?? trialEndsAt;
 }
 
-export async function getOrCreateWorkspaceBilling(workspaceId: string) {
-  const [existing] = await db
+export async function getOrCreateWorkspaceBilling(
+  workspaceId: string,
+  database: BillingDatabase = db,
+) {
+  const [existing] = await database
     .select()
     .from(workspaceBillingTable)
     .where(eq(workspaceBillingTable.workspaceId, workspaceId));
@@ -97,7 +106,7 @@ export async function getOrCreateWorkspaceBilling(workspaceId: string) {
     return existing;
   }
 
-  const workspace = await db.query.workspaceTable.findFirst({
+  const workspace = await database.query.workspaceTable.findFirst({
     where: eq(workspaceTable.id, workspaceId),
   });
 
@@ -107,9 +116,11 @@ export async function getOrCreateWorkspaceBilling(workspaceId: string) {
 
   const cutoff = foundingCutoff();
   const isFounding = cutoff !== null && workspace.createdAt <= cutoff;
-  const trialEndsAt = isFounding ? null : await resolveTrialEndsAt(workspaceId);
+  const trialEndsAt = isFounding
+    ? null
+    : await resolveTrialEndsAt(workspaceId, database);
 
-  const [created] = await db
+  const [created] = await database
     .insert(workspaceBillingTable)
     .values({
       workspaceId,
@@ -123,7 +134,7 @@ export async function getOrCreateWorkspaceBilling(workspaceId: string) {
     return created;
   }
 
-  const [raced] = await db
+  const [raced] = await database
     .select()
     .from(workspaceBillingTable)
     .where(eq(workspaceBillingTable.workspaceId, workspaceId));

@@ -7,7 +7,7 @@ import {
   it,
   vi,
 } from "vite-plus/test";
-import db, { schema } from "../../apps/api/src/database";
+import db, { getDatabasePool, schema } from "../../apps/api/src/database";
 import {
   columnExtTable,
   projectExtTable,
@@ -22,6 +22,7 @@ import { claimTaskNumber } from "../../apps/api/src/task/controllers/claim-task-
 import getTask from "../../apps/api/src/task/controllers/get-task";
 import { getDescriptionPage } from "../../apps/api/src/task/description-pages";
 import { mockAnonymousSession, mockAuthenticatedSession } from "./helpers/auth";
+import { drainBackgroundWork } from "./helpers/background-work";
 import { resetTestDatabase } from "./helpers/database";
 import {
   createProjectFixture,
@@ -49,7 +50,7 @@ async function fixture() {
   mockAuthenticatedSession(user);
   const request = projectAccessApi();
   const submit = async (title = "Investigate report") => {
-    const response = await request(`/parity/triage/${project.id}`, {
+    const response = await request(`/parity/triage/project/${project.id}`, {
       method: "POST",
       body: { title, description: "Reporter details" },
     });
@@ -119,6 +120,87 @@ describe("triage inbox", () => {
     ).toBe(404);
   });
 
+  it("excludes pending titles, comments and activities from every search surface until acceptance", async () => {
+    const ctx = await fixture();
+    const taskId = await ctx.submit("Privateincomingmarker");
+    await db.insert(schema.activityTable).values({
+      taskId,
+      userId: ctx.user.id,
+      type: "comment",
+      content: "Privateincomingmarker comment",
+    });
+    const search = async (type: string) => {
+      const response = await ctx.request(
+        `/search?${new URLSearchParams({ q: "Privateincomingmarker", workspaceId: ctx.workspace.id, type })}`,
+      );
+      expect(response.status).toBe(200);
+      return response.json() as Promise<{ results: unknown[] }>;
+    };
+    for (const type of ["all", "tasks", "comments", "activities"])
+      expect((await search(type)).results).toEqual([]);
+    expect(
+      (
+        await ctx.request(`/parity/triage/item/${taskId}/accept`, {
+          method: "POST",
+          body: { columnId: ctx.columns.todo.id },
+        })
+      ).status,
+    ).toBe(200);
+    expect((await search("all")).results).toContainEqual(
+      expect.objectContaining({ id: taskId, type: "task" }),
+    );
+    expect((await search("comments")).results).toContainEqual(
+      expect.objectContaining({
+        type: "comment",
+        content: "Privateincomingmarker comment",
+      }),
+    );
+  });
+
+  it("creates concurrent billed submissions using only their transaction connections", async () => {
+    const ctx = await fixture();
+    const { project: second } = await createProjectFixture({
+      workspaceId: ctx.workspace.id,
+    });
+    await updateTriageSettings(second.id, ctx.workspace.id, { enabled: true });
+    await drainBackgroundWork();
+    vi.stubEnv("KANEO_CLOUD", "true");
+    vi.stubEnv("CREEM_API_KEY", "test-key");
+    vi.stubEnv("CREEM_WEBHOOK_SECRET", "test-secret");
+    vi.stubEnv("BILLING_FOUNDING_CUTOFF", "");
+    const pool = getDatabasePool();
+    const held = await Promise.all(
+      Array.from({ length: pool.options.max! - 2 }, () => pool.connect()),
+    );
+    try {
+      const tasks = await Promise.all(
+        [ctx.project, second].map((project) =>
+          createTriageItem(
+            project.id,
+            { title: "Billed submission", description: "" },
+            { userId: ctx.user.id, workspaceId: ctx.workspace.id },
+          ),
+        ),
+      );
+      expect(tasks).toHaveLength(2);
+      expect(new Set(tasks.map((task) => task.id)).size).toBe(2);
+    } finally {
+      for (const client of held) client.release();
+    }
+    expect(await db.query.workspaceBillingTable.findMany()).toHaveLength(1);
+    expect(await db.query.trialGrantTable.findMany()).toHaveLength(1);
+    await db
+      .update(schema.workspaceBillingTable)
+      .set({ trialEndsAt: new Date(0) });
+    await expect(
+      createTriageItem(
+        ctx.project.id,
+        { title: "Expired", description: "" },
+        { userId: ctx.user.id, workspaceId: ctx.workspace.id },
+      ),
+    ).rejects.toMatchObject({ status: 402 });
+  });
+
   it("filters hidden projects consistently across lists, count and project selectors", async () => {
     const ctx = await createRestrictedWorkspace();
     for (const project of [ctx.alpha, ctx.beta]) {
@@ -157,7 +239,7 @@ describe("triage inbox", () => {
     ).toHaveLength(1);
     expect(
       (
-        await request(`/parity/triage/${ctx.beta.id}`, {
+        await request(`/parity/triage/project/${ctx.beta.id}`, {
           method: "POST",
           body: { title: "Hidden" },
         })
@@ -201,7 +283,7 @@ describe("triage inbox", () => {
       ).toBe(403);
     expect(
       (
-        await ctx.request(`/parity/triage/${ctx.project.id}`, {
+        await ctx.request(`/parity/triage/project/${ctx.project.id}`, {
           method: "POST",
           body: { title: "No" },
         })
@@ -400,14 +482,24 @@ describe("triage decisions", () => {
     );
   });
 
-  it("rejects self, pending and inaccessible duplicate targets", async () => {
+  it("rejects self, pending, declined and inaccessible duplicate targets", async () => {
     const ctx = await fixture();
     const id = await ctx.submit();
     const pending = await ctx.submit("Another pending item");
+    const declined = await ctx.submit("Rejected submission");
+    expect(
+      (
+        await ctx.request(`/parity/triage/item/${declined}/decline`, {
+          method: "POST",
+          body: { comment: "Out of scope" },
+        })
+      ).status,
+    ).toBe(200);
     const other = await createRestrictedWorkspace();
     for (const [target, status] of [
       [id, 400],
       [pending, 400],
+      [declined, 400],
       [other.alphaTask.id, 404],
     ] as const)
       expect(

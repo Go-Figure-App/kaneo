@@ -5,6 +5,7 @@ import { migrate } from "drizzle-orm/node-postgres/migrator";
 import { Client } from "pg";
 import db from "../../../apps/api/src/database";
 import { migrateParity } from "../../../apps/api/src/parity/foundation/migrate";
+import { drainBackgroundWork } from "./background-work";
 
 const currentDir = dirname(fileURLToPath(import.meta.url));
 const migrationsFolder = resolve(currentDir, "../../../apps/api/drizzle");
@@ -101,6 +102,7 @@ async function listPublicTableNames(): Promise<string[]> {
 }
 
 export async function resetTestDatabase() {
+  await drainBackgroundWork();
   await ensureTestDatabaseMigrated();
 
   const tableNames = await listPublicTableNames();

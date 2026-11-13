@@ -1,4 +1,9 @@
-import { pagingNumber, responseTimestamp, z } from "../../openapi";
+import {
+  pagingNumber,
+  responseTimestamp,
+  nullableResponseTimestamp,
+  z,
+} from "../../openapi";
 import { taskRecurrenceSchema } from "../../task/recurrence/schema";
 
 export const id = z.string().min(1).max(128);
@@ -69,7 +74,7 @@ export const triageItemSchema = z.object({
   projectSlug: z.string(),
   createdAt: responseTimestamp,
   source: z.string().nullable(),
-  snoozedUntil: responseTimestamp.nullable(),
+  snoozedUntil: nullableResponseTimestamp,
 });
 export const settingsSchema = z.object({
   enabled: z.boolean(),

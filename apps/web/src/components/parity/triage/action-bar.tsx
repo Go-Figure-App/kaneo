@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Button } from "@/components/ui/button";
 import {
@@ -22,11 +22,13 @@ export function TriageActionBar({
   const { t } = useTranslation();
   const { canUpdateTasks } = useWorkspacePermission();
   const allowed = canUpdateTasks();
+  const actionBar = useRef<HTMLDivElement>(null);
   const [action, setAction] = useState<TriageDecision["action"] | null>(null);
   useEffect(() => {
     const onKey = (event: KeyboardEvent) => {
       if (
         !allowed ||
+        !actionBar.current?.contains(document.activeElement) ||
         action ||
         event.repeat ||
         event.isComposing ||
@@ -68,7 +70,7 @@ export function TriageActionBar({
   };
   return (
     <>
-      <div className="flex flex-wrap gap-2 border-b p-4">
+      <div ref={actionBar} className="flex flex-wrap gap-2 border-b p-4">
         {(["accept", "duplicate", "decline", "snooze"] as const).map(
           (value, index) => (
             <Button

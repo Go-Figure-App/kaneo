@@ -8,12 +8,15 @@ import {
   getOrCreateWorkspaceBilling,
 } from "./get-workspace-billing";
 
-export async function requireWorkspaceEntitlement(workspaceId: string) {
+export async function requireWorkspaceEntitlement(
+  workspaceId: string,
+  database: Pick<typeof db, "select" | "insert" | "query"> = db,
+) {
   if (!isBillingEnabled()) {
     return;
   }
 
-  const billing = await getOrCreateWorkspaceBilling(workspaceId);
+  const billing = await getOrCreateWorkspaceBilling(workspaceId, database);
   const entitlement = computeEntitlement(billing);
 
   if (!entitlement.active) {

@@ -15381,7 +15381,10 @@
                             ]
                           },
                           "snoozedUntil": {
-                            "type": "string",
+                            "type": [
+                              "string",
+                              "null"
+                            ],
                             "format": "date-time"
                           }
                         },
@@ -15680,7 +15683,7 @@
         }
       }
     },
-    "/parity/triage/{projectId}": {
+    "/parity/triage/project/{projectId}": {
       "post": {
         "operationId": "createTriageItem",
         "summary": "Submit a task for triage",

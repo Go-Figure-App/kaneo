@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import { ArrowLeft, Inbox } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import WorkspaceLayout from "@/components/common/workspace-layout";
 import PageTitle from "@/components/page-title";
@@ -28,6 +28,14 @@ export function TriageInbox({ workspaceId }: { workspaceId: string }) {
     enabled,
     refetchInterval: 30_000,
   });
+  const total = query.data?.total;
+  const pageSize = query.data?.pageSize;
+  useEffect(() => {
+    if (total !== undefined && pageSize) {
+      const lastPage = Math.max(1, Math.ceil(total / pageSize));
+      if (page > lastPage) setPage(lastPage);
+    }
+  }, [page, total, pageSize]);
   const selected = query.data?.items.find((item) => item.id === selectedId);
   return (
     <>

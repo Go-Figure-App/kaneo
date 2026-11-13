@@ -46,7 +46,7 @@ it("creates and accepts through the same authenticated API, preserving explicit 
     title: " Report ",
     description: "Details",
   });
-  expect(json).toHaveBeenLastCalledWith("/api/parity/triage/project", {
+  expect(json).toHaveBeenLastCalledWith("/api/parity/triage/project/project", {
     method: "POST",
     body: JSON.stringify({ title: "Report", description: "Details" }),
   });

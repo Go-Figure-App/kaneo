@@ -57,7 +57,7 @@ export async function createTriageItem(
       ("token" in reporter && reporter.token !== settings.intakeToken)
     )
       throw new HTTPException(404, { message: "Triage intake is unavailable" });
-    await requireWorkspaceEntitlement(project.workspaceId);
+    await requireWorkspaceEntitlement(project.workspaceId, tx);
     if (
       input.startDate &&
       input.dueDate &&

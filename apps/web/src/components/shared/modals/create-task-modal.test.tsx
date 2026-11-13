@@ -90,6 +90,25 @@ const createTask = vi.fn(async (input: Record<string, unknown>) => ({
   createdAt: "2026-08-05T00:00:00.000Z",
 }));
 
+const createTriage = vi.fn(
+  async (projectId: string, input: Record<string, unknown>) => ({
+    id: "pending-1",
+    ...input,
+    projectId,
+    status: "triage",
+    createdAt: "2026-08-05T00:00:00.000Z",
+  }),
+);
+vi.mock("@/components/parity/triage/queries", () => ({
+  useTriageEnabled: () => true,
+  refreshTriage: vi.fn(),
+}));
+vi.mock("@/fetchers/parity/triage", () => ({
+  getTriageProjects: async () => projects ?? [],
+  createTriage: (projectId: string, input: Record<string, unknown>) =>
+    createTriage(projectId, input),
+}));
+
 afterEach(() => {
   cleanup();
   document.body.innerHTML = "";
@@ -483,6 +502,35 @@ describe("CreateTaskModal", () => {
     submit();
     expect(createTask).not.toHaveBeenCalled();
   });
+
+  it.each(["loading", "error", "refresh failure"])(
+    "submits triage while columns have a %s state",
+    async (state) => {
+      if (state !== "refresh failure") projectColumns = undefined;
+      columnsError = state === "error";
+      refetchColumns.mockResolvedValue({ data: undefined, isError: true });
+      render(<CreateTaskModal open onClose={vi.fn()} />, {
+        wrapper: createWrapper(),
+      });
+      await chooseBeta();
+      enterTitle();
+      fireEvent.click(
+        await screen.findByRole("checkbox", { name: "parity:triage.send" }),
+      );
+      expect(
+        screen.getByText("common:modals.createTask.createButton"),
+      ).toBeEnabled();
+      submit();
+      await vi.waitFor(() => expect(createTriage).toHaveBeenCalledOnce());
+      expect(createTriage).toHaveBeenCalledWith(
+        "project-2",
+        expect.objectContaining({ title: "Private task" }),
+      );
+      expect(createTriage.mock.calls[0]?.[1]).not.toHaveProperty("status");
+      expect(createTask).not.toHaveBeenCalled();
+      expect(refetchColumns).not.toHaveBeenCalled();
+    },
+  );
 
   it("uses fresh workflow columns when a cached open column became final", async () => {
     refetchColumns.mockResolvedValue({

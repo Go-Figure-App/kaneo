@@ -248,7 +248,7 @@ Small read predicates are necessary to keep pending reports out of every existin
 | `apps/api/src/task/get-subtask-counts.ts` | Exclude pending children from visible task counts. |
 | `apps/api/src/task/description-pages.ts` | Exclude pending reports from public descriptions and description searches. |
 | `apps/api/src/project/controllers/get-projects.ts` | Exclude pending reports from project task statistics. |
-| `apps/api/src/search/controllers/global-search.ts` | Exclude pending reports from both title and identifier search. |
+| `apps/api/src/search/controllers/global-search.ts` | Exclude pending reports from title, identifier, activity and comment search. |
 | `apps/api/src/calendar-feed/service.ts` | Exclude pending reports from published calendar feeds. |
 | `apps/api/src/scheduler/index.ts` | Register and stop the leased triage snooze job. |
 | `apps/api/src/task-relation/schema.ts` | Allow the design’s duplicate relation type. |
@@ -262,13 +262,16 @@ Small read predicates are necessary to keep pending reports out of every existin
 | `apps/web/src/components/settings/nav/use-settings-nav.ts` | Add feature-gated project triage settings navigation. |
 | `apps/web/src/components/shared/modals/create-task-modal.tsx` | Mount the triage option; preserve task inputs and avoid optimistic board insertion for pending items. |
 | `apps/web/src/components/task/sections/relation-tag.tsx` | Display duplicate relation labels. |
-| `apps/web/src/components/task/task-relations.tsx` | Group duplicate relationships in both directions. |
+| `apps/web/src/components/task/task-relations.tsx` | Group duplicate relationships in both directions and navigate using the linked task’s project. |
 | `apps/web/src/fetchers/task-relation/create-task-relation.ts` | Include duplicate in the typed relation union. |
 | `apps/web/src/routeTree.gen.ts` | Generate the new inbox, settings and public-intake routes. |
 | `i18n/en-US.json` | Add web and mobile triage copy; all 20 existing locale catalogs translate the same new keys. |
 | `i18n/schema.json` | Synchronize only the parity namespaces; preserve unrelated inherited schema entries. |
 | `packages/mcp/src/tools/register.ts` | Register the four triage tools. |
-| `tests/api-integration/helpers/database.ts` | Apply additive parity migrations after upstream migrations in every integration fixture. |
+| `tests/api-integration/helpers/database.ts` | Apply additive parity migrations after upstream migrations; drain real background event/delivery work before truncating fixtures. |
+| `tests/api-integration/setup.ts` | Track real asynchronous event subscribers and notification deliveries in tests, draining before mock restoration to prevent teardown deadlocks and cross-test writes. |
+| `apps/api/src/billing/controllers/require-entitlement.ts` | Accept an existing database transaction for triage entitlement checks. |
+| `apps/api/src/billing/controllers/get-workspace-billing.ts` | Carry that transaction through billing lookup, trial claiming and conflict recovery to avoid nested pool acquisition. |
 | `tests/api-integration/mocks/email.ts` | Provide the existing notification-email export in the test mock. |
 | `apps/api/src/plugins/sync/eligibility.ts` | Prevent pending intake from outbound sync without setting a sticky filter-pause marker; acceptance restores normal eligibility. |
 | `apps/api/src/plugins/github/webhooks/issue-opened.ts` | Stage opted-in incoming tasks atomically and publish the triage event instead of outbound task creation. |
@@ -282,6 +285,10 @@ The feature-owned API/mobile/web modules, routes, tests, partial queue index and
 Automated public fixtures use synthetic local data. An additional private local rehearsal copied five authorized Linear issues, preserving titles and complete Markdown descriptions (up to 8,521 characters), hiding all five from the board before acceptance and showing them afterward. The source data is outside the repository. The browser flow checks anonymous intake, two-tab live updates, all four decisions and revoked-link rejection. Native iPhone 17 / iOS 27 verification includes the combined badge, swipe acceptance and decision sheets. A native modal-transition bug found during this check was fixed by retaining one sheet while changing its content.
 
 The focused API suite covers concurrent decisions, project access, API-key scopes, defaults, preserved member fields, staged-asset ownership, public asset privacy, integration rollback, token rotation and the leased snooze job. Provider regression suites passed 207 tests (three inherited skips), including all three integrations with the feature enabled, disabled and opted out. The final Docker image passed three upstream browser flows with parity disabled and both parity flows with it enabled. The complete local integration run passed 2,230 tests and exposed two failures (a cached pre-fix recurrence module and a connection timeout under load); both failed files plus upstream recurrence passed fresh against final source, 24/24, without changing assertions or timeouts. Exact final CI and review results are recorded on the phase PR before merge. No production migration, import, Railway change or distribution submission is included.
+
+Phase 1 review corrections add transaction-aware billing (including trial-claim race recovery), exclude pending activity/comment search, reject declined duplicate targets, separate the project-create route from workspace-list routes, and use the shared nullable timestamp contract. Web regression tests cover focused shortcuts, creating pending tasks while columns fail to load, and queue shrinkage across pages. Native duplicate search shows loading, empty and retry states. Cross-project duplicate links use the target project.
+
+The initial PR CI passed quality, workspace units, Docker/browser tests and three integration shards; one shard exposed an inherited background-notification query racing the next fixture's TRUNCATE. Integration setup now tracks real subscriber/delivery promises and drains them before reset and mock teardown without changing production event timing or test timeouts. Focused cleanup, triage, existing billing, modal and client-contract tests passed after these corrections.
 
 ## Manufact MCP assessment
 

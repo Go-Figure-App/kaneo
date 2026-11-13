@@ -4,7 +4,7 @@ import { HttpError } from "@/lib/http-error";
 
 const triage = client.parity.triage;
 export type TriageInput = InferRequestType<
-  (typeof triage)[":projectId"]["$post"]
+  (typeof triage.project)[":projectId"]["$post"]
 >["json"];
 export type TriageSettingsInput = InferRequestType<
   (typeof triage.settings)[":projectId"]["$put"]
@@ -48,7 +48,7 @@ export async function getTriageProjects(workspaceId: string) {
   return response.json();
 }
 export async function createTriage(projectId: string, json: TriageInput) {
-  const response = await triage[":projectId"].$post({
+  const response = await triage.project[":projectId"].$post({
     param: { projectId },
     json,
   });

@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import { router } from "expo-router";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { FlatList, View } from "react-native";
 import { ErrorState, Loading } from "@/components/screen";
@@ -25,6 +25,14 @@ export function TriageList({ workspaceId }: { workspaceId: string }) {
     queryFn: () => triageApi.list(workspaceId, page),
     refetchInterval: 30_000,
   });
+  const total = query.data?.total;
+  const pageSize = query.data?.pageSize;
+  useEffect(() => {
+    if (total !== undefined && pageSize) {
+      const lastPage = Math.max(1, Math.ceil(total / pageSize));
+      if (page > lastPage) setPage(lastPage);
+    }
+  }, [page, total, pageSize]);
   const projects = useQuery({
     queryKey: ["parity", "triage", workspaceId, "projects"],
     queryFn: () => triageApi.projects(workspaceId),

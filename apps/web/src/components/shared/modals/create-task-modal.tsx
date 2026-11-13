@@ -537,7 +537,7 @@ function CreateTaskModalContent({
       submittingRef.current ||
       pendingUploadsRef.current > 0 ||
       !canCreateTaskCapability ||
-      awaitingColumns ||
+      (!sendToTriage && awaitingColumns) ||
       !title.trim() ||
       !resolvedProjectId ||
       assigneeUnconfirmed ||
@@ -559,7 +559,7 @@ function CreateTaskModalContent({
     setIsSubmitting(true);
     try {
       let submitStatus = taskStatus;
-      if (!status) {
+      if (!sendToTriage && !status) {
         const workflow = await refetchColumns();
         if (!activeRef.current) return;
         if (workflow.isError || !workflow.data)
@@ -1291,7 +1291,7 @@ function CreateTaskModalContent({
             </div>
           </div>
 
-          {awaitingColumns && columnsError && (
+          {!sendToTriage && awaitingColumns && columnsError && (
             <div
               role="alert"
               className="flex items-center gap-2 px-6 py-2 text-sm text-muted-foreground"
@@ -1347,7 +1347,7 @@ function CreateTaskModalContent({
                 !resolvedProjectId ||
                 assigneeUnconfirmed ||
                 isSubmitting ||
-                awaitingColumns ||
+                (!sendToTriage && awaitingColumns) ||
                 isPreparingDraft
               }
               aria-busy={isPreparingDraft || isSubmitting}

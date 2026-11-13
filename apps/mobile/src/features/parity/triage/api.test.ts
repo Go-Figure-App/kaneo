@@ -27,7 +27,7 @@ it("preserves optional task fields when sending a task to triage", async () => {
     customFields: [{ fieldId: "size", value: "3" }],
   };
   await triageApi.create("project", input);
-  expect(request).toHaveBeenCalledWith("api/parity/triage/project", {
+  expect(request).toHaveBeenCalledWith("api/parity/triage/project/project", {
     method: "POST",
     body: input,
   });

@@ -125,7 +125,7 @@ const projectsRoute = createRoute({
 });
 const createItemRoute = createRoute({
   method: "post",
-  path: "/{projectId}",
+  path: "/project/{projectId}",
   operationId: "createTriageItem",
   summary: "Submit a task for triage",
   tags: ["Triage"],

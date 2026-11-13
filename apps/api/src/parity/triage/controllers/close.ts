@@ -58,6 +58,7 @@ export async function closeTriage(
         if (
           target?.triageState === "pending" ||
           target?.triageState === "duplicate" ||
+          target?.triageState === "declined" ||
           target?.duplicateOfTaskId
         )
           throw new HTTPException(400, {

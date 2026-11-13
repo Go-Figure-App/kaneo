@@ -52,10 +52,13 @@ export function registerTriageTools(server: ToolRegistrar, client: ToolClient) {
       description: z.string().max(50_000).optional(),
     }),
     ({ projectId, ...body }) =>
-      client.json(`/api/parity/triage/${encodeURIComponent(projectId)}`, {
-        method: "POST",
-        body: JSON.stringify(body),
-      }),
+      client.json(
+        `/api/parity/triage/project/${encodeURIComponent(projectId)}`,
+        {
+          method: "POST",
+          body: JSON.stringify(body),
+        },
+      ),
   );
   register(
     "accept_triage_item",

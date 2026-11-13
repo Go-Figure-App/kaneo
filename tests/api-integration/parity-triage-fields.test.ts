@@ -71,19 +71,22 @@ it("preserves member fields and staged uploads while keeping pending public-proj
       size: 1,
     })
     .returning();
-  const response = await ctx.request(`/parity/triage/${ctx.project.id}`, {
-    method: "POST",
-    body: {
-      title: "Full report",
-      description: `![Report](/api/asset/${asset.id})`,
-      priority: "high",
-      userId: ctx.user.id,
-      startDate: "2030-01-01",
-      dueDate: "2030-01-03",
-      draftAssetIds: [asset.id],
-      customFields: [{ fieldId: field.id, value: "3" }],
+  const response = await ctx.request(
+    `/parity/triage/project/${ctx.project.id}`,
+    {
+      method: "POST",
+      body: {
+        title: "Full report",
+        description: `![Report](/api/asset/${asset.id})`,
+        priority: "high",
+        userId: ctx.user.id,
+        startDate: "2030-01-01",
+        dueDate: "2030-01-03",
+        draftAssetIds: [asset.id],
+        customFields: [{ fieldId: field.id, value: "3" }],
+      },
     },
-  });
+  );
   expect(response.status).toBe(200);
   const task = (await response.json()) as { id: string };
   expect(
@@ -139,7 +142,7 @@ it("rejects another member's staged asset and rolls back the entire submission",
     .returning();
   expect(
     (
-      await ctx.request(`/parity/triage/${ctx.project.id}`, {
+      await ctx.request(`/parity/triage/project/${ctx.project.id}`, {
         method: "POST",
         body: {
           title: "Bad upload",
@@ -219,7 +222,7 @@ it("enforces API-key read, create, update and assignment scopes independently", 
   ).toBe(403);
   expect(
     (
-      await request(`/parity/triage/${ctx.project.id}`, {
+      await request(`/parity/triage/project/${ctx.project.id}`, {
         method: "POST",
         body: { title: "Assigned", userId: ctx.user.id },
       })
@@ -251,7 +254,7 @@ it("enforces API-key read, create, update and assignment scopes independently", 
   expect(
     (
       await projectAccessApi({ "x-api-key": readKey.key })(
-        `/parity/triage/${ctx.project.id}`,
+        `/parity/triage/project/${ctx.project.id}`,
         { method: "POST", body: { title: "Denied" } },
       )
     ).status,

@@ -3,6 +3,7 @@ import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { TextInput, View } from "react-native";
 import { Calendar } from "@/components/pickers";
+import { Loading } from "@/components/screen";
 import { Sheet } from "@/components/sheet";
 import { Txt } from "@/components/text";
 import { Button, Touch } from "@/components/ui";
@@ -43,11 +44,14 @@ export function TriageDecisionSheet({
     enabled: action === "accept",
   });
   const members = useMembers(workspaceId, item.projectId);
+  const searchEnabled = action === "duplicate" && query.trim().length > 1;
   const search = useQuery({
     queryKey: ["parity", "triage", workspaceId, "search", query],
     queryFn: () => api.search(query, workspaceId, "tasks"),
-    enabled: action === "duplicate" && query.trim().length > 1,
+    enabled: searchEnabled,
   });
+  const duplicateResults =
+    search.data?.results.filter((task) => task.id !== item.id) ?? [];
   const selectedColumn =
     columns.data?.find((column) => column.id === columnId)?.id ??
     columns.data?.find((column) => column.category === "unstarted")?.id ??
@@ -201,16 +205,22 @@ export function TriageDecisionSheet({
                   setDuplicateId("");
                 }}
               />
-              {search.data?.results
-                .filter((task) => task.id !== item.id)
-                .map((task) =>
-                  choice(
-                    task.id,
-                    `${task.projectSlug?.toUpperCase()}-${task.taskNumber} · ${task.title}`,
-                    duplicateId === task.id,
-                    () => setDuplicateId(task.id),
-                  ),
+              {searchEnabled && search.isPending && <Loading />}
+              {searchEnabled &&
+                search.isSuccess &&
+                duplicateResults.length === 0 && (
+                  <Txt tone="muted">
+                    {t("mobile:search.noResults", { query })}
+                  </Txt>
                 )}
+              {duplicateResults.map((task) =>
+                choice(
+                  task.id,
+                  `${task.projectSlug?.toUpperCase()}-${task.taskNumber} · ${task.title}`,
+                  duplicateId === task.id,
+                  () => setDuplicateId(task.id),
+                ),
+              )}
             </>
           )}
           {action === "snooze" && (
@@ -221,9 +231,21 @@ export function TriageDecisionSheet({
               }
             />
           )}
-          {columns.error || search.error ? (
-            <Txt tone="danger">{t("mobile:common.somethingWrong")}</Txt>
-          ) : null}
+          {((action === "accept" && columns.isError) ||
+            (searchEnabled && search.isError)) && (
+            <View style={{ gap: 8 }}>
+              <Txt tone="danger">{t("mobile:common.somethingWrong")}</Txt>
+              <Button
+                kind="secondary"
+                label={t("mobile:common.retry")}
+                onPress={() =>
+                  void (action === "accept"
+                    ? columns.refetch()
+                    : search.refetch())
+                }
+              />
+            </View>
+          )}
           <Button
             label={labels[action]}
             disabled={!valid || busy}
