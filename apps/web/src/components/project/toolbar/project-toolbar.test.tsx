@@ -3,6 +3,9 @@ import type { ReactNode } from "react";
 import { afterEach, expect, it, vi } from "vite-plus/test";
 import { ProjectToolbar } from "./project-toolbar";
 import type { ProjectTaskView } from "./use-project-task-view";
+vi.mock("@/components/parity/cycles/project-cycle-filter", () => ({
+  ProjectCycleFilter: () => null,
+}));
 
 vi.mock("react-i18next", () => ({
   useTranslation: () => ({ t: (key: string) => key }),

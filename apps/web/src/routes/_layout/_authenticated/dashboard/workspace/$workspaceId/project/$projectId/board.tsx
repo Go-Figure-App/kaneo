@@ -221,7 +221,9 @@ function RouteComponent() {
               <KanbanBoard
                 key={projectId}
                 project={sortedProject}
-                disableCollectionActions={boardFetching || boardError}
+                disableCollectionActions={
+                  boardFetching || boardError || view.cycleFilter.value !== null
+                }
                 disableDragDrop={
                   (boardFetching && !boardLoaded) ||
                   boardError ||
@@ -236,9 +238,14 @@ function RouteComponent() {
               <ListView
                 key={projectId}
                 project={sortedProject}
-                disableCollectionActions={boardFetching || boardError}
+                disableCollectionActions={
+                  boardFetching || boardError || view.cycleFilter.value !== null
+                }
                 disableDragDrop={
-                  boardFetching || boardError || sort.field !== "position"
+                  boardFetching ||
+                  boardError ||
+                  sort.field !== "position" ||
+                  view.cycleFilter.value !== null
                 }
               />
             )

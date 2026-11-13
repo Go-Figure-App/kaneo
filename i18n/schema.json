@@ -19489,9 +19489,362 @@
 								"noMilestone",
 								"readOnly"
 							]
+						},
+						"cycles": {
+							"type": "object",
+							"additionalProperties": false,
+							"properties": {
+								"estimate": {
+									"type": "string"
+								},
+								"noEstimate": {
+									"type": "string"
+								},
+								"chooseEstimate": {
+									"type": "string"
+								},
+								"title": {
+									"type": "string"
+								},
+								"number": {
+									"type": "string"
+								},
+								"current": {
+									"type": "string"
+								},
+								"upcoming": {
+									"type": "string"
+								},
+								"past": {
+									"type": "string"
+								},
+								"settings": {
+									"type": "string"
+								},
+								"settingsDescription": {
+									"type": "string"
+								},
+								"enabled": {
+									"type": "string"
+								},
+								"disableDescription": {
+									"type": "string"
+								},
+								"cycleWeeks": {
+									"type": "string"
+								},
+								"cooldownWeeks": {
+									"type": "string"
+								},
+								"upcomingCycles": {
+									"type": "string"
+								},
+								"startDay": {
+									"type": "string"
+								},
+								"timeZone": {
+									"type": "string"
+								},
+								"autoRollover": {
+									"type": "string"
+								},
+								"estimateScale": {
+									"type": "string"
+								},
+								"scaleNone": {
+									"type": "string"
+								},
+								"scaleLinear": {
+									"type": "string"
+								},
+								"scaleFibonacci": {
+									"type": "string"
+								},
+								"scaleTshirt": {
+									"type": "string"
+								},
+								"edit": {
+									"type": "string"
+								},
+								"name": {
+									"type": "string"
+								},
+								"startDate": {
+									"type": "string"
+								},
+								"endDate": {
+									"type": "string"
+								},
+								"burndown": {
+									"type": "string"
+								},
+								"tasksRemaining": {
+									"type": "string"
+								},
+								"pointsRemaining": {
+									"type": "string"
+								},
+								"historyUnavailable": {
+									"type": "string"
+								},
+								"historyEmpty": {
+									"type": "string"
+								},
+								"dailyHistory": {
+									"type": "string"
+								},
+								"date": {
+									"type": "string"
+								},
+								"scope": {
+									"type": "string"
+								},
+								"remaining": {
+									"type": "string"
+								},
+								"completed": {
+									"type": "string"
+								},
+								"rolledOver": {
+									"type": "string"
+								},
+								"progress": {
+									"type": "string"
+								},
+								"daysLeft_one": {
+									"type": "string"
+								},
+								"daysLeft_zero": {
+									"type": "string"
+								},
+								"daysLeft_two": {
+									"type": "string"
+								},
+								"daysLeft_few": {
+									"type": "string"
+								},
+								"daysLeft_many": {
+									"type": "string"
+								},
+								"daysLeft_other": {
+									"type": "string"
+								},
+								"noCycles": {
+									"type": "string"
+								},
+								"noCurrentCycle": {
+									"type": "string"
+								},
+								"disabled": {
+									"type": "string"
+								},
+								"tasks": {
+									"type": "string"
+								},
+								"noTasks": {
+									"type": "string"
+								},
+								"groupBy": {
+									"type": "string"
+								},
+								"state": {
+									"type": "string"
+								},
+								"assignee": {
+									"type": "string"
+								},
+								"project": {
+									"type": "string"
+								},
+								"searchTasks": {
+									"type": "string"
+								},
+								"allProjects": {
+									"type": "string"
+								},
+								"allAssignees": {
+									"type": "string"
+								},
+								"allStates": {
+									"type": "string"
+								},
+								"allPriorities": {
+									"type": "string"
+								},
+								"label": {
+									"type": "string"
+								},
+								"labelPlaceholder": {
+									"type": "string"
+								},
+								"unassigned": {
+									"type": "string"
+								},
+								"loadMore": {
+									"type": "string"
+								},
+								"noCycle": {
+									"type": "string"
+								},
+								"chooseCycle": {
+									"type": "string"
+								},
+								"cycle": {
+									"type": "string"
+								},
+								"allCycles": {
+									"type": "string"
+								},
+								"currentCycle": {
+									"type": "string"
+								},
+								"thisCycle": {
+									"type": "string"
+								},
+								"backToCycles": {
+									"type": "string"
+								},
+								"filter": {
+									"type": "string"
+								},
+								"emptyAssigned": {
+									"type": "string"
+								},
+								"completion": {
+									"type": "string"
+								},
+								"totalPoints": {
+									"type": "string"
+								},
+								"totalPoints_zero": {
+									"type": "string"
+								},
+								"totalPoints_one": {
+									"type": "string"
+								},
+								"totalPoints_two": {
+									"type": "string"
+								},
+								"totalPoints_few": {
+									"type": "string"
+								},
+								"totalPoints_many": {
+									"type": "string"
+								},
+								"totalPoints_other": {
+									"type": "string"
+								},
+								"statusBacklog": {
+									"type": "string"
+								},
+								"statusUnstarted": {
+									"type": "string"
+								},
+								"statusStarted": {
+									"type": "string"
+								},
+								"statusCompleted": {
+									"type": "string"
+								},
+								"statusCanceled": {
+									"type": "string"
+								},
+								"addIssues": {
+									"type": "string"
+								},
+								"retry": {
+									"type": "string"
+								},
+								"allTasks": {
+									"type": "string"
+								}
+							},
+							"required": [
+								"estimate",
+								"noEstimate",
+								"chooseEstimate",
+								"title",
+								"number",
+								"current",
+								"upcoming",
+								"past",
+								"settings",
+								"settingsDescription",
+								"enabled",
+								"disableDescription",
+								"cycleWeeks",
+								"cooldownWeeks",
+								"upcomingCycles",
+								"startDay",
+								"timeZone",
+								"autoRollover",
+								"estimateScale",
+								"scaleNone",
+								"scaleLinear",
+								"scaleFibonacci",
+								"scaleTshirt",
+								"edit",
+								"name",
+								"startDate",
+								"endDate",
+								"burndown",
+								"tasksRemaining",
+								"pointsRemaining",
+								"historyUnavailable",
+								"historyEmpty",
+								"dailyHistory",
+								"date",
+								"scope",
+								"remaining",
+								"completed",
+								"rolledOver",
+								"progress",
+								"noCycles",
+								"noCurrentCycle",
+								"disabled",
+								"tasks",
+								"noTasks",
+								"groupBy",
+								"state",
+								"assignee",
+								"project",
+								"searchTasks",
+								"allProjects",
+								"allAssignees",
+								"allStates",
+								"allPriorities",
+								"label",
+								"labelPlaceholder",
+								"unassigned",
+								"loadMore",
+								"noCycle",
+								"chooseCycle",
+								"cycle",
+								"allCycles",
+								"currentCycle",
+								"thisCycle",
+								"backToCycles",
+								"filter",
+								"emptyAssigned",
+								"completion",
+								"statusBacklog",
+								"statusUnstarted",
+								"statusStarted",
+								"statusCompleted",
+								"statusCanceled",
+								"addIssues",
+								"retry",
+								"allTasks"
+							]
 						}
 					},
-					"required": ["signInTagline", "triage", "planning", "roadmap"]
+					"required": [
+						"signInTagline",
+						"triage",
+						"planning",
+						"roadmap",
+						"cycles"
+					]
 				}
 			},
 			"required": [
@@ -20125,9 +20478,390 @@
 						"noProjects",
 						"jumpToDate"
 					]
+				},
+				"cycles": {
+					"type": "object",
+					"additionalProperties": false,
+					"properties": {
+						"estimate": {
+							"type": "string"
+						},
+						"noEstimate": {
+							"type": "string"
+						},
+						"chooseEstimate": {
+							"type": "string"
+						},
+						"title": {
+							"type": "string"
+						},
+						"number": {
+							"type": "string"
+						},
+						"current": {
+							"type": "string"
+						},
+						"upcoming": {
+							"type": "string"
+						},
+						"past": {
+							"type": "string"
+						},
+						"settings": {
+							"type": "string"
+						},
+						"settingsDescription": {
+							"type": "string"
+						},
+						"enabled": {
+							"type": "string"
+						},
+						"disableDescription": {
+							"type": "string"
+						},
+						"cycleWeeks": {
+							"type": "string"
+						},
+						"cooldownWeeks": {
+							"type": "string"
+						},
+						"upcomingCycles": {
+							"type": "string"
+						},
+						"startDay": {
+							"type": "string"
+						},
+						"timeZone": {
+							"type": "string"
+						},
+						"autoRollover": {
+							"type": "string"
+						},
+						"estimateScale": {
+							"type": "string"
+						},
+						"scaleNone": {
+							"type": "string"
+						},
+						"scaleLinear": {
+							"type": "string"
+						},
+						"scaleFibonacci": {
+							"type": "string"
+						},
+						"scaleTshirt": {
+							"type": "string"
+						},
+						"edit": {
+							"type": "string"
+						},
+						"name": {
+							"type": "string"
+						},
+						"startDate": {
+							"type": "string"
+						},
+						"endDate": {
+							"type": "string"
+						},
+						"burndown": {
+							"type": "string"
+						},
+						"tasksRemaining": {
+							"type": "string"
+						},
+						"pointsRemaining": {
+							"type": "string"
+						},
+						"historyUnavailable": {
+							"type": "string"
+						},
+						"historyEmpty": {
+							"type": "string"
+						},
+						"dailyHistory": {
+							"type": "string"
+						},
+						"date": {
+							"type": "string"
+						},
+						"scope": {
+							"type": "string"
+						},
+						"remaining": {
+							"type": "string"
+						},
+						"completed": {
+							"type": "string"
+						},
+						"rolledOver": {
+							"type": "string"
+						},
+						"progress": {
+							"type": "string"
+						},
+						"daysLeft_one": {
+							"type": "string"
+						},
+						"daysLeft_zero": {
+							"type": "string"
+						},
+						"daysLeft_two": {
+							"type": "string"
+						},
+						"daysLeft_few": {
+							"type": "string"
+						},
+						"daysLeft_many": {
+							"type": "string"
+						},
+						"daysLeft_other": {
+							"type": "string"
+						},
+						"noCycles": {
+							"type": "string"
+						},
+						"noCurrentCycle": {
+							"type": "string"
+						},
+						"disabled": {
+							"type": "string"
+						},
+						"tasks": {
+							"type": "string"
+						},
+						"noTasks": {
+							"type": "string"
+						},
+						"groupBy": {
+							"type": "string"
+						},
+						"state": {
+							"type": "string"
+						},
+						"assignee": {
+							"type": "string"
+						},
+						"project": {
+							"type": "string"
+						},
+						"searchTasks": {
+							"type": "string"
+						},
+						"allProjects": {
+							"type": "string"
+						},
+						"allAssignees": {
+							"type": "string"
+						},
+						"allStates": {
+							"type": "string"
+						},
+						"allPriorities": {
+							"type": "string"
+						},
+						"label": {
+							"type": "string"
+						},
+						"labelPlaceholder": {
+							"type": "string"
+						},
+						"unassigned": {
+							"type": "string"
+						},
+						"loadMore": {
+							"type": "string"
+						},
+						"noCycle": {
+							"type": "string"
+						},
+						"chooseCycle": {
+							"type": "string"
+						},
+						"cycle": {
+							"type": "string"
+						},
+						"allCycles": {
+							"type": "string"
+						},
+						"currentCycle": {
+							"type": "string"
+						},
+						"thisCycle": {
+							"type": "string"
+						},
+						"backToCycles": {
+							"type": "string"
+						},
+						"filter": {
+							"type": "string"
+						},
+						"emptyAssigned": {
+							"type": "string"
+						},
+						"completion": {
+							"type": "string"
+						},
+						"totalPoints": {
+							"type": "string"
+						},
+						"totalPoints_zero": {
+							"type": "string"
+						},
+						"totalPoints_one": {
+							"type": "string"
+						},
+						"totalPoints_two": {
+							"type": "string"
+						},
+						"totalPoints_few": {
+							"type": "string"
+						},
+						"totalPoints_many": {
+							"type": "string"
+						},
+						"totalPoints_other": {
+							"type": "string"
+						},
+						"statusBacklog": {
+							"type": "string"
+						},
+						"statusUnstarted": {
+							"type": "string"
+						},
+						"statusStarted": {
+							"type": "string"
+						},
+						"statusCompleted": {
+							"type": "string"
+						},
+						"statusCanceled": {
+							"type": "string"
+						},
+						"addIssues": {
+							"type": "string"
+						},
+						"retry": {
+							"type": "string"
+						},
+						"bulkPlanning": {
+							"type": "string"
+						},
+						"bulkDescription_one": {
+							"type": "string"
+						},
+						"bulkDescription_zero": {
+							"type": "string"
+						},
+						"bulkDescription_two": {
+							"type": "string"
+						},
+						"bulkDescription_few": {
+							"type": "string"
+						},
+						"bulkDescription_many": {
+							"type": "string"
+						},
+						"bulkDescription_other": {
+							"type": "string"
+						},
+						"bulkLimit": {
+							"type": "string"
+						},
+						"property": {
+							"type": "string"
+						},
+						"value": {
+							"type": "string"
+						},
+						"chooseValue": {
+							"type": "string"
+						}
+					},
+					"required": [
+						"estimate",
+						"noEstimate",
+						"chooseEstimate",
+						"title",
+						"number",
+						"current",
+						"upcoming",
+						"past",
+						"settings",
+						"settingsDescription",
+						"enabled",
+						"disableDescription",
+						"cycleWeeks",
+						"cooldownWeeks",
+						"upcomingCycles",
+						"startDay",
+						"timeZone",
+						"autoRollover",
+						"estimateScale",
+						"scaleNone",
+						"scaleLinear",
+						"scaleFibonacci",
+						"scaleTshirt",
+						"edit",
+						"name",
+						"startDate",
+						"endDate",
+						"burndown",
+						"tasksRemaining",
+						"pointsRemaining",
+						"historyUnavailable",
+						"historyEmpty",
+						"dailyHistory",
+						"date",
+						"scope",
+						"remaining",
+						"completed",
+						"rolledOver",
+						"progress",
+						"noCycles",
+						"noCurrentCycle",
+						"disabled",
+						"tasks",
+						"noTasks",
+						"groupBy",
+						"state",
+						"assignee",
+						"project",
+						"searchTasks",
+						"allProjects",
+						"allAssignees",
+						"allStates",
+						"allPriorities",
+						"label",
+						"labelPlaceholder",
+						"unassigned",
+						"loadMore",
+						"noCycle",
+						"chooseCycle",
+						"cycle",
+						"allCycles",
+						"currentCycle",
+						"thisCycle",
+						"backToCycles",
+						"filter",
+						"emptyAssigned",
+						"completion",
+						"statusBacklog",
+						"statusUnstarted",
+						"statusStarted",
+						"statusCompleted",
+						"statusCanceled",
+						"addIssues",
+						"retry",
+						"bulkPlanning",
+						"bulkLimit",
+						"property",
+						"value",
+						"chooseValue"
+					]
 				}
 			},
-			"required": ["categories", "triage", "planning", "roadmap"]
+			"required": ["categories", "triage", "planning", "roadmap", "cycles"]
 		}
 	},
 	"required": [

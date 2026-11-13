@@ -2,14 +2,17 @@ import { createId } from "@paralleldrive/cuid2";
 import { sql } from "drizzle-orm";
 import {
   boolean,
+  bigint,
   check,
   date,
   index,
   integer,
+  jsonb,
   pgTable,
   primaryKey,
   text,
   timestamp,
+  uniqueIndex,
 } from "drizzle-orm/pg-core";
 import {
   columnTable,
@@ -19,6 +22,7 @@ import {
   workspaceTable,
 } from "./schema";
 import type { Category } from "../parity/foundation/categories";
+import type { CycleSummary, CycleTotals } from "../parity/cycles/totals";
 
 export const taskExtTable = pgTable(
   "task_ext",
@@ -160,6 +164,7 @@ export const workspaceExtTable = pgTable(
     cycleStartDay: integer("cycle_start_day").notNull().default(1),
     upcomingCycles: integer("upcoming_cycles").notNull().default(2),
     autoRollover: boolean("auto_rollover").notNull().default(true),
+    timeZone: text("time_zone").notNull().default("UTC"),
   },
   (table) => [
     check(
@@ -316,4 +321,66 @@ export const statusUpdateTable = pgTable(
       sql`${table.health} IN ('on_track', 'at_risk', 'off_track')`,
     ),
   ],
+);
+
+export const cycleTable = pgTable(
+  "cycle",
+  {
+    id: text("id").primaryKey().$defaultFn(createId),
+    workspaceId: text("workspace_id")
+      .notNull()
+      .references(() => workspaceTable.id, {
+        onDelete: "cascade",
+        onUpdate: "cascade",
+      }),
+    number: integer("number").notNull(),
+    name: text("name"),
+    startsAt: timestamp("starts_at", { withTimezone: true }).notNull(),
+    endsAt: timestamp("ends_at", { withTimezone: true }).notNull(),
+    completedAt: timestamp("completed_at", { withTimezone: true }),
+    summary: jsonb("summary").$type<CycleSummary>(),
+    createdAt: timestamp("created_at", { withTimezone: true })
+      .notNull()
+      .defaultNow(),
+    updatedAt: timestamp("updated_at", { withTimezone: true })
+      .notNull()
+      .defaultNow()
+      .$onUpdate(() => new Date()),
+  },
+  (table) => [
+    uniqueIndex("cycle_workspace_number_idx").on(
+      table.workspaceId,
+      table.number,
+    ),
+    index("cycle_workspace_starts_at_idx").on(
+      table.workspaceId,
+      table.startsAt,
+    ),
+    check("cycle_dates_check", sql`${table.endsAt} > ${table.startsAt}`),
+    check("cycle_number_check", sql`${table.number} > 0`),
+  ],
+);
+
+export const cycleDayTable = pgTable(
+  "cycle_day",
+  {
+    cycleId: text("cycle_id")
+      .notNull()
+      .references(() => cycleTable.id, {
+        onDelete: "cascade",
+        onUpdate: "cascade",
+      }),
+    day: date("day").notNull(),
+    scopeCount: integer("scope_count").notNull(),
+    scopePoints: bigint("scope_points", { mode: "number" }).notNull(),
+    startedCount: integer("started_count").notNull(),
+    startedPoints: bigint("started_points", { mode: "number" }).notNull(),
+    completedCount: integer("completed_count").notNull(),
+    completedPoints: bigint("completed_points", { mode: "number" }).notNull(),
+    projectTotals: jsonb("project_totals")
+      .$type<Record<string, CycleTotals>>()
+      .notNull()
+      .default({}),
+  },
+  (table) => [primaryKey({ columns: [table.cycleId, table.day] })],
 );

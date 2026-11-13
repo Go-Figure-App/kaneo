@@ -71,6 +71,8 @@ export const SHORTCUTS = {
 
   changeStatus: { keys: ["s"], category: "tasks", scope: "task" },
   changePriority: { keys: ["p"], category: "tasks", scope: "task" },
+  changeCycle: { keys: ["shift+c"], category: "tasks", scope: "task" },
+  changeEstimate: { keys: ["shift+e"], category: "tasks", scope: "task" },
   assignTask: { keys: ["a"], category: "tasks", scope: "task" },
   assignToMe: { keys: ["i"], category: "tasks", scope: "task" },
   changeLabels: { keys: ["l"], category: "tasks", scope: "task" },

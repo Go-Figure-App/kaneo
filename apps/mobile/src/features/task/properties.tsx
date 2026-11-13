@@ -23,6 +23,8 @@ import { useColors } from "@/theme";
 
 import { LabelPickerSheet } from "./label-picker";
 import { TaskMilestone } from "@/features/parity/planning/task-milestone";
+import { TaskEstimate } from "@/features/parity/cycles/task-estimate";
+import { TaskCycle } from "@/features/parity/cycles/task-cycle";
 import { statusName, type TaskDetail } from "./use-task";
 
 type Picker =
@@ -212,6 +214,16 @@ export function Properties({
       </PropChip>
 
       <TaskMilestone
+        taskId={task.id}
+        projectId={task.projectId}
+        workspaceId={workspaceId}
+      />
+      <TaskEstimate
+        taskId={task.id}
+        projectId={task.projectId}
+        workspaceId={workspaceId}
+      />
+      <TaskCycle
         taskId={task.id}
         projectId={task.projectId}
         workspaceId={workspaceId}

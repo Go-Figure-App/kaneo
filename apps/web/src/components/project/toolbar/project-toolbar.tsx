@@ -8,6 +8,7 @@ import { FilterMenu } from "@/components/project/task-filters/filter-menu";
 import { useFilterShortcuts } from "@/components/project/task-filters/use-filter-shortcuts";
 import { ProjectSearch } from "./project-search";
 import type { ProjectTaskView } from "./use-project-task-view";
+import { ProjectCycleFilter } from "@/components/parity/cycles/project-cycle-filter";
 
 type ProjectToolbarProps = {
   view: ProjectTaskView;
@@ -33,6 +34,7 @@ export function ProjectToolbar({
         </>
       )}
       <ProjectSearch value={view.search} onChange={view.setSearch} />
+      <ProjectCycleFilter filter={view.cycleFilter} />
       <FilterMenu
         subjects={view.subjects}
         activeCount={view.filters.activeFilterCount}

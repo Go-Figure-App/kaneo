@@ -34,6 +34,16 @@ const navigate = vi.fn();
 // do retroactively.
 const routeParams = { workspaceId: "workspace-1", projectId: "project-1" };
 
+vi.mock("@/components/parity/cycles/use-project-cycle-filter", () => ({
+  useProjectCycleFilter: () => ({
+    value: null,
+    setValue: vi.fn(),
+    matches: () => true,
+  }),
+}));
+vi.mock("@/components/parity/cycles/project-cycle-filter", () => ({
+  ProjectCycleFilter: () => null,
+}));
 vi.mock("@tanstack/react-router", () => ({
   createFileRoute: () => (options: unknown) => ({
     ...(options as Record<string, unknown>),

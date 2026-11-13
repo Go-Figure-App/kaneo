@@ -8,9 +8,10 @@ import {
   workspaceExtTable,
 } from "../../database/schema-parity";
 import { acceptedTaskCondition } from "../triage/visibility";
+import type { Category } from "../foundation/categories";
 import { addCounts, emptyCounts, type ProgressCounts } from "./progress";
 
-export const taskCategory = sql<string>`coalesce(${columnExtTable.category}, CASE
+export const taskCategory = sql<Category>`coalesce(${columnExtTable.category}, CASE
   WHEN coalesce(${columnTable.slug}, ${taskTable.status}) IN ('canceled', 'cancelled', 'declined', 'duplicate') THEN 'canceled'
   WHEN ${columnTable.isFinal} THEN 'completed'
   WHEN coalesce(${columnTable.slug}, ${taskTable.status}) IN ('backlog', 'triage') THEN 'backlog'

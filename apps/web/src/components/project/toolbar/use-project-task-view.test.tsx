@@ -8,6 +8,13 @@ import {
 } from "./use-project-task-view";
 
 const state = vi.hoisted(() => ({ includeSubtasks: false }));
+vi.mock("@/components/parity/cycles/use-project-cycle-filter", () => ({
+  useProjectCycleFilter: () => ({
+    value: null,
+    setValue: vi.fn(),
+    matches: () => true,
+  }),
+}));
 vi.mock("react-i18next", async (importOriginal) => ({
   ...(await importOriginal<typeof import("react-i18next")>()),
   useTranslation: () => ({ t: (key: string) => key }),

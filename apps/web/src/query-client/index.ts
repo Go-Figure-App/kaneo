@@ -1,4 +1,5 @@
 import { clearParityOnAccessError } from "@/components/parity/foundation/access-error";
+import { configureParityQueries } from "@/components/parity/foundation/query-defaults";
 import * as Sentry from "@sentry/react";
 import { MutationCache, QueryCache, QueryClient } from "@tanstack/react-query";
 import { handleUnauthorized, isUnauthorizedError } from "@/lib/http-error";
@@ -99,4 +100,5 @@ const queryClient = new QueryClient({
   },
 });
 
+configureParityQueries(queryClient);
 export default queryClient;

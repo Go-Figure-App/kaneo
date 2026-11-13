@@ -14,6 +14,8 @@ import type { AssignedTask } from "@/lib/api/types";
 import { addDays, compareDays, parseDay, ticketId, today } from "@/lib/format";
 import { qk } from "@/lib/query";
 import { inset, useColors } from "@/theme";
+import { usePlanningEnabled } from "@/features/parity/planning/queries";
+import { MyCycleTasks } from "@/features/parity/cycles/my-cycle-tasks";
 
 type Grouping = "due" | "project" | "status";
 
@@ -63,9 +65,13 @@ export function MyTasksTab({ workspaceId }: { workspaceId: string }) {
   const { t } = useTranslation(["mobile"]);
   const c = useColors();
   const [by, setBy] = useState<Grouping>("due");
+  const cycles = usePlanningEnabled("cycles");
+  const [scope, setScope] = useState<"all" | "cycle">("all");
+  const thisCycle = cycles && scope === "cycle";
   const query = useQuery({
     queryKey: qk.assigned(workspaceId),
     queryFn: () => api.assignedTasks(workspaceId),
+    enabled: !thisCycle,
   });
   const tasks = query.data?.tasks ?? [];
   const dueLabel = (bucket: DueBucket) => {
@@ -102,23 +108,37 @@ export function MyTasksTab({ workspaceId }: { workspaceId: string }) {
           }}
         >
           <Txt variant="title">{t("mobile:myTasks.title")}</Txt>
-          {query.data ? (
+          {query.data && !thisCycle ? (
             <Txt variant="meta" tone="muted">
               {t("mobile:myTasks.assigned", { count: tasks.length })}
             </Txt>
           ) : null}
         </View>
-        <Segmented
-          value={by}
-          onChange={setBy}
-          options={[
-            { value: "due", label: t("mobile:myTasks.by.due") },
-            { value: "project", label: t("mobile:myTasks.by.project") },
-            { value: "status", label: t("mobile:myTasks.by.status") },
-          ]}
-        />
+        {cycles && (
+          <Segmented
+            value={scope}
+            onChange={setScope}
+            options={[
+              { value: "all", label: t("mobile:parity.cycles.allTasks") },
+              { value: "cycle", label: t("mobile:parity.cycles.thisCycle") },
+            ]}
+          />
+        )}
+        {!thisCycle && (
+          <Segmented
+            value={by}
+            onChange={setBy}
+            options={[
+              { value: "due", label: t("mobile:myTasks.by.due") },
+              { value: "project", label: t("mobile:myTasks.by.project") },
+              { value: "status", label: t("mobile:myTasks.by.status") },
+            ]}
+          />
+        )}
       </View>
-      {query.isLoading ? (
+      {thisCycle ? (
+        <MyCycleTasks workspaceId={workspaceId} />
+      ) : query.isLoading ? (
         <Loading />
       ) : query.error ? (
         <ErrorState

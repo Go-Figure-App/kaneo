@@ -75,6 +75,8 @@ import { Route as LayoutAuthenticatedDashboardSettingsProjectsProjectIdIntegrati
 import { Route as LayoutAuthenticatedDashboardSettingsProjectsProjectIdTriageRouteImport } from './routes/_layout/_authenticated/dashboard/settings/projects/$projectId/triage'
 import { Route as LayoutAuthenticatedDashboardSettingsProjectsProjectIdVisibilityRouteImport } from './routes/_layout/_authenticated/dashboard/settings/projects/$projectId/visibility'
 import { Route as LayoutAuthenticatedDashboardSettingsProjectsProjectIdWorkflowRouteImport } from './routes/_layout/_authenticated/dashboard/settings/projects/$projectId/workflow'
+import { Route as LayoutAuthenticatedDashboardWorkspaceWorkspaceIdCyclesIndexRouteImport } from './routes/_layout/_authenticated/dashboard/workspace/$workspaceId/cycles/index'
+import { Route as LayoutAuthenticatedDashboardWorkspaceWorkspaceIdCyclesCycleIdRouteImport } from './routes/_layout/_authenticated/dashboard/workspace/$workspaceId/cycles/$cycleId'
 import { Route as LayoutAuthenticatedDashboardWorkspaceWorkspaceIdInitiativesIndexRouteImport } from './routes/_layout/_authenticated/dashboard/workspace/$workspaceId/initiatives/index'
 import { Route as LayoutAuthenticatedDashboardWorkspaceWorkspaceIdInitiativesInitiativeIdRouteImport } from './routes/_layout/_authenticated/dashboard/workspace/$workspaceId/initiatives/$initiativeId'
 import { Route as LayoutAuthenticatedDashboardWorkspaceWorkspaceIdProjectProjectIdIndexRouteImport } from './routes/_layout/_authenticated/dashboard/workspace/$workspaceId/project/$projectId/index'
@@ -478,6 +480,24 @@ const LayoutAuthenticatedDashboardSettingsProjectsProjectIdWorkflowRoute =
       getParentRoute: () => LayoutAuthenticatedDashboardSettingsProjectsRoute,
     } as any,
   )
+const LayoutAuthenticatedDashboardWorkspaceWorkspaceIdCyclesIndexRoute =
+  LayoutAuthenticatedDashboardWorkspaceWorkspaceIdCyclesIndexRouteImport.update(
+    {
+      id: '/cycles/',
+      path: '/cycles/',
+      getParentRoute: () =>
+        LayoutAuthenticatedDashboardWorkspaceWorkspaceIdRoute,
+    } as any,
+  )
+const LayoutAuthenticatedDashboardWorkspaceWorkspaceIdCyclesCycleIdRoute =
+  LayoutAuthenticatedDashboardWorkspaceWorkspaceIdCyclesCycleIdRouteImport.update(
+    {
+      id: '/cycles/$cycleId',
+      path: '/cycles/$cycleId',
+      getParentRoute: () =>
+        LayoutAuthenticatedDashboardWorkspaceWorkspaceIdRoute,
+    } as any,
+  )
 const LayoutAuthenticatedDashboardWorkspaceWorkspaceIdInitiativesIndexRoute =
   LayoutAuthenticatedDashboardWorkspaceWorkspaceIdInitiativesIndexRouteImport.update(
     {
@@ -625,7 +645,9 @@ export interface FileRoutesByFullPath {
   '/dashboard/settings/projects/$projectId/triage': typeof LayoutAuthenticatedDashboardSettingsProjectsProjectIdTriageRoute
   '/dashboard/settings/projects/$projectId/visibility': typeof LayoutAuthenticatedDashboardSettingsProjectsProjectIdVisibilityRoute
   '/dashboard/settings/projects/$projectId/workflow': typeof LayoutAuthenticatedDashboardSettingsProjectsProjectIdWorkflowRoute
+  '/dashboard/workspace/$workspaceId/cycles/$cycleId': typeof LayoutAuthenticatedDashboardWorkspaceWorkspaceIdCyclesCycleIdRoute
   '/dashboard/workspace/$workspaceId/initiatives/$initiativeId': typeof LayoutAuthenticatedDashboardWorkspaceWorkspaceIdInitiativesInitiativeIdRoute
+  '/dashboard/workspace/$workspaceId/cycles/': typeof LayoutAuthenticatedDashboardWorkspaceWorkspaceIdCyclesIndexRoute
   '/dashboard/workspace/$workspaceId/initiatives/': typeof LayoutAuthenticatedDashboardWorkspaceWorkspaceIdInitiativesIndexRoute
   '/dashboard/workspace/$workspaceId/project/$projectId/backlog': typeof LayoutAuthenticatedDashboardWorkspaceWorkspaceIdProjectProjectIdBacklogRoute
   '/dashboard/workspace/$workspaceId/project/$projectId/board': typeof LayoutAuthenticatedDashboardWorkspaceWorkspaceIdProjectProjectIdBoardRoute
@@ -696,7 +718,9 @@ export interface FileRoutesByTo {
   '/dashboard/settings/projects/$projectId/triage': typeof LayoutAuthenticatedDashboardSettingsProjectsProjectIdTriageRoute
   '/dashboard/settings/projects/$projectId/visibility': typeof LayoutAuthenticatedDashboardSettingsProjectsProjectIdVisibilityRoute
   '/dashboard/settings/projects/$projectId/workflow': typeof LayoutAuthenticatedDashboardSettingsProjectsProjectIdWorkflowRoute
+  '/dashboard/workspace/$workspaceId/cycles/$cycleId': typeof LayoutAuthenticatedDashboardWorkspaceWorkspaceIdCyclesCycleIdRoute
   '/dashboard/workspace/$workspaceId/initiatives/$initiativeId': typeof LayoutAuthenticatedDashboardWorkspaceWorkspaceIdInitiativesInitiativeIdRoute
+  '/dashboard/workspace/$workspaceId/cycles': typeof LayoutAuthenticatedDashboardWorkspaceWorkspaceIdCyclesIndexRoute
   '/dashboard/workspace/$workspaceId/initiatives': typeof LayoutAuthenticatedDashboardWorkspaceWorkspaceIdInitiativesIndexRoute
   '/dashboard/workspace/$workspaceId/project/$projectId/backlog': typeof LayoutAuthenticatedDashboardWorkspaceWorkspaceIdProjectProjectIdBacklogRoute
   '/dashboard/workspace/$workspaceId/project/$projectId/board': typeof LayoutAuthenticatedDashboardWorkspaceWorkspaceIdProjectProjectIdBoardRoute
@@ -774,7 +798,9 @@ export interface FileRoutesById {
   '/_layout/_authenticated/dashboard/settings/projects/$projectId/triage': typeof LayoutAuthenticatedDashboardSettingsProjectsProjectIdTriageRoute
   '/_layout/_authenticated/dashboard/settings/projects/$projectId/visibility': typeof LayoutAuthenticatedDashboardSettingsProjectsProjectIdVisibilityRoute
   '/_layout/_authenticated/dashboard/settings/projects/$projectId/workflow': typeof LayoutAuthenticatedDashboardSettingsProjectsProjectIdWorkflowRoute
+  '/_layout/_authenticated/dashboard/workspace/$workspaceId/cycles/$cycleId': typeof LayoutAuthenticatedDashboardWorkspaceWorkspaceIdCyclesCycleIdRoute
   '/_layout/_authenticated/dashboard/workspace/$workspaceId/initiatives/$initiativeId': typeof LayoutAuthenticatedDashboardWorkspaceWorkspaceIdInitiativesInitiativeIdRoute
+  '/_layout/_authenticated/dashboard/workspace/$workspaceId/cycles/': typeof LayoutAuthenticatedDashboardWorkspaceWorkspaceIdCyclesIndexRoute
   '/_layout/_authenticated/dashboard/workspace/$workspaceId/initiatives/': typeof LayoutAuthenticatedDashboardWorkspaceWorkspaceIdInitiativesIndexRoute
   '/_layout/_authenticated/dashboard/workspace/$workspaceId/project/$projectId/backlog': typeof LayoutAuthenticatedDashboardWorkspaceWorkspaceIdProjectProjectIdBacklogRoute
   '/_layout/_authenticated/dashboard/workspace/$workspaceId/project/$projectId/board': typeof LayoutAuthenticatedDashboardWorkspaceWorkspaceIdProjectProjectIdBoardRoute
@@ -851,7 +877,9 @@ export interface FileRouteTypes {
     | '/dashboard/settings/projects/$projectId/triage'
     | '/dashboard/settings/projects/$projectId/visibility'
     | '/dashboard/settings/projects/$projectId/workflow'
+    | '/dashboard/workspace/$workspaceId/cycles/$cycleId'
     | '/dashboard/workspace/$workspaceId/initiatives/$initiativeId'
+    | '/dashboard/workspace/$workspaceId/cycles/'
     | '/dashboard/workspace/$workspaceId/initiatives/'
     | '/dashboard/workspace/$workspaceId/project/$projectId/backlog'
     | '/dashboard/workspace/$workspaceId/project/$projectId/board'
@@ -922,7 +950,9 @@ export interface FileRouteTypes {
     | '/dashboard/settings/projects/$projectId/triage'
     | '/dashboard/settings/projects/$projectId/visibility'
     | '/dashboard/settings/projects/$projectId/workflow'
+    | '/dashboard/workspace/$workspaceId/cycles/$cycleId'
     | '/dashboard/workspace/$workspaceId/initiatives/$initiativeId'
+    | '/dashboard/workspace/$workspaceId/cycles'
     | '/dashboard/workspace/$workspaceId/initiatives'
     | '/dashboard/workspace/$workspaceId/project/$projectId/backlog'
     | '/dashboard/workspace/$workspaceId/project/$projectId/board'
@@ -999,7 +1029,9 @@ export interface FileRouteTypes {
     | '/_layout/_authenticated/dashboard/settings/projects/$projectId/triage'
     | '/_layout/_authenticated/dashboard/settings/projects/$projectId/visibility'
     | '/_layout/_authenticated/dashboard/settings/projects/$projectId/workflow'
+    | '/_layout/_authenticated/dashboard/workspace/$workspaceId/cycles/$cycleId'
     | '/_layout/_authenticated/dashboard/workspace/$workspaceId/initiatives/$initiativeId'
+    | '/_layout/_authenticated/dashboard/workspace/$workspaceId/cycles/'
     | '/_layout/_authenticated/dashboard/workspace/$workspaceId/initiatives/'
     | '/_layout/_authenticated/dashboard/workspace/$workspaceId/project/$projectId/backlog'
     | '/_layout/_authenticated/dashboard/workspace/$workspaceId/project/$projectId/board'
@@ -1486,6 +1518,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LayoutAuthenticatedDashboardSettingsProjectsProjectIdWorkflowRouteImport
       parentRoute: typeof LayoutAuthenticatedDashboardSettingsProjectsRoute
     }
+    '/_layout/_authenticated/dashboard/workspace/$workspaceId/cycles/': {
+      id: '/_layout/_authenticated/dashboard/workspace/$workspaceId/cycles/'
+      path: '/cycles'
+      fullPath: '/dashboard/workspace/$workspaceId/cycles/'
+      preLoaderRoute: typeof LayoutAuthenticatedDashboardWorkspaceWorkspaceIdCyclesIndexRouteImport
+      parentRoute: typeof LayoutAuthenticatedDashboardWorkspaceWorkspaceIdRoute
+    }
+    '/_layout/_authenticated/dashboard/workspace/$workspaceId/cycles/$cycleId': {
+      id: '/_layout/_authenticated/dashboard/workspace/$workspaceId/cycles/$cycleId'
+      path: '/cycles/$cycleId'
+      fullPath: '/dashboard/workspace/$workspaceId/cycles/$cycleId'
+      preLoaderRoute: typeof LayoutAuthenticatedDashboardWorkspaceWorkspaceIdCyclesCycleIdRouteImport
+      parentRoute: typeof LayoutAuthenticatedDashboardWorkspaceWorkspaceIdRoute
+    }
     '/_layout/_authenticated/dashboard/workspace/$workspaceId/initiatives/': {
       id: '/_layout/_authenticated/dashboard/workspace/$workspaceId/initiatives/'
       path: '/initiatives'
@@ -1711,7 +1757,9 @@ interface LayoutAuthenticatedDashboardWorkspaceWorkspaceIdRouteChildren {
   LayoutAuthenticatedDashboardWorkspaceWorkspaceIdSearchRoute: typeof LayoutAuthenticatedDashboardWorkspaceWorkspaceIdSearchRoute
   LayoutAuthenticatedDashboardWorkspaceWorkspaceIdTriageRoute: typeof LayoutAuthenticatedDashboardWorkspaceWorkspaceIdTriageRoute
   LayoutAuthenticatedDashboardWorkspaceWorkspaceIdIndexRoute: typeof LayoutAuthenticatedDashboardWorkspaceWorkspaceIdIndexRoute
+  LayoutAuthenticatedDashboardWorkspaceWorkspaceIdCyclesCycleIdRoute: typeof LayoutAuthenticatedDashboardWorkspaceWorkspaceIdCyclesCycleIdRoute
   LayoutAuthenticatedDashboardWorkspaceWorkspaceIdInitiativesInitiativeIdRoute: typeof LayoutAuthenticatedDashboardWorkspaceWorkspaceIdInitiativesInitiativeIdRoute
+  LayoutAuthenticatedDashboardWorkspaceWorkspaceIdCyclesIndexRoute: typeof LayoutAuthenticatedDashboardWorkspaceWorkspaceIdCyclesIndexRoute
   LayoutAuthenticatedDashboardWorkspaceWorkspaceIdInitiativesIndexRoute: typeof LayoutAuthenticatedDashboardWorkspaceWorkspaceIdInitiativesIndexRoute
   LayoutAuthenticatedDashboardWorkspaceWorkspaceIdProjectProjectIdBacklogRoute: typeof LayoutAuthenticatedDashboardWorkspaceWorkspaceIdProjectProjectIdBacklogRoute
   LayoutAuthenticatedDashboardWorkspaceWorkspaceIdProjectProjectIdBoardRoute: typeof LayoutAuthenticatedDashboardWorkspaceWorkspaceIdProjectProjectIdBoardRoute
@@ -1740,8 +1788,12 @@ const LayoutAuthenticatedDashboardWorkspaceWorkspaceIdRouteChildren: LayoutAuthe
       LayoutAuthenticatedDashboardWorkspaceWorkspaceIdTriageRoute,
     LayoutAuthenticatedDashboardWorkspaceWorkspaceIdIndexRoute:
       LayoutAuthenticatedDashboardWorkspaceWorkspaceIdIndexRoute,
+    LayoutAuthenticatedDashboardWorkspaceWorkspaceIdCyclesCycleIdRoute:
+      LayoutAuthenticatedDashboardWorkspaceWorkspaceIdCyclesCycleIdRoute,
     LayoutAuthenticatedDashboardWorkspaceWorkspaceIdInitiativesInitiativeIdRoute:
       LayoutAuthenticatedDashboardWorkspaceWorkspaceIdInitiativesInitiativeIdRoute,
+    LayoutAuthenticatedDashboardWorkspaceWorkspaceIdCyclesIndexRoute:
+      LayoutAuthenticatedDashboardWorkspaceWorkspaceIdCyclesIndexRoute,
     LayoutAuthenticatedDashboardWorkspaceWorkspaceIdInitiativesIndexRoute:
       LayoutAuthenticatedDashboardWorkspaceWorkspaceIdInitiativesIndexRoute,
     LayoutAuthenticatedDashboardWorkspaceWorkspaceIdProjectProjectIdBacklogRoute:

@@ -15,6 +15,17 @@ const m = vi.hoisted(() => ({
   update: vi.fn(),
   tasks: [] as Record<string, unknown>[],
 }));
+
+vi.mock("@/components/parity/cycles/use-project-cycle-filter", () => ({
+  useProjectCycleFilter: () => ({
+    value: null,
+    setValue: vi.fn(),
+    matches: () => true,
+  }),
+}));
+vi.mock("@/components/parity/cycles/project-cycle-filter", () => ({
+  ProjectCycleFilter: () => null,
+}));
 vi.mock("@tanstack/react-router", () => ({
   createFileRoute: () => (options: { component: ComponentType }) => {
     m.component = options.component;
