@@ -20,6 +20,10 @@ import { workspaceIsActive } from "../../../workspace/archive/active-workspace-s
 import { saveMemberFields } from "./member-fields";
 import { requireWorkspaceEntitlement } from "../../../billing/controllers/require-entitlement";
 import { projectAccessCondition } from "../../../project-access/project-access-condition";
+import { lockCycleWorkspace } from "../../cycles/access";
+import { validEstimate } from "../../cycles/estimates";
+import { cycleSettings } from "../../cycles/settings-read";
+import { enabledFeatures } from "../../foundation/features";
 
 export async function createTriageItem(
   projectId: string,
@@ -29,6 +33,22 @@ export async function createTriageItem(
     | { email: string; token: string },
 ) {
   const result = await db.transaction(async (tx) => {
+    // Match the workspace-before-project lock order used by cycle settings.
+    const estimate = "userId" in reporter ? (input.estimate ?? null) : null;
+    if (estimate !== null && "userId" in reporter) {
+      if (!enabledFeatures().includes("cycles"))
+        throw new HTTPException(404, { message: "Feature not enabled" });
+      await lockCycleWorkspace(tx, reporter.workspaceId);
+      if (
+        !validEstimate(
+          estimate,
+          (await cycleSettings(reporter.workspaceId, tx)).estimateScale,
+        )
+      )
+        throw new HTTPException(400, {
+          message: "Estimate is not available on the workspace scale",
+        });
+    }
     const [project] = await tx
       .select()
       .from(projectTable)
@@ -106,6 +126,7 @@ export async function createTriageItem(
       taskId: task.id,
       triageState: "pending",
       triageSource: source,
+      estimate,
     });
     if ("userId" in reporter)
       await saveMemberFields(

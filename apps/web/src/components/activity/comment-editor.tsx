@@ -951,12 +951,16 @@ export default function CommentEditor({
   }, [editor, updateSlashMenu]);
 
   useEffect(() => {
-    if (!editor) return;
-    editor.setEditable(!readOnly && !disabled);
+    if (!editor || editor.isDestroyed) return;
+    // Changing editability is not a content edit. A replacement editor is
+    // still empty here, before the hydration effect restores its value.
+    editor.setEditable(!readOnly && !disabled, false);
   }, [disabled, editor, readOnly]);
 
   useEffect(() => {
-    if (!editor) return;
+    // useEditor can destroy this render's instance before our effects run.
+    // Its replacement will hydrate the same value on the following render.
+    if (!editor || editor.isDestroyed) return;
     if (lastEditorRef.current !== editor) {
       hasHydratedRef.current = false;
       lastEditorRef.current = editor;

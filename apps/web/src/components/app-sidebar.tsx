@@ -2,6 +2,7 @@ import { useLocation } from "@tanstack/react-router";
 import type * as React from "react";
 import { useEffect } from "react";
 
+import { FavoritesNavigation } from "@/components/parity/views/favorites-navigation";
 import { NavMain } from "@/components/nav-main";
 import { NavProjects } from "@/components/nav-projects";
 import { NavSecondary } from "@/components/nav-secondary";
@@ -39,6 +40,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
       </SidebarHeader>
       <SidebarContent className="overflow-hidden gap-1 py-1">
         <NavMain />
+        <FavoritesNavigation />
         <NavProjects />
       </SidebarContent>
       <SidebarFooter>

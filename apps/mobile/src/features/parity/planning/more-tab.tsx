@@ -1,6 +1,7 @@
 import { router } from "expo-router";
 import {
   Activity,
+  LayoutList,
   Flag,
   GanttChart,
   CircleDashed,
@@ -27,11 +28,29 @@ export function MoreTab({
   const roadmap = usePlanningEnabled("roadmap");
   const cycles = usePlanningEnabled("cycles");
   const insights = usePlanningEnabled("insights");
+  const views = usePlanningEnabled("views");
   return (
     <Scroll>
       <PageHeader title={t("mobile:parity.planning.more")} back={false} />
       <View style={{ paddingHorizontal: 20 }}>
         <Group>
+          {views && (
+            <Touch
+              accessibilityRole="button"
+              onPress={() =>
+                router.push({ pathname: "/views", params: { workspaceId } })
+              }
+              style={{
+                padding: 18,
+                flexDirection: "row",
+                alignItems: "center",
+                gap: 12,
+              }}
+            >
+              <LayoutList size={20} color={c.ink2} />
+              <Txt>{t("mobile:parity.views.title")}</Txt>
+            </Touch>
+          )}
           {insights && (
             <Touch
               accessibilityRole="button"

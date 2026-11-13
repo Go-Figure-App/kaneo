@@ -1,3 +1,4 @@
+import { FavoriteButton } from "../views/favorite-button";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { Link, useNavigate } from "@tanstack/react-router";
 import { Plus, X } from "lucide-react";
@@ -105,6 +106,11 @@ export function InitiativeDetail({
                     {initiative.name}
                   </h1>
                   <div className="flex flex-wrap gap-2">
+                    <FavoriteButton
+                      workspaceId={workspaceId}
+                      kind="initiative"
+                      targetId={initiativeId}
+                    />
                     {canUpdateProjects() && (
                       <Button
                         variant="outline"

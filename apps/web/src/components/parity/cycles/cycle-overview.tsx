@@ -1,3 +1,4 @@
+import { FavoriteButton } from "../views/favorite-button";
 import { useQuery } from "@tanstack/react-query";
 import { Pencil } from "lucide-react";
 import { useState } from "react";
@@ -61,6 +62,11 @@ export function CycleOverview({
               {date.format(new Date(+new Date(cycle.endsAt) - 1))}
             </p>
           </div>
+          <FavoriteButton
+            workspaceId={workspaceId}
+            kind="cycle"
+            targetId={cycleId}
+          />
           {canUpdateProjects() && (
             <Button
               variant="outline"

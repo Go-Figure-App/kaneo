@@ -23,6 +23,11 @@ import {
 } from "./schema";
 import type { Category } from "../parity/foundation/categories";
 import type { CycleSummary, CycleTotals } from "../parity/cycles/totals";
+import type {
+  TemplateDefaults,
+  ViewDisplay,
+  ViewFilters,
+} from "../parity/views/schema";
 
 export const taskExtTable = pgTable(
   "task_ext",
@@ -383,4 +388,83 @@ export const cycleDayTable = pgTable(
       .default({}),
   },
   (table) => [primaryKey({ columns: [table.cycleId, table.day] })],
+);
+
+export const savedViewTable = pgTable(
+  "saved_view",
+  {
+    id: text("id").primaryKey().$defaultFn(createId),
+    workspaceId: text("workspace_id")
+      .notNull()
+      .references(() => workspaceTable.id, {
+        onDelete: "cascade",
+        onUpdate: "cascade",
+      }),
+    projectId: text("project_id").references(() => projectTable.id, {
+      onDelete: "cascade",
+      onUpdate: "cascade",
+    }),
+    ownerId: text("owner_id")
+      .notNull()
+      .references(() => userTable.id, {
+        onDelete: "cascade",
+        onUpdate: "cascade",
+      }),
+    name: text("name").notNull(),
+    icon: text("icon"),
+    shared: boolean("shared").notNull().default(false),
+    filters: jsonb("filters").$type<ViewFilters>().notNull().default([]),
+    display: jsonb("display").$type<ViewDisplay>().notNull(),
+  },
+  (table) => [
+    index("saved_view_workspace_owner_idx").on(
+      table.workspaceId,
+      table.ownerId,
+    ),
+    index("saved_view_project_idx").on(table.projectId),
+    index("saved_view_owner_idx").on(table.ownerId),
+  ],
+);
+
+export const favoriteTable = pgTable(
+  "favorite",
+  {
+    userId: text("user_id")
+      .notNull()
+      .references(() => userTable.id, {
+        onDelete: "cascade",
+        onUpdate: "cascade",
+      }),
+    kind: text("kind")
+      .$type<"view" | "project" | "initiative" | "cycle" | "task">()
+      .notNull(),
+    targetId: text("target_id").notNull(),
+    position: integer("position").notNull().default(0),
+  },
+  (table) => [
+    primaryKey({ columns: [table.userId, table.kind, table.targetId] }),
+    index("favorite_user_position_idx").on(table.userId, table.position),
+    check(
+      "favorite_kind_check",
+      sql`${table.kind} IN ('view', 'project', 'initiative', 'cycle', 'task')`,
+    ),
+    check("favorite_position_check", sql`${table.position} >= 0`),
+  ],
+);
+
+export const taskTemplateTable = pgTable(
+  "task_template",
+  {
+    projectId: text("project_id")
+      .notNull()
+      .references(() => projectTable.id, {
+        onDelete: "cascade",
+        onUpdate: "cascade",
+      }),
+    name: text("name").notNull(),
+    title: text("title").notNull(),
+    description: text("description").notNull().default(""),
+    defaults: jsonb("defaults").$type<TemplateDefaults>().notNull(),
+  },
+  (table) => [primaryKey({ columns: [table.projectId, table.name] })],
 );

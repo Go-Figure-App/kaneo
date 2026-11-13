@@ -19,6 +19,7 @@ const submissionBody = z.object({
   description: z.string().max(50_000).default(""),
 });
 export const createTriageBody = submissionBody.extend({
+  estimate: z.number().int().min(0).max(1_000_000).nullable().optional(),
   userId: id.optional(),
   priority: priority.optional(),
   startDate: z

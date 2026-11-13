@@ -1,3 +1,4 @@
+import { FavoriteButton } from "../views/favorite-button";
 import { useQuery } from "@tanstack/react-query";
 import { Link } from "@tanstack/react-router";
 import { useState } from "react";
@@ -83,6 +84,11 @@ export function ProjectOverview({
                     <h1 className="text-2xl font-semibold tracking-tight">
                       {project.name}
                     </h1>
+                    <FavoriteButton
+                      workspaceId={workspaceId}
+                      kind="project"
+                      targetId={projectId}
+                    />
                     {canUpdateProjects() && (
                       <Button
                         variant="outline"
