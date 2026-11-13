@@ -1,6 +1,7 @@
 import parity from "./parity";
 import { initializeParity } from "./parity/foundation/initialize";
 import { initializeTriage } from "./parity/triage/initialize";
+import { initializePlanning } from "./parity/planning/initialize";
 import triageIntake from "./parity/triage/intake";
 import { acceptedTaskCondition } from "./parity/triage/visibility";
 import { migrateParity } from "./parity/foundation/migrate";
@@ -1066,6 +1067,7 @@ export async function runStartupTasks() {
   await initializeWebSocketAdapter();
   await initializeParity();
   await initializeTriage();
+  await initializePlanning();
 }
 
 export async function startServer(

@@ -13,6 +13,8 @@ import { BottomNav, type HomeTab } from "@/features/home/bottom-nav";
 import { HomeTabView } from "@/features/home/home-tab";
 import { PlanningInbox } from "@/features/parity/triage/inbox";
 import { useTriageCount } from "@/features/parity/triage/queries";
+import { MoreTab } from "@/features/parity/planning/more-tab";
+import { usePlanningEnabled } from "@/features/parity/planning/queries";
 import { MyTasksTab } from "@/features/home/my-tasks-tab";
 import { WorkspaceSheet } from "@/features/home/workspace-sheet";
 import { userMessage } from "@/lib/api/client";
@@ -30,6 +32,7 @@ export default function HomeScreen() {
   const { workspace, isLoading, error, refetch } = useCurrentWorkspace();
   const unread = useUnreadCount(workspace?.id);
   const triage = useTriageCount(workspace?.id);
+  const planning = usePlanningEnabled();
 
   useRealtime("api/ws/user", (event) => {
     invalidateParity(client, event);
@@ -79,6 +82,11 @@ export default function HomeScreen() {
           <MyTasksTab workspaceId={workspace.id} />
         ) : tab === "inbox" ? (
           <PlanningInbox workspaceId={workspace.id} />
+        ) : tab === "more" && planning ? (
+          <MoreTab
+            workspaceId={workspace.id}
+            onActivity={() => setTab("activity")}
+          />
         ) : (
           <ActivityTab workspace={workspace} />
         )}
@@ -87,6 +95,7 @@ export default function HomeScreen() {
         tab={tab}
         onChange={setTab}
         unread={unread + (triage.data?.count ?? 0)}
+        planning={planning}
       />
       <WorkspaceSheet
         visible={switcher}

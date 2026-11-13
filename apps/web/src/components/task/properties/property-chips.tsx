@@ -1,4 +1,5 @@
 import { ArrowRight, Calendar } from "lucide-react";
+import { TaskMilestonePicker } from "@/components/parity/planning/task-milestone-picker";
 import { useTranslation } from "react-i18next";
 import { propertyChipClass } from "@/components/custom-fields/property-chip-class";
 import icons from "@/constants/project-icons";
@@ -159,6 +160,7 @@ export function PropertyChips({
           projectId={projectId}
           className="h-8"
         />
+        <TaskMilestonePicker taskId={taskId} projectId={projectId} />
       </div>
     </div>
   );

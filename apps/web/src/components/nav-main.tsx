@@ -6,6 +6,8 @@ import {
   type LucideIcon,
   Mail,
   Users,
+  Flag,
+  FolderKanban,
 } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import {
@@ -21,6 +23,7 @@ import useGetAssignedTasks from "@/hooks/queries/task/use-get-assigned-tasks";
 import useActiveWorkspace from "@/hooks/queries/workspace/use-active-workspace";
 import { cn } from "@/lib/cn";
 import { useTriageCount } from "@/components/parity/triage/queries";
+import { usePlanningEnabled } from "@/components/parity/planning/queries";
 
 type NavItem = {
   title: string;
@@ -41,6 +44,8 @@ export function NavMain() {
   const { data: notifications = [] } = useGetNotifications(workspace?.id);
   const { data: assignedTasks } = useGetAssignedTasks(workspace?.id, true);
   const triage = useTriageCount(workspace?.id);
+  const initiatives = usePlanningEnabled("initiatives");
+  const projects = usePlanningEnabled("projects");
 
   if (!workspace) return null;
 
@@ -80,6 +85,23 @@ export function NavMain() {
       count: triage.data?.count,
       emphasizeCount: true,
     });
+  const planningIndex = navItems.findIndex(
+    (item) => item.url === `${homeUrl}/members`,
+  );
+  const planningItems: NavItem[] = [];
+  if (initiatives)
+    planningItems.push({
+      title: t("parity:planning.initiatives"),
+      icon: Flag,
+      url: `${homeUrl}/initiatives`,
+    });
+  if (projects)
+    planningItems.push({
+      title: t("parity:planning.projects"),
+      icon: FolderKanban,
+      url: `${homeUrl}/projects`,
+    });
+  navItems.splice(planningIndex, 0, ...planningItems);
   if (invitations.length > 0) {
     navItems.push({
       title: t("navigation:sidebar.invitations"),

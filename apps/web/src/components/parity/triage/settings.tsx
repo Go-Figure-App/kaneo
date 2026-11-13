@@ -30,6 +30,7 @@ export function TriageSettings({ projectId }: { projectId: string }) {
     enabled: enabled && canUpdateProjects(),
   });
   const mutation = useMutation({
+    mutationKey: ["parity"],
     mutationFn: (input: TriageSettingsInput) =>
       updateTriageSettings(projectId, input),
     onSuccess: () => refreshTriage(client),

@@ -1,4 +1,10 @@
-import { Activity, CircleCheck, House, Inbox } from "lucide-react-native";
+import {
+  Activity,
+  CircleCheck,
+  House,
+  Inbox,
+  Ellipsis,
+} from "lucide-react-native";
 import { useTranslation } from "react-i18next";
 import { View } from "react-native";
 
@@ -7,17 +13,19 @@ import { Txt } from "@/components/text";
 import { CountBadge, Touch } from "@/components/ui";
 import { useColors } from "@/theme";
 
-export type HomeTab = "home" | "tasks" | "inbox" | "activity";
+export type HomeTab = "home" | "tasks" | "inbox" | "activity" | "more";
 
 /** Slim bar of outline icons: the active tab is ink, the rest gray. No pill indicator. */
 export function BottomNav({
   tab,
   onChange,
   unread,
+  planning = false,
 }: {
   tab: HomeTab;
   onChange: (t: HomeTab) => void;
   unread: number;
+  planning?: boolean;
 }) {
   const { t } = useTranslation(["mobile"]);
   const c = useColors();
@@ -26,7 +34,9 @@ export function BottomNav({
     { key: "home", label: t("mobile:nav.home") },
     { key: "tasks", label: t("mobile:nav.tasks") },
     { key: "inbox", label: t("mobile:nav.inbox") },
-    { key: "activity", label: t("mobile:nav.activity") },
+    planning
+      ? { key: "more", label: t("mobile:parity.planning.more") }
+      : { key: "activity", label: t("mobile:nav.activity") },
   ];
   return (
     <View
@@ -39,7 +49,8 @@ export function BottomNav({
     >
       <View style={{ flexDirection: "row", height: 60, paddingHorizontal: 8 }}>
         {items.map((item) => {
-          const active = item.key === tab;
+          const active =
+            item.key === tab || (item.key === "more" && tab === "activity");
           const color = active ? c.ink : c.placeholder;
           return (
             <Touch
@@ -66,6 +77,8 @@ export function BottomNav({
                   <CircleCheck size={22} color={color} strokeWidth={2} />
                 ) : item.key === "inbox" ? (
                   <Inbox size={22} color={color} strokeWidth={2} />
+                ) : item.key === "more" ? (
+                  <Ellipsis size={22} color={color} strokeWidth={2} />
                 ) : (
                   <Activity size={22} color={color} strokeWidth={2} />
                 )}

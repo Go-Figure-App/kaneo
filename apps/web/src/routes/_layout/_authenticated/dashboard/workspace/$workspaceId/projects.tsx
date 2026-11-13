@@ -62,6 +62,8 @@ import { formatDateMedium } from "@/lib/format";
 import { EASE_OUT_CSS } from "@/lib/motion";
 import { toast } from "@/lib/toast";
 import { cn } from "@/lib/utils";
+import { PlanningProjectsPage } from "@/components/parity/planning/projects-page";
+import { usePlanningEnabled } from "@/components/parity/planning/queries";
 
 export const Route = createFileRoute(
   "/_layout/_authenticated/dashboard/workspace/$workspaceId/projects",
@@ -124,6 +126,16 @@ function SortableProjectRow({
 }
 
 function RouteComponent() {
+  const enabled = usePlanningEnabled("projects");
+  const { workspaceId } = Route.useParams();
+  return enabled ? (
+    <PlanningProjectsPage key={workspaceId} workspaceId={workspaceId} />
+  ) : (
+    <UpstreamProjectsPage />
+  );
+}
+
+function UpstreamProjectsPage() {
   const { t } = useTranslation();
   const [isCreateProjectOpen, setIsCreateProjectOpen] = useState(false);
   const { workspaceId } = Route.useParams();

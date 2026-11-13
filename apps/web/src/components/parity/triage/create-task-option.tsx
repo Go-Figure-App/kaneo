@@ -8,6 +8,7 @@ import { refreshTriage, useTriageEnabled } from "./queries";
 export function useCreatePendingTask() {
   const client = useQueryClient();
   return useMutation({
+    mutationKey: ["parity"],
     mutationFn: ({ projectId, status: _status, ...input }: CreateTaskRequest) =>
       createTriage(projectId, { ...input, userId: input.userId || undefined }),
     onSuccess: () => refreshTriage(client),

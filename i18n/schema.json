@@ -19125,9 +19125,337 @@
 								"duplicateOf",
 								"duplicatedBy"
 							]
+						},
+						"planning": {
+							"type": "object",
+							"additionalProperties": false,
+							"properties": {
+								"overview": {
+									"type": "string"
+								},
+								"projects": {
+									"type": "string"
+								},
+								"initiatives": {
+									"type": "string"
+								},
+								"initiative": {
+									"type": "string"
+								},
+								"milestones": {
+									"type": "string"
+								},
+								"milestone": {
+									"type": "string"
+								},
+								"updates": {
+									"type": "string"
+								},
+								"newInitiative": {
+									"type": "string"
+								},
+								"newMilestone": {
+									"type": "string"
+								},
+								"postUpdate": {
+									"type": "string"
+								},
+								"writeUpdate": {
+									"type": "string"
+								},
+								"editProperties": {
+									"type": "string"
+								},
+								"name": {
+									"type": "string"
+								},
+								"description": {
+									"type": "string"
+								},
+								"status": {
+									"type": "string"
+								},
+								"health": {
+									"type": "string"
+								},
+								"lead": {
+									"type": "string"
+								},
+								"owner": {
+									"type": "string"
+								},
+								"startDate": {
+									"type": "string"
+								},
+								"targetDate": {
+									"type": "string"
+								},
+								"priority": {
+									"type": "string"
+								},
+								"progress": {
+									"type": "string"
+								},
+								"completed": {
+									"type": "string"
+								},
+								"points": {
+									"type": "string"
+								},
+								"noLead": {
+									"type": "string"
+								},
+								"noOwner": {
+									"type": "string"
+								},
+								"noDate": {
+									"type": "string"
+								},
+								"noMilestone": {
+									"type": "string"
+								},
+								"noDescription": {
+									"type": "string"
+								},
+								"noMilestones": {
+									"type": "string"
+								},
+								"noUpdates": {
+									"type": "string"
+								},
+								"noInitiatives": {
+									"type": "string"
+								},
+								"noProjects": {
+									"type": "string"
+								},
+								"linkProject": {
+									"type": "string"
+								},
+								"unlinkProject": {
+									"type": "string"
+								},
+								"linkedProjects": {
+									"type": "string"
+								},
+								"archive": {
+									"type": "string"
+								},
+								"restore": {
+									"type": "string"
+								},
+								"archived": {
+									"type": "string"
+								},
+								"showArchived": {
+									"type": "string"
+								},
+								"save": {
+									"type": "string"
+								},
+								"cancel": {
+									"type": "string"
+								},
+								"edit": {
+									"type": "string"
+								},
+								"delete": {
+									"type": "string"
+								},
+								"deleteMilestone": {
+									"type": "string"
+								},
+								"deleteInitiative": {
+									"type": "string"
+								},
+								"confirmDelete": {
+									"type": "string"
+								},
+								"moveUp": {
+									"type": "string"
+								},
+								"moveDown": {
+									"type": "string"
+								},
+								"loadMore": {
+									"type": "string"
+								},
+								"retry": {
+									"type": "string"
+								},
+								"loading": {
+									"type": "string"
+								},
+								"unavailable": {
+									"type": "string"
+								},
+								"noAccess": {
+									"type": "string"
+								},
+								"board": {
+									"type": "string"
+								},
+								"more": {
+									"type": "string"
+								},
+								"previous": {
+									"type": "string"
+								},
+								"next": {
+									"type": "string"
+								},
+								"page": {
+									"type": "string"
+								},
+								"groupByStatus": {
+									"type": "string"
+								},
+								"allStatuses": {
+									"type": "string"
+								},
+								"deletedUser": {
+									"type": "string"
+								},
+								"chooseProject": {
+									"type": "string"
+								},
+								"updateBody": {
+									"type": "string"
+								},
+								"statusBacklog": {
+									"type": "string"
+								},
+								"statusPlanned": {
+									"type": "string"
+								},
+								"statusStarted": {
+									"type": "string"
+								},
+								"statusPaused": {
+									"type": "string"
+								},
+								"statusCompleted": {
+									"type": "string"
+								},
+								"statusCanceled": {
+									"type": "string"
+								},
+								"statusActive": {
+									"type": "string"
+								},
+								"healthOnTrack": {
+									"type": "string"
+								},
+								"healthAtRisk": {
+									"type": "string"
+								},
+								"healthOffTrack": {
+									"type": "string"
+								},
+								"priorityNone": {
+									"type": "string"
+								},
+								"priorityLow": {
+									"type": "string"
+								},
+								"priorityMedium": {
+									"type": "string"
+								},
+								"priorityHigh": {
+									"type": "string"
+								},
+								"priorityUrgent": {
+									"type": "string"
+								},
+								"newProject": {
+									"type": "string"
+								}
+							},
+							"required": [
+								"overview",
+								"projects",
+								"initiatives",
+								"initiative",
+								"milestones",
+								"milestone",
+								"updates",
+								"newInitiative",
+								"newMilestone",
+								"postUpdate",
+								"writeUpdate",
+								"editProperties",
+								"name",
+								"description",
+								"status",
+								"health",
+								"lead",
+								"owner",
+								"startDate",
+								"targetDate",
+								"priority",
+								"progress",
+								"completed",
+								"points",
+								"noLead",
+								"noOwner",
+								"noDate",
+								"noMilestone",
+								"noDescription",
+								"noMilestones",
+								"noUpdates",
+								"noInitiatives",
+								"noProjects",
+								"linkProject",
+								"unlinkProject",
+								"linkedProjects",
+								"archive",
+								"restore",
+								"archived",
+								"showArchived",
+								"save",
+								"cancel",
+								"edit",
+								"delete",
+								"deleteMilestone",
+								"deleteInitiative",
+								"confirmDelete",
+								"moveUp",
+								"moveDown",
+								"loadMore",
+								"retry",
+								"loading",
+								"unavailable",
+								"noAccess",
+								"board",
+								"more",
+								"previous",
+								"next",
+								"page",
+								"groupByStatus",
+								"allStatuses",
+								"deletedUser",
+								"chooseProject",
+								"updateBody",
+								"statusBacklog",
+								"statusPlanned",
+								"statusStarted",
+								"statusPaused",
+								"statusCompleted",
+								"statusCanceled",
+								"statusActive",
+								"healthOnTrack",
+								"healthAtRisk",
+								"healthOffTrack",
+								"priorityNone",
+								"priorityLow",
+								"priorityMedium",
+								"priorityHigh",
+								"priorityUrgent",
+								"newProject"
+							]
 						}
 					},
-					"required": ["signInTagline", "triage"]
+					"required": ["signInTagline", "triage", "planning"]
 				}
 			},
 			"required": [
@@ -19309,9 +19637,337 @@
 						"duplicateOf",
 						"duplicatedBy"
 					]
+				},
+				"planning": {
+					"type": "object",
+					"additionalProperties": false,
+					"properties": {
+						"overview": {
+							"type": "string"
+						},
+						"projects": {
+							"type": "string"
+						},
+						"initiatives": {
+							"type": "string"
+						},
+						"initiative": {
+							"type": "string"
+						},
+						"milestones": {
+							"type": "string"
+						},
+						"milestone": {
+							"type": "string"
+						},
+						"updates": {
+							"type": "string"
+						},
+						"newInitiative": {
+							"type": "string"
+						},
+						"newMilestone": {
+							"type": "string"
+						},
+						"postUpdate": {
+							"type": "string"
+						},
+						"writeUpdate": {
+							"type": "string"
+						},
+						"editProperties": {
+							"type": "string"
+						},
+						"name": {
+							"type": "string"
+						},
+						"description": {
+							"type": "string"
+						},
+						"status": {
+							"type": "string"
+						},
+						"health": {
+							"type": "string"
+						},
+						"lead": {
+							"type": "string"
+						},
+						"owner": {
+							"type": "string"
+						},
+						"startDate": {
+							"type": "string"
+						},
+						"targetDate": {
+							"type": "string"
+						},
+						"priority": {
+							"type": "string"
+						},
+						"progress": {
+							"type": "string"
+						},
+						"completed": {
+							"type": "string"
+						},
+						"points": {
+							"type": "string"
+						},
+						"noLead": {
+							"type": "string"
+						},
+						"noOwner": {
+							"type": "string"
+						},
+						"noDate": {
+							"type": "string"
+						},
+						"noMilestone": {
+							"type": "string"
+						},
+						"noDescription": {
+							"type": "string"
+						},
+						"noMilestones": {
+							"type": "string"
+						},
+						"noUpdates": {
+							"type": "string"
+						},
+						"noInitiatives": {
+							"type": "string"
+						},
+						"noProjects": {
+							"type": "string"
+						},
+						"linkProject": {
+							"type": "string"
+						},
+						"unlinkProject": {
+							"type": "string"
+						},
+						"linkedProjects": {
+							"type": "string"
+						},
+						"archive": {
+							"type": "string"
+						},
+						"restore": {
+							"type": "string"
+						},
+						"archived": {
+							"type": "string"
+						},
+						"showArchived": {
+							"type": "string"
+						},
+						"save": {
+							"type": "string"
+						},
+						"cancel": {
+							"type": "string"
+						},
+						"edit": {
+							"type": "string"
+						},
+						"delete": {
+							"type": "string"
+						},
+						"deleteMilestone": {
+							"type": "string"
+						},
+						"deleteInitiative": {
+							"type": "string"
+						},
+						"confirmDelete": {
+							"type": "string"
+						},
+						"moveUp": {
+							"type": "string"
+						},
+						"moveDown": {
+							"type": "string"
+						},
+						"loadMore": {
+							"type": "string"
+						},
+						"retry": {
+							"type": "string"
+						},
+						"loading": {
+							"type": "string"
+						},
+						"unavailable": {
+							"type": "string"
+						},
+						"noAccess": {
+							"type": "string"
+						},
+						"board": {
+							"type": "string"
+						},
+						"more": {
+							"type": "string"
+						},
+						"previous": {
+							"type": "string"
+						},
+						"next": {
+							"type": "string"
+						},
+						"page": {
+							"type": "string"
+						},
+						"groupByStatus": {
+							"type": "string"
+						},
+						"allStatuses": {
+							"type": "string"
+						},
+						"deletedUser": {
+							"type": "string"
+						},
+						"chooseProject": {
+							"type": "string"
+						},
+						"updateBody": {
+							"type": "string"
+						},
+						"statusBacklog": {
+							"type": "string"
+						},
+						"statusPlanned": {
+							"type": "string"
+						},
+						"statusStarted": {
+							"type": "string"
+						},
+						"statusPaused": {
+							"type": "string"
+						},
+						"statusCompleted": {
+							"type": "string"
+						},
+						"statusCanceled": {
+							"type": "string"
+						},
+						"statusActive": {
+							"type": "string"
+						},
+						"healthOnTrack": {
+							"type": "string"
+						},
+						"healthAtRisk": {
+							"type": "string"
+						},
+						"healthOffTrack": {
+							"type": "string"
+						},
+						"priorityNone": {
+							"type": "string"
+						},
+						"priorityLow": {
+							"type": "string"
+						},
+						"priorityMedium": {
+							"type": "string"
+						},
+						"priorityHigh": {
+							"type": "string"
+						},
+						"priorityUrgent": {
+							"type": "string"
+						},
+						"newProject": {
+							"type": "string"
+						}
+					},
+					"required": [
+						"overview",
+						"projects",
+						"initiatives",
+						"initiative",
+						"milestones",
+						"milestone",
+						"updates",
+						"newInitiative",
+						"newMilestone",
+						"postUpdate",
+						"writeUpdate",
+						"editProperties",
+						"name",
+						"description",
+						"status",
+						"health",
+						"lead",
+						"owner",
+						"startDate",
+						"targetDate",
+						"priority",
+						"progress",
+						"completed",
+						"points",
+						"noLead",
+						"noOwner",
+						"noDate",
+						"noMilestone",
+						"noDescription",
+						"noMilestones",
+						"noUpdates",
+						"noInitiatives",
+						"noProjects",
+						"linkProject",
+						"unlinkProject",
+						"linkedProjects",
+						"archive",
+						"restore",
+						"archived",
+						"showArchived",
+						"save",
+						"cancel",
+						"edit",
+						"delete",
+						"deleteMilestone",
+						"deleteInitiative",
+						"confirmDelete",
+						"moveUp",
+						"moveDown",
+						"loadMore",
+						"retry",
+						"loading",
+						"unavailable",
+						"noAccess",
+						"board",
+						"more",
+						"previous",
+						"next",
+						"page",
+						"groupByStatus",
+						"allStatuses",
+						"deletedUser",
+						"chooseProject",
+						"updateBody",
+						"statusBacklog",
+						"statusPlanned",
+						"statusStarted",
+						"statusPaused",
+						"statusCompleted",
+						"statusCanceled",
+						"statusActive",
+						"healthOnTrack",
+						"healthAtRisk",
+						"healthOffTrack",
+						"priorityNone",
+						"priorityLow",
+						"priorityMedium",
+						"priorityHigh",
+						"priorityUrgent",
+						"newProject"
+					]
 				}
 			},
-			"required": ["categories", "triage"]
+			"required": ["categories", "triage", "planning"]
 		}
 	},
 	"required": [

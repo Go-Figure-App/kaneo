@@ -1,10 +1,28 @@
-import { QueryClient, useQueryClient } from "@tanstack/react-query";
+import { clearParityOnAccessError } from "@/features/parity/foundation/access-error";
+import {
+  MutationCache,
+  QueryCache,
+  QueryClient,
+  useQueryClient,
+} from "@tanstack/react-query";
 import { useCallback, useState } from "react";
 
 import { useToast } from "../components/toast";
 import { userMessage } from "./api/client";
 
 export const queryClient = new QueryClient({
+  queryCache: new QueryCache({
+    onError: (error, query) =>
+      clearParityOnAccessError(queryClient, error, query.queryKey),
+  }),
+  mutationCache: new MutationCache({
+    onError: (error, _variables, _context, mutation) =>
+      clearParityOnAccessError(
+        queryClient,
+        error,
+        mutation.options.mutationKey,
+      ),
+  }),
   defaultOptions: {
     queries: {
       staleTime: 15_000,
@@ -49,7 +67,7 @@ export const qk = {
  * every open query. Cheaper than tracking which query each change touches, and lists stay
  * visible while they reload.
  */
-export function useAction() {
+export function useAction(scope?: string) {
   const client = useQueryClient();
   const toast = useToast();
   const [busy, setBusy] = useState(false);
@@ -66,13 +84,14 @@ export function useAction() {
         if (options.refresh !== false) void client.invalidateQueries();
         return result;
       } catch (e) {
+        clearParityOnAccessError(client, e, scope ? [scope] : undefined);
         toast.show(userMessage(e), "error");
         return undefined;
       } finally {
         setBusy(false);
       }
     },
-    [client, toast],
+    [client, toast, scope],
   );
 
   return { run, busy };

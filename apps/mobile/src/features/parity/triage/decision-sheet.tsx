@@ -29,7 +29,7 @@ export function TriageDecisionSheet({
 }) {
   const { t } = useTranslation(["mobile"]);
   const c = useColors();
-  const { run, busy } = useAction();
+  const { run, busy } = useAction("parity");
   const [action, setAction] = useState(initialAction);
   const [columnId, setColumnId] = useState("");
   const [assigneeId, setAssigneeId] = useState(item.userId);

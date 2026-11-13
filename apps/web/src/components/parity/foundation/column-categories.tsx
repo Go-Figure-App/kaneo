@@ -24,6 +24,7 @@ export function ColumnCategories({ projectId }: { projectId: string }) {
     enabled,
   });
   const mutation = useMutation({
+    mutationKey: ["parity"],
     mutationFn: ({ id, category }: { id: string; category: Category }) =>
       updateParityColumn(projectId, id, category),
     onSuccess: () =>

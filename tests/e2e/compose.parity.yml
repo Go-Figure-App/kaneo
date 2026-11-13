@@ -1,4 +1,4 @@
 services:
   kaneo:
     environment:
-      PARITY_FEATURES: foundation,triage
+      PARITY_FEATURES: foundation,triage,projects,initiatives
