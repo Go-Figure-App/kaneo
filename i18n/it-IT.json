@@ -5278,6 +5278,23 @@
 		},
 		"permissions": {
 			"photos": "Kaneo usa le tue foto per allegare immagini ad attività e commenti e per la tua foto profilo."
+		},
+		"parity": {
+			"signInTagline": "Sign in to Go Figure’s project workspace."
+		}
+	},
+	"parity": {
+		"categories": {
+			"backlog": "Backlog",
+			"canceled": "Canceled",
+			"completed": "Completed",
+			"description": "Categories define how planning features count work. Kaneo’s final-state setting continues to control its existing automations.",
+			"error": "Could not save or load categories. Try again.",
+			"label": "Category for {{name}}",
+			"loading": "Loading state categories…",
+			"started": "Started",
+			"title": "State categories",
+			"unstarted": "Unstarted"
 		}
 	}
 }
