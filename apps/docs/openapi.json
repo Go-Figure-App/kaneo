@@ -15309,14 +15309,16 @@
                         "required": [
                           "taskId",
                           "cycleId"
-                        ]
+                        ],
+                        "additionalProperties": false
                       }
                     }
                   },
                   "required": [
                     "currentCycleId",
                     "items"
-                  ]
+                  ],
+                  "additionalProperties": false
                 }
               }
             }
@@ -15460,7 +15462,8 @@
                     "autoRollover",
                     "timeZone",
                     "workspaceId"
-                  ]
+                  ],
+                  "additionalProperties": false
                 }
               }
             }
@@ -15585,7 +15588,8 @@
                     "minLength": 1,
                     "maxLength": 100
                   }
-                }
+                },
+                "additionalProperties": false
               }
             }
           }
@@ -15654,7 +15658,8 @@
                     "autoRollover",
                     "timeZone",
                     "workspaceId"
-                  ]
+                  ],
+                  "additionalProperties": false
                 }
               }
             }
@@ -15864,7 +15869,8 @@
                               "startedPoints",
                               "completedCount",
                               "completedPoints"
-                            ]
+                            ],
+                            "additionalProperties": false
                           },
                           "summary": {
                             "type": [
@@ -15906,7 +15912,8 @@
                               "completedPoints",
                               "rolledOverCount",
                               "rolledOverPoints"
-                            ]
+                            ],
+                            "additionalProperties": false
                           },
                           "createdAt": {
                             "type": "string",
@@ -15930,7 +15937,8 @@
                           "summary",
                           "createdAt",
                           "updatedAt"
-                        ]
+                        ],
+                        "additionalProperties": false
                       }
                     },
                     "settings": {
@@ -15992,7 +16000,8 @@
                         "autoRollover",
                         "timeZone",
                         "workspaceId"
-                      ]
+                      ],
+                      "additionalProperties": false
                     }
                   },
                   "required": [
@@ -16001,7 +16010,8 @@
                     "hasMore",
                     "items",
                     "settings"
-                  ]
+                  ],
+                  "additionalProperties": false
                 }
               }
             }
@@ -16160,7 +16170,8 @@
                         "startedPoints",
                         "completedCount",
                         "completedPoints"
-                      ]
+                      ],
+                      "additionalProperties": false
                     },
                     "summary": {
                       "type": [
@@ -16202,7 +16213,8 @@
                         "completedPoints",
                         "rolledOverCount",
                         "rolledOverPoints"
-                      ]
+                      ],
+                      "additionalProperties": false
                     },
                     "createdAt": {
                       "type": "string",
@@ -16248,7 +16260,8 @@
                           "completedCount",
                           "completedPoints",
                           "day"
-                        ]
+                        ],
+                        "additionalProperties": false
                       }
                     },
                     "historyAvailable": {
@@ -16313,7 +16326,8 @@
                         "autoRollover",
                         "timeZone",
                         "workspaceId"
-                      ]
+                      ],
+                      "additionalProperties": false
                     }
                   },
                   "required": [
@@ -16332,7 +16346,8 @@
                     "days",
                     "historyAvailable",
                     "settings"
-                  ]
+                  ],
+                  "additionalProperties": false
                 }
               }
             }
@@ -16433,7 +16448,8 @@
                     "type": "string",
                     "format": "date"
                   }
-                }
+                },
+                "additionalProperties": false
               }
             }
           }
@@ -16517,7 +16533,8 @@
                         "startedPoints",
                         "completedCount",
                         "completedPoints"
-                      ]
+                      ],
+                      "additionalProperties": false
                     },
                     "summary": {
                       "type": [
@@ -16559,7 +16576,8 @@
                         "completedPoints",
                         "rolledOverCount",
                         "rolledOverPoints"
-                      ]
+                      ],
+                      "additionalProperties": false
                     },
                     "createdAt": {
                       "type": "string",
@@ -16605,7 +16623,8 @@
                           "completedCount",
                           "completedPoints",
                           "day"
-                        ]
+                        ],
+                        "additionalProperties": false
                       }
                     },
                     "historyAvailable": {
@@ -16670,7 +16689,8 @@
                         "autoRollover",
                         "timeZone",
                         "workspaceId"
-                      ]
+                      ],
+                      "additionalProperties": false
                     }
                   },
                   "required": [
@@ -16689,7 +16709,8 @@
                     "days",
                     "historyAvailable",
                     "settings"
-                  ]
+                  ],
+                  "additionalProperties": false
                 }
               }
             }
@@ -16978,7 +16999,8 @@
                               "required": [
                                 "name",
                                 "color"
-                              ]
+                              ],
+                              "additionalProperties": false
                             }
                           }
                         },
@@ -16998,7 +17020,8 @@
                           "estimate",
                           "dueDate",
                           "labels"
-                        ]
+                        ],
+                        "additionalProperties": false
                       }
                     }
                   },
@@ -17007,7 +17030,8 @@
                     "pageSize",
                     "hasMore",
                     "items"
-                  ]
+                  ],
+                  "additionalProperties": false
                 }
               }
             }
@@ -17113,7 +17137,8 @@
                       "taskIds",
                       "operation",
                       "value"
-                    ]
+                    ],
+                    "additionalProperties": false
                   },
                   {
                     "type": "object",
@@ -17147,7 +17172,8 @@
                       "taskIds",
                       "operation",
                       "value"
-                    ]
+                    ],
+                    "additionalProperties": false
                   },
                   {
                     "type": "object",
@@ -17181,7 +17207,8 @@
                       "taskIds",
                       "operation",
                       "value"
-                    ]
+                    ],
+                    "additionalProperties": false
                   }
                 ]
               }
@@ -17211,7 +17238,8 @@
                   "required": [
                     "taskIds",
                     "updated"
-                  ]
+                  ],
+                  "additionalProperties": false
                 }
               }
             }
@@ -17347,7 +17375,8 @@
                         "startsAt",
                         "endsAt",
                         "completedAt"
-                      ]
+                      ],
+                      "additionalProperties": false
                     },
                     "estimate": {
                       "type": [
@@ -17374,7 +17403,8 @@
                     "estimate",
                     "estimateScale",
                     "cyclesEnabled"
-                  ]
+                  ],
+                  "additionalProperties": false
                 }
               }
             }
@@ -17472,7 +17502,8 @@
                 },
                 "required": [
                   "cycleId"
-                ]
+                ],
+                "additionalProperties": false
               }
             }
           }
@@ -17533,7 +17564,8 @@
                         "startsAt",
                         "endsAt",
                         "completedAt"
-                      ]
+                      ],
+                      "additionalProperties": false
                     },
                     "estimate": {
                       "type": [
@@ -17560,7 +17592,8 @@
                     "estimate",
                     "estimateScale",
                     "cyclesEnabled"
-                  ]
+                  ],
+                  "additionalProperties": false
                 }
               }
             }
@@ -17658,7 +17691,8 @@
                 },
                 "required": [
                   "estimate"
-                ]
+                ],
+                "additionalProperties": false
               }
             }
           }
@@ -17719,7 +17753,8 @@
                         "startsAt",
                         "endsAt",
                         "completedAt"
-                      ]
+                      ],
+                      "additionalProperties": false
                     },
                     "estimate": {
                       "type": [
@@ -17746,7 +17781,8 @@
                     "estimate",
                     "estimateScale",
                     "cyclesEnabled"
-                  ]
+                  ],
+                  "additionalProperties": false
                 }
               }
             }

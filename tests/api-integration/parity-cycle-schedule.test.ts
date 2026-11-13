@@ -10,6 +10,8 @@ import {
 import { lockCycleWorkspace } from "../../apps/api/src/parity/cycles/access";
 import { advanceCycles } from "../../apps/api/src/parity/cycles/advance";
 import { cycleSettings } from "../../apps/api/src/parity/cycles/settings-read";
+import { announceCycleChanges } from "../../apps/api/src/parity/cycles/announce";
+import { shutdownEventBus, subscribeToEvent } from "../../apps/api/src/events";
 import { resetTestDatabase } from "./helpers/database";
 import { createRestrictedWorkspace } from "./helpers/project-access/create-restricted-workspace";
 
@@ -241,4 +243,50 @@ it("does nothing while cycles are disabled", async () => {
   });
   expect(await c.cycles()).toEqual([]);
   expect(await c.days()).toEqual([]);
+});
+
+it("waits for rollover handlers and deduplicates tasks before notifying the next task", async () => {
+  let release = () => {};
+  let markStarted = () => {};
+  const gate = new Promise<void>((resolve) => {
+    release = resolve;
+  });
+  const firstStarted = new Promise<void>((resolve) => {
+    markStarted = resolve;
+  });
+  const seen: string[] = [];
+  let active = 0;
+  let maximum = 0;
+  await subscribeToEvent<{ taskId: string }>(
+    "task.updated",
+    async ({ taskId }) => {
+      seen.push(taskId);
+      maximum = Math.max(maximum, ++active);
+      if (taskId === "announce-first") {
+        markStarted();
+        await gate;
+      }
+      await new Promise<void>((resolve) => setImmediate(resolve));
+      active--;
+    },
+  );
+  const first = { taskId: "announce-first", projectId: "project" };
+  const done = announceCycleChanges("workspace", [
+    first,
+    first,
+    { taskId: "announce-second", projectId: "project" },
+  ]);
+  try {
+    await firstStarted;
+    await new Promise<void>((resolve) => setImmediate(resolve));
+    expect(seen).toEqual(["announce-first"]);
+    release();
+    await done;
+    expect(seen).toEqual(["announce-first", "announce-second"]);
+    expect(maximum).toBe(1);
+  } finally {
+    release();
+    await done;
+    await shutdownEventBus();
+  }
 });

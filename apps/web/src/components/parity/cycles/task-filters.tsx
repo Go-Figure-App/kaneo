@@ -52,41 +52,59 @@ export function CycleTaskFiltersBar({
         <select
           aria-label={t("parity:cycles.project")}
           className={field}
-          disabled={projects.isError}
           value={filters.projectId ?? ""}
-          onChange={(event) =>
-            setFilters({
-              ...filters,
-              projectId: event.target.value || undefined,
-            })
-          }
+          onChange={(event) => {
+            if (!event.target.value || !projects.isError)
+              setFilters({
+                ...filters,
+                projectId: event.target.value || undefined,
+              });
+          }}
         >
           <option value="">{t("parity:cycles.allProjects")}</option>
-          {projects.data?.map((project) => (
-            <option key={project.id} value={project.id}>
-              {project.name}
+          {projects.isError && filters.projectId && (
+            <option value={filters.projectId} disabled>
+              {t("parity:cycles.project")}
             </option>
-          ))}
+          )}
+          {!projects.isError &&
+            projects.data?.map((project) => (
+              <option key={project.id} value={project.id}>
+                {project.name}
+              </option>
+            ))}
         </select>
         <select
           aria-label={t("parity:cycles.assignee")}
           className={field}
-          disabled={members.isError}
           value={filters.assigneeId ?? ""}
-          onChange={(event) =>
-            setFilters({
-              ...filters,
-              assigneeId: event.target.value || undefined,
-            })
-          }
+          onChange={(event) => {
+            if (
+              !event.target.value ||
+              event.target.value === "unassigned" ||
+              !members.isError
+            )
+              setFilters({
+                ...filters,
+                assigneeId: event.target.value || undefined,
+              });
+          }}
         >
           <option value="">{t("parity:cycles.allAssignees")}</option>
           <option value="unassigned">{t("parity:cycles.unassigned")}</option>
-          {members.data?.map((member) => (
-            <option key={member.userId} value={member.userId}>
-              {member.user.name}
-            </option>
-          ))}
+          {members.isError &&
+            filters.assigneeId &&
+            filters.assigneeId !== "unassigned" && (
+              <option value={filters.assigneeId} disabled>
+                {t("parity:cycles.assignee")}
+              </option>
+            )}
+          {!members.isError &&
+            members.data?.map((member) => (
+              <option key={member.userId} value={member.userId}>
+                {member.user.name}
+              </option>
+            ))}
         </select>
         <select
           aria-label={t("parity:cycles.state")}

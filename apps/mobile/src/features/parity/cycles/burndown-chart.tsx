@@ -6,7 +6,7 @@ import { Txt } from "@/components/text";
 import { Button, Group } from "@/components/ui";
 import { currentLocale } from "@/lib/i18n";
 import { useColors } from "@/theme";
-import { burndown } from "./chart";
+import { burndown, formatCalendarDay } from "./chart";
 import type { CycleDetail } from "./types";
 
 export function CycleBurndown({ cycle }: { cycle: CycleDetail }) {
@@ -100,7 +100,7 @@ export function CycleBurndown({ cycle }: { cycle: CycleDetail }) {
               />
             ))}
             <SvgText x={32} y={166} fontSize={9} fill={c.muted}>
-              {chart.startDay}
+              {formatCalendarDay(chart.startDay, currentLocale())}
             </SvgText>
             <SvgText
               x={308}
@@ -109,7 +109,7 @@ export function CycleBurndown({ cycle }: { cycle: CycleDetail }) {
               fontSize={9}
               fill={c.muted}
             >
-              {chart.endDay}
+              {formatCalendarDay(chart.endDay, currentLocale())}
             </SvgText>
           </Svg>
           <Button
@@ -127,7 +127,9 @@ export function CycleBurndown({ cycle }: { cycle: CycleDetail }) {
                   justifyContent: "space-between",
                 }}
               >
-                <Txt variant="caption">{row.day}</Txt>
+                <Txt variant="caption">
+                  {formatCalendarDay(row.day, currentLocale())}
+                </Txt>
                 <Txt variant="caption" tone="muted">
                   {t("mobile:parity.cycles.remaining")}: {number(row.remaining)}{" "}
                   / {number(row.scope)}

@@ -178,13 +178,18 @@ export async function mutateCycleTasks(who: Actor, input: CycleTaskMutation) {
     }
     return changed;
   });
-  for (const task of changed) await publishEvent("task.updated", task);
+  for (const task of changed)
+    await publishEvent("task.updated", task, { waitForHandlers: true });
   for (const projectId of new Set(changed.map((task) => task.projectId)))
-    await publishEvent("parity.workspace_updated", {
-      type: feature === "projects" ? "PROJECT_PLAN_UPDATED" : "CYCLE_UPDATED",
-      workspaceId: who.workspaceId,
-      projectId,
-    });
+    await publishEvent(
+      "parity.workspace_updated",
+      {
+        type: feature === "projects" ? "PROJECT_PLAN_UPDATED" : "CYCLE_UPDATED",
+        workspaceId: who.workspaceId,
+        projectId,
+      },
+      { waitForHandlers: true },
+    );
   return {
     taskIds: changed.map((task) => task.taskId),
     updated: changed.length,

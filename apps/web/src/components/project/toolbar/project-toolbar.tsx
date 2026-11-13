@@ -23,7 +23,18 @@ export function ProjectToolbar({
 }: ProjectToolbarProps) {
   const { t } = useTranslation();
   const includeSubtasksId = useId();
-  useFilterShortcuts(view.subjects, view.filters.clearFilters);
+  useFilterShortcuts(
+    [
+      ...view.subjects,
+      {
+        id: "parity-cycle",
+        selected:
+          view.cycleFilter.value === null ? [] : [view.cycleFilter.value],
+        onClear: () => view.cycleFilter.setValue(null),
+      },
+    ],
+    view.filters.clearFilters,
+  );
 
   return (
     <>

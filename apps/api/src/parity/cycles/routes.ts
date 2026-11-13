@@ -23,8 +23,8 @@ import { updateCycleSettings } from "./settings-write";
 import { getCycleTasks } from "./tasks";
 import { projectCycleTasks } from "./project-tasks";
 
-const workspace = z.object({ workspaceId: id });
-const item = z.object({ id });
+const workspace = z.strictObject({ workspaceId: id });
+const item = z.strictObject({ id });
 const readSettings = [
   requireParity("cycles"),
   workspaceAccess.fromParam(),
@@ -36,7 +36,7 @@ const readers = requireWorkspacePermission({
   task: ["read"],
 });
 const readItem = [requireParity("cycles"), cycleAccess, readers] as const;
-const page = z.object({
+const page = z.strictObject({
   page: z.number(),
   pageSize: z.number(),
   hasMore: z.boolean(),
@@ -131,13 +131,13 @@ const projectTasks = createRoute({
     workspaceAccess.fromProjectId(),
     readers,
   ],
-  request: { params: z.object({ projectId: id }) },
+  request: { params: z.strictObject({ projectId: id }) },
   responses: {
     200: jsonResponse(
       "Project cycle assignments",
-      z.object({
+      z.strictObject({
         currentCycleId: id.nullable(),
-        items: z.array(z.object({ taskId: id, cycleId: id })),
+        items: z.array(z.strictObject({ taskId: id, cycleId: id })),
       }),
     ),
     ...errors,

@@ -1,5 +1,5 @@
 import { expect, it } from "vite-plus/test";
-import { taskTotalsByProject } from "./task-totals";
+import { taskTotalsByProject } from "./totals";
 
 it("captures scope and terminal state from the same task snapshot", () => {
   const tasks = [

@@ -94,3 +94,26 @@ it("uses an exclusive cycle end and recognizes cycles awaiting the hourly close"
     "upcoming",
   );
 });
+
+it("resolves each boundary independently when the start day skips midnight", () => {
+  const sunday = { ...cadence, cycleStartDay: 0 as const };
+  const before = initialCycle(
+    new Date("2026-09-02T12:00:00Z"),
+    sunday,
+    "America/Santiago",
+  );
+  expect(before.endsAt.toISOString()).toBe("2026-09-06T04:00:00.000Z");
+  const shifted = followingCycle(before.endsAt, sunday, "America/Santiago");
+  expect(shifted.startsAt).toEqual(before.endsAt);
+  expect(shifted.endsAt.toISOString()).toBe("2026-09-13T03:00:00.000Z");
+  expect(
+    followingCycle(shifted.endsAt, sunday, "America/Santiago").startsAt,
+  ).toEqual(shifted.endsAt);
+  expect(
+    followingCycle(
+      before.endsAt,
+      { ...sunday, cooldownWeeks: 1 },
+      "America/Santiago",
+    ).startsAt,
+  ).toEqual(shifted.endsAt);
+});

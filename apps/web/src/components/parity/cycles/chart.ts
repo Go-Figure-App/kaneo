@@ -67,3 +67,12 @@ export function burndown(cycle: CycleDetail, now = new Date()) {
     endDay: calendarDay(cycle.endsAt, timezone),
   };
 }
+
+export function formatCalendarDay(day: string, locale: string) {
+  return new Intl.DateTimeFormat(locale, {
+    year: "numeric",
+    month: "short",
+    day: "numeric",
+    timeZone: "UTC",
+  }).format(new Date(`${day}T00:00:00Z`));
+}

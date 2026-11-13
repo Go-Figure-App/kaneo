@@ -1,6 +1,14 @@
 import { expect, it } from "vite-plus/test";
+import { groupCycleTasks } from "./group-tasks";
+import type { CycleTask } from "./types";
 import type { CycleDetail } from "./types";
-import { burndown, calendarDay, completion, daysLeft } from "./chart";
+import {
+  burndown,
+  calendarDay,
+  completion,
+  daysLeft,
+  formatCalendarDay,
+} from "./chart";
 
 const totals = {
   scopeCount: 4,
@@ -105,4 +113,57 @@ it("counts remaining local dates rather than 24-hour blocks through daylight sav
       new Date("2026-11-02T05:00:00Z"),
     ),
   ).toBe(0);
+});
+
+it("formats calendar labels without shifting the observed day", () => {
+  expect(formatCalendarDay("2026-11-02", "en-US")).toBe("Nov 2, 2026");
+  expect(formatCalendarDay("2026-11-02", "de-DE")).toBe("2. Nov. 2026");
+});
+
+it("keeps project-local statuses distinct without changing assignee or project grouping", () => {
+  const task: CycleTask = {
+    id: "task-a",
+    projectId: "project-a",
+    projectName: "Alpha",
+    projectSlug: "ALP",
+    title: "First",
+    number: 1,
+    status: "todo",
+    statusName: "Ready",
+    category: "unstarted",
+    priority: "medium",
+    userId: null,
+    assigneeName: null,
+    estimate: null,
+    dueDate: null,
+    labels: [],
+  };
+  const tasks = [
+    task,
+    {
+      ...task,
+      id: "task-b",
+      projectId: "project-b",
+      projectName: "Beta",
+      statusName: "Queued",
+    },
+  ];
+  expect(
+    groupCycleTasks(tasks, "state", "Unassigned").map(
+      ({ id, name, tasks }) => ({
+        id,
+        name,
+        ids: tasks.map((task) => task.id),
+      }),
+    ),
+  ).toEqual([
+    { id: "project-a:todo", name: "Ready", ids: ["task-a"] },
+    { id: "project-b:todo", name: "Queued", ids: ["task-b"] },
+  ]);
+  expect(groupCycleTasks(tasks, "assignee", "Unassigned")).toEqual([
+    { id: "unassigned", name: "Unassigned", tasks },
+  ]);
+  expect(
+    groupCycleTasks(tasks, "project", "Unassigned").map((group) => group.name),
+  ).toEqual(["Alpha", "Beta"]);
 });

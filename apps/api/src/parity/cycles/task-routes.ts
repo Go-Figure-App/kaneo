@@ -10,7 +10,7 @@ import { getTaskCycleProperties } from "./task-read";
 import { bulkCycleBody, taskCycleProperties } from "./task-schema";
 import { mutateCycleTasks } from "./task-write";
 
-const params = z.object({ taskId: id });
+const params = z.strictObject({ taskId: id });
 const read = [
   requireParity("cycles"),
   workspaceAccess.fromTaskId(),
@@ -41,7 +41,7 @@ const setCycle = createRoute({
   tags: ["Cycles"],
   summary: "Set or clear a task's cycle",
   middleware: [...write],
-  request: { params, body: body(z.object({ cycleId: id.nullable() })) },
+  request: { params, body: body(z.strictObject({ cycleId: id.nullable() })) },
   responses,
 });
 const setEstimate = createRoute({
@@ -54,7 +54,7 @@ const setEstimate = createRoute({
   request: {
     params,
     body: body(
-      z.object({ estimate: z.number().int().min(0).max(8).nullable() }),
+      z.strictObject({ estimate: z.number().int().min(0).max(8).nullable() }),
     ),
   },
   responses,
@@ -83,7 +83,7 @@ const bulk = createRoute({
   responses: {
     200: jsonResponse(
       "Changed tasks",
-      z.object({ taskIds: z.array(id), updated: z.number() }),
+      z.strictObject({ taskIds: z.array(id), updated: z.number() }),
     ),
     ...errors,
   },

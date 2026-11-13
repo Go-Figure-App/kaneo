@@ -20,6 +20,7 @@ export function CycleProgress({
     dateStyle: "medium",
     timeZone: settings.timeZone,
   });
+  const number = new Intl.NumberFormat(currentLocale());
   return (
     <View style={{ gap: 10 }}>
       <Txt variant="caption" tone="muted">
@@ -28,12 +29,14 @@ export function CycleProgress({
       </Txt>
       <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
         <Txt variant="meta" weight="medium">
-          {t("mobile:parity.cycles.completion", { percent })}
+          {t("mobile:parity.cycles.completion", {
+            percent: number.format(percent),
+          })}
         </Txt>
         <Txt variant="meta" tone="muted">
           {t("mobile:parity.cycles.progress", {
-            completed: totals.completedCount,
-            total: totals.scopeCount,
+            completed: number.format(totals.completedCount),
+            total: number.format(totals.scopeCount),
           })}
         </Txt>
       </View>
@@ -47,7 +50,9 @@ export function CycleProgress({
       </View>
       {settings.estimateScale !== "none" && (
         <Txt variant="caption" tone="muted">
-          {t("mobile:parity.cycles.totalPoints", { count: totals.scopePoints })}
+          {t("mobile:parity.cycles.totalPoints", {
+            points: number.format(totals.scopePoints),
+          })}
         </Txt>
       )}
       {cycle.phase === "current" && (

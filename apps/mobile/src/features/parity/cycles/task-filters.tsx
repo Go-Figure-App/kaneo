@@ -5,7 +5,7 @@ import { TextInput, View } from "react-native";
 import { OptionSheet, Sheet } from "@/components/sheet";
 import { ErrorState, Loading } from "@/components/screen";
 import { Txt } from "@/components/text";
-import { Touch } from "@/components/ui";
+import { Button, Touch } from "@/components/ui";
 import { api } from "@/lib/api/endpoints";
 import { userMessage } from "@/lib/api/client";
 import { qk } from "@/lib/query";
@@ -156,6 +156,16 @@ export function CycleTaskFiltersBar({
             />
           ) : (
             <Loading />
+          )}
+          {filters[picker] && (
+            <Button
+              label={options[picker][0].label}
+              kind="ghost"
+              onPress={() => {
+                onChange({ ...filters, [picker]: undefined });
+                setPicker(null);
+              }}
+            />
           )}
         </Sheet>
       ) : (

@@ -1,6 +1,7 @@
 import { cleanup, fireEvent, render, screen } from "@testing-library/react";
 import type { ReactNode } from "react";
 import { afterEach, expect, it, vi } from "vite-plus/test";
+import { useFilterShortcuts } from "@/components/project/task-filters/use-filter-shortcuts";
 import { ProjectToolbar } from "./project-toolbar";
 import type { ProjectTaskView } from "./use-project-task-view";
 vi.mock("@/components/parity/cycles/project-cycle-filter", () => ({
@@ -28,6 +29,7 @@ it("clears the subtask override and disables reset when following the project de
     search: "",
     setSearch: vi.fn(),
     subjects: [],
+    cycleFilter: { value: "current", setValue: vi.fn() },
     filters: {
       includeSubtasks: true,
       hasIncludeSubtasksOverride: true,
@@ -37,6 +39,13 @@ it("clears the subtask override and disables reset when following the project de
     },
   } as unknown as ProjectTaskView;
   const { rerender } = render(<ProjectToolbar view={view} display={null} />);
+  const [shortcutSubjects] = vi.mocked(useFilterShortcuts).mock.calls.at(-1)!;
+  const cycleShortcut = shortcutSubjects.find(
+    (subject) => subject.id === "parity-cycle",
+  )!;
+  expect(cycleShortcut.selected).toEqual(["current"]);
+  cycleShortcut.onClear();
+  expect(view.cycleFilter.setValue).toHaveBeenCalledWith(null);
   const reset = screen.getByRole("button", {
     name: "tasks:display.useProjectDefault",
   });

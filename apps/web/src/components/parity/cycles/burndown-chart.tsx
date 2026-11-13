@@ -1,7 +1,7 @@
 import { useId } from "react";
 import { useTranslation } from "react-i18next";
 import type { CycleDetail } from "@/fetchers/parity/cycles";
-import { burndown } from "./chart";
+import { burndown, formatCalendarDay } from "./chart";
 
 export function BurndownChart({ cycle }: { cycle: CycleDetail }) {
   const { t, i18n } = useTranslation();
@@ -90,7 +90,7 @@ export function BurndownChart({ cycle }: { cycle: CycleDetail }) {
                 fill="currentColor"
                 className="text-primary"
               >
-                <title>{`${row.day}: ${number(row.remaining)}`}</title>
+                <title>{`${formatCalendarDay(row.day, i18n.language)}: ${number(row.remaining)}`}</title>
               </circle>
             ))}
             <text
@@ -99,7 +99,7 @@ export function BurndownChart({ cycle }: { cycle: CycleDetail }) {
               fill="currentColor"
               className="text-[10px] text-muted-foreground"
             >
-              {chart.startDay}
+              {formatCalendarDay(chart.startDay, i18n.language)}
             </text>
             <text
               x={615}
@@ -108,7 +108,7 @@ export function BurndownChart({ cycle }: { cycle: CycleDetail }) {
               fill="currentColor"
               className="text-[10px] text-muted-foreground"
             >
-              {chart.endDay}
+              {formatCalendarDay(chart.endDay, i18n.language)}
             </text>
           </svg>
           <details className="mt-1 text-xs text-muted-foreground">
@@ -126,7 +126,9 @@ export function BurndownChart({ cycle }: { cycle: CycleDetail }) {
               <tbody>
                 {chart.observed.map((row) => (
                   <tr key={row.day}>
-                    <td className="py-1">{row.day}</td>
+                    <td className="py-1">
+                      {formatCalendarDay(row.day, i18n.language)}
+                    </td>
                     <td>{number(row.scope)}</td>
                     <td>{number(row.remaining)}</td>
                   </tr>

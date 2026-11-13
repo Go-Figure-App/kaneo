@@ -25,7 +25,10 @@ beforeEach(async () => {
   await resetTestDatabase();
   vi.stubEnv("PARITY_FEATURES", "cycles");
 });
-afterEach(() => vi.unstubAllEnvs());
+afterEach(() => {
+  vi.unstubAllEnvs();
+  vi.useRealTimers();
+});
 
 async function setup() {
   const c = await createRestrictedWorkspace();
@@ -69,6 +72,8 @@ it("returns defaults, enables cycles, and validates timezone/cadence settings", 
     estimateScale: "none",
   });
   for (const body of [
+    { cycleWeek: 1 },
+    { cyclesEnabled: true, unexpected: true },
     { timeZone: "invalid/zone" },
     { cycleWeeks: 0 },
     { cycleWeeks: 9 },
@@ -269,6 +274,8 @@ it("lists and filters readable cycle tasks without descriptions or hidden projec
 });
 
 it("disabling cycles closes the current cycle, deletes upcoming cycles and clears their assignments", async () => {
+  vi.useFakeTimers({ toFake: ["Date"] });
+  vi.setSystemTime(new Date("2026-11-12T12:00:00Z"));
   const c = await setup();
   await c.enable();
   const [current, upcoming] = await c.cycles();

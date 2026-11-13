@@ -151,3 +151,17 @@ it("removes stale task properties after access is revoked", async () => {
 async function actRefetch(client: QueryClient) {
   await client.invalidateQueries({ queryKey: ["parity"] });
 }
+
+it("can clear an assigned cycle when loading available cycles fails", async () => {
+  mocks.current = { ...mocks.current, cycle };
+  mocks.list.mockRejectedValue(new Error("Cycles unavailable"));
+  mount();
+  await open();
+  await screen.findByText("Cycles unavailable");
+  expect(screen.queryByRole("option", { name: /Launch/ })).toBeNull();
+  expect(mocks.update).not.toHaveBeenCalled();
+  fireEvent.click(
+    screen.getByRole("option", { name: "parity:cycles.noCycle" }),
+  );
+  await waitFor(() => expect(mocks.update).toHaveBeenCalledWith("task", null));
+});

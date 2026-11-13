@@ -1,3 +1,5 @@
+import { estimatePoints, type EstimateScale } from "./estimates";
+
 export type CycleTotals = {
   scopeCount: number;
   scopePoints: number;
@@ -36,4 +38,28 @@ export function sumTotals(rows: Iterable<CycleTotals>): CycleTotals {
     totals.completedPoints += row.completedPoints;
   }
   return totals;
+}
+
+export function taskTotalsByProject(
+  tasks: { projectId: string; category: string; estimate: number | null }[],
+  scale: EstimateScale,
+) {
+  const projects = new Map<string, CycleTotals>();
+  for (const task of tasks) {
+    if (task.category === "canceled") continue;
+    const totals = projects.get(task.projectId) ?? emptyTotals();
+    const points = estimatePoints(task.estimate, scale);
+    totals.scopeCount++;
+    totals.scopePoints += points;
+    if (task.category === "started") {
+      totals.startedCount++;
+      totals.startedPoints += points;
+    }
+    if (task.category === "completed") {
+      totals.completedCount++;
+      totals.completedPoints += points;
+    }
+    projects.set(task.projectId, totals);
+  }
+  return projects;
 }

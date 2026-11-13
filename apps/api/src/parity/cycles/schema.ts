@@ -5,7 +5,7 @@ import { validTimeZone } from "./calendar";
 import { estimateScales } from "./estimates";
 import { cycleReference } from "./task-schema";
 
-export const totalsSchema = z.object({
+export const totalsSchema = z.strictObject({
   scopeCount: z.number(),
   scopePoints: z.number(),
   startedCount: z.number(),
@@ -17,7 +17,7 @@ export const summarySchema = totalsSchema.extend({
   rolledOverCount: z.number(),
   rolledOverPoints: z.number(),
 });
-export const settingsBody = z.object({
+export const settingsBody = z.strictObject({
   cyclesEnabled: z.boolean().optional(),
   estimateScale: z.enum(estimateScales).optional(),
   cycleWeeks: z.number().int().min(1).max(8).optional(),
@@ -48,7 +48,7 @@ export const cycleDetailSchema = cycleSchema.extend({
   historyAvailable: z.boolean(),
   settings: settingsSchema,
 });
-export const cyclePatch = z.object({
+export const cyclePatch = z.strictObject({
   name: z.string().trim().min(1).max(200).nullable().optional(),
   startDate: z.iso.date().optional(),
   endDate: z.iso.date().optional(),
@@ -67,7 +67,7 @@ export const cycleTaskQuery = pageQuery.extend({
   label: z.string().min(1).max(200).optional(),
   search: z.string().trim().max(200).optional(),
 });
-export const cycleTaskSchema = z.object({
+export const cycleTaskSchema = z.strictObject({
   id,
   projectId: id,
   projectName: z.string(),
@@ -82,7 +82,7 @@ export const cycleTaskSchema = z.object({
   assigneeName: z.string().nullable(),
   estimate: z.number().nullable(),
   dueDate: nullableResponseTimestamp,
-  labels: z.array(z.object({ name: z.string(), color: z.string() })),
+  labels: z.array(z.strictObject({ name: z.string(), color: z.string() })),
 });
 export type SettingsPatch = z.infer<typeof settingsBody>;
 export type CyclePatch = z.infer<typeof cyclePatch>;

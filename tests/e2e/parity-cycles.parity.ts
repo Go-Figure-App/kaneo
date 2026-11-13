@@ -101,6 +101,13 @@ test("cycle settings, task properties, filters and bulk edits stay in sync", asy
   await page.getByRole("button", { name: "Cycle filter", exact: true }).click();
   await page.getByRole("option", { name: "No cycle", exact: true }).click();
   await expect(card).toHaveCount(0);
+  await page.keyboard.press("Shift+F");
+  await expect(card).toBeVisible();
+  await page.getByRole("button", { name: "Cycle filter", exact: true }).click();
+  await page.getByRole("option", { name: "No cycle", exact: true }).click();
+  await expect(card).toHaveCount(0);
+  await page.keyboard.press("Alt+Shift+F");
+  await expect(card).toBeVisible();
   await page.getByRole("button", { name: "Cycle filter", exact: true }).click();
   await page
     .getByRole("option", { name: "Current cycle", exact: true })

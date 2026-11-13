@@ -15,7 +15,7 @@ export function groupCycleTasks(
         ? task.projectId
         : groupBy === "assignee"
           ? (task.userId ?? "unassigned")
-          : task.status;
+          : `${task.projectId}:${task.status}`;
     const name =
       groupBy === "project"
         ? task.projectName

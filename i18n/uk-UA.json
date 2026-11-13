@@ -5559,7 +5559,7 @@
 				"filter": "Cycle filter",
 				"emptyAssigned": "No issues assigned to you in this cycle.",
 				"completion": "{{percent}}% complete",
-				"totalPoints": "{{count}} points",
+				"totalPoints": "{{points}} points",
 				"statusBacklog": "Backlog",
 				"statusUnstarted": "Unstarted",
 				"statusStarted": "Started",

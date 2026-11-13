@@ -5,9 +5,14 @@ export async function announceCycleChanges(
   tasks: { taskId: string; projectId: string }[] = [],
 ) {
   const unique = new Map(tasks.map((task) => [task.taskId, task]));
-  for (const task of unique.values()) await publishEvent("task.updated", task);
-  await publishEvent("parity.workspace_updated", {
-    type: "CYCLE_UPDATED",
-    workspaceId,
-  });
+  for (const task of unique.values())
+    await publishEvent("task.updated", task, { waitForHandlers: true });
+  await publishEvent(
+    "parity.workspace_updated",
+    {
+      type: "CYCLE_UPDATED",
+      workspaceId,
+    },
+    { waitForHandlers: true },
+  );
 }

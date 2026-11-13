@@ -1,9 +1,39 @@
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { act, cleanup, renderHook, waitFor } from "@testing-library/react";
+import {
+  act,
+  cleanup,
+  fireEvent,
+  render,
+  renderHook,
+  screen,
+  waitFor,
+} from "@testing-library/react";
 import type { ReactNode } from "react";
 import { afterEach, beforeEach, expect, it, vi } from "vite-plus/test";
 import { useProjectCycleFilter } from "./use-project-cycle-filter";
-const mocks = vi.hoisted(() => ({ enabled: true, read: vi.fn() }));
+import { CycleTaskFiltersBar } from "./task-filters";
+const mocks = vi.hoisted(() => ({
+  enabled: true,
+  read: vi.fn(),
+  metadataError: false,
+}));
+vi.mock("react-i18next", () => ({
+  useTranslation: () => ({ t: (key: string) => key }),
+}));
+vi.mock("@/hooks/queries/project/use-get-projects", () => ({
+  default: () => ({
+    isError: mocks.metadataError,
+    error: mocks.metadataError ? new Error("Unavailable") : null,
+    data: [{ id: "project", name: "Project name" }],
+  }),
+}));
+vi.mock("@/hooks/queries/workspace-users/use-get-workspace-users", () => ({
+  default: () => ({
+    isError: mocks.metadataError,
+    error: mocks.metadataError ? new Error("Unavailable") : null,
+    data: [{ userId: "member", user: { name: "Member name" } }],
+  }),
+}));
 vi.mock("../planning/queries", () => ({
   usePlanningEnabled: () => mocks.enabled,
 }));
@@ -12,6 +42,7 @@ vi.mock("@/fetchers/parity/cycles", () => ({
 }));
 beforeEach(() => {
   mocks.enabled = true;
+  mocks.metadataError = false;
   localStorage.clear();
   mocks.read.mockReset();
   mocks.read.mockResolvedValue({
@@ -63,4 +94,46 @@ it("keeps failed metadata out of filtered results and ignores saved filters when
   rerender();
   expect(result.current.value).toBeNull();
   expect(result.current.matches({ id: "one" })).toBe(true);
+});
+
+it("keeps active project and assignee filters clearable without exposing failed metadata", () => {
+  const filters = { projectId: "project", assigneeId: "member" };
+  const setFilters = vi.fn();
+  const bar = () => (
+    <CycleTaskFiltersBar
+      workspaceId="workspace"
+      filters={filters}
+      setFilters={setFilters}
+      groupBy="state"
+      setGroupBy={vi.fn()}
+    />
+  );
+  const { rerender } = render(bar());
+  expect(
+    screen.getByRole("option", { name: "Project name" }),
+  ).toBeInTheDocument();
+  mocks.metadataError = true;
+  rerender(bar());
+  expect(screen.queryByRole("option", { name: "Project name" })).toBeNull();
+  expect(screen.queryByRole("option", { name: "Member name" })).toBeNull();
+  const projects = screen.getByRole("combobox", {
+    name: "parity:cycles.project",
+  });
+  const assignees = screen.getByRole("combobox", {
+    name: "parity:cycles.assignee",
+  });
+  expect(projects).toBeEnabled();
+  expect(assignees).toBeEnabled();
+  expect(projects).toHaveValue("project");
+  expect(assignees).toHaveValue("member");
+  fireEvent.change(projects, { target: { value: "" } });
+  expect(setFilters).toHaveBeenLastCalledWith({
+    ...filters,
+    projectId: undefined,
+  });
+  fireEvent.change(assignees, { target: { value: "" } });
+  expect(setFilters).toHaveBeenLastCalledWith({
+    ...filters,
+    assigneeId: undefined,
+  });
 });

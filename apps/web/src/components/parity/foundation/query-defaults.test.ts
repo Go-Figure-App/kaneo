@@ -5,7 +5,9 @@ import { invalidateParity } from "./workspace-events";
 
 it("refreshes invalidated planning views when revisited while retaining upstream query behavior", async () => {
   const client = new QueryClient({
-    defaultOptions: { queries: { refetchOnMount: false, retry: false } },
+    defaultOptions: {
+      queries: { refetchOnMount: false, retry: false, staleTime: Infinity },
+    },
   });
   configureParityQueries(client);
   const key = ["parity", "cycle", "cycle-id"];

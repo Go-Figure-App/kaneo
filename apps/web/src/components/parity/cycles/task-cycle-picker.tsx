@@ -79,17 +79,7 @@ export function TaskCyclePicker({
             label={t("parity:cycles.cycle")}
             placeholder={t("parity:cycles.chooseCycle")}
             status={
-              choicesError ? (
-                <span role="alert">
-                  {choicesError.message}
-                  <Button variant="ghost" onClick={() => void cycles.refetch()}>
-                    {t("parity:planning.retry")}
-                  </Button>
-                </span>
-              ) : mutation.isPending ||
-                (current.data?.cyclesEnabled && cycles.isPending) ? (
-                t("parity:planning.loading")
-              ) : undefined
+              mutation.isPending ? t("parity:planning.loading") : undefined
             }
             options={[
               {
@@ -97,7 +87,7 @@ export function TaskCyclePicker({
                 label: t("parity:cycles.noCycle"),
                 selected: !cycle,
               },
-              ...(current.data?.cyclesEnabled
+              ...(current.data?.cyclesEnabled && !choicesError
                 ? [...selected, ...choices].map((item) => ({
                     value: item.id,
                     label:
@@ -112,10 +102,27 @@ export function TaskCyclePicker({
                 : []),
             ]}
             onSelect={(id) => {
-              if (!mutation.isPending && !choicesError && canUpdateTasks())
+              if (
+                !mutation.isPending &&
+                (id === "none" || !choicesError) &&
+                canUpdateTasks()
+              )
                 mutation.mutate(id === "none" ? null : id);
             }}
           />
+          {choicesError && (
+            <p role="alert" className="p-2 text-xs text-destructive">
+              {choicesError.message}
+              <Button variant="ghost" onClick={() => void cycles.refetch()}>
+                {t("parity:planning.retry")}
+              </Button>
+            </p>
+          )}
+          {current.data?.cyclesEnabled && cycles.isPending && (
+            <p role="status" className="p-2 text-xs">
+              {t("parity:planning.loading")}
+            </p>
+          )}
           {current.data?.cyclesEnabled && cycles.hasNextPage && (
             <Button
               className="m-1"

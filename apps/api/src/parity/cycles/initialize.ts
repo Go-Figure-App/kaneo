@@ -55,16 +55,24 @@ export async function reconcileCycleReferences(
 async function announceProject(projectId: string, taskId?: string) {
   const scope = await reconcileCycleReferences(projectId, taskId);
   if (!scope) return;
-  await publishEvent("parity.workspace_updated", {
-    type: "CYCLE_UPDATED",
-    workspaceId: scope.workspaceId,
-    projectId,
-  });
-  for (const workspaceId of scope.formerWorkspaceIds)
-    await publishEvent("parity.workspace_updated", {
+  await publishEvent(
+    "parity.workspace_updated",
+    {
       type: "CYCLE_UPDATED",
-      workspaceId,
-    });
+      workspaceId: scope.workspaceId,
+      projectId,
+    },
+    { waitForHandlers: true },
+  );
+  for (const workspaceId of scope.formerWorkspaceIds)
+    await publishEvent(
+      "parity.workspace_updated",
+      {
+        type: "CYCLE_UPDATED",
+        workspaceId,
+      },
+      { waitForHandlers: true },
+    );
 }
 
 let initialized = false;

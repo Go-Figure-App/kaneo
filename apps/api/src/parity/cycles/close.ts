@@ -14,8 +14,12 @@ import type { Transaction } from "../planning/access";
 import { taskCategory } from "../planning/progress-query";
 import { acceptedTaskCondition } from "../triage/visibility";
 import { estimatePoints, type EstimateScale } from "./estimates";
-import { emptyTotals, sumTotals, type ProjectCycleSummary } from "./totals";
-import { taskTotalsByProject } from "./task-totals";
+import {
+  emptyTotals,
+  sumTotals,
+  taskTotalsByProject,
+  type ProjectCycleSummary,
+} from "./totals";
 
 type Cycle = typeof cycleTable.$inferSelect;
 

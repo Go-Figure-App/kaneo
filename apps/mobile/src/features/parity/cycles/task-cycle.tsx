@@ -62,10 +62,15 @@ export function TaskCycle({
       : []),
     ...options.items,
   ];
-  const error =
-    current.error ?? (current.data?.cyclesEnabled ? options.error : null);
+  const choicesError = current.data?.cyclesEnabled ? options.error : null;
   const select = async (cycleId: string | null) => {
-    if (busy || !permissions.data?.updateTasks || current.isError) return;
+    if (
+      busy ||
+      !permissions.data?.updateTasks ||
+      current.isError ||
+      (cycleId !== null && choicesError)
+    )
+      return;
     if (await run(() => cyclesApi.setCycle(taskId, cycleId))) setOpen(false);
   };
   return (
@@ -114,9 +119,9 @@ export function TaskCycle({
         <View style={{ padding: 20, gap: 8 }}>
           {current.isPending ? (
             <Loading />
-          ) : error ? (
+          ) : current.error ? (
             <ErrorState
-              message={userMessage(error)}
+              message={userMessage(current.error)}
               onRetry={() => {
                 void current.refetch();
                 if (current.data?.cyclesEnabled) void options.refetch();
@@ -151,7 +156,14 @@ export function TaskCycle({
               >
                 <Txt>{t("mobile:parity.cycles.noCycle")}</Txt>
               </Touch>
+              {choicesError && (
+                <ErrorState
+                  message={userMessage(choicesError)}
+                  onRetry={() => void options.refetch()}
+                />
+              )}
               {current.data?.cyclesEnabled &&
+                !choicesError &&
                 choices
                   .filter((item) =>
                     `${item.name ?? ""} ${t("mobile:parity.cycles.number", { number: item.number })}`
