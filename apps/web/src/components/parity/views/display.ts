@@ -25,10 +25,23 @@ export const filterFields = [
   "completed",
 ] as const;
 export function validFilters(filters: TaskFilter[]) {
-  return filters.every((filter) =>
-    "values" in filter
-      ? filter.values.length > 0
-      : !["before", "after"].includes(filter.operator) || filter.value !== null,
+  return (
+    encodeURIComponent(JSON.stringify(filters)).length <= 6_000 &&
+    filters.every((filter) => {
+      if ("values" in filter) return filter.values.length > 0;
+      if (
+        ["before", "after"].includes(filter.operator) &&
+        filter.value === null
+      )
+        return false;
+      return (
+        filter.field !== "estimate" ||
+        filter.value === null ||
+        (Number.isInteger(filter.value) &&
+          filter.value >= 0 &&
+          filter.value <= 1_000_000)
+      );
+    })
   );
 }
 export function groupWorkspaceTasks(

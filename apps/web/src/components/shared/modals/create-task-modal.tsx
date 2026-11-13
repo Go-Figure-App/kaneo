@@ -1,4 +1,5 @@
 import { TemplatePicker } from "@/components/parity/views/template-picker";
+import { templateLabels } from "@/components/parity/views/template-labels";
 import { usePlanningEnabled } from "@/components/parity/planning/queries";
 import { applyCreatedEstimate } from "@/components/parity/views/apply-created-estimate";
 import { useLocation, useParams } from "@tanstack/react-router";
@@ -839,14 +840,12 @@ function CreateTaskModalContent({
                 setAssigneeId(template.defaults.assigneeId ?? "");
                 setTemplateEstimate(template.defaults.estimate);
                 setLabels(
-                  workspaceLabels
-                    .filter((label) =>
-                      template.defaults.labels.includes(label.name),
-                    )
-                    .map((label) => ({
+                  templateLabels(workspaceLabels, template.defaults.labels).map(
+                    (label) => ({
                       ...label,
                       workspaceId: workspace?.id ?? "",
-                    })),
+                    }),
+                  ),
                 );
               }}
             />

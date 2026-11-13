@@ -57,6 +57,13 @@ test("workspace filters, saved display, favorites and template creation work tog
     estimateScale: "fibonacci",
     timeZone: "America/New_York",
   });
+  await post(`parity/templates/${project.id}`, {
+    name: "Release",
+    title: "Preserve this template",
+    description: "",
+    defaults: {},
+  });
+  const templateName = "Release#mobile / 100%?";
   const base = `/dashboard/workspace/${workspace.id}`;
   await page.goto(`${base}/issues`);
   await expect(
@@ -121,7 +128,7 @@ test("workspace filters, saved display, favorites and template creation work tog
   const templateDialog = page.getByRole("dialog");
   await templateDialog
     .getByLabel("Template name", { exact: true })
-    .fill("Release checklist");
+    .fill(templateName);
   await templateDialog
     .getByLabel("Issue title", { exact: true })
     .fill("Prepare release");
@@ -139,15 +146,26 @@ test("workspace filters, saved display, favorites and template creation work tog
     .click();
   await expect(templateDialog).toHaveCount(0);
   await expect(
-    page.getByRole("heading", { name: "Release checklist", exact: true }),
+    page.getByRole("heading", { name: templateName, exact: true }),
   ).toBeVisible();
+  const templateArticle = page.getByRole("article").filter({
+    has: page.getByRole("heading", { name: templateName, exact: true }),
+  });
+  await templateArticle
+    .getByRole("button", { name: "Edit template", exact: true })
+    .click();
+  await page
+    .getByRole("dialog")
+    .getByRole("button", { name: "Save", exact: true })
+    .click();
+  await expect(page.getByRole("dialog")).toHaveCount(0);
   await page.goto(`${base}/project/${project.id}/board`);
   await expect(page.getByText("Urgent release", { exact: true })).toBeVisible();
   await page.keyboard.press("c");
   const createDialog = page.getByRole("dialog");
   await createDialog
     .getByRole("combobox", { name: "Use template", exact: true })
-    .selectOption("Release checklist");
+    .selectOption(templateName);
   await expect(createDialog.locator("textarea").first()).toHaveValue(
     "Prepare release",
   );
@@ -174,6 +192,21 @@ test("workspace filters, saved display, favorites and template creation work tog
       );
     })
     .toEqual([{ estimate: 3, priority: "high" }]);
+  await page.goto(`${base}/views/templates`);
+  await page
+    .getByRole("combobox", { name: "Choose project", exact: true })
+    .selectOption(project.id);
+  page.once("dialog", (dialog) => dialog.accept());
+  await templateArticle
+    .getByRole("button", { name: "Delete", exact: true })
+    .click();
+  await expect(
+    page.getByRole("heading", { name: templateName, exact: true }),
+  ).toHaveCount(0);
+  await expect(
+    page.getByRole("heading", { name: "Release", exact: true }),
+  ).toBeVisible();
+  await page.getByRole("heading", { name: "Release", exact: true }).click();
   await page.keyboard.press("g");
   await page.keyboard.press("v");
   await expect(page).toHaveURL(`${baseURL}${base}/views`);

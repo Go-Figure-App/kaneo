@@ -66,4 +66,13 @@ export const viewFilters = z
         { message: "Comparisons require a value" },
       ),
   )
-  .max(30);
+  .max(30)
+  .describe(
+    "At most 30 filters, whose JSON occupies at most 6000 characters after URL encoding",
+  )
+  .refine(
+    (filters) => encodeURIComponent(JSON.stringify(filters)).length <= 6_000,
+    {
+      message: "Encoded filters must not exceed 6000 characters",
+    },
+  );

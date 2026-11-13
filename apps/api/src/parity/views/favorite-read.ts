@@ -1,4 +1,4 @@
-import { and, eq, inArray, isNull, sql } from "drizzle-orm";
+import { and, eq, exists, inArray, isNull, or, sql } from "drizzle-orm";
 import db from "../../database";
 import { projectTable, taskTable } from "../../database/schema";
 import {
@@ -15,6 +15,32 @@ import { visibleViews } from "./access";
 import type { FavoriteTarget } from "./schema";
 export const favoriteKey = (value: FavoriteTarget) =>
   JSON.stringify([value.kind, value.targetId]);
+
+// Existence is deliberately independent of feature flags and access. Revoked,
+// archived or temporarily hidden targets must keep their bookmarks.
+export function favoriteTargetExists(database: DbOrTx) {
+  return or(
+    ...(
+      [
+        ["view", savedViewTable],
+        ["project", projectTable],
+        ["task", taskTable],
+        ["cycle", cycleTable],
+        ["initiative", initiativeTable],
+      ] as const
+    ).map(([kind, table]) =>
+      and(
+        eq(favoriteTable.kind, kind),
+        exists(
+          database
+            .select({ id: table.id })
+            .from(table)
+            .where(eq(table.id, favoriteTable.targetId)),
+        ),
+      ),
+    ),
+  );
+}
 
 export async function readableFavoriteTargets(
   who: Actor,
@@ -121,7 +147,9 @@ export async function listFavorites(who: Actor, database: DbOrTx = db) {
   const rows = await database
     .select()
     .from(favoriteTable)
-    .where(eq(favoriteTable.userId, who.userId))
+    .where(
+      and(eq(favoriteTable.userId, who.userId), favoriteTargetExists(database)),
+    )
     .orderBy(favoriteTable.position, favoriteTable.kind, favoriteTable.targetId)
     .limit(1000);
   const targets = await readableFavoriteTargets(who, rows, database);

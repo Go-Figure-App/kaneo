@@ -113,14 +113,17 @@ export async function saveTemplate(
   name?: string,
 ) {
   const response = name
-    ? await templates[":name"].$put({ param: { projectId, name }, json })
+    ? await templates[":name"].$put({
+        param: { projectId, name: encodeURIComponent(name) },
+        json,
+      })
     : await templates.$post({ param: { projectId }, json });
   if (!response.ok) throw await HttpError.fromResponse(response);
   return response.json();
 }
 export async function deleteTemplate(projectId: string, name: string) {
   const response = await templates[":name"].$delete({
-    param: { projectId, name },
+    param: { projectId, name: encodeURIComponent(name) },
   });
   if (!response.ok) throw await HttpError.fromResponse(response);
   return response.json();

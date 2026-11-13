@@ -42,6 +42,15 @@ it("rejects unsupported operators, missing comparisons and unbounded pages befor
     { filters: [{ field: "project", operator: "after", values: ["p"] }] },
     { filters: [{ field: "due", operator: "before", value: null }] },
     { pageSize: 101 },
+    {
+      filters: [
+        {
+          field: "label",
+          operator: "is",
+          values: Array(50).fill("界".repeat(200)),
+        },
+      ],
+    },
   ])
     expect(
       await tools.get("list_workspace_tasks")!({

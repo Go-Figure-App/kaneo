@@ -25,15 +25,23 @@ import { TaskCollection } from "./task-collection";
 export function IssuesBrowser({
   workspaceId,
   view,
+  resetVersion = 0,
 }: {
   workspaceId: string;
   view?: SavedView;
+  resetVersion?: number;
 }) {
   const { t } = useTranslation();
   const client = useQueryClient();
   const navigate = useNavigate();
   const [draftFilters, setFilters] = useState<ViewFilters>();
   const [draftDisplay, setDisplay] = useState<ViewDisplay>();
+  const [appliedReset, setAppliedReset] = useState(resetVersion);
+  if (appliedReset !== resetVersion) {
+    setAppliedReset(resetVersion);
+    setFilters(undefined);
+    setDisplay(undefined);
+  }
   const [search, setSearch] = useState("");
   const deferredSearch = useDeferredValue(search);
   const [savingCopy, setSavingCopy] = useState(false);
@@ -82,7 +90,7 @@ export function IssuesBrowser({
   });
   const save = useMutation({
     mutationKey: ["parity"],
-    mutationFn: () => {
+    mutationFn: (submitted: { filters: ViewFilters; display: ViewDisplay }) => {
       if (!view) throw new Error("Missing view");
       return saveView(
         workspaceId,
@@ -91,16 +99,20 @@ export function IssuesBrowser({
           icon: view.icon,
           projectId: view.projectId,
           shared: view.shared,
-          filters,
-          display,
+          filters: submitted.filters,
+          display: submitted.display,
         },
         view.id,
       );
     },
-    onSuccess: async () => {
+    onSuccess: async (_result, submitted) => {
       await refreshViews(client);
-      setFilters(undefined);
-      setDisplay(undefined);
+      setFilters((current) =>
+        current === submitted.filters ? undefined : current,
+      );
+      setDisplay((current) =>
+        current === submitted.display ? undefined : current,
+      );
     },
   });
   const tasks =
@@ -124,7 +136,7 @@ export function IssuesBrowser({
           <Button
             size="sm"
             disabled={!valid || save.isPending}
-            onClick={() => save.mutate()}
+            onClick={() => save.mutate({ filters, display })}
           >
             {t("parity:views.saveChanges")}
           </Button>

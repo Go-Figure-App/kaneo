@@ -63,6 +63,13 @@ it("pages and orders readable accepted issues without hidden projects or label m
   ).json();
   expect(second.items).toHaveLength(1);
   expect(second.hasMore).toBe(false);
+  for (const item of [...page.items, ...second.items]) {
+    for (const key of ["createdAt", "updatedAt", "dueDate", "completedAt"])
+      if (item[key] !== null)
+        expect(item[key]).toMatch(
+          /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\.\d{3}Z$/,
+        );
+  }
   const items = [...page.items, ...second.items].map((item) =>
     workspaceTaskSchema.parse({
       ...item,

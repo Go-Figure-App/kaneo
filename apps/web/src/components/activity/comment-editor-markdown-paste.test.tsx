@@ -115,6 +115,25 @@ describe("CommentEditor Markdown paste", () => {
     expect(onChange).not.toHaveBeenCalled();
   });
 
+  it("hydrates new content when the editor is replaced in the same render", async () => {
+    const onChange = vi.fn();
+    const { rerender } = render(
+      <CommentEditor value="" onChange={onChange} placeholder="first" />,
+    );
+    await waitFor(() => expect(latestEditor()).toBeDefined());
+    const initialEditor = latestEditor();
+    const value = "Check migration and rollback instructions.";
+
+    rerender(
+      <CommentEditor value={value} onChange={onChange} placeholder="second" />,
+    );
+
+    await waitFor(() => expect(latestEditor()).not.toBe(initialEditor));
+    expect(initialEditor.isDestroyed).toBe(true);
+    expect(latestEditor().getText()).toBe(value);
+    expect(onChange).not.toHaveBeenCalled();
+  });
+
   it.each([
     "Status\n---\n22/tcp ALLOW Anywhere",
     "Status\n\n    22/tcp ALLOW Anywhere",

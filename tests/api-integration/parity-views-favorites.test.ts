@@ -6,11 +6,52 @@ import { projectAccessApi } from "./helpers/project-access/project-access-api";
 import { restrictToProjects } from "./helpers/project-access/restrict-to-projects";
 import db, { schema } from "../../apps/api/src/database";
 import { createWorkspaceMember } from "./helpers/fixtures";
+import { eq } from "drizzle-orm";
 beforeEach(async () => {
   await resetTestDatabase();
   vi.stubEnv("PARITY_FEATURES", "views");
 });
 afterEach(() => vi.unstubAllEnvs());
+it("reclaims deleted targets on add while preserving favorites for revoked targets", async () => {
+  const c = await createRestrictedWorkspace();
+  mockAuthenticatedSession(c.restricted);
+  const api = projectAccessApi();
+  const path = `/parity/favorites/${c.workspace.id}`;
+  await db.insert(schema.favoriteTable).values([
+    {
+      userId: c.restricted.id,
+      kind: "project",
+      targetId: c.beta.id,
+      position: 0,
+    },
+    ...Array.from({ length: 999 }, (_, index) => ({
+      userId: c.restricted.id,
+      kind: (["project", "task", "cycle", "initiative", "view"] as const)[
+        index % 5
+      ]!,
+      targetId: `deleted-${index}`,
+      position: index + 1,
+    })),
+  ]);
+  expect((await (await api(path)).json()).items).toEqual([]);
+  // Reads must not mutate, including when a target is unavailable.
+  expect(await db.select().from(schema.favoriteTable)).toHaveLength(1000);
+  expect(
+    (
+      await api(path, {
+        method: "POST",
+        body: { kind: "task", targetId: c.alphaTask.id },
+      })
+    ).status,
+  ).toBe(200);
+  const remaining = await db
+    .select()
+    .from(schema.favoriteTable)
+    .where(eq(schema.favoriteTable.userId, c.restricted.id));
+  expect(remaining.map((row) => row.targetId).sort()).toEqual(
+    [c.beta.id, c.alphaTask.id].sort(),
+  );
+});
 it("does not delete another workspace's favorite through a workspace-scoped route", async () => {
   const c = await createRestrictedWorkspace();
   const other = await createWorkspaceMember();

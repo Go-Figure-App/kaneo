@@ -27,9 +27,17 @@ import { filtersSchema, type TaskFilter } from "./schema";
 export const taskCreator = sql<
   string | null
 >`(select ${activityTable.userId} from ${activityTable} where ${activityTable.taskId} = ${taskTable.id} and ${activityTable.type} in ('created', 'create', 'triage_created') order by ${activityTable.createdAt}, ${activityTable.id} limit 1)`;
-export const taskCreatedAt = sql<Date>`${taskTable.createdAt} AT TIME ZONE 'UTC'`;
-export const taskUpdatedAt = sql<Date>`${taskTable.updatedAt} AT TIME ZONE 'UTC'`;
-export const taskDueDate = sql<Date | null>`${taskTable.dueDate} AT TIME ZONE 'UTC'`;
+export const taskCreatedAt =
+  sql`${taskTable.createdAt} AT TIME ZONE 'UTC'`.mapWith(
+    (value: string) => new Date(value),
+  );
+export const taskUpdatedAt =
+  sql`${taskTable.updatedAt} AT TIME ZONE 'UTC'`.mapWith(
+    (value: string) => new Date(value),
+  );
+export const taskDueDate = sql`${taskTable.dueDate} AT TIME ZONE 'UTC'`.mapWith(
+  (value: string | null) => (value === null ? null : new Date(value)),
+);
 
 export function parseTaskFilters(value?: string) {
   try {

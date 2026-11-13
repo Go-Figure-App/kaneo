@@ -1,4 +1,4 @@
-import { and, eq, sql } from "drizzle-orm";
+import { and, eq, not, sql } from "drizzle-orm";
 import { HTTPException } from "hono/http-exception";
 import db from "../../database";
 import { userTable } from "../../database/schema";
@@ -6,6 +6,7 @@ import { favoriteTable } from "../../database/schema-parity";
 import type { Actor, Transaction } from "../planning/access";
 import {
   favoriteKey,
+  favoriteTargetExists,
   listFavorites,
   readableFavoriteTargets,
 } from "./favorite-read";
@@ -39,6 +40,16 @@ export async function addFavorite(who: Actor, target: FavoriteTarget) {
       .from(favoriteTable)
       .where(match(who, target));
     if (previous) return;
+    // Reclaim deleted targets under the same user lock as the capacity check.
+    // This avoids editing upstream deletion controllers or pruning on reads.
+    await tx
+      .delete(favoriteTable)
+      .where(
+        and(
+          eq(favoriteTable.userId, who.userId),
+          not(favoriteTargetExists(tx)!),
+        ),
+      );
     const [count] = await tx
       .select({
         value: sql<number>`count(*)::int`,

@@ -23,6 +23,7 @@ export function ViewDetail({
   const client = useQueryClient();
   const navigate = useNavigate();
   const [editing, setEditing] = useState(false);
+  const [resetVersion, setResetVersion] = useState(0);
   const query = useQuery({
     queryKey: ["parity", "view", workspaceId, viewId],
     queryFn: () => getSavedView(workspaceId, viewId),
@@ -104,6 +105,7 @@ export function ViewDetail({
                 key={view.id}
                 workspaceId={workspaceId}
                 view={view}
+                resetVersion={resetVersion}
               />
             )}
             {view && editing && (
@@ -119,7 +121,16 @@ export function ViewDetail({
                   display: view.display,
                 }}
                 onClose={() => setEditing(false)}
-                onSaved={() => {}}
+                onSaved={(_id, saved, original) => {
+                  if (
+                    saved.projectId !== original.projectId ||
+                    JSON.stringify(saved.filters) !==
+                      JSON.stringify(original.filters) ||
+                    JSON.stringify(saved.display) !==
+                      JSON.stringify(original.display)
+                  )
+                    setResetVersion((version) => version + 1);
+                }}
               />
             )}
           </>

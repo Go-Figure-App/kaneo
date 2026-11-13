@@ -35,3 +35,19 @@ it("defaults personal views and validates independent display choices", () => {
     savedViewBody.safeParse({ name: "View", ownerId: "another-user" }).success,
   ).toBe(false);
 });
+it("uses the same URL-safe aggregate limit for saved and executed filters", () => {
+  for (const name of ["x".repeat(200), "界".repeat(200)]) {
+    const filters = [
+      { field: "label", operator: "is", values: Array(50).fill(name) },
+    ];
+    expect(filtersSchema.safeParse(filters).success).toBe(false);
+    expect(
+      savedViewBody.safeParse({ name: "Too large", filters }).success,
+    ).toBe(false);
+  }
+  expect(
+    filtersSchema.safeParse([
+      { field: "label", operator: "is", values: ["界".repeat(200)] },
+    ]).success,
+  ).toBe(true);
+});

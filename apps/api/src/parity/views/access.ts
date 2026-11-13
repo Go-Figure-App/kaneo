@@ -13,7 +13,10 @@ export function visibleViews(who: Actor, database: DbOrTx = db) {
     eq(savedViewTable.workspaceId, who.workspaceId),
     workspaceIsActive(savedViewTable.workspaceId),
     or(
-      eq(savedViewTable.ownerId, who.userId),
+      and(
+        eq(savedViewTable.ownerId, who.userId),
+        eq(savedViewTable.shared, false),
+      ),
       and(eq(savedViewTable.shared, true), readableViewFilters(who)),
     ),
     or(

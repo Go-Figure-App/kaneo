@@ -50,7 +50,16 @@ export const taskFilter = z
       ("value" in filter && filter.value !== null),
     { message: "Comparisons require a value" },
   );
-export const filtersSchema = z.array(taskFilter).max(30);
+export const filtersSchema = z
+  .array(taskFilter)
+  .max(30)
+  .describe(
+    "At most 30 filters, whose JSON occupies at most 6000 characters after URL encoding",
+  )
+  .refine(
+    (filters) => encodeURIComponent(JSON.stringify(filters)).length <= 6_000,
+    { message: "Encoded filters must not exceed 6000 characters" },
+  );
 export type TaskFilter = z.infer<typeof taskFilter>;
 export const displaySchema = z.strictObject({
   layout: z.enum(["list", "board"]).default("list"),

@@ -8,7 +8,11 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
-import { saveView, type SavedViewInput } from "@/fetchers/parity/views";
+import {
+  saveView,
+  type SavedViewInput,
+  type SavedView,
+} from "@/fetchers/parity/views";
 import { useWorkspacePermission } from "@/hooks/use-workspace-permission";
 import { refreshViews, useViewOptions } from "./queries";
 
@@ -23,19 +27,20 @@ export function SaveViewDialog({
   initial: SavedViewInput;
   id?: string;
   onClose: () => void;
-  onSaved: (id: string) => void;
+  onSaved: (id: string, view: SavedView, original: SavedViewInput) => void;
 }) {
   const { t } = useTranslation();
   const client = useQueryClient();
   const options = useViewOptions(workspaceId);
   const { canUpdateProjects } = useWorkspacePermission();
   const [draft, setDraft] = useState(initial);
+  const [original] = useState(initial);
   const mutation = useMutation({
     mutationKey: ["parity"],
     mutationFn: () => saveView(workspaceId, draft, id),
     onSuccess: async (result) => {
       await refreshViews(client);
-      onSaved(result.id);
+      onSaved(result.id, result, original);
       onClose();
     },
   });

@@ -11,6 +11,51 @@ beforeEach(async () => {
   vi.stubEnv("PARITY_FEATURES", "views");
 });
 afterEach(() => vi.unstubAllEnvs());
+it("hides shared filters from their owner after an administrator adds an inaccessible reference", async () => {
+  const c = await createRestrictedWorkspace();
+  await db.insert(schema.workspaceRoleTable).values({
+    workspaceId: c.workspace.id,
+    role: "member",
+    permission: JSON.stringify({
+      workspace: ["read"],
+      project: ["read", "update"],
+      task: ["read"],
+    }),
+  });
+  const api = projectAccessApi();
+  const path = `/parity/views/${c.workspace.id}`;
+  mockAuthenticatedSession(c.restricted);
+  const created = await api(path, {
+    method: "POST",
+    body: { name: "Member view", shared: true },
+  });
+  expect(created.status).toBe(200);
+  const view = await created.json();
+  mockAuthenticatedSession(c.owner);
+  expect(
+    (
+      await api(`${path}/${view.id}`, {
+        method: "PUT",
+        body: {
+          name: "Member view",
+          shared: true,
+          filters: [{ field: "project", operator: "is", values: [c.beta.id] }],
+        },
+      })
+    ).status,
+  ).toBe(200);
+  mockAuthenticatedSession(c.restricted);
+  expect((await api(`${path}/${view.id}`)).status).toBe(404);
+  expect((await (await api(path)).json()).items).toEqual([]);
+  expect(
+    (
+      await api(`/parity/favorites/${c.workspace.id}`, {
+        method: "POST",
+        body: { kind: "view", targetId: view.id },
+      })
+    ).status,
+  ).toBe(404);
+});
 it("keeps shared filter references private without weakening their predicates", async () => {
   const c = await createRestrictedWorkspace();
   const api = projectAccessApi();
