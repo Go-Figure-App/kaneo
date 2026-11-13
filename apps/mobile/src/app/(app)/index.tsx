@@ -32,7 +32,9 @@ export default function HomeScreen() {
   const { workspace, isLoading, error, refetch } = useCurrentWorkspace();
   const unread = useUnreadCount(workspace?.id);
   const triage = useTriageCount(workspace?.id);
-  const planning = usePlanningEnabled();
+  const projects = usePlanningEnabled();
+  const cycles = usePlanningEnabled("cycles");
+  const planning = projects || cycles;
 
   useRealtime("api/ws/user", (event) => {
     invalidateParity(client, event);

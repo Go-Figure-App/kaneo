@@ -1,6 +1,8 @@
 export type TaskActionName =
   | "status"
   | "priority"
+  | "cycle"
+  | "estimate"
   | "assignee"
   | "labels"
   | "dueDate"

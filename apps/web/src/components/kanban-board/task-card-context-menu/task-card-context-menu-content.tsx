@@ -42,6 +42,7 @@ import useProjectStore from "@/store/project";
 import type Task from "@/types/task";
 import { PriorityGlyph } from "@/components/task-chips/priority-glyph";
 import { DueDateSubmenu } from "./due-date-submenu";
+import { TaskCycleContextMenu } from "@/components/parity/cycles/task-context-menu";
 
 type TaskCardContext = {
   worskpaceId: string;
@@ -233,6 +234,13 @@ export default function TaskCardContextMenuContent({
       )}
 
       {canEdit && <DueDateSubmenu task={task} />}
+      {canEdit && (
+        <TaskCycleContextMenu
+          taskId={task.id}
+          projectId={taskCardContext.projectId}
+          workspaceId={taskCardContext.worskpaceId}
+        />
+      )}
 
       {canAssign && usersOptions && (
         <ContextMenuSub>

@@ -1,5 +1,7 @@
 import { Calendar, CalendarDays } from "lucide-react";
 import { TaskMilestonePicker } from "@/components/parity/planning/task-milestone-picker";
+import { TaskEstimatePicker } from "@/components/parity/cycles/task-estimate-picker";
+import { TaskCyclePicker } from "@/components/parity/cycles/task-cycle-picker";
 import { useTranslation } from "react-i18next";
 import icons from "@/constants/project-icons";
 import { getColumnIcon } from "@/lib/column";
@@ -172,6 +174,12 @@ export function PropertiesRail({
 
       <TaskCustomFieldRows taskId={taskId} projectId={projectId} />
       <TaskMilestonePicker taskId={taskId} projectId={projectId} />
+      <TaskEstimatePicker taskId={taskId} projectId={projectId} />
+      <TaskCyclePicker
+        taskId={taskId}
+        projectId={projectId}
+        workspaceId={workspaceId}
+      />
     </aside>
   );
 }

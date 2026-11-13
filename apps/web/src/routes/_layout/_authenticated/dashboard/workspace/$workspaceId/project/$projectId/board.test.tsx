@@ -53,6 +53,7 @@ vi.mock("@/components/project/toolbar/use-project-task-view", () => ({
     descriptionSearch: { isLoading: false, isError: false, retry: vi.fn() },
     filters: { filteredProject: m.project, clearFilters: vi.fn() },
     subjects: [],
+    cycleFilter: { value: null },
   }),
 }));
 vi.mock("@/components/common/project-layout", () => ({

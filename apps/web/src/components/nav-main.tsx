@@ -25,6 +25,7 @@ import useActiveWorkspace from "@/hooks/queries/workspace/use-active-workspace";
 import { cn } from "@/lib/cn";
 import { useTriageCount } from "@/components/parity/triage/queries";
 import { usePlanningEnabled } from "@/components/parity/planning/queries";
+import { CycleNavigation } from "@/components/parity/cycles/navigation";
 
 type NavItem = {
   title: string;
@@ -150,6 +151,7 @@ export function NavMain() {
               </SidebarMenuButton>
             </SidebarMenuItem>
           ))}
+          <CycleNavigation workspaceId={workspace.id} />
         </SidebarMenu>
       </SidebarGroupContent>
     </SidebarGroup>

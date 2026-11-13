@@ -10,6 +10,7 @@ import { reconcileWorkspaceSeats } from "./seat-reconciliation";
 import { checkTrialReminders } from "./trial-reminders";
 import { wakeSnoozedTriage } from "../parity/triage/snooze-tick";
 import { planningTick } from "../parity/planning/reminders";
+import { cycleTick } from "../parity/cycles/tick";
 
 const jobs: Cron[] = [];
 
@@ -51,6 +52,13 @@ function withCheckIn<T>(name: string, fn: () => Promise<T>) {
 }
 
 export function initializeScheduler(): void {
+  jobs.push(
+    new Cron(
+      "0 * * * *",
+      { protect: true },
+      withCheckIn("cycle-tick", cycleTick),
+    ),
+  );
   jobs.push(
     new Cron(
       "17 * * * *",

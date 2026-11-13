@@ -13,18 +13,19 @@ import { assertAssignableUser } from "../../../utils/assert-assignable-user";
 import type { AcceptInput } from "../schema";
 import { withPendingTask, type TriageActor } from "./with-pending-task";
 import { prepareAcceptedFields } from "./accept-fields";
+import { validateCycleAssignment } from "../../cycles/task-write";
 
 export async function acceptTriage(
   taskId: string,
   actor: TriageActor,
   input: AcceptInput,
 ) {
-  if (input.cycleId)
-    throw new HTTPException(400, { message: "Cycles are not available yet" });
   const { before, result } = await withPendingTask(
     taskId,
     actor,
     async (tx, task, ext) => {
+      if (input.cycleId !== undefined)
+        await validateCycleAssignment(tx, actor.workspaceId, input.cycleId);
       const [column] = await tx
         .select()
         .from(columnTable)
@@ -77,6 +78,7 @@ export async function acceptTriage(
           triagedBy: actor.userId,
           triagedAt: new Date(),
           snoozedUntil: null,
+          ...(input.cycleId === undefined ? {} : { cycleId: input.cycleId }),
         })
         .where(eq(taskExtTable.taskId, taskId));
       await tx.insert(activityTable).values({
@@ -85,6 +87,13 @@ export async function acceptTriage(
         type: "triage_accepted",
         eventData: { columnId: column.id },
       });
+      if (input.cycleId !== undefined && input.cycleId !== ext.cycleId)
+        await tx.insert(activityTable).values({
+          taskId,
+          userId: actor.userId,
+          type: "cycle_changed",
+          eventData: { oldCycleId: ext.cycleId, cycleId: input.cycleId },
+        });
       return { after, source: ext.triageSource };
     },
   );

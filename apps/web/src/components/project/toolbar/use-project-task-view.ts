@@ -6,6 +6,8 @@ import type { BoardFilters } from "@/hooks/use-task-filters";
 import { useTaskFiltersWithLabelsSupport } from "@/hooks/use-task-filters-with-labels-support";
 import type { ProjectWithTasks } from "@/types/project";
 import { scopeTasks } from "./scope-tasks";
+import { useProjectCycleFilter } from "@/components/parity/cycles/use-project-cycle-filter";
+import { filterProjectTasks } from "@/lib/task-filters/filter-project-tasks";
 
 const NO_IGNORED_FILTERS: ReadonlyArray<keyof BoardFilters> = [];
 const BACKLOG_IGNORED_FILTERS: ReadonlyArray<keyof BoardFilters> = ["status"];
@@ -37,6 +39,14 @@ export function useProjectTaskView({
     ignore,
   );
   const options = useTaskFilterOptions(projectId, workspaceId);
+  const cycleFilter = useProjectCycleFilter(projectId, workspaceId);
+  const cycleFilteredProject = useMemo(
+    () =>
+      filters.filteredProject && cycleFilter.value
+        ? filterProjectTasks(filters.filteredProject, cycleFilter.matches)
+        : filters.filteredProject,
+    [filters.filteredProject, cycleFilter.value, cycleFilter.matches],
+  );
   const tasks = useMemo(
     () =>
       scopeTasks(project, scope).filter(
@@ -52,5 +62,24 @@ export function useProjectTaskView({
     showStatus: scope !== "backlog",
   });
 
-  return { search, setSearch, descriptionSearch, filters, subjects };
+  return {
+    search,
+    setSearch,
+    descriptionSearch,
+    subjects,
+    cycleFilter,
+    filters: {
+      ...filters,
+      filteredProject: cycleFilteredProject,
+      filterTasks: (tasks: Parameters<typeof filters.filterTasks>[0]) =>
+        filters.filterTasks(tasks).filter(cycleFilter.matches),
+      hasActiveFilters: filters.hasActiveFilters || cycleFilter.value !== null,
+      activeFilterCount:
+        filters.activeFilterCount + (cycleFilter.value === null ? 0 : 1),
+      clearFilters: () => {
+        filters.clearFilters();
+        cycleFilter.setValue(null);
+      },
+    },
+  };
 }

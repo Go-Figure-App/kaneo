@@ -2,6 +2,9 @@ import { cleanup, fireEvent, render, screen } from "@testing-library/react";
 import { afterEach, describe, expect, it, vi } from "vite-plus/test";
 import type Task from "@/types/task";
 import TaskCardContextMenuContent from "./task-card-context-menu-content";
+vi.mock("@/components/parity/cycles/task-context-menu", () => ({
+  TaskCycleContextMenu: () => null,
+}));
 
 const duplicateTask = vi.fn();
 const canCreateTasks = vi.fn(() => true);

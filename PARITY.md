@@ -26,7 +26,7 @@ Other design/code differences: startup must seed categories after upstream `migr
 
 ## Configuration and behavior
 
-`PARITY_FEATURES` is a comma-separated allowlist: `foundation,triage,projects,initiatives,roadmap,cycles,insights,views,import`. It defaults to empty. Any recognized feature implies `foundation`; unknown names have no effect. Foundation, triage, projects, initiatives and roadmap are implemented; later capabilities remain gated until their phases land. Initiatives implicitly enables projects; roadmap enables initiatives and projects. Restart the API after changing configuration.
+`PARITY_FEATURES` is a comma-separated allowlist: `foundation,triage,projects,initiatives,roadmap,cycles,insights,views,import`. It defaults to empty. Any recognized feature implies `foundation`; unknown names have no effect. Foundation, triage, projects, initiatives, roadmap and cycles are implemented; later capabilities remain gated until their phases land. Initiatives implicitly enables projects; roadmap enables initiatives and projects. Restart the API after changing configuration.
 
 With `PARITY_FEATURES=foundation`, project Workflow settings show state categories, and lifecycle subscribers are enabled. New columns without side rows use deterministic defaults; startup seeds existing columns without overriding manual choices. A canceled/declined/duplicate slug maps to canceled, final columns to completed, backlog/triage to backlog, in-progress/in-review/started/doing to started, and other columns to unstarted. Categories can be reversed in settings without modifying upstream final flags.
 
@@ -381,3 +381,59 @@ The bundled image passed all three upstream browser flows with parity disabled a
 A read-only rehearsal of the authorized local Linear copy matched all 27 projects, 25 milestones and 29 initiative links, preserving 26 absent start dates and 20 absent target dates. Source records, credentials and rehearsal output remain outside the repository. No production import, deployment, TestFlight upload or paid service activation occurred.
 
 Phase 3 review fixes keep pointer-captured bars, resize handles and milestone markers mounted when their preview crosses the visible window. Off-window previews are clipped or transparent until release/cancellation, avoiding lost saves and stuck deltas. Drag commits use the latest callback after a realtime refetch, so saved dates match the current preview. All 15 focused roadmap tests and all 22 workspace typecheck/build tasks passed. The rebuilt image passed the expanded browser flow, including both edges and whole bars/markers crossing the weekly window, plus project and milestone dates changing through another client during a drag.
+
+## Phase 4: cycles
+
+The maintainer approved two model additions on 2026-11-13: `workspace_ext.time_zone` (IANA timezone, default UTC) and `cycle_day.project_totals` (per-project historical counts/points). The upstream workspace has no timezone field. Workspace-wide historical totals cannot be filtered after rollover or a project-access change, so each daily snapshot retains its project breakdown; close summaries retain the same breakdown inside the already-designed `cycle.summary` JSON. Responses sum only currently readable, active projects and never return the stored breakdown. Imported aggregate-only history is marked unavailable instead of being presented as permission-filtered history.
+
+Migration `0003_cycles.sql` creates `cycle` and `cycle_day`, their keys/indexes, and the approved timezone side-table column. Drizzle generated the schema snapshot; new-table foreign keys are inline. No upstream table or migration is modified. The separate migration rehearsal verifies that the upstream schema and ledger stay unchanged and that repeated/concurrent startup remains safe.
+
+The cycle API owns settings, cycle lists/details, upcoming date edits, filtered tasks, task estimates/assignments and atomic bulk cycle/estimate/milestone updates. Calendar arithmetic preserves local midnight through daylight saving. Changing cadence preserves active dates and upcoming IDs; disabling closes current cycles, removes upcoming cycles and clears those assignments without deleting issues. Historical summaries remain immutable, while the task list reflects current assignments. Triage acceptance can assign a workspace cycle in the same transaction.
+
+The hourly `cycle-tick` uses the existing durable job lease. Workspace, project and task locks follow upstream move ordering. Closing rolls only accepted unfinished tasks, writes system activities, and retains completed/canceled assignments. An extended outage closes at most 64 cycles per workspace transaction and resumes next tick; it never invents daily history. Same-day snapshots update only when totals or their project allocation change. Realtime subscribers clear stale cross-workspace cycle references and invalidate cycle data after task/project changes.
+
+Web adds current/upcoming/past pages, editable cadence and upcoming dates, a burndown chart with an accessible history table, grouped and filtered cycle tasks, and a This cycle section in My Tasks. Task properties and context menus support cycle/estimate assignment and clearing; Shift+C and Shift+E open those pickers. Board, list, backlog and schedule filters use one compact project assignment query only while the filter is active, avoiding per-card requests. Atomic bulk controls update cycle, estimate or milestone for up to 100 selected tasks. List reordering and board collection actions are disabled while a cycle filter is active because those upstream actions rewrite the displayed subset; individual board-card moves still use the canonical project cache.
+
+Native adds a current-cycle Home card, a Cycles entry under More, current/upcoming/past lists, grouped/filtered cycle tasks, SVG burndown and accessible daily rows, task cycle/estimate sheets, and This cycle in My Tasks. Cycle screens refetch when the native stack focuses them after task edits. Dates and remaining days use the workspace calendar, including 23/25-hour days. The existing Expo Router and react-native-svg dependencies are reused; there is no native dependency or build-service change.
+
+Four MCP tools (`list_cycles`, `get_cycle`, `update_task_cycle`, `update_task_estimate`) are registered for both HTTP and stdio. They use the same permission-checked API and preserve explicit nulls for clearing properties. The feature-owned API also exposes a compact project assignment lookup for existing task views and a task-property lookup shared by the two pickers. No upstream task controller is modified.
+
+### Phase 4 integration register
+
+| File | Change and reason |
+| --- | --- |
+| `apps/api/src/index.ts` | Initialize the owned cycle event subscribers. |
+| `apps/api/src/scheduler/index.ts` | Mount the owned hourly cycle job on the existing scheduler. |
+| `apps/web/src/components/task/properties/property-chips.tsx`, `properties-rail.tsx` | Mount the owned cycle and estimate pickers. |
+| `apps/web/src/components/task/task-action-target.ts`, `apps/web/src/lib/shortcuts/catalog.ts` | Register cycle/estimate property targets and Shift+C / Shift+E in the existing shortcut manager. |
+| `apps/web/src/components/kanban-board/task-card-context-menu/task-card-context-menu-content.tsx` | Mount lazy cycle/estimate context-menu sections. |
+| `apps/web/src/components/bulk-selection/bulk-bar.tsx` | Mount atomic planning bulk actions. |
+| `apps/web/src/components/project/toolbar/use-project-task-view.ts`, `project-toolbar.tsx`, `apps/web/src/components/project/task-filters/use-filter-shortcuts.ts` | Compose the owned cycle predicate and picker with existing task filters; register cycle selection with clear-filter shortcuts using the shared hook’s minimal subject interface. |
+| `apps/web/src/routes/_layout/_authenticated/dashboard/workspace/$workspaceId/project/$projectId/board.tsx` | Guard subset-rewriting actions while cycle filtering. |
+| `apps/web/src/components/nav-main.tsx`, `apps/web/src/routes/_layout/_authenticated/dashboard/workspace/$workspaceId/my-tasks.tsx` | Mount Cycles navigation and the assigned current-cycle section. |
+| `apps/web/src/query-client/index.ts` | Apply owned parity defaults so invalidated inactive views refresh on return; other queries keep upstream defaults. |
+| `apps/web/src/routeTree.gen.ts` | Generated cycle routes. |
+| `apps/mobile/src/features/task/properties.tsx` | Mount native cycle/estimate pickers. |
+| `apps/mobile/src/features/home/home-tab.tsx`, `my-tasks-tab.tsx` | Mount current-cycle Home card and This cycle task list. |
+| `apps/mobile/src/app/(app)/index.tsx` | Show More when cycles are enabled independently of projects. |
+| `packages/mcp/src/tools/register.ts` | Register four cycle tools for both transports. |
+| `apps/docs/openapi.json` | Generated settings, cycle, task-property, project-metadata and bulk contracts. |
+| `i18n/en-US.json`, the 20 other catalogs, `i18n/schema.json` | Add web/native cycle copy and valid locale plural forms, retaining English fallback for new keys. Only parity branches of the generated schema are synchronized. |
+| Existing context-menu, toolbar, board and Gantt test fixtures | Mock the new parity hook/component at existing isolation boundaries; keep all original behavior assertions. |
+| `tests/e2e/compose.parity.yml` | Enable cycles on the disposable parity stack; feature-off browser checks still run first. |
+
+The API, schema, migrations, clients and feature tests remain in owned parity locations. The existing Go Figure CI discovers cycle unit tests, API integration tests across four shards and the browser flow. No release/deployment job is activated.
+
+### Phase 4 verification
+
+Focused API tests cover migration compatibility, local-midnight cadence and daylight saving, repeat/concurrent ticks, rollover and immutable summaries, estimate scales, task and bulk assignments, triage acceptance, project moves, hidden projects, API-key restrictions and feature-off routes. Web tests cover pickers, settings drafts, bulk changes, filter failures, charts and inactive-query refresh. Native tests cover explicit-null requests, filter serialization and chart/calendar calculations; MCP tests cover registration, paths, pagination, clear actions and API errors.
+
+The iPhone 17 / iOS 27 simulator verified current/upcoming lists, task assignment to another cycle and clearing, estimate selection and clearing, current-cycle task navigation, Home totals, and My Tasks / This cycle. A return-to-detail check found stale points after editing a task; a focus refresh now updates both the cycle screen and Home card. Android was not exercised.
+
+The authorized private Linear rehearsal preserved all 16 cycle numbers and exact start/end instants, and 95 historical daily records. It covered the 169-hour week crossing daylight saving. America/New_York was a local rehearsal assumption consistent with the observed UTC offsets, not a verified Linear workspace setting. Imported history lacks per-project breakdowns, so the API correctly reports it unavailable and does not expose the aggregate chart to a restricted viewer. Source records, credentials, rehearsal script and output remain outside the repository.
+
+Lint, localization, generated OpenAPI and all 22 workspace typecheck/build tasks passed. The complete unit suite passed across the workspace after updating the Gantt fixtures to isolate the new parity hook without changing their assertions; the web rerun passed all 396 files / 2,023 tests. The final native cycle suite passed seven tests and the MCP package passed all 373 tests. Full PostgreSQL integration passed all 210 files / 2,294 tests, with three inherited skips. The final bundled image passed all seven parity browser flows and all three upstream flows with parity disabled. All 53 browser-security checks and the release/workflow/security checks passed, including reruns of fixtures affected by local Docker disk exhaustion. No production migration, deployment, import, distribution upload or paid service activation is included.
+
+Phase 4 review fixes resolve every cycle boundary from its local calendar date, including skipped midnight in America/Santiago, and wait for task event handlers before announcing the next rollover or bulk change. State grouping keeps project-local column slugs distinct. Cycle assignment and task filters remain clearable when metadata requests fail on web and native; the board clearing shortcuts include the cycle filter. Chart dates and native totals use the current locale. Request bodies reject unsupported fields, with regenerated OpenAPI schemas. Regression tests cover skipped midnight, bounded event delivery, cross-project grouping, metadata failures, shortcut composition, fresh-cache invalidation and a date-controlled disable scenario. Cycle total reducers share one owned module to keep the PR within the current review file limit.
+
+Review-fix verification passed 11 API unit tests, nine native cycle tests, 33 focused web tests, 27 PostgreSQL integration tests, and the seven-test scheduler/event-delivery rerun. All 22 workspace typecheck/build tasks, lint, localization and regenerated OpenAPI checks passed. The final bundled image passed the expanded cycle browser flow, including both clear-filter shortcuts. A fresh iOS development bundle verified clearing a cycle while its options endpoint returned 503, restoring the assignment, refreshed totals and localized daily-history dates. Local Docker disk exhaustion was resolved by removing only obsolete Kaneo test images and their build cache.

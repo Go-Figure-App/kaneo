@@ -9,6 +9,7 @@ import {
 } from "@/components/my-tasks/my-tasks-group-by";
 import { MyTasksList } from "@/components/my-tasks/my-tasks-list";
 import PageTitle from "@/components/page-title";
+import { MyCycleTasks } from "@/components/parity/cycles/my-cycle-tasks";
 import {
   Empty,
   EmptyDescription,
@@ -47,6 +48,7 @@ function RouteComponent() {
         }
       >
         <div className="h-full overflow-y-auto">
+          <MyCycleTasks workspaceId={workspaceId} />
           {isLoading ? (
             <div className="flex flex-col px-4">
               {[1, 2, 3, 4].map((row) => (

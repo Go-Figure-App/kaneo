@@ -4,7 +4,7 @@ import type { FilterSubject } from "./filter-subject";
 import { trackFilterOrder } from "./track-filter-order";
 
 export function useFilterShortcuts(
-  subjects: FilterSubject[],
+  subjects: Pick<FilterSubject, "id" | "selected" | "onClear">[],
   clearFilters: () => void,
 ) {
   const order = useRef<string[]>([]);

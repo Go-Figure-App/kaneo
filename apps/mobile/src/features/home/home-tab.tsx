@@ -1,4 +1,4 @@
-import { useQuery } from "@tanstack/react-query";
+import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { router } from "expo-router";
 import { ChevronDown, Plus, Search } from "lucide-react-native";
 import { useState } from "react";
@@ -34,6 +34,7 @@ import { inset, useColors } from "@/theme";
 
 import { NewProjectSheet } from "./new-project-sheet";
 import { usePlanningEnabled } from "@/features/parity/planning/queries";
+import { CurrentCycleCard } from "@/features/parity/cycles/current-card";
 
 export function WorkspaceHeader({
   workspace,
@@ -183,6 +184,7 @@ export function HomeTabView({
   const c = useColors();
   const [showArchived, setShowArchived] = useState(false);
   const [creating, setCreating] = useState(false);
+  const client = useQueryClient();
   const planning = usePlanningEnabled();
   const projects = useQuery({
     queryKey: qk.projects(workspace.id, showArchived),
@@ -214,6 +216,9 @@ export function HomeTabView({
       onRefresh={() => {
         void projects.refetch();
         void assigned.refetch();
+        void client.invalidateQueries({
+          queryKey: ["parity", "cycle-current", workspace.id],
+        });
       }}
       bottomPadding={24}
     >
@@ -232,6 +237,7 @@ export function HomeTabView({
         <Txt variant="title">{greeting()}</Txt>
       </View>
 
+      <CurrentCycleCard workspaceId={workspace.id} />
       {upNext.length ? (
         <Section
           title={t("mobile:home.upNext")}

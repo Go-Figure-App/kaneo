@@ -31,6 +31,7 @@ import { useBulkActions } from "./use-bulk-actions";
 import { useBulkOptions } from "./use-bulk-options";
 import { useBulkSelectionKeys } from "./use-bulk-selection-keys";
 import { useToolbarPresence } from "./use-toolbar-presence";
+import { BulkPlanningActions } from "@/components/parity/cycles/bulk-planning-actions";
 
 type BulkBarProps = {
   variant: "board" | "backlog";
@@ -279,6 +280,12 @@ export function BulkBar({
               onSearch={() => setCommandOpen(true)}
               onArchive={can.edit ? () => void actions.archive() : undefined}
               onDelete={can.delete ? actions.deleteConfirm.request : undefined}
+            />
+          )}
+          {can.edit && (
+            <BulkPlanningActions
+              selectedTaskIds={selectedTaskIds}
+              clearSelection={clearSelection}
             />
           )}
         </div>
