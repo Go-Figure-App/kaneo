@@ -26,7 +26,7 @@ Other design/code differences: startup must seed categories after upstream `migr
 
 ## Configuration and behavior
 
-`PARITY_FEATURES` is a comma-separated allowlist: `foundation,triage,projects,initiatives,roadmap,cycles,insights,views,import`. It defaults to empty. Any recognized feature implies `foundation`; unknown names have no effect. Foundation, triage, projects and initiatives are implemented; later capabilities remain gated until their phases land. Initiatives implicitly enables projects. Restart the API after changing configuration.
+`PARITY_FEATURES` is a comma-separated allowlist: `foundation,triage,projects,initiatives,roadmap,cycles,insights,views,import`. It defaults to empty. Any recognized feature implies `foundation`; unknown names have no effect. Foundation, triage, projects, initiatives and roadmap are implemented; later capabilities remain gated until their phases land. Initiatives implicitly enables projects; roadmap enables initiatives and projects. Restart the API after changing configuration.
 
 With `PARITY_FEATURES=foundation`, project Workflow settings show state categories, and lifecycle subscribers are enabled. New columns without side rows use deterministic defaults; startup seeds existing columns without overriding manual choices. A canceled/declined/duplicate slug maps to canceled, final columns to completed, backlog/triage to backlog, in-progress/in-review/started/doing to started, and other columns to unstarted. Categories can be reversed in settings without modifying upstream final flags.
 
@@ -350,3 +350,32 @@ The final bundled image passed all three upstream browser flows with parity disa
 Phase 2 review fixes preserve descriptions when omitted from milestone/initiative patches and preserve incoming lead/owner changes until a picker is explicitly edited. Reminder scans use bounded keyset pages past denied leads, cache role checks within a tick, and retain the 500-delivery cap. Reconciliation publishes project-scoped hints in the current workspace and initiative hints in former workspaces. Web and native lists deduplicate overlapping pages and hide rows after failed refreshes; forbidden/missing-resource responses cancel pending reads and erase parity content while keeping active error/retry state. Non-sensitive feature flags remain available so those screens can render. Native planning actions expose button roles. Regression tests cover these cases, including more than 500 denied leads, description archive/restore, late query responses and concurrent owner changes.
 
 The next review pass restricts cache clearing to operations explicitly identified as parity queries, mutations or native actions, preserving open planning drafts when an unrelated request returns 404. Native paginated lists retain successfully loaded items during transient errors and show an empty state only after a successful empty response. Initiative ordering controls require a successful, fully loaded list; both component and browser regressions verify reordering and its persisted order.
+
+## Phase 3: roadmap
+
+`PARITY_FEATURES=roadmap` enables the workspace timeline and its planning dependencies. `GET /api/parity/roadmap/{workspaceId}` returns one compact snapshot of readable active projects, their progress, milestones and active initiative links. It omits large descriptions and update bodies, batches aggregates instead of querying per project, and omits archived, hidden and cross-workspace links. The existing workspace/project/task read permissions apply to sessions and API keys. There are no new tables or migrations.
+
+Web shows projects in every linked initiative, with unlinked projects last and incomplete schedules in an undated side list. Week, month, quarter and year windows allocate at most 366 calendar days. Today, previous/next and a date jump control navigate long plans. Status, lead, initiative and health filters apply to the full authorized snapshot. Dragging a bar moves both dates while preserving its duration; edges resize a single date; diamonds change milestone dates. Arrow keys move one day, Shift plus arrows one week, and Escape cancels a drag. A date editor provides an alternative and can clear either date. Dropping an unscheduled project creates a seven-day inclusive plan, clamped at the maximum supported year. Project moves leave milestone dates unchanged, following the design's separate project and milestone PUT contracts. Existing planning mutations enforce project-update permission and refresh other clients through the user socket.
+
+The timeline reuses upstream's pure `parseTaskDate` helper; its fixed 91-day Gantt window is unsuitable for the four roadmap zoom levels, so bounded window/drag geometry lives in the owned roadmap module. The endpoint intentionally returns the complete compact workspace snapshot specified by the design; pagination/virtualization for very large portfolios is not introduced in this phase. No new backend service, chart library or native dependency is added.
+
+The iOS More tab opens a read-only grouped list with dates, lead, health, progress and the next incomplete milestone. Selecting a project opens its existing overview. A project in multiple initiatives appears in each section. Native lists retain their loaded data during transient errors, hide it for access denials and offer retry. The existing API-key and HTTP/stdio MCP planning operations continue to work; the design does not add a roadmap-specific MCP tool.
+
+### Phase 3 integration register
+
+| File | Change and reason |
+| --- | --- |
+| `apps/web/src/components/nav-main.tsx` | Add a feature-gated Roadmap navigation entry. |
+| `apps/web/src/routeTree.gen.ts` | Generated roadmap route. |
+| `apps/docs/openapi.json` | Generated roadmap response contract. |
+| `i18n/en-US.json`, the 20 other catalogs and `i18n/schema.json` | Add web/native roadmap copy; new non-English keys retain the permitted English fallback. |
+
+All other implementation changes are in owned parity modules, new route files and tests. The existing Go Figure CI discovers the new tests; its disposable Compose overlay enables roadmap alongside prior features. The three upstream browser flows still run with parity disabled before the parity flows. No deployment or release workflow is enabled.
+
+### Phase 3 verification
+
+The complete PostgreSQL suite passed all 207 files: 2,268 tests passed with three inherited skips. The new roadmap route and migration compatibility also passed six focused integration checks, including session/API-key authorization, hidden projects, archived plans and initiatives, stale cross-workspace links, compact progress and empty workspaces. Nine web helper/component tests cover bounded calendar windows, daylight saving, date clamping, grouping, combined filters, keyboard/pointer edits, cancellation and read-only controls. The complete workspace unit suite passed 5,229 tests (including 141 native tests), and all 22 typecheck/build tasks passed. An initial parallel package run hit inherited module-import timeouts; the unchanged tests passed with the same serial package execution used by CI. Lint, every translation catalog and the generated OpenAPI contract passed. Workflow/security regression checks passed all 176 tests, and browser-security fixtures passed all 53.
+
+The bundled image passed all three upstream browser flows with parity disabled and all six parity flows with it enabled. The roadmap flow uses real pointer dragging for projects, resize handles and milestones, verifies another tab receives dates over the socket, schedules an undated project, filters, and clears dates through the editor. It waits for the preceding UI save to finish before another drag. Manual browser inspection covered week/month navigation, health colors, lead avatar, progress and milestone placement. The iPhone 17 / iOS 27 simulator showed initiative grouping, dates, lead, progress and next milestone, and opened the existing project overview from a roadmap card.
+
+A read-only rehearsal of the authorized local Linear copy matched all 27 projects, 25 milestones and 29 initiative links, preserving 26 absent start dates and 20 absent target dates. Source records, credentials and rehearsal output remain outside the repository. No production import, deployment, TestFlight upload or paid service activation occurred.

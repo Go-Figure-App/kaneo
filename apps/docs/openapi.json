@@ -15255,6 +15255,367 @@
         }
       }
     },
+    "/parity/roadmap/{workspaceId}": {
+      "get": {
+        "operationId": "getRoadmap",
+        "tags": [
+          "Roadmap"
+        ],
+        "summary": "Get readable project plans, initiative groups and milestones for a workspace timeline",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 128
+            },
+            "required": true,
+            "name": "workspaceId",
+            "in": "path"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Workspace roadmap",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "projects": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "id": {
+                            "type": "string",
+                            "minLength": 1,
+                            "maxLength": 128
+                          },
+                          "workspaceId": {
+                            "type": "string",
+                            "minLength": 1,
+                            "maxLength": 128
+                          },
+                          "name": {
+                            "type": "string"
+                          },
+                          "slug": {
+                            "type": "string"
+                          },
+                          "icon": {
+                            "type": [
+                              "string",
+                              "null"
+                            ]
+                          },
+                          "status": {
+                            "type": "string",
+                            "enum": [
+                              "backlog",
+                              "planned",
+                              "started",
+                              "paused",
+                              "completed",
+                              "canceled"
+                            ]
+                          },
+                          "health": {
+                            "type": "string",
+                            "enum": [
+                              "on_track",
+                              "at_risk",
+                              "off_track"
+                            ]
+                          },
+                          "leadId": {
+                            "type": [
+                              "string",
+                              "null"
+                            ],
+                            "minLength": 1,
+                            "maxLength": 128
+                          },
+                          "leadName": {
+                            "type": [
+                              "string",
+                              "null"
+                            ]
+                          },
+                          "startDate": {
+                            "type": [
+                              "string",
+                              "null"
+                            ],
+                            "format": "date"
+                          },
+                          "targetDate": {
+                            "type": [
+                              "string",
+                              "null"
+                            ],
+                            "format": "date"
+                          },
+                          "priority": {
+                            "type": "string",
+                            "enum": [
+                              "no-priority",
+                              "low",
+                              "medium",
+                              "high",
+                              "urgent"
+                            ]
+                          },
+                          "progress": {
+                            "type": "object",
+                            "properties": {
+                              "completed": {
+                                "type": "number"
+                              },
+                              "total": {
+                                "type": "number"
+                              },
+                              "percent": {
+                                "type": "number"
+                              },
+                              "completedPoints": {
+                                "type": [
+                                  "number",
+                                  "null"
+                                ]
+                              },
+                              "totalPoints": {
+                                "type": [
+                                  "number",
+                                  "null"
+                                ]
+                              },
+                              "pointsPercent": {
+                                "type": [
+                                  "number",
+                                  "null"
+                                ]
+                              }
+                            },
+                            "required": [
+                              "completed",
+                              "total",
+                              "percent",
+                              "completedPoints",
+                              "totalPoints",
+                              "pointsPercent"
+                            ]
+                          },
+                          "leadImage": {
+                            "type": [
+                              "string",
+                              "null"
+                            ]
+                          },
+                          "initiativeIds": {
+                            "type": "array",
+                            "items": {
+                              "type": "string",
+                              "minLength": 1,
+                              "maxLength": 128
+                            }
+                          },
+                          "milestones": {
+                            "type": "array",
+                            "items": {
+                              "type": "object",
+                              "properties": {
+                                "id": {
+                                  "type": "string",
+                                  "minLength": 1,
+                                  "maxLength": 128
+                                },
+                                "projectId": {
+                                  "type": "string",
+                                  "minLength": 1,
+                                  "maxLength": 128
+                                },
+                                "name": {
+                                  "type": "string"
+                                },
+                                "targetDate": {
+                                  "type": [
+                                    "string",
+                                    "null"
+                                  ],
+                                  "format": "date"
+                                },
+                                "position": {
+                                  "type": "number"
+                                },
+                                "progress": {
+                                  "type": "object",
+                                  "properties": {
+                                    "completed": {
+                                      "type": "number"
+                                    },
+                                    "total": {
+                                      "type": "number"
+                                    },
+                                    "percent": {
+                                      "type": "number"
+                                    },
+                                    "completedPoints": {
+                                      "type": [
+                                        "number",
+                                        "null"
+                                      ]
+                                    },
+                                    "totalPoints": {
+                                      "type": [
+                                        "number",
+                                        "null"
+                                      ]
+                                    },
+                                    "pointsPercent": {
+                                      "type": [
+                                        "number",
+                                        "null"
+                                      ]
+                                    }
+                                  },
+                                  "required": [
+                                    "completed",
+                                    "total",
+                                    "percent",
+                                    "completedPoints",
+                                    "totalPoints",
+                                    "pointsPercent"
+                                  ]
+                                }
+                              },
+                              "required": [
+                                "id",
+                                "projectId",
+                                "name",
+                                "targetDate",
+                                "position",
+                                "progress"
+                              ]
+                            }
+                          }
+                        },
+                        "required": [
+                          "id",
+                          "workspaceId",
+                          "name",
+                          "slug",
+                          "icon",
+                          "status",
+                          "health",
+                          "leadId",
+                          "leadName",
+                          "startDate",
+                          "targetDate",
+                          "priority",
+                          "progress",
+                          "leadImage",
+                          "initiativeIds",
+                          "milestones"
+                        ]
+                      }
+                    },
+                    "initiatives": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "id": {
+                            "type": "string",
+                            "minLength": 1,
+                            "maxLength": 128
+                          },
+                          "name": {
+                            "type": "string"
+                          },
+                          "color": {
+                            "type": [
+                              "string",
+                              "null"
+                            ]
+                          },
+                          "position": {
+                            "type": "number"
+                          }
+                        },
+                        "required": [
+                          "id",
+                          "name",
+                          "color",
+                          "position"
+                        ]
+                      }
+                    }
+                  },
+                  "required": [
+                    "projects",
+                    "initiatives"
+                  ]
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid planning input",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Authentication required",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Insufficient permission or project access",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Resource unavailable or feature disabled",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Planning resource changed; refresh and try again",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "429": {
+            "$ref": "#/components/responses/ApiKeyRateLimited"
+          }
+        }
+      }
+    },
     "/parity/project-plan/workspace/{workspaceId}": {
       "get": {
         "operationId": "listProjectPlans",

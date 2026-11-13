@@ -5477,6 +5477,15 @@
 				"priorityHigh": "High",
 				"priorityUrgent": "Urgent",
 				"newProject": "New project"
+			},
+			"roadmap": {
+				"title": "Roadmap",
+				"noInitiative": "No initiative",
+				"unscheduled": "Unscheduled",
+				"noProjects": "No projects yet",
+				"nextMilestone": "Next milestone: {{name}}",
+				"noMilestone": "No upcoming milestone",
+				"readOnly": "Project dates, progress and upcoming milestones."
 			}
 		}
 	},
@@ -5597,6 +5606,37 @@
 			"priorityHigh": "High",
 			"priorityUrgent": "Urgent",
 			"newProject": "New project"
+		},
+		"roadmap": {
+			"title": "Roadmap",
+			"timeline": "Project timeline",
+			"week": "Week",
+			"month": "Month",
+			"quarter": "Quarter",
+			"year": "Year",
+			"zoom": "Timeline zoom",
+			"today": "Today",
+			"previous": "Previous period",
+			"next": "Next period",
+			"noInitiative": "No initiative",
+			"unscheduled": "Unscheduled",
+			"schedule": "Set dates",
+			"scheduleHint": "Drag a project onto the timeline, or set its dates.",
+			"dropHere": "Drop an unscheduled project here",
+			"editHint": "Drag bars, edges or milestones to change dates. Use arrow keys for one day, or Shift + arrows for one week. Escape cancels a drag.",
+			"readOnly": "View project dates, progress and milestones.",
+			"editDates": "Edit dates for {{name}}",
+			"moveProject": "Move {{name}}",
+			"resizeStart": "Resize start of {{name}}",
+			"resizeEnd": "Resize target of {{name}}",
+			"moveMilestone": "Move milestone {{name}}",
+			"allStatuses": "All statuses",
+			"allLeads": "All leads",
+			"allInitiatives": "All initiatives",
+			"allHealth": "All health",
+			"clearFilters": "Clear filters",
+			"noProjects": "No projects match these filters.",
+			"jumpToDate": "Jump to date"
 		}
 	}
 }

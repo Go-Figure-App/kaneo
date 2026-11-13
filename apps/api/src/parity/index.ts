@@ -23,6 +23,7 @@ import milestones from "./planning/routes/milestones";
 import planningTasks from "./planning/routes/tasks";
 import initiatives from "./planning/routes/initiatives";
 import statusUpdates from "./planning/routes/status-updates";
+import roadmap from "./roadmap";
 
 const categorySchema = z.enum(categories);
 const columnSchema = z.object({
@@ -103,6 +104,7 @@ const updateRoute = createRoute({
 });
 
 export default apiRouter()
+  .route("/roadmap", roadmap)
   .route("/project-plan", projectPlans)
   .route("/milestone", milestones)
   .route("/task", planningTasks)
