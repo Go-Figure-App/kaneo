@@ -1,7 +1,9 @@
 import { useQuery, type QueryClient } from "@tanstack/react-query";
 import { getParityFeatures } from "@/fetchers/parity/foundation";
 
-export function usePlanningEnabled(feature: "projects" | "initiatives") {
+export function usePlanningEnabled(
+  feature: "projects" | "initiatives" | "roadmap",
+) {
   const query = useQuery({
     queryKey: ["parity", "features"],
     queryFn: getParityFeatures,

@@ -8,6 +8,7 @@ import {
   Users,
   Flag,
   FolderKanban,
+  GanttChart,
 } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import {
@@ -46,6 +47,7 @@ export function NavMain() {
   const triage = useTriageCount(workspace?.id);
   const initiatives = usePlanningEnabled("initiatives");
   const projects = usePlanningEnabled("projects");
+  const roadmap = usePlanningEnabled("roadmap");
 
   if (!workspace) return null;
 
@@ -102,6 +104,12 @@ export function NavMain() {
       url: `${homeUrl}/projects`,
     });
   navItems.splice(planningIndex, 0, ...planningItems);
+  if (roadmap)
+    navItems.splice(planningIndex + planningItems.length, 0, {
+      title: t("parity:roadmap.title"),
+      icon: GanttChart,
+      url: `${homeUrl}/roadmap`,
+    });
   if (invitations.length > 0) {
     navItems.push({
       title: t("navigation:sidebar.invitations"),

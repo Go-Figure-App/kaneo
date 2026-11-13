@@ -19453,9 +19453,45 @@
 								"priorityUrgent",
 								"newProject"
 							]
+						},
+						"roadmap": {
+							"type": "object",
+							"additionalProperties": false,
+							"properties": {
+								"title": {
+									"type": "string"
+								},
+								"noInitiative": {
+									"type": "string"
+								},
+								"unscheduled": {
+									"type": "string"
+								},
+								"noProjects": {
+									"type": "string"
+								},
+								"nextMilestone": {
+									"type": "string"
+								},
+								"noMilestone": {
+									"type": "string"
+								},
+								"readOnly": {
+									"type": "string"
+								}
+							},
+							"required": [
+								"title",
+								"noInitiative",
+								"unscheduled",
+								"noProjects",
+								"nextMilestone",
+								"noMilestone",
+								"readOnly"
+							]
 						}
 					},
-					"required": ["signInTagline", "triage", "planning"]
+					"required": ["signInTagline", "triage", "planning", "roadmap"]
 				}
 			},
 			"required": [
@@ -19965,9 +20001,133 @@
 						"priorityUrgent",
 						"newProject"
 					]
+				},
+				"roadmap": {
+					"type": "object",
+					"additionalProperties": false,
+					"properties": {
+						"title": {
+							"type": "string"
+						},
+						"timeline": {
+							"type": "string"
+						},
+						"week": {
+							"type": "string"
+						},
+						"month": {
+							"type": "string"
+						},
+						"quarter": {
+							"type": "string"
+						},
+						"year": {
+							"type": "string"
+						},
+						"zoom": {
+							"type": "string"
+						},
+						"today": {
+							"type": "string"
+						},
+						"previous": {
+							"type": "string"
+						},
+						"next": {
+							"type": "string"
+						},
+						"noInitiative": {
+							"type": "string"
+						},
+						"unscheduled": {
+							"type": "string"
+						},
+						"schedule": {
+							"type": "string"
+						},
+						"scheduleHint": {
+							"type": "string"
+						},
+						"dropHere": {
+							"type": "string"
+						},
+						"editHint": {
+							"type": "string"
+						},
+						"readOnly": {
+							"type": "string"
+						},
+						"editDates": {
+							"type": "string"
+						},
+						"moveProject": {
+							"type": "string"
+						},
+						"resizeStart": {
+							"type": "string"
+						},
+						"resizeEnd": {
+							"type": "string"
+						},
+						"moveMilestone": {
+							"type": "string"
+						},
+						"allStatuses": {
+							"type": "string"
+						},
+						"allLeads": {
+							"type": "string"
+						},
+						"allInitiatives": {
+							"type": "string"
+						},
+						"allHealth": {
+							"type": "string"
+						},
+						"clearFilters": {
+							"type": "string"
+						},
+						"noProjects": {
+							"type": "string"
+						},
+						"jumpToDate": {
+							"type": "string"
+						}
+					},
+					"required": [
+						"title",
+						"timeline",
+						"week",
+						"month",
+						"quarter",
+						"year",
+						"zoom",
+						"today",
+						"previous",
+						"next",
+						"noInitiative",
+						"unscheduled",
+						"schedule",
+						"scheduleHint",
+						"dropHere",
+						"editHint",
+						"readOnly",
+						"editDates",
+						"moveProject",
+						"resizeStart",
+						"resizeEnd",
+						"moveMilestone",
+						"allStatuses",
+						"allLeads",
+						"allInitiatives",
+						"allHealth",
+						"clearFilters",
+						"noProjects",
+						"jumpToDate"
+					]
 				}
 			},
-			"required": ["categories", "triage", "planning"]
+			"required": ["categories", "triage", "planning", "roadmap"]
 		}
 	},
 	"required": [
