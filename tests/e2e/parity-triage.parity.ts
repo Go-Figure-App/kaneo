@@ -68,7 +68,14 @@ test("triage intake, concurrent inbox updates and all four decisions work", asyn
   await expect(
     second.getByRole("button", { name: /Anonymous intake report/ }),
   ).toBeVisible();
+  // Character shortcuts are scoped to the action bar for speech-input safety.
   await page.keyboard.press("1");
+  await expect(page.getByRole("dialog")).toHaveCount(0);
+  async function openDecision(key: string) {
+    await page.getByRole("button", { name: /^Accept/ }).focus();
+    await page.keyboard.press(key);
+  }
+  await openDecision("1");
   const dialog = page.getByRole("dialog");
   await expect(
     dialog.getByRole("heading", { name: "Accept", exact: true }),
@@ -106,7 +113,7 @@ test("triage intake, concurrent inbox updates and all four decisions work", asyn
     await page.getByRole("button", { name: new RegExp(title) }).click();
   }
   await create("Duplicate report");
-  await page.keyboard.press("2");
+  await openDecision("2");
   await page
     .getByRole("dialog")
     .getByRole("searchbox", { name: "Original task", exact: true })
@@ -121,7 +128,7 @@ test("triage intake, concurrent inbox updates and all four decisions work", asyn
   ).toHaveCount(0);
 
   await create("Declined report");
-  await page.keyboard.press("3");
+  await openDecision("3");
   const decline = page.getByRole("dialog");
   await expect(
     decline.getByRole("button", { name: "Decline", exact: true }),
@@ -135,7 +142,7 @@ test("triage intake, concurrent inbox updates and all four decisions work", asyn
   ).toHaveCount(0);
 
   await create("Snoozed report");
-  await page.keyboard.press("h");
+  await openDecision("h");
   const tomorrow = new Date(Date.now() + 86_400_000).toISOString().slice(0, 16);
   await page
     .getByRole("dialog")
