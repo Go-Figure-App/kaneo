@@ -1,5 +1,6 @@
 import { and, asc, eq, gt, inArray } from "drizzle-orm";
 import db from "../../../database";
+import { publishEvent } from "../../../events";
 import {
   activityTable,
   columnTable,
@@ -87,6 +88,11 @@ export async function syncLifecycle(
       .values({ taskId, ...lifecycle })
       .onConflictDoUpdate({ target: taskExtTable.taskId, set: lifecycle });
   });
+  await publishEvent(
+    "parity.lifecycle_updated",
+    { taskId },
+    { waitForHandlers: true },
+  );
 }
 
 export async function backfillLifecycle(projectId?: string) {

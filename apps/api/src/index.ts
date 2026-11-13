@@ -3,6 +3,7 @@ import { initializeParity } from "./parity/foundation/initialize";
 import { initializeTriage } from "./parity/triage/initialize";
 import { initializePlanning } from "./parity/planning/initialize";
 import { initializeCycles } from "./parity/cycles/initialize";
+import { initializeInsights } from "./parity/insights/initialize";
 import triageIntake from "./parity/triage/intake";
 import { acceptedTaskCondition } from "./parity/triage/visibility";
 import { migrateParity } from "./parity/foundation/migrate";
@@ -1070,6 +1071,7 @@ export async function runStartupTasks() {
   await initializeTriage();
   await initializePlanning();
   await initializeCycles();
+  await initializeInsights();
 }
 
 export async function startServer(

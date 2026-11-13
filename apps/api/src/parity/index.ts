@@ -106,6 +106,7 @@ const updateRoute = createRoute({
 });
 
 export default apiRouter()
+  .route("/insights", insights)
   .route("/cycle", cycles)
   .route("/task", cycleTasks)
   .route("/roadmap", roadmap)
@@ -126,3 +127,4 @@ export default apiRouter()
       200,
     );
   });
+import insights from "./insights";

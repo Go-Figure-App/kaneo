@@ -15255,6 +15255,307 @@
         }
       }
     },
+    "/parity/insights/{workspaceId}": {
+      "get": {
+        "operationId": "getInsights",
+        "tags": [
+          "Insights"
+        ],
+        "summary": "Get delivery reports for readable projects",
+        "description": "Task measures support week, cycle, assignee, project, label and priority slices. Cycle history measures support the cycle slice and project/initiative filters; burndown requires cycleId and returns daily rows. Time in state returns category rows and does not accept slice. Dates are inclusive workspace-local calendar days, with a two-year maximum. Workload is current open work; explicit date filters select its creation cohort. Duration rows omit missing timestamps. Cycle history never infers individual assignment history or exposes unfilterable imported aggregates. Cached responses last up to 60 seconds and recheck current project access.",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 128
+            },
+            "required": true,
+            "name": "workspaceId",
+            "in": "path"
+          },
+          {
+            "schema": {
+              "type": "string",
+              "enum": [
+                "throughput",
+                "lead-time",
+                "cycle-time",
+                "velocity",
+                "burndown",
+                "scope-change",
+                "created-completed",
+                "time-in-state",
+                "workload",
+                "time-to-triage"
+              ]
+            },
+            "required": true,
+            "name": "measure",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "string",
+              "enum": [
+                "week",
+                "cycle",
+                "assignee",
+                "project",
+                "label",
+                "priority"
+              ]
+            },
+            "required": false,
+            "name": "slice",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 128
+            },
+            "required": false,
+            "name": "projectId",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 128
+            },
+            "required": false,
+            "name": "initiativeId",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 128
+            },
+            "required": false,
+            "name": "cycleId",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 128
+            },
+            "required": false,
+            "name": "assigneeId",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "string",
+              "format": "date"
+            },
+            "required": false,
+            "name": "from",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "string",
+              "format": "date"
+            },
+            "required": false,
+            "name": "to",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Permission-filtered insight rows",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "measure": {
+                      "type": "string",
+                      "enum": [
+                        "throughput",
+                        "lead-time",
+                        "cycle-time",
+                        "velocity",
+                        "burndown",
+                        "scope-change",
+                        "created-completed",
+                        "time-in-state",
+                        "workload",
+                        "time-to-triage"
+                      ]
+                    },
+                    "slice": {
+                      "type": "string",
+                      "enum": [
+                        "week",
+                        "cycle",
+                        "assignee",
+                        "project",
+                        "label",
+                        "priority",
+                        "day",
+                        "category"
+                      ]
+                    },
+                    "from": {
+                      "type": "string",
+                      "format": "date"
+                    },
+                    "to": {
+                      "type": "string",
+                      "format": "date"
+                    },
+                    "timeZone": {
+                      "type": "string"
+                    },
+                    "estimates": {
+                      "type": "boolean"
+                    },
+                    "historyAvailable": {
+                      "type": "boolean"
+                    },
+                    "partialHistory": {
+                      "type": "boolean"
+                    },
+                    "rows": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "key": {
+                            "type": "string"
+                          },
+                          "label": {
+                            "type": [
+                              "string",
+                              "null"
+                            ]
+                          },
+                          "series": {
+                            "type": "string",
+                            "enum": [
+                              "total",
+                              "median",
+                              "p75",
+                              "created",
+                              "completed",
+                              "average",
+                              "remaining",
+                              "ideal",
+                              "start",
+                              "end",
+                              "backlog",
+                              "unstarted",
+                              "started",
+                              "canceled"
+                            ]
+                          },
+                          "value": {
+                            "type": "number"
+                          },
+                          "points": {
+                            "type": [
+                              "number",
+                              "null"
+                            ]
+                          },
+                          "samples": {
+                            "type": "integer",
+                            "minimum": 0
+                          }
+                        },
+                        "required": [
+                          "key",
+                          "label",
+                          "series",
+                          "value",
+                          "points",
+                          "samples"
+                        ],
+                        "additionalProperties": false
+                      }
+                    }
+                  },
+                  "required": [
+                    "measure",
+                    "slice",
+                    "from",
+                    "to",
+                    "timeZone",
+                    "estimates",
+                    "historyAvailable",
+                    "partialHistory",
+                    "rows"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid planning input",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Authentication required",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Insufficient permission or project access",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Resource unavailable or feature disabled",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Planning resource changed; refresh and try again",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "429": {
+            "$ref": "#/components/responses/ApiKeyRateLimited"
+          }
+        }
+      }
+    },
     "/parity/cycle/project/{projectId}/tasks": {
       "get": {
         "operationId": "getProjectCycleTasks",

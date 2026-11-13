@@ -5570,6 +5570,23 @@
 				"allTasks": "All tasks",
 				"daysLeft_few": "{{count}} days left",
 				"daysLeft_many": "{{count}} days left"
+			},
+			"insights": {
+				"title": "Insights",
+				"subtitle": "Delivery at a glance for the current and last cycle.",
+				"velocity": "Velocity",
+				"throughput": "Throughput",
+				"cycleTime": "Cycle time",
+				"points": "points",
+				"issues": "issues",
+				"days": "days",
+				"noHistory": "No history",
+				"weekly": "Completed issues per week",
+				"average": "Average across {{cycles}} closed cycles: {{value}} {{unit}}",
+				"partialHistory": "Some history is unavailable. Only recorded, accessible data is shown.",
+				"lastCycle": "Last cycle",
+				"noCycles": "No cycles to report",
+				"enableCycles": "Enable cycles in workspace settings on the web to start tracking delivery."
 			}
 		}
 	},
@@ -5811,6 +5828,80 @@
 			"bulkDescription_many": "Update a planning property on {{count}} selected tasks.",
 			"daysLeft_few": "{{count}} days left",
 			"daysLeft_many": "{{count}} days left"
+		},
+		"insights": {
+			"title": "Insights",
+			"subtitle": "Understand delivery, flow and the work ahead.",
+			"viewData": "View data",
+			"group": "Group",
+			"seriesLabel": "Series",
+			"value": "Value",
+			"samples": "Samples",
+			"points": "Points",
+			"issues": "Issues",
+			"days": "Days",
+			"noLabel": "No label",
+			"noData": "No recorded data for this report.",
+			"chooseCycle": "Choose a cycle to see its burndown.",
+			"partialHistory": "Some history is unavailable. Only recorded, accessible data is shown.",
+			"initiative": "Initiative",
+			"allInitiatives": "All initiatives",
+			"allCycles": "All cycles",
+			"moreInitiatives": "Load more initiatives",
+			"from": "From date",
+			"to": "To date",
+			"reset": "Reset filters",
+			"defaultRange": "Showing the last 12 weeks. Dates follow the workspace timezone.",
+			"invalidRange": "Choose an ordered date range of at most two years.",
+			"projectProgress": "Progress over time",
+			"timeZone": "Dates in {{zone}}",
+			"measures": {
+				"throughput": "Throughput",
+				"lead-time": "Lead time",
+				"cycle-time": "Cycle time",
+				"velocity": "Velocity",
+				"burndown": "Burndown",
+				"scope-change": "Scope change",
+				"created-completed": "Created vs. completed",
+				"time-in-state": "Time in state",
+				"workload": "Workload",
+				"time-to-triage": "Time to triage"
+			},
+			"descriptions": {
+				"throughput": "Completed issues each week, measured in issues or estimate points.",
+				"lead-time": "Time from creation to completion: median and 75th percentile.",
+				"cycle-time": "Time from the first started state to completion: median and 75th percentile.",
+				"velocity": "Completed work per cycle. The average uses up to three most recent closed cycles.",
+				"burndown": "Recorded remaining scope and an ideal line from the first day.",
+				"scope-change": "First-day recorded scope compared with closing scope. Cycles without first-day history are omitted.",
+				"created-completed": "Issues created and completed each week.",
+				"time-in-state": "Average recorded days per issue in each workflow category during this period.",
+				"workload": "Current open issues by assignee. The date range does not apply.",
+				"time-to-triage": "Time from creation to an intake decision: median and 75th percentile."
+			},
+			"series": {
+				"total": "Total",
+				"median": "Median",
+				"p75": "75th percentile",
+				"created": "Created",
+				"completed": "Completed",
+				"average": "Cycle average",
+				"remaining": "Remaining",
+				"ideal": "Ideal",
+				"start": "First day",
+				"end": "At close",
+				"backlog": "Backlog",
+				"unstarted": "Unstarted",
+				"started": "Started",
+				"canceled": "Canceled"
+			},
+			"states": {
+				"backlog": "Backlog",
+				"unstarted": "Unstarted",
+				"started": "Started",
+				"completed": "Completed",
+				"canceled": "Canceled"
+			}
 		}
 	}
 }

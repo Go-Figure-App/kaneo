@@ -14,7 +14,7 @@ const { client, auth, navigate, evictProject } = vi.hoisted(() => ({
     invalidateQueries: vi.fn(),
     cancelQueries: vi.fn(),
     clear: vi.fn(),
-    getQueryCache: () => ({ getAll: () => [] }),
+    getQueryCache: () => ({ getAll: () => [], findAll: () => [] }),
     getQueryData: vi.fn(),
     fetchQuery: vi.fn(),
     removeQueries: vi.fn(),

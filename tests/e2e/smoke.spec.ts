@@ -35,9 +35,17 @@ test("sign up, create a workspace with a starter project, and sign in again", as
       exact: true,
     }),
   ).toBeVisible();
+  const featuresLoaded = page.waitForResponse(
+    (response) =>
+      new URL(response.url()).pathname === "/api/parity/features" &&
+      response.status() === 200,
+  );
   await page
     .getByRole("button", { name: `Open ${workspaceName}`, exact: true })
     .click();
+  expect((await (await featuresLoaded).json()).features).not.toContain(
+    "insights",
+  );
   await expect(page).toHaveURL(
     /\/dashboard\/workspace\/[^/]+\/project\/[^/]+\/board$/,
   );
@@ -48,6 +56,9 @@ test("sign up, create a workspace with a starter project, and sign in again", as
     page.getByText("My first project", { exact: true }).first(),
   ).toBeVisible();
   const boardUrl = page.url();
+  await expect(
+    page.getByRole("button", { name: "Insights", exact: true }),
+  ).toHaveCount(0);
 
   // A reload proves that the server persisted the workspace and session.
   await page.reload();

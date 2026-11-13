@@ -21,13 +21,28 @@ export function invalidateParity(
       "USER_ACCESS_REVOKED",
     ].includes(message.type)
   ) {
-    if (
-      client
-        .getQueryCache()
-        .getAll()
-        .some((query) => query.queryKey[0] === "parity")
-    )
-      client.removeQueries({ queryKey: ["parity"] });
+    const filter = {
+      queryKey: ["parity"],
+      predicate: (query: { queryKey: readonly unknown[] }) =>
+        query.queryKey[1] !== "features",
+    };
+    const queries = client.getQueryCache().findAll(filter);
+    if (!queries.length) return;
+    void client.cancelQueries(filter, { revert: false, silent: true });
+    for (const query of queries) {
+      if (query.getObserversCount()) {
+        // Keep mounted observers attached across the initial access sync. Removing
+        // their query strands pending screens even after their request succeeds.
+        query.setState({
+          data: undefined,
+          dataUpdatedAt: 0,
+          error: null,
+          status: "pending",
+          fetchStatus: "idle",
+        });
+      } else client.removeQueries({ queryKey: query.queryKey, exact: true });
+    }
+    void client.refetchQueries({ ...filter, type: "active" });
     return;
   }
   if (
