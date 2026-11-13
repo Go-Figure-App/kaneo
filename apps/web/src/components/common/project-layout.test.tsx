@@ -1,4 +1,5 @@
 import { cleanup, render, screen } from "@testing-library/react";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import type { ReactNode } from "react";
 import { afterEach, describe, expect, it, vi } from "vite-plus/test";
 import { HttpError } from "@/lib/http-error";
@@ -59,16 +60,22 @@ vi.mock("@/components/page-title", () => ({ default: () => null }));
 afterEach(cleanup);
 
 function renderLayout() {
+  const client = new QueryClient();
+  // The layout now reads the instance's optional planning capabilities.
+  client.setQueryData(["parity", "features"], { features: [] });
+  client.setQueryDefaults(["parity", "features"], { staleTime: Infinity });
   render(
-    <ProjectLayout
-      projectId="project-1"
-      workspaceId="workspace-1"
-      activeView="board"
-      toolbar={<button type="button">Toolbar action</button>}
-      summary={<span>5 tasks</span>}
-    >
-      <p>Board content</p>
-    </ProjectLayout>,
+    <QueryClientProvider client={client}>
+      <ProjectLayout
+        projectId="project-1"
+        workspaceId="workspace-1"
+        activeView="board"
+        toolbar={<button type="button">Toolbar action</button>}
+        summary={<span>5 tasks</span>}
+      >
+        <p>Board content</p>
+      </ProjectLayout>
+    </QueryClientProvider>,
   );
 }
 

@@ -1,4 +1,5 @@
 import { Calendar, CalendarDays } from "lucide-react";
+import { TaskMilestonePicker } from "@/components/parity/planning/task-milestone-picker";
 import { useTranslation } from "react-i18next";
 import icons from "@/constants/project-icons";
 import { getColumnIcon } from "@/lib/column";
@@ -170,6 +171,7 @@ export function PropertiesRail({
       </div>
 
       <TaskCustomFieldRows taskId={taskId} projectId={projectId} />
+      <TaskMilestonePicker taskId={taskId} projectId={projectId} />
     </aside>
   );
 }

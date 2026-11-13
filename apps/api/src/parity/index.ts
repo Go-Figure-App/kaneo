@@ -18,6 +18,11 @@ import {
   requireParity,
 } from "./foundation/features";
 import triage from "./triage";
+import projectPlans from "./planning/routes/projects";
+import milestones from "./planning/routes/milestones";
+import planningTasks from "./planning/routes/tasks";
+import initiatives from "./planning/routes/initiatives";
+import statusUpdates from "./planning/routes/status-updates";
 
 const categorySchema = z.enum(categories);
 const columnSchema = z.object({
@@ -98,6 +103,11 @@ const updateRoute = createRoute({
 });
 
 export default apiRouter()
+  .route("/project-plan", projectPlans)
+  .route("/milestone", milestones)
+  .route("/task", planningTasks)
+  .route("/initiative", initiatives)
+  .route("/status-update", statusUpdates)
   .route("/triage", triage)
   .openapi(featuresRoute, (c) => c.json({ features: enabledFeatures() }, 200))
   .openapi(columnsRoute, async (c) =>

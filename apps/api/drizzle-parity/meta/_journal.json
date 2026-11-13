@@ -15,6 +15,13 @@
 			"when": 1794559533703,
 			"tag": "0001_triage_queue",
 			"breakpoints": true
+		},
+		{
+			"idx": 2,
+			"version": "7",
+			"when": 1794568943117,
+			"tag": "0002_planning",
+			"breakpoints": true
 		}
 	]
 }

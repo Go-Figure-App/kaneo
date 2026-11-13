@@ -29,6 +29,7 @@ import { getProjectUnavailableReason } from "@/lib/project-unavailable-reason";
 import { useBackgroundStore } from "@/store/background";
 import { useUserPreferencesStore } from "@/store/user-preferences";
 import ProjectUnavailable from "./project-unavailable";
+import { ProjectPlanningNav } from "@/components/parity/planning/project-nav";
 
 type ProjectLayoutProps = {
   projectId: string;
@@ -86,6 +87,13 @@ export default function ProjectLayout({
   useProjectViewShortcuts(goToView, currentView, showViews);
 
   const handleProjectSwitch = (nextProjectId: string) => {
+    if (location.pathname.endsWith("/overview")) {
+      navigate({
+        to: "/dashboard/workspace/$workspaceId/project/$projectId/overview",
+        params: { workspaceId, projectId: nextProjectId },
+      });
+      return;
+    }
     navigate({
       to: PROJECT_ROUTE_PATHS[resolvedRoute],
       params: {
@@ -151,6 +159,10 @@ export default function ProjectLayout({
               { "bg-card/80 backdrop-blur": !!background },
             )}
           >
+            <ProjectPlanningNav
+              workspaceId={workspaceId}
+              projectId={projectId}
+            />
             {showViewSwitcher && (
               <ProjectScopeToggle
                 workspaceId={workspaceId}

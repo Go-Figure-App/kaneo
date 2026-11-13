@@ -5,6 +5,7 @@ import { buildFullTaskUpdateBody } from "../kaneo/task-helpers.js";
 import { errorResult, textResult } from "../utils/mcp-result.js";
 import { getCurrentUser } from "./get-current-user.js";
 import { registerTriageTools } from "./parity/triage.js";
+import { registerPlanningTools } from "./parity/planning.js";
 
 export type ToolClient = {
   readonly usingApiKey?: boolean;
@@ -55,6 +56,7 @@ export function registerTools(
 ): void {
   const { client } = ctx;
   registerTriageTools(server, client);
+  registerPlanningTools(server, client);
   const registerTool = <S extends z.ZodObject>(
     name: string,
     config: { description: string; inputSchema: S },

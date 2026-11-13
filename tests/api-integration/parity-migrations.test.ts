@@ -27,9 +27,15 @@ it("applies both migration sets to upstream's shape, preserves its schema and re
   const parity = resolve(import.meta.dirname, "../../apps/api/drizzle-parity");
   try {
     await migrate(database, { migrationsFolder: upstream });
+    const upstreamTables = (
+      await pool.query(
+        "SELECT table_name FROM information_schema.tables WHERE table_schema = 'public'",
+      )
+    ).rows.map((row: { table_name: string }) => row.table_name);
     const snapshot = () =>
       pool.query(
-        "SELECT table_name, column_name, data_type, is_nullable, column_default FROM information_schema.columns WHERE table_schema = 'public' AND table_name NOT LIKE '%_ext' ORDER BY table_name, ordinal_position",
+        "SELECT table_name, column_name, data_type, is_nullable, column_default FROM information_schema.columns WHERE table_schema = 'public' AND table_name = ANY($1::text[]) ORDER BY table_name, ordinal_position",
+        [upstreamTables],
       );
     const before = (await snapshot()).rows;
     const ledger = (
@@ -64,11 +70,11 @@ it("applies both migration sets to upstream's shape, preserves its schema and re
     expect(
       (await pool.query("SELECT * FROM drizzle.__drizzle_parity_migrations"))
         .rows,
-    ).toHaveLength(2);
+    ).toHaveLength(3);
     const tables = await pool.query(
-      "SELECT table_name FROM information_schema.tables WHERE table_schema = 'public' AND table_name IN ('task_ext', 'column_ext', 'workspace_ext', 'project_ext')",
+      "SELECT table_name FROM information_schema.tables WHERE table_schema = 'public' AND table_name IN ('task_ext', 'column_ext', 'workspace_ext', 'project_ext', 'project_milestone', 'initiative', 'initiative_project', 'status_update')",
     );
-    expect(tables.rows).toHaveLength(4);
+    expect(tables.rows).toHaveLength(8);
     // A previous API build can still execute the original migration sequence.
     await migrate(database, { migrationsFolder: upstream });
   } finally {

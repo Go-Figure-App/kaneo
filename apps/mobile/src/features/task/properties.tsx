@@ -22,6 +22,7 @@ import {
 import { useColors } from "@/theme";
 
 import { LabelPickerSheet } from "./label-picker";
+import { TaskMilestone } from "@/features/parity/planning/task-milestone";
 import { statusName, type TaskDetail } from "./use-task";
 
 type Picker =
@@ -210,6 +211,11 @@ export function Properties({
         </Txt>
       </PropChip>
 
+      <TaskMilestone
+        taskId={task.id}
+        projectId={task.projectId}
+        workspaceId={workspaceId}
+      />
       <OptionSheet
         visible={picker === "status"}
         onClose={close}

@@ -11,6 +11,11 @@ describe("planning foundation", () => {
   it("defaults off and enables the foundation for recognized feature flags", () => {
     expect(enabledFeatures("")).toEqual([]);
     expect(enabledFeatures("not-a-feature")).toEqual([]);
+    expect(enabledFeatures("initiatives")).toEqual([
+      "foundation",
+      "projects",
+      "initiatives",
+    ]);
     expect(enabledFeatures(" cycles,triage,cycles ")).toEqual([
       "foundation",
       "triage",

@@ -33,6 +33,7 @@ import { qk } from "@/lib/query";
 import { inset, useColors } from "@/theme";
 
 import { NewProjectSheet } from "./new-project-sheet";
+import { usePlanningEnabled } from "@/features/parity/planning/queries";
 
 export function WorkspaceHeader({
   workspace,
@@ -182,6 +183,7 @@ export function HomeTabView({
   const c = useColors();
   const [showArchived, setShowArchived] = useState(false);
   const [creating, setCreating] = useState(false);
+  const planning = usePlanningEnabled();
   const projects = useQuery({
     queryKey: qk.projects(workspace.id, showArchived),
     queryFn: () => api.projects(workspace.id, showArchived),
@@ -306,7 +308,10 @@ export function HomeTabView({
                 last={i === sorted.length - 1}
                 onPress={() =>
                   router.push({
-                    pathname: "/board/[projectId]",
+                    pathname:
+                      planning && !p.archivedAt
+                        ? "/project/[projectId]/overview"
+                        : "/board/[projectId]",
                     params: { projectId: p.id, workspaceId: workspace.id },
                   })
                 }
@@ -332,7 +337,9 @@ export function HomeTabView({
         workspaceId={workspace.id}
         onCreated={(p) =>
           router.push({
-            pathname: "/board/[projectId]",
+            pathname: planning
+              ? "/project/[projectId]/overview"
+              : "/board/[projectId]",
             params: { projectId: p.id, workspaceId: workspace.id },
           })
         }

@@ -26,7 +26,7 @@ Other design/code differences: startup must seed categories after upstream `migr
 
 ## Configuration and behavior
 
-`PARITY_FEATURES` is a comma-separated allowlist: `foundation,triage,projects,initiatives,roadmap,cycles,insights,views,import`. It defaults to empty. Any recognized feature implies `foundation`; unknown names have no effect. Foundation and triage are implemented; later capabilities remain gated until their phases land. Restart the API after changing configuration.
+`PARITY_FEATURES` is a comma-separated allowlist: `foundation,triage,projects,initiatives,roadmap,cycles,insights,views,import`. It defaults to empty. Any recognized feature implies `foundation`; unknown names have no effect. Foundation, triage, projects and initiatives are implemented; later capabilities remain gated until their phases land. Initiatives implicitly enables projects. Restart the API after changing configuration.
 
 With `PARITY_FEATURES=foundation`, project Workflow settings show state categories, and lifecycle subscribers are enabled. New columns without side rows use deterministic defaults; startup seeds existing columns without overriding manual choices. A canceled/declined/duplicate slug maps to canceled, final columns to completed, backlog/triage to backlog, in-progress/in-review/started/doing to started, and other columns to unstarted. Categories can be reversed in settings without modifying upstream final flags.
 
@@ -299,3 +299,49 @@ The proposed first integration is a direct external connection to the existing e
 Published base usage rates are $0.10/1,000 tool calls, $0.70/evaluation, $0.07/build minute, $0.15/GB egress and $5/million managed-chat tokens. These consume a shared allowance; a $100 grant is not an unlimited plan. Account balance, grant terms and expiry have not been verified. The [billing documentation](https://docs.manufact.com/dashboard/billing) lists external connections on every plan, while the [pricing table](https://manufact.com/pricing) lists them only on Enterprise; confirm the account entitlement before choosing a plan. No subscription, deployment or credit consumption was initiated.
 
 Once the account and deployment are approved, verify the credit balance and overage limit, connect a dedicated test account through Kaneo OAuth, and evaluate tool discovery, pending-item creation, acceptance, required decline comments and hidden-project denial against a disposable workspace. Keep real Linear exports out of public fixtures and Manufact payload capture. Authenticate through the official sign-in flow, without putting credentials in source files or PR comments.
+
+## Phase 2 — project planning and initiatives
+
+Phase 2 adds project status, lead, start/target dates and priority, milestones, health updates, and initiatives with many-to-many project links. Enable `projects,initiatives`; `initiatives` also enables `projects` because its linked-project pages use project plans. Features still default off. The previous phase merged as [PR #2](https://github.com/Go-Figure-App/kaneo/pull/2); its merge commit passed Go Figure CI.
+
+The API lives in `parity/planning`. Four new tables and one milestone lookup index are introduced by `0002_planning.sql`; all foreign keys are inline in new table declarations. The migration test now compares every existing upstream table's columns and the upstream migration ledger before and after parity migration. No upstream schema or migration is changed.
+
+Progress excludes pending triage and canceled-category tasks (including declined and duplicate decisions), resolves both current column IDs and legacy status slugs, and uses only projects the caller can read. Optional estimates use one point for unestimated work. Project and milestone writes lock the project before related rows. Concurrent updates use their insertion time after the parent lock, so the feed's latest update agrees with stored health. Moving projects unlinks initiatives from their old workspace; moving tasks clears obsolete milestone assignments. Reads immediately hide stale links, including before subscribers run.
+
+Weekly reminders use the existing scheduler and job leases. An hourly scan nudges eligible project leads whose project has gone seven days without an update, with a durable one-week receipt per lead/workspace. Notifications contain a generic workspace prompt, so a later project-access change cannot expose its name. Orphaned updates are cleaned in bounded batches; archived initiative history is retained.
+
+Web adds a project overview tab, workspace projects grouped by status, initiative list/detail and editing, milestone creation/editing/reordering/deletion, and a task milestone picker. Status updates render Markdown. Native adds project overviews before boards, editable project properties, initiative list/detail and limited name/owner/date/status editing, update posting, milestone assignment, and a More tab containing Activity and Initiatives. Date and owner fields can be cleared. Archived projects retain their existing board entry point. Existing React Native picker sheets, Markdown rendering and Expo Router are reused; no native dependency is added.
+
+Eight MCP tools use the same authenticated API: `get_project_plan`, `update_project_plan`, `list_milestones`, `create_status_update`, `list_initiatives`, `get_initiative`, `create_initiative`, and `add_project_to_initiative`. The HTTP and stdio registrars both include them. This continues the existing Manufact-compatible endpoint approach; no Manufact service, deployment or paid usage was started.
+
+### Phase 2 shared-file additions and extensions
+
+| File | Change and reason |
+| --- | --- |
+| `apps/api/src/index.ts` | Initialize planning event subscribers after startup. |
+| `apps/api/src/scheduler/index.ts` | Register the leased planning reminder/orphan cleanup tick. |
+| `apps/web/src/components/common/project-layout.tsx` | Mount Overview navigation and preserve it when switching projects. |
+| `apps/web/src/components/common/project-layout.test.tsx` | Supply the feature query provider to the existing isolated layout tests; retain all access and navigation assertions. |
+| `apps/web/src/components/nav-main.tsx` | Add gated Initiatives and Projects entries. |
+| `apps/web/src/routes/_layout/_authenticated/dashboard/workspace/$workspaceId/projects.tsx` | Mount the planning projects page when enabled; preserve the original page when disabled. |
+| `apps/web/src/components/task/properties/properties-rail.tsx` | Mount the milestone picker in full task properties. |
+| `apps/web/src/components/task/properties/property-chips.tsx` | Mount the milestone picker in compact task properties. |
+| `apps/web/src/routeTree.gen.ts` | Generated routes for Overview and Initiatives. |
+| `apps/mobile/src/app/(app)/index.tsx` | Mount More while planning is enabled. |
+| `apps/mobile/src/features/home/bottom-nav.tsx` | Replace Activity with More when planning is enabled; retain four tabs. |
+| `apps/mobile/src/features/home/home-tab.tsx` | Open active project overviews before boards when enabled. |
+| `apps/mobile/src/features/task/properties.tsx` | Mount the native milestone picker. |
+| `packages/mcp/src/tools/register.ts` | Register the eight planning tools. |
+| `Dockerfile.kaneo` | Install web dependencies from manifests before copying source, retaining the install cache on UI changes. |
+| `apps/docs/openapi.json` | Generated planning contract. |
+| `i18n/en-US.json`, the 20 other catalogs, `i18n/schema.json` | Add web/native planning keys. New non-English copy currently uses the permitted English fallback; existing translations are unchanged. Only parity branches of the generated schema are synchronized to avoid unrelated inherited drift. |
+
+The feature's domain logic remains in owned modules. The small navigation/property mounts extend the shared-file register already expanded in earlier phases; they do not rewrite upstream controllers. The existing Go Figure CI still runs quality/contracts, workspace unit tests, four PostgreSQL integration shards, Docker build and browser flows. Its parity Compose overlay now enables projects and initiatives, and Playwright discovers the two new planning flows. No release or deployment workflow is activated.
+
+### Phase 2 verification
+
+Focused API/migration tests cover all new routes, viewers and custom roles, read-only API keys, hidden projects, cross-workspace links, legacy tasks, milestone cleanup, archived initiatives, concurrent updates, event subscribers, and durable reminder deduplication. Browser flows cover both features, including live milestone progress across two tabs, assignment/clearing, persisted plan properties, update health, linking/unlinking projects and archive/restore.
+
+The maintainer authorized copies of Go Figure Linear data for local testing. A private rehearsal exercised 27 project plans, 25 milestones and 29 initiative links (two projects in multiple initiatives); 26 missing start dates, 20 missing target dates and six missing leads round-tripped. Lead identity was mapped to the synthetic local member for this rehearsal; production identity mapping belongs to Phase 7. Real source data and rehearsal scripts/results remain outside the repository and are not CI fixtures or PR attachments. No Linear writes or production import occurred.
+
+The final bundled image passed all three upstream browser flows with parity disabled, then all four parity flows with it enabled. Lint, i18n, generated OpenAPI and all 22 workspace typecheck/build tasks passed. Workflow/security regression tests passed 176 checks and browser-security fixtures passed 53. The native development build succeeded on iPhone 17 / iOS 27; manual checks covered project properties, Markdown health updates visible on web, milestone assignment and clearing, initiative creation and owner removal, and viewing linked-project progress. Android was not exercised. New non-English strings retain the permitted English fallback; charts over historical project progress are implemented with Insights in Phase 5.
