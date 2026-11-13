@@ -51,7 +51,9 @@ export function InitiativeDetail({
     enabled,
   });
   const initiative =
-    query.data?.workspaceId === workspaceId ? query.data : undefined;
+    !query.isError && query.data?.workspaceId === workspaceId
+      ? query.data
+      : undefined;
   const archive = useMutation({
     mutationFn: (archived: boolean) =>
       updateInitiative(initiativeId, { archived }),

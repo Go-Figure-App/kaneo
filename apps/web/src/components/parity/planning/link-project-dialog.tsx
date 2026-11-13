@@ -1,3 +1,4 @@
+import { uniquePageItems } from "./unique-page-items";
 import {
   useInfiniteQuery,
   useMutation,
@@ -63,8 +64,7 @@ export function LinkProjectDialog({
             className="rounded-md border bg-background p-2"
           >
             <option value="">{t("parity:planning.chooseProject")}</option>
-            {query.data?.pages
-              .flatMap((page) => page.items)
+            {(query.isError ? [] : uniquePageItems(query.data?.pages))
               .filter((project) => !linkedIds.includes(project.id))
               .map((project) => (
                 <option key={project.id} value={project.id}>
@@ -74,7 +74,7 @@ export function LinkProjectDialog({
           </select>
         </label>
         {query.isPending && <p role="status">{t("parity:planning.loading")}</p>}
-        {query.hasNextPage && (
+        {!query.isError && query.hasNextPage && (
           <Button
             variant="ghost"
             disabled={query.isFetchingNextPage}
@@ -93,7 +93,7 @@ export function LinkProjectDialog({
             {t("parity:planning.cancel")}
           </Button>
           <Button
-            disabled={!selected || mutation.isPending}
+            disabled={!selected || query.isError || mutation.isPending}
             onClick={() => mutation.mutate()}
           >
             {t("parity:planning.linkProject")}

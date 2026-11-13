@@ -26,7 +26,8 @@ export function ProjectEditor({
   const { t } = useTranslation();
   const labels = usePlanningLabels();
   const client = useQueryClient();
-  const [leadId, setLeadId] = useState(project.leadId ?? "");
+  const [selectedLeadId, setLeadId] = useState<string>();
+  const leadId = selectedLeadId ?? project.leadId ?? "";
   const members = useGetProjectMembers({
     workspaceId: project.workspaceId,
     projectId: project.id,
@@ -36,9 +37,7 @@ export function ProjectEditor({
       updateProjectPlan(project.id, {
         status: String(form.get("status")) as ProjectPlan["status"],
         priority: String(form.get("priority")) as ProjectPlan["priority"],
-        ...(leadId !== (project.leadId ?? "")
-          ? { leadId: leadId || null }
-          : {}),
+        ...(selectedLeadId !== undefined ? { leadId: leadId || null } : {}),
         startDate: String(form.get("startDate") ?? "") || null,
         targetDate: String(form.get("targetDate") ?? "") || null,
       }),

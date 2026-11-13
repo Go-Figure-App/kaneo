@@ -24,6 +24,7 @@ export function MoreTab({
       <View style={{ paddingHorizontal: 20 }}>
         <Group>
           <Touch
+            accessibilityRole="button"
             onPress={onActivity}
             style={{
               padding: 18,
@@ -37,6 +38,7 @@ export function MoreTab({
           </Touch>
           {initiatives && (
             <Touch
+              accessibilityRole="button"
               onPress={() =>
                 router.push({
                   pathname: "/initiatives",

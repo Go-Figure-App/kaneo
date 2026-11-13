@@ -34,7 +34,7 @@ export function ProjectOverview({
     queryFn: () => getProjectPlan(projectId),
     enabled,
   });
-  const project = query.data;
+  const project = query.isError ? undefined : query.data;
   const date = (value: string | null) =>
     value
       ? formatDateMedium(new Date(`${value}T12:00:00`))

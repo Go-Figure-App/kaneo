@@ -1,3 +1,4 @@
+import { uniquePageItems } from "./unique-page-items";
 import { useInfiniteQuery } from "@tanstack/react-query";
 import { Link } from "@tanstack/react-router";
 import { Plus } from "lucide-react";
@@ -27,7 +28,7 @@ export function PlanningProjectsPage({ workspaceId }: { workspaceId: string }) {
     queryFn: ({ pageParam }) => getProjectPlans(workspaceId, pageParam),
     getNextPageParam: (page) => (page.hasMore ? page.page + 1 : undefined),
   });
-  const projects = query.data?.pages.flatMap((page) => page.items) ?? [];
+  const projects = query.isError ? [] : uniquePageItems(query.data?.pages);
   return (
     <WorkspaceLayout
       title={t("parity:planning.projects")}
@@ -97,7 +98,7 @@ export function PlanningProjectsPage({ workspaceId }: { workspaceId: string }) {
         ) : (
           <ProjectsTable projects={projects} />
         )}
-        {query.hasNextPage && (
+        {!query.isError && query.hasNextPage && (
           <Button
             variant="outline"
             disabled={query.isFetchingNextPage}

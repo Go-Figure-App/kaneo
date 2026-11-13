@@ -45,6 +45,7 @@ export function TaskMilestone({
   return (
     <>
       <Touch
+        accessibilityRole="button"
         disabled={busy}
         onPress={() => setOpen(true)}
         accessibilityLabel={`${t("mobile:parity.planning.milestone")}: ${current.data?.name ?? t("mobile:parity.planning.noMilestone")}`}

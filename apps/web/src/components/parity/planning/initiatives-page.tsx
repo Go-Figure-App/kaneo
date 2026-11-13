@@ -1,3 +1,4 @@
+import { uniquePageItems } from "./unique-page-items";
 import {
   useInfiniteQuery,
   useMutation,
@@ -39,7 +40,7 @@ export function InitiativesPage({ workspaceId }: { workspaceId: string }) {
       getInitiatives(workspaceId, pageParam, archived),
     getNextPageParam: (page) => (page.hasMore ? page.page + 1 : undefined),
   });
-  const items = query.data?.pages.flatMap((page) => page.items) ?? [];
+  const items = query.isError ? [] : uniquePageItems(query.data?.pages);
   const reorder = useMutation({
     mutationFn: ({ index, offset }: { index: number; offset: number }) => {
       const ids = items.map((item) => item.id);
@@ -131,7 +132,8 @@ export function InitiativesPage({ workspaceId }: { workspaceId: string }) {
                       <ProgressMeter progress={initiative.progress} compact />
                       {canUpdateProjects() &&
                         !archived &&
-                        !query.hasNextPage && (
+                        !!query.isError &&
+                        query.hasNextPage && (
                           <div className="flex">
                             <Button
                               variant="ghost"
@@ -164,7 +166,7 @@ export function InitiativesPage({ workspaceId }: { workspaceId: string }) {
                 </article>
               ))}
             </div>
-            {query.hasNextPage && (
+            {!query.isError && query.hasNextPage && (
               <Button
                 className="mt-5"
                 variant="outline"

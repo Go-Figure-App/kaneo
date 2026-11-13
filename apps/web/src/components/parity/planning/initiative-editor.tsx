@@ -34,14 +34,15 @@ export function InitiativeEditor({
   const client = useQueryClient();
   const members = useGetWorkspaceUsers({ workspaceId });
   const [description, setDescription] = useState(initiative?.description ?? "");
-  const [ownerId, setOwnerId] = useState(initiative?.ownerId ?? "");
+  const [selectedOwnerId, setOwnerId] = useState<string>();
+  const ownerId = selectedOwnerId ?? initiative?.ownerId ?? "";
   const mutation = useMutation({
     mutationFn: (form: FormData) => {
       const input = {
         name: String(form.get("name")),
         description,
         status: String(form.get("status")) as Initiative["status"],
-        ...(!initiative || ownerId !== (initiative.ownerId ?? "")
+        ...(!initiative || selectedOwnerId !== undefined
           ? { ownerId: ownerId || null }
           : {}),
         targetDate: String(form.get("targetDate") ?? "") || null,

@@ -1,10 +1,22 @@
-import { QueryClient, useQueryClient } from "@tanstack/react-query";
+import { clearParityOnAccessError } from "@/features/parity/foundation/access-error";
+import {
+  MutationCache,
+  QueryCache,
+  QueryClient,
+  useQueryClient,
+} from "@tanstack/react-query";
 import { useCallback, useState } from "react";
 
 import { useToast } from "../components/toast";
 import { userMessage } from "./api/client";
 
 export const queryClient = new QueryClient({
+  queryCache: new QueryCache({
+    onError: (error) => clearParityOnAccessError(queryClient, error),
+  }),
+  mutationCache: new MutationCache({
+    onError: (error) => clearParityOnAccessError(queryClient, error),
+  }),
   defaultOptions: {
     queries: {
       staleTime: 15_000,
@@ -66,6 +78,7 @@ export function useAction() {
         if (options.refresh !== false) void client.invalidateQueries();
         return result;
       } catch (e) {
+        clearParityOnAccessError(client, e);
         toast.show(userMessage(e), "error");
         return undefined;
       } finally {

@@ -30,7 +30,11 @@ export function PlanningProperty({
     </View>
   );
   return onPress ? (
-    <Touch onPress={onPress} accessibilityLabel={`${label}: ${value}`}>
+    <Touch
+      accessibilityRole="button"
+      onPress={onPress}
+      accessibilityLabel={`${label}: ${value}`}
+    >
       {content}
     </Touch>
   ) : (

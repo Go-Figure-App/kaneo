@@ -32,7 +32,7 @@ export function ProjectOverview({ projectId }: { projectId: string }) {
     enabled,
   });
   const permissions = usePlanningPermissions(query.data?.workspaceId);
-  const project = query.data;
+  const project = query.isError ? undefined : query.data;
   return (
     <Screen>
       <Scroll

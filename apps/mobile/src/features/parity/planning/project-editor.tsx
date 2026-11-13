@@ -27,7 +27,7 @@ export function ProjectPlanEditor({ projectId }: { projectId: string }) {
       <Scroll>
         <PageHeader
           title={t("mobile:parity.planning.editProperties")}
-          description={query.data?.name}
+          description={query.isError ? undefined : query.data?.name}
         />
         {!enabled ? (
           <Txt center>{t("mobile:parity.planning.unavailable")}</Txt>

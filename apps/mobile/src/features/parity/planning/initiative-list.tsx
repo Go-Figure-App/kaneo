@@ -1,3 +1,4 @@
+import { uniquePageItems } from "./unique-page-items";
 import { useInfiniteQuery } from "@tanstack/react-query";
 import { router } from "expo-router";
 import { useState } from "react";
@@ -34,7 +35,7 @@ export function InitiativeList({ workspaceId }: { workspaceId: string }) {
     getNextPageParam: (page) => (page.hasMore ? page.page + 1 : undefined),
     enabled,
   });
-  const items = query.data?.pages.flatMap((page) => page.items) ?? [];
+  const items = query.isError ? [] : uniquePageItems(query.data?.pages);
   return (
     <Screen>
       <PageHeader title={t("mobile:parity.planning.initiatives")} />
@@ -91,6 +92,7 @@ export function InitiativeList({ workspaceId }: { workspaceId: string }) {
               renderItem={({ item }) => (
                 <Group>
                   <Touch
+                    accessibilityRole="button"
                     onPress={() =>
                       router.push({
                         pathname: "/initiative/[initiativeId]",
@@ -131,7 +133,7 @@ export function InitiativeList({ workspaceId }: { workspaceId: string }) {
                       onRetry={query.refetch}
                     />
                   )}
-                  {query.hasNextPage && (
+                  {!query.isError && query.hasNextPage && (
                     <Button
                       label={t("mobile:parity.planning.loadMore")}
                       kind="secondary"

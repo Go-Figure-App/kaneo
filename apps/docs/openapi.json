@@ -16840,8 +16840,7 @@
                   },
                   "description": {
                     "type": "string",
-                    "maxLength": 50000,
-                    "default": ""
+                    "maxLength": 50000
                   },
                   "targetDate": {
                     "type": [
@@ -18826,8 +18825,7 @@
                   },
                   "description": {
                     "type": "string",
-                    "maxLength": 50000,
-                    "default": ""
+                    "maxLength": 50000
                   },
                   "status": {
                     "type": "string",

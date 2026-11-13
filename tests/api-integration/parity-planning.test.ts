@@ -19,7 +19,9 @@ import {
   taskExtTable,
   workspaceExtTable,
 } from "../../apps/api/src/database/schema-parity";
+import * as events from "../../apps/api/src/events";
 import { publishEvent } from "../../apps/api/src/events";
+import * as workspacePermissions from "../../apps/api/src/utils/require-workspace-permission";
 import {
   initializePlanning,
   reconcilePlanningProject,
@@ -584,7 +586,26 @@ it("hides stale cross-workspace links immediately and reconciles project and tas
   expect((await c.send(`initiative/item/${initiative.id}`)).projects).toEqual(
     [],
   );
-  await reconcilePlanningProject(c.alpha.id);
+  const publish = vi.spyOn(events, "publishEvent");
+  try {
+    await reconcilePlanningProject(c.alpha.id);
+    expect(publish.mock.calls).toEqual([
+      [
+        "parity.workspace_updated",
+        {
+          type: "PROJECT_PLAN_UPDATED",
+          workspaceId: outside.workspace.id,
+          projectId: c.alpha.id,
+        },
+      ],
+      [
+        "parity.workspace_updated",
+        { type: "INITIATIVE_UPDATED", workspaceId: c.workspace.id },
+      ],
+    ]);
+  } finally {
+    publish.mockRestore();
+  }
   expect(await db.select().from(initiativeProjectTable)).toHaveLength(0);
   expect(
     (
@@ -834,4 +855,100 @@ describe("planning maintenance", () => {
     ).toEqual(["Recent"]);
     expect(await db.select().from(initiativeTable)).toHaveLength(0);
   });
+});
+
+it("preserves descriptions on partial edits and archive/restore while allowing explicit clearing", async () => {
+  const c = await setup();
+  const description = "## Preserve this planning context";
+  const milestone = await c.send(`milestone/${c.alpha.id}`, "POST", {
+    name: "Release",
+    description,
+  });
+  for (const patch of [
+    { name: "Renamed" },
+    { targetDate: "2026-12-10" },
+    { position: 3 },
+  ]) {
+    expect(
+      await c.send(`milestone/item/${milestone.id}`, "PUT", patch),
+    ).toMatchObject({ description });
+  }
+  expect(
+    await c.send(`milestone/item/${milestone.id}`, "PUT", { description: "" }),
+  ).toMatchObject({ description: "" });
+  const initiative = await c.send(`initiative/${c.workspace.id}`, "POST", {
+    name: "Launch",
+    description,
+  });
+  for (const patch of [
+    { name: "Renamed launch" },
+    { ownerId: c.owner.id },
+    { targetDate: "2026-12-10" },
+    { archived: true },
+    { archived: false },
+  ]) {
+    expect(
+      await c.send(`initiative/item/${initiative.id}`, "PUT", patch),
+    ).toMatchObject({ description });
+  }
+  expect(
+    await c.send(`initiative/item/${initiative.id}`, "PUT", {
+      description: "",
+    }),
+  ).toMatchObject({ description: "" });
+});
+
+it("pages past more than 500 denied leads and reuses role checks within the tick", async () => {
+  const c = await setup();
+  const now = new Date("2026-12-01T12:00:00Z");
+  const ids = [
+    ...Array.from(
+      { length: 501 },
+      (_, i) => `000-denied-${String(i).padStart(4, "0")}`,
+    ),
+    "zzz-eligible",
+  ];
+  await db
+    .insert(schema.userTable)
+    .values(ids.map((id) => ({ id, name: id, email: `${id}@example.test` })));
+  await db.insert(schema.workspaceUserTable).values(
+    ids.map((userId) => ({
+      userId,
+      workspaceId: c.workspace.id,
+      role: userId === "zzz-eligible" ? "owner" : "viewer",
+      joinedAt: now,
+    })),
+  );
+  await db.insert(schema.projectTable).values(
+    ids.map((id) => ({
+      id: `due-${id}`,
+      name: "Due project",
+      slug: `due-${id}`,
+      workspaceId: c.workspace.id,
+      createdAt: new Date("2026-11-01T00:00:00Z"),
+    })),
+  );
+  await db.insert(projectExtTable).values(
+    ids.map((leadId) => ({
+      projectId: `due-${leadId}`,
+      leadId,
+      status: "started" as const,
+    })),
+  );
+  const permission = vi.spyOn(
+    workspacePermissions,
+    "roleHasWorkspacePermission",
+  );
+  try {
+    expect(await remindProjectLeads(now)).toEqual({ reminded: 1 });
+    expect(permission).toHaveBeenCalledTimes(2);
+  } finally {
+    permission.mockRestore();
+  }
+  const notifications = await db
+    .select()
+    .from(schema.notificationTable)
+    .where(eq(schema.notificationTable.type, "project_update_reminder"));
+  expect(notifications).toHaveLength(1);
+  expect(notifications[0].userId).toBe("zzz-eligible");
 });

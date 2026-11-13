@@ -37,7 +37,7 @@ export function InitiativeDetailScreen({
     queryFn: () => planningApi.initiative(initiativeId),
     enabled,
   });
-  const initiative = query.data;
+  const initiative = query.isError ? undefined : query.data;
   const permissions = usePlanningPermissions(initiative?.workspaceId);
   return (
     <Screen>
@@ -138,6 +138,7 @@ export function InitiativeDetailScreen({
                 {initiative.projects.map((project) => (
                   <Group key={project.id}>
                     <Touch
+                      accessibilityRole="button"
                       onPress={() =>
                         router.push({
                           pathname: "/project/[projectId]/overview",

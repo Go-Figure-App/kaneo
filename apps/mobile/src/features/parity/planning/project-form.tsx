@@ -21,7 +21,8 @@ export function ProjectPlanForm({ project }: { project: ProjectPlan }) {
     "status" | "lead" | "start" | "target" | "priority" | null
   >(null);
   const [status, setStatus] = useState(project.status);
-  const [leadId, setLead] = useState(project.leadId);
+  const [selectedLeadId, setLead] = useState<string | null>();
+  const leadId = selectedLeadId === undefined ? project.leadId : selectedLeadId;
   const [startDate, setStart] = useState(project.startDate);
   const [targetDate, setTarget] = useState(project.targetDate);
   const [priority, setPriority] = useState(project.priority);
@@ -78,7 +79,7 @@ export function ProjectPlanForm({ project }: { project: ProjectPlan }) {
               startDate,
               targetDate,
               priority,
-              ...(leadId !== project.leadId ? { leadId } : {}),
+              ...(selectedLeadId !== undefined ? { leadId } : {}),
             }),
           );
           if (result) goBack();

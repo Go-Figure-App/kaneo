@@ -18,6 +18,7 @@ export const projectStatus = z.enum([
 export const initiativeStatus = z.enum(["planned", "active", "completed"]);
 export const parentType = z.enum(["project", "initiative"]);
 const priority = z.enum(["no-priority", "low", "medium", "high", "urgent"]);
+const description = z.string().max(50_000);
 const position = z.number().int().min(0).max(1_000_000);
 export const pageQuery = z.object({
   page: pagingNumber(1, 100_000, 1),
@@ -32,14 +33,16 @@ export const planBody = z.object({
 });
 export const milestoneBody = z.object({
   name: z.string().trim().min(1).max(200),
-  description: z.string().max(50_000).default(""),
+  description: description.default(""),
   targetDate: z.iso.date().nullable().optional(),
   position: position.optional(),
 });
-export const milestonePatch = milestoneBody.partial();
+export const milestonePatch = milestoneBody.partial().extend({
+  description: description.optional(),
+});
 export const initiativeBody = z.object({
   name: z.string().trim().min(1).max(200),
-  description: z.string().max(50_000).default(""),
+  description: description.default(""),
   status: initiativeStatus.optional(),
   ownerId: id.nullable().optional(),
   targetDate: z.iso.date().nullable().optional(),
@@ -50,9 +53,10 @@ export const initiativeBody = z.object({
     .nullable()
     .optional(),
 });
-export const initiativePatch = initiativeBody
-  .partial()
-  .extend({ archived: z.boolean().optional() });
+export const initiativePatch = initiativeBody.partial().extend({
+  description: description.optional(),
+  archived: z.boolean().optional(),
+});
 export const updateBody = z.object({
   health,
   body: z.string().trim().min(1).max(50_000),

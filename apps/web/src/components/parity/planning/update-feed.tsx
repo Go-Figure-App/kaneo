@@ -1,3 +1,4 @@
+import { uniquePageItems } from "./unique-page-items";
 import {
   useInfiniteQuery,
   useMutation,
@@ -54,7 +55,7 @@ export function UpdateFeed({
       await refreshPlanning(client);
     },
   });
-  const updates = query.data?.pages.flatMap((page) => page.items) ?? [];
+  const updates = query.isError ? [] : uniquePageItems(query.data?.pages);
   return (
     <section className="space-y-5" aria-labelledby={`updates-${parentId}`}>
       <h2 id={`updates-${parentId}`} className="text-sm font-semibold">
@@ -135,7 +136,7 @@ export function UpdateFeed({
           <MarkdownRenderer content={update.body} />
         </article>
       ))}
-      {query.hasNextPage && (
+      {!query.isError && query.hasNextPage && (
         <Button
           variant="outline"
           disabled={query.isFetchingNextPage}

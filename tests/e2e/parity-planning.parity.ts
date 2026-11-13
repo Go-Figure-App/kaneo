@@ -254,3 +254,52 @@ test("initiatives link projects, roll up progress, post updates and restore arch
   await expect(dialog).toHaveCount(0);
   await expect(page.getByText("No owner", { exact: true })).toBeVisible();
 });
+
+test("a denied background refresh clears initiative content and can be retried", async ({
+  page,
+  baseURL,
+}) => {
+  const f = await fixture(page, baseURL);
+  await f.post(`parity/initiative/${f.workspace.id}`, {
+    name: "Previously visible initiative",
+    description: "",
+  });
+  await page.goto(`${f.path}/initiatives`);
+  await expect(
+    page.getByRole("link", {
+      name: "Previously visible initiative",
+      exact: true,
+    }),
+  ).toBeVisible();
+  const endpoint = `**/api/parity/initiative/${f.workspace.id}?*`;
+  await page.route(endpoint, (route) =>
+    route.fulfill({
+      status: 403,
+      contentType: "application/json",
+      body: JSON.stringify({ message: "Planning access revoked" }),
+    }),
+  );
+  // A second client's mutation invalidates the populated list over the socket.
+  await f.post(`parity/initiative/${f.workspace.id}`, {
+    name: "Refresh trigger",
+    description: "",
+  });
+  await expect(page.getByRole("alert")).toContainText(
+    "Planning access revoked",
+  );
+  await expect(
+    page.getByRole("link", {
+      name: "Previously visible initiative",
+      exact: true,
+    }),
+  ).toHaveCount(0);
+  await page.unroute(endpoint);
+  await page.getByRole("button", { name: "Retry", exact: true }).click();
+  await expect(
+    page.getByRole("link", {
+      name: "Previously visible initiative",
+      exact: true,
+    }),
+  ).toBeVisible();
+  await expect(page.getByRole("alert")).toHaveCount(0);
+});

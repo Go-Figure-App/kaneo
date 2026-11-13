@@ -28,7 +28,11 @@ export function InitiativeForm({
   const [status, setStatus] = useState<InitiativeStatus>(
     initiative?.status ?? "planned",
   );
-  const [ownerId, setOwner] = useState(initiative?.ownerId ?? null);
+  const [selectedOwnerId, setOwner] = useState<string | null>();
+  const ownerId =
+    selectedOwnerId === undefined
+      ? (initiative?.ownerId ?? null)
+      : selectedOwnerId;
   const [targetDate, setTarget] = useState(initiative?.targetDate ?? null);
   const [picker, setPicker] = useState<"owner" | "status" | "target" | null>(
     null,
@@ -81,7 +85,7 @@ export function InitiativeForm({
                 name,
                 status,
                 targetDate,
-                ...(ownerId !== initiative.ownerId ? { ownerId } : {}),
+                ...(selectedOwnerId !== undefined ? { ownerId } : {}),
               }),
             );
             if (result) goBack();

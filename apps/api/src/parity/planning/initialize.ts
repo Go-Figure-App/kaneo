@@ -18,13 +18,13 @@ const enabled = () =>
   );
 
 export async function reconcilePlanningProject(projectId: string) {
-  const workspaces = await db.transaction(async (tx) => {
+  const affected = await db.transaction(async (tx) => {
     const [project] = await tx
       .select()
       .from(projectTable)
       .where(eq(projectTable.id, projectId))
       .for("update");
-    if (!project) return [];
+    if (!project) return null;
     const stale = await tx
       .select({
         id: initiativeTable.id,
@@ -65,13 +65,20 @@ export async function reconcilePlanningProject(projectId: string) {
         .update(projectExtTable)
         .set({ leadId: null })
         .where(eq(projectExtTable.projectId, projectId));
-    return [
-      ...new Set([project.workspaceId, ...stale.map((row) => row.workspaceId)]),
-    ];
+    return {
+      workspaceId: project.workspaceId,
+      formerWorkspaceIds: [...new Set(stale.map((row) => row.workspaceId))],
+    };
   });
-  for (const workspaceId of workspaces)
+  if (!affected) return;
+  await publishEvent("parity.workspace_updated", {
+    type: "PROJECT_PLAN_UPDATED",
+    workspaceId: affected.workspaceId,
+    projectId,
+  });
+  for (const workspaceId of affected.formerWorkspaceIds)
     await publishEvent("parity.workspace_updated", {
-      type: "PROJECT_PLAN_UPDATED",
+      type: "INITIATIVE_UPDATED",
       workspaceId,
     });
 }
