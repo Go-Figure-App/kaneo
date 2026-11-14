@@ -14,18 +14,16 @@ import { fileURLToPath } from "node:url";
 // Requires the zip CLI (available on macOS and in most Linux development images).
 const site = fileURLToPath(new URL("../", import.meta.url));
 const output = join(site, "public/press");
-const temporary = mkdtempSync(join(tmpdir(), "kaneo-press-"));
+const temporary = mkdtempSync(join(tmpdir(), "tracing-press-"));
 const assets = [
-  ["logo-dark.svg", "kaneo-wordmark-dark.svg"],
-  ["logo-light.svg", "kaneo-wordmark-light.svg"],
-  ["logo-512.png", "kaneo-icon.png"],
-  ["images/light.png", "kaneo-board-light.png"],
-  ["images/dark.png", "kaneo-board-dark.png"],
+  ["logo-dark.svg", "tracing-wordmark-dark.svg"],
+  ["logo-light.svg", "tracing-wordmark-light.svg"],
+  ["logo-512.png", "tracing-icon.png"],
 ];
 
 try {
   mkdirSync(output, { recursive: true });
-  const folder = join(temporary, "kaneo-press-kit");
+  const folder = join(temporary, "tracing-press-kit");
   mkdirSync(folder);
   for (const [source, destination] of assets) {
     copyFileSync(join(site, "public", source), join(folder, destination));
@@ -36,17 +34,17 @@ try {
   for (const file of files) {
     utimesSync(join(folder, file), timestamp, timestamp);
   }
-  const archive = join(temporary, "kaneo-press-kit.zip");
+  const archive = join(temporary, "tracing-press-kit.zip");
   execFileSync(
     "zip",
-    ["-X", "-q", archive, ...files.map((file) => `kaneo-press-kit/${file}`)],
+    ["-X", "-q", archive, ...files.map((file) => `tracing-press-kit/${file}`)],
     {
       cwd: temporary,
       env: { ...process.env, TZ: "UTC" },
     },
   );
-  copyFileSync(archive, join(output, "kaneo-press-kit.zip"));
-  console.log("Generated public/press/kaneo-press-kit.zip");
+  copyFileSync(archive, join(output, "tracing-press-kit.zip"));
+  console.log("Generated public/press/tracing-press-kit.zip");
 } finally {
   rmSync(temporary, { recursive: true, force: true });
 }
