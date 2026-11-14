@@ -56,5 +56,6 @@
     "vite-plus": "catalog:",
     "@tracing/mcp": "workspace:*",
     "@tracing/typescript-config": "workspace:*"
-  }
+  },
+  "private": true
 }
