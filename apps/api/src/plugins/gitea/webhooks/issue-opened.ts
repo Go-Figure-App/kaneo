@@ -217,7 +217,8 @@ export async function handleGiteaIssueOpened(
     }
 
     const clientUrl =
-      (process.env.TRACING_CLIENT_URL ?? process.env.KANEO_CLIENT_URL) ||
+      process.env.TRACING_CLIENT_URL ||
+      process.env.KANEO_CLIENT_URL ||
       "http://localhost:5173";
     const taskUrl = `${clientUrl}/dashboard/workspace/${project.workspaceId}/project/${projectId}/task/${createdTask.id}`;
     const taskIdentifier = `${project.slug.toUpperCase()}-${createdTask.number}`;

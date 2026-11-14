@@ -44,10 +44,10 @@ function AcceptInvitation() {
       search: { invitationId: inviteId, email: invitation?.email },
     });
 
-  const goToKaneo = (
+  const goToTracing = (
     <p className="pt-8 text-muted-foreground text-sm">
       <Link to="/dashboard" className={authLinkClassName}>
-        {t("auth:invitation.goToKaneo")}
+        {t("auth:invitation.goToTracing")}
       </Link>
     </p>
   );
@@ -71,7 +71,7 @@ function AcceptInvitation() {
           title={t("auth:invitation.loadFailed.title")}
           description={t("auth:invitation.loadFailed.description")}
         >
-          {goToKaneo}
+          {goToTracing}
         </AuthPage>
       </>
     );
@@ -97,7 +97,7 @@ function AcceptInvitation() {
               : t("auth:invitation.invalid.description")
           }
         >
-          {goToKaneo}
+          {goToTracing}
         </AuthPage>
       </>
     );
