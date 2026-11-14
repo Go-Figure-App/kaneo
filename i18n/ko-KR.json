@@ -96,7 +96,7 @@
 				"errorToast": "프로젝트 생성에 실패했습니다"
 			},
 			"createWorkspace": {
-				"breadcrumbTracing": "KANEO",
+				"breadcrumbTracing": "Tracing",
 				"title": "새 워크스페이스 만들기",
 				"description": "워크스페이스 이름을 지정하여 새 워크스페이스를 만듭니다.",
 				"namePlaceholder": "워크스페이스 이름",

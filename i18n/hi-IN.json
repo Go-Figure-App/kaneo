@@ -96,7 +96,7 @@
 				"errorToast": "प्रोजेक्ट बनाने में विफल"
 			},
 			"createWorkspace": {
-				"breadcrumbTracing": "KANEO",
+				"breadcrumbTracing": "Tracing",
 				"title": "नया वर्कस्पेस बनाएँ",
 				"description": "अपने वर्कस्पेस के लिए नाम देकर एक नया वर्कस्पेस बनाएँ।",
 				"namePlaceholder": "वर्कस्पेस का नाम",

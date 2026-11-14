@@ -12,11 +12,12 @@ import {
 type LinkedFile = { readonly path: string; readonly value: RepoConfigObject };
 
 // Read and validate both files before changing either. Otherwise removing the
-// preferred file can reactivate a legacy link in the same directory.
+// preferred file can reactivate a legacy link in the same directory. Clear the
+// legacy file first so a failed write leaves the active link unchanged.
 export const readRepoLinks = Effect.fnUntraced(function* (path: string) {
   const paths =
     basename(path) === ".tracing.json"
-      ? [path, join(dirname(path), ".kaneo.json")]
+      ? [join(dirname(path), ".kaneo.json"), path]
       : [path];
   const linked: LinkedFile[] = [];
   for (const candidate of paths) {
