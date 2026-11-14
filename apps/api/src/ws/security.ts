@@ -17,14 +17,14 @@ export function assertWebSocketOrigin(headers: Headers) {
     }
   } else {
     const configured = [
-      process.env.TRACING_CLIENT_URL ?? process.env.KANEO_CLIENT_URL,
-      process.env.TRACING_API_URL ?? process.env.KANEO_API_URL,
+      process.env.TRACING_CLIENT_URL || process.env.KANEO_CLIENT_URL,
+      process.env.TRACING_API_URL || process.env.KANEO_API_URL,
       ...(process.env.CORS_ORIGINS ?? "").split(","),
     ];
     if (process.env.NODE_ENV !== "production") {
-      if (!(process.env.TRACING_CLIENT_URL ?? process.env.KANEO_CLIENT_URL))
+      if (!(process.env.TRACING_CLIENT_URL || process.env.KANEO_CLIENT_URL))
         configured.push("http://localhost:5173");
-      if (!(process.env.TRACING_API_URL ?? process.env.KANEO_API_URL))
+      if (!(process.env.TRACING_API_URL || process.env.KANEO_API_URL))
         configured.push("http://localhost:1337");
     }
     for (const value of configured) {

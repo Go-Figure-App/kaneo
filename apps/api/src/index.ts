@@ -236,7 +236,7 @@ export function createApp() {
   const { upgradeWebSocket, injectWebSocket } = nodeWs;
   const corsOriginSource = [
     process.env.CORS_ORIGINS,
-    process.env.TRACING_CLIENT_URL ?? process.env.KANEO_CLIENT_URL,
+    process.env.TRACING_CLIENT_URL || process.env.KANEO_CLIENT_URL,
   ].find((value) => value?.trim());
   const corsOrigins = corsOriginSource
     ?.split(",")
@@ -678,7 +678,8 @@ export function createApp() {
       servers: [
         {
           url: normalizeApiServerUrl(
-            (process.env.TRACING_API_URL ?? process.env.KANEO_API_URL) ||
+            process.env.TRACING_API_URL ||
+              process.env.KANEO_API_URL ||
               "https://tracing.gofigureapp.io",
           ),
           description: "Tracing API Server",
@@ -771,7 +772,8 @@ export function createApp() {
       // Optional `ui=1` forces redirect when Sec-Fetch-* headers are missing (e.g. some clients).
       if (forceUiRedirect || secFetchDest === "document") {
         const clientUrl = (
-          (process.env.TRACING_CLIENT_URL ?? process.env.KANEO_CLIENT_URL) ||
+          process.env.TRACING_CLIENT_URL ||
+          process.env.KANEO_CLIENT_URL ||
           "http://localhost:5173"
         ).replace(/\/$/, "");
         const deviceUrl = new URL(`${clientUrl}/device`);
@@ -893,7 +895,8 @@ export function createApp() {
     "/",
     mcpWellKnownRoutes(
       (
-        (process.env.TRACING_API_URL ?? process.env.KANEO_API_URL) ||
+        process.env.TRACING_API_URL ||
+        process.env.KANEO_API_URL ||
         "http://localhost:1337"
       ).replace(/\/api\/?$/, ""),
     ),
@@ -1096,7 +1099,7 @@ export async function startServer(
     },
     () => {
       console.log(
-        `⚡ API is running at ${(process.env.TRACING_API_URL ?? process.env.KANEO_API_URL) || "http://localhost:1337"}`,
+        `⚡ API is running at ${process.env.TRACING_API_URL || process.env.KANEO_API_URL || "http://localhost:1337"}`,
       );
     },
   );

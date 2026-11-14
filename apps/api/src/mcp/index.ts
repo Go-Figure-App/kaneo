@@ -34,14 +34,15 @@ import {
 import { createMcpServerForUser } from "./legacy-server";
 
 const publicApiUrl = (
-  (process.env.TRACING_API_URL ?? process.env.KANEO_API_URL) ||
+  process.env.TRACING_API_URL ||
+  process.env.KANEO_API_URL ||
   "http://localhost:1337"
 )
   .replace(/\/api\/?$/, "")
   .replace(/\/+$/, "");
 const internalApiUrl = (
-  (process.env.TRACING_INTERNAL_API_URL ??
-    process.env.KANEO_INTERNAL_API_URL) ||
+  process.env.TRACING_INTERNAL_API_URL ||
+  process.env.KANEO_INTERNAL_API_URL ||
   "http://127.0.0.1:1337"
 )
   .replace(/\/api\/?$/, "")

@@ -111,7 +111,8 @@ async function createTaskIssue(
       });
       if (project) {
         const clientUrl =
-          (process.env.TRACING_CLIENT_URL ?? process.env.KANEO_CLIENT_URL) ||
+          process.env.TRACING_CLIENT_URL ||
+          process.env.KANEO_CLIENT_URL ||
           "http://localhost:5173";
         const taskUrl = `${clientUrl}/dashboard/workspace/${project.workspaceId}/project/${event.projectId}/task/${event.taskId}`;
         comment = `[${project.slug.toUpperCase()}-${event.number}](${taskUrl})`;

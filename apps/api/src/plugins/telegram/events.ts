@@ -127,7 +127,7 @@ async function getTelegramEventData(
     taskNumber: taskRow.number,
     projectName: taskRow.projectName,
     taskUrl: getTaskUrl(
-      process.env.TRACING_CLIENT_URL ?? process.env.KANEO_CLIENT_URL,
+      process.env.TRACING_CLIENT_URL || process.env.KANEO_CLIENT_URL,
       taskRow.workspaceId,
       taskRow.projectId,
       taskId,
