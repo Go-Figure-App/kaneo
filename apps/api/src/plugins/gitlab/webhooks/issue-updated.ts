@@ -225,7 +225,7 @@ export async function handleGitlabIssueUpdated(
             }
 
             if (changes?.description) {
-              // Kaneo recorded the body with its footer, so compare the raw body.
+              // Tracing recorded the body with its footer, so compare the raw body.
               const issueBody = issue.description ?? "";
               if (
                 !isEchoOf(metadata.lastSync?.description, "kaneo", issueBody)

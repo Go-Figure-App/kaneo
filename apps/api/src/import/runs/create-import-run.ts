@@ -1,4 +1,4 @@
-import type { ImportSourceId } from "@kaneo/importers";
+import type { ImportSourceId } from "@tracing/importers";
 import { sql } from "drizzle-orm";
 import db from "../../database";
 import { importRunTable } from "../../database/schema";

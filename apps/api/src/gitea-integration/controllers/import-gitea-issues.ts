@@ -15,7 +15,7 @@ import {
 } from "../../database/schema";
 import { publishEvent } from "../../events";
 import type { GiteaConfig } from "../../plugins/gitea/config";
-import { isKaneoComment } from "../../plugins/gitea/utils/comment-origin";
+import { isTracingComment } from "../../plugins/gitea/utils/comment-origin";
 import {
   createGiteaClient,
   type GiteaIssue,
@@ -486,7 +486,7 @@ async function importCommentsForTask(
 ): Promise<void> {
   for (const comment of allComments) {
     const username = comment.user?.login ?? comment.user?.username ?? "";
-    if (username.endsWith("[bot]") || isKaneoComment(comment.body)) {
+    if (username.endsWith("[bot]") || isTracingComment(comment.body)) {
       continue;
     }
 

@@ -1,4 +1,4 @@
-import type { NotificationEmailTask } from "@kaneo/email";
+import type { NotificationEmailTask } from "@tracing/email";
 import { and, asc, count, eq, isNull } from "drizzle-orm";
 import db from "../database";
 import {

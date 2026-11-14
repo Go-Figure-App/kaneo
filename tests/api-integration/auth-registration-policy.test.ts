@@ -1,4 +1,4 @@
-import * as email from "@kaneo/email";
+import * as email from "@tracing/email";
 import { eq } from "drizzle-orm";
 import {
   afterEach,
@@ -253,8 +253,8 @@ describe("auth registration and bootstrap boundaries", () => {
     const data = send.mock.lastCall?.[2] as { otp: string } | undefined;
     expect(data?.otp).toBeTruthy();
     const subject = send.mock.lastCall?.[1];
-    expect(typeof subject === "function" ? subject("Kaneo") : subject).toBe(
-      `${data?.otp} is your Kaneo sign-in code`,
+    expect(typeof subject === "function" ? subject("Tracing") : subject).toBe(
+      `${data?.otp} is your Tracing sign-in code`,
     );
     const requestContext = expect.objectContaining({
       device: { browser: "Safari", os: "iPhone" },

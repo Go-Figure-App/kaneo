@@ -1,4 +1,4 @@
-// Kaneo's own notes come back authored by the token user; match them by id.
+// Tracing's own notes come back authored by the token user; match them by id.
 const MAX_TRACKED_NOTE_IDS = 50;
 
 export function syncedNoteIds(metadata: string | null | undefined): number[] {

@@ -100,7 +100,7 @@ describe("createGuardedFetch", () => {
 
   it("checks every redirect hop", async () => {
     const baseFetch = vi.fn(async () => redirect("http://127.0.0.1/admin"));
-    const guard = createGuardedFetch("Kaneo", { baseFetch });
+    const guard = createGuardedFetch("Tracing", { baseFetch });
 
     await expect(guard.fetch(`${PUBLIC}/api`)).rejects.toThrow("non-routable");
     expect(baseFetch).toHaveBeenCalledTimes(1);
@@ -138,7 +138,7 @@ describe("createGuardedFetch", () => {
       .fn<(input: string, init?: RequestInit) => Promise<Response>>()
       .mockResolvedValueOnce(redirect(`${PUBLIC}/done`, 303))
       .mockResolvedValueOnce(new Response("done"));
-    const guard = createGuardedFetch("Kaneo", { baseFetch });
+    const guard = createGuardedFetch("Tracing", { baseFetch });
 
     await guard.fetch(`${PUBLIC}/api`, { method: "POST", body: "{}" });
 

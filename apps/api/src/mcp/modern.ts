@@ -11,7 +11,7 @@ export function createModernMcpHandler(
     () => {
       const server = new McpServer(
         {
-          name: "kaneo-mcp",
+          name: "tracing-mcp",
           version: "1.0.0",
         },
         {

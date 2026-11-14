@@ -42,7 +42,7 @@ const listImportSourceProjectsRoute = createRoute({
   tags: ["Import"],
   summary: "List projects in an import source",
   description:
-    "Sign in to PLANKA, Plane, Linear, Jira, Trello or another Kaneo instance and list the projects that can be imported. With the parity import feature enabled, Linear lists actual projects and a catch-all per team; otherwise it lists teams. The credentials are used only for this request; they are never stored, logged, or returned.",
+    "Sign in to PLANKA, Plane, Linear, Jira, Trello or another Tracing instance and list the projects that can be imported. With the parity import feature enabled, Linear lists actual projects and a catch-all per team; otherwise it lists teams. The credentials are used only for this request; they are never stored, logged, or returned.",
   middleware: [
     workspaceAccess.fromBody(),
     importPermission,
@@ -80,7 +80,7 @@ const startImportRunRoute = createRoute({
   tags: ["Import"],
   summary: "Start an import",
   description:
-    "Import the selected source projects into the workspace as new Kaneo projects. Repeating an import creates another copy. With the parity import feature enabled, Linear also imports project plans, milestones, updates, linked initiatives, team cycles, estimates, triage and original identifiers; selecting every source entry includes initiatives without projects. Historical burndown is unavailable. The import runs in the background; poll getImportRun for progress. The credentials are held in memory only while the import runs; they are never stored, logged, or returned. Imported tasks do not send notifications or trigger integrations.",
+    "Import the selected source projects into the workspace as new Tracing projects. Repeating an import creates another copy. With the parity import feature enabled, Linear also imports project plans, milestones, updates, linked initiatives, team cycles, estimates, triage and original identifiers; selecting every source entry includes initiatives without projects. Historical burndown is unavailable. The import runs in the background; poll getImportRun for progress. The credentials are held in memory only while the import runs; they are never stored, logged, or returned. Imported tasks do not send notifications or trigger integrations.",
   middleware: [
     workspaceAccess.fromBody(),
     importPermission,

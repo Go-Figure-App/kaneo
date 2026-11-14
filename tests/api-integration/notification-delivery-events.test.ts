@@ -1,4 +1,4 @@
-import * as email from "@kaneo/email";
+import * as email from "@tracing/email";
 import { eq } from "drizzle-orm";
 import {
   afterEach,
@@ -20,7 +20,7 @@ import {
   createWorkspaceMember,
 } from "./helpers/fixtures";
 
-vi.mock("@kaneo/email", async (original) => ({
+vi.mock("@tracing/email", async (original) => ({
   ...(await original<object>()),
   sendNotificationEmail: vi.fn(async () => undefined),
 }));

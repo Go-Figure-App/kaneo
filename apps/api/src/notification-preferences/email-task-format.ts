@@ -2,7 +2,7 @@ import type {
   BoardColumnIcon,
   TaskCardDueStatus,
   TaskCardPriority,
-} from "@kaneo/email";
+} from "@tracing/email";
 
 const DAY_MS = 24 * 60 * 60 * 1000;
 

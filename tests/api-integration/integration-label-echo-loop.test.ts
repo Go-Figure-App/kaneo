@@ -177,7 +177,7 @@ async function setup(
         where: eq(schema.externalLinkTable.id, link!.id),
       }))!.metadata!,
     );
-  // A Kaneo user edit: the API commits it and broadcasts the event.
+  // A Tracing user edit: the API commits it and broadcasts the event.
   const edit = async (newStatus: string) => {
     const oldStatus = await status();
     await db
@@ -245,7 +245,7 @@ const statusLabels = () =>
   [...mocks.labels].filter((name) => name.startsWith("status:"));
 
 it.each(["github", "gitea"] as const)(
-  "%s ignores stale label echoes after Kaneo changes the status (#1956)",
+  "%s ignores stale label echoes after Tracing changes the status (#1956)",
   async (provider) => {
     const f = await setup(provider);
     // Two ordinary labels reach the issue first. Their webhooks still carry
@@ -269,7 +269,7 @@ it.each(["github", "gitea"] as const)(
 );
 
 it.each(["github", "gitea"] as const)(
-  "%s ignores an echo that arrives after a newer Kaneo status",
+  "%s ignores an echo that arrives after a newer Tracing status",
   async (provider) => {
     const f = await setup(provider);
     await f.edit("in-progress");
@@ -428,7 +428,7 @@ it("github defers a provider read that outlives the delivery budget", async () =
 it("github applies only the event's label on links without a record", async () => {
   mocks.labels = new Set(["status:to-do", "priority:low"]);
   const f = await setup("github", {});
-  // An imported closed issue: done in Kaneo, status:to-do on GitHub.
+  // An imported closed issue: done in Tracing, status:to-do on GitHub.
   await db
     .update(schema.taskTable)
     .set({ status: "done", priority: "low" })

@@ -2,7 +2,7 @@ import type {
   ImportedComment,
   ImportedPerson,
   ImportedTask,
-} from "@kaneo/importers";
+} from "@tracing/importers";
 import { VALID_PRIORITIES } from "../../task/validate-task-fields";
 
 export type BoardColumn = { id: string; slug: string };

@@ -11,8 +11,8 @@ describe("MagicLinkEmail", () => {
         locale: "ja-JP",
       }),
     );
-    expect(html).toContain("Kaneo にサインイン");
-    expect(html).toContain("Kaneo セキュリティメール");
+    expect(html).toContain("Tracing にサインイン");
+    expect(html).toContain("Tracing セキュリティメール");
   });
 
   it("renders Traditional Chinese copy for a zh-TW locale", async () => {
@@ -22,7 +22,7 @@ describe("MagicLinkEmail", () => {
         locale: "zh-TW",
       }),
     );
-    expect(html).toContain("登入 Kaneo");
-    expect(html).toContain("Kaneo 安全性通知");
+    expect(html).toContain("登入 Tracing");
+    expect(html).toContain("Tracing 安全性通知");
   });
 });

@@ -49,7 +49,7 @@ export async function updateSubscriptionSeats(input: {
   const subscription = await client.subscriptions.get(input.subscriptionId);
   const items = subscription.items ?? [];
   // A stale stored product id still resolves on a single-item subscription,
-  // which is the shape Kaneo sells. Guessing among several items would bill
+  // which is the shape Tracing sells. Guessing among several items would bill
   // the wrong product, so that case has to be repaired by hand.
   const item =
     items.find((entry) => entry.productId === input.productId) ??

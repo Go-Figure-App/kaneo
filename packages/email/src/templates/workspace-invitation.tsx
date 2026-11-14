@@ -48,14 +48,14 @@ export type WorkspaceInvitationEmailCopy = {
 const DEFAULT_COPY: WorkspaceInvitationEmailCopy = {
   subject:
     "{{inviterName}} invited you to join {{workspaceName}} on {{instanceName}}",
-  preview: "You're invited to {{workspaceName}} on Kaneo",
+  preview: "You're invited to {{workspaceName}} on Tracing",
   title: "Join {{workspaceName}}",
   subtitle:
-    "{{inviterName}} ({{inviterEmail}}) invited you to collaborate in Kaneo.",
+    "{{inviterName}} ({{inviterEmail}}) invited you to collaborate in Tracing.",
   cta: "Accept invitation",
   sameEmail: "You can accept with the same email that received this message.",
   ignore: "If this wasn't expected, you can safely ignore this email.",
-  footer: "Kaneo workspace invitation",
+  footer: "Tracing workspace invitation",
   details: {
     title: "Invitation details",
     sentTo: "Sent to",
@@ -135,12 +135,12 @@ WorkspaceInvitationEmail.PreviewProps = {
   workspaceName: "Acme",
   inviterName: "Sarah Chen",
   inviterEmail: "sarah@acme.com",
-  invitationLink: "https://cloud.kaneo.app/invitation/accept/abc123",
+  invitationLink: "https://tracing.gofigureapp.io/invitation/accept/abc123",
   to: "maya@example.com",
   locale: "en-US",
   role: "Member",
   expiresAt: "2026-10-13T14:12:00.000Z",
-  instance: "cloud.kaneo.app",
+  instance: "tracing.gofigureapp.io",
 } as WorkspaceInvitationEmailProps;
 
 export default WorkspaceInvitationEmail;

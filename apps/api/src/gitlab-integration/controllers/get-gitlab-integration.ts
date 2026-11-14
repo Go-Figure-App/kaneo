@@ -30,7 +30,8 @@ async function getGitlabIntegration(projectId: string, includeSecrets = false) {
   const config = JSON.parse(integration.config) as GitlabConfig;
 
   const apiBase = normalizeApiServerUrl(
-    process.env.KANEO_API_URL || "http://localhost:1337",
+    (process.env.TRACING_API_URL ?? process.env.KANEO_API_URL) ||
+      "http://localhost:1337",
   );
 
   return {

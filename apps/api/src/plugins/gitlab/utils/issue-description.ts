@@ -1,4 +1,4 @@
-// Strip the `Task:` footer Kaneo appends, or every sync adds another one.
+// Strip the `Task:` footer Tracing appends, or every sync adds another one.
 const FOOTER = /(?:\r?\n)*-{3}\r?\n<sub>Task: [^<\r\n]+<\/sub>\s*$/;
 const FOOTER_ONLY = /^\s*<sub>Task: [^<\r\n]+<\/sub>\s*$/;
 

@@ -1,4 +1,4 @@
-import { type BuiltInRoleName, builtInRoles } from "@kaneo/permissions";
+import { type BuiltInRoleName, builtInRoles } from "@tracing/permissions";
 import { missingPermissions } from "./missing-permissions";
 
 export type PermissionMap = Record<string, string[]>;

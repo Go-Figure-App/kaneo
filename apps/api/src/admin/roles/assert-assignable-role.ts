@@ -1,4 +1,4 @@
-import { isCustomRolePermission } from "@kaneo/permissions";
+import { isCustomRolePermission } from "@tracing/permissions";
 import { eq } from "drizzle-orm";
 import { instanceRoleTable } from "../../database/schema";
 import { ApiError } from "../../errors/api-error";

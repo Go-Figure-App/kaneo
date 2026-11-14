@@ -5,7 +5,7 @@ import {
   isSmtpConfigured,
   sendAccountPasswordEmail,
   sendEmailVerificationEmail,
-} from "@kaneo/email";
+} from "@tracing/email";
 import { createEmailVerificationToken } from "better-auth/api";
 import { auth } from "../../auth";
 import { accountEmailSubject } from "./account-email-subjects";
@@ -23,7 +23,9 @@ const notConfigured: EmailResult = {
 };
 
 function clientUrl(path: string) {
-  const base = process.env.KANEO_CLIENT_URL || "http://localhost:5173";
+  const base =
+    (process.env.TRACING_CLIENT_URL ?? process.env.KANEO_CLIENT_URL) ||
+    "http://localhost:5173";
   return encodeURIComponent(`${base.replace(/\/$/, "")}${path}`);
 }
 

@@ -1,4 +1,4 @@
-import type { FetchLike } from "@kaneo/importers";
+import type { FetchLike } from "@tracing/importers";
 import {
   assertPublicDestination,
   nonRoutableDestinationMessage,

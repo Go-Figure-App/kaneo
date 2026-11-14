@@ -1,7 +1,7 @@
 import { afterEach, describe, expect, it, vi } from "vite-plus/test";
 import { probeEmail } from "./probe-email";
 
-vi.mock("@kaneo/email", () => ({
+vi.mock("@tracing/email", () => ({
   verifySmtpConnection: () => new Promise(() => {}),
 }));
 

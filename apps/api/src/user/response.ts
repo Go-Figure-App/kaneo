@@ -29,7 +29,7 @@ export const currentUserSchema = z
     role: z.string().nullable(),
     managedProfileFields: z.array(z.enum(MANAGED_PROFILE_FIELDS)).openapi({
       description:
-        "Profile fields the custom OAuth/OIDC provider manages for this user. Kaneo updates them at sign-in and refuses changes to them.",
+        "Profile fields the custom OAuth/OIDC provider manages for this user. Tracing updates them at sign-in and refuses changes to them.",
     }),
   })
   .openapi("CurrentUser");

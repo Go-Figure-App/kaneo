@@ -308,18 +308,6 @@ importers:
       '@hono/zod-openapi':
         specifier: ^1.6.3
         version: 1.6.3(hono@4.13.14)(zod@4.6.7)
-      '@kaneo/email':
-        specifier: workspace:@tracing/email@*
-        version: link:../../packages/email
-      '@kaneo/importers':
-        specifier: workspace:@tracing/importers@*
-        version: link:../../packages/importers
-      '@kaneo/mcp':
-        specifier: workspace:@tracing/mcp@*
-        version: link:../../packages/mcp
-      '@kaneo/permissions':
-        specifier: workspace:@tracing/permissions@*
-        version: link:../../packages/permissions
       '@modelcontextprotocol/sdk':
         specifier: 1.32.2
         version: 1.32.2(supports-color@8.1.1)(zod@4.6.7)
@@ -1253,9 +1241,6 @@ importers:
         specifier: 1.7.14
         version: 1.7.14(9dfa598265a5ec12fae0ececa5b22a4d)
     devDependencies:
-      '@kaneo/typescript-config':
-        specifier: workspace:@tracing/typescript-config@*
-        version: link:../typescript-config
       '@tracing/typescript-config':
         specifier: workspace:*
         version: link:../typescript-config

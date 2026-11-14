@@ -21,7 +21,7 @@ const smtp = vi.hoisted(() => ({
   verify: vi.fn(async () => ({ status: "not_configured" })),
 }));
 const redis = vi.hoisted(() => ({ ping: vi.fn(async () => "PONG") }));
-vi.mock("@kaneo/email", async (importOriginal) => ({
+vi.mock("@tracing/email", async (importOriginal) => ({
   ...(await importOriginal<Record<string, unknown>>()),
   verifySmtpConnection: smtp.verify,
 }));

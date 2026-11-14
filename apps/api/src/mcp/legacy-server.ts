@@ -7,7 +7,7 @@ export function createMcpServerForUser(
   internalApiUrl: string,
 ): McpServer {
   const server = new McpServer(
-    { name: "kaneo-mcp", version: "1.0.0" },
+    { name: "tracing-mcp", version: "1.0.0" },
     { maxToolInputElements: MCP_MAX_TOOL_INPUT_ELEMENTS },
   );
   registerMcpTools(toMcpToolRegistrar(server), internalApiUrl, token);

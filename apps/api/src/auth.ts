@@ -15,13 +15,13 @@ import {
   sendOtpEmail,
   sendPasswordResetEmail,
   sendWorkspaceInvitationEmail,
-} from "@kaneo/email";
+} from "@tracing/email";
 import {
   ac,
   DEFAULT_ROLE_NAMES,
   defaultRolePayloads,
   owner,
-} from "@kaneo/permissions";
+} from "@tracing/permissions";
 import bcrypt from "bcryptjs";
 import { betterAuth } from "better-auth";
 import {
@@ -157,8 +157,12 @@ const isLoginFormDisabled = process.env.DISABLE_LOGIN_FORM === "true";
 const isEmailOtpSignInDisabled =
   process.env.DISABLE_EMAIL_OTP_SIGN_IN === "true";
 
-const apiUrl = process.env.KANEO_API_URL || "http://localhost:1337";
-const clientUrl = process.env.KANEO_CLIENT_URL || "http://localhost:5173";
+const apiUrl =
+  (process.env.TRACING_API_URL ?? process.env.KANEO_API_URL) ||
+  "http://localhost:1337";
+const clientUrl =
+  (process.env.TRACING_CLIENT_URL ?? process.env.KANEO_CLIENT_URL) ||
+  "http://localhost:5173";
 
 const trustedOrigins = [clientUrl];
 try {
@@ -237,7 +241,7 @@ async function shouldDeliverSignInEmail(email: string) {
   return true;
 }
 
-function getAuthEmailCopy(locale?: string | null, instanceName = "Kaneo") {
+function getAuthEmailCopy(locale?: string | null, instanceName = "Tracing") {
   const localeKey = getLocaleKey(locale);
 
   if (localeKey === "de") {
@@ -291,7 +295,13 @@ function getDeviceAuthClientIds(): Set<string> {
         .filter(Boolean),
     );
   }
-  return new Set(["kaneo-cli", "kaneo-mcp"]);
+  return new Set([
+    "tracing-cli",
+    "tracing-mcp",
+    "tracing-mobile",
+    "kaneo-cli",
+    "kaneo-mcp",
+  ]);
 }
 
 function getDeviceAuthVerificationUri(): string {
@@ -410,7 +420,7 @@ export const auth = betterAuth({
       ? [
           anonymous({
             generateName: async () => generateDemoName(),
-            emailDomainName: "kaneo.app",
+            emailDomainName: "guest.tracing.invalid",
           }),
         ]
       : []),
@@ -564,7 +574,7 @@ export const auth = betterAuth({
         return hasInstanceAdminRole(freshUser?.role);
       },
       // Better Auth defaults this to `true`, which blocks any user whose email
-      // is not verified from accepting/rejecting an invitation. Kaneo does not
+      // is not verified from accepting/rejecting an invitation. Tracing does not
       // verify emails on signup (and guest/anonymous users are unverified by
       // design), so leaving the default on breaks invitation acceptance for
       // everyone. The invitation link id is the actual secret here, so gate on
@@ -583,7 +593,7 @@ export const auth = betterAuth({
         afterCreateOrganization: async ({ organization, user }) => {
           // Seed the editable default roles for this workspace. Each
           // role's permissions are derived from the compiled-in defaults
-          // in `@kaneo/permissions`; admins can later replace them in the
+          // in `@tracing/permissions`; admins can later replace them in the
           // Roles UI. We skip names that somehow already exist (this hook
           // is best-effort idempotent; the boot-time backfill is the
           // belt-and-braces path).
@@ -666,7 +676,7 @@ export const auth = betterAuth({
         },
       },
       async sendInvitationEmail(data) {
-        const inviteLink = `${process.env.KANEO_CLIENT_URL}/invitation/accept/${data.id}`;
+        const inviteLink = `${process.env.TRACING_CLIENT_URL ?? process.env.KANEO_CLIENT_URL}/invitation/accept/${data.id}`;
         const locale = await getUserLocale(data.email);
         const copy = getWorkspaceInvitationEmailCopy(locale);
 

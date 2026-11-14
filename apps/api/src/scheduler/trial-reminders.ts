@@ -1,4 +1,4 @@
-import { isSmtpConfigured, sendTrialReminderEmail } from "@kaneo/email";
+import { isSmtpConfigured, sendTrialReminderEmail } from "@tracing/email";
 import { and, asc, eq, gt, isNotNull, isNull, lte } from "drizzle-orm";
 import { isBillingEnabled, trialDays } from "../billing/config";
 import db from "../database";
@@ -47,10 +47,11 @@ const REMINDERS: {
 ];
 
 function clientUrl() {
-  return (process.env.KANEO_CLIENT_URL ?? "https://cloud.kaneo.app").replace(
-    /\/$/,
-    "",
-  );
+  return (
+    process.env.TRACING_CLIENT_URL ??
+    process.env.KANEO_CLIENT_URL ??
+    "https://tracing.gofigureapp.io"
+  ).replace(/\/$/, "");
 }
 
 async function getWorkspacesNeedingReminder(

@@ -22,7 +22,7 @@ const redis = vi.hoisted(() => ({
   ping: vi.fn(async () => "PONG"),
 }));
 
-vi.mock("@kaneo/email", async (importOriginal) => ({
+vi.mock("@tracing/email", async (importOriginal) => ({
   ...(await importOriginal<Record<string, unknown>>()),
   isSmtpConfigured: smtp.configured,
   sendTestEmail: smtp.send,

@@ -1,4 +1,4 @@
-import type { ImportSourceId } from "@kaneo/importers";
+import type { ImportSourceId } from "@tracing/importers";
 import type { importRunTable } from "../../database/schema";
 import {
   failUnfinishedProjects,

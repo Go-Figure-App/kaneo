@@ -1,4 +1,4 @@
-import { isSmtpConfigured } from "@kaneo/email";
+import { isSmtpConfigured } from "@tracing/email";
 import { asc } from "drizzle-orm";
 import db from "../../database";
 import { instanceRoleTable } from "../../database/schema";
@@ -7,7 +7,10 @@ import { resolveInstanceSettings } from "../../instance-settings/resolve-instanc
 import { integrationPlugins } from "../../plugins";
 
 function instanceUrl() {
-  return process.env.KANEO_CLIENT_URL?.trim() || null;
+  return (
+    (process.env.TRACING_CLIENT_URL ?? process.env.KANEO_CLIENT_URL)?.trim() ||
+    null
+  );
 }
 
 /** The settings page: saved values with environment overrides applied. */

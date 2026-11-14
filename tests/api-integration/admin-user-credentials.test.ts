@@ -1,5 +1,5 @@
 import type { EmailSubject } from "../../packages/email/src/brand";
-import * as email from "@kaneo/email";
+import * as email from "@tracing/email";
 import { eq } from "drizzle-orm";
 import {
   afterEach,
@@ -59,8 +59,8 @@ describe("POST /api/admin/users/{userId}/password-reset-email", () => {
       { purpose: string; passwordLink: string },
     ];
     expect(to).toBe("target@example.com");
-    expect(typeof subject === "function" ? subject("Kaneo") : subject).toBe(
-      "Choose a new Kaneo password",
+    expect(typeof subject === "function" ? subject("Tracing") : subject).toBe(
+      "Choose a new Tracing password",
     );
     expect(data.purpose).toBe("reset");
     const link = new URL(data.passwordLink);
@@ -149,8 +149,8 @@ describe("POST /api/admin/users/{userId}/verification-email", () => {
     const [to, subject, data] = vi.mocked(email.sendEmailVerificationEmail).mock
       .calls[0] as [string, EmailSubject, { verificationLink: string }];
     expect(to).toBe("target@example.com");
-    expect(typeof subject === "function" ? subject("Kaneo") : subject).toBe(
-      "Confirm your email address for Kaneo",
+    expect(typeof subject === "function" ? subject("Tracing") : subject).toBe(
+      "Confirm your email address for Tracing",
     );
     const link = new URL(data.verificationLink);
     expect(text).not.toContain(link.searchParams.get("token"));

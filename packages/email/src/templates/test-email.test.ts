@@ -4,7 +4,7 @@ import { describe, expect, it } from "vite-plus/test";
 import TestEmail from "./test-email";
 
 describe("TestEmail", () => {
-  it("names the recipient and instance without any links into Kaneo", async () => {
+  it("names the recipient and instance without any links into Tracing", async () => {
     const html = await render(
       createElement(TestEmail, {
         email: "admin@example.com",

@@ -12,7 +12,7 @@ import {
 
 const sendTrialReminderEmail = vi.fn();
 
-vi.mock("@kaneo/email", () => ({
+vi.mock("@tracing/email", () => ({
   isSmtpConfigured: () => true,
   sendTrialReminderEmail: (...args: unknown[]) =>
     sendTrialReminderEmail(...args),

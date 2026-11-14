@@ -1,4 +1,4 @@
-import { type EmailResult, isSmtpConfigured } from "@kaneo/email";
+import { type EmailResult, isSmtpConfigured } from "@tracing/email";
 import { ApiError } from "../../errors/api-error";
 import type { AdminTargetUser } from "./find-admin-target-user";
 

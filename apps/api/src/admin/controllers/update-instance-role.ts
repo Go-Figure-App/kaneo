@@ -1,7 +1,7 @@
 import {
   type CustomRolePermission,
   isCustomRolePermission,
-} from "@kaneo/permissions";
+} from "@tracing/permissions";
 import { eq, sql } from "drizzle-orm";
 import db from "../../database";
 import { instanceRoleTable, userTable } from "../../database/schema";

@@ -1,4 +1,4 @@
-import { registerTools, type ToolRegistrar } from "@kaneo/mcp/tools";
+import { registerTools, type ToolRegistrar } from "@tracing/mcp/tools";
 import type { CallToolResult } from "@modelcontextprotocol/sdk/types.js";
 import type { z } from "zod";
 

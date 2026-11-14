@@ -3,7 +3,7 @@ import {
   sanitizeProjectKey,
   toProjectKey,
   uniqueKey,
-} from "@kaneo/importers";
+} from "@tracing/importers";
 import { HTTPException } from "hono/http-exception";
 
 export const MAX_PROJECT_KEY_ATTEMPTS = 5;

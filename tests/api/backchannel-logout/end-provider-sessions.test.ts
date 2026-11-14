@@ -79,7 +79,7 @@ describe("endProviderSessions", () => {
     expect(mocks.tx.delete).not.toHaveBeenCalled();
   });
 
-  it("ends nothing for a subject without a Kaneo account", async () => {
+  it("ends nothing for a subject without a Tracing account", async () => {
     mocks.rows.accounts = [];
 
     await endProviderSessions({

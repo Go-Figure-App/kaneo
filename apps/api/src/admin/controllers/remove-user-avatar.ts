@@ -13,7 +13,7 @@ import { findAdminTargetUser } from "../users/find-admin-target-user";
 
 /**
  * Remove a user's picture. A picture managed by the identity provider stays;
- * only an earlier Kaneo upload can be withdrawn, as in self-service.
+ * only an earlier Tracing upload can be withdrawn, as in self-service.
  */
 async function removeUserAvatar(userId: string, audit: AdminAuditRequest) {
   const managed = await getManagedProfile(userId);

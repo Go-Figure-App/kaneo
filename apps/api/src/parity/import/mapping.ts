@@ -2,7 +2,7 @@ import type {
   ImportedPerson,
   ImportedPriority,
   ImportedProject,
-} from "@kaneo/importers";
+} from "@tracing/importers";
 import type { Category } from "../foundation/categories";
 import type { Person, ProjectPlanning, State } from "./types";
 

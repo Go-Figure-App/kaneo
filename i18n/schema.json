@@ -1,7 +1,7 @@
 {
 	"$schema": "https://json-schema.org/draft/2020-12/schema",
 	"$id": "https://kaneo.app/i18n/schema.json",
-	"title": "Kaneo locale schema",
+	"title": "Tracing locale schema",
 	"type": "object",
 	"additionalProperties": false,
 	"properties": {
@@ -407,7 +407,7 @@
 							"type": "object",
 							"additionalProperties": false,
 							"properties": {
-								"breadcrumbKaneo": {
+								"breadcrumbTracing": {
 									"type": "string"
 								},
 								"title": {
@@ -433,7 +433,7 @@
 								}
 							},
 							"required": [
-								"breadcrumbKaneo",
+								"breadcrumbTracing",
 								"title",
 								"description",
 								"namePlaceholder",
@@ -1202,7 +1202,7 @@
 						"switchAccount": {
 							"type": "string"
 						},
-						"goToKaneo": {
+						"goToTracing": {
 							"type": "string"
 						},
 						"mismatch": {
@@ -1274,7 +1274,7 @@
 						"notNow",
 						"join",
 						"switchAccount",
-						"goToKaneo",
+						"goToTracing",
 						"mismatch",
 						"expired",
 						"invalid",
@@ -2431,7 +2431,7 @@
 						"useRepository": {
 							"type": "string"
 						},
-						"useKaneo": {
+						"useTracing": {
 							"type": "string"
 						},
 						"exportPending": {
@@ -2493,7 +2493,7 @@
 						"closed",
 						"noDescription",
 						"useRepository",
-						"useKaneo",
+						"useTracing",
 						"exportPending",
 						"inactiveHint"
 					]
@@ -16202,7 +16202,7 @@
 						"requestFailed": {
 							"type": "string"
 						},
-						"notKaneo": {
+						"notTracing": {
 							"type": "string"
 						},
 						"noInstance": {
@@ -16233,7 +16233,7 @@
 						"tooManyRequests",
 						"serverProblem",
 						"requestFailed",
-						"notKaneo",
+						"notTracing",
 						"noInstance",
 						"noSession",
 						"deviceFailed",
@@ -16309,7 +16309,7 @@
 						"useApiKey": {
 							"type": "string"
 						},
-						"newToKaneo": {
+						"newToTracing": {
 							"type": "string"
 						},
 						"createAccount": {
@@ -16464,7 +16464,7 @@
 						"sendTo",
 						"noPassword",
 						"useApiKey",
-						"newToKaneo",
+						"newToTracing",
 						"createAccount",
 						"code",
 						"device",

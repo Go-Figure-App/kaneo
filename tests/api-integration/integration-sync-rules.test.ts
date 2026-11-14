@@ -93,8 +93,8 @@ async function setup(role = "owner") {
     .insert(schema.taskTable)
     .values({
       projectId: project.id,
-      title: "Kaneo title",
-      description: "Kaneo body",
+      title: "Tracing title",
+      description: "Tracing body",
       status: columns.todo.slug,
       columnId: columns.todo.id,
       number: 1,
@@ -520,7 +520,7 @@ describe("integration label policies", () => {
       (await db.query.taskTable.findFirst({
         where: eq(schema.taskTable.id, f.task.id),
       }))!.title,
-    ).toBe("Kaneo title");
+    ).toBe("Tracing title");
     stored = await db.query.externalLinkTable.findFirst({
       where: eq(schema.externalLinkTable.id, link.id),
     });
@@ -578,7 +578,7 @@ describe("integration label policies", () => {
       config: JSON.parse(binding.config),
     };
     const create = vi.fn(async (current: typeof event) => {
-      expect(current.title).toBe("Kaneo title");
+      expect(current.title).toBe("Tracing title");
       const existing = await db.query.externalLinkTable.findFirst({
         where: eq(schema.externalLinkTable.taskId, f.task.id),
       });
@@ -786,8 +786,8 @@ describe("reviewed sync resume", () => {
           const response = await f.request(suffix, method, body, headers);
           expect(response.status, suffix).toBe(403);
           const text = await response.text();
-          expect(text).not.toContain("Kaneo title");
-          expect(text).not.toContain("Kaneo body");
+          expect(text).not.toContain("Tracing title");
+          expect(text).not.toContain("Tracing body");
           expect(text).not.toContain("Repository title");
         }
         expect(provider.read).not.toHaveBeenCalled();
@@ -805,10 +805,10 @@ describe("reviewed sync resume", () => {
       expect(response.status).toBe(200);
       const review = await response.json();
       expect(review).toMatchObject({
-        task: { id: f.task.id, title: "Kaneo title", number: 1 },
+        task: { id: f.task.id, title: "Tracing title", number: 1 },
         local: {
-          title: "Kaneo title",
-          description: "Kaneo body",
+          title: "Tracing title",
+          description: "Tracing body",
           state: "open",
         },
         remote: {
@@ -838,7 +838,7 @@ describe("reviewed sync resume", () => {
           where: eq(schema.externalLinkTable.id, f.link.id),
         }),
       ).toMatchObject({
-        title: source === "kaneo" ? "Kaneo title" : "Repository title",
+        title: source === "kaneo" ? "Tracing title" : "Repository title",
       });
     },
   );
@@ -1237,7 +1237,7 @@ describe("reviewed sync resume", () => {
       })),
     ),
   )(
-    "pauses Kaneo resume when $cause leaves $field different from the selected values",
+    "pauses Tracing resume when $cause leaves $field different from the selected values",
     async ({ field, cause }) => {
       const f = await paused();
       const review = await reviewSyncResume(
@@ -1524,7 +1524,7 @@ describe("reviewed sync resume", () => {
       f.link.id,
       f.workspace.id,
     );
-    expect(review.local.title).toBe("Kaneo title");
+    expect(review.local.title).toBe("Tracing title");
     await resumeSync(
       f.project.id,
       "gitea",
@@ -1550,13 +1550,13 @@ describe("reviewed sync resume", () => {
         ),
       }),
     ).toMatchObject({
-      eventData: { oldTitle: "Kaneo title", newTitle: "Repository title" },
+      eventData: { oldTitle: "Tracing title", newTitle: "Repository title" },
     });
     expect(publish).toHaveBeenCalledWith(
       "task.title_changed",
       expect.objectContaining({
         sourceIntegrationId: f.integration.id,
-        oldTitle: "Kaneo title",
+        oldTitle: "Tracing title",
         newTitle: "Repository title",
       }),
     );
@@ -1592,7 +1592,7 @@ describe("reviewed sync resume", () => {
       )?.title,
     ).toBe("Repository title");
   });
-  it("keeps Kaneo values only after the repository update succeeds", async () => {
+  it("keeps Tracing values only after the repository update succeeds", async () => {
     const f = await paused();
     const review = await reviewSyncResume(
       f.project.id,
@@ -1609,8 +1609,8 @@ describe("reviewed sync resume", () => {
       f.workspace.id,
     );
     expect(provider.write).toHaveBeenCalledWith({
-      title: "Kaneo title",
-      description: "Kaneo body",
+      title: "Tracing title",
+      description: "Tracing body",
       state: "open",
     });
     expect(await canSyncTask(f.task.id, f.integration.id)).toBe(true);
@@ -1620,7 +1620,7 @@ describe("reviewed sync resume", () => {
           where: eq(schema.externalLinkTable.id, f.link.id),
         })
       )?.title,
-    ).toBe("Kaneo title");
+    ).toBe("Tracing title");
   });
   it("preserves a GitLab task's chosen column through its reopen echo", async () => {
     const f = await paused();
@@ -1665,7 +1665,7 @@ describe("reviewed sync resume", () => {
       {
         object_attributes: {
           iid: 9,
-          title: "Kaneo title",
+          title: "Tracing title",
           url: link!.url,
           state: "opened",
           action: "reopen",
@@ -1714,7 +1714,7 @@ describe("reviewed sync resume", () => {
       f.workspace.id,
     );
     expect(cleanup).toHaveBeenCalledWith(
-      "Kaneo body",
+      "Tracing body",
       review.remote.description,
       { taskId: f.task.id },
     );

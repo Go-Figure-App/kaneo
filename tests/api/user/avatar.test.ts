@@ -161,7 +161,7 @@ describe("buildAvatarUrl", () => {
 });
 
 describe("isUploadedAvatarUrl", () => {
-  it("recognizes an avatar uploaded to Kaneo", () => {
+  it("recognizes an avatar uploaded to Tracing", () => {
     expect(isUploadedAvatarUrl(buildAvatarUrl("abc123"))).toBe(true);
   });
 

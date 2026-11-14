@@ -1,4 +1,4 @@
-import { trelloAuthorizeUrl } from "@kaneo/importers";
+import { trelloAuthorizeUrl } from "@tracing/importers";
 import { trelloApiKeyFromEnv } from "../source/trello-api-key";
 
 function getTrelloAuthorizeUrl() {

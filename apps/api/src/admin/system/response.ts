@@ -10,7 +10,7 @@ export const adminSystemStatusSchema = z
   .object({
     checkedAt: z.string().openapi({ format: "date-time" }),
     version: z.string().nullable().openapi({
-      description: "Kaneo release version of this API instance.",
+      description: "Tracing release version of this API instance.",
     }),
     api: z.object({
       status: serviceStatusSchema,

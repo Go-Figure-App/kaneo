@@ -1,4 +1,4 @@
-import type { FetchLike } from "@kaneo/importers";
+import type { FetchLike } from "@tracing/importers";
 import { Agent, fetch, type RequestInit as UndiciRequestInit } from "undici";
 import { createDestinationLookup } from "./destination-lookup";
 

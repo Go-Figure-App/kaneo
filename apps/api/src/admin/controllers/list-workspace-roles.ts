@@ -1,4 +1,4 @@
-import { DEFAULT_ROLE_NAMES } from "@kaneo/permissions";
+import { DEFAULT_ROLE_NAMES } from "@tracing/permissions";
 import { asc, eq } from "drizzle-orm";
 import { HTTPException } from "hono/http-exception";
 import db from "../../database";

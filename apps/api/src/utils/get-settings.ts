@@ -1,4 +1,4 @@
-import { isSmtpConfigured } from "@kaneo/email";
+import { isSmtpConfigured } from "@tracing/email";
 import { config } from "dotenv-mono";
 import { isBillingEnabled } from "../billing/config";
 import {

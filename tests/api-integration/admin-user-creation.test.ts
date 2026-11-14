@@ -1,5 +1,5 @@
 import type { EmailSubject } from "../../packages/email/src/brand";
-import * as email from "@kaneo/email";
+import * as email from "@tracing/email";
 import { eq } from "drizzle-orm";
 import {
   afterEach,
@@ -79,8 +79,8 @@ describe("POST /api/admin/users", () => {
       { purpose: string; passwordLink: string },
     ];
     expect(to).toBe("nora@example.com");
-    expect(typeof subject === "function" ? subject("Kaneo") : subject).toBe(
-      "Set up your Kaneo account",
+    expect(typeof subject === "function" ? subject("Tracing") : subject).toBe(
+      "Set up your Tracing account",
     );
     expect(data.purpose).toBe("setup");
     const link = new URL(data.passwordLink);
@@ -193,7 +193,7 @@ describe("POST /api/admin/users", () => {
     expect((await create()).status).toBe(201);
   });
 
-  it("rejects disposable addresses on Kaneo Cloud", async () => {
+  it("rejects disposable addresses on Tracing Cloud", async () => {
     vi.stubEnv("KANEO_CLOUD", "true");
     const response = await create({ ...newUser, email: "x@mailinator.com" });
     expect(response.status).toBe(400);

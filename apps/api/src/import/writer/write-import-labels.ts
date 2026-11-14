@@ -1,4 +1,4 @@
-import type { ImportedLabel } from "@kaneo/importers";
+import type { ImportedLabel } from "@tracing/importers";
 import { and, eq, inArray, isNull, sql } from "drizzle-orm";
 import type db from "../../database";
 import { labelTable } from "../../database/schema";

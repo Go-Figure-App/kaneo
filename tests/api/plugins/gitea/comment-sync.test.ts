@@ -88,7 +88,7 @@ async function deliverWebhook(body: string) {
   });
 }
 
-async function outboundBody(comment = "A comment from Kaneo") {
+async function outboundBody(comment = "A comment from Tracing") {
   await handleTaskCommentCreated(
     {
       taskId: "task-1",

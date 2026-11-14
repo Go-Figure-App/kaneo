@@ -1,4 +1,4 @@
-import type { LinearGraphQLOptions } from "@kaneo/importers/linear";
+import type { LinearGraphQLOptions } from "@tracing/importers/linear";
 import { connectPlanningSource } from "./source";
 import { finishPlanningImport, type PlanningFinishInput } from "./finish";
 import {
