@@ -41,49 +41,75 @@ export function FilterValues({
       />
     );
   const choices: { value: string | null; name: string }[] =
-    filter.field === "category"
-      ? (
-          ["backlog", "unstarted", "started", "completed", "canceled"] as const
-        ).map((value) => ({
-          value,
-          name: t(`parity:insights.states.${value}`),
+    filter.field === "state"
+      ? (options?.states ?? []).map((item) => ({
+          value: item.name,
+          name: item.name,
         }))
-      : filter.field === "priority"
-        ? ["no-priority", "low", "medium", "high", "urgent"].map((value) => ({
-            value,
-            name: getPriorityLabel(value),
-          }))
-        : [
-            { value: null, name: t("parity:views.missing") },
-            ...(filter.field === "assignee" || filter.field === "creator"
-              ? (options?.users ?? []).map((item) => ({
-                  value: item.id,
-                  name: item.name,
-                }))
-              : filter.field === "project"
-                ? (options?.projects ?? []).map((item) => ({
-                    value: item.id,
-                    name: item.name,
-                  }))
-                : filter.field === "cycle"
-                  ? (options?.cycles ?? []).map((item) => ({
+      : filter.field === "cycle-period"
+        ? [{ value: "current", name: t("parity:cycles.currentCycle") }]
+        : filter.field === "category"
+          ? (
+              [
+                "backlog",
+                "unstarted",
+                "started",
+                "completed",
+                "canceled",
+              ] as const
+            ).map((value) => ({
+              value,
+              name: t(`parity:insights.states.${value}`),
+            }))
+          : filter.field === "priority"
+            ? ["no-priority", "low", "medium", "high", "urgent"].map(
+                (value) => ({
+                  value,
+                  name: getPriorityLabel(value),
+                }),
+              )
+            : [
+                { value: null, name: t("parity:views.missing") },
+                ...(filter.field === "assignee" || filter.field === "creator"
+                  ? (options?.users ?? []).map((item) => ({
                       value: item.id,
-                      name: item.name ?? String(item.number),
+                      name: item.name,
                     }))
-                  : filter.field === "milestone"
-                    ? (options?.milestones ?? []).map((item) => ({
+                  : filter.field === "initiative"
+                    ? (options?.initiatives ?? []).map((item) => ({
                         value: item.id,
-                        name: `${item.projectName} · ${item.name}`,
-                      }))
-                    : (options?.labels ?? []).map((item) => ({
-                        value: item.name,
                         name: item.name,
-                      }))),
-          ];
+                      }))
+                    : filter.field === "project"
+                      ? (options?.projects ?? []).map((item) => ({
+                          value: item.id,
+                          name: item.name,
+                        }))
+                      : filter.field === "cycle"
+                        ? (options?.cycles ?? []).map((item) => ({
+                            value: item.id,
+                            name: item.name ?? String(item.number),
+                          }))
+                        : filter.field === "milestone"
+                          ? (options?.milestones ?? []).map((item) => ({
+                              value: item.id,
+                              name: `${item.projectName} · ${item.name}`,
+                            }))
+                          : (options?.labels ?? []).map((item) => ({
+                              value: item.name,
+                              name: item.name,
+                            }))),
+              ];
   const selected = filter.values as (string | null)[];
   for (const value of selected)
     if (!choices.some((choice) => choice.value === value))
-      choices.push({ value, name: t("parity:views.unknown") });
+      choices.push({
+        value,
+        name:
+          filter.field === "state" && value !== null
+            ? value
+            : t("parity:views.unknown"),
+      });
   const label =
     choices
       .filter((choice) => selected.includes(choice.value))
@@ -110,6 +136,10 @@ export function FilterValues({
             <input
               type="checkbox"
               checked={selected.includes(choice.value)}
+              disabled={
+                filter.field === "cycle-period" &&
+                selected.includes(choice.value)
+              }
               onChange={(event) =>
                 onChange({
                   ...filter,

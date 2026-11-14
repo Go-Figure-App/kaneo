@@ -15292,6 +15292,40 @@
                 "schema": {
                   "type": "object",
                   "properties": {
+                    "states": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "name": {
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "name"
+                        ]
+                      }
+                    },
+                    "initiatives": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "id": {
+                            "type": "string",
+                            "minLength": 1,
+                            "maxLength": 128
+                          },
+                          "name": {
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "id",
+                          "name"
+                        ]
+                      }
+                    },
                     "projects": {
                       "type": "array",
                       "items": {
@@ -15424,6 +15458,8 @@
                     }
                   },
                   "required": [
+                    "states",
+                    "initiatives",
                     "projects",
                     "users",
                     "labels",
@@ -15587,6 +15623,18 @@
             },
             "required": false,
             "name": "projectId",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "string",
+              "enum": [
+                "true",
+                "false"
+              ]
+            },
+            "required": false,
+            "name": "includeArchivedProjects",
             "in": "query"
           }
         ],
@@ -15943,6 +15991,75 @@
                                     "field": {
                                       "type": "string",
                                       "enum": [
+                                        "state"
+                                      ]
+                                    },
+                                    "operator": {
+                                      "type": "string",
+                                      "enum": [
+                                        "is",
+                                        "is-not"
+                                      ]
+                                    },
+                                    "values": {
+                                      "type": "array",
+                                      "items": {
+                                        "type": "string",
+                                        "minLength": 1,
+                                        "maxLength": 200
+                                      },
+                                      "minItems": 1,
+                                      "maxItems": 50
+                                    }
+                                  },
+                                  "required": [
+                                    "field",
+                                    "operator",
+                                    "values"
+                                  ],
+                                  "additionalProperties": false
+                                },
+                                {
+                                  "type": "object",
+                                  "properties": {
+                                    "field": {
+                                      "type": "string",
+                                      "enum": [
+                                        "cycle-period"
+                                      ]
+                                    },
+                                    "operator": {
+                                      "type": "string",
+                                      "enum": [
+                                        "is",
+                                        "is-not"
+                                      ]
+                                    },
+                                    "values": {
+                                      "type": "array",
+                                      "items": {
+                                        "type": "string",
+                                        "enum": [
+                                          "current"
+                                        ]
+                                      },
+                                      "minItems": 1,
+                                      "maxItems": 1
+                                    }
+                                  },
+                                  "required": [
+                                    "field",
+                                    "operator",
+                                    "values"
+                                  ],
+                                  "additionalProperties": false
+                                },
+                                {
+                                  "type": "object",
+                                  "properties": {
+                                    "field": {
+                                      "type": "string",
+                                      "enum": [
                                         "category"
                                       ]
                                     },
@@ -16025,7 +16142,8 @@
                                         "creator",
                                         "project",
                                         "cycle",
-                                        "milestone"
+                                        "milestone",
+                                        "initiative"
                                       ]
                                     },
                                     "operator": {
@@ -16171,6 +16289,9 @@
                           "display": {
                             "type": "object",
                             "properties": {
+                              "includeArchivedProjects": {
+                                "type": "boolean"
+                              },
                               "layout": {
                                 "type": "string",
                                 "enum": [
@@ -16416,6 +16537,75 @@
                             "field": {
                               "type": "string",
                               "enum": [
+                                "state"
+                              ]
+                            },
+                            "operator": {
+                              "type": "string",
+                              "enum": [
+                                "is",
+                                "is-not"
+                              ]
+                            },
+                            "values": {
+                              "type": "array",
+                              "items": {
+                                "type": "string",
+                                "minLength": 1,
+                                "maxLength": 200
+                              },
+                              "minItems": 1,
+                              "maxItems": 50
+                            }
+                          },
+                          "required": [
+                            "field",
+                            "operator",
+                            "values"
+                          ],
+                          "additionalProperties": false
+                        },
+                        {
+                          "type": "object",
+                          "properties": {
+                            "field": {
+                              "type": "string",
+                              "enum": [
+                                "cycle-period"
+                              ]
+                            },
+                            "operator": {
+                              "type": "string",
+                              "enum": [
+                                "is",
+                                "is-not"
+                              ]
+                            },
+                            "values": {
+                              "type": "array",
+                              "items": {
+                                "type": "string",
+                                "enum": [
+                                  "current"
+                                ]
+                              },
+                              "minItems": 1,
+                              "maxItems": 1
+                            }
+                          },
+                          "required": [
+                            "field",
+                            "operator",
+                            "values"
+                          ],
+                          "additionalProperties": false
+                        },
+                        {
+                          "type": "object",
+                          "properties": {
+                            "field": {
+                              "type": "string",
+                              "enum": [
                                 "category"
                               ]
                             },
@@ -16498,7 +16688,8 @@
                                 "creator",
                                 "project",
                                 "cycle",
-                                "milestone"
+                                "milestone",
+                                "initiative"
                               ]
                             },
                             "operator": {
@@ -16644,6 +16835,9 @@
                   "display": {
                     "type": "object",
                     "properties": {
+                      "includeArchivedProjects": {
+                        "type": "boolean"
+                      },
                       "layout": {
                         "type": "string",
                         "enum": [
@@ -16777,6 +16971,75 @@
                               "field": {
                                 "type": "string",
                                 "enum": [
+                                  "state"
+                                ]
+                              },
+                              "operator": {
+                                "type": "string",
+                                "enum": [
+                                  "is",
+                                  "is-not"
+                                ]
+                              },
+                              "values": {
+                                "type": "array",
+                                "items": {
+                                  "type": "string",
+                                  "minLength": 1,
+                                  "maxLength": 200
+                                },
+                                "minItems": 1,
+                                "maxItems": 50
+                              }
+                            },
+                            "required": [
+                              "field",
+                              "operator",
+                              "values"
+                            ],
+                            "additionalProperties": false
+                          },
+                          {
+                            "type": "object",
+                            "properties": {
+                              "field": {
+                                "type": "string",
+                                "enum": [
+                                  "cycle-period"
+                                ]
+                              },
+                              "operator": {
+                                "type": "string",
+                                "enum": [
+                                  "is",
+                                  "is-not"
+                                ]
+                              },
+                              "values": {
+                                "type": "array",
+                                "items": {
+                                  "type": "string",
+                                  "enum": [
+                                    "current"
+                                  ]
+                                },
+                                "minItems": 1,
+                                "maxItems": 1
+                              }
+                            },
+                            "required": [
+                              "field",
+                              "operator",
+                              "values"
+                            ],
+                            "additionalProperties": false
+                          },
+                          {
+                            "type": "object",
+                            "properties": {
+                              "field": {
+                                "type": "string",
+                                "enum": [
                                   "category"
                                 ]
                               },
@@ -16859,7 +17122,8 @@
                                   "creator",
                                   "project",
                                   "cycle",
-                                  "milestone"
+                                  "milestone",
+                                  "initiative"
                                 ]
                               },
                               "operator": {
@@ -17005,6 +17269,9 @@
                     "display": {
                       "type": "object",
                       "properties": {
+                        "includeArchivedProjects": {
+                          "type": "boolean"
+                        },
                         "layout": {
                           "type": "string",
                           "enum": [
@@ -17245,6 +17512,75 @@
                               "field": {
                                 "type": "string",
                                 "enum": [
+                                  "state"
+                                ]
+                              },
+                              "operator": {
+                                "type": "string",
+                                "enum": [
+                                  "is",
+                                  "is-not"
+                                ]
+                              },
+                              "values": {
+                                "type": "array",
+                                "items": {
+                                  "type": "string",
+                                  "minLength": 1,
+                                  "maxLength": 200
+                                },
+                                "minItems": 1,
+                                "maxItems": 50
+                              }
+                            },
+                            "required": [
+                              "field",
+                              "operator",
+                              "values"
+                            ],
+                            "additionalProperties": false
+                          },
+                          {
+                            "type": "object",
+                            "properties": {
+                              "field": {
+                                "type": "string",
+                                "enum": [
+                                  "cycle-period"
+                                ]
+                              },
+                              "operator": {
+                                "type": "string",
+                                "enum": [
+                                  "is",
+                                  "is-not"
+                                ]
+                              },
+                              "values": {
+                                "type": "array",
+                                "items": {
+                                  "type": "string",
+                                  "enum": [
+                                    "current"
+                                  ]
+                                },
+                                "minItems": 1,
+                                "maxItems": 1
+                              }
+                            },
+                            "required": [
+                              "field",
+                              "operator",
+                              "values"
+                            ],
+                            "additionalProperties": false
+                          },
+                          {
+                            "type": "object",
+                            "properties": {
+                              "field": {
+                                "type": "string",
+                                "enum": [
                                   "category"
                                 ]
                               },
@@ -17327,7 +17663,8 @@
                                   "creator",
                                   "project",
                                   "cycle",
-                                  "milestone"
+                                  "milestone",
+                                  "initiative"
                                 ]
                               },
                               "operator": {
@@ -17473,6 +17810,9 @@
                     "display": {
                       "type": "object",
                       "properties": {
+                        "includeArchivedProjects": {
+                          "type": "boolean"
+                        },
                         "layout": {
                           "type": "string",
                           "enum": [
@@ -17710,6 +18050,75 @@
                             "field": {
                               "type": "string",
                               "enum": [
+                                "state"
+                              ]
+                            },
+                            "operator": {
+                              "type": "string",
+                              "enum": [
+                                "is",
+                                "is-not"
+                              ]
+                            },
+                            "values": {
+                              "type": "array",
+                              "items": {
+                                "type": "string",
+                                "minLength": 1,
+                                "maxLength": 200
+                              },
+                              "minItems": 1,
+                              "maxItems": 50
+                            }
+                          },
+                          "required": [
+                            "field",
+                            "operator",
+                            "values"
+                          ],
+                          "additionalProperties": false
+                        },
+                        {
+                          "type": "object",
+                          "properties": {
+                            "field": {
+                              "type": "string",
+                              "enum": [
+                                "cycle-period"
+                              ]
+                            },
+                            "operator": {
+                              "type": "string",
+                              "enum": [
+                                "is",
+                                "is-not"
+                              ]
+                            },
+                            "values": {
+                              "type": "array",
+                              "items": {
+                                "type": "string",
+                                "enum": [
+                                  "current"
+                                ]
+                              },
+                              "minItems": 1,
+                              "maxItems": 1
+                            }
+                          },
+                          "required": [
+                            "field",
+                            "operator",
+                            "values"
+                          ],
+                          "additionalProperties": false
+                        },
+                        {
+                          "type": "object",
+                          "properties": {
+                            "field": {
+                              "type": "string",
+                              "enum": [
                                 "category"
                               ]
                             },
@@ -17792,7 +18201,8 @@
                                 "creator",
                                 "project",
                                 "cycle",
-                                "milestone"
+                                "milestone",
+                                "initiative"
                               ]
                             },
                             "operator": {
@@ -17938,6 +18348,9 @@
                   "display": {
                     "type": "object",
                     "properties": {
+                      "includeArchivedProjects": {
+                        "type": "boolean"
+                      },
                       "layout": {
                         "type": "string",
                         "enum": [
@@ -18071,6 +18484,75 @@
                               "field": {
                                 "type": "string",
                                 "enum": [
+                                  "state"
+                                ]
+                              },
+                              "operator": {
+                                "type": "string",
+                                "enum": [
+                                  "is",
+                                  "is-not"
+                                ]
+                              },
+                              "values": {
+                                "type": "array",
+                                "items": {
+                                  "type": "string",
+                                  "minLength": 1,
+                                  "maxLength": 200
+                                },
+                                "minItems": 1,
+                                "maxItems": 50
+                              }
+                            },
+                            "required": [
+                              "field",
+                              "operator",
+                              "values"
+                            ],
+                            "additionalProperties": false
+                          },
+                          {
+                            "type": "object",
+                            "properties": {
+                              "field": {
+                                "type": "string",
+                                "enum": [
+                                  "cycle-period"
+                                ]
+                              },
+                              "operator": {
+                                "type": "string",
+                                "enum": [
+                                  "is",
+                                  "is-not"
+                                ]
+                              },
+                              "values": {
+                                "type": "array",
+                                "items": {
+                                  "type": "string",
+                                  "enum": [
+                                    "current"
+                                  ]
+                                },
+                                "minItems": 1,
+                                "maxItems": 1
+                              }
+                            },
+                            "required": [
+                              "field",
+                              "operator",
+                              "values"
+                            ],
+                            "additionalProperties": false
+                          },
+                          {
+                            "type": "object",
+                            "properties": {
+                              "field": {
+                                "type": "string",
+                                "enum": [
                                   "category"
                                 ]
                               },
@@ -18153,7 +18635,8 @@
                                   "creator",
                                   "project",
                                   "cycle",
-                                  "milestone"
+                                  "milestone",
+                                  "initiative"
                                 ]
                               },
                               "operator": {
@@ -18299,6 +18782,9 @@
                     "display": {
                       "type": "object",
                       "properties": {
+                        "includeArchivedProjects": {
+                          "type": "boolean"
+                        },
                         "layout": {
                           "type": "string",
                           "enum": [

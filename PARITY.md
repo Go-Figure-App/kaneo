@@ -585,3 +585,33 @@ development and GitHub task caching retain their existing configuration.
 Shared-file register: `Dockerfile.kaneo`, `apps/api/Dockerfile` and
 `apps/web/Dockerfile` change only their build invocation and its explanation.
 No runtime configuration, application behavior or database model changes.
+
+## Live Linear saved-view compatibility
+
+The authorized live cutover found saved views using exact workflow names,
+initiative membership, and the currently active cycle. Views now support these
+three filter clauses without new tables or migrations. Exact names distinguish
+states with the same category. Initiative predicates follow current project
+membership, and the current-cycle predicate evaluates the start-inclusive,
+end-exclusive interval on each request. Exclusions include issues without a
+cycle or initiative. Existing task/project visibility conditions remain in force;
+initiative references must belong to the current workspace. Native views pass
+these saved filters through to the same API.
+
+The filter builder exposes the new choices and keeps imported state names
+readable when an option is no longer present. Shared-file changes are limited to
+`apps/docs/openapi.json`, the three source locale keys and their 20 translated
+catalog entries, and the corresponding entries in `i18n/schema.json`. Other
+changes stay in the owned Views modules and their tests.
+
+Archived issues resolve their last recorded workflow slug against columns in
+their own project for exact-state filters. Missing/deleted states fall back to
+the archive status; filtering never restores or moves an archived issue.
+
+Saved display preferences can opt into archived projects. The default remains
+active projects; the opt-in keeps workspace activity and per-project access
+checks, and is forwarded by both web and mobile. This preserves Linear views
+that explicitly include archived items without restoring those projects.
+
+The live export also contains already-qualified grouped label names. The import
+mapper adds a group prefix only when absent, preserving both Linear shapes.

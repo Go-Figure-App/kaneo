@@ -6063,7 +6063,10 @@
 				"estimate": "Estimate",
 				"due": "Due date",
 				"created": "Created date",
-				"completed": "Completed date"
+				"completed": "Completed date",
+				"cycle-period": "Период цикла",
+				"initiative": "Инициатива",
+				"state": "Статус рабочего процесса"
 			},
 			"groups": {
 				"state": "State",
@@ -6090,7 +6093,8 @@
 				"estimate": "Estimate",
 				"labels": "Labels",
 				"due": "Due date"
-			}
+			},
+			"includeArchivedProjects": "Включить архивные проекты"
 		},
 		"import": {
 			"description": "Projects, initiatives, milestones, cycles, estimates and original issue IDs, with issues and comments.",

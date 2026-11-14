@@ -24,6 +24,19 @@ export function DisplayOptions({
         </Button>
       </PopoverTrigger>
       <PopoverContent align="end" className="w-72 space-y-4">
+        <label className="flex items-center gap-2 text-sm">
+          <input
+            type="checkbox"
+            checked={value.includeArchivedProjects ?? false}
+            onChange={(event) =>
+              onChange({
+                ...value,
+                includeArchivedProjects: event.target.checked,
+              })
+            }
+          />
+          {t("parity:views.includeArchivedProjects")}
+        </label>
         <label className="grid gap-1 text-sm">
           {t("parity:views.layout")}
           <select

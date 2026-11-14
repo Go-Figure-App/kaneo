@@ -13,6 +13,14 @@ function initialFilter(
   field: TaskFilter["field"],
   options?: ViewOptions,
 ): TaskFilter {
+  if (field === "state")
+    return {
+      field,
+      operator: "is",
+      values: [options?.states?.[0]?.name ?? "Todo"],
+    };
+  if (field === "cycle-period")
+    return { field, operator: "is", values: ["current"] };
   if (field === "category")
     return { field, operator: "is", values: ["started"] };
   if (field === "priority")

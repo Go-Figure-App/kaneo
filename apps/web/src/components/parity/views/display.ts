@@ -12,6 +12,9 @@ export const defaultDisplay: ViewDisplay = {
 };
 export const filterFields = [
   "category",
+  "state",
+  "initiative",
+  "cycle-period",
   "priority",
   "assignee",
   "creator",

@@ -5916,7 +5916,10 @@
 				"estimate": "Estimate",
 				"due": "Due date",
 				"created": "Created date",
-				"completed": "Completed date"
+				"completed": "Completed date",
+				"cycle-period": "Período del ciclo",
+				"initiative": "Iniciativa",
+				"state": "Estado del flujo de trabajo"
 			},
 			"groups": {
 				"state": "State",
@@ -5943,7 +5946,8 @@
 				"estimate": "Estimate",
 				"labels": "Labels",
 				"due": "Due date"
-			}
+			},
+			"includeArchivedProjects": "Incluir proyectos archivados"
 		},
 		"import": {
 			"description": "Projects, initiatives, milestones, cycles, estimates and original issue IDs, with issues and comments.",

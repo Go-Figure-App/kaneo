@@ -28,6 +28,8 @@ import { cycleSettings } from "../cycles/settings-read";
 import { readableProjects, type Actor } from "../planning/access";
 import { taskCategory } from "../planning/progress-query";
 import { acceptedTaskCondition } from "../triage/visibility";
+import { projectAccessCondition } from "../../project-access/project-access-condition";
+import { workspaceIsActive } from "../../workspace/archive/active-workspace-sql";
 import {
   parseTaskFilters,
   taskCreatedAt,
@@ -116,7 +118,13 @@ export async function listWorkspaceTasks(
     )
     .where(
       and(
-        readableProjects(who),
+        query.includeArchivedProjects === "true"
+          ? and(
+              eq(projectTable.workspaceId, who.workspaceId),
+              workspaceIsActive(projectTable.workspaceId),
+              projectAccessCondition(who.userId, projectTable.id),
+            )
+          : readableProjects(who),
         acceptedTaskCondition(taskTable.id),
         query.projectId ? eq(taskTable.projectId, query.projectId) : undefined,
         ...filters.map((filter) => taskFilterSql(filter, settings.timeZone)),

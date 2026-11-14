@@ -10,6 +10,7 @@ export type SavedView = {
   // Native displays these filters unchanged; editing lives on web.
   filters: Record<string, unknown>[];
   display: {
+    includeArchivedProjects?: boolean;
     layout: "list" | "board";
     groupBy: "state" | "assignee" | "project" | "priority" | "cycle" | "label";
     orderBy: "priority" | "created" | "updated" | "due";
