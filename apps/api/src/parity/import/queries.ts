@@ -22,7 +22,7 @@ export const statesQuery = rootQuery("workflowStates", state);
 export const projectsQuery = rootQuery(
   "projects",
   `${dates} name description content status { type } health priority
-  lead { ${person} } startDate targetDate teams(first: 100, includeArchived: true) { nodes { id } ${pageInfo} }`,
+  lead { ${person} } startDate targetDate teams(first: 20, includeArchived: true) { nodes { id } ${pageInfo} }`,
 );
 export const cyclesQuery = rootQuery(
   "cycles",

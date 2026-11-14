@@ -5,6 +5,37 @@ import { category } from "./mapping";
 import { fixtureFetch, linearFixture, page } from "./__fixtures__/linear";
 
 describe("Linear planning source", () => {
+  it("retries failed workspace reads and then shares the successful result", async () => {
+    const base = fixtureFetch(linearFixture());
+    let attempts = 0;
+    const fetch = vi.fn(async (url: string, init?: RequestInit) => {
+      if (String(init?.body).includes("query PlanningworkflowStates")) {
+        attempts++;
+        if (attempts === 1)
+          return Response.json({
+            errors: [{ message: "Temporary source failure" }],
+          });
+      }
+      return base(url, init);
+    });
+    const { source } = await connectPlanningSource({
+      apiKey: "synthetic",
+      fetch,
+    });
+    await source.listProjects();
+    await expect(
+      source.readProject("project:project-a", { includeComments: false }),
+    ).rejects.toThrow("Temporary source failure");
+    expect(
+      (
+        await source.readProject("project:project-b", {
+          includeComments: false,
+        })
+      ).name,
+    ).toBe("Platform");
+    await source.readProject("team:team-a", { includeComments: false });
+    expect(attempts).toBe(2);
+  });
   it("finishes nested project teams, labels, comments and history pages", async () => {
     const fixture = linearFixture();
     const issue = fixture.issues.get("project-a")![0]!;
@@ -31,6 +62,8 @@ describe("Linear planning source", () => {
     const base = fixtureFetch(fixture);
     const fetch = vi.fn(async (url: string, init?: RequestInit) => {
       const { query, variables } = JSON.parse(String(init?.body));
+      if (query.includes("query Planningprojects"))
+        expect(query).toContain("teams(first: 20, includeArchived: true)");
       for (const [operation, key, nodes] of [
         ["IssueLabels", "labels", [extraLabel]],
         ["IssueComments", "comments", [extraComment]],

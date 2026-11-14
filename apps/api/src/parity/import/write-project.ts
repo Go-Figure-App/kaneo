@@ -53,7 +53,13 @@ export async function writePlanningProject(
   const { workspaceId, userId, project, runId } = input;
   input.signal?.throwIfAborted();
   const written = await createImportProject(
-    { workspaceId, userId, name: project.name, preferredKey: project.key },
+    {
+      workspaceId,
+      userId,
+      name: project.name,
+      preferredKey: project.key,
+      signal: input.signal,
+    },
     async (tx, created) => {
       const members = await tx
         .select({

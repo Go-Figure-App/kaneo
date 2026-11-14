@@ -241,8 +241,10 @@ async function globalSearch(params: SearchParams): Promise<{
     }
 
     // Also run text search for tasks
+    const importedIdentifier = originalIdentifierMatches(query);
     const taskRelevanceScore = sql<number>`
       CASE
+        WHEN ${importedIdentifier ?? sql`false`} THEN 10
         WHEN LOWER(${taskTable.title}) LIKE ${searchPattern} THEN 3
         WHEN LOWER(${taskTable.description}) LIKE ${searchPattern} THEN 2
         ELSE 1
@@ -279,7 +281,7 @@ async function globalSearch(params: SearchParams): Promise<{
           or(
             ilike(taskTable.title, searchPattern),
             ilike(taskTable.description, searchPattern),
-            originalIdentifierMatches(query),
+            importedIdentifier,
           ),
         ),
       )

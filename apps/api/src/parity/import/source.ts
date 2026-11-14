@@ -58,7 +58,10 @@ export async function connectPlanningSource(
         throw new Error("Select a listed Linear project or team catch-all.");
       const scoped = reader.withSignal(options.signal);
       options.onProgress?.("Reading workspace planning");
-      workspace ??= scoped.workspace(catalog.teams);
+      workspace ??= scoped.workspace(catalog.teams).catch((error) => {
+        workspace = undefined;
+        throw error;
+      });
       const shared = await workspace;
       const project =
         catalog.projects.find((row) => `project:${row.id}` === sourceId) ??

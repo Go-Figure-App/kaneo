@@ -1,5 +1,5 @@
 import { createHash } from "node:crypto";
-import { and, eq } from "drizzle-orm";
+import { and, eq, sql } from "drizzle-orm";
 import { afterEach, beforeEach, expect, it, vi } from "vite-plus/test";
 import db, { schema } from "../../apps/api/src/database";
 import {
@@ -7,6 +7,9 @@ import {
   waitForActiveImports,
 } from "../../apps/api/src/import/active-imports";
 import * as planningFinish from "../../apps/api/src/parity/import/finish";
+import * as projectPlacement from "../../apps/api/src/project/controllers/insert-project";
+import * as importSettings from "../../apps/api/src/parity/import/write-settings";
+import { lockCycleWorkspace } from "../../apps/api/src/parity/cycles/access";
 import { connectPlanningLinear } from "../../apps/api/src/parity/import/connect";
 import {
   fixtureFetch,
@@ -50,6 +53,29 @@ afterEach(async () => {
   vi.restoreAllMocks();
   vi.unstubAllEnvs();
 });
+
+async function expectNoImportedRows() {
+  for (const table of [
+    schema.projectTable,
+    schema.workspaceMemberProjectTable,
+    schema.columnTable,
+    schema.taskTable,
+    schema.activityTable,
+    schema.labelTable,
+    schema.taskRelationTable,
+    schema.externalLinkTable,
+    schema.workspaceExtTable,
+    schema.projectExtTable,
+    schema.columnExtTable,
+    schema.taskExtTable,
+    schema.projectMilestoneTable,
+    schema.cycleTable,
+    schema.initiativeTable,
+    schema.initiativeProjectTable,
+    schema.statusUpdateTable,
+  ])
+    expect(await db.select().from(table)).toEqual([]);
+}
 
 it("keeps committed projects but reports a failed final linking stage", async () => {
   const c = await setup();
@@ -105,8 +131,86 @@ it("rolls back an in-flight planning write when canceled before commit", async (
   });
   controller.abort(new Error("Synthetic stop"));
   await expect(writing).rejects.toThrow("Synthetic stop");
-  expect(await db.select().from(schema.projectTable)).toEqual([]);
-  expect(await db.select().from(schema.cycleTable)).toEqual([]);
+  await expectNoImportedRows();
+});
+
+it("rolls back all rows when cancellation arrives during project placement", async () => {
+  const c = await setup();
+  const planning = await connectPlanningLinear({
+    apiKey: "synthetic",
+    fetch: fixtureFetch(c.fixture),
+  });
+  await planning.source.listProjects();
+  const project = await planning.source.readProject("project:project-a", {
+    includeComments: true,
+  });
+  const controller = new AbortController();
+  const place = projectPlacement.placeProject;
+  const placement = vi
+    .spyOn(projectPlacement, "placeProject")
+    .mockImplementation(async (...args) => {
+      await place(...args);
+      controller.abort(new Error("Stopped during placement"));
+    });
+  await expect(
+    planning.writeProject({
+      workspaceId: c.workspace.id,
+      userId: c.user.id,
+      source: "linear",
+      project,
+      includeComments: true,
+      runId: "placement-canceled-run",
+      sourceProjectId: "project:project-a",
+      selectedProjectIds: ["project:project-a"],
+      signal: controller.signal,
+    }),
+  ).rejects.toThrow("Stopped during placement");
+  expect(placement).toHaveBeenCalledOnce();
+  await expectNoImportedRows();
+});
+
+it("waits for the cycle allocator before writing settings and assigning cycle numbers", async () => {
+  const c = await setup();
+  const settings = vi.spyOn(importSettings, "writeImportSettings");
+  const locked = Promise.withResolvers<void>();
+  const release = Promise.withResolvers<void>();
+  const allocation = db.transaction(async (tx) => {
+    await lockCycleWorkspace(tx, c.workspace.id);
+    locked.resolve();
+    await release.promise;
+    await tx.insert(schema.cycleTable).values({
+      workspaceId: c.workspace.id,
+      number: 1,
+      startsAt: new Date("2023-01-01Z"),
+      endsAt: new Date("2023-01-15Z"),
+    });
+  });
+  await locked.promise;
+  const importing = run(c, ["project:project-a"]);
+  try {
+    await vi.waitFor(async () => {
+      const waiting = await db.execute(sql`
+        SELECT 1 FROM pg_locks WHERE locktype = 'advisory' AND classid = 1524
+          AND objid = (hashtext(${c.workspace.id})::bigint & 4294967295)::oid
+          AND NOT granted
+      `);
+      expect(waiting.rows).toHaveLength(1);
+    });
+    expect(settings).not.toHaveBeenCalled();
+  } finally {
+    release.resolve();
+    await allocation;
+    await importing;
+  }
+  expect((await importing).projects[0].status).toBe("completed");
+  expect(
+    (
+      await db
+        .select()
+        .from(schema.cycleTable)
+        .orderBy(schema.cycleTable.number)
+    ).map((cycle) => cycle.number),
+  ).toEqual([1, 2]);
 });
 
 async function setup() {
@@ -143,6 +247,8 @@ async function run(
 }
 it("imports project plans, milestones, updates, shared initiatives, cycles, triage, identifiers and cross-project duplicates", async () => {
   const c = await setup();
+  c.fixture.initiativeProjects[0]!.sortOrder = "2";
+  c.fixture.initiativeProjects[1]!.sortOrder = "10";
   const listed = await c.api("/import/projects", {
     method: "POST",
     body: { workspaceId: c.workspace.id, connection },
@@ -313,15 +419,7 @@ it("rolls back a project's tasks and planning data together on invalid source da
   c.fixture.issues.get("project-a")![0]!.url = "javascript:alert(1)";
   const result = await run(c, ["project:project-a"]);
   expect(result.projects[0].status).toBe("failed");
-  for (const table of [
-    schema.projectTable,
-    schema.taskTable,
-    schema.projectExtTable,
-    schema.cycleTable,
-    schema.initiativeTable,
-    schema.statusUpdateTable,
-  ])
-    expect(await db.select().from(table)).toEqual([]);
+  await expectNoImportedRows();
 });
 it("preserves configured workspace settings and allocates colliding cycle numbers", async () => {
   const c = await setup();
@@ -368,7 +466,7 @@ it("searches original identifiers while excluding hidden projects and pending tr
   const c = await setup();
   await run(c);
   const found = await c.api(
-    `/search?q=ENG-42&type=tasks&workspaceId=${c.workspace.id}`,
+    `/search?q=ENG-42&type=tasks&limit=1&workspaceId=${c.workspace.id}`,
   );
   expect(found.status).toBe(200);
   expect(JSON.stringify(await found.json())).toContain("Issue 42");
@@ -381,6 +479,23 @@ it("searches original identifiers while excluding hidden projects and pending tr
       (task: { title: string }) => task.title,
     ),
   ).toEqual(["Issue 42"]);
+  const [launch] = await db
+    .select()
+    .from(schema.projectTable)
+    .where(eq(schema.projectTable.name, "Launch"));
+  await db.insert(schema.taskTable).values(
+    [1, 2].map((number) => ({
+      projectId: launch!.id,
+      number: 100 + number,
+      title: `Reference ENG-42 ${number}`,
+      status: "to-do",
+    })),
+  );
+  const ranked = await c.api(
+    `/search?q=ENG-42&type=tasks&limit=1&workspaceId=${c.workspace.id}`,
+  );
+  expect(ranked.status).toBe(200);
+  expect(JSON.stringify(await ranked.json())).toContain("Issue 42");
   const pending = await c.api(
     `/search?q=ENG-44&type=tasks&workspaceId=${c.workspace.id}`,
   );

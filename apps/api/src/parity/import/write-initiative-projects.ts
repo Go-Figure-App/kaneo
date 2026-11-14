@@ -10,13 +10,14 @@ export async function writeInitiativeProjects(
 ) {
   const positions = new Map<string, number>();
   // Sort within the complete source initiative, not this project's links.
-  const links = [...data.workspace.initiativeProjects].sort((a, b) =>
-    a.sortOrder === b.sortOrder
-      ? a.id.localeCompare(b.id)
-      : a.sortOrder < b.sortOrder
-        ? -1
-        : 1,
-  );
+  const links = data.workspace.initiativeProjects
+    .map((link) => {
+      const order = Number(link.sortOrder);
+      if (!link.sortOrder.trim() || !Number.isFinite(order))
+        throw new Error("Linear returned an invalid initiative project order.");
+      return { ...link, order };
+    })
+    .sort((a, b) => a.order - b.order || a.id.localeCompare(b.id));
   for (const link of links) {
     const position = positions.get(link.initiative.id) ?? 0;
     positions.set(link.initiative.id, position + 1);

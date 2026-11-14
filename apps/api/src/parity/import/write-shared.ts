@@ -3,6 +3,7 @@ import type { ImportIdentity, ProjectPlanning } from "./types";
 import { writeImportSettings } from "./write-settings";
 import { writeImportCycles } from "./write-cycles";
 import { writeImportInitiatives } from "./write-initiatives";
+import { lockCycleWorkspace } from "../cycles/access";
 
 export async function writeSharedPlanning(
   tx: Transaction,
@@ -14,7 +15,8 @@ export async function writeSharedPlanning(
     identify: ImportIdentity;
   },
 ) {
-  // Settings hold the workspace row lock while shared cycle numbers are allocated.
+  // Match the scheduler's lock order before settings or cycle-number writes.
+  await lockCycleWorkspace(tx, input.workspaceId);
   const warnings = await writeImportSettings(tx, input.workspaceId, input.data);
   const cycles = await writeImportCycles(
     tx,
