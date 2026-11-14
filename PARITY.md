@@ -615,3 +615,12 @@ that explicitly include archived items without restoring those projects.
 
 The live export also contains already-qualified grouped label names. The import
 mapper adds a group prefix only when absent, preserving both Linear shapes.
+
+
+## Tracing package transition
+
+The authorized Tracing rename is split into reviewable changes. Workspace
+packages now use the `@tracing` namespace, while temporary `@kaneo` workspace
+aliases keep existing consumers working as their imports move in later PRs.
+The aliases resolve to the same local packages; they do not fetch or publish
+registry packages. CI and Docker package selectors use the new names.
