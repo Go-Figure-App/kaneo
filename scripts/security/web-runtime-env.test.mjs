@@ -20,7 +20,7 @@ const root = resolve(import.meta.dirname, "../..");
 const image = "nginx:1.30.6-alpine";
 const scenarios = [
   {
-    name: "ordinary URLs",
+    name: "empty Tracing settings preserve legacy URLs",
     api: "https://api.example.test/api/",
     client: "https://app.example.test",
     key: "site-key",
@@ -32,6 +32,18 @@ const scenarios = [
       // eslint-disable-next-line no-template-curly-in-string -- Must remain literal hostile configuration data.
       "https://app.example.test/#'\"` ${globalThis.injected = true} & \\ \n\r\t\u0001\u001f Grüße 😀 \u2028\u2029",
     key: 'KANEO_CLIENT_URL ";globalThis.injected=true;//',
+  },
+  {
+    name: "populated Tracing settings take precedence",
+    api: "https://current-api.example.test/api/",
+    client: "https://current-app.example.test",
+    key: "current-site-key",
+    tracing: true,
+    legacy: {
+      api: "https://legacy-api.example.test/api/",
+      client: "https://legacy-app.example.test",
+      key: "legacy-site-key",
+    },
   },
   { name: "unset public values", api: "", client: "", key: "" },
 ];
@@ -228,6 +240,12 @@ for (const scenario of scenarios) {
           "KANEO_TURNSTILE_SITE_KEY",
           "--env",
           "KANEO_SERVER_SECRET",
+          "--env",
+          "TRACING_API_URL",
+          "--env",
+          "TRACING_CLIENT_URL",
+          "--env",
+          "TRACING_TURNSTILE_SITE_KEY",
           "--entrypoint",
           "sh",
           image,
@@ -240,9 +258,12 @@ for (const scenario of scenarios) {
           timeout: 30_000,
           env: {
             ...process.env,
-            KANEO_API_URL: scenario.api,
-            KANEO_CLIENT_URL: scenario.client,
-            KANEO_TURNSTILE_SITE_KEY: scenario.key,
+            KANEO_API_URL: scenario.legacy?.api ?? scenario.api,
+            KANEO_CLIENT_URL: scenario.legacy?.client ?? scenario.client,
+            KANEO_TURNSTILE_SITE_KEY: scenario.legacy?.key ?? scenario.key,
+            TRACING_API_URL: scenario.tracing ? scenario.api : "",
+            TRACING_CLIENT_URL: scenario.tracing ? scenario.client : "",
+            TRACING_TURNSTILE_SITE_KEY: scenario.tracing ? scenario.key : "",
             KANEO_SERVER_SECRET: "must-not-be-published",
           },
         },
