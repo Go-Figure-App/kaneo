@@ -6064,9 +6064,9 @@
 				"due": "Due date",
 				"created": "Created date",
 				"completed": "Completed date",
-				"cycle-period": "Cycle period",
-				"initiative": "Initiative",
-				"state": "Workflow state"
+				"cycle-period": "Период цикла",
+				"initiative": "Инициатива",
+				"state": "Статус рабочего процесса"
 			},
 			"groups": {
 				"state": "State",

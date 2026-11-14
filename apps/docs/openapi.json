@@ -16030,7 +16030,9 @@
                                         "enum": [
                                           "current"
                                         ]
-                                      }
+                                      },
+                                      "minItems": 1,
+                                      "maxItems": 1
                                     }
                                   },
                                   "required": [
@@ -16571,7 +16573,9 @@
                                 "enum": [
                                   "current"
                                 ]
-                              }
+                              },
+                              "minItems": 1,
+                              "maxItems": 1
                             }
                           },
                           "required": [
@@ -17000,7 +17004,9 @@
                                   "enum": [
                                     "current"
                                   ]
-                                }
+                                },
+                                "minItems": 1,
+                                "maxItems": 1
                               }
                             },
                             "required": [
@@ -17536,7 +17542,9 @@
                                   "enum": [
                                     "current"
                                   ]
-                                }
+                                },
+                                "minItems": 1,
+                                "maxItems": 1
                               }
                             },
                             "required": [
@@ -18069,7 +18077,9 @@
                                 "enum": [
                                   "current"
                                 ]
-                              }
+                              },
+                              "minItems": 1,
+                              "maxItems": 1
                             }
                           },
                           "required": [
@@ -18498,7 +18508,9 @@
                                   "enum": [
                                     "current"
                                   ]
-                                }
+                                },
+                                "minItems": 1,
+                                "maxItems": 1
                               }
                             },
                             "required": [

@@ -5822,9 +5822,9 @@
 				"due": "Due date",
 				"created": "Created date",
 				"completed": "Completed date",
-				"cycle-period": "Cycle period",
+				"cycle-period": "Zykluszeitraum",
 				"initiative": "Initiative",
-				"state": "Workflow state"
+				"state": "Workflow-Status"
 			},
 			"groups": {
 				"state": "State",

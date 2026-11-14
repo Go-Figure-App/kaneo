@@ -5917,9 +5917,9 @@
 				"due": "Due date",
 				"created": "Created date",
 				"completed": "Completed date",
-				"cycle-period": "Cycle period",
-				"initiative": "Initiative",
-				"state": "Workflow state"
+				"cycle-period": "Período do ciclo",
+				"initiative": "Iniciativa",
+				"state": "Status do fluxo de trabalho"
 			},
 			"groups": {
 				"state": "State",

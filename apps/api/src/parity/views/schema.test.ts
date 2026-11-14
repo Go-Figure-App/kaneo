@@ -7,6 +7,8 @@ it("rejects invalid filter fields, comparisons and oversized criteria", () => {
     [{ field: "estimate", operator: "after", value: null }],
     [{ field: "category", operator: "is", values: ["done"] }],
     [{ field: "assignee", operator: "is", values: [] }],
+    [{ field: "cycle-period", operator: "is", values: [] }],
+    [{ field: "cycle-period", operator: "is", values: ["current", "current"] }],
     [{ field: "completed", operator: "is", value: "2026-02-30" }],
     Array.from({ length: 31 }, () => ({
       field: "priority",

@@ -35,7 +35,7 @@ it("retains input identity while editing and when a preceding filter is removed"
   );
 });
 
-it("retains imported workflow names and offers the dynamic current-cycle filter", () => {
+it("retains imported workflow names and offers the dynamic current-cycle filter", async () => {
   function Imported() {
     const [filters, setFilters] = useState<ViewFilters>([
       { field: "state", operator: "is", values: ["Needs design"] },
@@ -65,4 +65,15 @@ it("retains imported workflow names and offers the dynamic current-cycle filter"
   expect(
     screen.getAllByRole("option").map((option) => option.getAttribute("value")),
   ).not.toContain("before");
+  fireEvent.click(
+    screen.getByRole("button", { name: "parity:views.filterValue" }),
+  );
+  const current = await screen.findByRole("checkbox", {
+    name: "parity:cycles.currentCycle",
+  });
+  expect((current as HTMLInputElement).disabled).toBe(true);
+  fireEvent.click(
+    screen.getByRole("button", { name: "parity:views.removeFilter" }),
+  );
+  expect(screen.getByRole("status").textContent).toBe("[]");
 });

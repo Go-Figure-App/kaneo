@@ -21,7 +21,7 @@ export const taskFilter = z
     z.strictObject({
       field: z.literal("cycle-period"),
       operator: equality,
-      values: z.array(z.literal("current")).length(1),
+      values: z.array(z.literal("current")).min(1).max(1),
     }),
     z.strictObject({
       field: z.literal("category"),

@@ -5822,9 +5822,9 @@
 				"due": "Due date",
 				"created": "Created date",
 				"completed": "Completed date",
-				"cycle-period": "Cycle period",
-				"initiative": "Initiative",
-				"state": "Workflow state"
+				"cycle-period": "Περίοδος κύκλου",
+				"initiative": "Πρωτοβουλία",
+				"state": "Κατάσταση ροής εργασίας"
 			},
 			"groups": {
 				"state": "State",

@@ -600,6 +600,6 @@ these saved filters through to the same API.
 
 The filter builder exposes the new choices and keeps imported state names
 readable when an option is no longer present. Shared-file changes are limited to
-`apps/docs/openapi.json`, the three source locale keys and their 20 synchronized
-catalog fallbacks, and the corresponding entries in `i18n/schema.json`. Other
+`apps/docs/openapi.json`, the three source locale keys and their 20 translated
+catalog entries, and the corresponding entries in `i18n/schema.json`. Other
 changes stay in the owned Views modules and their tests.

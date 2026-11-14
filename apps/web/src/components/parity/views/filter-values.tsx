@@ -136,6 +136,10 @@ export function FilterValues({
             <input
               type="checkbox"
               checked={selected.includes(choice.value)}
+              disabled={
+                filter.field === "cycle-period" &&
+                selected.includes(choice.value)
+              }
               onChange={(event) =>
                 onChange({
                   ...filter,

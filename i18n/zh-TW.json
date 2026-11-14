@@ -5730,9 +5730,9 @@
 				"due": "Due date",
 				"created": "Created date",
 				"completed": "Completed date",
-				"cycle-period": "Cycle period",
-				"initiative": "Initiative",
-				"state": "Workflow state"
+				"cycle-period": "週期階段",
+				"initiative": "計畫",
+				"state": "工作流程狀態"
 			},
 			"groups": {
 				"state": "State",
