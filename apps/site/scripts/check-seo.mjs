@@ -5,7 +5,10 @@ import { fileURLToPath } from "node:url";
 const siteDir = fileURLToPath(new URL("../", import.meta.url));
 const outDir = path.join(siteDir, "out");
 const docsDir = path.resolve(siteDir, "../docs");
-const origin = "https://kaneo.app";
+const repoDir = path.resolve(siteDir, "../..");
+const origin = "https://tracing.gofigureapp.io";
+// The application serves this route; it is not part of the marketing export.
+const applicationPaths = new Set(["/auth/sign-in"]);
 const failures = new Set();
 
 function check(condition, message) {
@@ -124,7 +127,7 @@ for (const url of urls) {
   );
   check(
     meta("twitter:title") === title ||
-      `${meta("twitter:title")} | Kaneo` === title,
+      `${meta("twitter:title")} | Tracing` === title,
     `Twitter title differs from page title: ${url}`,
   );
   for (const name of ["og:description", "twitter:description"]) {
@@ -155,10 +158,35 @@ for (const url of urls) {
   }
   // Ignore script bodies so hydration payloads cannot masquerade as links.
   const body = html.replace(/<script\b[^>]*>[\s\S]*?<\/script>/gi, "");
+  check(
+    !body.includes("Tracing Cloud"),
+    `Inherited hosted-service claim: ${url}`,
+  );
   for (const anchor of tags(body, "a")) {
     if (!anchor.href) continue;
     const target = new URL(anchor.href, url);
-    if (target.origin !== origin) continue;
+    const repositoryPath =
+      target.origin === "https://github.com" &&
+      target.pathname.match(
+        /^\/Go-Figure-App\/tracing\/(blob|tree)\/main\/(.+)$/,
+      );
+    if (repositoryPath) {
+      const source = path.resolve(
+        repoDir,
+        decodeURIComponent(repositoryPath[2]),
+      );
+      const exists =
+        source.startsWith(`${repoDir}${path.sep}`) && existsSync(source);
+      check(
+        exists &&
+          (repositoryPath[1] === "blob"
+            ? statSync(source).isFile()
+            : statSync(source).isDirectory()),
+        `Broken repository link ${target.pathname} on ${location.pathname}`,
+      );
+    }
+    if (target.origin !== origin || applicationPaths.has(target.pathname))
+      continue;
     check(
       Boolean(targetFile(target.pathname)),
       `Broken internal link ${target.pathname} on ${location.pathname}`,
@@ -170,6 +198,17 @@ for (const url of urls) {
 
 for (const url of urls)
   check(linkedPages.has(url), `No internal links to sitemap page: ${url}`);
+
+for (const pathname of ["/llms.txt", "/llms-full.txt"]) {
+  const file = targetFile(pathname);
+  check(Boolean(file), `Missing LLM export: ${pathname}`);
+  if (!file) continue;
+  const content = readFileSync(file, "utf8");
+  check(
+    !/Tracing Cloud|^- (?:Cloud|Managed instance):/m.test(content),
+    `Inherited hosted-service claim: ${pathname}`,
+  );
+}
 
 if (failures.size) {
   console.error([...failures].join("\n"));

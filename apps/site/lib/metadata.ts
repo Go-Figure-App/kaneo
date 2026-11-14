@@ -9,12 +9,12 @@ type PageMetadata = Omit<Metadata, "title" | "description" | "alternates"> & {
 // Next.js replaces nested metadata rather than merging it. Every page needs
 // its own complete preview instead of inheriting the homepage's title and URL.
 export function withSocialMetadata(metadata: PageMetadata): Metadata {
-  const title = `${metadata.title} | Kaneo`;
+  const title = `${metadata.title} | Tracing`;
   return {
     ...metadata,
     openGraph: {
       type: "website",
-      siteName: "Kaneo",
+      siteName: "Tracing",
       title,
       description: metadata.description,
       url: metadata.alternates.canonical,

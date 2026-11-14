@@ -6,19 +6,19 @@ export const vikunja: Comparison = {
   category: "open-source",
   title: "Vikunja alternative for teams",
   description:
-    "Kaneo is a team-first Vikunja alternative with time tracking and workspace roles on every plan. Kaneo Cloud runs it for you from $4 a month.",
+    "Compare Vikunja with Tracing, an MIT-licensed tracker you can self-host with boards, triage, cycles, initiatives, views and insights.",
   summary: "Built for teams, with time tracking and roles on every plan.",
   heading: "The Vikunja alternative built for teams",
   subheading:
-    "Vikunja is a lovely self-hosted to-do app, and its Pro tier keeps some features for paying self-hosters. Kaneo is team-first, has no Pro tier at all, and Kaneo Cloud runs it for you.",
+    "Tracing is an MIT-licensed option for teams evaluating Vikunja who want to operate their own project tracker.",
   verdict:
-    "Kaneo is a team-first Vikunja alternative, and Kaneo Cloud runs it for you from $4 a month, or $5 per user for teams, with nothing to maintain. Vikunja is a personal and small-team task manager under AGPLv3, with a paid Vikunja Pro add-on for self-hosters that includes features such as time tracking and audit logs, while Kaneo ships every feature on every plan. Kaneo is also MIT licensed, and its free self-hosted build has no paid add-on.",
+    "Tracing is a self-hosted alternative to Vikunja for issue and project planning. It includes boards, triage, project plans, milestones, initiatives, roadmaps, cycles, insights and saved views. Budget for hosting, backups and maintenance; no managed Tracing subscription is offered.",
   facts: {
     license: "MIT, versus AGPLv3 for Vikunja",
-    hosting:
-      "EU-hosted Kaneo Cloud. Both self-host, Kaneo as a single container plus PostgreSQL",
+    hosting: "Self-host Tracing on infrastructure you control",
     sso: "Free on both, through OIDC",
-    pricing: "Cloud from $4 / month, or $0 self-hosted with no paid add-on",
+    pricing:
+      "No license fee; infrastructure and operations are your responsibility",
   },
   rows: [
     { feature: "License", kaneo: "MIT", them: "AGPLv3" },
@@ -32,16 +32,20 @@ export const vikunja: Comparison = {
     { feature: "Workspace roles", kaneo: true, them: "Sharing model" },
     { feature: "Kanban boards", kaneo: true, them: true },
     { feature: "Backlog planning", kaneo: true, them: false },
-    { feature: "Cloud pricing", kaneo: "From $4/mo", them: "From €4/mo" },
+    {
+      feature: "Cloud pricing",
+      kaneo: "No managed hosting plan",
+      them: "From €4/mo",
+    },
   ],
   reasons: [
     {
       title: "One build, everything included",
-      body: "Vikunja Pro adds an admin panel, audit logs, and time tracking for self-hosters who pay. Kaneo's self-hosted build is the whole product, permanently.",
+      body: "Vikunja Pro adds an admin panel, audit logs, and time tracking for self-hosters who pay. Tracing's self-hosted build is the whole product, permanently.",
     },
     {
       title: "Team structure, not shared lists",
-      body: "Workspaces, projects, roles, and permissions are the core model in Kaneo. Vikunja's sharing works well for a few people and gets thin for a growing team.",
+      body: "Workspaces, projects, roles, and permissions are the core model in Tracing. Vikunja's sharing works well for a few people and gets thin for a growing team.",
     },
     {
       title: "MIT rather than AGPL",
@@ -57,9 +61,9 @@ export const vikunja: Comparison = {
         "The core is free and open source under AGPLv3. Vikunja Pro is a separate paid offering for self-hosted instances that adds features such as an admin panel, audit logs, and time tracking.",
     },
     {
-      question: "Vikunja or Kaneo for a team?",
+      question: "Vikunja or Tracing for a team?",
       answer:
-        "Kaneo is built around workspaces, projects, and roles, with backlog planning and time tracking in the free build, so it fits teams better. Vikunja is stronger for individuals and its calendar and list views are more developed.",
+        "Tracing is built around workspaces, projects, and roles, with backlog planning and time tracking in the free build, so it fits teams better. Vikunja is stronger for individuals and its calendar and list views are more developed.",
     },
     {
       question: "Do both support single sign-on?",
@@ -69,13 +73,13 @@ export const vikunja: Comparison = {
     {
       question: "Which is easier to run?",
       answer:
-        "Both are simple. Vikunja is a Go binary with an optional embedded database, which is marginally easier for a single-user install. Kaneo is a container plus PostgreSQL, and ships a Helm chart for Kubernetes.",
+        "Both are simple. Vikunja is a Go binary with an optional embedded database, which is marginally easier for a single-user install. Tracing is a container plus PostgreSQL, and ships a Helm chart for Kubernetes.",
     },
   ],
   related: ["planka", "kanboard", "wekan", "leantime"],
   verifiedOn: "2026-08-19",
   sources: [
     { label: "Vikunja pricing", href: "https://vikunja.io/pricing" },
-    { label: "Kaneo pricing", href: "/pricing" },
+    { label: "Tracing pricing", href: "/pricing" },
   ],
 };

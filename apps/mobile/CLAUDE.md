@@ -1,4 +1,4 @@
-# Kaneo Mobile instructions
+# Tracing Mobile instructions
 
 Canonical guidance: [AGENTS.md](./AGENTS.md)
 

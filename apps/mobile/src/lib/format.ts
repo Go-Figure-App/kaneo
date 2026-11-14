@@ -42,7 +42,7 @@ export function sameDay(a: Day | null, b: Day | null): boolean {
   return !!a && !!b && a.y === b.y && a.m === b.m && a.d === b.d;
 }
 
-/** Kaneo stores calendar dates as the instant of local midnight, like the web app's `Date#toISOString()`. */
+/** Tracing stores calendar dates as the instant of local midnight, like the web app's `Date#toISOString()`. */
 export function toApiDate(day: Day): string {
   return dayToDate(day).toISOString();
 }
@@ -202,7 +202,7 @@ export function slugify(input: string): string {
     .replace(/^-+|-+$/g, "");
 }
 
-/** Project keys in Kaneo are short uppercase prefixes used in ticket ids (e.g. KAN-12). */
+/** Project keys in Tracing are short uppercase prefixes used in ticket ids (e.g. KAN-12). */
 export function suggestProjectKey(name: string): string {
   const words = name.trim().split(/\s+/).filter(Boolean);
   const key =

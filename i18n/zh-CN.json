@@ -1894,7 +1894,7 @@
 			},
 			"foundingFree": {
 				"badge": "免费",
-				"description": "作为早期支持者，此工作区可以免费使用 Tracing Cloud。感谢你从一开始就支持我们。",
+				"description": "此工作区享有免费访问权限。",
 				"title": "创始免费版"
 			},
 			"interval": {
@@ -2256,7 +2256,7 @@
 				"connectTo": "连接 {{source}}",
 				"description": "选择你要迁出的工具。你挑中的每个项目都会在这里新建为一个项目。",
 				"kaneo": {
-					"description": "在 Tracing 云端和自托管实例之间迁移项目。",
+					"description": "在 Tracing 实例之间迁移项目。",
 					"intro": "该密钥能看到的所有工作区里的项目。你挑中的会复制到这里。",
 					"pickerName": "另一个 Tracing"
 				},
@@ -4055,11 +4055,11 @@
 	"press": {
 		"title": "媒体资源包",
 		"headline": "Tracing 媒体资源包",
-		"intro": "供文章、视频等媒体使用的 Tracing 标志和产品截图。",
-		"description": "Tracing 媒体资源：产品介绍、标志、截图，以及面向记者和创作者的联络方式。",
+		"intro": "用于文章、视频和其他媒体的 Tracing 标志及应用图标。",
+		"description": "Tracing 新闻资料：为记者和内容创作者提供产品信息、标志和联系方式。",
 		"downloadKit": "下载全部素材",
 		"boilerplateTitle": "关于 Tracing",
-		"boilerplate": "Tracing 是由 Andrej Acevski 创建的开源项目管理平台。团队可以用看板和列表视图整理任务、指派工作、设置优先级和截止日期，并接入 GitHub。Tracing 采用 MIT 许可，可自行托管，也可以通过 Tracing Cloud 使用托管服务。",
+		"boilerplate": "Tracing 是 Go Figure 的开源规划工作区，基于 Andrej Acevski 的 Kaneo 构建。它新增了任务、分流、计划、路线图、周期、分析和已保存视图。源代码采用 MIT 许可证发布，可供自行托管。",
 		"logosTitle": "标志",
 		"darkLogo": "深色字标",
 		"darkLogoAlt": "浅色背景上的深色 Tracing 标志",
@@ -4153,8 +4153,8 @@
 				"link": "配置 GitHub"
 			},
 			"hosting": {
-				"title": "跑在你自己的服务器上。",
-				"description": "用 Docker 部署，工作区始终跑在你自己掌控的服务器上。",
+				"title": "在您自己的基础设施上运行。",
+				"description": "使用 PostgreSQL 构建并自行托管 Tracing。选择您的基础设施，并管理备份、更新和恢复。",
 				"link": "自托管 Tracing"
 			},
 			"source": {
@@ -4197,7 +4197,7 @@
 		},
 		"seo": {
 			"title": "Tracing — 开源、可自托管的项目管理工具",
-			"description": "开源项目管理工具，带看板、甘特图和 GitHub 集成。免费自托管，内置 SSO，也可以使用 Tracing Cloud。"
+			"description": "开源项目规划，提供看板、分流、里程碑、计划、路线图、周期、分析和已保存视图。在您自己的基础设施上托管 Tracing。"
 		},
 		"resources": {
 			"eyebrow": "按你的方式来",
@@ -4216,7 +4216,7 @@
 				"description": "看看在托管方式、授权许可和工作流上的差别。"
 			},
 			"startups": {
-				"description": "What a startup needs from a tracker, and what Tracing Cloud costs as you hire.",
+				"description": "面向初创企业的规划，同时考虑发展过程中的托管和运营成本。",
 				"title": "Project management for startups"
 			}
 		},
@@ -4346,6 +4346,7 @@
 			"title": "活动"
 		},
 		"background": {
+			"title": "Tracing",
 			"channelDescription": "来自工作区的指派、评论和提及",
 			"channelName": "Tracing 活动",
 			"summary_other": "另有 {{count}} 条新通知"
@@ -4834,7 +4835,7 @@
 			"browserHint": "GitHub、Google、Discord 或 SSO",
 			"captcha": "此步骤需要浏览器验证，请使用“在浏览器中继续”。",
 			"change": "更改",
-			"cloud": "Tracing Cloud",
+			"cloud": "Tracing",
 			"code": {
 				"checkEmail": "请检查你的邮箱",
 				"didntGet": "没收到？",
@@ -4880,13 +4881,13 @@
 				"name": "姓名",
 				"passwordHint": "至少 8 个字符"
 			},
-			"tagline": "简单的项目管理。连接 Tracing Cloud 或你自己的实例。",
+			"tagline": "使用 Tracing 规划团队工作。",
 			"togglePassword": "切换密码显示",
 			"useApiKey": "使用 API 密钥",
 			"unlock": {
 				"buy": "Unlock for {{price}}",
 				"buyNoPrice": "Unlock",
-				"message": "Signing in to Tracing Cloud is always included. Connecting the app to a self-hosted server is a one-time purchase that supports Tracing's development.",
+				"message": "此 Tracing 构建版本无需应用内购买即可连接到您团队的实例。",
 				"nothingToRestore": "No earlier purchase was found for this store account.",
 				"restore": "Restore purchase",
 				"title": "Connect your own server",
@@ -4894,6 +4895,7 @@
 			}
 		},
 		"taskDetail": {
+			"systemActor": "Tracing",
 			"activity": {
 				"comment": "评论",
 				"deleteMessage": "此操作无法撤销。",

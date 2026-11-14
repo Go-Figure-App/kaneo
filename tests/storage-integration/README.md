@@ -18,7 +18,7 @@ docker run --rm -d --name kaneo-storage-contract-test \
 Once the service is ready, run:
 
 ```sh
-KANEO_STORAGE_TEST_ENDPOINT=http://127.0.0.1:59039 pnpm --filter @kaneo/api exec vitest run --config vitest.storage.config.ts
+KANEO_STORAGE_TEST_ENDPOINT=http://127.0.0.1:59039 pnpm --filter @tracing/api exec vitest run --config vitest.storage.config.ts
 docker stop kaneo-storage-contract-test
 ```
 

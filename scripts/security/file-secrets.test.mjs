@@ -7,7 +7,7 @@ import { test } from "node:test";
 
 const root = path.resolve(import.meta.dirname, "../..");
 const entrypoint = readFileSync(
-  path.join(root, "deploy/kaneo-entrypoint.sh"),
+  path.join(root, "deploy/tracing-entrypoint.sh"),
   "utf8",
 );
 const startup = entrypoint.slice(

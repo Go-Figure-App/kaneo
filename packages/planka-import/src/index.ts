@@ -1,10 +1,10 @@
 #!/usr/bin/env node
 import { writeFile } from "node:fs/promises";
 import { createRequire } from "node:module";
-import { PlankaClient } from "@kaneo/importers/planka";
+import { PlankaClient } from "@tracing/importers/planka";
 import prompts from "prompts";
 import { DEFAULT_KANEO_URL, HELP_TEXT, parseArgs } from "./args.js";
-import { KaneoClient } from "./kaneo.js";
+import { TracingClient } from "./kaneo.js";
 import { type BoardReport, type BoardTarget, migrate } from "./migrate.js";
 import { formatWait } from "./retry-after.js";
 
@@ -102,15 +102,15 @@ async function main(): Promise<number> {
   const kaneoApiKey = args.kaneoApiKey ?? process.env.KANEO_API_KEY;
   if (!kaneoApiKey && !args.dryRun) {
     throw new Error(
-      "A Kaneo API key is required. Pass --kaneo-api-key or set KANEO_API_KEY.",
+      "A Tracing API key is required. Pass --kaneo-api-key or set KANEO_API_KEY.",
     );
   }
 
-  const kaneo = new KaneoClient({
+  const kaneo = new TracingClient({
     baseUrl: args.kaneoUrl ?? DEFAULT_KANEO_URL,
     apiKey: kaneoApiKey ?? "",
     onRateLimit: (waitMs) =>
-      log(`Kaneo rate limit reached, waiting ${formatWait(waitMs)}…`),
+      log(`Tracing rate limit reached, waiting ${formatWait(waitMs)}…`),
   });
 
   let workspaceId = args.workspace ?? "";
@@ -132,14 +132,14 @@ async function main(): Promise<number> {
 
   if (args.dryRun) {
     await writeReport(args.report, preview);
-    log("Dry run. Nothing was written to Kaneo.");
+    log("Dry run. Nothing was written to Tracing.");
     return 0;
   }
 
   if (!args.yes) {
     const confirmed = await confirm(
       interactive,
-      `Import ${targets.length} board(s) into Kaneo workspace ${workspaceId}?`,
+      `Import ${targets.length} board(s) into Tracing workspace ${workspaceId}?`,
     );
     if (!confirmed) {
       log("Aborted.");
@@ -206,13 +206,13 @@ async function selectTargets(
 }
 
 async function selectWorkspace(
-  kaneo: KaneoClient,
+  kaneo: TracingClient,
   interactive: boolean,
 ): Promise<string> {
   const workspaces = await kaneo.listWorkspaces();
 
   if (workspaces.length === 0) {
-    throw new Error("This Kaneo account has no workspaces.");
+    throw new Error("This Tracing account has no workspaces.");
   }
 
   const first = workspaces[0];
@@ -229,7 +229,7 @@ async function selectWorkspace(
   const answer = await prompts({
     type: "select",
     name: "value",
-    message: "Target Kaneo workspace",
+    message: "Target Tracing workspace",
     choices: workspaces.map((workspace) => ({
       title: workspace.name,
       value: workspace.id,

@@ -1914,7 +1914,7 @@
 			},
 			"foundingFree": {
 				"badge": "Free",
-				"description": "This workspace has free access to Tracing Cloud as an early supporter. Thank you for being here from the start.",
+				"description": "Questo spazio di lavoro ha accesso gratuito.",
 				"title": "Founding Free"
 			},
 			"interval": {
@@ -2302,7 +2302,7 @@
 				"connectTo": "Connect {{source}}",
 				"description": "Pick the tool you are moving from. Each project you choose becomes a new project here.",
 				"kaneo": {
-					"description": "Move projects between Tracing Cloud and a self-hosted instance.",
+					"description": "Sposta i progetti tra istanze di Tracing.",
 					"intro": "Projects from every workspace the key can see. Each one you pick is copied here.",
 					"pickerName": "Another Tracing"
 				},
@@ -4209,11 +4209,11 @@
 	"press": {
 		"title": "Press kit",
 		"headline": "Tracing press kit",
-		"intro": "Tracing logos and product screenshots for articles, videos, and other media.",
-		"description": "Tracing press resources: product information, logos, screenshots, and contact details for journalists and creators.",
+		"intro": "Loghi e icone dell’app Tracing per articoli, video e altri contenuti multimediali.",
+		"description": "Risorse stampa di Tracing: informazioni sul prodotto, loghi e contatti per giornalisti e creatori di contenuti.",
 		"downloadKit": "Download all assets",
 		"boilerplateTitle": "About Tracing",
-		"boilerplate": "Tracing is an open-source project management platform created by Andrej Acevski. Teams can organize tasks in board and list views, assign work, set priorities and due dates, and connect GitHub. Tracing is available under the MIT license for self-hosting, or as a managed service through Tracing Cloud.",
+		"boilerplate": "Tracing è lo spazio di pianificazione open source di Go Figure, basato su Kaneo di Andrej Acevski. Aggiunge attività, triage, iniziative, roadmap, cicli, analisi e viste salvate. Il codice sorgente è disponibile con licenza MIT per l’hosting autonomo.",
 		"logosTitle": "Logos",
 		"darkLogo": "Dark wordmark",
 		"darkLogoAlt": "Dark Tracing logo on a light background",
@@ -4307,8 +4307,8 @@
 				"link": "Set up GitHub"
 			},
 			"hosting": {
-				"title": "Run it on your own server.",
-				"description": "Deploy with Docker and keep your workspace on infrastructure you control.",
+				"title": "Eseguilo sulla tua infrastruttura.",
+				"description": "Compila e ospita Tracing con PostgreSQL. Scegli la tua infrastruttura e gestisci backup, aggiornamenti e ripristino.",
 				"link": "Self-host Tracing"
 			},
 			"source": {
@@ -4351,7 +4351,7 @@
 		},
 		"seo": {
 			"title": "Tracing — Open-source, self-hosted project management",
-			"description": "Open-source project management with boards, Gantt charts, and GitHub integration. Self-host for free with SSO included, or use Tracing Cloud."
+			"description": "Pianificazione dei progetti open source con bacheche, triage, traguardi, iniziative, roadmap, cicli, analisi e viste salvate. Ospita Tracing sulla tua infrastruttura."
 		},
 		"resources": {
 			"eyebrow": "Make it your own",
@@ -4370,7 +4370,7 @@
 				"description": "See the differences in hosting, licensing, and workflow."
 			},
 			"startups": {
-				"description": "What a startup needs from a tracker, and what Tracing Cloud costs as you hire.",
+				"description": "Pianificazione per una startup, tenendo conto dei costi di hosting e gestione durante la crescita.",
 				"title": "Project management for startups"
 			}
 		},
@@ -4450,8 +4450,8 @@
 			"uploadFailed": "Caricamento non riuscito ({{status}})"
 		},
 		"signIn": {
-			"tagline": "Gestione dei progetti semplice. Collegati a Tracing Cloud o alla tua istanza.",
-			"cloud": "Tracing Cloud",
+			"tagline": "Pianifica il lavoro del tuo team con Tracing.",
+			"cloud": "Tracing",
 			"selfHosted": "Self-hosted",
 			"captcha": "Questo server richiede una verifica nel browser per questo passaggio. Usa invece “Continua nel browser”.",
 			"invalidClient": "Questo server non consente l'accesso tramite dispositivo. Chiedi all'amministratore di aggiungere “kaneo-cli” a DEVICE_AUTH_CLIENT_IDS, oppure accedi con password o chiave API.",
@@ -4509,7 +4509,7 @@
 			"unlock": {
 				"buy": "Unlock for {{price}}",
 				"buyNoPrice": "Unlock",
-				"message": "Signing in to Tracing Cloud is always included. Connecting the app to a self-hosted server is a one-time purchase that supports Tracing's development.",
+				"message": "Questa versione di Tracing si connette all’istanza del tuo team senza acquisti in-app.",
 				"nothingToRestore": "No earlier purchase was found for this store account.",
 				"restore": "Restore purchase",
 				"title": "Connect your own server",
@@ -4531,6 +4531,7 @@
 			"join": "Unisciti"
 		},
 		"taskDetail": {
+			"systemActor": "Tracing",
 			"someone": "Qualcuno",
 			"status": {
 				"planned": "Pianificata",
@@ -4968,6 +4969,7 @@
 			"workspaceCreated": "Workspace “{{name}}” creato"
 		},
 		"background": {
+			"title": "Tracing",
 			"summary_one": "Altra {{count}} nuova notifica",
 			"summary_other": "Altre {{count}} nuove notifiche",
 			"channelName": "Attività Tracing",

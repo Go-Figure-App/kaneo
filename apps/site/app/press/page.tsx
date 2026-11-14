@@ -13,16 +13,16 @@ export const metadata: Metadata = {
   description: press.description,
   alternates: { canonical: "/press" },
   openGraph: {
-    title: `${press.title} | Kaneo`,
+    title: `${press.title} | Tracing`,
     description: press.description,
     url: "/press",
-    images: [{ url: "/images/hero.png", width: 1200, height: 630 }],
+    images: [{ url: "/logo-512.png", width: 512, height: 512 }],
   },
   twitter: {
-    card: "summary_large_image",
-    title: `${press.title} | Kaneo`,
+    card: "summary",
+    title: `${press.title} | Tracing`,
     description: press.description,
-    images: ["/images/hero.png"],
+    images: ["/logo-512.png"],
   },
 };
 
@@ -35,7 +35,7 @@ const logos = [
     detail: press.darkLogoDetail,
     alt: press.darkLogoAlt,
     src: "/logo-dark.svg",
-    filename: "kaneo-wordmark-dark.svg",
+    filename: "tracing-wordmark-dark.svg",
     background: "bg-[#f5f5f5]",
     width: 450,
     height: 104,
@@ -45,7 +45,7 @@ const logos = [
     detail: press.lightLogoDetail,
     alt: press.lightLogoAlt,
     src: "/logo-light.svg",
-    filename: "kaneo-wordmark-light.svg",
+    filename: "tracing-wordmark-light.svg",
     background: "bg-[#141414]",
     width: 450,
     height: 104,
@@ -55,77 +55,10 @@ const logos = [
     detail: press.iconDetail,
     alt: press.iconAlt,
     src: "/logo-512.png",
-    filename: "kaneo-icon.png",
+    filename: "tracing-icon.png",
     background: "bg-[#e8e8e8]",
     width: 512,
     height: 512,
-  },
-];
-
-const screenshots = [
-  {
-    title: press.lightScreenshot,
-    alt: press.lightScreenshotAlt,
-    src: "/images/light.png",
-    filename: "kaneo-board-light.png",
-    width: 3456,
-    height: 2000,
-  },
-  {
-    title: press.darkScreenshot,
-    alt: press.darkScreenshotAlt,
-    src: "/images/dark.png",
-    filename: "kaneo-board-dark.png",
-    width: 3456,
-    height: 2000,
-  },
-  {
-    title: press.lightListScreenshot,
-    alt: press.lightListScreenshotAlt,
-    src: "/images/product/list-light.png",
-    filename: "kaneo-list-light.png",
-    width: 3456,
-    height: 2000,
-  },
-  {
-    title: press.darkListScreenshot,
-    alt: press.darkListScreenshotAlt,
-    src: "/images/product/list-dark.png",
-    filename: "kaneo-list-dark.png",
-    width: 3456,
-    height: 2000,
-  },
-  {
-    title: press.lightTimelineScreenshot,
-    alt: press.lightTimelineScreenshotAlt,
-    src: "/images/product/timeline-light.png",
-    filename: "kaneo-timeline-light.png",
-    width: 3456,
-    height: 2000,
-  },
-  {
-    title: press.darkTimelineScreenshot,
-    alt: press.darkTimelineScreenshotAlt,
-    src: "/images/product/timeline-dark.png",
-    filename: "kaneo-timeline-dark.png",
-    width: 3456,
-    height: 2000,
-  },
-  {
-    title: press.lightTaskScreenshot,
-    alt: press.lightTaskScreenshotAlt,
-    src: "/images/product/task-light.png",
-    filename: "kaneo-task-light.png",
-    width: 3456,
-    height: 2000,
-  },
-  {
-    title: press.darkTaskScreenshot,
-    alt: press.darkTaskScreenshotAlt,
-    src: "/images/product/task-dark.png",
-    filename: "kaneo-task-dark.png",
-    width: 3456,
-    height: 2000,
   },
 ];
 
@@ -177,7 +110,7 @@ export default function PressPage() {
           <Button
             size="lg"
             className="mt-8 h-12 gap-3 px-5 text-sm sm:h-12"
-            render={<a href="/press/kaneo-press-kit.zip" download />}
+            render={<a href="/press/tracing-press-kit.zip" download />}
           >
             <ArrowDown aria-hidden="true" className="size-4" />
             {press.downloadKit}
@@ -214,33 +147,6 @@ export default function PressPage() {
                     }
                   />
                 </div>
-              </AssetCard>
-            ))}
-          </div>
-        </section>
-
-        <section aria-labelledby="screenshots" className="border-t pt-12">
-          <h2
-            id="screenshots"
-            className="text-2xl font-medium tracking-tight md:text-3xl"
-          >
-            {press.screenshotsTitle}
-          </h2>
-          <div className="mt-6 grid gap-4 sm:grid-cols-2">
-            {screenshots.map((screenshot) => (
-              <AssetCard
-                key={screenshot.src}
-                {...screenshot}
-                detail={`${screenshot.width} × ${screenshot.height}, PNG`}
-              >
-                <Image
-                  src={screenshot.src}
-                  alt={screenshot.alt}
-                  width={screenshot.width}
-                  height={screenshot.height}
-                  className="h-auto w-full"
-                  sizes="(min-width: 1200px) 568px, (min-width: 640px) calc(50vw - 32px), calc(100vw - 48px)"
-                />
               </AssetCard>
             ))}
           </div>

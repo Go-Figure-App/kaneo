@@ -1,5 +1,5 @@
 ---
-title: "Start and check Kaneo"
+title: "Start and check Tracing"
 description: "Start the containers and confirm the instance is ready."
 ---
 
@@ -13,8 +13,8 @@ docker compose ps
 curl --fail http://localhost:5173/api/health
 ```
 
-If a service is unhealthy, run `docker compose logs --tail=100 kaneo postgres` and follow [Troubleshooting](/core/operations/troubleshooting).
+If a service is unhealthy, run `docker compose logs --tail=100 tracing postgres` and follow [Troubleshooting](/core/operations/troubleshooting).
 
-After changing `.env`, run `docker compose up -d --force-recreate kaneo` so the container receives the new values.
+After changing `.env`, run `docker compose up -d --force-recreate tracing` so the container receives the new values.
 
 For a public instance, continue with [Nginx and HTTPS](/core/reverse-proxy/nginx).

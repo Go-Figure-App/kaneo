@@ -1894,7 +1894,7 @@
 			},
 			"foundingFree": {
 				"badge": "Free",
-				"description": "This workspace has free access to Tracing Cloud as an early supporter. Thank you for being here from the start.",
+				"description": "Ruang kerja ini memiliki akses gratis.",
 				"title": "Founding Free"
 			},
 			"interval": {
@@ -2256,7 +2256,7 @@
 				"connectTo": "Connect {{source}}",
 				"description": "Pick the tool you are moving from. Each project you choose becomes a new project here.",
 				"kaneo": {
-					"description": "Move projects between Tracing Cloud and a self-hosted instance.",
+					"description": "Pindahkan proyek antarinstans Tracing.",
 					"intro": "Projects from every workspace the key can see. Each one you pick is copied here.",
 					"pickerName": "Another Tracing"
 				},
@@ -4055,11 +4055,11 @@
 	"press": {
 		"title": "Press kit",
 		"headline": "Tracing press kit",
-		"intro": "Tracing logos and product screenshots for articles, videos, and other media.",
-		"description": "Tracing press resources: product information, logos, screenshots, and contact details for journalists and creators.",
+		"intro": "Logo dan ikon aplikasi Tracing untuk artikel, video, dan media lainnya.",
+		"description": "Sumber daya pers Tracing: informasi produk, logo, dan detail kontak untuk jurnalis dan kreator.",
 		"downloadKit": "Download all assets",
 		"boilerplateTitle": "About Tracing",
-		"boilerplate": "Tracing is an open-source project management platform created by Andrej Acevski. Teams can organize tasks in board and list views, assign work, set priorities and due dates, and connect GitHub. Tracing is available under the MIT license for self-hosting, or as a managed service through Tracing Cloud.",
+		"boilerplate": "Tracing adalah ruang kerja perencanaan sumber terbuka milik Go Figure, dibangun di atas Kaneo karya Andrej Acevski. Tracing menambahkan tugas, triase, inisiatif, peta jalan, siklus, analisis, dan tampilan tersimpan. Kode sumber tersedia dengan lisensi MIT untuk dihosting sendiri.",
 		"logosTitle": "Logos",
 		"darkLogo": "Dark wordmark",
 		"darkLogoAlt": "Dark Tracing logo on a light background",
@@ -4153,8 +4153,8 @@
 				"link": "Set up GitHub"
 			},
 			"hosting": {
-				"title": "Run it on your own server.",
-				"description": "Deploy with Docker and keep your workspace on infrastructure you control.",
+				"title": "Jalankan di infrastruktur Anda sendiri.",
+				"description": "Bangun dan hosting Tracing sendiri dengan PostgreSQL. Pilih infrastruktur Anda dan kelola pencadangan, pembaruan, serta pemulihan.",
 				"link": "Self-host Tracing"
 			},
 			"source": {
@@ -4197,7 +4197,7 @@
 		},
 		"seo": {
 			"title": "Tracing — Open-source, self-hosted project management",
-			"description": "Open-source project management with boards, Gantt charts, and GitHub integration. Self-host for free with SSO included, or use Tracing Cloud."
+			"description": "Perencanaan proyek sumber terbuka dengan papan, triase, tonggak, inisiatif, peta jalan, siklus, analisis, dan tampilan tersimpan. Hosting Tracing di infrastruktur Anda sendiri."
 		},
 		"resources": {
 			"eyebrow": "Make it your own",
@@ -4216,7 +4216,7 @@
 				"description": "See the differences in hosting, licensing, and workflow."
 			},
 			"startups": {
-				"description": "What a startup needs from a tracker, and what Tracing Cloud costs as you hire.",
+				"description": "Perencanaan untuk startup, dengan mempertimbangkan biaya hosting dan operasional seiring pertumbuhan Anda.",
 				"title": "Project management for startups"
 			}
 		},
@@ -4296,8 +4296,8 @@
 			"uploadFailed": "Unggahan gagal ({{status}})"
 		},
 		"signIn": {
-			"tagline": "Manajemen proyek yang sederhana. Hubungkan ke Tracing Cloud atau instans Anda sendiri.",
-			"cloud": "Tracing Cloud",
+			"tagline": "Rencanakan pekerjaan tim Anda dengan Tracing.",
+			"cloud": "Tracing",
 			"selfHosted": "Self-hosted",
 			"captcha": "Server ini memerlukan pemeriksaan browser untuk langkah ini. Gunakan “Lanjutkan di browser”.",
 			"invalidClient": "Server ini tidak mengizinkan masuk dengan perangkat. Minta admin menambahkan “kaneo-cli” ke DEVICE_AUTH_CLIENT_IDS, atau masuk dengan kata sandi atau API key.",
@@ -4355,7 +4355,7 @@
 			"unlock": {
 				"buy": "Unlock for {{price}}",
 				"buyNoPrice": "Unlock",
-				"message": "Signing in to Tracing Cloud is always included. Connecting the app to a self-hosted server is a one-time purchase that supports Tracing's development.",
+				"message": "Versi Tracing ini terhubung ke instans tim Anda tanpa pembelian dalam aplikasi.",
 				"nothingToRestore": "No earlier purchase was found for this store account.",
 				"restore": "Restore purchase",
 				"title": "Connect your own server",
@@ -4377,6 +4377,7 @@
 			"join": "Gabung"
 		},
 		"taskDetail": {
+			"systemActor": "Tracing",
 			"someone": "Seseorang",
 			"status": {
 				"planned": "Direncanakan",
@@ -4804,6 +4805,7 @@
 			"workspaceCreated": "Ruang kerja “{{name}}” dibuat"
 		},
 		"background": {
+			"title": "Tracing",
 			"summary_other": "{{count}} notifikasi baru lainnya",
 			"channelName": "Aktivitas Tracing",
 			"channelDescription": "Penugasan, komentar, dan sebutan dari ruang kerja Anda"

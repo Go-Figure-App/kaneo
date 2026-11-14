@@ -20,7 +20,7 @@ export async function pickImage(
 }
 
 /**
- * Uploads a picked image through Kaneo's presigned flow (create, PUT to storage, finalize) and
+ * Uploads a picked image through Tracing's presigned flow (create, PUT to storage, finalize) and
  * returns Markdown for it. Requires object storage on the server.
  */
 export async function uploadTaskImage(
@@ -50,7 +50,7 @@ export async function uploadTaskImageAsset(
     surface,
   });
   const serverUrl = sessionStore.get().session?.serverUrl ?? "";
-  // Presigned storage URLs must not receive Kaneo credentials, so this is a bare request.
+  // Presigned storage URLs must not receive Tracing credentials, so this is a bare request.
   const put = await fetch(resolveUrl(serverUrl, upload.uploadUrl)!, {
     method: "PUT",
     headers: { "Content-Type": contentType, ...upload.headers },

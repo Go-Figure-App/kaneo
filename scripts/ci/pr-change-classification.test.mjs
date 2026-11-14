@@ -107,7 +107,7 @@ test("only complete docs-only PR changes skip the expensive suites", () => {
     "pnpm-lock.yaml",
     "apps/site/package.json",
     "apps/docs/vite.config.ts",
-    "Dockerfile.kaneo",
+    "Dockerfile.tracing",
     ".github/workflows/ci.yml",
     "apps/mobile/page.md",
   ]) {

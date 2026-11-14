@@ -50,7 +50,7 @@ export function EmailShell({
             <Row style={brand}>
               <Column style={markCell}>
                 <Img
-                  src={emailAsset("mark")}
+                  src={`${emailAsset("mark")}?brand=tracing`}
                   width="28"
                   height="28"
                   alt=""

@@ -6,7 +6,7 @@ tag=$(gh api "repos/$GITHUB_REPOSITORY/releases/latest" --jq .tag_name)
 version=${tag#v}
 node scripts/security/validate-release-version.mjs "$version" --new-version
 if [[ "$tag" != "v$version" ]]; then
-  echo "Expected a stable Kaneo vX.Y.Z release, got $tag" >&2
+  echo "Expected a stable Tracing vX.Y.Z release, got $tag" >&2
   exit 1
 fi
 owner=$(printf '%s' "$GITHUB_REPOSITORY_OWNER" | tr '[:upper:]' '[:lower:]')

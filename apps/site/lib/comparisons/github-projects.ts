@@ -6,18 +6,19 @@ export const githubProjects: Comparison = {
   category: "saas",
   title: "Standalone GitHub Projects alternative",
   description:
-    "Kaneo is a standalone GitHub Projects alternative with time tracking and roles, for work beyond your repos. Kaneo Cloud runs it for you from $4 a month.",
+    "Compare GitHub Projects with Tracing, an MIT-licensed tracker you can self-host with boards, triage, cycles, initiatives, views and insights.",
   summary: "A tracker for the work that does not belong in a repository.",
   heading: "The standalone alternative to GitHub Projects",
   subheading:
-    "GitHub Projects is free and fine, right up until you need non-engineering work, time tracking, or a tracker that outlives your GitHub plan. Kaneo is a standalone board you own.",
+    "GitHub Projects is free and fine, right up until you need non-engineering work, time tracking, or a tracker that outlives your GitHub plan. Tracing is a standalone board you own.",
   verdict:
-    "Kaneo is a GitHub Projects alternative for teams whose work does not all live in GitHub issues, and Kaneo Cloud runs it for you from $4 a month, or $5 per user for teams. GitHub Projects is included with GitHub and excellent for repository-bound work, but it has no time tracking, no workspace roles outside GitHub's own, and it ties your planning history to your GitHub account. Kaneo is also MIT-licensed open source, so you can self-host it for free any time.",
+    "Tracing is a self-hosted alternative to GitHub Projects for issue and project planning. It includes boards, triage, project plans, milestones, initiatives, roadmaps, cycles, insights and saved views. Budget for hosting, backups and maintenance; no managed Tracing subscription is offered.",
   facts: {
     license: "MIT, and independent of any repository host",
-    hosting: "EU-hosted Kaneo Cloud, or self-host anywhere",
-    sso: "Any OIDC provider on every Kaneo build, SAML on GitHub Enterprise",
-    pricing: "Cloud from $4 / month, or $0 self-hosted",
+    hosting: "Self-host Tracing on infrastructure you control",
+    sso: "Any OIDC provider on every Tracing build, SAML on GitHub Enterprise",
+    pricing:
+      "No license fee; infrastructure and operations are your responsibility",
   },
   rows: [
     { feature: "Open source (MIT)", kaneo: true, them: false },
@@ -36,19 +37,19 @@ export const githubProjects: Comparison = {
   reasons: [
     {
       title: "Not everything is an issue",
-      body: "Design, ops, onboarding, and client work rarely belong in a repository. Kaneo gives that work a home without opening placeholder issues for it.",
+      body: "Design, ops, onboarding, and client work rarely belong in a repository. Tracing gives that work a home without opening placeholder issues for it.",
     },
     {
       title: "Time tracking built in",
-      body: "Log time against any task in Kaneo. GitHub Projects has no time tracking, so teams end up bolting on a second tool.",
+      body: "Log time against any task in Tracing. GitHub Projects has no time tracking, so teams end up bolting on a second tool.",
     },
     {
       title: "Your planning survives a migration",
-      body: "If you ever move off GitHub, your Kaneo board comes with you. It is MIT licensed, self-hostable, and exports to JSON.",
+      body: "If you ever move off GitHub, your Tracing board comes with you. It is MIT licensed, self-hostable, and exports to JSON.",
     },
   ],
   honestNote:
-    "For a team whose work is entirely code in GitHub repositories, GitHub Projects is hard to argue with: it is included in your plan, it lives next to the pull requests, and the automation between issues and boards is genuinely good. Kaneo makes sense when planning has outgrown the repository.",
+    "For a team whose work is entirely code in GitHub repositories, GitHub Projects is hard to argue with: it is included in your plan, it lives next to the pull requests, and the automation between issues and boards is genuinely good. Tracing makes sense when planning has outgrown the repository.",
   faq: [
     {
       question: "Is GitHub Projects free?",
@@ -61,20 +62,20 @@ export const githubProjects: Comparison = {
         "You can, but every item is a repository issue or a draft item, so non-code work either clutters a repo or lives as drafts with fewer features. A standalone tracker avoids that trade.",
     },
     {
-      question: "Does Kaneo integrate with GitHub?",
+      question: "Does Tracing integrate with GitHub?",
       answer:
-        "Yes. Kaneo has GitHub, GitLab, and Gitea integrations connecting repository activity to tasks, plus outgoing webhooks, a public API, and an MCP server if you want AI agents to work with your board.",
+        "Yes. Tracing has GitHub, GitLab, and Gitea integrations connecting repository activity to tasks, plus outgoing webhooks, a public API, and an MCP server if you want AI agents to work with your board.",
     },
     {
       question: "Can GitHub Projects be self-hosted?",
       answer:
-        "Only as part of GitHub Enterprise Server, which is a licensed on-premise install of GitHub itself. Kaneo self-hosts on its own with Docker and PostgreSQL, free under the MIT license.",
+        "Only as part of GitHub Enterprise Server, which is a licensed on-premise install of GitHub itself. Tracing self-hosts on its own with Docker and PostgreSQL, free under the MIT license.",
     },
   ],
   related: ["jira", "linear", "azure-devops", "shortcut"],
   verifiedOn: "2026-08-19",
   sources: [
     { label: "GitHub pricing", href: "https://github.com/pricing" },
-    { label: "Kaneo pricing", href: "/pricing" },
+    { label: "Tracing pricing", href: "/pricing" },
   ],
 };

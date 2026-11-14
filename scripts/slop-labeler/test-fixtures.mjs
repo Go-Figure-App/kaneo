@@ -2,7 +2,7 @@ import assert from "node:assert/strict";
 import { createHash } from "node:crypto";
 
 export const env = {
-  GITHUB_REPOSITORY: "usekaneo/kaneo",
+  GITHUB_REPOSITORY: "Go-Figure-App/tracing",
   GH_TOKEN: "local-test-token",
 };
 export const event = { pull_request: { number: 42 } };
@@ -74,7 +74,7 @@ export function fixture(options = {}) {
       });
       if (intercepted) return intercepted;
     }
-    const root = "/repos/usekaneo/kaneo";
+    const root = "/repos/Go-Figure-App/tracing";
     const issue = `${root}/issues/42`;
     if (
       pathname ===

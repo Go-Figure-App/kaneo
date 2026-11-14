@@ -18,7 +18,7 @@ This is a comparison of the 10 tools worth considering, from open-source boards 
 
 ## TL;DR: the 10 best Trello alternatives
 
-1. **[Kaneo](/trello-alternative)** for teams who want a fast board plus a backlog, Gantt and calendar views, and SSO, hosted or on their own server.
+1. **[Tracing](/trello-alternative)** for teams who want a fast board plus a backlog, Gantt and calendar views, and SSO, hosted or on their own server.
 2. **[PLANKA](/planka-alternative)** for the closest thing to Trello's card experience that you can self-host.
 3. **[ClickUp](/clickup-alternative)** for teams who want docs, whiteboards, and chat alongside their boards.
 4. **[Asana](/asana-alternative)** for cross-team coordination with portfolios and goals.
@@ -45,7 +45,7 @@ This is a comparison of the 10 tools worth considering, from open-source boards 
 
 | Tool | Open source | Self-host | SSO included | Starting price |
 | --- | --- | --- | --- | --- |
-| Kaneo | Yes (MIT) | Yes | Yes, on every plan | Cloud from $4/mo, self-host free |
+| Tracing | Yes (MIT) | Yes | Yes, on every plan | No software fee; self-hosting costs apply |
 | PLANKA | Source-available (Fair Use) | Yes | Pro tier | Community edition free |
 | ClickUp | No | No | Business tier and above | From $7 per user / month |
 | Asana | No | No | Enterprise tier | From $10.99 per user / month |
@@ -59,7 +59,7 @@ This is a comparison of the 10 tools worth considering, from open-source boards 
 
 ## How we evaluated these tools
 
-We build Kaneo, which is the first entry on this list. So here are the criteria, stated up front, and an honest section under every tool explaining when it beats Kaneo.
+We build Tracing, which is the first entry on this list. So here are the criteria, stated up front, and an honest section under every tool explaining when it beats Tracing.
 
 1. **Cost at ten and at fifty users.** Per-seat pricing behaves very differently at those two points.
 2. **What the free tier actually allows**, in collaborators, boards, and features.
@@ -68,15 +68,15 @@ We build Kaneo, which is the first entry on this list. So here are the criteria,
 5. **Structure beyond the board.** Backlog, workflows, priorities, and schedules without add-ons.
 6. **Data portability.** Export, import, and a documented API.
 7. **Deployment and maintenance burden** for the self-hosted options.
-8. **Where it is genuinely better than Kaneo.**
+8. **Where it is genuinely better than Tracing.**
 
 ## The 10 best Trello alternatives in 2026
 
-### 1. Kaneo
+### 1. Tracing
 
-Kaneo keeps the part of Trello that works, a fast board you can read at a glance, and adds the structure teams end up building by hand. Boards and lists for day-to-day work, a backlog for what is coming, workflow columns that mean something, and Gantt and calendar views when dates matter. Priorities, labels, assignees, custom fields, task relations, comments, attachments, and time tracking are built in rather than bolted on.
+Tracing keeps the part of Trello that works, a fast board you can read at a glance, and adds the structure teams end up building by hand. Boards and lists for day-to-day work, a backlog for what is coming, workflow columns that mean something, and Gantt and calendar views when dates matter. Priorities, labels, assignees, custom fields, task relations, comments, attachments, and time tracking are built in rather than bolted on.
 
-Kaneo Cloud is hosted in the EU and costs $5 per user a month, with single sign-on on every plan. Kaneo is also open source under the MIT licence, so you can export everything or move to your own server whenever you want. Self-hosting is one application container plus PostgreSQL.
+Tracing is MIT licensed and self-hosted. You choose the infrastructure and operate the application, database, backups and updates. There is no managed Tracing subscription; include maintenance time when comparing its cost with hosted products.
 
 **Key features**
 
@@ -95,11 +95,11 @@ Kaneo Cloud is hosted in the EU and costs $5 per user a month, with single sign-
 
 **Cons:** No Power-Up marketplace, no butler-style automation builder beyond rules that move tasks on integration events, and Trello attachments, custom fields, and Power-Up data do not come across in the import.
 
-**Pricing:** Kaneo Cloud is $4 a month for one user and $5 per user a month for teams, 14-day trial, no credit card. Annual billing works out at $3.33 and $4.17 a month. Self-hosting under MIT is free.
+**Pricing:** Tracing has no software license or per-seat fee. Budget for infrastructure, backups and operations; this fork does not offer a managed subscription.
 
 **Best for:** Teams who like Trello's board but need a backlog, schedules, and roles, with a choice of managed hosting or their own server.
 
-**Why choose it over Trello:** You stop maintaining a process out of lists and labels, single sign-on is not an Enterprise conversation, and you can run it yourself. Full breakdown on our [Kaneo vs Trello page](/trello-alternative).
+**Why choose it over Trello:** You stop maintaining a process out of lists and labels, single sign-on is not an Enterprise conversation, and you can run it yourself. Full breakdown on our [Tracing vs Trello page](/trello-alternative).
 
 ### 2. PLANKA
 
@@ -115,7 +115,7 @@ PLANKA is the closest open-source match to Trello's look and feel: boards, lists
 
 **Best for:** Teams who want Trello's exact interaction model on their own hardware and do not need SSO in the free build.
 
-**Why choose it over Trello:** Same mental model, your server, your data. See [Kaneo vs PLANKA](/planka-alternative) if SSO or export matters.
+**Why choose it over Trello:** Same mental model, your server, your data. See [Tracing vs PLANKA](/planka-alternative) if SSO or export matters.
 
 ### 3. ClickUp
 
@@ -131,7 +131,7 @@ ClickUp is the broadest tool here: tasks, docs, whiteboards, chat, dashboards, g
 
 **Best for:** Teams who want to replace Trello and several other tools at once.
 
-**Why choose it over Trello:** Much more structure and many more views at a similar per-seat price. Compare with [Kaneo vs ClickUp](/clickup-alternative) if the breadth is the part you would turn off.
+**Why choose it over Trello:** Much more structure and many more views at a similar per-seat price. Compare with [Tracing vs ClickUp](/clickup-alternative) if the breadth is the part you would turn off.
 
 ### 4. Asana
 
@@ -147,7 +147,7 @@ Asana is built for coordinating many projects across a company: portfolios, goal
 
 **Best for:** Organisations where someone needs fifty projects rolled up into one view.
 
-**Why choose it over Trello:** Real portfolio and workload management. See [Kaneo vs Asana](/asana-alternative), and our [Asana alternatives round-up](/blog/best-asana-alternatives) if price is the worry.
+**Why choose it over Trello:** Real portfolio and workload management. See [Tracing vs Asana](/asana-alternative), and our [Asana alternatives round-up](/blog/best-asana-alternatives) if price is the worry.
 
 ### 5. monday.com
 
@@ -163,7 +163,7 @@ monday.com is a work OS rather than a board: colourful, highly configurable boar
 
 **Best for:** Operations, marketing, and sales teams who want dashboards and forms alongside their boards.
 
-**Why choose it over Trello:** Far more powerful boards and automation for business workflows. See [Kaneo vs monday.com](/monday-alternative) and our [monday.com alternatives round-up](/blog/best-monday-alternatives).
+**Why choose it over Trello:** Far more powerful boards and automation for business workflows. See [Tracing vs monday.com](/monday-alternative) and our [monday.com alternatives round-up](/blog/best-monday-alternatives).
 
 ### 6. Notion
 
@@ -179,7 +179,7 @@ Notion is a flexible workspace for documents, wikis, and databases. A task datab
 
 **Best for:** Teams whose work is mostly writing, with tasks as a side effect.
 
-**Why choose it over Trello:** Your boards sit next to the docs they reference. Compare with [Kaneo vs Notion](/notion-alternative) if tracking has become the main job.
+**Why choose it over Trello:** Your boards sit next to the docs they reference. Compare with [Tracing vs Notion](/notion-alternative) if tracking has become the main job.
 
 ### 7. Linear
 
@@ -195,7 +195,7 @@ Linear is a fast, keyboard-first issue tracker for product and engineering teams
 
 **Best for:** Engineering teams who moved past cards and want issue tracking that keeps up with them.
 
-**Why choose it over Trello:** Real issue tracking with cycles and triage. See [Kaneo vs Linear](/linear-alternative) for the open-source, self-hostable option.
+**Why choose it over Trello:** Real issue tracking with cycles and triage. See [Tracing vs Linear](/linear-alternative) for the open-source, self-hostable option.
 
 ### 8. Basecamp
 
@@ -211,7 +211,7 @@ Basecamp combines to-dos, card tables, message boards, chat, docs, and check-ins
 
 **Best for:** Agencies and small companies that run client projects and want messages and tasks together.
 
-**Why choose it over Trello:** One flat price for the whole company, plus communication tools Trello does not have. See [Kaneo vs Basecamp](/basecamp-alternative).
+**Why choose it over Trello:** One flat price for the whole company, plus communication tools Trello does not have. See [Tracing vs Basecamp](/basecamp-alternative).
 
 ### 9. WeKan
 
@@ -227,7 +227,7 @@ WeKan is the veteran open-source kanban board, MIT licensed, with swimlanes and 
 
 **Best for:** Self-hosters who want swimlanes and a board that has been running in production for years.
 
-**Why choose it over Trello:** Free, open source, and on your server. See [Kaneo vs WeKan](/wekan-alternative).
+**Why choose it over Trello:** Free, open source, and on your server. See [Tracing vs WeKan](/wekan-alternative).
 
 ### 10. Vikunja
 
@@ -243,17 +243,17 @@ Vikunja is an open-source task manager with list, table, kanban, Gantt, and cale
 
 **Best for:** Individuals and small groups who want Trello-like boards plus lists and calendars.
 
-**Why choose it over Trello:** More views, CalDAV, and a free self-hosted build. See [Kaneo vs Vikunja](/vikunja-alternative).
+**Why choose it over Trello:** More views, CalDAV, and a free self-hosted build. See [Tracing vs Vikunja](/vikunja-alternative).
 
 ## How to choose
 
-- **You want Trello, but self-hosted.** PLANKA for the closest feel, Kaneo for SSO and a backlog in the free build, WeKan if you want swimlanes.
-- **Your board has become a process.** Kaneo, Linear, or ClickUp.
-- **You are an engineering team.** Linear or Kaneo, especially if you want issues synced with GitHub, GitLab, or Gitea.
+- **You want Trello, but self-hosted.** PLANKA for the closest feel, Tracing for SSO and a backlog in the free build, WeKan if you want swimlanes.
+- **Your board has become a process.** Tracing, Linear, or ClickUp.
+- **You are an engineering team.** Linear or Tracing, especially if you want issues synced with GitHub, GitLab, or Gitea.
 - **You are a marketing or operations team.** monday.com, Asana, or ClickUp.
 - **Your work is mostly documents.** Notion.
 - **You pay per seat and the team is growing.** Basecamp's flat rate, or a self-hosted open-source tool.
-- **Single sign-on without an Enterprise contract.** Kaneo, WeKan, or Vikunja, or check the [free SSO guide](/guides/project-management-tools-with-free-sso).
+- **Single sign-on without an Enterprise contract.** Tracing, WeKan, or Vikunja, or check the [free SSO guide](/guides/project-management-tools-with-free-sso).
 
 ## What it actually costs at ten and fifty users
 
@@ -266,27 +266,26 @@ Rough monthly figures at October 2026 list prices, on annual billing:
 | Notion (Plus) | $100 | $500 |
 | ClickUp (Unlimited) | $70 | $350 |
 | Trello (Standard) | $50 | $250 |
-| Kaneo Cloud | ~$42 | ~$208 |
-| Kaneo self-hosted | Cost of a VPS, plus your time | Cost of a VPS, plus your time |
+| Tracing self-hosted | Cost of a VPS, plus your time | Cost of a VPS, plus your time |
 | Basecamp | $25 flat (Freelancer) | $59 flat (Studio) |
 
-Kaneo Cloud is the cheapest per-seat row, below even Trello Standard, and it includes the Gantt and calendar views Trello keeps for Premium plus single sign-on Trello keeps for Enterprise. At fifty users it is roughly $290 a month less than Trello Premium. Basecamp's flat rate wins at real scale if its way of working suits you. The self-hosted line never moves, but it swaps the bill for someone's time, and that cost is easy to leave out of a table like this.
+Tracing is MIT licensed and self-hosted. You choose the infrastructure and operate the application, database, backups and updates. There is no managed Tracing subscription; include maintenance time when comparing its cost with hosted products.
 
 ## Migrating off Trello
 
 Any board member can export a board to JSON from the board menu, on every plan, with its cards, lists, labels, checklists, and members. The JSON only carries the 1,000 most recent actions, which is where comments live, so a busy board's older comment history may be missing. CSV export is limited to Premium Workspaces and leaves out comments. Attachments are links rather than files, so download the ones that matter separately.
 
-From there it is a scripting job against the target tool's API, unless the tool has a Trello importer. Kaneo has one built in: authorize Trello, pick your boards, and lists, cards, checklists, labels, members, comments, and archived cards come across ([import guide](https://kaneo.app/docs/core/migrations/from-trello)). Import one board first, check that card members matched the right people (Trello hides emails, so Kaneo matches by full name), and keep Trello readable for a few weeks rather than cancelling on day one.
+From there it is a scripting job against the target tool's API, unless the tool has a Trello importer. Tracing has one built in: authorize Trello, pick your boards, and lists, cards, checklists, labels, members, comments, and archived cards come across ([import guide](https://github.com/Go-Figure-App/tracing/blob/main/apps/docs/core/migrations/from-trello.mdx)). Import one board first, check that card members matched the right people (Trello hides emails, so Tracing matches by full name), and keep Trello readable for a few weeks rather than cancelling on day one.
 
 ## Frequently asked questions
 
 ### What is the best free alternative to Trello?
 
-If you are willing to run a server, Kaneo, WeKan, and Kanboard are MIT licensed and free to self-host with no user limits, and PLANKA's Community edition is free under its own licence. Among hosted options, ClickUp's free plan has unlimited members with a small storage cap. Trello's own free plan still covers up to 10 collaborators per Workspace, which is enough for many small teams.
+If you are willing to run a server, Tracing, WeKan, and Kanboard are MIT licensed and free to self-host with no user limits, and PLANKA's Community edition is free under its own licence. Among hosted options, ClickUp's free plan has unlimited members with a small storage cap. Trello's own free plan still covers up to 10 collaborators per Workspace, which is enough for many small teams.
 
 ### Is there an open-source alternative to Trello?
 
-Yes. Kaneo, WeKan, and Kanboard are MIT licensed, Vikunja is AGPLv3, and PLANKA is source-available under a Fair Use licence. All of them can be self-hosted for free, and they differ in how much structure they add beyond the board and in what the free build withholds, particularly single sign-on.
+Yes. Tracing, WeKan, and Kanboard are MIT licensed, Vikunja is AGPLv3, and PLANKA is source-available under a Fair Use licence. All of them can be self-hosted for free, and they differ in how much structure they add beyond the board and in what the free build withholds, particularly single sign-on.
 
 ### Can Trello be self-hosted?
 
@@ -294,7 +293,7 @@ No. Trello is an Atlassian cloud product with no on-premise or self-hosted editi
 
 ### Which Trello alternative is best for software teams?
 
-Linear if you want a polished hosted tracker and are happy on cloud SaaS. Kaneo if you want two-way issue sync with GitHub, GitLab, or Gitea, branch and pull request automation, and the option to self-host. See our guide to [a kanban board with GitHub issue sync](/guides/github-issues-kanban-board).
+Linear if you want a polished hosted tracker and are happy on cloud SaaS. Tracing if you want two-way issue sync with GitHub, GitLab, or Gitea, branch and pull request automation, and the option to self-host. See our guide to [a kanban board with GitHub issue sync](/guides/github-issues-kanban-board).
 
 ### Does Trello include single sign-on?
 
@@ -308,4 +307,4 @@ Simplicity and familiarity. Almost everyone has used Trello, the learning curve 
 
 If Trello's free plan covers your team and the board is all you need, stay. It is still the simplest board there is.
 
-If your board has quietly become a backlog, a workflow, and a schedule held together by labels and Power-Ups, Kaneo gives you those as features. Kaneo Cloud is $5 per user a month, hosted in the EU, with single sign-on on every plan and backups and updates handled for you. Fourteen-day trial, no credit card, and an MIT-licensed codebase underneath, so you can always take your data and host it yourself.
+Tracing is MIT licensed and self-hosted. You choose the infrastructure and operate the application, database, backups and updates. There is no managed Tracing subscription; include maintenance time when comparing its cost with hosted products.

@@ -6,19 +6,19 @@ export const focalboard: Comparison = {
   category: "open-source",
   title: "Maintained Focalboard alternative",
   description:
-    "Kaneo is an actively maintained Focalboard alternative with regular releases and a documented API. Kaneo Cloud runs it for you, with nothing to maintain.",
+    "Compare Focalboard with Tracing, an MIT-licensed tracker you can self-host with boards, triage, cycles, initiatives, views and insights.",
   summary: "An actively maintained board, independent of Mattermost.",
   heading: "The maintained Focalboard alternative",
   subheading:
     "Standalone Focalboard has been looking for maintainers since Mattermost unbundled it. If you are self-hosting it today, you are running software nobody is on the hook for.",
   verdict:
-    "Kaneo is an actively maintained Focalboard alternative, and Kaneo Cloud runs it for you from $4 a month, or $5 per user for teams, so there is nothing to maintain. Mattermost stopped bundling the Focalboard plugin in 2023 and the standalone project moved to community maintenance, with the plugin continuing separately as Mattermost Boards, while Kaneo ships regular releases and a documented API. Kaneo is also MIT licensed, so you can self-host it with single sign-on if you prefer.",
+    "Tracing is a self-hosted alternative to Focalboard for issue and project planning. It includes boards, triage, project plans, milestones, initiatives, roadmaps, cycles, insights and saved views. Budget for hosting, backups and maintenance; no managed Tracing subscription is offered.",
   facts: {
     license: "MIT, versus Focalboard's mixed Mattermost licensing",
-    hosting:
-      "EU-hosted Kaneo Cloud. Both self-host, Kaneo as Docker plus PostgreSQL",
-    sso: "Free on Kaneo through Google, GitHub, Discord, or any OIDC provider",
-    pricing: "Cloud from $4 / month, or $0 self-hosted",
+    hosting: "Self-host Tracing on infrastructure you control",
+    sso: "Free on Tracing through Google, GitHub, Discord, or any OIDC provider",
+    pricing:
+      "No license fee; infrastructure and operations are your responsibility",
   },
   rows: [
     {
@@ -36,16 +36,16 @@ export const focalboard: Comparison = {
     { feature: "SSO / OIDC", kaneo: "Built in", them: "Via Mattermost" },
     { feature: "Backlog planning", kaneo: true, them: false },
     { feature: "Time tracking", kaneo: true, them: false },
-    { feature: "Official cloud", kaneo: true, them: false },
+    { feature: "Official cloud", kaneo: false, them: false },
   ],
   reasons: [
     {
       title: "Somebody is maintaining it",
-      body: "Kaneo ships releases, security fixes, and migrations that work on existing installations. That is the whole argument here: a self-hosted board is only as good as its next update.",
+      body: "Tracing ships releases, security fixes, and migrations that work on existing installations. That is the whole argument here: a self-hosted board is only as good as its next update.",
     },
     {
       title: "Independent of a chat platform",
-      body: "Focalboard's future is as a Mattermost plugin. Kaneo is a standalone product with optional notifications in Mattermost, Slack, Discord, and Telegram.",
+      body: "Focalboard's future is as a Mattermost plugin. Tracing is a standalone product with optional notifications in Mattermost, Slack, Discord, and Telegram.",
     },
     {
       title: "More than a board",
@@ -53,7 +53,7 @@ export const focalboard: Comparison = {
     },
   ],
   honestNote:
-    "If you already run Mattermost, the maintained Boards plugin keeps your tasks next to your conversations, and that adjacency is worth a lot. Kaneo also has custom fields for text, numbers, dates, dropdowns, and checkboxes, but it runs as a separate app with optional Mattermost notifications.",
+    "If you already run Mattermost, the maintained Boards plugin keeps your tasks next to your conversations, and that adjacency is worth a lot. Tracing also has custom fields for text, numbers, dates, dropdowns, and checkboxes, but it runs as a separate app with optional Mattermost notifications.",
   faq: [
     {
       question: "Is Focalboard discontinued?",
@@ -63,17 +63,17 @@ export const focalboard: Comparison = {
     {
       question: "What should I use instead of Focalboard?",
       answer:
-        "For a maintained self-hosted board, Kaneo, PLANKA, WeKan, and Vikunja are the usual choices. Kaneo is MIT licensed with SSO included and adds backlog planning and time tracking.",
+        "For a maintained self-hosted board, Tracing, PLANKA, WeKan, and Vikunja are the usual choices. Tracing is MIT licensed with SSO included and adds backlog planning and time tracking.",
     },
     {
-      question: "Can I move my Focalboard data to Kaneo?",
+      question: "Can I move my Focalboard data to Tracing?",
       answer:
-        "There is no dedicated importer. Focalboard exports boards as archive files, and Kaneo has a public API and per-project JSON import, so a scripted migration is possible. Open a GitHub issue if you want this supported properly.",
+        "There is no dedicated importer. Focalboard exports boards as archive files, and Tracing has a public API and per-project JSON import, so a scripted migration is possible. Open a GitHub issue if you want this supported properly.",
     },
     {
-      question: "Does Kaneo need Mattermost or another chat tool?",
+      question: "Does Tracing need Mattermost or another chat tool?",
       answer:
-        "No. Kaneo is standalone. It can post notifications into Mattermost, Slack, Discord, or Telegram, but nothing requires them.",
+        "No. Tracing is standalone. It can post notifications into Mattermost, Slack, Discord, or Telegram, but nothing requires them.",
     },
   ],
   related: ["planka", "wekan", "trello", "notion"],
@@ -83,6 +83,6 @@ export const focalboard: Comparison = {
       label: "Focalboard repository",
       href: "https://github.com/mattermost-community/focalboard",
     },
-    { label: "Kaneo pricing", href: "/pricing" },
+    { label: "Tracing pricing", href: "/pricing" },
   ],
 };

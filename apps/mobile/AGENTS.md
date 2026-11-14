@@ -1,4 +1,4 @@
-# Kaneo Mobile
+# Tracing Mobile
 
 Expo and React Native app for Android and iOS. The repository guide in `../../AGENTS.md` applies; this file adds what is specific to the app.
 
@@ -8,15 +8,15 @@ Expo ships breaking changes every SDK release. Before writing code that touches 
 
 ## Commands
 
-Run from the repository root. Add native libraries with `pnpm --filter @kaneo/mobile exec expo install <package>`, never with `pnpm add`, so versions match the SDK.
+Run from the repository root. Add native libraries with `pnpm --filter @tracing/mobile exec expo install <package>`, never with `pnpm add`, so versions match the SDK.
 
 ```bash
-pnpm --filter @kaneo/mobile android     # build and run a development build
-pnpm --filter @kaneo/mobile ios
-pnpm --filter @kaneo/mobile lint
-pnpm --filter @kaneo/mobile typecheck
-pnpm --filter @kaneo/mobile test
-pnpm --filter @kaneo/mobile exec expo-doctor
+pnpm --filter @tracing/mobile android     # build and run a development build
+pnpm --filter @tracing/mobile ios
+pnpm --filter @tracing/mobile lint
+pnpm --filter @tracing/mobile typecheck
+pnpm --filter @tracing/mobile test
+pnpm --filter @tracing/mobile exec expo-doctor
 ```
 
 ## Rules

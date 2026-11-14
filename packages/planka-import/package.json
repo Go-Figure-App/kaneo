@@ -1,18 +1,18 @@
 {
   "name": "@tracing/planka-import",
   "version": "0.2.0",
-  "description": "Migrate PLANKA boards into Kaneo: projects, lists, cards, labels, assignees, checklists and comments, over the public APIs of both",
+  "description": "Migrate PLANKA boards into Tracing: projects, lists, cards, labels, assignees, checklists and comments, over the public APIs of both",
   "license": "MIT",
-  "author": "Kaneo (https://kaneo.app)",
-  "homepage": "https://kaneo.app/docs/core/migrations/from-planka",
+  "author": "Tracing (https://tracing.gofigureapp.io)",
+  "homepage": "https://github.com/Go-Figure-App/tracing/blob/main/apps/docs/core/migrations/from-planka.mdx",
   "repository": {
     "type": "git",
-    "url": "https://github.com/usekaneo/kaneo/",
+    "url": "https://github.com/Go-Figure-App/tracing/",
     "directory": "packages/planka-import"
   },
   "type": "module",
   "bin": {
-    "kaneo-planka-import": "dist/index.js"
+    "tracing-planka-import": "dist/index.js"
   },
   "publishConfig": {
     "access": "public"
@@ -26,7 +26,7 @@
     "cli",
     "import",
     "kanban",
-    "kaneo",
+    "tracing",
     "migration",
     "planka",
     "project-management"
@@ -47,14 +47,13 @@
     "prompts": "^2.4.2"
   },
   "devDependencies": {
-    "@kaneo/importers": "workspace:@tracing/importers@*",
-    "@kaneo/typescript-config": "workspace:@tracing/typescript-config@*",
+    "@tracing/importers": "workspace:*",
+    "@tracing/typescript-config": "workspace:*",
     "@types/node": "^26.6.5",
     "@types/prompts": "^2.4.9",
     "tsx": "^4.23.15",
     "typescript": "^7.0.2",
-    "vite-plus": "catalog:",
-    "@tracing/importers": "workspace:*",
-    "@tracing/typescript-config": "workspace:*"
-  }
+    "vite-plus": "catalog:"
+  },
+  "private": true
 }

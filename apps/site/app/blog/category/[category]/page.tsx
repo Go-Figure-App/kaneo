@@ -28,7 +28,7 @@ export async function generateMetadata({
   if (!category) return {};
 
   return withSocialMetadata({
-    title: `${category.name} articles on the Kaneo blog`,
+    title: `${category.name} articles on the Tracing blog`,
     description: category.description,
     alternates: { canonical: blogCategoryPath(category.slug) },
   });
@@ -45,7 +45,7 @@ export default async function Page({ params }: { params: Promise<Params> }) {
     <>
       <JsonLd
         data={breadcrumbJsonLd([
-          { name: "Kaneo", path: "/" },
+          { name: "Tracing", path: "/" },
           { name: "Blog", path: "/blog" },
           { name: category.name, path: blogCategoryPath(category.slug) },
         ])}

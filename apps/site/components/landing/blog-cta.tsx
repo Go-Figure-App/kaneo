@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
-const SIGN_UP = "https://cloud.kaneo.app/auth/sign-up";
+const OPEN_APP = "https://tracing.gofigureapp.io/auth/sign-in";
 const PRICING = "/pricing";
 
 export function BlogCta({ compact = false }: { compact?: boolean }) {
@@ -18,7 +18,7 @@ export function BlogCta({ compact = false }: { compact?: boolean }) {
           compact ? "text-base" : "text-xl md:text-2xl",
         )}
       >
-        Put your team on Kaneo Cloud
+        Plan your work with Tracing
       </p>
       <p
         className={cn(
@@ -26,9 +26,8 @@ export function BlogCta({ compact = false }: { compact?: boolean }) {
           compact ? "text-sm" : "",
         )}
       >
-        Managed, EU-hosted project management from $4 a month. Automatic backups
-        and updates, single sign-on, workspace roles, and email support, with
-        none of the servers to look after.
+        Open-source planning for issues, projects, initiatives, and cycles.
+        Build Tracing from source and run it on your own infrastructure.
       </p>
       <div
         className={cn(
@@ -39,9 +38,9 @@ export function BlogCta({ compact = false }: { compact?: boolean }) {
         <Button
           size="lg"
           className={cn("h-12 px-5 text-sm sm:h-12", compact && "w-full")}
-          render={<a href={SIGN_UP} />}
+          render={<a href={OPEN_APP} />}
         >
-          Start a 14-day free trial
+          Open Tracing
         </Button>
         <Button
           variant="outline"
@@ -49,11 +48,11 @@ export function BlogCta({ compact = false }: { compact?: boolean }) {
           className={cn("h-12 px-5 text-sm sm:h-12", compact && "w-full")}
           render={<a href={PRICING} />}
         >
-          See pricing
+          Self-host Tracing
         </Button>
       </div>
       <p className="mt-3 text-xs text-muted-foreground">
-        No credit card required.
+        Available under the MIT license.
       </p>
     </aside>
   );

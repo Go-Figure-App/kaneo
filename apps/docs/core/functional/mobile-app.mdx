@@ -1,39 +1,24 @@
 ---
 title: Mobile app
-description: Use Kaneo on iPhone and iPad with Kaneo Cloud or your own server
+description: Use the source-built Tracing app with the Go Figure instance
 ---
 
-Kaneo for iPhone and iPad is on the [App Store](https://apps.apple.com/app/id6828574501). An Android app is coming soon.
+Tracing's iOS and Android source is in the [repository](https://github.com/Go-Figure-App/tracing/tree/main/apps/mobile). This fork has no published App Store listing. Build and distribute it through your own Expo account; the source build uses the `io.gofigureapp.tracing` application identifier.
 
-The app covers the work you do away from your desk: your boards, task details, My tasks, your inbox, and activity. Descriptions are edited inline with a formatting toolbar and save as you type.
+The app includes boards, task details, My tasks, inbox and activity, plus triage, project plans, milestones, initiatives, roadmap, cycles, insights and saved views. Descriptions can be edited inline.
 
-## Sign in with Kaneo Cloud
+## Sign in
 
-1. Open the app and choose **Kaneo Cloud**.
-2. Sign in with your email and password, or select **Email me a sign-in code**.
-3. To use GitHub, Google, Discord, or single sign-on, select **Continue in browser** and approve the device on the Kaneo website.
+The Go Figure build connects to `https://tracing.gofigureapp.io`. Server selection and the self-hosted purchase flow have been removed. For local simulator testing only, the operator can set `GOFIGURE_LOCAL_SERVER_URL` before starting the build.
 
-The app is free for Kaneo Cloud accounts. Your workspace's Cloud plan is managed on the web, as before.
+- Sign in using the methods enabled on the instance.
+- **Continue in browser** opens device authorization on the Tracing website.
+- **Use an API key** accepts a key created on the web under **Settings → Account → API keys**.
+- **Create account** appears only when registration is open on the instance.
 
-## Connect a self-hosted server
+## Upgrade the server before the app
 
-1. Open the app and choose **Self-hosted**.
-2. Under **Server address**, enter the address you open Kaneo at, for example `https://kaneo.example.com`. If your API runs on a separate host, enter the API address instead. Use `http://` only for servers without TLS.
-3. Select **Connect**, then sign in with the same methods your instance offers on the web.
-
-Connecting to a self-hosted server is a one-time $9.99 purchase that supports Kaneo's development:
-
-- It belongs to you, through your Apple ID, not to the server. One purchase works with every self-hosted server you connect to.
-- Each person who wants to use the app with a self-hosted server buys it once for themselves.
-- On a new device, select **Restore purchase** to unlock it again with the same Apple ID.
-
-The app is open source, so you can also build it yourself from the [repository](https://github.com/usekaneo/kaneo/tree/main/apps/mobile).
-
-### Sign-in methods on self-hosted servers
-
-- **Continue in browser** uses device authorization. It works with the default configuration. If you set `DEVICE_AUTH_CLIENT_IDS`, include `kaneo-cli` in the list. See [environment variables](/core/installation/environment-variables).
-- **Use an API key** works even when other sign-in methods are turned off. Create a key on the web under **Settings → Account → API keys**.
-- **Create account** appears only when registration is open on your instance.
+The app uses `tracing-mobile` for device authorization. Upgrade the server to a build whose default allowlist includes that ID before distributing the app. On older supported servers, explicitly add `tracing-mobile` to `DEVICE_AUTH_CLIENT_IDS`, preserving the other client IDs still in use, and restart the server. An unset allowlist on an older server can reject the updated app. See [upgrade compatibility](/core/operations/upgrades#mobile-device-sign-in-compatibility) and [environment variables](/core/installation/environment-variables).
 
 ## Delete your account
 

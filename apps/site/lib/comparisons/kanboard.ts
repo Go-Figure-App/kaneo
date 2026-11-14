@@ -6,19 +6,19 @@ export const kanboard: Comparison = {
   category: "open-source",
   title: "Modern Kanboard alternative",
   description:
-    "Kaneo is a Kanboard alternative with a modern interface, realtime boards, and team features. Kaneo Cloud runs it for you from $4 a month, or self-host it.",
+    "Compare Kanboard with Tracing, an MIT-licensed tracker you can self-host with boards, triage, cycles, initiatives, views and insights.",
   summary: "The same small footprint, with an interface people will open.",
   heading: "The Kanboard alternative with a modern interface",
   subheading:
-    "Kanboard is admirably small and famously plain. Kaneo keeps the small footprint and gives your team something they will want to look at every day.",
+    "Kanboard is admirably small and famously plain. Tracing keeps the small footprint and gives your team something they will want to look at every day.",
   verdict:
-    "Kaneo is a Kanboard alternative for teams that want a modern interface, and Kaneo Cloud runs it for you from $4 a month, or $5 per user for teams. Kanboard is a minimal PHP application that runs almost anywhere, including on SQLite, while Kaneo is a modern React and PostgreSQL app with realtime boards, workspace roles, time tracking, and integrations. Both are MIT licensed, so you can still self-host Kaneo in minutes.",
+    "Tracing is a self-hosted alternative to Kanboard for issue and project planning. It includes boards, triage, project plans, milestones, initiatives, roadmaps, cycles, insights and saved views. Budget for hosting, backups and maintenance; no managed Tracing subscription is offered.",
   facts: {
     license: "MIT for both",
-    hosting:
-      "EU-hosted Kaneo Cloud, or Docker plus PostgreSQL. Kanboard is PHP with SQLite or MySQL",
-    sso: "Built into Kaneo, plugin-based on Kanboard",
-    pricing: "Kaneo Cloud from $4 / month, or $0 self-hosted for both",
+    hosting: "Self-host Tracing on infrastructure you control",
+    sso: "Built into Tracing, plugin-based on Kanboard",
+    pricing:
+      "No license fee; infrastructure and operations are your responsibility",
   },
   rows: [
     { feature: "License", kaneo: "MIT", them: "MIT" },
@@ -28,20 +28,20 @@ export const kanboard: Comparison = {
     { feature: "OIDC single sign-on", kaneo: "Built in", them: "Plugin" },
     { feature: "Backlog planning", kaneo: true, them: false },
     { feature: "Time tracking", kaneo: true, them: true },
-    { feature: "Official cloud", kaneo: true, them: false },
+    { feature: "Official cloud", kaneo: false, them: false },
   ],
   reasons: [
     {
       title: "Adoption, not just installation",
-      body: "Kanboard installs in minutes and then people avoid opening it. Kaneo is built to be the tab your team actually keeps open.",
+      body: "Kanboard installs in minutes and then people avoid opening it. Tracing is built to be the tab your team actually keeps open.",
     },
     {
       title: "Team features in the core",
-      body: "Workspaces, roles, notifications, integrations, and SSO come with Kaneo rather than arriving as separate plugins to keep updated.",
+      body: "Workspaces, roles, notifications, integrations, and SSO come with Tracing rather than arriving as separate plugins to keep updated.",
     },
     {
       title: "Still small",
-      body: "One container plus PostgreSQL, with a Helm chart if you are on Kubernetes. Kaneo is not the heavy option in this comparison.",
+      body: "One container plus PostgreSQL, with a Helm chart if you are on Kubernetes. Tracing is not the heavy option in this comparison.",
     },
   ],
   honestNote:
@@ -53,25 +53,25 @@ export const kanboard: Comparison = {
         "Yes. Kanboard is MIT licensed and still receives releases. Its design is deliberately conservative, and much of its extra functionality comes from community plugins.",
     },
     {
-      question: "Kanboard or Kaneo for a small team?",
+      question: "Kanboard or Tracing for a small team?",
       answer:
-        "Kanboard if you want the smallest possible install and do not mind a plain interface. Kaneo if you want realtime boards, backlog planning, roles, and SSO without assembling plugins.",
+        "Kanboard if you want the smallest possible install and do not mind a plain interface. Tracing if you want realtime boards, backlog planning, roles, and SSO without assembling plugins.",
     },
     {
-      question: "What are Kaneo's system requirements?",
+      question: "What are Tracing's system requirements?",
       answer:
-        "A small VPS is enough. Kaneo runs as a single container alongside PostgreSQL, and there is a Helm chart for Kubernetes deployments.",
+        "A small VPS is enough. Tracing runs as a single container alongside PostgreSQL, and there is a Helm chart for Kubernetes deployments.",
     },
     {
-      question: "Does Kaneo have a plugin system?",
+      question: "Does Tracing have a plugin system?",
       answer:
-        "No. Kaneo extends through its public API, outgoing webhooks, API keys, and an MCP server rather than in-process plugins.",
+        "No. Tracing extends through its public API, outgoing webhooks, API keys, and an MCP server rather than in-process plugins.",
     },
   ],
   related: ["wekan", "planka", "vikunja", "redmine"],
   verifiedOn: "2026-08-19",
   sources: [
     { label: "Kanboard", href: "https://kanboard.org/" },
-    { label: "Kaneo pricing", href: "/pricing" },
+    { label: "Tracing pricing", href: "/pricing" },
   ],
 };

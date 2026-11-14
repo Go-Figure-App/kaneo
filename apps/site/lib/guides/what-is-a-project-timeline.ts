@@ -109,11 +109,11 @@ export const whatIsAProjectTimeline: Guide = {
       ],
     },
     {
-      heading: "Building a timeline in Kaneo",
+      heading: "Building a timeline in Tracing",
       body: [
         "Give each task a start date and a due date. In the Tasks view, open Display and choose Gantt to see the work as bars on a shared timeline, or Calendar to review it month by month. Search and filters apply to both, so you can look at one person's or one label's work.",
         "Drag a bar to move a task, or drag either end to change its start or due date. Record order with relations: mark a task as Blocks on the work that has to wait for it.",
-        "Kaneo has no separate milestone type. A short task with a due date and a milestone label does the same job, and filtering by that label gives you the stakeholder view of the timeline.",
+        "Tracing has no separate milestone type. A short task with a due date and a milestone label does the same job, and filtering by that label gives you the stakeholder view of the timeline.",
       ],
     },
   ],

@@ -1,0 +1,40 @@
+# Tracing Service
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "tracing.fullname" . }}-tracing
+  labels:
+    {{- include "tracing.labels" . | nindent 4 }}
+    app.kubernetes.io/component: tracing
+spec:
+  type: {{ .Values.tracing.service.type }}
+  ports:
+    - port: {{ .Values.tracing.service.port }}
+      targetPort: tracing
+      protocol: TCP
+      name: http
+  selector:
+    {{- include "tracing.selectorLabels" . | nindent 4 }}
+    app.kubernetes.io/component: tracing
+
+{{- if .Values.postgresql.enabled }}
+---
+# PostgreSQL Service
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "tracing.fullname" . }}-postgresql
+  labels:
+    {{- include "tracing.labels" . | nindent 4 }}
+    app.kubernetes.io/component: postgresql
+spec:
+  type: {{ .Values.postgresql.service.type }}
+  ports:
+    - port: {{ .Values.postgresql.service.port }}
+      targetPort: postgresql
+      protocol: TCP
+      name: postgresql
+  selector:
+    {{- include "tracing.selectorLabels" . | nindent 4 }}
+    app.kubernetes.io/component: postgresql
+{{- end }}

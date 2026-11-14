@@ -54,6 +54,6 @@ Project integrations and other project settings are not copied. Set them up agai
 
 **A project is missing from the list**: the key has the same access as the account that created it. If that account is limited to selected projects in a workspace, only those projects are listed.
 
-**The other instance can't be reached**: the instance you import into must be able to reach the other one over the network. Kaneo Cloud can't import from a self-hosted instance that is only reachable inside your network. Between two self-hosted instances on a private network, the operator of the importing instance must set `KANEO_ALLOW_PRIVATE_WEBHOOK_DESTINATIONS=true`. See [Self-hosted instances](/core/migrations#self-hosted-instances).
+**The other instance can't be reached**: the instance you import into must be able to reach the other one over the network. Kaneo Cloud can't import from a self-hosted instance that is only reachable inside your network. Between two self-hosted instances on a private network, the operator of the importing instance must set `TRACING_ALLOW_PRIVATE_WEBHOOK_DESTINATIONS=true`. See [Self-hosted instances](/core/migrations#self-hosted-instances).
 
 **Tasks are unassigned**: the assignee's email must match a member of the workspace you import into. Invite them, delete the imported project, and import it again, or assign the tasks by hand.

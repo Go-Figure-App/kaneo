@@ -160,7 +160,7 @@ node scripts/ci/browser.mjs "$KANEO_CI_APP_ORIGIN"
 node scripts/ci/realtime.mjs "$KANEO_CI_APP_ORIGIN"
 KANEO_CI_REDIS_URL=redis://redis:6379 docker compose --env-file /dev/null -p kaneo-ci -f scripts/ci/compose.yml --profile realtime up -d --wait app second redis
 node scripts/ci/realtime.mjs "$KANEO_CI_APP_ORIGIN" "$KANEO_CI_SECOND_ORIGIN"
-GITHUB_REPOSITORY=usekaneo/kaneo GITHUB_REPOSITORY_OWNER=usekaneo bash scripts/ci/upgrade.sh
+GITHUB_REPOSITORY=Go-Figure-App/tracing GITHUB_REPOSITORY_OWNER=usekaneo bash scripts/ci/upgrade.sh
 ```
 
 Install Chromium once using

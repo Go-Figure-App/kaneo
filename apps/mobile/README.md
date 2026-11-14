@@ -1,6 +1,6 @@
-# Kaneo Mobile
+# Tracing Mobile
 
-The Kaneo app for Android and iOS, built with Expo and React Native. Works with **Kaneo Cloud** (`cloud.kaneo.app`) and **self-hosted** instances.
+The Tracing app for Android and iOS, built with Expo and React Native. Works with **Tracing Cloud** (`tracing.gofigureapp.io`) and **self-hosted** instances.
 
 ## Features
 
@@ -19,7 +19,7 @@ The Kaneo app for Android and iOS, built with Expo and React Native. Works with 
 - **My tasks**, **Inbox** (notifications: mark read, mark all read, clear) and the **workspace activity** feed.
 - **Search** across tasks, projects and comments.
 - **Account**: name, profile photo, password, notification delivery settings (email, ntfy, Gotify, webhook, event types, due-date reminders).
-- **Live updates** over Kaneo's WebSockets while the app is open, and **phone notifications** from a background check (Kaneo has no mobile push service). Android runs the check about every 15 minutes; iOS decides when to run it, so it can be less frequent.
+- **Live updates** over Tracing's WebSockets while the app is open, and **phone notifications** from a background check (Tracing has no mobile push service). Android runs the check about every 15 minutes; iOS decides when to run it, so it can be less frequent.
 
 ### Left out on purpose
 
@@ -27,12 +27,12 @@ These are admin or desktop tasks that don't fit a phone: integration setup (GitH
 
 ## Connecting
 
-- **Kaneo Cloud**: tap _Kaneo Cloud_.
-- **Self-hosted**: enter the address you open Kaneo at, e.g. `kaneo.example.com` or `http://192.168.1.20:1337`. If your web app and API are on different hosts, enter the **API** address. `http://` is allowed for LAN/VPN servers on both platforms.
+- **Tracing Cloud**: tap _Tracing Cloud_.
+- **Self-hosted**: enter the address you open Tracing at, e.g. `kaneo.example.com` or `http://192.168.1.20:1337`. If your web app and API are on different hosts, enter the **API** address. `http://` is allowed for LAN/VPN servers on both platforms.
 
-_Continue in browser_ uses the device-authorization client `kaneo-cli`, which Kaneo accepts by default. If an instance sets `DEVICE_AUTH_CLIENT_IDS`, it must include `kaneo-cli` for this option to work. Password, email code and API key sign-in work regardless.
+_Continue in browser_ uses the device-authorization client `kaneo-cli`, which Tracing accepts by default. If an instance sets `DEVICE_AUTH_CLIENT_IDS`, it must include `kaneo-cli` for this option to work. Password, email code and API key sign-in work regardless.
 
-On Kaneo Cloud, creating an account and requesting an email code are protected by a browser captcha, so the app opens the website for sign-up; password sign-in and browser sign-in work in the app.
+On Tracing Cloud, creating an account and requesting an email code are protected by a browser captcha, so the app opens the website for sign-up; password sign-in and browser sign-in work in the app.
 
 Credentials are stored with `expo-secure-store`: in the iOS Keychain, and encrypted with a key held in the Android Keystore.
 
@@ -41,19 +41,19 @@ Credentials are stored with `expo-secure-store`: in the iOS Keychain, and encryp
 Install dependencies from the repository root with `pnpm install`. The app uses native modules, so run it as a development build rather than in Expo Go:
 
 ```bash
-pnpm --filter @kaneo/mobile android   # needs JDK 17 and the Android SDK
-pnpm --filter @kaneo/mobile ios       # needs macOS, Xcode and CocoaPods
-pnpm --filter @kaneo/mobile start     # Metro only, for an already installed development build
+pnpm --filter @tracing/mobile android   # needs JDK 17 and the Android SDK
+pnpm --filter @tracing/mobile ios       # needs macOS, Xcode and CocoaPods
+pnpm --filter @tracing/mobile start     # Metro only, for an already installed development build
 ```
 
-The `ios/` and `android/` folders are generated from `app.json` and the config plugins in `plugins/` (continuous native generation) and are not committed. Change native settings there, then regenerate with `pnpm --filter @kaneo/mobile exec expo prebuild --clean`.
+The `ios/` and `android/` folders are generated from `app.json` and the config plugins in `plugins/` (continuous native generation) and are not committed. Change native settings there, then regenerate with `pnpm --filter @tracing/mobile exec expo prebuild --clean`.
 
 Checks:
 
 ```bash
-pnpm --filter @kaneo/mobile lint
-pnpm --filter @kaneo/mobile typecheck
-pnpm --filter @kaneo/mobile test
+pnpm --filter @tracing/mobile lint
+pnpm --filter @tracing/mobile typecheck
+pnpm --filter @tracing/mobile test
 ```
 
 ## Release builds
@@ -68,7 +68,7 @@ keytool -genkeypair -v -keystore kaneo-release.keystore -alias kaneo \
 base64 -i kaneo-release.keystore | pbcopy   # paste into the ANDROID_KEYSTORE_BASE64 secret
 ```
 
-CI reads the repository secrets `ANDROID_KEYSTORE_BASE64`, `ANDROID_KEYSTORE_PASSWORD`, `ANDROID_KEY_ALIAS` and `ANDROID_KEY_PASSWORD`. Locally, export the `KANEO_ANDROID_*` variables and run `pnpm --filter @kaneo/mobile exec expo run:android --variant release`. For iOS, build with `pnpm --filter @kaneo/mobile exec expo run:ios --configuration Release`.
+CI reads the repository secrets `ANDROID_KEYSTORE_BASE64`, `ANDROID_KEYSTORE_PASSWORD`, `ANDROID_KEY_ALIAS` and `ANDROID_KEY_PASSWORD`. Locally, export the `KANEO_ANDROID_*` variables and run `pnpm --filter @tracing/mobile exec expo run:android --variant release`. For iOS, build with `pnpm --filter @tracing/mobile exec expo run:ios --configuration Release`.
 
 ## Project layout
 
@@ -77,6 +77,6 @@ src/app/         Expo Router screens; every file is a route
 src/components/  shared UI (sheets, pickers, Markdown, avatars, toasts)
 src/features/    screen-specific pieces for the home tabs, board and task
 src/lib/         API client and types, auth, session storage, realtime, background notifications
-src/theme/       Kaneo design tokens, light and dark
+src/theme/       Tracing design tokens, light and dark
 plugins/         local Expo config plugins
 ```

@@ -89,7 +89,7 @@ export const acceptanceCriteria: Guide = {
       ],
     },
     {
-      heading: "Acceptance criteria in Kaneo",
+      heading: "Acceptance criteria in Tracing",
       body: [
         "Write the criteria in the task description as a checkbox list, so they are the first thing the person picking up the task sees and each one can be ticked off during review. For Given/When/Then scenarios, a short list under a heading in the description works well.",
         "During backlog refinement, treat a task without criteria as not ready yet. Moving a task to a Review column before Done gives a clear point where someone other than the author checks each criterion.",

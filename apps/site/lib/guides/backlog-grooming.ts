@@ -99,9 +99,9 @@ export const backlogGrooming: Guide = {
       ],
     },
     {
-      heading: "Refining a backlog in Kaneo",
+      heading: "Refining a backlog in Tracing",
       body: [
-        "Each Kaneo project has a Backlog view, separate from the board, for work that is planned but not started. New ideas go there with Plan, and they do not need an assignee or due date yet.",
+        "Each Tracing project has a Backlog view, separate from the board, for work that is planned but not started. New ideas go there with Plan, and they do not need an assignee or due date yet.",
         "During refinement, open each item to sharpen the title, add acceptance criteria as a checklist in the description, and set a priority or label. Use Filter to review by priority, label, assignee, or custom field. If your team estimates, a number custom field holds the size.",
         "When an item is ready, change its status to a board column such as To Do and it joins the active work. To send something back, right-click its card and choose Mark as planned.",
       ],

@@ -122,7 +122,7 @@ api_call() {
 }
 
 # Sentry's `?query=` parameter is tokenized (e.g. `is:unresolved`, `project:foo`),
-# not free-text. Names like "Kaneo API: New issue" parse as broken search tokens.
+# not free-text. Names like "Tracing API: New issue" parse as broken search tokens.
 # Easier to fetch all and filter client-side: at most ~10 alerts in this org.
 list_workflows() {
   api_call GET "${API_BASE}/organizations/${ORG}/workflows/"

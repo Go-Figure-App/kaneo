@@ -6,20 +6,20 @@ export const notion: Comparison = {
   category: "saas",
   title: "Notion alternative for managing projects",
   description:
-    "Kaneo is a Notion alternative for project tracking: real boards, backlog, and workflows, not databases you build. Kaneo Cloud runs it from $4 a month.",
+    "Compare Notion with Tracing, an MIT-licensed tracker you can self-host with boards, triage, cycles, initiatives, views and insights.",
   summary:
     "A real tracker instead of a task database somebody has to maintain.",
   heading: "The Notion alternative for running projects",
   subheading:
-    "Notion is a wonderful place to write and a fiddly place to track work. Kaneo is a purpose-built tracker you can self-host, so nobody has to maintain the board that runs your team.",
+    "Notion is a wonderful place to write and a fiddly place to track work. Tracing is a purpose-built tracker you can self-host, so nobody has to maintain the board that runs your team.",
   verdict:
-    "Kaneo is a Notion alternative for project tracking specifically, and Kaneo Cloud runs it for you from $4 a month, or $5 per user for teams. Where Notion asks you to build a task database and keep it working, Kaneo ships boards, backlog, workflow columns, roles, and time tracking as product features, though it is not a replacement for Notion's docs and wiki. Kaneo is also MIT-licensed open source, so you can self-host it for free any time.",
+    "Tracing is a self-hosted alternative to Notion for issue and project planning. It includes boards, triage, project plans, milestones, initiatives, roadmaps, cycles, insights and saved views. Budget for hosting, backups and maintenance; no managed Tracing subscription is offered.",
   facts: {
     license: "MIT, versus a proprietary licence for Notion",
-    hosting:
-      "EU-hosted Kaneo Cloud, or self-host anywhere. Notion is cloud only",
-    sso: "Free on every Kaneo build, Business tier on Notion",
-    pricing: "Cloud from $4 / month, or $0 self-hosted",
+    hosting: "Self-host Tracing on infrastructure you control",
+    sso: "Free on every Tracing build, Business tier on Notion",
+    pricing:
+      "No license fee; infrastructure and operations are your responsibility",
   },
   rows: [
     { feature: "Open source (MIT)", kaneo: true, them: false },
@@ -35,14 +35,14 @@ export const notion: Comparison = {
     { feature: "Time tracking", kaneo: true, them: false },
     {
       feature: "Cloud pricing",
-      kaneo: "From $4/mo",
+      kaneo: "No managed hosting plan",
       them: "From $10/member/mo",
     },
   ],
   reasons: [
     {
       title: "Nobody has to be the Notion admin",
-      body: "A Notion task system is somebody's side project: templates, rollups, relations, and the person who fixes it when a view breaks. Kaneo's board works the same way for every project, on day one.",
+      body: "A Notion task system is somebody's side project: templates, rollups, relations, and the person who fixes it when a view breaks. Tracing's board works the same way for every project, on day one.",
     },
     {
       title: "Built for a working week",
@@ -50,16 +50,16 @@ export const notion: Comparison = {
     },
     {
       title: "Self-hosted and exportable",
-      body: "Run Kaneo on your own hardware under the MIT license, and export any project to JSON from the UI whenever you want.",
+      body: "Run Tracing on your own hardware under the MIT license, and export any project to JSON from the UI whenever you want.",
     },
   ],
   honestNote:
-    "Notion is excellent at what it is: a flexible workspace for documents, wikis, and lightweight databases. If your team lives in written docs and the task list is a side-effect of that, stay in Notion. Kaneo is worth it when the tracking part has become the point and the database keeps getting in the way.",
+    "Notion is excellent at what it is: a flexible workspace for documents, wikis, and lightweight databases. If your team lives in written docs and the task list is a side-effect of that, stay in Notion. Tracing is worth it when the tracking part has become the point and the database keeps getting in the way.",
   faq: [
     {
       question: "Is there an open-source alternative to Notion?",
       answer:
-        "For documents and wikis, look at AppFlowy, Outline, Docmost, or AnyType. For the project-tracking half of Notion, Kaneo is MIT licensed, self-hostable, and purpose-built for boards and backlogs.",
+        "For documents and wikis, look at AppFlowy, Outline, Docmost, or AnyType. For the project-tracking half of Notion, Tracing is MIT licensed, self-hostable, and purpose-built for boards and backlogs.",
     },
     {
       question: "Can Notion be self-hosted?",
@@ -74,13 +74,13 @@ export const notion: Comparison = {
     {
       question: "What does Notion cost, and when do you get SSO?",
       answer:
-        "Notion is free for personal use with limits on uploads, history, and guests. Plus is $10 per member a month and Business is $20, where SAML single sign-on first appears. Kaneo includes SSO on every build, including the free self-hosted one.",
+        "Notion is free for personal use with limits on uploads, history, and guests. Plus is $10 per member a month and Business is $20, where SAML single sign-on first appears. Tracing includes SSO on every build, including the free self-hosted one.",
     },
   ],
   related: ["clickup", "trello", "asana", "huly"],
   verifiedOn: "2026-08-19",
   sources: [
     { label: "Notion pricing", href: "https://www.notion.com/pricing" },
-    { label: "Kaneo pricing", href: "/pricing" },
+    { label: "Tracing pricing", href: "/pricing" },
   ],
 };

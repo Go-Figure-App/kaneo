@@ -11,7 +11,7 @@ import { i18n, loadDeviceLocale } from "./i18n";
 import { sessionStore } from "./session";
 
 /**
- * Kaneo has no mobile push service, so unread notifications are polled in the background
+ * Tracing has no mobile push service, so unread notifications are polled in the background
  * (the OS runs this at most every 15 minutes) and surfaced as local notifications.
  */
 export const BACKGROUND_TASK = "kaneo-notifications";
@@ -51,7 +51,7 @@ export async function checkNotifications(): Promise<void> {
     const shown = hidden > 1 ? unread.slice(-(MAX_POSTED - 1)) : unread;
     if (hidden > 1)
       await post({
-        title: "Kaneo",
+        title: i18n.t("mobile:background.title"),
         body: i18n.t("mobile:background.summary", { count: hidden }),
         data: {},
       });

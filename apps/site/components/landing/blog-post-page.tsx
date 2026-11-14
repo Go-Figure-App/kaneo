@@ -12,7 +12,7 @@ import { Navbar } from "./navbar";
 import { PageIntro } from "./page-intro";
 import { SectionSeparator } from "./section-separator";
 
-const SITE = "https://kaneo.app";
+const SITE = "https://tracing.gofigureapp.io";
 
 /**
  * Splits the rendered body just before the nth <h2> so a call to action can sit
@@ -43,7 +43,7 @@ export function BlogPostPage({
     <>
       <JsonLd
         data={breadcrumbJsonLd([
-          { name: "Kaneo", path: "/" },
+          { name: "Tracing", path: "/" },
           { name: "Blog", path: "/blog" },
           {
             name: post.category.name,
@@ -73,7 +73,7 @@ export function BlogPostPage({
           },
           publisher: {
             "@type": "Organization",
-            name: "Kaneo",
+            name: "Tracing",
             url: SITE,
             logo: `${SITE}/logo-512.png`,
           },

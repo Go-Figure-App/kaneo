@@ -1,6 +1,8 @@
 # Peekareq
 
-A maintainer comments `/peekareq` on an open Kaneo PR. The bot selects up to three UI scenarios, captures the PR in Chromium, frames the changed component, uploads three distinct previews, and posts this line followed by a description/image table:
+This inherited optional bot is inactive in the Tracing fork: its Actions workflows are archived under `.github/upstream-workflows/`. The upstream Worker endpoint, GitHub App IDs and D1 database in the template are not Tracing infrastructure. Before enabling it, configure a fork-owned Worker and App installation, verify that the installation includes `Go-Figure-App/tracing`, and restore the reviewed workflows. CodeRabbit and `parity-ci.yml` provide the active review and CI flow.
+
+A maintainer comments `/peekareq` on an open Tracing PR. The bot selects up to three UI scenarios, captures the PR in Chromium, frames the changed component, uploads three distinct previews, and posts this line followed by a description/image table:
 
 > This UI-screenshot was auto-made by a beta tool made by @tinsever
 
@@ -8,7 +10,7 @@ Below the screenshot table, **Findings (Beta)** and **Run info** are collapsed b
 
 ## GitHub setup
 
-- Install the GitHub App on `usekaneo/kaneo` with **Contents: Read and write** and **Pull requests: Read and write**, and **Issues: Read-only**. The installation owner must approve permission updates.
+- Install the GitHub App on `Go-Figure-App/tracing` with **Contents: Read and write** and **Pull requests: Read and write**, and **Issues: Read-only**. The installation owner must approve permission updates.
 - Set Actions variable `APP_CLIENT_ID` and secrets `APP_PRIVATE_KEY` (the complete PEM file) and `OPENROUTER_API_KEY`.
 - Put this directory and both `ui-review.yml` and `ui-review-run.yml` workflows on the default branch.
 - Deploy `worker/` to Cloudflare (see below). Enable the App webhook at its `/webhook` URL, set the same signing secret, and subscribe only to **Issue comment**.
@@ -54,7 +56,7 @@ Local capture executes PR code as your OS user; it is not an OS sandbox. Use Git
 
 ## Cloudflare webhook
 
-The Worker is `peekareq-webhook`; endpoint: `https://peekareq-webhook.marmeladenjunge.workers.dev/webhook`. It uses the Workers Free-compatible request path and a small D1 table to deduplicate command comment IDs. The optional code-review relay also uses this Worker; browser captures continue to run in Actions. Its installation token is restricted to `kaneo` with Contents write and Pull requests read; repository dispatch uses the existing Contents permission.
+The Worker is `peekareq-webhook`; endpoint: `https://peekareq-webhook.marmeladenjunge.workers.dev/webhook`. It uses the Workers Free-compatible request path and a small D1 table to deduplicate command comment IDs. The optional code-review relay also uses this Worker; browser captures continue to run in Actions. Its installation token is restricted to `tracing` with Contents write and Pull requests read; repository dispatch uses the existing Contents permission.
 
 ```sh
 npx wrangler@4.133.0 d1 execute peekareq-commands --remote --file scripts/ui-review-bot/worker/schema.sql --config scripts/ui-review-bot/worker/wrangler.jsonc

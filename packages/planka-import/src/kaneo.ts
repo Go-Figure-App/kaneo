@@ -1,13 +1,13 @@
 import { formatWait, retryAfterMs } from "./retry-after.js";
 
-export type KaneoWorkspace = { id: string; name: string; slug?: string };
-export type KaneoProject = { id: string; name: string; slug: string };
-export type KaneoColumn = { id: string; name: string; slug: string };
-export type KaneoTask = { id: string; title: string; number: number };
-export type KaneoLabel = { id: string; name: string; color: string };
-export type KaneoMember = { id: string; name: string; email: string };
+export type TracingWorkspace = { id: string; name: string; slug?: string };
+export type TracingProject = { id: string; name: string; slug: string };
+export type TracingColumn = { id: string; name: string; slug: string };
+export type TracingTask = { id: string; title: string; number: number };
+export type TracingLabel = { id: string; name: string; color: string };
+export type TracingMember = { id: string; name: string; email: string };
 
-// Kaneo denies a rate-limited key with 429 and a Retry-After that already
+// Tracing denies a rate-limited key with 429 and a Retry-After that already
 // covers its silence window, so one wait is enough. Longer waits are usage
 // quotas (hours or days); failing beats an import that looks hung.
 const MAX_RATE_LIMIT_WAIT_MS = 5 * 60_000;
@@ -31,7 +31,7 @@ export function normalizeBaseUrl(raw: string): string {
   }
 }
 
-export class KaneoClient {
+export class TracingClient {
   readonly baseUrl: string;
   private readonly apiKey: string;
   private readonly onRateLimit: (waitMs: number) => void;
@@ -46,18 +46,18 @@ export class KaneoClient {
     this.onRateLimit = options.onRateLimit ?? (() => {});
   }
 
-  listWorkspaces(): Promise<KaneoWorkspace[]> {
-    return this.request<KaneoWorkspace[]>("/api/auth/organization/list");
+  listWorkspaces(): Promise<TracingWorkspace[]> {
+    return this.request<TracingWorkspace[]>("/api/auth/organization/list");
   }
 
-  listProjects(workspaceId: string): Promise<KaneoProject[]> {
-    return this.request<KaneoProject[]>(
+  listProjects(workspaceId: string): Promise<TracingProject[]> {
+    return this.request<TracingProject[]>(
       `/api/project?workspaceId=${encodeURIComponent(workspaceId)}`,
     );
   }
 
-  listMembers(workspaceId: string): Promise<KaneoMember[]> {
-    return this.request<KaneoMember[]>(
+  listMembers(workspaceId: string): Promise<TracingMember[]> {
+    return this.request<TracingMember[]>(
       `/api/workspace/${encodeURIComponent(workspaceId)}/members`,
     );
   }
@@ -67,15 +67,15 @@ export class KaneoClient {
     workspaceId: string;
     icon: string;
     slug: string;
-  }): Promise<KaneoProject> {
-    return this.request<KaneoProject>("/api/project", {
+  }): Promise<TracingProject> {
+    return this.request<TracingProject>("/api/project", {
       method: "POST",
       body: JSON.stringify(input),
     });
   }
 
-  listColumns(projectId: string): Promise<KaneoColumn[]> {
-    return this.request<KaneoColumn[]>(
+  listColumns(projectId: string): Promise<TracingColumn[]> {
+    return this.request<TracingColumn[]>(
       `/api/column/${encodeURIComponent(projectId)}`,
     );
   }
@@ -83,8 +83,8 @@ export class KaneoClient {
   createColumn(
     projectId: string,
     input: { name: string; isFinal?: boolean },
-  ): Promise<KaneoColumn> {
-    return this.request<KaneoColumn>(
+  ): Promise<TracingColumn> {
+    return this.request<TracingColumn>(
       `/api/column/${encodeURIComponent(projectId)}`,
       { method: "POST", body: JSON.stringify(input) },
     );
@@ -106,8 +106,8 @@ export class KaneoClient {
       dueDate?: string;
       userId?: string;
     },
-  ): Promise<KaneoTask> {
-    return this.request<KaneoTask>(
+  ): Promise<TracingTask> {
+    return this.request<TracingTask>(
       `/api/task/${encodeURIComponent(projectId)}`,
       { method: "POST", body: JSON.stringify(input) },
     );
@@ -120,8 +120,8 @@ export class KaneoClient {
     color: string;
     workspaceId: string;
     taskId?: string;
-  }): Promise<KaneoLabel> {
-    return this.request<KaneoLabel>("/api/label", {
+  }): Promise<TracingLabel> {
+    return this.request<TracingLabel>("/api/label", {
       method: "POST",
       body: JSON.stringify(input),
     });
@@ -162,12 +162,12 @@ export class KaneoClient {
       const waitMs = retryAfterMs(res.headers.get("Retry-After"));
       if (waitMs === null || attempt >= MAX_RATE_LIMIT_RETRIES) {
         throw new Error(
-          `Kaneo ${path}: rate limited (HTTP 429), Kaneo throttled this API key; run again later`,
+          `Tracing ${path}: rate limited (HTTP 429), Tracing throttled this API key; run again later`,
         );
       }
       if (waitMs > MAX_RATE_LIMIT_WAIT_MS) {
         throw new Error(
-          `Kaneo ${path}: API key usage limit reached (HTTP 429); retry in about ${formatWait(waitMs)} or raise the key's limits`,
+          `Tracing ${path}: API key usage limit reached (HTTP 429); retry in about ${formatWait(waitMs)} or raise the key's limits`,
         );
       }
       this.onRateLimit(waitMs);
@@ -191,7 +191,7 @@ export class KaneoClient {
       });
     } catch (error) {
       const reason = error instanceof Error ? error.message : String(error);
-      throw new Error(`Kaneo ${path}: ${reason}`);
+      throw new Error(`Tracing ${path}: ${reason}`);
     }
   }
 
@@ -207,7 +207,7 @@ export class KaneoClient {
     }
 
     if (!res.ok) {
-      throw new Error(`Kaneo ${path}: ${describeError(body, res.status)}`);
+      throw new Error(`Tracing ${path}: ${describeError(body, res.status)}`);
     }
 
     return body as T;
@@ -216,7 +216,7 @@ export class KaneoClient {
 
 function describeError(body: unknown, status: number): string {
   if (status === 401) {
-    return "unauthorized (HTTP 401), check your Kaneo API key";
+    return "unauthorized (HTTP 401), check your Tracing API key";
   }
   if (typeof body === "object" && body !== null) {
     const record = body as Record<string, unknown>;

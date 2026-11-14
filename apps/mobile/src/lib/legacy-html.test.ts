@@ -69,7 +69,7 @@ describe("legacy HTML descriptions", () => {
     );
   });
 
-  it("keeps images and Kaneo tags for the display rewrite", () => {
+  it("keeps images and Tracing tags for the display rewrite", () => {
     expect(
       legacyHtmlToMarkdown(
         '<p>Hi <kaneo-mention id="u1" label="Ana">@Ana</kaneo-mention></p><img src="/api/asset/1" alt="shot">',

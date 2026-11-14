@@ -4,21 +4,21 @@ export const youtrack: Comparison = {
   slug: "youtrack",
   competitor: "YouTrack",
   category: "saas",
-  title: "YouTrack alternative: Kaneo vs YouTrack",
+  title: "YouTrack alternative: Tracing vs YouTrack",
   description:
-    "Kaneo is a YouTrack alternative with no ten-user ceiling and no annual server licence. Kaneo Cloud runs it for you from $4 a month, 14-day free trial.",
+    "Compare YouTrack with Tracing, an MIT-licensed tracker you can self-host with boards, triage, cycles, initiatives, views and insights.",
   summary: "No annual server licence and no ten-user ceiling.",
   heading: "The YouTrack alternative without the server licence",
   subheading:
-    "YouTrack is free until your eleventh teammate, and self-hosting it means buying a JetBrains server licence. Kaneo Cloud runs Kaneo for you, and self-hosting it is free at any size.",
+    "Tracing is an MIT-licensed option for teams evaluating YouTrack who want to operate their own project tracker.",
   verdict:
-    "Kaneo is a YouTrack alternative for teams that have outgrown a ten-user free tier, and Kaneo Cloud runs it for you from $4 a month, or $5 per user for teams. YouTrack is proprietary: free for up to 10 users in cloud and server form, then per-user cloud pricing or a paid annual server licence. Kaneo is also MIT-licensed open source, with no user cap when self-hosted.",
+    "Tracing is a self-hosted alternative to YouTrack for issue and project planning. It includes boards, triage, project plans, milestones, initiatives, roadmaps, cycles, insights and saved views. Budget for hosting, backups and maintenance; no managed Tracing subscription is offered.",
   facts: {
     license: "MIT, versus a proprietary JetBrains licence",
-    hosting:
-      "EU-hosted Kaneo Cloud, or self-host free. YouTrack Server needs a paid licence past the free tier",
-    sso: "Free on every Kaneo build",
-    pricing: "Cloud from $4 / month, or $0 self-hosted",
+    hosting: "Self-host Tracing on infrastructure you control",
+    sso: "Free on every Tracing build",
+    pricing:
+      "No license fee; infrastructure and operations are your responsibility",
   },
   rows: [
     { feature: "Open source (MIT)", kaneo: true, them: false },
@@ -38,26 +38,26 @@ export const youtrack: Comparison = {
     { feature: "Learning curve", kaneo: "Minutes", them: "Moderate" },
     {
       feature: "Cloud pricing",
-      kaneo: "From $4/mo",
+      kaneo: "No managed hosting plan",
       them: "From $4.50/user/mo",
     },
   ],
   reasons: [
     {
       title: "No licence to renew",
-      body: "Self-hosted Kaneo is MIT licensed with no seat count, no annual renewal, and no licence server. You run the container and that is the arrangement.",
+      body: "Self-hosted Tracing is MIT licensed with no seat count, no annual renewal, and no licence server. You run the container and that is the arrangement.",
     },
     {
       title: "Simpler by design",
-      body: "YouTrack is deep: custom fields, a query language, and JavaScript workflows. Kaneo's boards, backlog, and workflow rules are meant to be understood in an afternoon.",
+      body: "YouTrack is deep: custom fields, a query language, and JavaScript workflows. Tracing's boards, backlog, and workflow rules are meant to be understood in an afternoon.",
     },
     {
       title: "Everything in every build",
-      body: "SSO, roles, time tracking, integrations, API keys, and MCP access come with Kaneo wherever you run it.",
+      body: "SSO, roles, time tracking, integrations, API keys, and MCP access come with Tracing wherever you run it.",
     },
   ],
   honestNote:
-    "YouTrack is a serious issue tracker with an excellent query language, powerful workflow scripting, and tight integration with the rest of the JetBrains toolchain. If your team already lives in JetBrains IDEs and you want that depth, Kaneo will feel small next to it.",
+    "YouTrack is a serious issue tracker with an excellent query language, powerful workflow scripting, and tight integration with the rest of the JetBrains toolchain. If your team already lives in JetBrains IDEs and you want that depth, Tracing will feel small next to it.",
   faq: [
     {
       question: "Is YouTrack open source?",
@@ -72,12 +72,12 @@ export const youtrack: Comparison = {
     {
       question: "What is the best open-source YouTrack alternative?",
       answer:
-        "Kaneo if you want something light and MIT licensed, Redmine if you want a mature tracker with a large plugin ecosystem, or Plane if you want a Linear-style interface under AGPL.",
+        "Tracing if you want something light and MIT licensed, Redmine if you want a mature tracker with a large plugin ecosystem, or Plane if you want a Linear-style interface under AGPL.",
     },
     {
-      question: "Does Kaneo have a query language?",
+      question: "Does Tracing have a query language?",
       answer:
-        "No. Kaneo has search plus filters on boards and the backlog, which covers day-to-day use. It has no equivalent to YouTrack's saved queries and issue-query syntax.",
+        "No. Tracing has search plus filters on boards and the backlog, which covers day-to-day use. It has no equivalent to YouTrack's saved queries and issue-query syntax.",
     },
   ],
   related: ["jira", "redmine", "linear", "shortcut"],
@@ -87,6 +87,6 @@ export const youtrack: Comparison = {
       label: "YouTrack pricing",
       href: "https://www.jetbrains.com/youtrack/buy/",
     },
-    { label: "Kaneo pricing", href: "/pricing" },
+    { label: "Tracing pricing", href: "/pricing" },
   ],
 };

@@ -6,20 +6,19 @@ export const basecamp: Comparison = {
   category: "saas",
   title: "Basecamp alternative for software teams",
   description:
-    "Kaneo is a Basecamp alternative with real kanban boards and a backlog for shipping software. Kaneo Cloud runs it for you from $4 a month.",
-  summary:
-    "Boards and a backlog for shipping software, run for you on Kaneo Cloud.",
+    "Compare Basecamp with Tracing, an MIT-licensed tracker you can self-host with boards, triage, cycles, initiatives, views and insights.",
+  summary: "Self-hosted planning as an alternative to Basecamp.",
   heading: "The Basecamp alternative for shipping software",
   subheading:
-    "Basecamp is calm, opinionated, and organised around message boards and to-do lists. Kaneo is calm and opinionated too, with a board and backlog built for shipping software.",
+    "Basecamp is calm, opinionated, and organised around message boards and to-do lists. Tracing is calm and opinionated too, with a board and backlog built for shipping software.",
   verdict:
-    "Kaneo is a Basecamp alternative for teams that ship software from a kanban board and backlog, and Kaneo Cloud runs it for you from $4 a month, or $5 per user for teams. Basecamp charges a flat monthly fee with no per-user pricing, which is a genuinely good deal for larger teams, but it is cloud-only and organised around message boards and to-do lists. Kaneo is also MIT-licensed open source, so you can run it on your own server for free.",
+    "Tracing is a self-hosted alternative to Basecamp for issue and project planning. It includes boards, triage, project plans, milestones, initiatives, roadmaps, cycles, insights and saved views. Budget for hosting, backups and maintenance; no managed Tracing subscription is offered.",
   facts: {
     license: "MIT, versus a proprietary licence for Basecamp",
-    hosting:
-      "EU-hosted Kaneo Cloud, or self-host anywhere. Basecamp is cloud only",
-    sso: "Google, GitHub, Discord, or any OIDC provider, free on Kaneo",
-    pricing: "Cloud from $4 / month, or $0 self-hosted. Basecamp is flat-rate",
+    hosting: "Self-host Tracing on infrastructure you control",
+    sso: "Google, GitHub, Discord, or any OIDC provider, free on Tracing",
+    pricing:
+      "No license fee; infrastructure and operations are your responsibility",
   },
   rows: [
     { feature: "Open source (MIT)", kaneo: true, them: false },
@@ -33,7 +32,11 @@ export const basecamp: Comparison = {
     { feature: "Message boards & chat", kaneo: false, them: true },
     { feature: "Time tracking", kaneo: true, them: "Higher tiers" },
     { feature: "Pricing model", kaneo: "Free or per user", them: "Flat rate" },
-    { feature: "Cloud pricing", kaneo: "From $4/mo", them: "From $25/mo flat" },
+    {
+      feature: "Cloud pricing",
+      kaneo: "No managed hosting plan",
+      them: "From $25/mo flat",
+    },
   ],
   reasons: [
     {
@@ -42,15 +45,15 @@ export const basecamp: Comparison = {
     },
     {
       title: "Runs on your infrastructure",
-      body: "Basecamp has been hosted-only since Basecamp 3. Kaneo installs with Docker and PostgreSQL on any box you control, under the MIT license.",
+      body: "Basecamp has been hosted-only since Basecamp 3. Tracing installs with Docker and PostgreSQL on any box you control, under the MIT license.",
     },
     {
       title: "Free when you host it",
-      body: "A self-hosted Kaneo instance costs you a server. Basecamp's flat rate is fair at scale but starts at $25 a month whether you are two people or twenty.",
+      body: "A self-hosted Tracing instance costs you a server. Basecamp's flat rate is fair at scale but starts at $25 a month whether you are two people or twenty.",
     },
   ],
   honestNote:
-    "Basecamp's flat pricing and its all-in-one approach to client work, messages, docs, and check-ins are hard to beat if that is how your company communicates. Kaneo has no message boards, no campfire chat, and no client access. If Basecamp is your intranet, keep it.",
+    "Basecamp's flat pricing and its all-in-one approach to client work, messages, docs, and check-ins are hard to beat if that is how your company communicates. Tracing has no message boards, no campfire chat, and no client access. If Basecamp is your intranet, keep it.",
   faq: [
     {
       question: "Can Basecamp be self-hosted?",
@@ -65,18 +68,18 @@ export const basecamp: Comparison = {
     {
       question: "Is there an open-source Basecamp alternative?",
       answer:
-        "Kaneo, Leantime, OpenProject, and Taiga are the usual open-source options. Kaneo is the closest if what you want is a fast board and backlog. Leantime is closer if you want goals and light client-facing structure.",
+        "Tracing, Leantime, OpenProject, and Taiga are the usual open-source options. Tracing is the closest if what you want is a fast board and backlog. Leantime is closer if you want goals and light client-facing structure.",
     },
     {
-      question: "Does Kaneo have Basecamp's message boards?",
+      question: "Does Tracing have Basecamp's message boards?",
       answer:
-        "No. Kaneo has task comments, notifications, and integrations with Slack, Discord, and Telegram, but no standalone message board or group chat. It assumes your team already talks somewhere else.",
+        "No. Tracing has task comments, notifications, and integrations with Slack, Discord, and Telegram, but no standalone message board or group chat. It assumes your team already talks somewhere else.",
     },
   ],
   related: ["trello", "asana", "leantime", "notion"],
   verifiedOn: "2026-08-19",
   sources: [
     { label: "Basecamp pricing", href: "https://basecamp.com/pricing" },
-    { label: "Kaneo pricing", href: "/pricing" },
+    { label: "Tracing pricing", href: "/pricing" },
   ],
 };

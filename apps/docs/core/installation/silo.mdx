@@ -1,11 +1,11 @@
 ---
 title: "Store files with Silo"
-description: "Add private S3-compatible storage to your Kaneo deployment."
+description: "Add private S3-compatible storage to your Tracing deployment."
 ---
 
-[PGSTY Silo](https://silo.pgsty.com/) is a maintained MinIO fork with an S3 API and a web console. This guide uses it for a single-server Kaneo installation.
+[PGSTY Silo](https://silo.pgsty.com/) is a maintained MinIO fork with an S3 API and a web console. This guide uses it for a single-server Tracing installation.
 
-You need a running Kaneo instance, a hostname such as `files.example.com`, and an HTTPS reverse proxy on the Docker host. The API and every user's browser must be able to reach that hostname.
+You need a running Tracing instance, a hostname such as `files.example.com`, and an HTTPS reverse proxy on the Docker host. The API and every user's browser must be able to reach that hostname.
 
 ## 1. Add the storage service
 
@@ -44,7 +44,7 @@ MINIO_ROOT_PASSWORD=replace-with-a-generated-secret
 MINIO_API_CORS_ALLOW_ORIGIN=https://kaneo.example.com
 ```
 
-Silo retains the `MINIO_*` configuration names. Use the exact origin of your Kaneo instance, including its port if it has one. This global CORS setting applies to buckets without their own CORS configuration. See [Silo's compatibility notes](https://silo.pgsty.com/compatibility/migration/).
+Silo retains the `MINIO_*` configuration names. Use the exact origin of your Tracing instance, including its port if it has one. This global CORS setting applies to buckets without their own CORS configuration. See [Silo's compatibility notes](https://silo.pgsty.com/compatibility/migration/).
 
 ```bash
 chmod 600 silo.env
@@ -77,7 +77,7 @@ server {
 }
 ```
 
-Adjust the body limit if you increase Kaneo's upload limit. Use a dedicated hostname rather than adding a path prefix to the storage URL. Test with `sudo nginx -t` before reloading Nginx.
+Adjust the body limit if you increase Tracing's upload limit. Use a dedicated hostname rather than adding a path prefix to the storage URL. Test with `sudo nginx -t` before reloading Nginx.
 
 Keep port 9001, the administration console, private. On a remote server, open an SSH tunnel from your computer:
 
@@ -87,13 +87,13 @@ ssh -L 9001:127.0.0.1:9001 your-user@your-server
 
 Then visit `http://localhost:9001` and sign in with the administrator credentials from `silo.env`.
 
-## 3. Create the bucket and a Kaneo credential
+## 3. Create the bucket and a Tracing credential
 
 In the Silo console:
 
 1. Create a private bucket named **kaneo-uploads**.
 2. Create a policy named **kaneo-uploads** with the JSON below.
-3. Create a dedicated user for Kaneo and attach that policy. Use that user's access key and secret in Kaneo, not the root administrator credential.
+3. Create a dedicated user for Tracing and attach that policy. Use that user's access key and secret in Tracing, not the root administrator credential.
 
 ```json
 {
@@ -115,9 +115,9 @@ In the Silo console:
 
 Leave anonymous bucket access disabled. The console's [identity and access guide](https://silo.pgsty.com/administration/identity-access-management/) covers storage-side administration.
 
-## 4. Connect Kaneo
+## 4. Connect Tracing
 
-Add these values to Kaneo's `.env`:
+Add these values to Tracing's `.env`:
 
 ```env
 S3_ENDPOINT=https://files.example.com
@@ -131,7 +131,7 @@ S3_FORCE_PATH_STYLE=true
 Apply them:
 
 ```bash
-docker compose up -d --force-recreate kaneo
+docker compose up -d --force-recreate tracing
 ```
 
 Open a task, upload an image, reload, and open the image again. Try a non-image attachment too. If it fails, check [uploads troubleshooting](/core/operations/troubleshooting#uploads-fail).
@@ -146,6 +146,6 @@ Test uploads and downloads before switching your team over. Image rollback alone
 
 ## Local-only trials
 
-A local setup still needs one storage hostname that both Docker and the browser can resolve. `localhost` inside the Kaneo container points to Kaneo, while `silo` usually resolves only inside Docker. Configure shared DNS and routing for your environment instead of copying either address into `S3_ENDPOINT`.
+A local setup still needs one storage hostname that both Docker and the browser can resolve. `localhost` inside the Tracing container points to Tracing, while `silo` usually resolves only inside Docker. Configure shared DNS and routing for your environment instead of copying either address into `S3_ENDPOINT`.
 
-For the least setup, try Kaneo without attachments first and add storage on a host with a reachable domain.
+For the least setup, try Tracing without attachments first and add storage on a host with a reachable domain.

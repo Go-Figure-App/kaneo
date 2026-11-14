@@ -103,9 +103,9 @@ export const itProjectManagement: Guide = {
       ],
     },
     {
-      heading: "How Kaneo fits",
+      heading: "How Tracing fits",
       body: [
-        "Kaneo can run on your own infrastructure with Docker Compose or the Helm chart, so project data stays inside your network. Single sign-on works with any OpenID Connect provider, such as Keycloak, Okta, or Microsoft Entra ID, in the free build.",
+        "Tracing can run on your own infrastructure with Docker Compose or the Helm chart, so project data stays inside your network. Single sign-on works with any OpenID Connect provider, such as Keycloak, Okta, or Microsoft Entra ID, in the free build.",
         "Workspace roles (viewer, member, admin, owner) control what people can do, and per-member project access keeps contractors and other teams to the projects they need, including through their API keys. Projects have a board, backlog, and Gantt and calendar views, with Blocks relations for dependencies.",
         "Outgoing webhooks post task activity to Slack, Discord, Mattermost, Telegram, or your own endpoint, and a public API and MCP server cover scripts and automation.",
       ],

@@ -107,9 +107,9 @@ export const criticalPathMethod: Guide = {
       ],
     },
     {
-      heading: "Applying CPM in Kaneo",
+      heading: "Applying CPM in Tracing",
       body: [
-        "Kaneo does not calculate the critical path for you. Record each dependency with a Blocks relation on the task, so the order is visible on every task. Then work through the forward and backward passes as above, which takes minutes for a project of a few dozen tasks.",
+        "Tracing does not calculate the critical path for you. Record each dependency with a Blocks relation on the task, so the order is visible on every task. Then work through the forward and backward passes as above, which takes minutes for a project of a few dozen tasks.",
         "Give each task start and due dates that follow the result and check them on the Gantt view, where you can drag bars to reschedule. A critical label on the zero-float tasks lets you filter the board to the work that decides the launch date.",
       ],
     },

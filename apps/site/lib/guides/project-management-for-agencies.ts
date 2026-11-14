@@ -78,11 +78,11 @@ export const projectManagementForAgencies: Guide = {
       ],
     },
     {
-      heading: "How Kaneo fits",
+      heading: "How Tracing fits",
       body: [
-        "Each client engagement becomes a Kaneo project with its own board, backlog, and Gantt view. Members can be limited to selected projects, so a client or freelancer only sees their own work, including through their API keys. The Viewer role gives read-only access, and a project can also have a public link that shows the board and its tasks to anyone with the link, read-only.",
-        "Time tracking on tasks, labels, custom fields, and filters by assignee cover the day-to-day. Self-hosted Kaneo is free with no user limits, so inviting clients and contractors costs nothing; Kaneo Cloud is $5 per user a month for teams.",
-        "Kaneo does not do invoicing, proposals, or resource scheduling by hours. Agencies that want those in the same tool usually pair a tracker with dedicated billing software.",
+        "Each client engagement becomes a Tracing project with its own board, backlog, and Gantt view. Members can be limited to selected projects, so a client or freelancer only sees their own work, including through their API keys. The Viewer role gives read-only access, and a project can also have a public link that shows the board and its tasks to anyone with the link, read-only.",
+        "Tracing provides task time tracking, labels, custom fields and assignee filters. The self-hosted software has no per-seat fee, so adding clients and contractors does not create a software subscription charge. Operators still pay their infrastructure and maintenance costs.",
+        "Tracing does not do invoicing, proposals, or resource scheduling by hours. Agencies that want those in the same tool usually pair a tracker with dedicated billing software.",
       ],
     },
   ],
@@ -90,7 +90,7 @@ export const projectManagementForAgencies: Guide = {
     {
       question: "What is the best project management software for agencies?",
       answer:
-        "One that separates client work cleanly, shares progress with clients safely, and does not charge per seat for the clients and freelancers you invite. Kaneo covers that and is free to self-host; all-in-one agency suites add invoicing and resourcing at a higher price.",
+        "One that separates client work cleanly, shares progress with clients safely, and does not charge per seat for the clients and freelancers you invite. Tracing covers that and is free to self-host; all-in-one agency suites add invoicing and resourcing at a higher price.",
     },
     {
       question: "Should clients have access to our project management tool?",

@@ -1914,7 +1914,7 @@
 			},
 			"foundingFree": {
 				"badge": "Gratuit",
-				"description": "Cet espace de travail bénéficie d'un accès gratuit à Tracing Cloud en tant que soutien de la première heure. Merci d'être là depuis le début.",
+				"description": "Cet espace de travail bénéficie d’un accès gratuit.",
 				"title": "Gratuit pour les premiers soutiens"
 			},
 			"interval": {
@@ -2302,7 +2302,7 @@
 				"connectTo": "Connecter {{source}}",
 				"description": "Choisissez l'outil depuis lequel vous migrez. Chaque projet sélectionné devient un nouveau projet ici.",
 				"kaneo": {
-					"description": "Transférez des projets entre Tracing Cloud et une instance auto-hébergée.",
+					"description": "Déplacez des projets entre les instances Tracing.",
 					"intro": "Les projets de tous les espaces de travail accessibles avec cette clé. Chaque projet sélectionné est copié ici.",
 					"pickerName": "Une autre instance Tracing"
 				},
@@ -4209,11 +4209,11 @@
 	"press": {
 		"title": "Kit de presse",
 		"headline": "Kit de presse Tracing",
-		"intro": "Logos et captures d'écran de Tracing pour les articles, vidéos et autres médias.",
-		"description": "Ressources presse de Tracing : informations sur le produit, logos, captures d'écran et coordonnées pour les journalistes et les créateurs.",
+		"intro": "Logos et icônes de l’application Tracing pour les articles, vidéos et autres médias.",
+		"description": "Ressources presse de Tracing : informations produit, logos et coordonnées pour les journalistes et créateurs.",
 		"downloadKit": "Télécharger toutes les ressources",
 		"boilerplateTitle": "À propos de Tracing",
-		"boilerplate": "Tracing est une plateforme de gestion de projet open source créée par Andrej Acevski. Les équipes peuvent organiser les tâches en tableaux et en listes, assigner le travail, définir des priorités et des dates d'échéance, et connecter GitHub. Tracing est disponible sous licence MIT pour l'auto-hébergement, ou en tant que service géré via Tracing Cloud.",
+		"boilerplate": "Tracing est l’espace de planification open source de Go Figure, basé sur Kaneo d’Andrej Acevski. Il ajoute des tâches, le triage, des initiatives, des feuilles de route, des cycles, des analyses et des vues enregistrées. Le code source est disponible sous licence MIT pour l’auto-hébergement.",
 		"logosTitle": "Logos",
 		"darkLogo": "Logotype sombre",
 		"darkLogoAlt": "Logo Tracing sombre sur fond clair",
@@ -4307,8 +4307,8 @@
 				"link": "Configurer GitHub"
 			},
 			"hosting": {
-				"title": "Exécutez-le sur votre propre serveur.",
-				"description": "Déployez avec Docker et conservez votre espace de travail sur une infrastructure que vous contrôlez.",
+				"title": "Exécutez-le sur votre propre infrastructure.",
+				"description": "Compilez et hébergez Tracing avec PostgreSQL. Choisissez votre infrastructure et gérez vos sauvegardes, mises à jour et restaurations.",
 				"link": "Auto-héberger Tracing"
 			},
 			"source": {
@@ -4351,7 +4351,7 @@
 		},
 		"seo": {
 			"title": "Tracing — Gestion de projet open source et auto-hébergée",
-			"description": "Une gestion de projet open source avec des tableaux, des diagrammes de Gantt et une intégration GitHub. Auto-hébergez gratuitement avec le SSO inclus, ou utilisez Tracing Cloud."
+			"description": "Planification de projets open source avec tableaux, triage, jalons, initiatives, feuilles de route, cycles, analyses et vues enregistrées. Hébergez Tracing sur votre propre infrastructure."
 		},
 		"resources": {
 			"eyebrow": "Adaptez-le à vos besoins",
@@ -4370,7 +4370,7 @@
 				"description": "Découvrez les différences d'hébergement, de licence et de flux de travail."
 			},
 			"startups": {
-				"description": "What a startup needs from a tracker, and what Tracing Cloud costs as you hire.",
+				"description": "La planification pour une startup, en tenant compte des coûts d’hébergement et d’exploitation à mesure que vous grandissez.",
 				"title": "Project management for startups"
 			}
 		},
@@ -4450,8 +4450,8 @@
 			"uploadFailed": "Échec de l'envoi ({{status}})"
 		},
 		"signIn": {
-			"tagline": "La gestion de projet en toute simplicité. Connectez-vous à Tracing Cloud ou à votre propre instance.",
-			"cloud": "Tracing Cloud",
+			"tagline": "Planifiez le travail de votre équipe avec Tracing.",
+			"cloud": "Tracing",
 			"selfHosted": "Auto-hébergé",
 			"captcha": "Ce serveur exige une vérification dans le navigateur pour cette étape. Utilisez plutôt « Continuer dans le navigateur ».",
 			"invalidClient": "Ce serveur n'autorise pas la connexion par appareil. Demandez à son administrateur d'ajouter « kaneo-cli » à DEVICE_AUTH_CLIENT_IDS, ou connectez-vous avec un mot de passe ou une clé API.",
@@ -4509,7 +4509,7 @@
 			"unlock": {
 				"buy": "Unlock for {{price}}",
 				"buyNoPrice": "Unlock",
-				"message": "Signing in to Tracing Cloud is always included. Connecting the app to a self-hosted server is a one-time purchase that supports Tracing's development.",
+				"message": "Cette version de Tracing se connecte à l’instance de votre équipe sans achat intégré.",
 				"nothingToRestore": "No earlier purchase was found for this store account.",
 				"restore": "Restore purchase",
 				"title": "Connect your own server",
@@ -4531,6 +4531,7 @@
 			"join": "Rejoindre"
 		},
 		"taskDetail": {
+			"systemActor": "Tracing",
 			"someone": "Quelqu'un",
 			"status": {
 				"planned": "Planifiée",
@@ -4968,6 +4969,7 @@
 			"workspaceCreated": "Espace de travail « {{name}} » créé"
 		},
 		"background": {
+			"title": "Tracing",
 			"summary_one": "{{count}} autre nouvelle notification",
 			"summary_other": "{{count}} autres nouvelles notifications",
 			"channelName": "Activité Tracing",

@@ -41,7 +41,7 @@ function fixture(run) {
       JSON.stringify({ version: pkg, type: "module" }),
     );
     writeFileSync(
-      resolve(dir, "charts/kaneo/Chart.yaml"),
+      resolve(dir, "charts/tracing/Chart.yaml"),
       `name: kaneo\nversion: ${chart}\nappVersion: "${pkg}"\n`,
     );
   };
@@ -51,7 +51,7 @@ function fixture(run) {
     return git("rev-parse", "HEAD");
   };
   try {
-    mkdirSync(resolve(dir, "charts/kaneo"), { recursive: true });
+    mkdirSync(resolve(dir, "charts/tracing"), { recursive: true });
     mkdirSync(resolve(dir, "scripts/security"), { recursive: true });
     mkdirSync(resolve(dir, "scripts/release"), { recursive: true });
     for (const file of [
@@ -102,6 +102,19 @@ test("an existing release resolves its reviewed tag, not newer main", () =>
     const result = verify("released", "1.2.3");
     assert.equal(result.status, 0, result.stderr);
     assert.equal(result.output, `source_sha=${first}\n`);
+  }));
+test("an older release can use the legacy chart path after the rename", () =>
+  fixture(({ git, commit, versions, verify }) => {
+    git("mv", "charts/tracing", "charts/kaneo");
+    const legacy = commit();
+    git("tag", "v1.2.3");
+    git("mv", "charts/kaneo", "charts/tracing");
+    versions("1.2.4");
+    const latest = commit();
+    git("update-ref", "refs/remotes/origin/main", latest);
+    const result = verify("released", "1.2.3");
+    assert.equal(result.status, 0, result.stderr);
+    assert.equal(result.output, `source_sha=${legacy}\n`);
   }));
 test("tags outside reviewed main history cannot publish", () =>
   fixture(({ git, commit, verify }) => {

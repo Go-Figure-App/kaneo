@@ -104,7 +104,7 @@ export const projectKickoffMeeting: Guide = {
       ],
     },
     {
-      heading: "Setting up the project in Kaneo before kickoff",
+      heading: "Setting up the project in Tracing before kickoff",
       body: [
         "Create the project, write the charter or scope summary in the project description, and add the first deliverables and milestones as tasks with due dates, so the Gantt view shows the timeline you will present.",
         "Invite the team as members; limit contractors and client contacts to this project, with the Viewer role for anyone who only needs to follow along. Share the board on screen during the meeting, and add the open questions as tasks with owners before everyone leaves.",

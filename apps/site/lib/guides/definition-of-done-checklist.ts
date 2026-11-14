@@ -125,10 +125,10 @@ export const definitionOfDoneChecklist: Guide = {
       ],
     },
     {
-      heading: "Using a definition of done in Kaneo",
+      heading: "Using a definition of done in Tracing",
       body: [
         "Paste the checklist into the task description as checkboxes. Tick each item as it is done, and anyone opening the task sees what is left. Keep the master copy in the project description so it is easy to find and copy.",
-        "In the project's workflow settings, turn on Done for the column where finished work lands, and add a Review column before it so work waits there while the checklist is completed. A column's name alone does not mark work as complete in Kaneo; the Done setting does.",
+        "In the project's workflow settings, turn on Done for the column where finished work lands, and add a Review column before it so work waits there while the checklist is completed. A column's name alone does not mark work as complete in Tracing; the Done setting does.",
         "If you connect GitHub, Gitea, or GitLab, automations can move a task when its pull request merges. Point that event at the Review column rather than Done if your definition includes steps that happen after merge, such as docs or a production deploy.",
       ],
     },

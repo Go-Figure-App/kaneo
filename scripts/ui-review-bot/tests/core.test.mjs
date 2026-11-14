@@ -26,8 +26,11 @@ test("key-file parsing handles quotes and comments without evaluating shell expr
   );
 });
 
-test("only Kaneo PRs and local application routes are accepted", () => {
-  assert.equal(prNumber("https://github.com/usekaneo/kaneo/pull/1719"), 1719);
+test("only Tracing PRs and local application routes are accepted", () => {
+  assert.equal(
+    prNumber("https://github.com/Go-Figure-App/tracing/pull/1719"),
+    1719,
+  );
   for (const input of [
     "1;echo token",
     "https://github.com/other/repo/pull/1",

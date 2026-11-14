@@ -3,25 +3,25 @@ title: "Make your first API request"
 description: "Authenticate, find a project, and read its tasks."
 ---
 
-Use the Kaneo API for scripts and integrations. Requests go to your instance's public API URL, usually `https://kaneo.example.com/api`.
+Use the Tracing API for scripts and integrations. Requests go to your instance's public API URL, usually `https://kaneo.example.com/api`.
 
 <Tip>
-Working from a terminal? The [Kaneo CLI](/cli) covers the same tasks with JSON output for scripts and agents, and `kaneo api` sends a request to any endpoint with your stored login.
+Working from a terminal? The [Tracing CLI](/cli) covers the same tasks with JSON output for scripts and agents, and `tracing api` sends a request to any endpoint with your stored login.
 </Tip>
 
 ## 1. Create an API key
 
-Open **Settings → Account → API Keys** in Kaneo and create a key for your script. Copy it when it is shown. See [Authentication](/api-reference/authentication) for API keys and device authorization.
+Open **Settings → Account → API Keys** in Tracing and create a key for your script. Copy it when it is shown. See [Authentication](/api-reference/authentication) for API keys and device authorization.
 
 Keep keys in server-side scripts or secret storage. Do not put a personal API key in frontend JavaScript shipped to other users.
 
 ## 2. Find your workspace and project IDs
 
-Set `KANEO_API_KEY` in your shell using your secret manager or a private environment file. Then list the workspaces you belong to with `GET /api/workspace`. Each item includes the workspace `id`, `name`, `slug`, and your `role`:
+Set `TRACING_API_KEY` in your shell using your secret manager or a private environment file. Then list the workspaces you belong to with `GET /api/workspace`. Each item includes the workspace `id`, `name`, `slug`, and your `role`:
 
 ```bash
 curl --fail-with-body 'https://kaneo.example.com/api/workspace' \
-  -H "Authorization: Bearer $KANEO_API_KEY"
+  -H "Authorization: Bearer $TRACING_API_KEY"
 ```
 
 You can also open a project in the browser. Its URL includes both IDs:
@@ -39,7 +39,7 @@ Replace the example workspace ID:
 ```bash
 curl --fail-with-body --get 'https://kaneo.example.com/api/project' \
   --data-urlencode 'workspaceId=WORKSPACE_ID' \
-  -H "Authorization: Bearer $KANEO_API_KEY"
+  -H "Authorization: Bearer $TRACING_API_KEY"
 ```
 
 A successful response is a JSON array of projects. Use a project's `id` in the next request.
@@ -49,7 +49,7 @@ A successful response is a JSON array of projects. Use a project's `id` in the n
 ```bash
 curl --fail-with-body \
   'https://kaneo.example.com/api/task/tasks/PROJECT_ID?page=1&limit=50' \
-  -H "Authorization: Bearer $KANEO_API_KEY"
+  -H "Authorization: Bearer $TRACING_API_KEY"
 ```
 
 This endpoint returns a project board, including columns and task buckets, together with pagination metadata. It is not a flat task array. Follow `pagination.totalPages` for task pages and `pagination.relatedTotalPages` for related metadata pages when those span multiple pages.

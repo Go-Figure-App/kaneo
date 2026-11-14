@@ -96,7 +96,7 @@ export const projectLifeCycle: Guide = {
       ],
     },
     {
-      heading: "The life cycle in Kaneo",
+      heading: "The life cycle in Tracing",
       body: [
         "Write the charter in the project description at initiation. During planning, capture work in the Backlog, break it into subtasks, add Blocks relations and dates, and check the schedule on the Gantt view.",
         "Execution and monitoring happen on the board: columns show status, filters by due date and priority show what is late or urgent, and repository automations move tasks as pull requests merge. At closure, archive completed tasks in bulk so the board is clean and the history stays searchable.",

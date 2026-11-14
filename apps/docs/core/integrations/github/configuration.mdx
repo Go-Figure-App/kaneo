@@ -21,7 +21,7 @@ Encode the downloaded PEM file without printing it into logs or committing it. A
 Recreate the application container to apply the environment:
 
 ```bash
-docker compose up -d --force-recreate kaneo
+docker compose up -d --force-recreate tracing
 ```
 
 For Kubernetes, pass the same values through a Secret using your deployment's existing secret configuration. Do not create a second API deployment just for this integration.
@@ -29,8 +29,8 @@ For Kubernetes, pass the same values through a Secret using your deployment's ex
 ## Connect the project
 
 1. Open **Settings → Projects**, select the project, then open **Integrations** and select **Connect** next to GitHub.
-2. Link your GitHub account if Kaneo asks for it. Kaneo uses it to confirm that you administer the repository.
-3. Type the repository as `owner/name`, or select **Browse** and search the repositories your installed app can reach. Kaneo checks the installation as soon as you pick one.
+2. Link your GitHub account if Tracing asks for it. Tracing uses it to confirm that you administer the repository.
+3. Type the repository as `owner/name`, or select **Browse** and search the repositories your installed app can reach. Tracing checks the installation as soon as you pick one.
 4. Select **Connect repository**.
 5. Create a test task and check that its GitHub issue appears.
 
@@ -48,7 +48,7 @@ After connecting a repository, test the integration thoroughly:
 <Step>
 **Test Task to Issue Creation**
 
-Create a new task in your connected Kaneo project with:
+Create a new task in your connected Tracing project with:
 - A clear title
 - A description
 - Set priority and status
@@ -56,7 +56,7 @@ Create a new task in your connected Kaneo project with:
 Navigate to your GitHub repository and verify:
 - A new issue was created
 - The issue has `priority:*` and `status:*` labels
-- A comment links back to the Kaneo task
+- A comment links back to the Tracing task
 </Step>
 
 <Step>
@@ -83,7 +83,7 @@ In GitHub:
 1. Create a new issue
 2. Add labels like `priority:high` or `status:in-progress`
 
-In Kaneo:
+In Tracing:
 - Verify a task was created from the issue
 - Check that priority and status match the labels
 - Confirm the task links to the GitHub issue
@@ -93,9 +93,9 @@ In Kaneo:
 **Test Label Synchronization**
 
 Test both directions:
-1. Change task priority in Kaneo → Check issue labels in GitHub
-2. Add/remove labels in GitHub → Check task in Kaneo
-3. Change task status in Kaneo → Check if issue is closed/reopened
+1. Change task priority in Tracing → Check issue labels in GitHub
+2. Add/remove labels in GitHub → Check task in Tracing
+3. Change task status in Tracing → Check if issue is closed/reopened
 </Step>
 
 </Steps>
@@ -104,7 +104,7 @@ Test both directions:
 
 ### Branch Naming Patterns
 
-Configure how Kaneo matches branches to tasks in your project's GitHub integration settings:
+Configure how Tracing matches branches to tasks in your project's GitHub integration settings:
 
 **Predefined Patterns:**
 - `{slug}-{number}` (default) - e.g., `proj-123`
@@ -123,11 +123,11 @@ The `{slug}` variable is your project's slug (case-insensitive), `{number}` is t
 
 ### Pull Request Task References
 
-Kaneo checks the configured branch pattern first, then explicit task references in the PR title and body. Use your project key, such as `PROJ-42` or `fix(PROJ-42): correct the link`, or an explicit `task: 42` marker. Task markers require a separator after `task`; words such as `task42` do not identify a task.
+Tracing checks the configured branch pattern first, then explicit task references in the PR title and body. Use your project key, such as `PROJ-42` or `fix(PROJ-42): correct the link`, or an explicit `task: 42` marker. Task markers require a separator after `task`; words such as `task42` do not identify a task.
 
-Issue references use the remote repository's numbering. A title containing `#61` or a body containing `Closes #61` resolves through the issue link recorded by this integration. If GitHub issue 61 is linked to Kaneo task `PROJ-42`, the PR belongs to `PROJ-42`, even if `PROJ-61` also exists. Same-repository `owner/repo#61` references and issue URLs are also supported. References to another repository are ignored.
+Issue references use the remote repository's numbering. A title containing `#61` or a body containing `Closes #61` resolves through the issue link recorded by this integration. If GitHub issue 61 is linked to Tracing task `PROJ-42`, the PR belongs to `PROJ-42`, even if `PROJ-61` also exists. Same-repository `owner/repo#61` references and issue URLs are also supported. References to another repository are ignored.
 
-Links from **Copy task link**, such as `https://kaneo.example.com/acme/task/PROJ-42/fix-login`, contain the project key, so pasting one in the PR title or body links the PR to that task. If none of those match, Kaneo also looks for a full task URL (`/dashboard/workspace/.../task/...`). A PR with full URLs to more than one task, or to a task in another project, is not linked.
+Links from **Copy task link**, such as `https://kaneo.example.com/acme/task/PROJ-42/fix-login`, contain the project key, so pasting one in the PR title or body links the PR to that task. If none of those match, Tracing also looks for a full task URL (`/dashboard/workspace/.../task/...`). A PR with full URLs to more than one task, or to a task in another project, is not linked.
 
 Without an explicit task reference, unmapped issues do not create PR associations. References that map to multiple tasks within the integration are skipped. Repeated issue links to the same task are accepted. Bare numeric title shortcuts such as `[42]`, `(42)`, or `42: ...` are not task identifiers; use the project key instead.
 
@@ -153,22 +153,22 @@ A completed task moves again only when new work starts on it: the first push to 
 
 ### Label Synchronization
 
-Kaneo automatically creates and syncs these label types:
+Tracing automatically creates and syncs these label types:
 
 **System Labels** (managed automatically):
 - `priority:low`, `priority:medium`, `priority:high`, `priority:urgent`
 - `status:to-do`, `status:in-progress`, `status:in-review`, `status:done`, `status:planned`, `status:archived`
 
 **Custom Labels:**
-- Any labels added to GitHub issues (not starting with `priority:` or `status:`) are synced to Kaneo
-- Labels added in Kaneo can be synced to GitHub (if configured)
+- Any labels added to GitHub issues (not starting with `priority:` or `status:`) are synced to Tracing
+- Labels added in Tracing can be synced to GitHub (if configured)
 
 ### Multiple Organizations
 If you need to connect repositories from multiple GitHub organizations:
 
 1. Install your GitHub App on each organization
 2. Grant appropriate permissions for each organization
-3. Each Kaneo project can connect to any repository where your app is installed
+3. Each Tracing project can connect to any repository where your app is installed
 
 ---
 

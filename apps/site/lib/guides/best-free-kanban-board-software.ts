@@ -9,16 +9,16 @@ export const bestFreeKanbanBoardSoftware: Guide = {
   summary:
     "Which free kanban boards are genuinely free, and where the limits actually bite.",
   answer:
-    "If free means self-hosted and unlimited, the answer is Kaneo, WeKan, or Kanboard, all MIT licensed with no user caps or feature gates. If free means a hosted account with no card, Trello, ClickUp, and Wrike have real free tiers, each with limits that arrive sooner than you expect. The distinction that matters is whether the tool has a paid edition at all, because that is what decides which features can move later.",
+    "If free means self-hosted and unlimited, the answer is Tracing, WeKan, or Kanboard, all MIT licensed with no user caps or feature gates. If free means a hosted account with no card, Trello, ClickUp, and Wrike have real free tiers, each with limits that arrive sooner than you expect. The distinction that matters is whether the tool has a paid edition at all, because that is what decides which features can move later.",
   sections: [
     {
       heading: "Free because it is open source",
       items: [
         {
-          name: "Kaneo",
+          name: "Tracing",
           meta: "MIT, no paid edition",
           href: "/trello-alternative",
-          body: "Unlimited users, projects, and boards when you self-host, with backlog, workflow rules, roles, time tracking, single sign-on, and an API included. Costs you a small server. There is a managed cloud if you would rather not run it, but the self-hosted build is not a trial.",
+          body: "Unlimited users, projects, and boards when you self-host, with backlog, workflow rules, roles, time tracking, single sign-on, and an API included. Costs you a small server. The self-hosted software has no trial expiration; this fork has no managed hosting plan.",
         },
         {
           name: "WeKan",
@@ -61,12 +61,12 @@ export const bestFreeKanbanBoardSoftware: Guide = {
     {
       question: "What is the best free kanban board for a small team?",
       answer:
-        "Kaneo if you can self-host, because it is MIT licensed with unlimited users and includes single sign-on and time tracking. Trello if you want a hosted account with nothing to run, accepting its per-workspace board limits.",
+        "Tracing if you can self-host, because it is MIT licensed with unlimited users and includes single sign-on and time tracking. Trello if you want a hosted account with nothing to run, accepting its per-workspace board limits.",
     },
     {
       question: "Is there a free kanban board with no user limit?",
       answer:
-        "Yes. Self-hosted Kaneo, WeKan, and Kanboard have no user limits at all, because there is no per-seat billing to enforce. Wrike's hosted free plan also allows unlimited users with a reduced feature set.",
+        "Yes. Self-hosted Tracing, WeKan, and Kanboard have no user limits at all, because there is no per-seat billing to enforce. Wrike's hosted free plan also allows unlimited users with a reduced feature set.",
     },
     {
       question: "Is Trello still free?",
@@ -74,9 +74,9 @@ export const bestFreeKanbanBoardSoftware: Guide = {
         "Trello keeps a free plan with unlimited cards, limits on boards per workspace, and limited automation. It cannot be self-hosted, so your data stays with Atlassian.",
     },
     {
-      question: "What does Kaneo cost if I do not want to self-host?",
+      question: "What does Tracing cost if I do not want to self-host?",
       answer:
-        "Kaneo Cloud is $4 a month for a single user and $5 per user a month for teams, with a 14-day trial and no credit card required. It runs the same MIT-licensed software as the free self-hosted build.",
+        "Tracing is MIT licensed and self-hosted. There is no managed Tracing subscription or per-seat software fee; budget for your chosen infrastructure, storage, backups and maintenance.",
     },
   ],
   related: [
@@ -84,7 +84,7 @@ export const bestFreeKanbanBoardSoftware: Guide = {
       label: "Self-hosted Trello alternatives",
       href: "/guides/self-hosted-trello-alternatives",
     },
-    { label: "Kaneo vs Kanboard", href: "/kanboard-alternative" },
+    { label: "Tracing vs Kanboard", href: "/kanboard-alternative" },
     { label: "Pricing", href: "/pricing" },
   ],
   updatedOn: "2026-08-19",

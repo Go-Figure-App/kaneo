@@ -1,7 +1,7 @@
 # Credentials come from BROWSERSTACK_USERNAME and BROWSERSTACK_ACCESS_KEY.
 framework: playwright
-projectName: Kaneo
-buildName: Kaneo browser smoke tests
+projectName: Tracing
+buildName: Tracing browser smoke tests
 buildIdentifier: '${DATE_TIME}'
 platforms:
   - os: Windows

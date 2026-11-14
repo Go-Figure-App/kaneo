@@ -129,8 +129,8 @@ function readFrontmatter(file) {
 }
 
 const AUTHORS = {
-  andrej: { name: "Andrej Acevski", role: "Founder, Kaneo" },
-  "kaneo-team": { name: "The Kaneo team", role: "Kaneo" },
+  andrej: { name: "Andrej Acevski", role: "Founder, Tracing" },
+  "kaneo-team": { name: "The Tracing team", role: "Tracing" },
 };
 
 const CATEGORIES = {
@@ -219,7 +219,7 @@ ${titleLines}
   <rect x="${PADDING}" y="${footerY - 52}" width="${innerWidth}" height="1" fill="#E5E5E5" />
   <text x="${PADDING}" y="${footerY}" font-family="${FONT}" font-size="26" font-weight="500" fill="#171717">${escapeXml(author.name)}</text>
   <text x="${PADDING}" y="${footerY + 30}" font-family="${FONT}" font-size="22" fill="#737373">${escapeXml(author.role)}</text>
-  <text x="${WIDTH - PADDING}" y="${footerY + 15}" text-anchor="end" font-family="${FONT}" font-size="24" font-weight="500" fill="#737373">kaneo.app</text>
+  <text x="${WIDTH - PADDING}" y="${footerY + 15}" text-anchor="end" font-family="${FONT}" font-size="24" font-weight="500" fill="#737373">tracing.gofigureapp.io</text>
 </svg>
 `;
 }

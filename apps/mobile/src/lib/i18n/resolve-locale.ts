@@ -15,7 +15,7 @@ function chineseCatalog(locale: string): AppLocale | null {
   return /-(hant|tw|hk|mo)\b/.test(locale) ? "zh-TW" : "zh-CN";
 }
 
-/** Picks the first candidate Kaneo has a catalog for, matching the region first, then the language. */
+/** Picks the first candidate Tracing has a catalog for, matching the region first, then the language. */
 export function resolveLocale(
   candidates: (string | null | undefined)[],
 ): AppLocale {

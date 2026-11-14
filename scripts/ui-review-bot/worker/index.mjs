@@ -150,7 +150,7 @@ export async function handleWebhook(request, env, dependencies = {}) {
           await appJWT(env),
           signal,
           {
-            repositories: ["kaneo"],
+            repositories: [REPO.split("/")[1]],
             permissions: { contents: "write", pull_requests: "read" },
           },
         );

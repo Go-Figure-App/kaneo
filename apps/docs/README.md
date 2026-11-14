@@ -1,4 +1,4 @@
-# Kaneo documentation
+# Tracing documentation
 
 The docs are authored in MDX and rendered by Mintlify. `docs.json` owns navigation; `openapi.json` supplies the generated API reference.
 
@@ -16,7 +16,7 @@ The preview runs at `http://localhost:3000`. Use `--port 3107` if that port is b
 
 ## Organization
 
-- **Using Kaneo:** first project, task views, team management, account settings.
+- **Using Tracing:** first project, task views, team management, account settings.
 - **Self-hosting:** installation, configuration, sign-in, backups, upgrades, troubleshooting.
 - **Integrations:** repositories, team channels, webhooks, and MCP.
 - **Developers:** first API request, authentication, protocol details, endpoint reference.

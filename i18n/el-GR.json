@@ -1904,7 +1904,7 @@
 			},
 			"foundingFree": {
 				"badge": "Free",
-				"description": "This workspace has free access to Tracing Cloud as an early supporter. Thank you for being here from the start.",
+				"description": "Αυτός ο χώρος εργασίας έχει δωρεάν πρόσβαση.",
 				"title": "Founding Free"
 			},
 			"interval": {
@@ -2279,7 +2279,7 @@
 				"connectTo": "Connect {{source}}",
 				"description": "Pick the tool you are moving from. Each project you choose becomes a new project here.",
 				"kaneo": {
-					"description": "Move projects between Tracing Cloud and a self-hosted instance.",
+					"description": "Μεταφέρετε έργα μεταξύ εγκαταστάσεων του Tracing.",
 					"intro": "Projects from every workspace the key can see. Each one you pick is copied here.",
 					"pickerName": "Another Tracing"
 				},
@@ -4132,11 +4132,11 @@
 	"press": {
 		"title": "Press kit",
 		"headline": "Tracing press kit",
-		"intro": "Tracing logos and product screenshots for articles, videos, and other media.",
-		"description": "Tracing press resources: product information, logos, screenshots, and contact details for journalists and creators.",
+		"intro": "Λογότυπα και εικονίδια εφαρμογής Tracing για άρθρα, βίντεο και άλλα μέσα.",
+		"description": "Υλικό Τύπου του Tracing: πληροφορίες προϊόντος, λογότυπα και στοιχεία επικοινωνίας για δημοσιογράφους και δημιουργούς.",
 		"downloadKit": "Download all assets",
 		"boilerplateTitle": "About Tracing",
-		"boilerplate": "Tracing is an open-source project management platform created by Andrej Acevski. Teams can organize tasks in board and list views, assign work, set priorities and due dates, and connect GitHub. Tracing is available under the MIT license for self-hosting, or as a managed service through Tracing Cloud.",
+		"boilerplate": "Το Tracing είναι ο χώρος σχεδιασμού ανοιχτού κώδικα της Go Figure, βασισμένος στο Kaneo του Andrej Acevski. Προσθέτει εργασίες, διαλογή, πρωτοβουλίες, οδικούς χάρτες, κύκλους, αναλύσεις και αποθηκευμένες προβολές. Ο πηγαίος κώδικας διατίθεται με άδεια MIT για αυτοφιλοξενία.",
 		"logosTitle": "Logos",
 		"darkLogo": "Dark wordmark",
 		"darkLogoAlt": "Dark Tracing logo on a light background",
@@ -4230,8 +4230,8 @@
 				"link": "Set up GitHub"
 			},
 			"hosting": {
-				"title": "Run it on your own server.",
-				"description": "Deploy with Docker and keep your workspace on infrastructure you control.",
+				"title": "Εκτελέστε το στη δική σας υποδομή.",
+				"description": "Μεταγλωττίστε και φιλοξενήστε το Tracing με PostgreSQL. Επιλέξτε την υποδομή σας και διαχειριστείτε τα αντίγραφα ασφαλείας, τις ενημερώσεις και την επαναφορά.",
 				"link": "Self-host Tracing"
 			},
 			"source": {
@@ -4274,7 +4274,7 @@
 		},
 		"seo": {
 			"title": "Tracing — Open-source, self-hosted project management",
-			"description": "Open-source project management with boards, Gantt charts, and GitHub integration. Self-host for free with SSO included, or use Tracing Cloud."
+			"description": "Σχεδιασμός έργων ανοιχτού κώδικα με πίνακες, διαλογή, ορόσημα, πρωτοβουλίες, οδικούς χάρτες, κύκλους, αναλύσεις και αποθηκευμένες προβολές. Φιλοξενήστε το Tracing στη δική σας υποδομή."
 		},
 		"resources": {
 			"eyebrow": "Make it your own",
@@ -4293,7 +4293,7 @@
 				"description": "See the differences in hosting, licensing, and workflow."
 			},
 			"startups": {
-				"description": "What a startup needs from a tracker, and what Tracing Cloud costs as you hire.",
+				"description": "Σχεδιασμός για μια νεοφυή επιχείρηση, λαμβάνοντας υπόψη το κόστος φιλοξενίας και λειτουργίας καθώς αναπτύσσεστε.",
 				"title": "Project management for startups"
 			}
 		},
@@ -4373,8 +4373,8 @@
 			"uploadFailed": "Η μεταφόρτωση απέτυχε ({{status}})"
 		},
 		"signIn": {
-			"tagline": "Απλή διαχείριση έργων. Συνδεθείτε στο Tracing Cloud ή στη δική σας εγκατάσταση.",
-			"cloud": "Tracing Cloud",
+			"tagline": "Σχεδιάστε τη δουλειά της ομάδας σας με το Tracing.",
+			"cloud": "Tracing",
 			"selfHosted": "Αυτο-φιλοξενούμενο",
 			"captcha": "Αυτός ο διακομιστής απαιτεί έλεγχο μέσω προγράμματος περιήγησης για αυτό το βήμα. Χρησιμοποιήστε το «Συνέχεια στο πρόγραμμα περιήγησης».",
 			"invalidClient": "Αυτός ο διακομιστής δεν επιτρέπει σύνδεση συσκευής. Ζητήστε από τον διαχειριστή να προσθέσει το «kaneo-cli» στο DEVICE_AUTH_CLIENT_IDS ή συνδεθείτε με κωδικό πρόσβασης ή κλειδί API.",
@@ -4432,7 +4432,7 @@
 			"unlock": {
 				"buy": "Unlock for {{price}}",
 				"buyNoPrice": "Unlock",
-				"message": "Signing in to Tracing Cloud is always included. Connecting the app to a self-hosted server is a one-time purchase that supports Tracing's development.",
+				"message": "Αυτή η έκδοση του Tracing συνδέεται στην εγκατάσταση της ομάδας σας χωρίς αγορά εντός εφαρμογής.",
 				"nothingToRestore": "No earlier purchase was found for this store account.",
 				"restore": "Restore purchase",
 				"title": "Connect your own server",
@@ -4454,6 +4454,7 @@
 			"join": "Συμμετοχή"
 		},
 		"taskDetail": {
+			"systemActor": "Tracing",
 			"someone": "Κάποιος",
 			"status": {
 				"planned": "Προγραμματισμένη",
@@ -4886,6 +4887,7 @@
 			"workspaceCreated": "Ο χώρος εργασίας «{{name}}» δημιουργήθηκε"
 		},
 		"background": {
+			"title": "Tracing",
 			"summary_one": "{{count}} ακόμα νέα ειδοποίηση",
 			"summary_other": "{{count}} ακόμα νέες ειδοποιήσεις",
 			"channelName": "Δραστηριότητα Tracing",

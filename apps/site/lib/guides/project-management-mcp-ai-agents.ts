@@ -9,7 +9,7 @@ export const projectManagementMcpAiAgents: Guide = {
   summary:
     "How MCP connects AI clients to your tracker, and what to check before you let one write.",
   answer:
-    "Model Context Protocol is the standard way an AI client such as Claude or Cursor talks to an external system, and a growing number of project tools ship an MCP server. Kaneo has one, published as @kaneo/mcp for stdio clients and available as an HTTP endpoint on your instance, so an agent can list projects, create and update tasks, move them between columns, comment, and log time. The thing to check in any implementation is that the agent inherits your permissions rather than an admin key.",
+    "Model Context Protocol is the standard way an AI client such as Claude or Cursor talks to an external system, and a growing number of project tools ship an MCP server. Tracing provides a built-in HTTP endpoint and a source-built @tracing/mcp package for stdio clients, so an agent can list projects, create and update tasks, move them between columns, comment, and log time. The thing to check in any implementation is that the agent inherits your permissions rather than an admin key.",
   sections: [
     {
       heading: "What MCP actually is",
@@ -19,17 +19,17 @@ export const projectManagementMcpAiAgents: Guide = {
       ],
     },
     {
-      heading: "How it works in Kaneo",
+      heading: "How it works in Tracing",
       items: [
         {
-          name: "Stdio server",
+          name: "Source-built stdio server",
           href: "/docs/core/integrations/mcp",
-          body: "The @kaneo/mcp package runs locally and connects a desktop client such as Claude Desktop to your Kaneo instance using an API key from workspace settings.",
+          body: "Build @tracing/mcp from this repository using the linked installation guide. It runs locally and connects a stdio client to your Tracing instance through device authorization or an API key; it is not published to npm.",
         },
         {
           name: "HTTP endpoint",
           href: "/docs/core/integrations/mcp-stateless",
-          body: "Your Kaneo instance exposes MCP over HTTP for clients that connect to a remote server, including self-hosted deployments behind your own domain.",
+          body: "Your Tracing instance exposes MCP over HTTP for clients that connect to a remote server, including self-hosted deployments behind your own domain.",
         },
         {
           name: "What an agent can do",
@@ -37,7 +37,7 @@ export const projectManagementMcpAiAgents: Guide = {
         },
         {
           name: "Permissions",
-          body: "MCP access runs through an API key tied to a user, so an agent sees exactly what that person sees. Workspace roles from @kaneo/permissions still apply, and the API remains the authority regardless of what the client asks for.",
+          body: "MCP access runs through an API key tied to a user, so an agent sees exactly what that person sees. Workspace roles from @tracing/permissions still apply, and the API remains the authority regardless of what the client asks for.",
         },
       ],
     },
@@ -53,14 +53,14 @@ export const projectManagementMcpAiAgents: Guide = {
   ],
   faq: [
     {
-      question: "Does Kaneo have an MCP server?",
+      question: "Does Tracing have an MCP server?",
       answer:
-        "Yes. @kaneo/mcp is published on npm for stdio clients, and Kaneo instances also expose MCP over HTTP. Both authenticate with an API key created in workspace settings, so the agent inherits that user's permissions.",
+        "Yes. Tracing instances expose MCP over HTTP with OAuth or a user API key. Stdio clients can build @tracing/mcp from this repository following the MCP guide. Both transports enforce the authenticated user's permissions; the package is not published to npm.",
     },
     {
       question: "Which project management tools support MCP?",
       answer:
-        "Kaneo ships an official MCP server. Several larger vendors including Linear and Atlassian have released MCP endpoints for their cloud products, and community servers exist for others. Support changes quickly, so check the vendor's own documentation.",
+        "Tracing ships an official MCP server. Several larger vendors including Linear and Atlassian have released MCP endpoints for their cloud products, and community servers exist for others. Support changes quickly, so check the vendor's own documentation.",
     },
     {
       question: "Is it safe to give an AI agent access to my project tracker?",
@@ -70,12 +70,12 @@ export const projectManagementMcpAiAgents: Guide = {
     {
       question: "Can I use MCP with a self-hosted instance?",
       answer:
-        "Yes. Both the stdio package and the HTTP endpoint work against a self-hosted Kaneo instance. Nothing has to route through a vendor cloud.",
+        "Yes. Both the stdio package and the HTTP endpoint work against a self-hosted Tracing instance. Nothing has to route through a vendor cloud.",
     },
   ],
   related: [
     { label: "MCP documentation", href: "/docs/core/integrations/mcp" },
-    { label: "Kaneo vs Linear", href: "/linear-alternative" },
+    { label: "Tracing vs Linear", href: "/linear-alternative" },
     { label: "All comparisons", href: "/alternatives" },
   ],
   updatedOn: "2026-08-19",

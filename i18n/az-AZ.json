@@ -1904,7 +1904,7 @@
 			},
 			"foundingFree": {
 				"badge": "Free",
-				"description": "This workspace has free access to Tracing Cloud as an early supporter. Thank you for being here from the start.",
+				"description": "Bu iş sahəsi üçün giriş ödənişsizdir.",
 				"title": "Founding Free"
 			},
 			"interval": {
@@ -2279,7 +2279,7 @@
 				"connectTo": "Connect {{source}}",
 				"description": "Pick the tool you are moving from. Each project you choose becomes a new project here.",
 				"kaneo": {
-					"description": "Move projects between Tracing Cloud and a self-hosted instance.",
+					"description": "Layihələri Tracing instansiyaları arasında köçürün.",
 					"intro": "Projects from every workspace the key can see. Each one you pick is copied here.",
 					"pickerName": "Another Tracing"
 				},
@@ -4132,11 +4132,11 @@
 	"press": {
 		"title": "Press kit",
 		"headline": "Tracing press kit",
-		"intro": "Tracing logos and product screenshots for articles, videos, and other media.",
-		"description": "Tracing press resources: product information, logos, screenshots, and contact details for journalists and creators.",
+		"intro": "Məqalələr, videolar və digər media üçün Tracing loqoları və tətbiq nişanları.",
+		"description": "Tracing mətbuat resursları: jurnalistlər və məzmun yaradıcıları üçün məhsul məlumatları, loqolar və əlaqə məlumatları.",
 		"downloadKit": "Download all assets",
 		"boilerplateTitle": "About Tracing",
-		"boilerplate": "Tracing is an open-source project management platform created by Andrej Acevski. Teams can organize tasks in board and list views, assign work, set priorities and due dates, and connect GitHub. Tracing is available under the MIT license for self-hosting, or as a managed service through Tracing Cloud.",
+		"boilerplate": "Tracing, Andrej Acevski tərəfindən yaradılmış Kaneo əsasında qurulan Go Figure-in açıq mənbəli planlaşdırma iş sahəsidir. O, tapşırıqlar, ilkin çeşidləmə, təşəbbüslər, yol xəritələri, dövrlər, təhlillər və saxlanmış görünüşlər əlavə edir. Mənbə kodu öz serverinizdə yerləşdirmək üçün MIT lisenziyası ilə təqdim olunur.",
 		"logosTitle": "Logos",
 		"darkLogo": "Dark wordmark",
 		"darkLogoAlt": "Dark Tracing logo on a light background",
@@ -4230,8 +4230,8 @@
 				"link": "Set up GitHub"
 			},
 			"hosting": {
-				"title": "Run it on your own server.",
-				"description": "Deploy with Docker and keep your workspace on infrastructure you control.",
+				"title": "Öz infrastrukturunuzda işlədin.",
+				"description": "Tracing-i PostgreSQL ilə yığın və öz serverinizdə yerləşdirin. İnfrastrukturunuzu seçin, ehtiyat nüsxələri, yeniləmələri və bərpanı özünüz idarə edin.",
 				"link": "Self-host Tracing"
 			},
 			"source": {
@@ -4274,7 +4274,7 @@
 		},
 		"seo": {
 			"title": "Tracing — Open-source, self-hosted project management",
-			"description": "Open-source project management with boards, Gantt charts, and GitHub integration. Self-host for free with SSO included, or use Tracing Cloud."
+			"description": "Lövhələr, ilkin çeşidləmə, mərhələlər, təşəbbüslər, yol xəritələri, dövrlər, təhlillər və saxlanmış görünüşlərlə açıq mənbəli layihə planlaşdırması. Tracing-i öz infrastrukturunuzda yerləşdirin."
 		},
 		"resources": {
 			"eyebrow": "Make it your own",
@@ -4293,7 +4293,7 @@
 				"description": "See the differences in hosting, licensing, and workflow."
 			},
 			"startups": {
-				"description": "What a startup needs from a tracker, and what Tracing Cloud costs as you hire.",
+				"description": "Startapınız üçün planlaşdırma; böyüdükcə hostinq və istismar xərclərini də nəzərə alın.",
 				"title": "Project management for startups"
 			}
 		},
@@ -4423,6 +4423,7 @@
 			"title": "Fəaliyyət"
 		},
 		"background": {
+			"title": "Tracing",
 			"channelDescription": "İş sahələrinizdəki təyinatlar, şərhlər və adınızın çəkildiyi bildirişlər",
 			"channelName": "Tracing fəaliyyəti",
 			"summary_one": "Daha {{count}} yeni bildiriş",
@@ -4918,7 +4919,7 @@
 			"browserHint": "GitHub, Google, Discord və ya SSO",
 			"captcha": "Bu server bu addımda brauzer yoxlaması tələb edir. “Brauzerdə davam et” seçin.",
 			"change": "Dəyiş",
-			"cloud": "Tracing Cloud",
+			"cloud": "Tracing",
 			"code": {
 				"checkEmail": "E-poçtunuzu yoxlayın",
 				"didntGet": "Almadınız?",
@@ -4964,13 +4965,13 @@
 				"name": "Ad",
 				"passwordHint": "Ən azı 8 simvol"
 			},
-			"tagline": "Sadə layihə idarəetməsi. Tracing Cloud-a və ya öz instansiyanıza qoşulun.",
+			"tagline": "Komandanızın işini Tracing ilə planlaşdırın.",
 			"togglePassword": "Parolun görünməsini dəyiş",
 			"useApiKey": "API açarından istifadə et",
 			"unlock": {
 				"buy": "Unlock for {{price}}",
 				"buyNoPrice": "Unlock",
-				"message": "Signing in to Tracing Cloud is always included. Connecting the app to a self-hosted server is a one-time purchase that supports Tracing's development.",
+				"message": "Tracing-in bu versiyası tətbiqdaxili alış tələb etmədən komandanızın instansiyasına qoşulur.",
 				"nothingToRestore": "No earlier purchase was found for this store account.",
 				"restore": "Restore purchase",
 				"title": "Connect your own server",
@@ -4978,6 +4979,7 @@
 			}
 		},
 		"taskDetail": {
+			"systemActor": "Tracing",
 			"activity": {
 				"comment": "Şərh",
 				"deleteMessage": "Bu əməliyyatı geri qaytarmaq olmur.",

@@ -3,7 +3,7 @@ title: "Administer your instance"
 description: "Manage accounts and workspaces, review administrative actions, and check your instance’s services."
 ---
 
-Instance administrators manage the whole Kaneo instance, not just the workspaces they belong to. The first account created on a new instance becomes an instance administrator, and an administrator can give the role to others from **User management**.
+Instance administrators manage the whole Tracing instance, not just the workspaces they belong to. The first account created on a new instance becomes an instance administrator, and an administrator can give the role to others from **User management**.
 
 These pages live under **Settings → Administration**. Administrators see all of them. Users with a [custom role](#custom-roles) see only the pages and actions their role allows. The administration landing page opens the first permitted page, with Overview first. Opening a page outside your role redirects there too; accounts with no available page return to account settings.
 
@@ -22,8 +22,8 @@ Open **Settings → Administration → User management** to search every account
 From a user's menu you can:
 
 - **Edit.** Change their name, email, and instance role, and upload or remove their profile picture. The dialog also shows whether their email is verified and which sign-in methods are linked (password, GitHub, Google, Discord, or your OIDC provider).
-- **Send password reset link.** Kaneo emails them a single-use link to choose a new password. It expires in 1 hour, like a reset they request themselves. You never see the link.
-- **Resend verification email.** For an unverified address, Kaneo emails a link that confirms it. It expires in 24 hours.
+- **Send password reset link.** Tracing emails them a single-use link to choose a new password. It expires in 1 hour, like a reset they request themselves. You never see the link.
+- **Resend verification email.** For an unverified address, Tracing emails a link that confirms it. It expires in 24 hours.
 - **Mark email as verified.** Confirms the address without asking them. Only do this when you know the address is theirs: single sign-on identities with the same verified email can link to the account.
 - **Deactivate, reactivate, or delete** the account.
 
@@ -31,9 +31,9 @@ Guest accounts have generated addresses, so password reset, verification email, 
 
 You can't deactivate, reactivate, or delete yourself through user management. Deleting the last built-in administrator is blocked.
 
-Emails need [SMTP](/core/installation/environment-variables#smtp-configuration) to be configured. Without it, Kaneo tells you nothing was sent.
+Emails need [SMTP](/core/installation/environment-variables#smtp-configuration) to be configured. Without it, Tracing tells you nothing was sent.
 
-If [the identity provider manages profile pictures](/core/social-providers/custom-oauth#managed-profile-fields), you can't replace a user's picture, and you can only remove one they uploaded in Kaneo.
+If [the identity provider manages profile pictures](/core/social-providers/custom-oauth#managed-profile-fields), you can't replace a user's picture, and you can only remove one they uploaded in Tracing.
 
 ### Sessions and API keys
 
@@ -50,16 +50,16 @@ Deleting someone who is the only owner of a workspace that still has other membe
 
 Choose **Create user** and enter their name, email, and instance role. You never choose or see their password:
 
-- **Password sign-in available:** Kaneo emails them a link to set their own password. The link works once and expires in 2 days. If it expires, or SMTP wasn't configured yet, send a new one with **Send password reset link**.
+- **Password sign-in available:** Tracing emails them a link to set their own password. The link works once and expires in 2 days. If it expires, or SMTP wasn't configured yet, send a new one with **Send password reset link**.
 - **Password sign-up turned off (in [settings](#instance-settings) or with `DISABLE_PASSWORD_REGISTRATION`), or `DISABLE_LOGIN_FORM` set:** the account is created for single sign-on. No email is sent, and the email is marked verified so their first sign-in through GitHub, Google, Discord, or your OIDC provider with that address links to it.
 
-When no role is chosen, the account gets the [default role](#instance-settings). Administrators can create users even when registration is closed. An email that already belongs to an account is rejected. On Kaneo Cloud, disposable email addresses are rejected as they are for sign-up.
+When no role is chosen, the account gets the [default role](#instance-settings). Administrators can create users even when registration is closed. An email that already belongs to an account is rejected.
 
 ## Custom roles
 
 Open **Settings → Administration → Roles** to give people part of the administrator's powers, for example a support team that can reset passwords and end sessions but can't delete accounts or workspaces. Only administrators see this page.
 
-Kaneo has two built-in roles: **Admin** has every permission and **User** has none. Choose **New role**, give it a name (lowercase letters, digits, and hyphens, like `support`), and tick its permissions:
+Tracing has two built-in roles: **Admin** has every permission and **User** has none. Choose **New role**, give it a name (lowercase letters, digits, and hyphens, like `support`), and tick its permissions:
 
 | Permission | Allows |
 | --- | --- |
@@ -85,7 +85,7 @@ Creating or renaming a role to a name already stored on users is blocked. Change
 
 Custom roles only grant these administration permissions. Built-in admins can also open every workspace, and some powers stay with them alone: managing roles, editing project access from the workspace page, and creating workspaces when workspace creation is restricted.
 
-Kaneo keeps custom roles from being used to gain more power:
+Tracing keeps custom roles from being used to gain more power:
 
 - Only admins can make someone an admin, and nobody can give a role with permissions they don't have themselves.
 - Someone with a custom role can't edit, deactivate, delete, sign out, or send emails to a user who has permissions they don't have, including every admin.
@@ -121,7 +121,7 @@ Choose **Delete** and type the workspace's exact name to confirm. This permanent
 
 Open **Settings → Administration → Audit log** to see what administrators changed, newest first. Each entry shows the action, the administrator who did it, the affected user or workspace, the time, and the IP address the request came from. Filter by users, sessions, API keys, workspaces, roles, or email to narrow the list.
 
-Kaneo records these actions when they succeed. Rejected or failed attempts aren't recorded.
+Tracing records these actions when they succeed. Rejected or failed attempts aren't recorded.
 
 - **Users:** created, details updated (which fields changed), instance role changed, deactivated, reactivated, deleted, password set by an administrator, password reset link sent, verification email sent, email marked verified, profile picture changed or removed, and signed in as the user (impersonation).
 - **Email:** test email sent to the calling administrator.
@@ -132,9 +132,9 @@ Kaneo records these actions when they succeed. Rejected or failed attempts aren'
 
 The first account becoming an administrator on a new instance isn't an administrative action and isn't recorded.
 
-Entries never contain passwords, session tokens, password reset links, or API key values. Names and emails are copied into each entry, so the history stays readable after an account is deleted. The IP address comes from the same trusted proxy settings Kaneo uses for sign-in (`TRUSTED_PROXIES`).
+Entries never contain passwords, session tokens, password reset links, or API key values. Names and emails are copied into each entry, so the history stays readable after an account is deleted. The IP address comes from the same trusted proxy settings Tracing uses for sign-in (`TRUSTED_PROXIES`).
 
-Kaneo keeps audit log entries until you remove them; there's no automatic retention. To prune old entries, delete rows from the `admin_audit_log` table in PostgreSQL, for example `DELETE FROM admin_audit_log WHERE created_at < (now() AT TIME ZONE 'utc') - interval '1 year';`.
+Tracing keeps audit log entries until you remove them; there's no automatic retention. To prune old entries, delete rows from the `admin_audit_log` table in PostgreSQL, for example `DELETE FROM admin_audit_log WHERE created_at < (now() AT TIME ZONE 'utc') - interval '1 year';`.
 
 Reading the audit log, in the app or through `GET /api/admin/audit-log`, needs the `audit:read` permission and a signed-in session. API keys are rejected.
 
@@ -142,8 +142,8 @@ Reading the audit log, in the app or through `GET /api/admin/audit-log`, needs t
 
 Open **Settings → Administration → Settings** to change how the instance behaves. The page and `GET`/`PATCH /api/admin/settings` require the `instance:settings` permission; API keys are rejected. Changes apply right away on the API instance that saved them and within five seconds on the others, without Redis. Each change is recorded in the audit log as **Updated instance settings**, with the old and new value of every setting that changed.
 
-- **Instance name**: appears alongside page titles and in email headers and branded subjects. Task titles and other user text in subjects stay unchanged. Leave it empty for Kaneo.
-- **Instance URL**: shown read-only. It comes from `KANEO_CLIENT_URL`.
+- **Instance name**: appears alongside page titles and in email headers and branded subjects. Task titles and other user text in subjects stay unchanged. Leave it empty for Tracing.
+- **Instance URL**: shown read-only. It comes from `TRACING_CLIENT_URL`.
 - **Open registration**: when off, only people with a valid invitation can create an account, the same as `DISABLE_REGISTRATION=true`.
 - **Email and password sign-up**: when off, new accounts must use GitHub, Google, Discord, or your OIDC provider, the same as `DISABLE_PASSWORD_REGISTRATION=true`. Guest access is off while either registration setting is off.
 - **Require email verification**: new password sign-ups are emailed a confirmation link and can't sign in with their password until they confirm. Signing in before then sends a new link. Accounts that existed before you turned it on, administrator-created accounts, and accounts from email codes, magic links, or single sign-on are not affected. Needs SMTP.
@@ -157,8 +157,8 @@ Environment variables win. When `DISABLE_REGISTRATION`, `DISABLE_PASSWORD_REGIST
 
 Open **Settings → Administration → System** to check this instance and the services it relies on. The page checks again each time you open it or choose **Refresh**.
 
-- **Instance**: the Kaneo version, API uptime, PostgreSQL (version, applied migrations, response time), live updates (open WebSocket connections on this API instance), Redis publisher and subscriber connectivity, and S3-compatible file storage.
-- **Email**: whether SMTP is configured and whether Kaneo can connect and sign in to the mail server. Nothing is sent by this check.
+- **Instance**: the Tracing version, API uptime, PostgreSQL (version, applied migrations, response time), live updates (open WebSocket connections on this API instance), Redis publisher and subscriber connectivity, and S3-compatible file storage.
+- **Email**: whether SMTP is configured and whether Tracing can connect and sign in to the mail server. Nothing is sent by this check.
 - **Sign-in**: which sign-in and registration options are on, and whether GitHub, Google, Discord, and your custom OAuth/OIDC provider are configured.
 - **Integrations**: every integration provider, how many projects are connected to it, and whether the GitHub App is set up. Other providers are connected per project and need no instance settings.
 
@@ -167,7 +167,7 @@ Each row shows one of these statuses:
 | Status | Meaning |
 | --- | --- |
 | Operational | Working. |
-| Not configured | Optional and switched off. This is fine: a single API instance doesn't need Redis, and Kaneo works without SMTP or file storage. |
+| Not configured | Optional and switched off. This is fine: a single API instance doesn't need Redis, and Tracing works without SMTP or file storage. |
 | Warning | Works with a problem, or only some of its settings are present. For example, Redis is down so only people on this API instance get live updates, or a sign-in provider has a client ID but no secret. |
 | Down | Configured but not reachable. The row shows a short error code such as `TIMEOUT`, `ECONNREFUSED`, or `EAUTH`. |
 
@@ -177,7 +177,7 @@ When you run more than one API instance behind a load balancer, the checks and c
 
 ### Send a test email
 
-Choose **Send test email** to send a short test message to your own account's address. Kaneo can't send it to anyone else. If the mail server rejects it, you see the error category (for example `EAUTH 535` for a wrong password), and the API logs the same. You can send 5 test emails every 10 minutes. Test email connections, greetings, and idle sockets time out after 10 seconds.
+Choose **Send test email** to send a short test message to your own account's address. Tracing can't send it to anyone else. If the mail server rejects it, you see the error category (for example `EAUTH 535` for a wrong password), and the API logs the same. You can send 5 test emails every 10 minutes. Test email connections, greetings, and idle sockets time out after 10 seconds.
 
 The button is disabled until `SMTP_HOST` and `SMTP_FROM` are set. See [SMTP configuration](/core/installation/environment-variables#smtp-configuration) for the settings.
 
@@ -191,14 +191,14 @@ better-auth's own `/api/auth/admin/*` endpoints remain available to built-in adm
 
 Open **Settings → Administration → Webhooks** to send administrative events to another system. The page and every `/api/admin/webhooks` endpoint require `instance:settings` and a signed-in session; API keys are rejected.
 
-Set `NOTIFICATION_SECRET_ENCRYPTION_KEY` before creating a webhook. Kaneo uses it to encrypt signing secrets, as it does for notification secrets. Keep the key stable and use the same value on all API instances. Add an HTTPS destination, choose event categories, and save. The generated signing secret appears once; save it in the receiver. **Rotate secret** replaces it and shows the replacement once. Queued deliveries use the current destination and signing secret.
+Set `NOTIFICATION_SECRET_ENCRYPTION_KEY` before creating a webhook. Tracing uses it to encrypt signing secrets, as it does for notification secrets. Keep the key stable and use the same value on all API instances. Add an HTTPS destination, choose event categories, and save. The generated signing secret appears once; save it in the receiver. **Rotate secret** replaces it and shows the replacement once. Queued deliveries use the current destination and signing secret.
 
 Categories match the audit log: users, sessions, API keys, workspaces, roles, instance settings, email, and webhooks. Webhook creation, updates, deletion, and secret rotation are also audited. Payloads contain the audit entry's `id`, `action`, `actorUserId`, `actorName`, `actorEmail`, `targetType`, `targetId`, `targetLabel`, `metadata`, `ipAddress`, and UTC `createdAt`. They do not include the user agent or signing secret. **Send test** queues a `webhook.test` event regardless of selected categories.
 
-Kaneo queues deliveries in PostgreSQL in the audit transaction and sends them only after commit. For changes already committed by the authentication service, the audit entry is saved first; a queue failure is logged without removing that entry. A receiver being down does not fail the administrative action. Redis is not needed. API instances claim deliveries with database leases, so only one instance sends a queued attempt. Each request times out after five seconds. Connection failures, timeouts, HTTP 408, 429, and 5xx responses get up to three attempts, waiting five seconds and then thirty seconds. Other failures stop immediately. An interrupted attempt is retried after its one-minute lease expires, within the same three-attempt limit.
+Tracing queues deliveries in PostgreSQL in the audit transaction and sends them only after commit. For changes already committed by the authentication service, the audit entry is saved first; a queue failure is logged without removing that entry. A receiver being down does not fail the administrative action. Redis is not needed. API instances claim deliveries with database leases, so only one instance sends a queued attempt. Each request times out after five seconds. Connection failures, timeouts, HTTP 408, 429, and 5xx responses get up to three attempts, waiting five seconds and then thirty seconds. Other failures stop immediately. An interrupted attempt is retried after its one-minute lease expires, within the same three-attempt limit.
 
-Receivers should use `X-Kaneo-Delivery` to deduplicate retries. A crash after the receiver accepted a request but before Kaneo saved its result can cause a duplicate; webhook delivery cannot guarantee exactly-once processing across an HTTP connection. Verify `X-Kaneo-Signature`, which is `sha256=` followed by the hex HMAC-SHA256 of `X-Kaneo-Timestamp + "." + rawRequestBody`, using the signing secret. The timestamp is Unix seconds. Reject old timestamps and compare signatures in constant time. A retry keeps its delivery id and audit event id, with a fresh timestamp and signature.
+Receivers should use `X-Kaneo-Delivery` to deduplicate retries. A crash after the receiver accepted a request but before Tracing saved its result can cause a duplicate; webhook delivery cannot guarantee exactly-once processing across an HTTP connection. Verify `X-Kaneo-Signature`, which is `sha256=` followed by the hex HMAC-SHA256 of `X-Kaneo-Timestamp + "." + rawRequestBody`, using the signing secret. The timestamp is Unix seconds. Reject old timestamps and compare signatures in constant time. A retry keeps its delivery id and audit event id, with a fresh timestamp and signature.
 
-**Recent deliveries** shows the newest twenty deliveries with their attempt count, HTTP status, and error category. Kaneo retains twenty finished deliveries per webhook in addition to queued work. It discards response bodies. Disabling a webhook stops new deliveries and cancels its queued work; an in-flight request may finish. Deleting a webhook removes its queue and delivery history.
+**Recent deliveries** shows the newest twenty deliveries with their attempt count, HTTP status, and error category. Tracing retains twenty finished deliveries per webhook in addition to queued work. It discards response bodies. Disabling a webhook stops new deliveries and cancels its queued work; an in-flight request may finish. Deleting a webhook removes its queue and delivery history.
 
-Destinations are checked when saved and again at connection time to prevent access to private or loopback addresses and DNS rebinding. Redirects are refused without retrying. Production requires HTTPS. For a deliberately private receiver on a self-hosted network, the existing `KANEO_ALLOW_PRIVATE_WEBHOOK_DESTINATIONS=true` setting permits private destinations; HTTP is only accepted outside production.
+Destinations are checked when saved and again at connection time to prevent access to private or loopback addresses and DNS rebinding. Redirects are refused without retrying. Production requires HTTPS. For a deliberately private receiver on a self-hosted network, the existing `TRACING_ALLOW_PRIVATE_WEBHOOK_DESTINATIONS=true` setting permits private destinations; HTTP is only accepted outside production.

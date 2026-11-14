@@ -32,10 +32,26 @@ jobs:
           echo "8aca8db96f1b94770f1b0d72b6dddcb1ebb8123cb3712530b08cc387b349a3d8  $RUNNER_TEMP/actionlint.tar.gz" | sha256sum --check --strict
           tar -xzf "$RUNNER_TEMP/actionlint.tar.gz" -C "$RUNNER_TEMP" actionlint
           "$RUNNER_TEMP/actionlint" -color
+      - name: Validate Tracing Helm deployment
+        run: |
+          curl --fail --silent --show-error --location --max-time 60 \
+            https://get.helm.sh/helm-v4.3.2-linux-amd64.tar.gz \
+            -o "$RUNNER_TEMP/helm.tar.gz"
+          echo "d1c0278d46beab79582d7e50f5b3dc206944ba8e577cde618513fd07daa53983  $RUNNER_TEMP/helm.tar.gz" | sha256sum --check --strict
+          tar -xzf "$RUNNER_TEMP/helm.tar.gz" -C "$RUNNER_TEMP" linux-amd64/helm
+          export PATH="$RUNNER_TEMP/linux-amd64:$PATH"
+          helm lint charts/tracing --set tracing.env.authSecret=chart-validation-only-32-characters --set tracing.env.clientUrl=https://tracing.example.com
+          ruby scripts/security/check-helm-secrets.rb
       - run: pnpm lint
       - run: pnpm i18n:check
       - run: pnpm openapi:check
       - run: pnpm typecheck
+      - name: Build and validate the public site
+        env:
+          NEXT_TELEMETRY_DISABLED: "1"
+        run: |
+          pnpm --filter @tracing/site exec next build
+          pnpm --filter @tracing/site seo:check
 
   unit:
     if: (github.repository == 'Go-Figure-App/tracing' || github.repository == 'Go-Figure-App/kaneo')
@@ -114,7 +130,7 @@ jobs:
         uses: docker/build-push-action@c3c9e263c25d99ce0380d002d59b67737d91b0dc # v7
         with:
           context: .
-          file: Dockerfile.kaneo
+          file: Dockerfile.tracing
           platforms: linux/amd64
           push: false
           load: true

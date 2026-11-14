@@ -114,7 +114,7 @@ export const scopeOfWork: Guide = {
       ],
     },
     {
-      heading: "Running SOW work in Kaneo",
+      heading: "Running SOW work in Tracing",
       body: [
         "Create one project per SOW, and paste the scope, exclusions, and acceptance criteria into the project description so the whole team works against the same document. Each deliverable becomes a task, with its own acceptance criteria as a checklist in the description.",
         "Put milestone tasks on the timeline with due dates, and route new client requests into the backlog with a change request label until they are quoted and approved. Give the client a Viewer account limited to their project, or share a read-only public link to the board, so they can see progress without status emails.",

@@ -3,7 +3,7 @@ import test from "node:test";
 import { authorizeRequest } from "../request.mjs";
 
 const event = {
-  repository: { full_name: "usekaneo/kaneo" },
+  repository: { full_name: "Go-Figure-App/tracing" },
   action: "created",
   issue: { number: 1719, pull_request: {} },
   comment: {
@@ -16,7 +16,7 @@ function mock({
   permission = "write",
   body = "/peekareq",
   state = "open",
-  repo = "usekaneo/kaneo",
+  repo = "Go-Figure-App/tracing",
 } = {}) {
   const calls = [];
   const api = async (endpoint) => {
@@ -25,7 +25,8 @@ function mock({
       return {
         body,
         user: event.comment.user,
-        issue_url: "https://api.github.com/repos/usekaneo/kaneo/issues/1719",
+        issue_url:
+          "https://api.github.com/repos/Go-Figure-App/tracing/issues/1719",
       };
     if (endpoint.endsWith("/maintainer/permission")) return { permission };
     if (endpoint.endsWith("/pulls/1719"))
@@ -44,7 +45,7 @@ test("new exact command authorizes write, maintain, and admin users using live p
     assert.equal(result.model, "qwen/qwen3.8-flash");
     assert.equal(
       calls[1],
-      "repos/usekaneo/kaneo/collaborators/maintainer/permission",
+      "repos/Go-Figure-App/tracing/collaborators/maintainer/permission",
     );
   }
 });

@@ -1,15 +1,15 @@
 ---
 title: "AWS S3 and other providers"
-description: "Connect Kaneo to a managed S3-compatible bucket."
+description: "Connect Tracing to a managed S3-compatible bucket."
 ---
 
 For self-hosted storage, follow the [Silo guide](/core/installation/silo). This page covers managed providers and the requirements for another S3-compatible service.
 
-Start with a private bucket. Both the browser and the API must reach the endpoint, and storage CORS must allow your Kaneo origin. Read [Files and uploads](/core/installation/object-storage-and-image-uploads) for the full upload flow.
+Start with a private bucket. Both the browser and the API must reach the endpoint, and storage CORS must allow your Tracing origin. Read [Files and uploads](/core/installation/object-storage-and-image-uploads) for the full upload flow.
 
 ## AWS S3
 
-Use an existing AWS S3 bucket or create a private bucket for Kaneo.
+Use an existing AWS S3 bucket or create a private bucket for Tracing.
 
 Use a bucket and an IAM user with access to that bucket.
 
@@ -28,8 +28,8 @@ For another AWS region, change both `S3_ENDPOINT` and `S3_REGION`.
 
 ### Using an IAM role instead of an access key
 
-If Kaneo runs on AWS (EC2, ECS, or EKS), you can omit `S3_ACCESS_KEY_ID` and
-`S3_SECRET_ACCESS_KEY` entirely and let Kaneo authenticate with the instance's
+If Tracing runs on AWS (EC2, ECS, or EKS), you can omit `S3_ACCESS_KEY_ID` and
+`S3_SECRET_ACCESS_KEY` entirely and let Tracing authenticate with the instance's
 IAM role. Leave both unset and the AWS SDK resolves credentials from its default
 provider chain (instance profile, ECS task role, or EKS IRSA).
 
@@ -57,7 +57,7 @@ Recommended S3 CORS policy:
 ]
 ```
 
-Apply the CORS policy above in the S3 bucket settings, replacing the origin with your public Kaneo URL.
+Apply the CORS policy above in the S3 bucket settings, replacing the origin with your public Tracing URL.
 
 ## Cloudflare R2
 
@@ -79,14 +79,14 @@ S3_FORCE_PATH_STYLE=false
 Notes:
 
 - `S3_REGION=auto` is typical for R2
-- a public bucket is not required for Kaneo's current private asset flow
-- configure the bucket's CORS policy for your Kaneo origin, including PUT and Content-Type; the JSON above shows the required shape
+- a public bucket is not required for Tracing's current private asset flow
+- configure the bucket's CORS policy for your Tracing origin, including PUT and Content-Type; the JSON above shows the required shape
 
 
 ## Other S3-compatible services
 
-Use the provider's S3 API endpoint, region, and bucket-scoped credentials. Check whether it requires path-style URLs. Leave `S3_PUBLIC_BASE_URL` unset for Kaneo's private attachment flow.
+Use the provider's S3 API endpoint, region, and bucket-scoped credentials. Check whether it requires path-style URLs. Leave `S3_PUBLIC_BASE_URL` unset for Tracing's private attachment flow.
 
 The service must support presigned PUT requests with signed `Content-Length` and `Content-Type`, object metadata checks, reads, and deletes. An S3-compatible label alone does not prove this upload path works; test a browser upload, reload, and download before using it for team files.
 
-Apply changes with `docker compose up -d --force-recreate kaneo`. See [Troubleshooting](/core/operations/troubleshooting#uploads-fail) if uploads fail.
+Apply changes with `docker compose up -d --force-recreate tracing`. See [Troubleshooting](/core/operations/troubleshooting#uploads-fail) if uploads fail.

@@ -1,11 +1,11 @@
 # Sentry
 
-This directory holds Sentry configuration as code, so the alert rules and dashboards that Kaneo depends on are version-controlled and reproducible.
+This directory holds Sentry configuration as code, so the alert rules and dashboards that Tracing depends on are version-controlled and reproducible.
 
 ## Contents
 
 - `alerts.json` — alert rules. Six rules cover first-seen issues, error spikes, missed cron check-ins, slow p95 latency, and MCP error rate. Both `kaneo-api` and `kaneo-web` are covered.
-- `dashboards.json` — four Kaneo-specific dashboards (Backend, Frontend, MCP, Cron Monitors) with widgets for the metrics above. The prebuilt Sentry templates are left untouched.
+- `dashboards.json` — four Tracing-specific dashboards (Backend, Frontend, MCP, Cron Monitors) with widgets for the metrics above. The prebuilt Sentry templates are left untouched.
 
 ## What's NOT here yet
 
@@ -29,7 +29,7 @@ SENTRY_API_TOKEN=sntrys_... ./scripts/provision-sentry-alerts.sh
 SENTRY_API_TOKEN=sntrys_... ./scripts/provision-sentry-alerts.sh --dry-run
 ```
 
-The script targets the EU region (`https://de.sentry.io`). If Kaneo ever moves to the US region, change the `region` field in `alerts.json` (or override `SENTRY_API_BASE`).
+The script targets the EU region (`https://de.sentry.io`). If Tracing ever moves to the US region, change the `region` field in `alerts.json` (or override `SENTRY_API_BASE`).
 
 If you rename an alert in `alerts.json`, the old name stays in Sentry alongside the new one. Rename alerts only when you intend to delete the old one manually.
 
@@ -56,6 +56,12 @@ Two rule families:
 - **Issue rules** (`kind: "issue"`) — trigger on event condition types (first_seen_event, regression_event, etc.). One JSON entry per rule.
 - **Metric rules** (`kind: "metric"`) — trigger on aggregate conditions (count, p95, failure_rate). Each entry creates a Detector (the metric source) and a Workflow (the alert) and links them via `detectorIds`.
 
+## Renaming existing dashboards
+
+Before running the dashboard provisioner against an existing installation, rename each `Kaneo:` dashboard in the Sentry UI to the corresponding `Tracing:` title in `dashboards.json` (Backend, Frontend, MCP and Cron Monitors). Keep the existing dashboards and their IDs. The provisioner matches exact titles; running it first would create duplicates and would not carry the old filters to those new dashboards. Confirm the renamed titles, then run `--dry-run` and check that the existing dashboards will be updated before applying.
+
+These configuration files do not activate or modify a Sentry deployment by themselves.
+
 ## Applying the dashboards
 
 `scripts/provision-sentry-dashboards.sh` reads `sentry/dashboards.json` and creates-or-updates each dashboard by title. The script preserves any filter settings (projects, environment, period) the maintainer has set in the Sentry UI by reading the current dashboard first and only swapping the widgets array.
@@ -65,7 +71,7 @@ SENTRY_API_TOKEN=sntrys_... ./scripts/provision-sentry-dashboards.sh
 SENTRY_API_TOKEN=sntrys_... ./scripts/provision-sentry-dashboards.sh --dry-run
 ```
 
-The prebuilt Sentry dashboards (Backend Overview, Frontend Overview, etc.) are **not** touched. Kaneo-specific dashboards are created with the `Kaneo:` prefix.
+The prebuilt Sentry dashboards (Backend Overview, Frontend Overview, etc.) are **not** touched. Tracing-specific dashboards are created with the `Tracing:` prefix.
 
 ## Schema notes
 

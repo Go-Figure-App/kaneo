@@ -1,6 +1,6 @@
 # Browser smoke tests
 
-These Playwright tests run against a disposable, bundled Kaneo instance built
+These Playwright tests run against a disposable, bundled Tracing instance built
 from the current checkout. They exercise real authentication, workspace creation,
 persistence after a reload, and authentication after clearing the session cookie.
 They also create projects and tasks, persist task edits, and verify that another
@@ -29,7 +29,7 @@ BrowserStack disables native Playwright tracing; use its session recordings for 
 ## Dependency security checks
 
 Run the isolated dependency regressions without browsers, Docker, cloud accounts,
-or Kaneo services:
+or Tracing services:
 
 ```sh
 pnpm --dir tests/e2e test:security
@@ -84,7 +84,7 @@ check their supported versions before upgrading it.
 
 This integration uses Automate only. Test Reporting & Analytics is disabled;
 Percy and other BrowserStack products are not configured. Session results and
-videos appear in the Automate dashboard under **Kaneo**.
+videos appear in the Automate dashboard under **Tracing**.
 
 ## GitHub Actions
 

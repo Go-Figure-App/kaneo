@@ -3,9 +3,9 @@ title: "Upgrade PostgreSQL 16 to 18"
 description: "Move a Docker Compose database to PostgreSQL 18 using a backup and a new volume."
 ---
 
-The published Kaneo Compose examples and Helm chart currently default to PostgreSQL 16.
+The published Tracing Compose examples and Helm chart currently default to PostgreSQL 16.
 The PostgreSQL 18 pins used by CI and end-to-end tests use disposable databases and do not upgrade your installation.
-You do not need to upgrade PostgreSQL to update the Kaneo image.
+You do not need to upgrade PostgreSQL to update the Tracing image.
 
 PostgreSQL 18 cannot use a PostgreSQL 16 data directory directly.
 Changing the image tag alone can prevent the database from starting or initialize a separate empty database.
@@ -16,7 +16,7 @@ See the [PostgreSQL image documentation](https://hub.docker.com/_/postgres) for 
 
 ## Before you start
 
-This procedure targets the single-database [Docker Compose installation](/core/installation/docker-compose), with the default database user owning the Kaneo database.
+This procedure targets the single-database [Docker Compose installation](/core/installation/docker-compose), with the default database user owning the Tracing database.
 For Helm, Coolify, managed PostgreSQL, additional databases, custom roles, extensions, or tablespaces, plan a separate migration for that deployment.
 A `pg_dump` archive contains one database, not cluster-wide roles or tablespaces.
 Inventory databases, roles, tablespaces, extensions, and their versions before migrating.
@@ -25,9 +25,9 @@ The restore below assigns restored objects to the destination user and omits gra
 See the [PostgreSQL upgrade documentation](https://www.postgresql.org/docs/18/upgrading.html) and your database provider's instructions.
 
 Prepare and validate the temporary Compose configuration in the next section before scheduling downtime.
-Then stop every Kaneo instance and other writer before taking the final backup.
+Then stop every Tracing instance and other writer before taking the final backup.
 Follow [Backups and recovery](/core/operations/backups) for the database, uploaded files, configuration, and a restore rehearsal.
-For the final backup, omit the step that restarts Kaneo and keep all writers stopped until the new database has been checked.
+For the final backup, omit the step that restarts Tracing and keep all writers stopped until the new database has been checked.
 Record your original Compose file, PostgreSQL image tag, volume name, and backup location.
 PostgreSQL recommends using the newer version's `pg_dump` for a major upgrade; the backup guide uses the PostgreSQL 16 container's tool, so arrange a PostgreSQL 18 client with access to the old server if possible.
 Use PostgreSQL 18 `pg_restore` for the resulting archive and rehearse the restore before cutover.
@@ -135,16 +135,16 @@ volumes:
 
 Use your chosen volume name if you changed it.
 Keep the remaining service settings and credentials unchanged.
-Start PostgreSQL, check that it is healthy, then start Kaneo:
+Start PostgreSQL, check that it is healthy, then start Tracing:
 
 ```bash
 docker compose up -d --wait postgres
-docker compose up -d kaneo
+docker compose up -d tracing
 docker compose ps
-docker compose logs --tail=100 postgres kaneo
+docker compose logs --tail=100 postgres tracing
 ```
 
-Sign in and check existing projects, tasks, and attachments as described in [Upgrade Kaneo](/core/operations/upgrades).
+Sign in and check existing projects, tasks, and attachments as described in [Upgrade Tracing](/core/operations/upgrades).
 Keep the old volume, backup, and original configuration until you have checked the new installation.
 
 ## Ask an agent for help
@@ -154,7 +154,7 @@ Review its plan and commands before approving changes.
 Do not share passwords, connection strings, backup contents, or other secrets in the conversation.
 
 ```text
-Help me plan a PostgreSQL 16-to-18 migration for my Kaneo deployment.
+Help me plan a PostgreSQL 16-to-18 migration for my Tracing deployment.
 First inspect the deployment configuration without changing it or displaying secrets.
 Identify the PostgreSQL version, deployment method, data volume, database connection,
 and any custom roles, databases, extensions, or storage settings that affect migration.
@@ -170,7 +170,7 @@ volumes or run destructive commands without my explicit approval.
 
 ## Roll back
 
-If the migration fails, stop Kaneo and PostgreSQL 18.
+If the migration fails, stop Tracing and PostgreSQL 18.
 Restore the original Compose configuration and use the untouched PostgreSQL 16 volume, or restore the matching database and files from the backup.
 Changes made after the migration will not be in the old volume or backup, so account for them before rolling back.
 Do not point PostgreSQL 16 at the PostgreSQL 18 volume.

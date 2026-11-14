@@ -12,7 +12,7 @@ import { withSocialMetadata } from "@/lib/metadata";
 export const metadata: Metadata = withSocialMetadata({
   title: "Community projects",
   description:
-    "Open-source tools the Kaneo community builds and maintains, from an email-to-task service to a one-command installer for Proxmox VE.",
+    "Open-source tools the Tracing community builds and maintains, from an email-to-task service to a one-command installer for Proxmox VE.",
   alternates: { canonical: "/community" },
 });
 
@@ -21,7 +21,7 @@ export default function Page() {
     <>
       <JsonLd
         data={breadcrumbJsonLd([
-          { name: "Kaneo", path: "/" },
+          { name: "Tracing", path: "/" },
           { name: "Community projects", path: "/community" },
         ])}
       />
@@ -32,7 +32,7 @@ export default function Page() {
             <PageIntro
               eyebrow="Community"
               title={<>Built by the community</>}
-              description="Tools that people build around Kaneo and share in the open. Each one is made and maintained by its authors, not the Kaneo team."
+              description="Tools that people build around Tracing and share in the open. Each one is made and maintained by its authors, not the Tracing team."
             />
 
             <h2 className="sr-only">Community projects</h2>
@@ -48,7 +48,7 @@ export default function Page() {
           <section className="px-6 py-12 md:py-16">
             <div className="mx-auto w-full max-w-6xl">
               <h2 className="font-medium text-2xl md:text-3xl">
-                Built something with Kaneo?
+                Built something with Tracing?
               </h2>
               <p className="mt-4 max-w-2xl text-muted-foreground leading-relaxed">
                 Open an issue on GitHub with a link and a sentence about what it
@@ -94,7 +94,7 @@ export default function Page() {
                   className="h-12 px-5 text-sm sm:h-12"
                   render={
                     <a
-                      href="https://github.com/usekaneo/kaneo/issues/new"
+                      href="https://github.com/Go-Figure-App/tracing/issues/new"
                       target="_blank"
                       rel="noreferrer"
                     />

@@ -22,7 +22,7 @@ const privateKey = forge.pki.privateKeyFromPem(
 const publicKey = forge.pki.setRsaPublicKey(privateKey.n, privateKey.e);
 const digest = forge.md.sha256
   .create()
-  .update("Kaneo certificate validation regression")
+  .update("Tracing certificate validation regression")
   .digest()
   .getBytes();
 

@@ -14,7 +14,7 @@ import { alternativePath, comparisons } from "@/lib/comparisons";
 import type { Cell, Comparison } from "@/lib/comparisons/types";
 import { landing } from "@/lib/landing";
 
-const SIGN_UP = "https://cloud.kaneo.app/auth/sign-up";
+const OPEN_APP = "https://tracing.gofigureapp.io/auth/sign-in";
 
 export type { Comparison };
 
@@ -72,9 +72,9 @@ export function ComparisonPage({ data }: { data: Comparison }) {
       <JsonLd data={faqJsonLd(data.faq)} />
       <JsonLd
         data={breadcrumbJsonLd([
-          { name: "Kaneo", path: "/" },
+          { name: "Tracing", path: "/" },
           { name: "Alternatives", path: "/alternatives" },
-          { name: `Kaneo vs ${data.competitor}`, path },
+          { name: `Tracing vs ${data.competitor}`, path },
         ])}
       />
       <Navbar />
@@ -82,7 +82,7 @@ export function ComparisonPage({ data }: { data: Comparison }) {
         <section className="relative overflow-hidden px-6 pt-14 pb-16 md:pt-20 md:pb-20 lg:pt-24">
           <div className="mx-auto w-full max-w-6xl">
             <PageIntro
-              eyebrow={<>Kaneo vs {data.competitor}</>}
+              eyebrow={<>Tracing vs {data.competitor}</>}
               title={data.heading}
               description={data.subheading}
             >
@@ -92,9 +92,9 @@ export function ComparisonPage({ data }: { data: Comparison }) {
                     variant="default"
                     size="lg"
                     className="h-12 px-5 text-sm sm:h-12"
-                    render={<a href={SIGN_UP} />}
+                    render={<a href={OPEN_APP} />}
                   >
-                    Start 14-day free trial
+                    Open Tracing
                   </Button>
                   <Button
                     variant="outline"
@@ -102,7 +102,7 @@ export function ComparisonPage({ data }: { data: Comparison }) {
                     className="h-12 px-5 text-sm sm:h-12"
                     render={<a href="/pricing" />}
                   >
-                    See pricing
+                    Self-host Tracing
                   </Button>
                 </div>
               </FadeIn>
@@ -111,7 +111,7 @@ export function ComparisonPage({ data }: { data: Comparison }) {
             <FadeIn delay={200}>
               <div className="mt-12 max-w-3xl border-l-2 border-foreground/20 py-1 pl-6">
                 <h2 className="font-medium text-sm">
-                  Short answer: is Kaneo a good {data.competitor} alternative?
+                  Short answer: is Tracing a good {data.competitor} alternative?
                 </h2>
                 <p className="mt-2 text-foreground/80 text-sm leading-relaxed md:text-base">
                   {data.verdict}
@@ -150,7 +150,7 @@ export function ComparisonPage({ data }: { data: Comparison }) {
                         scope="col"
                         className="border-border/50 border-b bg-sidebar px-4 py-3 text-center font-medium sm:px-6"
                       >
-                        Kaneo
+                        Tracing
                       </th>
                       <th
                         scope="col"
@@ -205,7 +205,7 @@ export function ComparisonPage({ data }: { data: Comparison }) {
           <section className="px-6 py-14 md:py-20">
             <div className="mx-auto w-full max-w-6xl">
               <h2 className="max-w-2xl text-2xl font-medium md:text-3xl">
-                Why teams choose Kaneo
+                Why teams choose Tracing
               </h2>
               <div className="mt-8 grid gap-8 md:grid-cols-3">
                 {data.reasons.map((reason) => (
@@ -247,7 +247,7 @@ export function ComparisonPage({ data }: { data: Comparison }) {
           <section className="px-6 py-14 md:py-20">
             <div className="mx-auto w-full max-w-6xl">
               <h2 className="max-w-2xl text-2xl font-medium md:text-3xl">
-                Kaneo vs {data.competitor}, answered
+                Tracing vs {data.competitor}, answered
               </h2>
               <div className="mt-8 grid gap-8 md:grid-cols-2">
                 {data.faq.map((entry) => (
@@ -270,7 +270,7 @@ export function ComparisonPage({ data }: { data: Comparison }) {
                         className="inline-flex min-h-11 items-center rounded-lg border border-border/70 px-3 py-2 text-muted-foreground text-sm transition-colors focus-visible:outline-2 focus-visible:outline-ring focus-visible:outline-offset-4 hover:bg-accent hover:text-foreground"
                         href={alternativePath(entry.slug)}
                       >
-                        Kaneo vs {entry.competitor}
+                        Tracing vs {entry.competitor}
                       </a>
                     ))}
                     {data.guides?.map((guide) => (
@@ -297,9 +297,9 @@ export function ComparisonPage({ data }: { data: Comparison }) {
                   variant="default"
                   size="lg"
                   className="h-12 px-5 text-sm sm:h-12"
-                  render={<a href={SIGN_UP} />}
+                  render={<a href={OPEN_APP} />}
                 >
-                  Try Kaneo Cloud free
+                  Open Tracing
                 </Button>
                 <Button
                   variant="outline"
@@ -307,7 +307,7 @@ export function ComparisonPage({ data }: { data: Comparison }) {
                   className="h-12 px-5 text-sm sm:h-12"
                   render={<a href="/pricing" />}
                 >
-                  See pricing
+                  Self-host Tracing
                 </Button>
               </div>
             </div>

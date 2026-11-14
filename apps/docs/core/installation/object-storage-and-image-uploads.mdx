@@ -3,7 +3,7 @@ title: "Files and uploads"
 description: "Choose where task images and attachments are stored."
 ---
 
-File storage is optional. Kaneo works without it, but people cannot upload files into task descriptions or comments until you configure an S3-compatible backend.
+File storage is optional. Tracing works without it, but people cannot upload files into task descriptions or comments until you configure an S3-compatible backend.
 
 Use [Silo](/core/installation/silo) to host storage yourself. If you already use a managed service, follow [AWS S3 or Cloudflare R2](/core/installation/storage-backends).
 
@@ -12,7 +12,7 @@ Use [Silo](/core/installation/silo) to host storage yourself. If you already use
 ```mermaid
 sequenceDiagram
   participant B as Browser
-  participant K as Kaneo API
+  participant K as Tracing API
   participant S as S3 storage
   B->>K: Request an upload URL
   K-->>B: Signed URL with size and file type
@@ -22,9 +22,9 @@ sequenceDiagram
   K-->>B: Private attachment
 ```
 
-The browser and the Kaneo API must both reach `S3_ENDPOINT`. Use a hostname such as `https://files.example.com`. An internal Docker name such as `http://silo:9000` will not work in a normal browser, even if the containers can reach one another.
+The browser and the Tracing API must both reach `S3_ENDPOINT`. Use a hostname such as `https://files.example.com`. An internal Docker name such as `http://silo:9000` will not work in a normal browser, even if the containers can reach one another.
 
-The storage bucket stays private. Kaneo checks access and serves files through its own API. Images appear inline; PDFs, ZIPs, and other files appear as attachments.
+The storage bucket stays private. Tracing checks access and serves files through its own API. Images appear inline; PDFs, ZIPs, and other files appear as attachments.
 
 ## Required configuration
 
@@ -37,7 +37,7 @@ S3_REGION=us-east-1
 S3_FORCE_PATH_STYLE=true
 ```
 
-Use a dedicated credential with read, write, and delete access to this bucket. Kaneo uses `GetObject`, including HEAD requests, to check uploads and read files. It also needs `PutObject` and `DeleteObject`.
+Use a dedicated credential with read, write, and delete access to this bucket. Tracing uses `GetObject`, including HEAD requests, to check uploads and read files. It also needs `PutObject` and `DeleteObject`.
 
 On AWS you can [use an IAM role](/core/installation/storage-backends#aws-s3) instead of static keys. Set both key variables or leave both unset.
 
@@ -45,9 +45,9 @@ On AWS you can [use an IAM role](/core/installation/storage-backends#aws-s3) ins
 
 The default upload limit is 10 MiB. Change `S3_MAX_IMAGE_UPLOAD_BYTES` to set another limit in bytes; despite its name, it also covers non-image attachments. Signed upload URLs expire after 300 seconds by default, controlled by `S3_PRESIGN_TTL_SECONDS`.
 
-Configure storage CORS to allow your exact Kaneo origin and `PUT` requests with `Content-Type`. Both the storage endpoint and Kaneo should use HTTPS for a public deployment.
+Configure storage CORS to allow your exact Tracing origin and `PUT` requests with `Content-Type`. Both the storage endpoint and Tracing should use HTTPS for a public deployment.
 
-Custom upload clients must send the exact declared `Content-Length` and the returned `Content-Type`. Kaneo checks the stored object before finalizing it. Do not remove signed-header checks to work around an incompatible provider.
+Custom upload clients must send the exact declared `Content-Length` and the returned `Content-Type`. Tracing checks the stored object before finalizing it. Do not remove signed-header checks to work around an incompatible provider.
 
 ## Check it works
 

@@ -4,14 +4,14 @@ const all: BlogAuthor[] = [
   {
     id: "andrej",
     name: "Andrej Acevski",
-    role: "Founder, Kaneo",
+    role: "Founder, Tracing",
     url: "https://github.com/andrejsshell",
   },
   {
     id: "kaneo-team",
-    name: "The Kaneo team",
-    role: "Kaneo",
-    url: "https://github.com/usekaneo/kaneo",
+    name: "The Tracing team",
+    role: "Tracing",
+    url: "https://github.com/Go-Figure-App/tracing",
   },
 ];
 

@@ -1,15 +1,15 @@
 ---
 title: MCP protocol reference
-description: Authentication, transport behavior, and deployment limits for Kaneo’s HTTP MCP endpoint.
+description: Authentication, transport behavior, and deployment limits for Tracing’s HTTP MCP endpoint.
 ---
 
-Use the [MCP setup guide](/core/integrations/mcp) to connect a client. This page is for people operating Kaneo or building an MCP client.
+Use the [MCP setup guide](/core/integrations/mcp) to connect a client. This page is for people operating Tracing or building an MCP client.
 
 ## Endpoint and authentication
 
-The HTTP endpoint is `/api/mcp`. Every request requires a bearer token that Kaneo can resolve to an authenticated user. Tools make internal API requests as that user, so workspace permissions still apply.
+The HTTP endpoint is `/api/mcp`. Every request requires a bearer token that Tracing can resolve to an authenticated user. Tools make internal API requests as that user, so workspace permissions still apply.
 
-OAuth clients discover Kaneo’s authorization server, register a public client, and use the authorization code flow with PKCE (`S256`). The user must approve the connection in Kaneo. The token endpoint supports the authorization-code grant; it does not advertise a refresh-token grant.
+OAuth clients discover Tracing’s authorization server, register a public client, and use the authorization code flow with PKCE (`S256`). The user must approve the connection in Tracing. The token endpoint supports the authorization-code grant; it does not advertise a refresh-token grant.
 
 The discovery URLs at the public API origin are:
 
@@ -20,16 +20,16 @@ The API also serves these under `/api/.well-known/`. Preserve discovery routes a
 
 ## Supported transports
 
-| Client flow | Kaneo behavior |
+| Client flow | Tracing behavior |
 | --- | --- |
 | MCP 2026-07-28 | A fresh server handles each request. No protocol session is retained between requests. |
-| Legacy HTTP flow | The client sends `initialize`, but Kaneo returns no `Mcp-Session-Id`. A fresh server handles each POST. |
-| Local stdio | The separate `@kaneo/mcp` package uses device authorization and communicates with the Kaneo API. |
+| Legacy HTTP flow | The client sends `initialize`, but Tracing returns no `Mcp-Session-Id`. A fresh server handles each POST. |
+| Local stdio | The separate `@tracing/mcp` package uses device authorization and communicates with the Tracing API. |
 
-Let your client negotiate its supported protocol. No Kaneo environment switch is needed to choose between HTTP protocol versions.
+Let your client negotiate its supported protocol. No Tracing environment switch is needed to choose between HTTP protocol versions.
 
 Neither HTTP flow needs session affinity. A request can reach any API replica,
-including after a replica restarts. Kaneo accepts `Mcp-Session-Id` headers issued
+including after a replica restarts. Tracing accepts `Mcp-Session-Id` headers issued
 by older versions on authenticated POSTs, but does not retain their session
 state. OAuth registration and pending authorization state are stored in
 PostgreSQL and shared between API replicas.
@@ -38,7 +38,7 @@ PostgreSQL and shared between API replicas.
 
 Forward the client’s authorization, content type, and MCP headers unchanged. Allow streaming responses for clients that use them.
 
-HTTP MCP tools reach Kaneo’s API through `KANEO_INTERNAL_API_URL`, which defaults to `http://127.0.0.1:1337`. This is a server-side address, separate from the public URL used for discovery and sign-in. Set it only when that loopback address does not reach the API from its own process.
+HTTP MCP tools reach Tracing’s API through `TRACING_INTERNAL_API_URL`, which defaults to `http://127.0.0.1:1337`. This is a server-side address, separate from the public URL used for discovery and sign-in. Set it only when that loopback address does not reach the API from its own process.
 
 ## Troubleshooting
 
@@ -58,7 +58,7 @@ A tool can also fail because the user lacks permission or its arguments do not m
 Both HTTP protocol flows accept request bodies up to 1 MiB (1,048,576 bytes), measured from the received bytes rather than trusting `Content-Length`.
 The body must arrive within five seconds.
 Each tool call accepts up to 10,000 combined object keys and array elements across its arguments, including nested values.
-Calls above that budget return a tool result with `isError: true` without calling the Kaneo API.
+Calls above that budget return a tool result with `isError: true` without calling the Tracing API.
 These limits apply to the HTTP endpoint, not the separate stdio package.
 
 ### OAuth request limits

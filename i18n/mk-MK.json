@@ -1904,7 +1904,7 @@
 			},
 			"foundingFree": {
 				"badge": "Free",
-				"description": "This workspace has free access to Tracing Cloud as an early supporter. Thank you for being here from the start.",
+				"description": "Овој работен простор има бесплатен пристап.",
 				"title": "Founding Free"
 			},
 			"interval": {
@@ -2279,7 +2279,7 @@
 				"connectTo": "Connect {{source}}",
 				"description": "Pick the tool you are moving from. Each project you choose becomes a new project here.",
 				"kaneo": {
-					"description": "Move projects between Tracing Cloud and a self-hosted instance.",
+					"description": "Преместувајте проекти меѓу инстанци на Tracing.",
 					"intro": "Projects from every workspace the key can see. Each one you pick is copied here.",
 					"pickerName": "Another Tracing"
 				},
@@ -4132,11 +4132,11 @@
 	"press": {
 		"title": "Press kit",
 		"headline": "Tracing press kit",
-		"intro": "Tracing logos and product screenshots for articles, videos, and other media.",
-		"description": "Tracing press resources: product information, logos, screenshots, and contact details for journalists and creators.",
+		"intro": "Логоа и икони на апликацијата Tracing за статии, видеа и други медиуми.",
+		"description": "Материјали за медиумите за Tracing: информации за производот, логоа и податоци за контакт за новинари и автори.",
 		"downloadKit": "Download all assets",
 		"boilerplateTitle": "About Tracing",
-		"boilerplate": "Tracing is an open-source project management platform created by Andrej Acevski. Teams can organize tasks in board and list views, assign work, set priorities and due dates, and connect GitHub. Tracing is available under the MIT license for self-hosting, or as a managed service through Tracing Cloud.",
+		"boilerplate": "Tracing е работниот простор за планирање со отворен код на Go Figure, изграден врз Kaneo од Andrej Acevski. Додава задачи, тријажа, иницијативи, патокази, циклуси, анализи и зачувани прикази. Изворниот код е достапен под лиценцата MIT за сопствено хостирање.",
 		"logosTitle": "Logos",
 		"darkLogo": "Dark wordmark",
 		"darkLogoAlt": "Dark Tracing logo on a light background",
@@ -4230,8 +4230,8 @@
 				"link": "Set up GitHub"
 			},
 			"hosting": {
-				"title": "Run it on your own server.",
-				"description": "Deploy with Docker and keep your workspace on infrastructure you control.",
+				"title": "Користете го на сопствена инфраструктура.",
+				"description": "Изградете го Tracing од изворниот код и хостирајте го со PostgreSQL. Изберете ја инфраструктурата и управувајте со резервните копии, ажурирањата и обновувањето.",
 				"link": "Self-host Tracing"
 			},
 			"source": {
@@ -4274,7 +4274,7 @@
 		},
 		"seo": {
 			"title": "Tracing — Open-source, self-hosted project management",
-			"description": "Open-source project management with boards, Gantt charts, and GitHub integration. Self-host for free with SSO included, or use Tracing Cloud."
+			"description": "Планирање проекти со отворен код со табли, тријажа, пресвртници, иницијативи, патокази, циклуси, анализи и зачувани прикази. Хостирајте го Tracing на сопствена инфраструктура."
 		},
 		"resources": {
 			"eyebrow": "Make it your own",
@@ -4293,7 +4293,7 @@
 				"description": "See the differences in hosting, licensing, and workflow."
 			},
 			"startups": {
-				"description": "What a startup needs from a tracker, and what Tracing Cloud costs as you hire.",
+				"description": "Планирање за стартап, со трошоци за хостирање и работење што треба да ги земете предвид додека растете.",
 				"title": "Project management for startups"
 			}
 		},
@@ -4373,8 +4373,8 @@
 			"uploadFailed": "Прикачувањето не успеа ({{status}})"
 		},
 		"signIn": {
-			"tagline": "Едноставно управување со проекти. Поврзи се со Tracing Cloud или со своја инстанца.",
-			"cloud": "Tracing Cloud",
+			"tagline": "Планирајте ја работата на вашиот тим со Tracing.",
+			"cloud": "Tracing",
 			"selfHosted": "Сопствен сервер",
 			"captcha": "Серверот бара проверка во прелистувач за овој чекор. Наместо тоа, користи „Продолжи во прелистувач“.",
 			"invalidClient": "Овој сервер не дозволува најава преку уред. Побарај од администраторот да додаде „kaneo-cli“ во DEVICE_AUTH_CLIENT_IDS или најави се со лозинка или API клуч.",
@@ -4432,7 +4432,7 @@
 			"unlock": {
 				"buy": "Отклучи за {{price}}",
 				"buyNoPrice": "Отклучи",
-				"message": "Најавата на Tracing Cloud е секогаш вклучена. Поврзувањето на апликацијата со сопствен сервер е еднократна куповина што го поддржува развојот на Tracing.",
+				"message": "Оваа верзија на Tracing се поврзува со инстанцата на вашиот тим без купување во апликацијата.",
 				"nothingToRestore": "Не е пронајдена претходна куповина за оваа сметка во продавницата.",
 				"restore": "Врати ја куповината",
 				"title": "Поврзи сопствен сервер",
@@ -4454,6 +4454,7 @@
 			"join": "Приклучи се"
 		},
 		"taskDetail": {
+			"systemActor": "Tracing",
 			"someone": "Некој",
 			"status": {
 				"planned": "Планирано",
@@ -4886,6 +4887,7 @@
 			"workspaceCreated": "Работниот простор „{{name}}“ е создаден"
 		},
 		"background": {
+			"title": "Tracing",
 			"summary_one": "Уште {{count}} ново известување",
 			"summary_other": "Уште {{count}} нови известувања",
 			"channelName": "Активност во Tracing",

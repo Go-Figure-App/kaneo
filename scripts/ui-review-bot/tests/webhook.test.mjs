@@ -6,7 +6,7 @@ import { handleWebhook } from "../worker/index.mjs";
 
 const secret = "unit-test-webhook-secret";
 const event = {
-  repository: { full_name: "usekaneo/kaneo" },
+  repository: { full_name: "Go-Figure-App/tracing" },
   installation: { id: 162493570 },
   action: "created",
   issue: { number: 1720, pull_request: {} },
@@ -53,7 +53,8 @@ function setup(permission = "write", commandBody = "/peekareq") {
       return {
         ...event.comment,
         body: commandBody,
-        issue_url: "https://api.github.com/repos/usekaneo/kaneo/issues/1720",
+        issue_url:
+          "https://api.github.com/repos/Go-Figure-App/tracing/issues/1720",
       };
     if (endpoint.endsWith("/permission")) return { permission };
     if (endpoint.endsWith("/pulls/1720"))
@@ -232,6 +233,10 @@ test("default Worker path signs an App JWT and uses an edge-compatible redirect 
     assert.equal(options.redirect, "manual");
     const endpoint = String(url).replace("https://api.github.com/", "");
     if (endpoint.endsWith("/access_tokens")) {
+      assert.deepEqual(JSON.parse(options.body), {
+        repositories: ["tracing"],
+        permissions: { contents: "write", pull_requests: "read" },
+      });
       const jwt = options.headers.Authorization.slice(7).split(".");
       assert.equal(
         await crypto.subtle.verify(

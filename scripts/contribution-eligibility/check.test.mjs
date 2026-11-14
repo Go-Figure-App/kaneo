@@ -178,7 +178,7 @@ test("ineligible PRs become drafts once and are re-drafted if marked ready", asy
   assert.match(comments[0].body, /bug report or feature request/);
   assert.match(
     comments[0].body,
-    /https:\/\/github\.com\/usekaneo\/kaneo\?tab=contributing-ov-file#contribution-eligibility/,
+    /https:\/\/github\.com\/Go-Figure-App\/tracing\?tab=contributing-ov-file#contribution-eligibility/,
   );
   await reconcile(github, async () => policy);
   assert.deepEqual(conversions, [pull.node_id]);

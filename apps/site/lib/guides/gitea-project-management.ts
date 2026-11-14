@@ -9,7 +9,7 @@ export const giteaProjectManagement: Guide = {
   summary:
     "When Gitea's own boards are enough, and what a synced tracker adds on top.",
   answer:
-    "For small teams whose work is all code, Gitea's built-in Projects boards are often enough. When you need a backlog, priorities, boards that move on their own, Gantt and calendar views, or a place for work that is not code, Kaneo is an MIT-licensed tracker you can self-host next to Gitea. It syncs tasks and issues in both directions and moves tasks when branches are pushed and pull requests are opened or merged.",
+    "For small teams whose work is all code, Gitea's built-in Projects boards are often enough. When you need a backlog, priorities, boards that move on their own, Gantt and calendar views, or a place for work that is not code, Tracing is an MIT-licensed tracker you can self-host next to Gitea. It syncs tasks and issues in both directions and moves tasks when branches are pushed and pull requests are opened or merged.",
   sections: [
     {
       heading: "What Gitea gives you out of the box",
@@ -24,11 +24,11 @@ export const giteaProjectManagement: Guide = {
         {
           name: "Two-way issue sync",
           href: "/docs/core/integrations/gitea/setup",
-          body: "Creating a task in Kaneo opens a Gitea issue, and opening an issue in Gitea creates a task. Titles, descriptions, comments, labels, priority, and open or closed state stay in step in both directions.",
+          body: "Creating a task in Tracing opens a Gitea issue, and opening an issue in Gitea creates a task. Titles, descriptions, comments, labels, priority, and open or closed state stay in step in both directions.",
         },
         {
           name: "Automation from branches and pull requests",
-          body: "Kaneo matches branches to tasks by a naming pattern you choose. Pushes, opened pull requests, and merged pull requests move the linked task to the columns you map in the project's workflow settings.",
+          body: "Tracing matches branches to tasks by a naming pattern you choose. Pushes, opened pull requests, and merged pull requests move the linked task to the columns you map in the project's workflow settings.",
         },
         {
           name: "Planning beyond the repository",
@@ -43,14 +43,14 @@ export const giteaProjectManagement: Guide = {
     {
       heading: "How the connection works",
       body: [
-        "Each Kaneo project connects to one Gitea repository using a personal access token that can read the account and repository and write issues. Kaneo verifies the token and repository permissions before you save.",
-        "Gitea then sends push, pull request, issue, and issue comment events to a webhook URL and secret that Kaneo shows after saving. Kaneo needs to reach your Gitea API, and Gitea needs to reach Kaneo's webhook, so on a private network make sure both directions are open.",
+        "Each Tracing project connects to one Gitea repository using a personal access token that can read the account and repository and write issues. Tracing verifies the token and repository permissions before you save.",
+        "Gitea then sends push, pull request, issue, and issue comment events to a webhook URL and secret that Tracing shows after saving. Tracing needs to reach your Gitea API, and Gitea needs to reach Tracing's webhook, so on a private network make sure both directions are open.",
       ],
     },
     {
       heading: "Running both yourself",
       body: [
-        "Kaneo is one application container plus PostgreSQL, so it sits comfortably on the same host or Docker network as Gitea. Single sign-on is included in the free build, so you can point both at the same OIDC provider and keep one login for code and planning.",
+        "Tracing is one application container plus PostgreSQL, so it sits comfortably on the same host or Docker network as Gitea. Single sign-on is included in the free build, so you can point both at the same OIDC provider and keep one login for code and planning.",
       ],
     },
   ],
@@ -61,19 +61,19 @@ export const giteaProjectManagement: Guide = {
         "Yes. Gitea's built-in Projects are kanban boards with issues and pull requests as cards, at repository, organisation, or user level. They do not move cards automatically when issues close or pull requests merge.",
     },
     {
-      question: "Does Kaneo sync Gitea issues both ways?",
+      question: "Does Tracing sync Gitea issues both ways?",
       answer:
         "Yes. Tasks create issues and issues create tasks, and edits, comments, labels, priority, and open or closed state sync in both directions.",
     },
     {
       question: "Does the Gitea integration work with Forgejo?",
       answer:
-        "Kaneo's integration is built and documented for Gitea. Forgejo serves its API at the same path and aims to stay compatible with Gitea's, but since its 2024 hard fork that is no longer guaranteed, so test the connection on a scratch repository before relying on it.",
+        "Tracing's integration is built and documented for Gitea. Forgejo serves its API at the same path and aims to stay compatible with Gitea's, but since its 2024 hard fork that is no longer guaranteed, so test the connection on a scratch repository before relying on it.",
     },
     {
-      question: "Is Kaneo free to self-host next to Gitea?",
+      question: "Is Tracing free to self-host next to Gitea?",
       answer:
-        "Yes. Kaneo is MIT licensed and free to self-host with every feature, including single sign-on and the Gitea, GitHub, and GitLab integrations.",
+        "Yes. Tracing is MIT licensed and free to self-host with every feature, including single sign-on and the Gitea, GitHub, and GitLab integrations.",
     },
   ],
   related: [
