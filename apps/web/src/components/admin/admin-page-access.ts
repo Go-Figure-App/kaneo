@@ -1,4 +1,4 @@
-import type { InstancePermission } from "@kaneo/permissions";
+import type { InstancePermission } from "@tracing/permissions";
 
 export const ADMIN_PAGE_PERMISSIONS = {
   "/dashboard/settings/admin/overview": [

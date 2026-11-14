@@ -1,9 +1,9 @@
-import { createBaseExtensions } from "@kaneo/editor";
+import { createBaseExtensions } from "@tracing/editor";
 import type { AnyExtension } from "@tiptap/core";
 import type { Highlighter } from "shiki";
 import { AttachmentCard } from "@/components/task/extensions/attachment-card";
 import { EmbedBlock } from "@/components/task/extensions/embed-block";
-import { KaneoIssueLink } from "@/components/task/extensions/kaneo-issue-link";
+import { TracingIssueLink } from "@/components/task/extensions/kaneo-issue-link";
 import { MermaidBlock } from "@/components/task/extensions/mermaid-block";
 import { ShikiCodeBlock } from "@/components/task/extensions/shiki-code-block";
 import { TaskItemWithCheckbox } from "@/components/task/extensions/task-item-with-checkbox";
@@ -44,7 +44,7 @@ export function createEditorExtensions({
     nodes: {
       embedBlock: EmbedBlock,
       attachmentCard: AttachmentCard,
-      kaneoIssueLink: KaneoIssueLink,
+      kaneoIssueLink: TracingIssueLink,
       image,
       taskItem: TaskItemWithCheckbox,
     },

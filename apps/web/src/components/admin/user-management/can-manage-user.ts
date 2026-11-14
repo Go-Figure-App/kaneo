@@ -2,7 +2,7 @@ import {
   INSTANCE_PERMISSIONS,
   type InstancePermission,
   parseInstanceRoles,
-} from "@kaneo/permissions";
+} from "@tracing/permissions";
 import type { AdminRole } from "@/fetchers/admin/role-types";
 
 /**

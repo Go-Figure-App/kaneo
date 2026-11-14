@@ -7,7 +7,7 @@ import {
   formatMarkdownUrl,
 } from "./url-safety";
 
-export const KaneoImage = Image.extend({
+export const TracingImage = Image.extend({
   addAttributes() {
     return {
       ...this.parent?.(),

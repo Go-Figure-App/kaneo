@@ -90,7 +90,12 @@ export function ErrorDisplay({
 
             {parsedError.type === "cors" && (
               <Button
-                onClick={() => window.open("https://kaneo.app/docs", "_blank")}
+                onClick={() =>
+                  window.open(
+                    "https://github.com/Go-Figure-App/tracing/blob/main/apps/docs/core/installation/environment-variables.mdx#general-urls",
+                    "_blank",
+                  )
+                }
                 variant="outline"
                 size="icon"
                 className="w-full"

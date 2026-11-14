@@ -1,7 +1,7 @@
 import { Editor } from "@tiptap/core";
 import { afterEach, describe, expect, it } from "vite-plus/test";
 import { createBaseExtensions } from "./base-extensions";
-import { KaneoMention } from "./kaneo-mention";
+import { TracingMention } from "./kaneo-mention";
 
 const MARKDOWN = [
   "# Release notes",
@@ -42,7 +42,7 @@ function createEditor() {
   editor = new Editor({
     extensions: createBaseExtensions({
       placeholder: "Write something",
-      extra: [KaneoMention],
+      extra: [TracingMention],
     }),
   });
   return editor;
@@ -54,7 +54,7 @@ afterEach(() => {
 });
 
 describe("createBaseExtensions", () => {
-  it("round-trips Kaneo markdown without changes", () => {
+  it("round-trips Tracing markdown without changes", () => {
     const instance = createEditor();
     instance.commands.setContent(MARKDOWN, { contentType: "markdown" });
 

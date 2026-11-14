@@ -40,7 +40,7 @@ export function InstanceNameRow({
           id={id}
           value={draft}
           maxLength={60}
-          placeholder="Kaneo"
+          placeholder="Tracing"
           onChange={(event) => setDraft(event.target.value)}
         />
         <Button

@@ -59,7 +59,7 @@ const InvitationsPage = (Route as unknown as { component: ComponentType })
 const invitation = {
   id: "invitation-1",
   workspaceId: "org-1",
-  workspaceName: "Kaneo",
+  workspaceName: "Tracing",
   inviterName: "Ada",
   role: "member",
   expiresAt: "2999-01-01T00:00:00.000Z",
@@ -157,7 +157,7 @@ describe("InvitationsPage", () => {
       // it leads away from the invitation with no way back to it.
       expect(skipForNow()).not.toBeInTheDocument();
       // The invitation itself is still there to accept.
-      expect(screen.getByText("Kaneo")).toBeInTheDocument();
+      expect(screen.getByText("Tracing")).toBeInTheDocument();
     });
 
     it("keeps the skip for an instance admin", async () => {

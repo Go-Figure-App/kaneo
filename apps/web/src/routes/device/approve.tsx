@@ -22,9 +22,8 @@ import { toast } from "@/lib/toast";
 const approveSearchSchema = z.object({
   user_code: z.string().optional(),
   from: z.literal("app").optional().catch(undefined),
+  app_scheme: z.enum(["tracing", "kaneo"]).optional().catch(undefined),
 });
-
-const APP_RETURN_URL = "kaneo://";
 
 export const Route = createFileRoute("/device/approve")({
   component: DeviceApprovePage,
@@ -37,6 +36,8 @@ function DeviceApprovePage() {
   const { t } = useTranslation();
   const navigate = useNavigate();
   const search = useSearch({ from: "/device/approve" });
+  const appReturnUrl =
+    search.app_scheme === "tracing" ? "tracing://" : "kaneo://";
   const { session, isLoading: isSessionPending } = useSettledSession();
   const [pending, setPending] = useState<Decision | null>(null);
   const [result, setResult] = useState<Decision | null>(null);
@@ -66,7 +67,7 @@ function DeviceApprovePage() {
             <Button
               size="lg"
               className="w-full"
-              render={<a href={APP_RETURN_URL} />}
+              render={<a href={appReturnUrl} />}
             >
               {t("auth:device.openApp")}
             </Button>
@@ -150,7 +151,7 @@ function DeviceApprovePage() {
       }
       setResult(decision);
       // Reopening the app closes the in-app browser tab it signed in from.
-      if (fromApp) window.location.assign(APP_RETURN_URL);
+      if (fromApp) window.location.assign(appReturnUrl);
     } catch {
       toast.error(t("auth:device.approve.failed"));
       setPending(null);

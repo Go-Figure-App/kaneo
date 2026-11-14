@@ -14,9 +14,9 @@ BEGIN {
     escape["\""] = "\\\""
     for (i = 1; i < 32; i++) escape[sprintf("%c", i)] = sprintf("\\u%04x", i)
     # Only these public build-time placeholders may enter browser assets.
-    values["KANEO_API_URL"] = ENVIRON["KANEO_API_URL"]
-    values["KANEO_CLIENT_URL"] = ENVIRON["KANEO_CLIENT_URL"]
-    values["KANEO_TURNSTILE_SITE_KEY"] = ENVIRON["KANEO_TURNSTILE_SITE_KEY"]
+    values["KANEO_API_URL"] = ((ENVIRON["TRACING_API_URL"] != "") ? ENVIRON["TRACING_API_URL"] : ENVIRON["KANEO_API_URL"])
+    values["KANEO_CLIENT_URL"] = ((ENVIRON["TRACING_CLIENT_URL"] != "") ? ENVIRON["TRACING_CLIENT_URL"] : ENVIRON["KANEO_CLIENT_URL"])
+    values["KANEO_TURNSTILE_SITE_KEY"] = ((ENVIRON["TRACING_TURNSTILE_SITE_KEY"] != "") ? ENVIRON["TRACING_TURNSTILE_SITE_KEY"] : ENVIRON["KANEO_TURNSTILE_SITE_KEY"])
 
     if (mode == "resource" || mode == "authorization") {
         base = values["KANEO_API_URL"]

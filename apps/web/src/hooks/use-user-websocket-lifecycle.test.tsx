@@ -56,7 +56,7 @@ vi.mock("@/lib/auth-client", () => ({
     }),
   },
 }));
-vi.mock("@kaneo/libs", () => ({ windowId: "local-test" }));
+vi.mock("@tracing/libs", () => ({ windowId: "local-test" }));
 vi.mock("@/lib/evict-project-cache", () => ({
   evictProjectCache: evictProject,
 }));

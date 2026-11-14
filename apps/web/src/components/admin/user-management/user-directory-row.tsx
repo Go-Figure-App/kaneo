@@ -22,7 +22,7 @@ import {
   formatDateTime,
   formatRelativeTime,
 } from "@/lib/format";
-import type { InstancePermission } from "@kaneo/permissions";
+import type { InstancePermission } from "@tracing/permissions";
 import { getPrimaryInstanceRole } from "./get-primary-instance-role";
 import { getUserActionTypes } from "./get-user-action-types";
 import type { UserActionType } from "./pending-user-action";

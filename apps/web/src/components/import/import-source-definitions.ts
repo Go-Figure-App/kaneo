@@ -64,7 +64,7 @@ export const IMPORT_SOURCES: ImportSourceDefinition[] = [
   },
   {
     id: "kaneo",
-    name: "Kaneo",
+    name: "Tracing",
     pickerNameKey: "settings:workspaceImport.sources.kaneo.pickerName",
     Logo: KaneoLogo,
     descriptionKey: "settings:workspaceImport.sources.kaneo.description",

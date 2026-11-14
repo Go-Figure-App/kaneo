@@ -1,11 +1,11 @@
 import { useTranslation } from "react-i18next";
 
-export function KaneoBranding() {
+export function TracingBranding() {
   const { t } = useTranslation();
 
   return (
     <a
-      href="https://kaneo.app"
+      href="https://tracing.gofigureapp.io"
       target="_blank"
       rel="noopener noreferrer"
       className="hover:text-foreground transition-colors"

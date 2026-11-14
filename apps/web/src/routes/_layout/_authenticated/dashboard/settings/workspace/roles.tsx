@@ -1,4 +1,4 @@
-import { DEFAULT_ROLE_NAMES, statement } from "@kaneo/permissions";
+import { DEFAULT_ROLE_NAMES, statement } from "@tracing/permissions";
 import { createFileRoute } from "@tanstack/react-router";
 import {
   Plus,

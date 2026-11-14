@@ -1,4 +1,4 @@
-import { client, resolveApiBaseUrl } from "@kaneo/libs";
+import { client, resolveApiBaseUrl } from "@tracing/libs";
 import type { InferRequestType } from "hono/client";
 import { HttpError } from "@/lib/http-error";
 

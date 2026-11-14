@@ -4,7 +4,7 @@
 /// <reference types="@tiptap/extension-task-item" preserve="true" />
 /// <reference types="@tiptap/markdown" preserve="true" />
 /// <reference types="@tiptap/starter-kit" preserve="true" />
-export { default as KaneoTaskItem } from "@tiptap/extension-task-item";
+export { default as TracingTaskItem } from "@tiptap/extension-task-item";
 export { AttachmentCard } from "./attachment-card";
 export {
   type BaseExtensionNodes,
@@ -13,9 +13,9 @@ export {
 } from "./base-extensions";
 export { EmbedBlock, type EmbedBlockOptions } from "./embed-block";
 export { getEmbedSource } from "./embed-source";
-export { KaneoImage } from "./kaneo-image";
-export { KaneoIssueLink } from "./kaneo-issue-link";
-export { KaneoMention } from "./kaneo-mention";
+export { TracingImage } from "./kaneo-image";
+export { TracingIssueLink } from "./kaneo-issue-link";
+export { TracingMention } from "./kaneo-mention";
 export { parseWidth } from "./parse-width";
 export { SafeHardBreak } from "./safe-hard-break";
 export {

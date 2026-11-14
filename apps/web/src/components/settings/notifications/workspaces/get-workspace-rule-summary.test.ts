@@ -5,7 +5,7 @@ import { getWorkspaceRuleSummary } from "./get-workspace-rule-summary";
 import type { WorkspaceRule } from "./workspace-rule-state";
 
 const english: Record<string, string> = {
-  "settings:notificationsPage.onlyInTracing": "Only in Kaneo",
+  "settings:notificationsPage.onlyInTracing": "Only in Tracing",
   "settings:notificationsPage.allProjects": "All projects",
   "settings:notificationsPage.emailTitle": "Email",
   "settings:notificationsPage.gotifyTitle": "Gotify",
@@ -43,9 +43,9 @@ const rule: WorkspaceRule = {
 };
 
 describe("getWorkspaceRuleSummary", () => {
-  it("says only in Kaneo when there is no rule", () => {
+  it("says only in Tracing when there is no rule", () => {
     expect(getWorkspaceRuleSummary(undefined, availability, t)).toBe(
-      "Only in Kaneo",
+      "Only in Tracing",
     );
   });
 
@@ -92,7 +92,7 @@ describe("getWorkspaceRuleSummary", () => {
     ).toBe("Email · All projects");
   });
 
-  it("says only in Kaneo when no usable channel is left", () => {
+  it("says only in Tracing when no usable channel is left", () => {
     expect(
       getWorkspaceRuleSummary(
         {
@@ -104,6 +104,6 @@ describe("getWorkspaceRuleSummary", () => {
         availability,
         t,
       ),
-    ).toBe("Only in Kaneo");
+    ).toBe("Only in Tracing");
   });
 });

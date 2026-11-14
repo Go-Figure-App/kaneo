@@ -9,7 +9,7 @@ import {
 import deleteLabel from "./delete-label";
 
 const { request } = vi.hoisted(() => ({ request: vi.fn() }));
-vi.mock("@kaneo/libs", () => ({
+vi.mock("@tracing/libs", () => ({
   client: { label: { ":id": { $delete: request } } },
 }));
 const root = {

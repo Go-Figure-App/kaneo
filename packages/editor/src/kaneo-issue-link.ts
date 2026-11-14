@@ -1,7 +1,7 @@
 import { mergeAttributes, Node } from "@tiptap/core";
 import { escapeHtml } from "./url-safety";
 
-export const KaneoIssueLink = Node.create({
+export const TracingIssueLink = Node.create({
   name: "kaneoIssueLink",
   group: "inline",
   inline: true,

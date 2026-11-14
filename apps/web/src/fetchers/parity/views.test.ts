@@ -1,7 +1,7 @@
 import { afterEach, expect, it, vi } from "vite-plus/test";
 import { deleteTemplate, saveTemplate } from "./views";
 
-vi.mock("@kaneo/libs", async () => {
+vi.mock("@tracing/libs", async () => {
   const { hc } = await import("hono/client");
   return { client: hc("https://example.test/api") };
 });

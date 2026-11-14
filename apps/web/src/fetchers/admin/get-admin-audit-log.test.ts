@@ -6,7 +6,7 @@ const mocks = vi.hoisted(() => ({
   get: vi.fn(),
 }));
 
-vi.mock("@kaneo/libs", () => ({
+vi.mock("@tracing/libs", () => ({
   client: {
     admin: {
       "audit-log": {

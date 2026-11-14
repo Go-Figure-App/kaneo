@@ -40,7 +40,7 @@ vi.mock("@tanstack/react-query", () => ({
     return { mutate: mocks.reorder, isPending: mocks.isReordering };
   },
 }));
-vi.mock("@kaneo/libs", () => ({ client: {} }));
+vi.mock("@tracing/libs", () => ({ client: {} }));
 vi.mock("@tanstack/react-router", () => ({
   useNavigate: () => vi.fn(),
   useRouter: () => ({ preloadRoute: () => Promise.resolve() }),

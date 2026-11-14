@@ -6,7 +6,7 @@ const { privateRequest, publicRequest } = vi.hoisted(() => ({
   privateRequest: vi.fn(),
   publicRequest: vi.fn(),
 }));
-vi.mock("@kaneo/libs", () => ({
+vi.mock("@tracing/libs", () => ({
   client: {
     task: { tasks: { ":projectId": { $get: privateRequest } } },
     "public-project": { ":id": { $get: publicRequest } },

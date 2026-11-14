@@ -1,4 +1,4 @@
-import { INSTANCE_PERMISSIONS } from "@kaneo/permissions";
+import { INSTANCE_PERMISSIONS } from "@tracing/permissions";
 import { describe, expect, it } from "vite-plus/test";
 import { buildSettingsNav } from "@/components/settings/nav/build-settings-nav";
 
@@ -107,7 +107,7 @@ describe("buildSettingsNav", () => {
 
   it("gives every project its own settings pages", () => {
     const nav = build({
-      projects: [{ id: "p1", name: "Kaneo Web", icon: "Unknown" }],
+      projects: [{ id: "p1", name: "Tracing Web", icon: "Unknown" }],
     });
 
     expect(nav.projects).toHaveLength(1);

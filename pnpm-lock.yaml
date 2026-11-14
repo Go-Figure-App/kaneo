@@ -930,15 +930,6 @@ importers:
       '@babel/core':
         specifier: ^8.0.9
         version: 8.0.9
-      '@kaneo/editor':
-        specifier: workspace:@tracing/editor@*
-        version: link:../../packages/editor
-      '@kaneo/libs':
-        specifier: workspace:@tracing/libs@*
-        version: link:../../packages/libs
-      '@kaneo/permissions':
-        specifier: workspace:@tracing/permissions@*
-        version: link:../../packages/permissions
       '@rolldown/plugin-babel':
         specifier: ^0.2.4
         version: 0.2.4(@babel/core@8.0.9)(@babel/runtime@7.29.7)(@voidzero-dev/vite-plus-core@1.4.0(@types/node@26.6.5)(esbuild@0.28.2)(jiti@2.7.0)(terser@5.51.2)(tsx@4.23.15)(typescript@7.0.2)(yaml@2.9.0))(rolldown@1.2.15)
@@ -1072,9 +1063,6 @@ importers:
         specifier: ^3.32.0
         version: 3.32.0
     devDependencies:
-      '@kaneo/typescript-config':
-        specifier: workspace:@tracing/typescript-config@*
-        version: link:../typescript-config
       '@tracing/typescript-config':
         specifier: workspace:*
         version: link:../typescript-config
@@ -1158,12 +1146,6 @@ importers:
 
   packages/libs:
     devDependencies:
-      '@kaneo/api':
-        specifier: workspace:@tracing/api@*
-        version: link:../../apps/api
-      '@kaneo/typescript-config':
-        specifier: workspace:@tracing/typescript-config@*
-        version: link:../typescript-config
       '@tracing/api':
         specifier: workspace:*
         version: link:../../apps/api

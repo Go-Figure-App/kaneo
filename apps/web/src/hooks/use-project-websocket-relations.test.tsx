@@ -8,7 +8,7 @@ import {
   vi,
 } from "vite-plus/test";
 
-vi.mock("@kaneo/libs", () => ({
+vi.mock("@tracing/libs", () => ({
   windowId: "test-window-id",
 }));
 

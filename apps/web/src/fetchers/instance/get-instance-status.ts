@@ -1,4 +1,4 @@
-import { resolveApiBaseUrl } from "@kaneo/libs";
+import { resolveApiBaseUrl } from "@tracing/libs";
 import { HttpError } from "@/lib/http-error";
 
 export type InstanceStatus = {
