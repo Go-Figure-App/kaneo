@@ -25,13 +25,13 @@ function host(url: string): string {
 
 const AUTH_LABELS = {
   flag: "--token",
-  env: "KANEO_API_KEY",
+  env: "TRACING_API_KEY or KANEO_API_KEY",
   profile: "stored login",
 } as const;
 
 const WORKSPACE_SOURCES = {
   flag: "-w",
-  env: "KANEO_WORKSPACE",
+  env: "TRACING_WORKSPACE or KANEO_WORKSPACE",
 } as const;
 
 function skipped(name: DoctorCheck["name"], reason: string): DoctorCheck {
@@ -79,7 +79,7 @@ const checkLogin = Effect.fn("doctor.login")(function* (session: SessionShape) {
     return {
       name: "login",
       ok: false,
-      detail: "Not signed in. Run tracing login, or set KANEO_API_KEY.",
+      detail: "Not signed in. Run tracing login, or set TRACING_API_KEY.",
     } satisfies DoctorCheck;
   }
   const user = yield* Effect.result(getCurrentUser());
@@ -93,7 +93,7 @@ const checkLogin = Effect.fn("doctor.login")(function* (session: SessionShape) {
   return {
     name: "login",
     ok: true,
-    detail: `${user.success.name} (${user.success.email}) with ${AUTH_LABELS[credentials.source]}`,
+    detail: `${user.success.name} (${user.success.email}) with ${credentials.variable ?? AUTH_LABELS[credentials.source]}`,
   } satisfies DoctorCheck;
 });
 
@@ -113,7 +113,7 @@ const checkWorkspace = Effect.fn("doctor.workspace")(function* (
       ? (session.repo?.path ?? ".tracing.json")
       : selected.source === "profile"
         ? `profile ${session.profileName}`
-        : WORKSPACE_SOURCES[selected.source];
+        : (selected.variable ?? WORKSPACE_SOURCES[selected.source]);
   const workspace = yield* Effect.result(getWorkspace(selected.id));
   if (workspace._tag === "Failure") {
     return {

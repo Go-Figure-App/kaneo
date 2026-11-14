@@ -146,9 +146,12 @@ export const runLink = Effect.fn("command.link")(function* (options: {
     renderLink,
   );
 
-  const overrides = ["KANEO_WORKSPACE", "KANEO_PROJECT"].filter((name) =>
-    environment.env[name]?.trim(),
-  );
+  const overrides = [
+    "TRACING_WORKSPACE",
+    "KANEO_WORKSPACE",
+    "TRACING_PROJECT",
+    "KANEO_PROJECT",
+  ].filter((name) => environment.env[name]?.trim());
   if (overrides.length > 0) {
     yield* note((ui) => [
       ...overrides.map(

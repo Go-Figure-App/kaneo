@@ -51,11 +51,13 @@ export function parseConfig(text: string): ParsedConfig {
   if (
     typeof raw !== "object" ||
     raw === null ||
-    (raw as { kind?: unknown }).kind !== "tracing-cli"
+    !(["tracing-cli", "kaneo-cli"] as unknown[]).includes(
+      (raw as { kind?: unknown }).kind,
+    )
   ) {
     return { status: "foreign" };
   }
-  const decoded = decodeConfig(raw);
+  const decoded = decodeConfig({ ...raw, kind: "tracing-cli" });
   return Result.isSuccess(decoded)
     ? { status: "ok", config: decoded.success }
     : {

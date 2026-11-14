@@ -1,3 +1,4 @@
+import { environmentSetting } from "../../services/environment-setting.js";
 import { Effect, Option } from "effect";
 import { Argument, Command } from "effect/cli";
 import { ConfigStore } from "../../config/config-store.js";
@@ -83,12 +84,10 @@ export const runProfileUse = Effect.fn("command.profile.use")(
       renderProfileUsed,
     );
 
-    const override = (
-      environment.env.TRACING_PROFILE ?? environment.env.KANEO_PROFILE
-    )?.trim();
-    if (override && override !== name) {
+    const override = environmentSetting(environment.env, "PROFILE");
+    if (override && override.value !== name) {
       yield* note((ui) => [
-        `  ${ui.theme.warning(ui.glyphs.warning)} KANEO_PROFILE is set to ${override} and is used instead until you unset it.`,
+        `  ${ui.theme.warning(ui.glyphs.warning)} ${override.name} is set to ${override.value} and is used instead until you unset it.`,
         "",
       ]);
     }
