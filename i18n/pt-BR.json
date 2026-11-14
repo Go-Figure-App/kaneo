@@ -4500,6 +4500,7 @@
 			"title": "Atividade"
 		},
 		"background": {
+			"title": "Tracing",
 			"channelDescription": "Atribuições, comentários e menções dos seus espaços de trabalho",
 			"channelName": "Atividade do Tracing",
 			"summary_many": "Mais {{count}} notificações novas",

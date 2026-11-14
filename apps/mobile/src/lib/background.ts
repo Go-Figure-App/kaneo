@@ -51,7 +51,7 @@ export async function checkNotifications(): Promise<void> {
     const shown = hidden > 1 ? unread.slice(-(MAX_POSTED - 1)) : unread;
     if (hidden > 1)
       await post({
-        title: "Tracing",
+        title: i18n.t("mobile:background.title"),
         body: i18n.t("mobile:background.summary", { count: hidden }),
         data: {},
       });

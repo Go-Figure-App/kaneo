@@ -4346,6 +4346,7 @@
 			"title": "활동"
 		},
 		"background": {
+			"title": "Tracing",
 			"channelDescription": "워크스페이스의 할당, 댓글, 멘션",
 			"channelName": "Tracing 활동",
 			"summary_other": "새 알림 {{count}}개 더 있음"

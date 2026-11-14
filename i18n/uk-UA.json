@@ -5050,6 +5050,7 @@
 			"workspaceCreated": "Робочий простір «{{name}}» створено"
 		},
 		"background": {
+			"title": "Tracing",
 			"summary_one": "Ще {{count}} нове сповіщення",
 			"summary_few": "Ще {{count}} нові сповіщення",
 			"summary_many": "Ще {{count}} нових сповіщень",

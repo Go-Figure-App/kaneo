@@ -9,7 +9,7 @@ Run Compose commands from the directory containing your deployment file. The ser
 
 ```bash
 docker compose ps
-docker compose logs --tail=100 kaneo postgres
+docker compose logs --tail=100 tracing postgres
 ```
 
 If PostgreSQL is unhealthy, check its logs and available disk space. If Tracing cannot connect, check the database hostname and credentials. Inside Compose, the default hostname is `postgres`, not `localhost`.
@@ -23,7 +23,7 @@ Check `TRACING_CLIENT_URL` against the URL in your browser. In the bundled deplo
 A browser on another computer cannot use your server's `localhost` URL. Use the public hostname and HTTPS, then recreate the container:
 
 ```bash
-docker compose up -d --force-recreate kaneo
+docker compose up -d --force-recreate tracing
 ```
 
 Check the browser's Network panel for the failed request and its status. A `401` usually calls for checking authentication; a `403` calls for checking the required permission or project access; a `404` calls for checking that the resource exists and that you are a member of its workspace.

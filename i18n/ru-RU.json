@@ -5102,6 +5102,7 @@
 			"workspaceCreated": "Рабочая область «{{name}}» создана"
 		},
 		"background": {
+			"title": "Tracing",
 			"summary_one": "Ещё {{count}} новое уведомление",
 			"summary_few": "Ещё {{count}} новых уведомления",
 			"summary_many": "Ещё {{count}} новых уведомлений",

@@ -31,7 +31,7 @@ The app is open source, so you can also build it yourself from the [repository](
 
 ### Sign-in methods on self-hosted servers
 
-- **Continue in browser** uses device authorization. It works with the default configuration. If you set `DEVICE_AUTH_CLIENT_IDS`, include `kaneo-cli` in the list. See [environment variables](/core/installation/environment-variables).
+- **Continue in browser** uses device authorization. It works with the default configuration. If you set `DEVICE_AUTH_CLIENT_IDS`, include `tracing-mobile` for the mobile app, alongside any CLI or MCP client IDs your deployment uses. See [environment variables](/core/installation/environment-variables).
 - **Use an API key** works even when other sign-in methods are turned off. Create a key on the web under **Settings → Account → API keys**.
 - **Create account** appears only when registration is open on your instance.
 

@@ -5,7 +5,7 @@ description: Replace separate API and web containers while keeping your existing
 
 Use this guide only if your deployment still has separate `ghcr.io/usekaneo/api` and `ghcr.io/usekaneo/web` services. Build `Dockerfile.tracing` from this repository; its bundled image serves both on port 5173. Tracing registry images are not published.
 
-If you already use the bundled image, follow [Upgrade Tracing](/core/operations/upgrades). For drim-managed deployments, see [Migrate to drim](/core/installation/drim-migration).
+If you already use the bundled image, follow [Upgrade Tracing](/core/operations/upgrades). For drim-managed deployments with separate containers, locate the generated Compose file and continue with the steps below. Preserve its existing database, volumes, and secrets.
 
 ## Before changing the layout
 

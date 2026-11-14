@@ -4346,6 +4346,7 @@
 			"title": "活動"
 		},
 		"background": {
+			"title": "Tracing",
 			"channelDescription": "來自工作區的指派、留言和提及",
 			"channelName": "Tracing 活動",
 			"summary_other": "另有 {{count}} 則新通知"

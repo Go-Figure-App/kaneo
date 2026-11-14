@@ -5050,6 +5050,7 @@
 			"workspaceCreated": "Utworzono obszar roboczy „{{name}}”"
 		},
 		"background": {
+			"title": "Tracing",
 			"summary_one": "Jeszcze {{count}} nowe powiadomienie",
 			"summary_few": "Jeszcze {{count}} nowe powiadomienia",
 			"summary_many": "Jeszcze {{count}} nowych powiadomień",

@@ -139,9 +139,9 @@ Start PostgreSQL, check that it is healthy, then start Tracing:
 
 ```bash
 docker compose up -d --wait postgres
-docker compose up -d kaneo
+docker compose up -d tracing
 docker compose ps
-docker compose logs --tail=100 postgres kaneo
+docker compose logs --tail=100 postgres tracing
 ```
 
 Sign in and check existing projects, tasks, and attachments as described in [Upgrade Tracing](/core/operations/upgrades).

@@ -4968,6 +4968,7 @@
 			"workspaceCreated": "Espacio de trabajo «{{name}}» creado"
 		},
 		"background": {
+			"title": "Tracing",
 			"summary_one": "{{count}} notificación nueva más",
 			"summary_other": "{{count}} notificaciones nuevas más",
 			"channelName": "Actividad de Tracing",

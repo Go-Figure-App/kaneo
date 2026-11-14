@@ -46,6 +46,12 @@ jobs:
       - run: pnpm i18n:check
       - run: pnpm openapi:check
       - run: pnpm typecheck
+      - name: Build and validate the public site
+        env:
+          NEXT_TELEMETRY_DISABLED: "1"
+        run: |
+          pnpm --filter @tracing/site exec next build
+          pnpm --filter @tracing/site seo:check
 
   unit:
     if: (github.repository == 'Go-Figure-App/tracing' || github.repository == 'Go-Figure-App/kaneo')

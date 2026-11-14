@@ -1,11 +1,13 @@
 import type { Metadata } from "next";
 import { Footer } from "@/components/landing/footer";
 import { Navbar } from "@/components/landing/navbar";
+import { withSocialMetadata } from "@/lib/metadata";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = withSocialMetadata({
   title: "Self-host Tracing",
   description: "Build and run Tracing on your own infrastructure.",
-};
+  alternates: { canonical: "/pricing" },
+});
 export default function PricingPage() {
   return (
     <>

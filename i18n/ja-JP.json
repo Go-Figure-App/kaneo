@@ -4346,6 +4346,7 @@
 			"title": "アクティビティ"
 		},
 		"background": {
+			"title": "Tracing",
 			"channelDescription": "ワークスペースからの割り当て、コメント、メンション",
 			"channelName": "Tracing のアクティビティ",
 			"summary_other": "他に{{count}}件の新しい通知"

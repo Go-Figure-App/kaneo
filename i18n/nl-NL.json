@@ -4423,6 +4423,7 @@
 			"title": "Activiteit"
 		},
 		"background": {
+			"title": "Tracing",
 			"channelDescription": "Toewijzingen, reacties en vermeldingen uit je werkruimtes",
 			"channelName": "Tracing-activiteit",
 			"summary_one": "Nog {{count}} nieuwe melding",

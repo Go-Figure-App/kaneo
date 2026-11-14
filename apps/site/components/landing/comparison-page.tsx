@@ -14,7 +14,7 @@ import { alternativePath, comparisons } from "@/lib/comparisons";
 import type { Cell, Comparison } from "@/lib/comparisons/types";
 import { landing } from "@/lib/landing";
 
-const SIGN_UP = "https://tracing.gofigureapp.io/auth/sign-up";
+const OPEN_APP = "https://tracing.gofigureapp.io/auth/sign-in";
 
 export type { Comparison };
 
@@ -92,9 +92,9 @@ export function ComparisonPage({ data }: { data: Comparison }) {
                     variant="default"
                     size="lg"
                     className="h-12 px-5 text-sm sm:h-12"
-                    render={<a href={SIGN_UP} />}
+                    render={<a href={OPEN_APP} />}
                   >
-                    Start 14-day free trial
+                    Open Tracing
                   </Button>
                   <Button
                     variant="outline"
@@ -102,7 +102,7 @@ export function ComparisonPage({ data }: { data: Comparison }) {
                     className="h-12 px-5 text-sm sm:h-12"
                     render={<a href="/pricing" />}
                   >
-                    See pricing
+                    Self-host Tracing
                   </Button>
                 </div>
               </FadeIn>
@@ -297,9 +297,9 @@ export function ComparisonPage({ data }: { data: Comparison }) {
                   variant="default"
                   size="lg"
                   className="h-12 px-5 text-sm sm:h-12"
-                  render={<a href={SIGN_UP} />}
+                  render={<a href={OPEN_APP} />}
                 >
-                  Try Tracing Cloud free
+                  Open Tracing
                 </Button>
                 <Button
                   variant="outline"
@@ -307,7 +307,7 @@ export function ComparisonPage({ data }: { data: Comparison }) {
                   className="h-12 px-5 text-sm sm:h-12"
                   render={<a href="/pricing" />}
                 >
-                  See pricing
+                  Self-host Tracing
                 </Button>
               </div>
             </div>

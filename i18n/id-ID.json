@@ -4804,6 +4804,7 @@
 			"workspaceCreated": "Ruang kerja “{{name}}” dibuat"
 		},
 		"background": {
+			"title": "Tracing",
 			"summary_other": "{{count}} notifikasi baru lainnya",
 			"channelName": "Aktivitas Tracing",
 			"channelDescription": "Penugasan, komentar, dan sebutan dari ruang kerja Anda"

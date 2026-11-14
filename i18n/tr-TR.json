@@ -4423,6 +4423,7 @@
 			"title": "Etkinlik"
 		},
 		"background": {
+			"title": "Tracing",
 			"channelDescription": "Çalışma alanlarınızdaki atamalar, yorumlar ve bahsetmeler",
 			"channelName": "Tracing etkinliği",
 			"summary_one": "{{count}} yeni bildirim daha",

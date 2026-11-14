@@ -4886,6 +4886,7 @@
 			"workspaceCreated": "Работниот простор „{{name}}“ е создаден"
 		},
 		"background": {
+			"title": "Tracing",
 			"summary_one": "Уште {{count}} ново известување",
 			"summary_other": "Уште {{count}} нови известувања",
 			"channelName": "Активност во Tracing",

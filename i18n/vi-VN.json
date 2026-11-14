@@ -4804,6 +4804,7 @@
 			"workspaceCreated": "Đã tạo không gian làm việc “{{name}}”"
 		},
 		"background": {
+			"title": "Tracing",
 			"summary_other": "Thêm {{count}} thông báo mới",
 			"channelName": "Hoạt động Tracing",
 			"channelDescription": "Việc được giao, bình luận và lượt nhắc đến từ các không gian làm việc của bạn"

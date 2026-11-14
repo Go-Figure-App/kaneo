@@ -4,7 +4,7 @@
   "description": "Migrate PLANKA boards into Tracing: projects, lists, cards, labels, assignees, checklists and comments, over the public APIs of both",
   "license": "MIT",
   "author": "Tracing (https://tracing.gofigureapp.io)",
-  "homepage": "https://github.com/Go-Figure-App/tracing/tree/main/apps/docs/core/migrations/from-planka",
+  "homepage": "https://github.com/Go-Figure-App/tracing/blob/main/apps/docs/core/migrations/from-planka.mdx",
   "repository": {
     "type": "git",
     "url": "https://github.com/Go-Figure-App/tracing/",

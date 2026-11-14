@@ -103,6 +103,19 @@ test("an existing release resolves its reviewed tag, not newer main", () =>
     assert.equal(result.status, 0, result.stderr);
     assert.equal(result.output, `source_sha=${first}\n`);
   }));
+test("an older release can use the legacy chart path after the rename", () =>
+  fixture(({ git, commit, versions, verify }) => {
+    git("mv", "charts/tracing", "charts/kaneo");
+    const legacy = commit();
+    git("tag", "v1.2.3");
+    git("mv", "charts/kaneo", "charts/tracing");
+    versions("1.2.4");
+    const latest = commit();
+    git("update-ref", "refs/remotes/origin/main", latest);
+    const result = verify("released", "1.2.3");
+    assert.equal(result.status, 0, result.stderr);
+    assert.equal(result.output, `source_sha=${legacy}\n`);
+  }));
 test("tags outside reviewed main history cannot publish", () =>
   fixture(({ git, commit, verify }) => {
     git("checkout", "-b", "unreviewed");

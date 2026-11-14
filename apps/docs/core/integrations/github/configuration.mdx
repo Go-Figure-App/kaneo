@@ -21,7 +21,7 @@ Encode the downloaded PEM file without printing it into logs or committing it. A
 Recreate the application container to apply the environment:
 
 ```bash
-docker compose up -d --force-recreate kaneo
+docker compose up -d --force-recreate tracing
 ```
 
 For Kubernetes, pass the same values through a Secret using your deployment's existing secret configuration. Do not create a second API deployment just for this integration.

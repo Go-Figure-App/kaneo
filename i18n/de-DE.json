@@ -4132,11 +4132,11 @@
 	"press": {
 		"title": "Pressemappe",
 		"headline": "Tracing-Pressemappe",
-		"intro": "Tracing logos and app icons for articles, videos, and other media.",
-		"description": "Tracing press resources: product information, logos, and contact details for journalists and creators.",
+		"intro": "Tracing-Logos und App-Symbole für Artikel, Videos und andere Medien.",
+		"description": "Presseinformationen zu Tracing: Produktinformationen, Logos und Kontaktdaten für Journalisten und Kreative.",
 		"downloadKit": "Alle Materialien herunterladen",
 		"boilerplateTitle": "Über Tracing",
-		"boilerplate": "Tracing is Go Figure’s open-source planning workspace, built on Kaneo by Andrej Acevski. It adds issues, triage, initiatives, roadmaps, cycles, insights, and saved views. The source is available under the MIT license for self-hosting.",
+		"boilerplate": "Tracing ist der quelloffene Arbeitsbereich für die Projektplanung von Go Figure und basiert auf Kaneo von Andrej Acevski. Er bietet Aufgaben, Triage, Initiativen, Roadmaps, Zyklen, Auswertungen und gespeicherte Ansichten. Der Quellcode steht unter der MIT-Lizenz zum Selbsthosten zur Verfügung.",
 		"logosTitle": "Logos",
 		"darkLogo": "Dunkle Wortmarke",
 		"darkLogoAlt": "Dunkles Tracing-Logo auf hellem Hintergrund",
@@ -4886,6 +4886,7 @@
 			"workspaceCreated": "Workspace „{{name}}“ erstellt"
 		},
 		"background": {
+			"title": "Tracing",
 			"summary_one": "{{count}} weitere neue Benachrichtigung",
 			"summary_other": "{{count}} weitere neue Benachrichtigungen",
 			"channelName": "Tracing-Aktivität",

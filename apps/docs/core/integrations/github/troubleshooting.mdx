@@ -16,8 +16,8 @@ Confirm the owner and repository name in Tracing. An organization owner may need
 Update the instance's [GitHub environment variables](/core/installation/environment-variables#github-integration), then recreate the application container:
 
 ```bash
-docker compose up -d --force-recreate kaneo
-docker compose logs --tail=100 kaneo
+docker compose up -d --force-recreate tracing
+docker compose logs --tail=100 tracing
 ```
 
 A plain container restart does not reload `.env`. Check the app ID, webhook secret, and private key format. For PEM formatting problems, use `GITHUB_PRIVATE_KEY_BASE64` with the encoded full key. Do not paste the private key or secret into a support issue.

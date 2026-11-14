@@ -20,7 +20,7 @@ The commands below apply to the [Docker Compose setup](/core/installation/docker
 Schedule a maintenance window and stop every Tracing API instance that can write to this database. For the single-container setup:
 
 ```bash
-docker compose stop kaneo
+docker compose stop tracing
 ```
 
 If uploads are configured, wait for outstanding signed upload URLs to expire before taking the storage snapshot. The default is five minutes; use your configured `S3_PRESIGN_TTL_SECONDS` if it differs.
@@ -69,7 +69,7 @@ For managed object storage, use a recoverable bucket snapshot or versioned backu
 Once the database, storage, and configuration copies are complete:
 
 ```bash
-docker compose start kaneo
+docker compose start tracing
 ```
 
 ## Test the database restore in isolation

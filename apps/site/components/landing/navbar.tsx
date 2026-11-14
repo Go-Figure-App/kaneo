@@ -127,7 +127,7 @@ export function Navbar() {
           <Button
             className="text-sm"
             size="sm"
-            render={<a href="https://tracing.gofigureapp.io/auth/sign-up" />}
+            render={<a href="https://tracing.gofigureapp.io/auth/sign-in" />}
           >
             {landing.navigation.getStarted}
           </Button>
@@ -225,7 +225,7 @@ function MobileNavigation() {
           </Button>
           <Button
             className="h-11"
-            render={<a href="https://tracing.gofigureapp.io/auth/sign-up" />}
+            render={<a href="https://tracing.gofigureapp.io/auth/sign-in" />}
           >
             {landing.navigation.getStarted}
           </Button>

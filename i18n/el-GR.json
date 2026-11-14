@@ -4886,6 +4886,7 @@
 			"workspaceCreated": "Ο χώρος εργασίας «{{name}}» δημιουργήθηκε"
 		},
 		"background": {
+			"title": "Tracing",
 			"summary_one": "{{count}} ακόμα νέα ειδοποίηση",
 			"summary_other": "{{count}} ακόμα νέες ειδοποιήσεις",
 			"channelName": "Δραστηριότητα Tracing",

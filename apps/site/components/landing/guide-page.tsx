@@ -13,7 +13,7 @@ import { Button } from "@/components/ui/button";
 import type { Guide } from "@/lib/guides";
 import { guidePath } from "@/lib/guides";
 
-const SIGN_UP = "https://tracing.gofigureapp.io/auth/sign-up";
+const OPEN_APP = "https://tracing.gofigureapp.io/auth/sign-in";
 
 function formatUpdatedOn(value: string) {
   return new Date(`${value}T00:00:00Z`).toLocaleDateString("en-GB", {
@@ -160,9 +160,9 @@ export function GuidePage({ data }: { data: Guide }) {
                   variant="default"
                   size="lg"
                   className="h-12 px-5 text-sm sm:h-12"
-                  render={<a href={SIGN_UP} />}
+                  render={<a href={OPEN_APP} />}
                 >
-                  Try Tracing Cloud free
+                  Open Tracing
                 </Button>
                 <Button
                   variant="outline"
@@ -170,7 +170,7 @@ export function GuidePage({ data }: { data: Guide }) {
                   className="h-12 px-5 text-sm sm:h-12"
                   render={<a href="/pricing" />}
                 >
-                  See pricing
+                  Self-host Tracing
                 </Button>
               </div>
             </div>

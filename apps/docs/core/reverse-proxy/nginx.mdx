@@ -18,7 +18,7 @@ TRACING_CLIENT_URL=https://kaneo.example.com
 Leave `TRACING_API_URL` unset for the bundled image. It serves the web app and `/api` through the same public origin.
 
 ```bash
-docker compose up -d --force-recreate kaneo
+docker compose up -d --force-recreate tracing
 ```
 
 ## Trust the proxy chain
@@ -28,7 +28,7 @@ Configure `TRUSTED_PROXIES` for this host-Nginx setup before serving traffic. Re
 Find the gateway for the Tracing container's network:
 
 ```bash
-docker inspect "$(docker compose ps -q kaneo)" --format '{{range $name, $network := .NetworkSettings.Networks}}{{$name}} gateway={{$network.Gateway}}{{println}}{{end}}'
+docker inspect "$(docker compose ps -q tracing)" --format '{{range $name, $network := .NetworkSettings.Networks}}{{$name}} gateway={{$network.Gateway}}{{println}}{{end}}'
 ```
 
 On a standard Linux Docker bridge, the host proxy reaches the container through that gateway. If the output shows `172.19.0.1`, add this to `.env`, replacing the example address with your actual gateway:
@@ -42,7 +42,7 @@ Keep loopback in the list because the bundled Nginx connects to the API locally.
 Apply the setting:
 
 ```bash
-docker compose up -d --force-recreate kaneo
+docker compose up -d --force-recreate tracing
 ```
 
 ## Configure Nginx

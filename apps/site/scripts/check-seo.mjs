@@ -6,6 +6,8 @@ const siteDir = fileURLToPath(new URL("../", import.meta.url));
 const outDir = path.join(siteDir, "out");
 const docsDir = path.resolve(siteDir, "../docs");
 const origin = "https://tracing.gofigureapp.io";
+// The application serves this route; it is not part of the marketing export.
+const applicationPaths = new Set(["/auth/sign-in"]);
 const failures = new Set();
 
 function check(condition, message) {
@@ -158,7 +160,8 @@ for (const url of urls) {
   for (const anchor of tags(body, "a")) {
     if (!anchor.href) continue;
     const target = new URL(anchor.href, url);
-    if (target.origin !== origin) continue;
+    if (target.origin !== origin || applicationPaths.has(target.pathname))
+      continue;
     check(
       Boolean(targetFile(target.pathname)),
       `Broken internal link ${target.pathname} on ${location.pathname}`,

@@ -23,7 +23,7 @@ export const selfHostProjectManagementDocker: Guide = {
       body: [
         "Tracing runs as one application container alongside PostgreSQL. The container serves both the API and the web app on port 5173, so the reverse proxy has a single upstream.",
         landing.selfHostingGuide.compose,
-        "If you would rather not write it yourself, the drim CLI sets up Tracing, PostgreSQL, and HTTPS in one step: run drim setup on a fresh server and answer the prompts.",
+        "Use the source Compose setup in the core installation guide to build Tracing and configure PostgreSQL, persistent storage, and HTTPS.",
       ],
       items: [
         {
