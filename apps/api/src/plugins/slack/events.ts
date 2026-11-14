@@ -89,7 +89,8 @@ async function getSlackEventData(
     : [];
 
   const clientUrl =
-    (process.env.TRACING_CLIENT_URL ?? process.env.KANEO_CLIENT_URL) ||
+    process.env.TRACING_CLIENT_URL ||
+    process.env.KANEO_CLIENT_URL ||
     "http://localhost:5173";
   const taskUrl = `${clientUrl}/dashboard/workspace/${taskRow.workspaceId}/project/${taskRow.projectId}/task/${taskId}`;
 

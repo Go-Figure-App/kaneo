@@ -133,7 +133,7 @@ export function ResumeSyncDialog({
             }
             onClick={() => choose("kaneo")}
           >
-            {t("settings:syncRules.useKaneo")}
+            {t("settings:syncRules.useTracing")}
           </Button>
         </DialogFooter>
       </DialogPopup>

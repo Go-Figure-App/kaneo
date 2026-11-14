@@ -51,7 +51,8 @@ export const instanceSettingsSchema = z
       description: "The saved name, or null for the default Tracing.",
     }),
     instanceUrl: z.string().nullable().openapi({
-      description: "The web app URL from `KANEO_CLIENT_URL`. Read-only.",
+      description:
+        "The web app URL from `TRACING_CLIENT_URL`, falling back to `KANEO_CLIENT_URL`. Read-only.",
     }),
     registrationEnabled: z.boolean(),
     passwordRegistrationEnabled: z.boolean(),

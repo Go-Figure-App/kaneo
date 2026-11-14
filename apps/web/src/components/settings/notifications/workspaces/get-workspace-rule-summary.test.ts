@@ -5,7 +5,7 @@ import { getWorkspaceRuleSummary } from "./get-workspace-rule-summary";
 import type { WorkspaceRule } from "./workspace-rule-state";
 
 const english: Record<string, string> = {
-  "settings:notificationsPage.onlyInKaneo": "Only in Kaneo",
+  "settings:notificationsPage.onlyInTracing": "Only in Kaneo",
   "settings:notificationsPage.allProjects": "All projects",
   "settings:notificationsPage.emailTitle": "Email",
   "settings:notificationsPage.gotifyTitle": "Gotify",

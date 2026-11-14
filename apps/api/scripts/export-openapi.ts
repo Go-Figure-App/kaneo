@@ -3,6 +3,7 @@ import { resolve } from "node:path";
 import { createApp } from "../src/index";
 
 process.env.KANEO_API_URL = "https://tracing.gofigureapp.io";
+process.env.TRACING_API_URL = "https://tracing.gofigureapp.io";
 
 const { app } = createApp();
 const response = await app.request("/api/openapi");

@@ -158,10 +158,12 @@ const isEmailOtpSignInDisabled =
   process.env.DISABLE_EMAIL_OTP_SIGN_IN === "true";
 
 const apiUrl =
-  (process.env.TRACING_API_URL ?? process.env.KANEO_API_URL) ||
+  process.env.TRACING_API_URL ||
+  process.env.KANEO_API_URL ||
   "http://localhost:1337";
 const clientUrl =
-  (process.env.TRACING_CLIENT_URL ?? process.env.KANEO_CLIENT_URL) ||
+  process.env.TRACING_CLIENT_URL ||
+  process.env.KANEO_CLIENT_URL ||
   "http://localhost:5173";
 
 const trustedOrigins = [clientUrl];
@@ -676,7 +678,7 @@ export const auth = betterAuth({
         },
       },
       async sendInvitationEmail(data) {
-        const inviteLink = `${process.env.TRACING_CLIENT_URL ?? process.env.KANEO_CLIENT_URL}/invitation/accept/${data.id}`;
+        const inviteLink = `${process.env.TRACING_CLIENT_URL || process.env.KANEO_CLIENT_URL}/invitation/accept/${data.id}`;
         const locale = await getUserLocale(data.email);
         const copy = getWorkspaceInvitationEmailCopy(locale);
 

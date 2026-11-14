@@ -32,10 +32,10 @@ export async function verifyTurnstile(
 
   try {
     const hostname = new URL(
-      (process.env.TRACING_CLIENT_URL ?? process.env.KANEO_CLIENT_URL) || "",
+      process.env.TRACING_CLIENT_URL || process.env.KANEO_CLIENT_URL || "",
     ).hostname;
     if (
-      (process.env.TRACING_CLOUD ?? process.env.KANEO_CLOUD) === "true" &&
+      (process.env.TRACING_CLOUD || process.env.KANEO_CLOUD) === "true" &&
       process.env.NODE_ENV === "production" &&
       ["localhost", "127.0.0.1", "[::1]"].includes(hostname)
     )
