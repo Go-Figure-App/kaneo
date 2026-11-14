@@ -15,7 +15,7 @@ For a self-hosted instance, pass its address once. Later commands reuse it:
 kaneo login --api-url https://kaneo.example.com
 ```
 
-`kaneo login` uses [device authorization](/api-reference/authentication) with the `kaneo-cli` client ID, which self-hosted Kaneo allows by default. If you set `DEVICE_AUTH_CLIENT_IDS`, keep `kaneo-cli` in the list.
+`tracing login` uses [device authorization](/api-reference/authentication) with the `tracing-cli` client ID, which the server allows by default. If you set `DEVICE_AUTH_CLIENT_IDS`, add `tracing-cli` to that explicit list and retain `kaneo-cli` so older CLI releases can still sign in.
 
 Check or end the session with:
 
