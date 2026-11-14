@@ -7,6 +7,7 @@
 		"start": "expo start",
 		"android": "expo run:android",
 		"ios": "expo run:ios",
+		"eas-build-post-install": "pnpm --filter @tracing/editor build",
 		"lint": "vp check .",
 		"typecheck": "vp run check:types",
 		"test": "vp run test:run"

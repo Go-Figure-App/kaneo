@@ -1,6 +1,6 @@
 # Tracing Mobile
 
-The Tracing app for Android and iOS, built with Expo and React Native. Works with **Tracing Cloud** (`tracing.gofigureapp.io`) and **self-hosted** instances.
+The Tracing app for Android and iOS, built with Expo and React Native. This Go Figure build connects to the team’s Tracing instance at `tracing.gofigureapp.io`.
 
 ## Features
 
@@ -27,12 +27,9 @@ These are admin or desktop tasks that don't fit a phone: integration setup (GitH
 
 ## Connecting
 
-- **Tracing Cloud**: tap _Tracing Cloud_.
-- **Self-hosted**: enter the address you open Tracing at, e.g. `kaneo.example.com` or `http://192.168.1.20:1337`. If your web app and API are on different hosts, enter the **API** address. `http://` is allowed for LAN/VPN servers on both platforms.
+This build uses the configured Go Figure server. Sign in with your existing account, an email code, an API key, or **Continue in browser**. There is no in-app purchase.
 
-_Continue in browser_ uses the device-authorization client `kaneo-cli`, which Tracing accepts by default. If an instance sets `DEVICE_AUTH_CLIENT_IDS`, it must include `kaneo-cli` for this option to work. Password, email code and API key sign-in work regardless.
-
-On Tracing Cloud, creating an account and requesting an email code are protected by a browser captcha, so the app opens the website for sign-up; password sign-in and browser sign-in work in the app.
+_Continue in browser_ uses `tracing-mobile`. Upgrade older servers or add it to `DEVICE_AUTH_CLIENT_IDS` before distributing the app, retaining every client ID still in use. See [server upgrade guidance](../docs/core/operations/upgrades.mdx#mobile-device-sign-in-compatibility).
 
 Credentials are stored with `expo-secure-store`: in the iOS Keychain, and encrypted with a key held in the Android Keystore.
 
@@ -56,19 +53,24 @@ pnpm --filter @tracing/mobile typecheck
 pnpm --filter @tracing/mobile test
 ```
 
-## Release builds
+## TestFlight builds
 
-The **Android APK** workflow (`.github/workflows/android.yml`) builds a release APK and uploads it as a workflow artifact. It runs on pull requests that touch `apps/mobile` and can be started by hand. Bump `version` and `android.versionCode` in `app.json` for each APK you hand out; Android only installs an update with a higher `versionCode`.
+The Expo project is [@gofigure/tracing](https://expo.dev/accounts/gofigure/projects/tracing), with bundle ID `io.gofigureapp.tracing`. The `production` EAS profile creates an App Store-signed build and increments its build number remotely. The EAS post-install hook compiles the shared editor package before Metro bundles the app. The Apple Developer team must have a matching bundle ID, distribution certificate, provisioning profile and App Store Connect app record.
 
-Release builds are signed with the key named by `KANEO_ANDROID_KEYSTORE`, `KANEO_ANDROID_KEYSTORE_PASSWORD`, `KANEO_ANDROID_KEY_ALIAS` and `KANEO_ANDROID_KEY_PASSWORD` (see `plugins/with-release-signing.js`), and with the debug key when those are unset. An APK only installs over one signed with the same key, so create the release key once and keep it safe:
+Run from `apps/mobile` after the source revision has passed CI:
 
 ```bash
-keytool -genkeypair -v -keystore kaneo-release.keystore -alias kaneo \
-  -keyalg RSA -keysize 4096 -validity 10000
-base64 -i kaneo-release.keystore | pbcopy   # paste into the ANDROID_KEYSTORE_BASE64 secret
+npx eas-cli@27.10.0 build --platform ios --profile production
+npx eas-cli@27.10.0 submit --platform ios --profile production
 ```
 
-CI reads the repository secrets `ANDROID_KEYSTORE_BASE64`, `ANDROID_KEYSTORE_PASSWORD`, `ANDROID_KEY_ALIAS` and `ANDROID_KEY_PASSWORD`. Locally, export the `KANEO_ANDROID_*` variables and run `pnpm --filter @tracing/mobile exec expo run:android --variant release`. For iOS, build with `pnpm --filter @tracing/mobile exec expo run:ios --configuration Release`.
+Select the completed build from this project during submission. After Apple finishes processing it, add it to an internal TestFlight group. Uploading a TestFlight build does not release the app publicly on the App Store. Keep signing credentials in EAS or local secret storage, never in Git.
+
+Do not set `GOFIGURE_LOCAL_SERVER_URL` for distribution builds. It is only for local simulator testing. Forks can select their own Expo account and project by setting both `GOFIGURE_EXPO_OWNER` and `GOFIGURE_EAS_PROJECT_ID`.
+
+## Local Android release builds
+
+The inherited Android APK workflow is archived. To create an APK locally, configure `KANEO_ANDROID_KEYSTORE`, `KANEO_ANDROID_KEYSTORE_PASSWORD`, `KANEO_ANDROID_KEY_ALIAS` and `KANEO_ANDROID_KEY_PASSWORD`, then run `pnpm --filter @tracing/mobile exec expo run:android --variant release`. The legacy variable names are retained for signing compatibility. If no release key is set, the plugin uses a debug key. Keep a stable release key and increase `android.versionCode` for installable upgrades.
 
 ## Project layout
 
