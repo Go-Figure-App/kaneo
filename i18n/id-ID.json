@@ -96,7 +96,7 @@
 				"errorToast": "Gagal membuat proyek"
 			},
 			"createWorkspace": {
-				"breadcrumbTracing": "KANEO",
+				"breadcrumbTracing": "Tracing",
 				"title": "Buat ruang kerja baru",
 				"description": "Buat ruang kerja baru dengan memberikan nama untuk ruang kerja Anda.",
 				"namePlaceholder": "Nama ruang kerja",

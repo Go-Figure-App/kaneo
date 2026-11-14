@@ -96,7 +96,7 @@
 				"errorToast": "Aanmaken van project mislukt"
 			},
 			"createWorkspace": {
-				"breadcrumbTracing": "KANEO",
+				"breadcrumbTracing": "Tracing",
 				"title": "Een nieuwe werkruimte aanmaken",
 				"description": "Maak een nieuwe werkruimte aan door een naam op te geven.",
 				"namePlaceholder": "Naam werkruimte",

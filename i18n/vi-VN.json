@@ -96,7 +96,7 @@
 				"errorToast": "Không thể tạo dự án"
 			},
 			"createWorkspace": {
-				"breadcrumbTracing": "KANEO",
+				"breadcrumbTracing": "Tracing",
 				"title": "Tạo không gian làm việc mới",
 				"description": "Tạo một không gian làm việc mới bằng cách đặt tên cho nó.",
 				"namePlaceholder": "Tên không gian làm việc",
