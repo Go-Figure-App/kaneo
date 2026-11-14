@@ -17,7 +17,7 @@ type UserAvatarFieldProps = {
 
 /**
  * Change or remove another user's picture. As in self-service, a picture
- * the identity provider manages can't be replaced, only a Kaneo upload removed.
+ * the identity provider manages can't be replaced, only a Tracing upload removed.
  */
 export function UserAvatarField({ user }: UserAvatarFieldProps) {
   const { t } = useTranslation();

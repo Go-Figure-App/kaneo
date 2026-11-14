@@ -2,7 +2,7 @@ import { Editor } from "@tiptap/core";
 import { Markdown } from "@tiptap/markdown";
 import StarterKit from "@tiptap/starter-kit";
 import { afterEach, describe, expect, it } from "vite-plus/test";
-import { KaneoImage } from "./kaneo-image";
+import { TracingImage } from "./kaneo-image";
 
 const SRC = "https://kaneo.app/diagram.png";
 
@@ -13,7 +13,7 @@ function createEditor() {
     extensions: [
       StarterKit,
       Markdown.configure({ markedOptions: { breaks: true, gfm: true } }),
-      KaneoImage,
+      TracingImage,
     ],
     content: "",
   });
@@ -33,7 +33,7 @@ afterEach(() => {
   editor = null;
 });
 
-describe("KaneoImage", () => {
+describe("TracingImage", () => {
   it("keeps an unresized image as plain markdown", () => {
     const instance = createEditor();
     setImage(instance, { alt: "Diagram" });

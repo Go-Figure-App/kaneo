@@ -12,7 +12,7 @@ const { descriptionRequest, matchRequest, updateRequest } = vi.hoisted(() => ({
   matchRequest: vi.fn(),
   updateRequest: vi.fn(),
 }));
-vi.mock("@kaneo/libs", () => ({
+vi.mock("@tracing/libs", () => ({
   client: {
     "public-project": {
       ":id": {

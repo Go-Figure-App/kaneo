@@ -23,7 +23,7 @@ export function SyncRulesSummary({ provider, data }: SyncRulesSummaryProps) {
     },
     {
       key: "incoming",
-      label: t("settings:syncRules.providerToKaneo", { provider: name }),
+      label: t("settings:syncRules.providerToTracing", { provider: name }),
       rule: data.rules.incoming,
       outgoing: false,
     },

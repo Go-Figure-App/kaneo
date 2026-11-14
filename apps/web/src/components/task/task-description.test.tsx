@@ -41,7 +41,7 @@ vi.mock("./extensions/attachment-card", () => ({
   AttachmentCard: inert("attachmentCardStub"),
 }));
 vi.mock("./extensions/kaneo-issue-link", () => ({
-  KaneoIssueLink: inert("kaneoIssueLinkStub"),
+  TracingIssueLink: inert("kaneoIssueLinkStub"),
 }));
 vi.mock("./extensions/task-item-with-checkbox", () => ({
   TaskItemWithCheckbox: TaskItem,

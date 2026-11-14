@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vite-plus/test";
-import { INSTANCE_PERMISSIONS } from "@kaneo/permissions";
+import { INSTANCE_PERMISSIONS } from "@tracing/permissions";
 import { getAdminPageRedirect } from "./admin-page-access";
 
 const root = "/dashboard/settings/admin";

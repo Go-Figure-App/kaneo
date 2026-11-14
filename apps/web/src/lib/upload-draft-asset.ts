@@ -1,5 +1,5 @@
 import { i18n } from "@/lib/i18n";
-import { client } from "@kaneo/libs";
+import { client } from "@tracing/libs";
 import { HttpError } from "@/lib/http-error";
 import { getImageAltText, isSupportedImageFile } from "@/lib/upload-task-image";
 

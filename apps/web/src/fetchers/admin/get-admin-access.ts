@@ -1,4 +1,4 @@
-import { client } from "@kaneo/libs";
+import { client } from "@tracing/libs";
 import { HttpError } from "@/lib/http-error";
 
 /** The signed-in user's instance permissions; empty for regular users. */

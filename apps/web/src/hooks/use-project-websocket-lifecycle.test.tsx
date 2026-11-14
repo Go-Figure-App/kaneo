@@ -30,7 +30,7 @@ vi.mock("@/lib/auth-client", () => ({
     }),
   },
 }));
-vi.mock("@kaneo/libs", () => ({ windowId: "local-test" }));
+vi.mock("@tracing/libs", () => ({ windowId: "local-test" }));
 
 class TestSocket {
   static OPEN = 1;

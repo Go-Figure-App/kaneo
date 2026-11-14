@@ -3,8 +3,8 @@ import { mergeAttributes, Node } from "@tiptap/core";
 // Inline atom node for an @mention of a workspace member. Stores the member id
 // (used by the backend to fire a notification) and a display label, and
 // round-trips through Markdown as `<kaneo-mention id label></kaneo-mention>`,
-// mirroring the KaneoIssueLink extension.
-export const KaneoMention = Node.create({
+// mirroring the TracingIssueLink extension.
+export const TracingMention = Node.create({
   name: "kaneoMention",
   group: "inline",
   inline: true,

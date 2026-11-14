@@ -1,4 +1,4 @@
-import type { InstancePermission } from "@kaneo/permissions";
+import type { InstancePermission } from "@tracing/permissions";
 import type { AdminUser } from "@/hooks/queries/admin/use-admin-users";
 import type { UserActionType } from "./pending-user-action";
 

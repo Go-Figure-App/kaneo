@@ -3,7 +3,7 @@ import {
   getBoardCacheVersion,
   markBoardCacheChanged,
 } from "@/lib/board-cache-version";
-import { windowId } from "@kaneo/libs";
+import { windowId } from "@tracing/libs";
 import { useQueryClient } from "@tanstack/react-query";
 import { useNavigate } from "@tanstack/react-router";
 import { useEffect } from "react";

@@ -107,7 +107,7 @@ describe("WorkspacesSection", () => {
       screen.getByText("settings:notificationsPage.statusSending"),
     ).toBeTruthy();
     expect(
-      screen.getByText("settings:notificationsPage.onlyInKaneo"),
+      screen.getByText("settings:notificationsPage.onlyInTracing"),
     ).toBeTruthy();
     expect(
       screen.getByRole("button", {

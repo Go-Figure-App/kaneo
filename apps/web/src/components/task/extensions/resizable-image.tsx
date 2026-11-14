@@ -1,4 +1,4 @@
-import { KaneoImage, parseWidth } from "@kaneo/editor";
+import { TracingImage, parseWidth } from "@tracing/editor";
 import type { NodeViewProps } from "@tiptap/react";
 import {
   NodeViewWrapper,
@@ -160,7 +160,7 @@ function ResizableImageNodeView({
   );
 }
 
-export const ResizableImage = KaneoImage.extend({
+export const ResizableImage = TracingImage.extend({
   addNodeView() {
     return ReactNodeViewRenderer(ResizableImageNodeView);
   },

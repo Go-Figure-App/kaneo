@@ -29,7 +29,7 @@ export function AvatarRow({
   const { mutateAsync: removeAvatar, isPending: isRemoving } =
     useRemoveUserAvatar();
   const isBusy = isUploading || isRemoving;
-  // With a managed picture, only an earlier Kaneo upload can be removed.
+  // With a managed picture, only an earlier Tracing upload can be removed.
   const canRemove = managedNote
     ? Boolean(image?.startsWith("/api/user/avatar/"))
     : Boolean(image);

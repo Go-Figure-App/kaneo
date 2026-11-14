@@ -1,4 +1,4 @@
-import { client } from "@kaneo/libs";
+import { client } from "@tracing/libs";
 import type { InferRequestType } from "hono";
 import { HttpError } from "@/lib/http-error";
 

@@ -1,6 +1,10 @@
 #!/bin/sh
 set -eu
 
+export KANEO_API_URL="${TRACING_API_URL-${KANEO_API_URL-}}"
+export KANEO_CLIENT_URL="${TRACING_CLIENT_URL-${KANEO_CLIENT_URL-}}"
+export KANEO_TURNSTILE_SITE_KEY="${TRACING_TURNSTILE_SITE_KEY-${KANEO_TURNSTILE_SITE_KEY-}}"
+
 # Values are read through awk's ENVIRON, never interpolated into shell, sed,
 # JavaScript, or nginx source. Do not print public or private environment values.
 script_dir=$(CDPATH= cd -- "$(dirname -- "$0")" && pwd)

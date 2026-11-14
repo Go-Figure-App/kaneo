@@ -1,7 +1,7 @@
 import {
   AttachmentCard as AttachmentCardNode,
   isValidUrl,
-} from "@kaneo/editor";
+} from "@tracing/editor";
 import type { NodeViewProps } from "@tiptap/react";
 import { NodeViewWrapper, ReactNodeViewRenderer } from "@tiptap/react";
 import { FileText } from "lucide-react";

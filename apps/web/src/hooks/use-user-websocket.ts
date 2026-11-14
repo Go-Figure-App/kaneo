@@ -1,6 +1,6 @@
 import { invalidateParity } from "@/components/parity/foundation/workspace-events";
 import { workspaceStatusQueryKey } from "@/hooks/queries/workspace/use-workspace-archived";
-import { windowId } from "@kaneo/libs";
+import { windowId } from "@tracing/libs";
 import { useQueryClient } from "@tanstack/react-query";
 import { useLocation, useNavigate } from "@tanstack/react-router";
 import { useEffect, useRef } from "react";

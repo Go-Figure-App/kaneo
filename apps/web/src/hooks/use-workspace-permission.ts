@@ -1,7 +1,7 @@
 import {
   WORKSPACE_CAPABILITY_NAMES,
   type WorkspaceCapability,
-} from "@kaneo/permissions";
+} from "@tracing/permissions";
 import { useQuery } from "@tanstack/react-query";
 import { useMemo } from "react";
 import getMyCapabilities from "@/fetchers/workspace/get-my-capabilities";
@@ -12,7 +12,7 @@ import { authClient } from "@/lib/auth-client";
 export type PermissionLevel = "owner" | "admin" | "member";
 
 // Capabilities are named permission bundles (see `workspaceCapabilities` in
-// @kaneo/permissions). The server evaluates all of them in one request with
+// @tracing/permissions). The server evaluates all of them in one request with
 // the same rules it enforces, so custom workspace roles work in the UI: the
 // local `checkRolePermission` only knows the static roles compiled into the
 // auth client.

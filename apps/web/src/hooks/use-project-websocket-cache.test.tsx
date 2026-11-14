@@ -33,7 +33,7 @@ const mocks = vi.hoisted(() => ({
 vi.mock("@tanstack/react-query", () => ({
   useQueryClient: () => mocks.client,
 }));
-vi.mock("@kaneo/libs", () => ({ windowId: "test" }));
+vi.mock("@tracing/libs", () => ({ windowId: "test" }));
 vi.mock("@/lib/auth-client", () => ({
   authClient: { useSession: () => ({ data: { user: { id: "u" } } }) },
 }));

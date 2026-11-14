@@ -1,6 +1,6 @@
 /// <reference types="vite/types/importMeta.d.ts" />
 
-import type { AppType } from "@kaneo/api";
+import type { AppType } from "@tracing/api";
 import { hc } from "hono/client";
 import { resolveApiBaseUrl } from "./api-url";
 

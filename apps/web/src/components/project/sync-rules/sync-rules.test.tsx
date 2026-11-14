@@ -83,8 +83,8 @@ beforeEach(() => {
   mocks.get.mockResolvedValue(saved);
   mocks.preview.mockResolvedValue({ ...saved, previewToken: "b".repeat(64) });
   mocks.review.mockResolvedValue({
-    task: { id: "task-1", number: 1, title: "Kaneo task" },
-    local: { title: "Kaneo title", description: "Local body", state: "open" },
+    task: { id: "task-1", number: 1, title: "Tracing task" },
+    local: { title: "Tracing title", description: "Local body", state: "open" },
     remote: {
       title: "Repository title",
       description: "Remote body",
@@ -327,9 +327,9 @@ describe("advanced sync settings", () => {
       saved.rules,
     ];
     client.setQueryData(key, { ...saved, paused: 1, needsReview: 1 });
-    await screen.findByText("Kaneo title");
+    await screen.findByText("Tracing title");
     fireEvent.click(
-      screen.getByRole("button", { name: "settings:syncRules.useKaneo" }),
+      screen.getByRole("button", { name: "settings:syncRules.useTracing" }),
     );
     await waitFor(() =>
       expect(client.getQueryState(key)?.isInvalidated).toBe(true),
@@ -383,11 +383,11 @@ describe("advanced sync settings", () => {
         onClose={vi.fn()}
       />,
     );
-    await screen.findByText("Kaneo title");
+    await screen.findByText("Tracing title");
     mocks.review.mockResolvedValueOnce({
-      task: { id: "task-1", number: 1, title: "Kaneo task" },
+      task: { id: "task-1", number: 1, title: "Tracing task" },
       local: {
-        title: "Live Kaneo title",
+        title: "Live Tracing title",
         description: "Local body",
         state: "open",
       },
@@ -403,10 +403,10 @@ describe("advanced sync settings", () => {
         queryKey: ["integration-sync-review", param.projectId],
       });
     });
-    expect(await screen.findByText("Live Kaneo title")).toBeVisible();
-    expect(screen.queryByText("Kaneo title")).toBeNull();
+    expect(await screen.findByText("Live Tracing title")).toBeVisible();
+    expect(screen.queryByText("Tracing title")).toBeNull();
     fireEvent.click(
-      screen.getByRole("button", { name: "settings:syncRules.useKaneo" }),
+      screen.getByRole("button", { name: "settings:syncRules.useTracing" }),
     );
     await waitFor(() =>
       expect(mocks.resume).toHaveBeenCalledWith(
@@ -618,7 +618,7 @@ describe("advanced sync settings", () => {
     );
     await screen.findByText("Repository title");
     const keepLocal = screen.getByRole("button", {
-      name: "settings:syncRules.useKaneo",
+      name: "settings:syncRules.useTracing",
     });
     fireEvent.click(keepLocal);
     await screen.findByText("settings:syncRules.resumeError");
@@ -646,7 +646,7 @@ describe("advanced sync settings", () => {
       await screen.findByText("settings:syncRules.kaneoToProvider"),
     ).toBeVisible();
     expect(
-      screen.getByText("settings:syncRules.providerToKaneo"),
+      screen.getByText("settings:syncRules.providerToTracing"),
     ).toBeVisible();
     expect(screen.getByText("sync")).toBeVisible();
     expect(screen.getByText("bug")).toBeVisible();

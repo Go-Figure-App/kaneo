@@ -128,7 +128,7 @@ describe("ProfilePage", () => {
     }
   });
 
-  it("still lets people remove a picture they uploaded in Kaneo", () => {
+  it("still lets people remove a picture they uploaded in Tracing", () => {
     m.managedFields = ["image"];
     m.user.image = "/api/user/avatar/avatar-1";
     render(<ProfilePage />);

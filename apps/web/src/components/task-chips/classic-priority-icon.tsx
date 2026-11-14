@@ -8,7 +8,7 @@ import {
 } from "lucide-react";
 import { cn } from "@/lib/cn";
 
-// The chevron icons Kaneo used before the 2.47 mark glyphs, kept for people
+// The chevron icons Tracing used before the 2.47 mark glyphs, kept for people
 // who prefer them.
 const ICONS: Record<string, { Icon: LucideIcon; tone: string }> = {
   low: { Icon: ChevronDown, tone: "text-info-foreground/85" },

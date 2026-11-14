@@ -1,4 +1,4 @@
-import { CUSTOM_ROLE_PERMISSIONS } from "@kaneo/permissions";
+import { CUSTOM_ROLE_PERMISSIONS } from "@tracing/permissions";
 import { describe, expect, it } from "vite-plus/test";
 import { PERMISSION_GROUPS } from "./permission-groups";
 

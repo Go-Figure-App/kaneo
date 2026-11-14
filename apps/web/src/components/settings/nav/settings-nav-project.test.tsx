@@ -20,7 +20,7 @@ const [project] = buildSettingsNav({
   billingEnabled: false,
   canImport: false,
   adminPermissions: [],
-  projects: [{ id: "p1", name: "Kaneo Web" }],
+  projects: [{ id: "p1", name: "Tracing Web" }],
 }).projects;
 
 function renderProject(pathname: string) {
@@ -45,7 +45,7 @@ describe("SettingsNavProject", () => {
 
     expect(
       screen
-        .getByRole("button", { name: "Kaneo Web" })
+        .getByRole("button", { name: "Tracing Web" })
         .getAttribute("aria-expanded"),
     ).toBe("true");
     expect(
@@ -57,7 +57,7 @@ describe("SettingsNavProject", () => {
 
   it("starts collapsed elsewhere and expands on click", () => {
     renderProject("/dashboard/settings/account/information");
-    const toggle = screen.getByRole("button", { name: "Kaneo Web" });
+    const toggle = screen.getByRole("button", { name: "Tracing Web" });
 
     expect(toggle.getAttribute("aria-expanded")).toBe("false");
     fireEvent.click(toggle);
