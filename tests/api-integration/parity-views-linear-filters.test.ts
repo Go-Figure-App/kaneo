@@ -73,6 +73,63 @@ it("distinguishes workflow names sharing a category and keeps private states out
   );
 });
 
+it("filters archived issues by their recorded workflow without changing archive state", async () => {
+  const c = await insightsFixture();
+  const [design] = await db
+    .insert(schema.columnTable)
+    .values({
+      projectId: c.alpha.id,
+      name: "Needs design",
+      slug: "needs-design",
+      position: 20,
+    })
+    .returning();
+  await db
+    .update(schema.taskTable)
+    .set({ columnId: null, status: "archived" })
+    .where(eq(schema.taskTable.id, c.open.id));
+  await db.insert(schema.activityTable).values([
+    {
+      taskId: c.open.id,
+      type: "status_changed",
+      eventData: { newStatus: "done" },
+      createdAt: new Date("2026-11-10T12:00:00Z"),
+    },
+    {
+      taskId: c.open.id,
+      type: "status_changed",
+      eventData: { newStatus: design!.slug },
+      createdAt: new Date("2026-11-11T12:00:00Z"),
+    },
+    {
+      taskId: c.open.id,
+      type: "status_changed",
+      eventData: { oldStatus: design!.slug, newStatus: "archived" },
+      createdAt: new Date("2026-11-12T12:00:00Z"),
+    },
+  ]);
+  mockAuthenticatedSession(c.restricted);
+  const filter = { field: "state", operator: "is", values: ["Needs design"] };
+  expect(await matching(c.workspace.id, filter)).toEqual([c.open.id]);
+  expect(
+    await matching(c.workspace.id, { ...filter, operator: "is-not" }),
+  ).toEqual([c.alphaTask.id, c.second.id].sort());
+  // A matching slug in another project must not resolve a deleted state.
+  await db.insert(schema.columnTable).values({
+    projectId: c.beta.id,
+    name: "Needs design",
+    slug: design!.slug,
+    position: 20,
+  });
+  await db
+    .delete(schema.columnTable)
+    .where(eq(schema.columnTable.id, design!.id));
+  expect(await matching(c.workspace.id, filter)).toEqual([]);
+  expect(
+    await matching(c.workspace.id, { ...filter, values: ["archived"] }),
+  ).toEqual([c.open.id]);
+});
+
 it("follows initiative membership changes without duplicating tasks or exposing other workspaces", async () => {
   const c = await insightsFixture();
   const other = await createWorkspaceMember();

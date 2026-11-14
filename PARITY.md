@@ -603,3 +603,7 @@ readable when an option is no longer present. Shared-file changes are limited to
 `apps/docs/openapi.json`, the three source locale keys and their 20 translated
 catalog entries, and the corresponding entries in `i18n/schema.json`. Other
 changes stay in the owned Views modules and their tests.
+
+Archived issues resolve their last recorded workflow slug against columns in
+their own project for exact-state filters. Missing/deleted states fall back to
+the archive status; filtering never restores or moves an archived issue.

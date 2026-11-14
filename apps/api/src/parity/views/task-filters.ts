@@ -13,7 +13,6 @@ import { HTTPException } from "hono/http-exception";
 import db from "../../database";
 import {
   activityTable,
-  columnTable,
   labelTable,
   projectTable,
   taskTable,
@@ -29,6 +28,7 @@ import { localMidnight } from "../cycles/calendar";
 import { shiftDay } from "../insights/range";
 import { taskCategory } from "../planning/progress-query";
 import { filtersSchema, type TaskFilter } from "./schema";
+import { taskState } from "./task-state";
 
 // Upstream keeps the recorded creator in activity, not on the task row. Missing
 // history remains null; an assignee is never substituted for a creator.
@@ -75,13 +75,7 @@ export function taskFilterSql(
 ): SQL | undefined {
   switch (filter.field) {
     case "state":
-      return invert(
-        inArray(
-          sql`coalesce(${columnTable.name}, ${taskTable.status})`,
-          filter.values,
-        ),
-        filter.operator,
-      );
+      return invert(inArray(taskState, filter.values), filter.operator);
     case "cycle-period":
       return invert(
         sql`${cycleTable.startsAt} <= now() and ${cycleTable.endsAt} > now()`,
