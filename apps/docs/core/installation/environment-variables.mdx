@@ -12,11 +12,16 @@ For the sample environment file, see the [example .env file](https://github.com/
 
 ### General URLs
 
+A non-empty `TRACING_*` value takes precedence over the corresponding legacy
+`KANEO_*` alias. An empty or unset Tracing value falls back to its Kaneo alias.
+This applies to the API, web container, and public runtime renderer.
+
 For the bundled image, set `TRACING_CLIENT_URL` and leave `TRACING_API_URL` unset. The API URL defaults to your client URL plus `/api`. Set both explicitly only for a separate API deployment or a different proxy path.
 
 Name | Description |
 --- | --- |
-| `TRACING_CLIENT_URL` | The URL of the web application.
+| `TRACING_CLIENT_URL` | The URL of the web application. A non-empty value takes precedence over `KANEO_CLIENT_URL`; an empty value falls back to that legacy alias. |
+| `KANEO_CLIENT_URL` | Supported legacy alias; used when `TRACING_CLIENT_URL` is empty or unset. |
 | `TRACING_API_URL` | Public API URL. Derived by the bundled image; set it explicitly for a separate API or host-native development. |
 | `CORS_ORIGINS` | Optional comma-separated list of allowed browser origins, for example `https://kaneo.example.com`. When omitted, HTTP CORS uses `TRACING_CLIENT_URL`. |
 
@@ -52,11 +57,9 @@ Name | Description |
 | `AUTH_SECRET` | The secret used by the authentication service. **Must be at least 32 characters long**, use a long, random value in production. Example: use `openssl rand -base64 32` to generate a secure key in Linux/macOS.
 | `COOKIE_DOMAIN` | Optional cookie domain override. Leave unset for host-only cookies. Set a parent domain only when your deployment needs cookies shared across its trusted subdomains. |
 | `AUTH_SECRET_FILE` | Path to a UTF-8 file containing the authentication secret. Used when `AUTH_SECRET` is unset; the same 32-character minimum applies. |
-| `DEVICE_AUTH_CLIENT_IDS` | **Optional.** Comma-separated list of allowed device authorization client IDs. When unset, Tracing implicitly allows `kaneo-cli` and `kaneo-mcp` by default, so no extra configuration is required for the CLI or MCP. Override only when you need additional trusted clients, for example `kaneo-cli,kaneo-mcp,my-desktop-app`. |
+| `DEVICE_AUTH_CLIENT_IDS` | **Optional.** Comma-separated list of allowed device authorization client IDs. When unset, Tracing allows `tracing-cli`, `tracing-mcp`, `tracing-mobile`, `kaneo-cli`, and `kaneo-mcp` by default, so no extra configuration is required for the CLI or MCP. If you set an explicit list, include `tracing-cli,tracing-mcp,tracing-mobile` for current CLI, MCP, and mobile clients and retain `kaneo-cli,kaneo-mcp` for older clients. Add other IDs only for trusted clients. |
 
-The Docker Compose quick-start pins image `2.28.3`, which predates `_FILE`
-support. Raise `TRACING_IMAGE_TAG` to a release containing this feature before
-following [Keep secrets in files](/core/installation/docker-compose#keep-secrets-in-files).
+The source-built Tracing image supports `_FILE` secrets. See [Keep secrets in files](/core/installation/docker-compose#keep-secrets-in-files) for Compose configuration.
 
 For the supported `_FILE` variables, a non-empty direct value takes precedence. Tracing removes trailing line endings from secret files but keeps other whitespace. Missing, unreadable, or empty files are an error instead of silently using a fallback. The database and authentication secrets are read at startup. Restart Tracing after rotating any secret file; API secrets are cached after the first successful read. `DATABASE_URL` takes precedence over both PostgreSQL password variables.
 
