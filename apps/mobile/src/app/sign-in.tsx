@@ -497,7 +497,7 @@ function StartStep(props: {
               }}
             >
               <Txt variant="bodySm" tone="muted">
-                {t("mobile:signIn.newToKaneo")}
+                {t("mobile:signIn.newToTracing")}
               </Txt>
               <Txt variant="bodySm" weight="semibold">
                 {t("mobile:signIn.createAccount")}

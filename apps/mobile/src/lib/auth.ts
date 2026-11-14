@@ -21,7 +21,9 @@ export async function probe(serverUrl: string): Promise<InstanceConfig> {
   try {
     const config = await request<InstanceConfig>("api/config", { serverUrl });
     if (!config || typeof config !== "object")
-      throw new ApiError(i18n.t("mobile:errors.notKaneo", { url: serverUrl }));
+      throw new ApiError(
+        i18n.t("mobile:errors.notTracing", { url: serverUrl }),
+      );
     return config;
   } catch (e) {
     if (e instanceof ApiError && e.status)
