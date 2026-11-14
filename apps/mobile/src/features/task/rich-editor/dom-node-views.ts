@@ -1,9 +1,9 @@
 import {
   AttachmentCard,
-  KaneoImage,
-  KaneoIssueLink,
-  KaneoTaskItem,
-} from "@kaneo/editor";
+  TracingImage,
+  TracingIssueLink,
+  TracingTaskItem,
+} from "@tracing/editor";
 
 function resolve(serverUrl: string, src: string): string {
   if (!src || /^(https?:|data:|blob:)/i.test(src)) return src;
@@ -27,14 +27,14 @@ export function domNodeViews(serverUrl: string, attachmentLabel: string) {
         });
       },
     }),
-    kaneoIssueLink: KaneoIssueLink.extend({
+    kaneoIssueLink: TracingIssueLink.extend({
       addNodeView() {
         return ({ node }) => ({
           dom: chip(String(node.attrs.issueKey || node.attrs.url || "")),
         });
       },
     }),
-    taskItem: KaneoTaskItem.extend({
+    taskItem: TracingTaskItem.extend({
       addNodeView() {
         return ({ node, getPos, editor }) => {
           const dom = document.createElement("li");
@@ -76,7 +76,7 @@ export function domNodeViews(serverUrl: string, attachmentLabel: string) {
         };
       },
     }),
-    image: KaneoImage.extend({
+    image: TracingImage.extend({
       addNodeView() {
         return ({ node }) => {
           const dom = document.createElement("img");
