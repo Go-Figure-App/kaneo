@@ -93,7 +93,7 @@ export async function syncTaskFieldLabels(
       ];
       await updateExternalLink(link.id, {
         metadata: {
-          // Inbound label webhooks ignore field labels Kaneo confirmed here.
+          // Inbound label webhooks ignore field labels Tracing confirmed here.
           syncFieldLabels: replace(
             Array.isArray(metadata.syncFieldLabels)
               ? metadata.syncFieldLabels

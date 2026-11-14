@@ -670,7 +670,7 @@ describe("API integration: import from other tools", () => {
         expect.objectContaining({
           status: "failed",
           projectId: null,
-          error: "Kaneo could not save this project.",
+          error: "Tracing could not save this project.",
         }),
       ]);
       expect(writeImportRelations).toHaveBeenCalled();

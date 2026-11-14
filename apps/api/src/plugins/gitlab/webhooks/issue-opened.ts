@@ -230,7 +230,10 @@ export async function handleGitlabIssueOpened(
       continue;
     }
 
-    const clientUrl = process.env.KANEO_CLIENT_URL || "http://localhost:5173";
+    const clientUrl =
+      process.env.TRACING_CLIENT_URL ||
+      process.env.KANEO_CLIENT_URL ||
+      "http://localhost:5173";
     const taskUrl = `${clientUrl}/dashboard/workspace/${kaneoProject.workspaceId}/project/${projectId}/task/${createdTask.id}`;
     const taskIdentifier = `${kaneoProject.slug.toUpperCase()}-${createdTask.number}`;
 

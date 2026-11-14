@@ -1,4 +1,4 @@
-import type { ImportConnection } from "@kaneo/importers";
+import type { ImportConnection } from "@tracing/importers";
 import { HTTPException } from "hono/http-exception";
 import type { ImportConnectionInput } from "../schema";
 import { trelloApiKeyFromEnv } from "./trello-api-key";

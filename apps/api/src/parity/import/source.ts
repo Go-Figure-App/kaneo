@@ -2,8 +2,8 @@ import type {
   ImportedProject,
   ImportSource,
   SourceProject,
-} from "@kaneo/importers";
-import type { LinearGraphQLOptions } from "@kaneo/importers/linear";
+} from "@tracing/importers";
+import type { LinearGraphQLOptions } from "@tracing/importers/linear";
 import { mapProject } from "./mapping";
 import { PlanningReader } from "./reader";
 import type {

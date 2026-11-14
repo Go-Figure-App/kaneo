@@ -65,7 +65,7 @@ describe("changesManagedProfile", () => {
     ).toBe(false);
   });
 
-  it("allows removing a picture uploaded to Kaneo", () => {
+  it("allows removing a picture uploaded to Tracing", () => {
     expect(
       changesManagedProfile({ image: null }, stored({ image: upload }), [
         "image",

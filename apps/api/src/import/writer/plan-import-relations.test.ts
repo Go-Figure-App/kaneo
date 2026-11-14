@@ -1,4 +1,4 @@
-import type { ImportedRelation } from "@kaneo/importers";
+import type { ImportedRelation } from "@tracing/importers";
 import { describe, expect, it } from "vite-plus/test";
 import { planImportRelations } from "./plan-import-relations";
 

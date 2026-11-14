@@ -1,6 +1,6 @@
 {
 	"common": {
-		"appName": "Kaneo",
+		"appName": "Tracing",
 		"actions": {
 			"cancel": "Abbrechen",
 			"close": "Schließen",
@@ -96,7 +96,7 @@
 				"errorToast": "Projekt konnte nicht erstellt werden"
 			},
 			"createWorkspace": {
-				"breadcrumbKaneo": "KANEO",
+				"breadcrumbTracing": "Tracing",
 				"title": "Neuen Workspace erstellen",
 				"description": "Erstelle einen neuen Workspace, indem du einen Namen dafür angibst.",
 				"namePlaceholder": "Workspace-Name",
@@ -185,7 +185,7 @@
 				"use_a_permanent_email_address_disposable_addresses_cannot_create_accounts_": "Verwende eine dauerhafte E-Mail-Adresse. Mit Wegwerfadressen können keine Konten erstellt werden."
 			},
 			"instanceStatusError": "Der Server konnte nicht erreicht werden. Bitte versuche es gleich noch einmal.",
-			"heading": "Bei Kaneo anmelden",
+			"heading": "Bei Tracing anmelden",
 			"submitPassword": "Anmelden",
 			"invitation": {
 				"title": "{{inviterName}} hat dich zu {{workspaceName}} eingeladen",
@@ -193,7 +193,7 @@
 				"description": "Melde dich mit der E-Mail-Adresse an, an die die Einladung ging. Danach trittst du dem Workspace direkt bei."
 			},
 			"footer": {
-				"newHere": "Neu bei Kaneo?",
+				"newHere": "Neu bei Tracing?",
 				"createAccount": "Konto erstellen",
 				"inviteOnly": "Konten gibt es hier nur auf Einladung. Bitte deinen Administrator um eine Einladung.",
 				"providerSignUp": "Neu hier? Melde dich oben mit einem Anbieter an, um ein Konto zu erstellen.",
@@ -251,7 +251,7 @@
 			"toggleMessage": "Du hast bereits ein Konto?",
 			"toggleLink": "Anmelden",
 			"instanceStatusError": "Der Server konnte nicht erreicht werden. Bitte versuche es gleich noch einmal.",
-			"instanceAdminTitle": "Richte deine Kaneo-Instanz ein",
+			"instanceAdminTitle": "Richte deine Tracing-Instanz ein",
 			"instanceAdminSubtitle": "Dieses Konto wird zum Instanz-Administrator mit vollem Zugriff.",
 			"heading": "Erstelle dein Konto",
 			"submitPassword": "Konto erstellen",
@@ -305,7 +305,7 @@
 				"acceptFailed": "Einladung konnte nicht angenommen werden",
 				"acceptSuccess": "Einladung angenommen! Willkommen im Team."
 			},
-			"description": "{{inviterName}} hat dich zu diesem Workspace auf Kaneo eingeladen.",
+			"description": "{{inviterName}} hat dich zu diesem Workspace auf Tracing eingeladen.",
 			"invitedBy": "Eingeladen von",
 			"sentTo": "Gesendet an",
 			"signedInAs": "Angemeldet als",
@@ -313,7 +313,7 @@
 			"notNow": "Nicht jetzt",
 			"join": "Workspace beitreten",
 			"switchAccount": "Konto wechseln",
-			"goToKaneo": "Zu Kaneo",
+			"goToTracing": "Zu Tracing",
 			"mismatch": {
 				"title": "Mit einer anderen E-Mail-Adresse angemeldet",
 				"description": "Diese Einladung wurde an {{invitedEmail}} gesendet. Du bist als {{email}} angemeldet."
@@ -332,7 +332,7 @@
 			}
 		},
 		"onboarding": {
-			"pageTitle": "Willkommen bei Kaneo",
+			"pageTitle": "Willkommen bei Tracing",
 			"workspaceName": "Workspace-Name",
 			"workspaceNamePlaceholder": "z. B. Acme Inc, Mein Team",
 			"toast": {
@@ -380,7 +380,7 @@
 				},
 				"invite": {
 					"title": "Lade dein Team ein",
-					"description": "Kaneo funktioniert am besten, wenn alle dabei sind. Öffne **Mitglieder** in der Seitenleiste, um Leute per E-Mail einzuladen."
+					"description": "Tracing funktioniert am besten, wenn alle dabei sind. Öffne **Mitglieder** in der Seitenleiste, um Leute per E-Mail einzuladen."
 				},
 				"integrations": {
 					"title": "Verbinde GitHub, GitLab oder Gitea",
@@ -504,7 +504,7 @@
 		"device": {
 			"connect": {
 				"title": "Gerät verbinden",
-				"description": "Gib den Code ein, der in deinem Terminal oder deiner App angezeigt wird, um das Gerät mit deinem Kaneo-Konto zu verknüpfen.",
+				"description": "Gib den Code ein, der in deinem Terminal oder deiner App angezeigt wird, um das Gerät mit deinem Tracing-Konto zu verknüpfen.",
 				"label": "Gerätecode",
 				"submit": "Weiter",
 				"noCode": "Noch keinen Code? Starte die Anmeldung zuerst in deiner App.",
@@ -538,7 +538,7 @@
 				"description": "Danach kommst du direkt hierher zurück, um es zu genehmigen.",
 				"submit": "Anmelden"
 			},
-			"openApp": "Kaneo öffnen"
+			"openApp": "Tracing öffnen"
 		},
 		"mcp": {
 			"authorize": {
@@ -574,7 +574,7 @@
 		"apiKeys": "API-Schlüssel",
 		"adminUsers": {
 			"title": "Benutzer",
-			"subtitle": "Alle mit einem Konto auf dieser Kaneo-Instanz.",
+			"subtitle": "Alle mit einem Konto auf dieser Tracing-Instanz.",
 			"directoryTitle": "Alle Benutzer",
 			"searchCount_one": "{{count}} passender Benutzer",
 			"searchCount_other": "{{count}} passende Benutzer",
@@ -774,7 +774,7 @@
 		"notificationsPage": {
 			"pageTitle": "Benachrichtigungen",
 			"title": "Benachrichtigungen",
-			"subtitle": "Worüber Kaneo dich informiert und wo es dich erreicht.",
+			"subtitle": "Worüber Tracing dich informiert und wo es dich erreicht.",
 			"statusConnected": "Verbunden",
 			"statusPaused": "Pausiert",
 			"emailTitle": "E-Mail",
@@ -807,7 +807,7 @@
 			"webhookUrlPlaceholder": "https://example.com/webhooks/kaneo",
 			"webhookSecretPlaceholder": "Optionales gemeinsames Geheimnis",
 			"webhookSecretHintConfigured": "Ein Signatur-Geheimnis ist bereits konfiguriert ({{masked}}). Gib ein neues ein, um es zu ersetzen.",
-			"webhookSecretHintOptional": "Kaneo signiert den Anfragetext, wenn ein Geheimnis gesetzt ist.",
+			"webhookSecretHintOptional": "Tracing signiert den Anfragetext, wenn ein Geheimnis gesetzt ist.",
 			"connectWebhook": "Webhook verbinden",
 			"eventPreferencesTitle": "Benachrichtige mich über",
 			"eventPreferencesDescription": "Über deine eigenen Kommentare, Erwähnungen und Statusänderungen wirst du nie benachrichtigt.",
@@ -845,7 +845,7 @@
 			"toastRuleRemovedGeneric": "Arbeitsbereichs-Benachrichtigungsregel entfernt",
 			"channelNotConnected": "Nicht verbunden",
 			"channelOff": "Aus",
-			"channelsDescription": "Benachrichtigungen erscheinen immer in Kaneo. Verbinde einen Kanal, um sie zusätzlich woanders zu erhalten.",
+			"channelsDescription": "Benachrichtigungen erscheinen immer in Tracing. Verbinde einen Kanal, um sie zusätzlich woanders zu erhalten.",
 			"channelsTitle": "Kanäle",
 			"configure": "Konfigurieren",
 			"configureChannel": "{{channel}} konfigurieren",
@@ -861,7 +861,7 @@
 			"eventStatusChangesHint": "Wenn eine deiner Aufgaben in eine andere Spalte verschoben wird.",
 			"eventTaskAssignmentsHint": "Wenn dir jemand eine Aufgabe zuweist.",
 			"loadFailed": "Benachrichtigungseinstellungen konnten nicht geladen werden.",
-			"onlyInKaneo": "Nur in Kaneo",
+			"onlyInTracing": "Nur in Tracing",
 			"optional": "Optional",
 			"projectCount_one": "{{count}} Projekt",
 			"projectCount_other": "{{count}} Projekte",
@@ -887,14 +887,14 @@
 			"statusSending": "Sendet",
 			"stopping": "Wird beendet...",
 			"stopSending": "Senden beenden",
-			"stopSendingDescription": "Benachrichtigungen aus diesem Workspace erscheinen dann nur noch in Kaneo.",
+			"stopSendingDescription": "Benachrichtigungen aus diesem Workspace erscheinen dann nur noch in Tracing.",
 			"stopSendingTitle": "Senden aus {{workspaceName}} beenden?",
 			"workspacesDescription": "Wähle, welche Workspaces und Projekte deine Kanäle nutzen dürfen.",
 			"workspacesTitle": "Workspaces"
 		},
 		"preferencesPage": {
 			"title": "Einstellungen",
-			"subtitle": "Wie Kaneo für dich aussieht und funktioniert.",
+			"subtitle": "Wie Tracing für dich aussieht und funktioniert.",
 			"appearanceTitle": "Allgemein",
 			"theme": "Design",
 			"selectTheme": "Design auswählen",
@@ -939,7 +939,7 @@
 		"developerPage": {
 			"pageTitle": "API-Schlüssel",
 			"title": "API-Schlüssel",
-			"subtitle": "Lass Skripte, die CLI und MCP-Clients Kaneo in deinem Namen nutzen.",
+			"subtitle": "Lass Skripte, die CLI und MCP-Clients Tracing in deinem Namen nutzen.",
 			"unnamedKey": "Unbenannt",
 			"emptyDescription": "Erstelle einen Schlüssel, um die CLI, einen MCP-Client oder eigene Skripte zu nutzen.",
 			"emptyTitle": "Noch keine API-Schlüssel",
@@ -1183,11 +1183,11 @@
 				"removeError": "GitHub-Integration konnte nicht entfernt werden",
 				"issuesImported": "Issues erfolgreich importiert",
 				"importError": "Issues konnten nicht importiert werden",
-				"commentOnEnabled": "Kaneo kommentiert bei neuen Issues mit einem Aufgabenlink",
+				"commentOnEnabled": "Tracing kommentiert bei neuen Issues mit einem Aufgabenlink",
 				"commentOnDisabled": "Aufgabenlink-Kommentare bei neuen Issues sind deaktiviert",
 				"settingsUpdateError": "GitHub-Integration konnte nicht aktualisiert werden"
 			},
-			"commentTaskLinkTitle": "Kaneo-Link bei neuen Issues kommentieren",
+			"commentTaskLinkTitle": "Tracing-Link bei neuen Issues kommentieren",
 			"commentTaskLinkHint": "Damit Leute auf GitHub direkt zur Aufgabe springen können.",
 			"updatePermissions": "Berechtigungen aktualisieren",
 			"installGithubApp": "GitHub-App installieren",
@@ -1204,9 +1204,9 @@
 			"linkAccountTitle": "GitHub-Konto verknüpfen",
 			"linked": "Verknüpft",
 			"linkGithub": "GitHub verknüpfen",
-			"verifyMissingPermissions": "Der Kaneo GitHub App fehlen Berechtigungen: {{list}}.",
-			"verifyNotInstalled": "Die Kaneo GitHub App ist für dieses Repository nicht installiert.",
-			"verifyReady": "Die Kaneo GitHub App ist mit den benötigten Berechtigungen installiert.",
+			"verifyMissingPermissions": "Der Tracing GitHub App fehlen Berechtigungen: {{list}}.",
+			"verifyNotInstalled": "Die Tracing GitHub App ist für dieses Repository nicht installiert.",
+			"verifyReady": "Die Tracing GitHub App ist mit den benötigten Berechtigungen installiert.",
 			"workflowHint": "Aufgaben verschieben, wenn Pull Requests geöffnet oder gemergt werden, unter",
 			"workflowLink": "Workflow"
 		},
@@ -1224,13 +1224,13 @@
 				"removeError": "Gitea-Integration konnte nicht entfernt werden",
 				"issuesImported": "Issues erfolgreich importiert",
 				"importError": "Issues konnten nicht importiert werden",
-				"commentOnEnabled": "Kaneo kommentiert bei neuen Issues mit einem Aufgabenlink",
+				"commentOnEnabled": "Tracing kommentiert bei neuen Issues mit einem Aufgabenlink",
 				"commentOnDisabled": "Aufgabenlink-Kommentare bei neuen Issues sind deaktiviert",
 				"settingsUpdateError": "Gitea-Integration konnte nicht aktualisiert werden"
 			},
-			"commentTaskLinkTitle": "Kaneo-Link bei neuen Issues kommentieren",
+			"commentTaskLinkTitle": "Tracing-Link bei neuen Issues kommentieren",
 			"commentTaskLinkHint": "Damit Leute auf Gitea direkt zur Aufgabe springen können.",
-			"webhookHint": "Füge diesen Webhook in den Repository-Einstellungen hinzu, damit Änderungen zurück an Kaneo gehen.",
+			"webhookHint": "Füge diesen Webhook in den Repository-Einstellungen hinzu, damit Änderungen zurück an Tracing gehen.",
 			"baseUrlLabel": "Gitea-URL",
 			"tokenLabel": "Persönlicher Zugriffstoken",
 			"tokenPlaceholder": "Token einfügen",
@@ -1295,10 +1295,10 @@
 			},
 			"webhookLabel": "Endpunkt-URL",
 			"webhookPlaceholder": "https://example.com/webhooks/kaneo",
-			"webhookHint": "Kaneo sendet POST-Anfragen mit einer JSON-Nutzlast für jedes aktivierte Ereignis.",
+			"webhookHint": "Tracing sendet POST-Anfragen mit einer JSON-Nutzlast für jedes aktivierte Ereignis.",
 			"secretLabel": "Signatur-Secret",
 			"secretPlaceholder": "Gemeinsames Secret",
-			"secretHint": "Kaneo signiert damit jede Anfrage und sendet den Digest im Header X-Kaneo-Signature.",
+			"secretHint": "Tracing signiert damit jede Anfrage und sendet den Digest im Header X-Kaneo-Signature.",
 			"secretHintConfigured": "Aktuelles Secret: {{secret}}. Füge ein neues ein, um es zu ersetzen.",
 			"eventsTitle": "Senden bei",
 			"events": {
@@ -1318,7 +1318,7 @@
 			"reminderLeadTimeLabel": "Stunden vor Fälligkeit einer Aufgabe",
 			"connect": "Webhook verbinden",
 			"activeTitle": "Ereignisse senden",
-			"disconnectDescription": "Kaneo sendet keine Ereignisse mehr und entfernt den gespeicherten Endpunkt und das Secret.",
+			"disconnectDescription": "Tracing sendet keine Ereignisse mehr und entfernt den gespeicherten Endpunkt und das Secret.",
 			"disconnectTitle": "Webhook trennen?",
 			"reminderLeadTimeAfter": "Stunden vor Fälligkeit einer Aufgabe senden",
 			"reminderLeadTimeBefore": "Erinnerungen"
@@ -1354,7 +1354,7 @@
 		},
 		"repositoryBrowser": {
 			"title": "Repository auswählen",
-			"description": "Repositories, auf die die Kaneo GitHub App zugreifen kann.",
+			"description": "Repositories, auf die die Tracing GitHub App zugreifen kann.",
 			"searchPlaceholder": "Repositories suchen",
 			"loadError": "Repositories konnten nicht geladen werden.",
 			"tryAgain": "Erneut versuchen",
@@ -1771,7 +1771,7 @@
 			"sectionTitle": "Anmeldung",
 			"submit": "Passwort ändern",
 			"submitting": "Wird geändert...",
-			"subtitle": "Wie du dich bei Kaneo anmeldest.",
+			"subtitle": "Wie du dich bei Tracing anmeldest.",
 			"title": "Sicherheit",
 			"updateError": "Passwort konnte nicht aktualisiert werden.",
 			"updateSuccess": "Passwort aktualisiert.",
@@ -1800,14 +1800,14 @@
 			"browseModalHint": "Projekte, in denen dein Token Mitglied ist.",
 			"browseNeedsCredentials": "Gib die GitLab-URL und einen Token ein, um zu durchsuchen.",
 			"commentTaskLinkHint": "Damit Leute auf GitLab direkt zur Aufgabe springen können.",
-			"commentTaskLinkTitle": "Einen Kaneo-Link als Kommentar zu in GitLab erstellten Issues hinzufügen",
+			"commentTaskLinkTitle": "Einen Tracing-Link als Kommentar zu in GitLab erstellten Issues hinzufügen",
 			"importSectionHint": "Importiere offene Issues und Merge Requests als Aufgaben.",
 			"openInGitlab": "{{project}} in GitLab öffnen",
 			"projectPathLabel": "Projektpfad",
 			"searchProjects": "Projekte suchen",
 			"toast": {
 				"commentOnDisabled": "Kommentare mit Aufgabenlinks für in GitLab erstellte Issues sind deaktiviert",
-				"commentOnEnabled": "Kaneo kommentiert in GitLab erstellte Issues mit einem Aufgabenlink",
+				"commentOnEnabled": "Tracing kommentiert in GitLab erstellte Issues mit einem Aufgabenlink",
 				"importError": "Issues konnten nicht importiert werden",
 				"issuesImported": "Issues erfolgreich importiert",
 				"removed": "GitLab-Integration entfernt",
@@ -1829,7 +1829,7 @@
 				"baseUrlRequired": "Die GitLab-Basis-URL ist erforderlich",
 				"pathInvalid": "Gib den vollständigen Pfad ein, z. B. gruppe/projekt"
 			},
-			"webhookHint": "Füge diesen Webhook in den Projekteinstellungen hinzu, damit Änderungen zurück an Kaneo gehen.",
+			"webhookHint": "Füge diesen Webhook in den Projekteinstellungen hinzu, damit Änderungen zurück an Tracing gehen.",
 			"loadProjectsError": "Projekte konnten nicht geladen werden.",
 			"importPermissionHint": "Für den Import ist die Berechtigung zum Erstellen und Aktualisieren von Aufgaben erforderlich.",
 			"browseEmpty": "Dieser Token ist in keinem Projekt Mitglied.",
@@ -1886,7 +1886,7 @@
 			"currentPlan": {
 				"title": "Aktueller Plan"
 			},
-			"disabled": "Die Abrechnung ist auf dieser Instanz nicht aktiviert. Selbst gehostetes Kaneo enthält alle Funktionen, dauerhaft kostenlos.",
+			"disabled": "Die Abrechnung ist auf dieser Instanz nicht aktiviert. Selbst gehostetes Tracing enthält alle Funktionen, dauerhaft kostenlos.",
 			"expiredCallout": {
 				"action": "Wähle einen Plan",
 				"adminDescription": "Du kannst weiterhin alles ansehen. Das Erstellen und Bearbeiten ist pausiert, bis du einen Plan wählst. Es wurde nichts gelöscht.",
@@ -1904,7 +1904,7 @@
 			},
 			"foundingFree": {
 				"badge": "Kostenlos",
-				"description": "Als Unterstützer der ersten Stunde hat dieser Workspace kostenlosen Zugriff auf Kaneo Cloud. Danke, dass du von Anfang an dabei bist.",
+				"description": "Als Unterstützer der ersten Stunde hat dieser Workspace kostenlosen Zugriff auf Tracing Cloud. Danke, dass du von Anfang an dabei bist.",
 				"title": "Founding Free"
 			},
 			"interval": {
@@ -1988,8 +1988,8 @@
 			"filtered": "Nur passende Labels",
 			"impact": "Passende Aufgaben: {{matching}} / {{total}} · Neue Exporte: {{create}} · Zu pausieren: {{pause}} · Zu prüfen: {{review}}",
 			"impactTitle": "Was sich ändern wird",
-			"incoming": "Repository → Kaneo",
-			"incomingHint": "Wähle, welche Issues importiert werden oder Aufgaben erstellen dürfen. Verwende die exakten Labelnamen im Repository. Bestehende Verknüpfungen folgen der Kaneo-Regel.",
+			"incoming": "Repository → Tracing",
+			"incomingHint": "Wähle, welche Issues importiert werden oder Aufgaben erstellen dürfen. Verwende die exakten Labelnamen im Repository. Bestehende Verknüpfungen folgen der Tracing-Regel.",
 			"loadError": "Synchronisierungsregeln konnten nicht geladen werden.",
 			"loading": "Synchronisierungsregeln werden geladen…",
 			"matchLabels": "Labelübereinstimmung",
@@ -1999,8 +1999,8 @@
 			"noDescription": "Keine Beschreibung",
 			"noLabels": "Erstelle zuerst Workspace-Labels, um einen Aufgabenfilter einzurichten.",
 			"open": "Offen",
-			"outgoing": "Kaneo → Repository",
-			"outgoingHint": "Wähle, welche Kaneo-Aufgaben synchronisiert werden dürfen. Verliert eine verknüpfte Aufgabe ein erforderliches Label, pausieren beide Richtungen.",
+			"outgoing": "Tracing → Repository",
+			"outgoingHint": "Wähle, welche Tracing-Aufgaben synchronisiert werden dürfen. Verliert eine verknüpfte Aufgabe ein erforderliches Label, pausieren beide Richtungen.",
 			"paused": "Synchronisierung pausiert",
 			"pausedHint": "Einträge und Verknüpfungen bleiben erhalten. Aufgaben, die wieder passen, müssen vor dem Fortsetzen geprüft werden.",
 			"preserveHint": "Beim Pausieren bleiben beide Einträge und ihre Verknüpfung erhalten. Das Fortsetzen erfordert einen Vergleich; alte Kommentare werden nicht erneut übertragen.",
@@ -2022,7 +2022,7 @@
 			"sharedHint": "Diese Regeln gelten für alle im Projekt. Das Ausblenden erweiterter Einstellungen deaktiviert sie nicht.",
 			"title": "Was synchronisiert wird",
 			"unavailableLabel": "Nicht verfügbares Label",
-			"useKaneo": "Kaneo-Werte übernehmen",
+			"useTracing": "Tracing-Werte übernehmen",
 			"useRepository": "Repository-Werte übernehmen",
 			"exportPending": "Passende Aufgaben exportieren",
 			"inactiveHint": "Diese Integration ist pausiert. Aufgaben werden erst nach ihrer Reaktivierung exportiert.",
@@ -2035,10 +2035,10 @@
 			"issuesLabelled": "Issues mit Label",
 			"joinAnd": "und",
 			"joinOr": "oder",
-			"kaneoToProvider": "Von Kaneo nach {{provider}}",
+			"kaneoToProvider": "Von Tracing nach {{provider}}",
 			"pausedSummary_one": "{{count}} Aufgabe wird nicht mehr synchronisiert, weil sie nicht mehr zu den Synchronisierungsregeln passt.",
 			"pausedSummary_other": "{{count}} Aufgaben werden nicht mehr synchronisiert, weil sie nicht mehr zu den Synchronisierungsregeln passen.",
-			"providerToKaneo": "Von {{provider}} nach Kaneo",
+			"providerToTracing": "Von {{provider}} nach Tracing",
 			"reviewPaused": "Prüfen",
 			"tasksLabelled": "Aufgaben mit Label"
 		},
@@ -2124,7 +2124,7 @@
 			"searchCount_other": "{{count}} passende Workspaces",
 			"searchLabel": "Workspaces suchen",
 			"searchPlaceholder": "Nach Name oder Slug suchen",
-			"subtitle": "Alle Workspaces auf dieser Kaneo-Instanz, auch die, in denen du kein Mitglied bist.",
+			"subtitle": "Alle Workspaces auf dieser Tracing-Instanz, auch die, in denen du kein Mitglied bist.",
 			"title": "Workspaces",
 			"toast": {
 				"added": "Mitglied hinzugefügt",
@@ -2159,7 +2159,7 @@
 				"cancel": "Abbrechen",
 				"continue": "Weiter",
 				"hideSecret": "{{field}} ausblenden",
-				"sectionDescription": "Kaneo greift nur lesend auf {{source}} zu. Der Schlüssel wird für diesen Import verwendet und niemals gespeichert.",
+				"sectionDescription": "Tracing greift nur lesend auf {{source}} zu. Der Schlüssel wird für diesen Import verwendet und niemals gespeichert.",
 				"sectionTitle": "Verbinden",
 				"showSecret": "{{field}} anzeigen",
 				"title": "Aus {{source}} importieren",
@@ -2188,11 +2188,11 @@
 				"title": "Letzte Importe"
 			},
 			"kaneo": {
-				"apiKeyDescription": "Öffne in dieser Kaneo-Instanz die Einstellungen und dann „API-Schlüssel“.",
+				"apiKeyDescription": "Öffne in dieser Tracing-Instanz die Einstellungen und dann „API-Schlüssel“.",
 				"apiKeyLabel": "API-Schlüssel",
 				"apiKeyPlaceholder": "API-Schlüssel einfügen",
 				"urlDescription": "Die Instanz, von der du wechselst.",
-				"urlLabel": "Kaneo-URL"
+				"urlLabel": "Tracing-URL"
 			},
 			"linear": {
 				"apiKeyDescription": "Lesezugriff reicht aus. Du kannst den Schlüssel nach dem Import widerrufen.",
@@ -2279,9 +2279,9 @@
 				"connectTo": "{{source}} verbinden",
 				"description": "Wähle das Tool aus, von dem du wechselst. Jedes ausgewählte Projekt wird hier zu einem neuen Projekt.",
 				"kaneo": {
-					"description": "Übertrage Projekte zwischen Kaneo Cloud und einer selbst gehosteten Instanz.",
+					"description": "Übertrage Projekte zwischen Tracing Cloud und einer selbst gehosteten Instanz.",
 					"intro": "Projekte aus allen Workspaces, auf die der Schlüssel Zugriff hat. Jedes ausgewählte Projekt wird hierher kopiert.",
-					"pickerName": "Andere Kaneo-Instanz"
+					"pickerName": "Andere Tracing-Instanz"
 				},
 				"linear": {
 					"description": "Teams, Issues, Labels, Unteraufgaben und Kommentare. Füge einen persönlichen API-Schlüssel ein.",
@@ -2319,7 +2319,7 @@
 				"import": "Importieren",
 				"label": "Importschritte"
 			},
-			"subtitle": "Übertrage deine Projekte aus einem anderen Tool in {{workspace}}. Kaneo greift nur lesend auf die Quelle zu.",
+			"subtitle": "Übertrage deine Projekte aus einem anderen Tool in {{workspace}}. Tracing greift nur lesend auf die Quelle zu.",
 			"title": "Importieren",
 			"toast": {
 				"failed": "Import aus {{source}} fehlgeschlagen",
@@ -2332,7 +2332,7 @@
 				"apiKeyPlaceholder": "API-Schlüssel einfügen",
 				"authorizeButton": "Bei Trello autorisieren",
 				"authorizeDescription": "Öffnet Trello in einem neuen Tab. Nur Lesezugriff, läuft nach einem Tag ab.",
-				"authorizeLabel": "Kaneo autorisieren",
+				"authorizeLabel": "Tracing autorisieren",
 				"authorizeNeedsKey": "Gib zuerst den API-Schlüssel ein. Nur Lesezugriff, läuft nach einem Tag ab.",
 				"tokenDescription": "Klicke in Trello auf „Zulassen“ und füge dann den angezeigten Token ein.",
 				"tokenLabel": "Token",
@@ -2420,7 +2420,7 @@
 			"channelLabel": "Kanal",
 			"channelPlaceholder": "#team-neuigkeiten",
 			"disconnect": "Trennen",
-			"disconnectDescription": "Kaneo postet nicht mehr in {{provider}} und entfernt die gespeicherten Einstellungen.",
+			"disconnectDescription": "Tracing postet nicht mehr in {{provider}} und entfernt die gespeicherten Einstellungen.",
 			"disconnecting": "Wird getrennt…",
 			"disconnectTitle": "{{provider}} trennen?",
 			"events": {
@@ -2643,7 +2643,7 @@
 				"storageOk": "Bucket reachable",
 				"storageWarning": "Can't check the bucket with these credentials ({{code}}).",
 				"title": "Instance",
-				"version": "Kaneo version",
+				"version": "Tracing version",
 				"versionUnknown": "Unknown"
 			},
 			"integrations": {
@@ -3854,13 +3854,13 @@
 	"invitations": {
 		"email": {
 			"subject": "{{inviterName}} hat dich eingeladen, {{workspaceName}} auf {{instanceName}} beizutreten",
-			"preview": "Du wurdest zu {{workspaceName}} auf Kaneo eingeladen",
+			"preview": "Du wurdest zu {{workspaceName}} auf Tracing eingeladen",
 			"title": "{{workspaceName}} beitreten",
-			"subtitle": "{{inviterName}} ({{inviterEmail}}) hat dich eingeladen, in Kaneo zusammenzuarbeiten.",
+			"subtitle": "{{inviterName}} ({{inviterEmail}}) hat dich eingeladen, in Tracing zusammenzuarbeiten.",
 			"cta": "Einladung annehmen",
 			"sameEmail": "Du kannst die Einladung mit derselben E-Mail-Adresse annehmen, die diese Nachricht erhalten hat.",
 			"ignore": "Falls du damit nicht gerechnet hast, kannst du diese E-Mail einfach ignorieren.",
-			"footer": "Kaneo Workspace-Einladung",
+			"footer": "Tracing Workspace-Einladung",
 			"details": {
 				"title": "Einladungsdetails",
 				"sentTo": "Gesendet an",
@@ -4131,66 +4131,66 @@
 	},
 	"press": {
 		"title": "Pressemappe",
-		"headline": "Kaneo-Pressemappe",
-		"intro": "Kaneo-Logos und Produkt-Screenshots für Artikel, Videos und andere Medien.",
-		"description": "Kaneo-Pressematerial: Produktinformationen, Logos, Screenshots und Kontaktdaten für Journalisten und Content-Ersteller.",
+		"headline": "Tracing-Pressemappe",
+		"intro": "Tracing-Logos und Produkt-Screenshots für Artikel, Videos und andere Medien.",
+		"description": "Tracing-Pressematerial: Produktinformationen, Logos, Screenshots und Kontaktdaten für Journalisten und Content-Ersteller.",
 		"downloadKit": "Alle Materialien herunterladen",
-		"boilerplateTitle": "Über Kaneo",
-		"boilerplate": "Kaneo ist eine von Andrej Acevski entwickelte Open-Source-Plattform für Projektmanagement. Teams können Aufgaben in Board- und Listenansichten organisieren, Arbeit zuweisen, Prioritäten und Fälligkeitsdaten festlegen und GitHub anbinden. Kaneo ist unter der MIT-Lizenz zum Selbsthosten oder als verwalteter Dienst über Kaneo Cloud verfügbar.",
+		"boilerplateTitle": "Über Tracing",
+		"boilerplate": "Tracing ist eine von Andrej Acevski entwickelte Open-Source-Plattform für Projektmanagement. Teams können Aufgaben in Board- und Listenansichten organisieren, Arbeit zuweisen, Prioritäten und Fälligkeitsdaten festlegen und GitHub anbinden. Tracing ist unter der MIT-Lizenz zum Selbsthosten oder als verwalteter Dienst über Tracing Cloud verfügbar.",
 		"logosTitle": "Logos",
 		"darkLogo": "Dunkle Wortmarke",
-		"darkLogoAlt": "Dunkles Kaneo-Logo auf hellem Hintergrund",
+		"darkLogoAlt": "Dunkles Tracing-Logo auf hellem Hintergrund",
 		"darkLogoDetail": "SVG",
 		"lightLogo": "Helle Wortmarke",
-		"lightLogoAlt": "Helles Kaneo-Logo auf dunklem Hintergrund",
+		"lightLogoAlt": "Helles Tracing-Logo auf dunklem Hintergrund",
 		"lightLogoDetail": "SVG",
 		"icon": "App-Symbol",
-		"iconAlt": "Kaneo-App-Symbol",
+		"iconAlt": "Tracing-App-Symbol",
 		"iconDetail": "PNG, 512 × 512",
 		"download": "Herunterladen",
 		"screenshotsTitle": "Screenshots",
 		"lightScreenshot": "Board (hell)",
-		"lightScreenshotAlt": "Kaneo-Board im hellen Design mit nach Status angeordneten Aufgabenkarten",
+		"lightScreenshotAlt": "Tracing-Board im hellen Design mit nach Status angeordneten Aufgabenkarten",
 		"darkScreenshot": "Board (dunkel)",
-		"darkScreenshotAlt": "Kaneo-Board im dunklen Design mit nach Status angeordneten Aufgabenkarten",
+		"darkScreenshotAlt": "Tracing-Board im dunklen Design mit nach Status angeordneten Aufgabenkarten",
 		"contactTitle": "Presseanfragen",
-		"contactBody": "Kontaktiere das Kaneo-Team für Produktfragen, Interviews oder weitere Materialien.",
+		"contactBody": "Kontaktiere das Tracing-Team für Produktfragen, Interviews oder weitere Materialien.",
 		"usageContrast": "Verwende die helle Wortmarke auf dunklen Hintergründen und die dunkle Wortmarke auf hellen Hintergründen.",
 		"usageProportions": "Behalte die ursprünglichen Proportionen und Farben bei, ohne das Logo zu verzerren oder Effekte hinzuzufügen.",
 		"usageSpace": "Lass ausreichend Platz um das Logo, damit es klar erkennbar und lesbar bleibt.",
 		"darkListScreenshot": "Liste (dunkel)",
-		"darkListScreenshotAlt": "Kaneo-Aufgabenliste im dunklen Design, nach Status gruppiert, mit zugewiesenen Personen, Prioritäten, Labels und Fälligkeitsdaten",
+		"darkListScreenshotAlt": "Tracing-Aufgabenliste im dunklen Design, nach Status gruppiert, mit zugewiesenen Personen, Prioritäten, Labels und Fälligkeitsdaten",
 		"darkTaskScreenshot": "Aufgabendetails (dunkel)",
-		"darkTaskScreenshotAlt": "Kaneo-Aufgabendetails im dunklen Design mit Beschreibung, Checkliste, Teamkommentar und Aufgabeneigenschaften",
+		"darkTaskScreenshotAlt": "Tracing-Aufgabendetails im dunklen Design mit Beschreibung, Checkliste, Teamkommentar und Aufgabeneigenschaften",
 		"darkTimelineScreenshot": "Zeitleiste (dunkel)",
-		"darkTimelineScreenshotAlt": "Kaneo-Gantt-Zeitleiste im dunklen Design mit geplanten Aufgaben und ihrer Dauer",
+		"darkTimelineScreenshotAlt": "Tracing-Gantt-Zeitleiste im dunklen Design mit geplanten Aufgaben und ihrer Dauer",
 		"lightListScreenshot": "Liste (hell)",
-		"lightListScreenshotAlt": "Kaneo-Aufgabenliste im hellen Design, nach Status gruppiert, mit zugewiesenen Personen, Prioritäten, Labels und Fälligkeitsdaten",
+		"lightListScreenshotAlt": "Tracing-Aufgabenliste im hellen Design, nach Status gruppiert, mit zugewiesenen Personen, Prioritäten, Labels und Fälligkeitsdaten",
 		"lightTaskScreenshot": "Aufgabendetails (hell)",
-		"lightTaskScreenshotAlt": "Kaneo-Aufgabendetails im hellen Design mit Beschreibung, Checkliste, Teamkommentar und Aufgabeneigenschaften",
+		"lightTaskScreenshotAlt": "Tracing-Aufgabendetails im hellen Design mit Beschreibung, Checkliste, Teamkommentar und Aufgabeneigenschaften",
 		"lightTimelineScreenshot": "Zeitleiste (hell)",
-		"lightTimelineScreenshotAlt": "Kaneo-Gantt-Zeitleiste im hellen Design mit geplanten Aufgaben und ihrer Dauer"
+		"lightTimelineScreenshotAlt": "Tracing-Gantt-Zeitleiste im hellen Design mit geplanten Aufgaben und ihrer Dauer"
 	},
 	"landing": {
 		"sponsors": {
 			"ciSponsor": "Partner"
 		},
 		"founder": {
-			"title": "Warum es Kaneo gibt",
-			"intro": "Ich bin Andrej und habe Kaneo entwickelt, weil ich genug von Projektmanagement-Tools hatte, die mehr im Weg standen, als zu helfen. Nach Jahren mit überladenen, unnötig komplizierten Plattformen, die von der eigentlichen Arbeit ablenkten, wusste ich: Es muss besser gehen.",
-			"problem": "Das Problem war nicht, dass diesen Tools Funktionen fehlten. Sie hatten zu viele. Jede Benachrichtigung, jeder unnötige Button und jeder komplizierte Workflow lenkte mein Team von dem ab, was zählte: großartige Produkte zu entwickeln.",
-			"principle": "Ich glaube, die besten Tools sind unsichtbar. Sie sollten den natürlichen Arbeitsablauf deines Teams unterstützen, statt euch zu zwingen, euch an ihren anzupassen. Kaneo folgt dem Prinzip „Weniger ist mehr“. Jede Funktion gibt es, weil sie ein echtes Problem löst, nicht weil sie in einer Demo beeindruckend aussieht."
+			"title": "Built for Go Figure",
+			"intro": "Tracing is Go Figure’s open-source fork of Kaneo, created by Andrej Acevski.",
+			"problem": "We use Tracing to plan issues, projects, initiatives, and cycles in one workspace.",
+			"principle": "The fork adds Linear-style planning while preserving the original MIT license and upstream attribution."
 		},
 		"hero": {
-			"cloudCta": "Kaneo Cloud ausprobieren",
-			"trialNote": "14 Tage Cloud-Testzeitraum. Keine Kreditkarte erforderlich.",
+			"cloudCta": "Open Tracing",
+			"trialNote": "Open source under the MIT license.",
 			"github": "GitHub",
 			"productHunt": "Product Hunt",
 			"title": "Projektmanagement,",
 			"titleAccent": "das nicht selbst zum Projekt wird.",
-			"description": "Open-Source-Projektmanagement mit Boards, Gantt-Diagrammen und GitHub-Integration. Hoste Kaneo kostenlos selbst, inklusive SSO, oder überlasse das Hosting Kaneo Cloud.",
-			"pricingCta": "See pricing",
-			"appStore": "App Store"
+			"description": "Issues, projects, initiatives, cycles, and saved views in one open-source workspace. Built by Go Figure on Kaneo.",
+			"pricingCta": "Self-host Tracing",
+			"appStore": "Mobile source"
 		},
 		"navigation": {
 			"product": "Produkt",
@@ -4204,12 +4204,12 @@
 			"community": "Community",
 			"menu": "Menü",
 			"closeMenu": "Menü schließen",
-			"home": "Kaneo-Startseite",
+			"home": "Tracing-Startseite",
 			"signIn": "Anmelden",
-			"getStarted": "Loslegen"
+			"getStarted": "Open Tracing"
 		},
 		"showcase": {
-			"label": "Kaneo-Produktansichten",
+			"label": "Tracing-Produktansichten",
 			"controls": "Produktansicht auswählen",
 			"play": "Produktansichten abspielen",
 			"pause": "Produktansichten pausieren",
@@ -4231,8 +4231,8 @@
 			},
 			"hosting": {
 				"title": "Auf deinem eigenen Server betreiben.",
-				"description": "Stelle Kaneo mit Docker bereit und behalte deinen Workspace auf einer Infrastruktur, die du kontrollierst.",
-				"link": "Kaneo selbst hosten"
+				"description": "Stelle Tracing mit Docker bereit und behalte deinen Workspace auf einer Infrastruktur, die du kontrollierst.",
+				"link": "Tracing selbst hosten"
 			},
 			"source": {
 				"title": "Auch der Code ist offen.",
@@ -4240,8 +4240,8 @@
 				"link": "Quellcode ansehen"
 			},
 			"preview": {
-				"taskAlt": "Interaktive Vorschau von Kaneo-Aufgaben und -Unteraufgaben.",
-				"githubAlt": "Interaktive Vorschau eines GitHub-Merges, der eine Kaneo-Aufgabe aktualisiert.",
+				"taskAlt": "Interaktive Vorschau von Tracing-Aufgaben und -Unteraufgaben.",
+				"githubAlt": "Interaktive Vorschau eines GitHub-Merges, der eine Tracing-Aufgabe aktualisiert.",
 				"taskTitle": "Neue Startseite veröffentlichen",
 				"taskDescription": "Aktualisiere die Texte und prüfe das Layout vor der nächsten Veröffentlichung.",
 				"checklistDone": "Texte prüfen",
@@ -4251,7 +4251,7 @@
 				"date": "12. Okt.",
 				"design": "Design",
 				"done": "Erledigt",
-				"relationsAlt": "Interaktive Vorschau von Aufgabenabhängigkeiten in Kaneo.",
+				"relationsAlt": "Interaktive Vorschau von Aufgabenabhängigkeiten in Tracing.",
 				"inReview": "In Prüfung",
 				"trySubtasks": "Probiere aus, eine Unteraufgabe abzuhaken.",
 				"tryGithub": "Sieh dir in der Vorschau an, wie ein Merge die Aufgabe aktualisiert.",
@@ -4273,13 +4273,13 @@
 			}
 		},
 		"seo": {
-			"title": "Kaneo — Selbst gehostetes Open-Source-Projektmanagement",
-			"description": "Open-Source-Projektmanagement mit Boards, Gantt-Diagrammen und GitHub-Integration. Hoste Kaneo kostenlos selbst, inklusive SSO, oder nutze Kaneo Cloud."
+			"title": "Tracing — Selbst gehostetes Open-Source-Projektmanagement",
+			"description": "Open-Source-Projektmanagement mit Boards, Gantt-Diagrammen und GitHub-Integration. Hoste Tracing kostenlos selbst, inklusive SSO, oder nutze Tracing Cloud."
 		},
 		"resources": {
 			"eyebrow": "Mach es zu deinem",
 			"title": "Vom Ausprobieren direkt ins Arbeiten.",
-			"description": "Richte deinen Server ein, verbinde deine Tools oder vergleiche Kaneo mit deinem aktuellen Projektmanagement-Tool.",
+			"description": "Richte deinen Server ein, verbinde deine Tools oder vergleiche Tracing mit deinem aktuellen Projektmanagement-Tool.",
 			"sso": {
 				"title": "Deinen eigenen Identitätsanbieter nutzen",
 				"description": "Richte OIDC-Single-Sign-on in der kostenlosen, selbst gehosteten Version ein."
@@ -4289,42 +4289,42 @@
 				"description": "Verwende MCP, um über einen KI-Client mit Aufgaben und Projekten zu arbeiten."
 			},
 			"linear": {
-				"title": "Kaneo und Linear vergleichen",
+				"title": "Tracing und Linear vergleichen",
 				"description": "Vergleiche die Unterschiede bei Hosting, Lizenzierung und Arbeitsablauf."
 			},
 			"startups": {
-				"description": "What a startup needs from a tracker, and what Kaneo Cloud costs as you hire.",
+				"description": "What a startup needs from a tracker, and what Tracing Cloud costs as you hire.",
 				"title": "Project management for startups"
 			}
 		},
 		"product": {
 			"title": "Bevor du loslegst",
 			"description": "Praktische Details zu Hosting, Planung und der Zusammenarbeit im Team.",
-			"overview": "Kaneo ist eine Open-Source-Projektmanagement-Plattform unter der MIT-Lizenz mit Boards, Backlog, Gantt- und Kalenderansichten, benutzerdefinierten Feldern, Zeiterfassung und GitHub-Integration. Hoste sie auf deiner eigenen Infrastruktur oder nutze Kaneo Cloud.",
+			"overview": "Tracing is Go Figure’s open-source planning workspace with issue tracking, triage, projects, initiatives, roadmaps, cycles, insights, and saved views.",
 			"hosting": {
-				"question": "Kann ich Kaneo kostenlos selbst hosten?",
-				"answer": "Ja. Kaneo steht unter der MIT-Lizenz und kann kostenlos selbst gehostet werden, inklusive Single Sign-on. Betreibe die Anwendung zusammen mit PostgreSQL über Docker Compose oder stelle sie mit dem offiziellen Helm-Chart bereit. Du verwaltest Infrastruktur, Updates und Backups.",
-				"link": "Installationsanleitung lesen"
+				"question": "How is Tracing hosted?",
+				"answer": "Build and run Tracing on your own infrastructure. Go Figure operates its own workspace; this fork does not offer the upstream commercial cloud plans.",
+				"link": "Self-host Tracing"
 			},
 			"planning": {
-				"question": "Hat Kaneo Gantt-Diagramme?",
-				"answer": "Ja. Neben Boards, Listen und Backlog-Planung bietet Kaneo Gantt- und Kalenderansichten. Nutze Start- und Fälligkeitsdaten von Aufgaben, um Arbeit auf einer Zeitleiste zu planen. Budgetierung, Basisplanvergleiche und Sprint-Burndown-Berichte gehören derzeit nicht zum Funktionsumfang.",
-				"link": "Planungsfunktionen vergleichen"
+				"question": "What planning features are included?",
+				"answer": "Plan issues, triage, projects, milestones, initiatives, roadmaps, and cycles. Use saved views and insights to follow the work.",
+				"link": "Explore planning"
 			},
 			"sso": {
-				"question": "Ist Single Sign-on enthalten?",
-				"answer": "Ja. Die kostenlose, selbst gehostete Version unterstützt Google, GitHub, Discord und benutzerdefinierte OAuth/OIDC-Anbieter. Konfiguriere deinen Anbieter auf deiner Instanz, ohne eine separate Kaneo-Edition zu kaufen.",
-				"link": "OIDC konfigurieren"
+				"question": "Can I configure single sign-on?",
+				"answer": "Self-hosted instances support Google, GitHub, Discord, and custom OAuth/OIDC providers configured by the operator.",
+				"link": "Read the setup guide"
 			},
 			"agents": {
-				"question": "Können KI-Clients mit Kaneo arbeiten?",
-				"answer": "Ja. Kaneo stellt einen MCP-Server über das Paket @kaneo/mcp und einen HTTP-Endpunkt bereit. Kompatible KI-Clients können Aufgaben mit einem benutzergebundenen API-Schlüssel lesen und aktualisieren. Dabei gelten die Workspace-Berechtigungen.",
-				"link": "MCP-Anleitung lesen"
+				"question": "Can AI clients work with Tracing?",
+				"answer": "The authenticated HTTP MCP endpoint supports planning tools with workspace permissions. The CLI and stdio MCP package can be built from this repository.",
+				"link": "Read the MCP guide"
 			},
 			"mobile": {
-				"answer": "Yes. Kaneo is on the App Store for iPhone and iPad, and Android is coming soon. The app is free for Kaneo Cloud accounts. Connecting it to a self-hosted server is a one-time $9.99 unlock per person, and like the rest of Kaneo, the app is open source.",
-				"link": "Download on the App Store",
-				"question": "Is there a mobile app?"
+				"question": "Is there a mobile app?",
+				"answer": "The Expo mobile app is included in this repository. Tracing has not published its own App Store or Play Store listing.",
+				"link": "View mobile source"
 			}
 		},
 		"comparison": {
@@ -4334,9 +4334,9 @@
 		},
 		"selfHostingGuide": {
 			"summary": "Was Selbsthosting umfasst, mit Links zur gepflegten Docker-Compose-Konfiguration und den Installationsschritten.",
-			"answer": "Um Kaneo selbst zu hosten, betreibst du die Anwendung und PostgreSQL mit Docker Compose, konfigurierst deine öffentliche URL und Geheimnisse und schaltest einen TLS-Reverse-Proxy davor. Die Installationsanleitung nennt mindestens 2 GB Arbeitsspeicher und 10 GB Speicherplatz. Plane regelmäßige Updates, Datenbank-Backups und Speicher für hochgeladene Dateien ein.",
+			"answer": "Um Tracing selbst zu hosten, betreibst du die Anwendung und PostgreSQL mit Docker Compose, konfigurierst deine öffentliche URL und Geheimnisse und schaltest einen TLS-Reverse-Proxy davor. Die Installationsanleitung nennt mindestens 2 GB Arbeitsspeicher und 10 GB Speicherplatz. Plane regelmäßige Updates, Datenbank-Backups und Speicher für hochgeladene Dateien ein.",
 			"requirements": "Das dokumentierte Minimum beträgt 2 GB Arbeitsspeicher und 10 GB Speicherplatz, mit Docker 20.10 oder neuer und Docker Compose V2. Plane mehr Kapazität für deine Arbeitslast, das Wachstum der Datenbank und hochgeladene Dateien ein.",
-			"compose": "Verwende die gepflegte compose.yml aus der Docker-Compose-Anleitung. Sie definiert PostgreSQL, ein persistentes Datenbank-Volume, die Kaneo-Anwendung und Zustandsprüfungen. Konfiguriere die Umgebungsdatei, bevor du die Dienste startest. Lege für den Produktivbetrieb eine feste Image-Version fest, damit Updates bewusst erfolgen.",
+			"compose": "Verwende die gepflegte compose.yml aus der Docker-Compose-Anleitung. Sie definiert PostgreSQL, ein persistentes Datenbank-Volume, die Tracing-Anwendung und Zustandsprüfungen. Konfiguriere die Umgebungsdatei, bevor du die Dienste startest. Lege für den Produktivbetrieb eine feste Image-Version fest, damit Updates bewusst erfolgen.",
 			"backups": "Sichere sowohl PostgreSQL als auch den für Uploads verwendeten Objektspeicher. Wähle den Sicherungsrhythmus danach, wie viel Arbeit dein Team im Verlustfall entbehren könnte. Speichere Kopien außerhalb des Anwendungsservers und teste die Wiederherstellung, bevor du sie brauchst.",
 			"worth": "Selbsthosting ist sinnvoll, wenn du Kontrolle über Infrastruktur und Daten brauchst und jemand die Wartung übernehmen kann. Berücksichtige Serverkapazität, Speicher, Backups und Wartungszeit, wenn du die Kosten mit einem verwalteten Dienst vergleichst.",
 			"minimum": "Die Installationsanleitung nennt Docker 20.10 oder neuer, Docker Compose V2, mindestens 2 GB Arbeitsspeicher und 10 GB Speicherplatz. Die Compose-Konfiguration enthält PostgreSQL. Redis ist für eine einzelne API-Instanz optional.",
@@ -4364,8 +4364,8 @@
 			"tooManyRequests": "Zu viele Anfragen. Bitte warte einen Moment.",
 			"serverProblem": "Auf dem Server ist ein Fehler aufgetreten ({{status}}).",
 			"requestFailed": "Anfrage fehlgeschlagen ({{status}}).",
-			"notKaneo": "{{url}} scheint kein Kaneo-Server zu sein.",
-			"noInstance": "Unter {{url}} wurde keine Kaneo-Instanz gefunden (HTTP {{status}}).",
+			"notTracing": "{{url}} scheint kein Tracing-Server zu sein.",
+			"noInstance": "Unter {{url}} wurde keine Tracing-Instanz gefunden (HTTP {{status}}).",
 			"noSession": "Der Server hat keine Sitzung zurückgegeben. Versuche, dich über den Browser anzumelden.",
 			"deviceFailed": "Geräteanmeldung fehlgeschlagen (HTTP {{status}}).",
 			"apiKeyRejected": "Dieser API-Schlüssel wurde abgelehnt.",
@@ -4373,13 +4373,13 @@
 			"uploadFailed": "Upload fehlgeschlagen ({{status}})"
 		},
 		"signIn": {
-			"tagline": "Einfaches Projektmanagement. Verbinde dich mit Kaneo Cloud oder deiner eigenen Instanz.",
-			"cloud": "Kaneo Cloud",
+			"tagline": "Einfaches Projektmanagement. Verbinde dich mit Tracing Cloud oder deiner eigenen Instanz.",
+			"cloud": "Tracing Cloud",
 			"selfHosted": "Selbst gehostet",
 			"captcha": "Dieser Server verlangt für diesen Schritt eine Browserprüfung. Nutze stattdessen „Im Browser fortfahren“.",
 			"invalidClient": "Dieser Server erlaubt keine Geräteanmeldung. Bitte die Administration, „kaneo-cli“ zu DEVICE_AUTH_CLIENT_IDS hinzuzufügen, oder melde dich mit Passwort oder API-Schlüssel an.",
 			"serverAddress": "Serveradresse",
-			"serverAddressHint": "Die Adresse, unter der du Kaneo öffnest. Nutze http:// für Server ohne TLS. Läuft die API auf einem anderen Host, gib die API-Adresse ein.",
+			"serverAddressHint": "Die Adresse, unter der du Tracing öffnest. Nutze http:// für Server ohne TLS. Läuft die API auf einem anderen Host, gib die API-Adresse ein.",
 			"connect": "Verbinden",
 			"recent": "Zuletzt verwendet",
 			"change": "Ändern",
@@ -4394,7 +4394,7 @@
 			"sendTo": "An {{email}} senden",
 			"noPassword": "Kein Passwort nötig",
 			"useApiKey": "API-Schlüssel verwenden",
-			"newToKaneo": "Neu bei Kaneo?",
+			"newToTracing": "Neu bei Tracing?",
 			"createAccount": "Konto erstellen",
 			"code": {
 				"title": "Mit Code anmelden",
@@ -4410,7 +4410,7 @@
 				"denied": "Die Anmeldung wurde im Browser abgelehnt.",
 				"expired": "Der Anmeldecode ist abgelaufen. Starte neu, um einen neuen zu erhalten.",
 				"openFailed": "Browser konnte nicht geöffnet werden. Kopiere stattdessen den Link.",
-				"message": "Bestätige dieses Gerät auf der Kaneo-Website. Dort funktionieren GitHub, Google, Discord und SSO.",
+				"message": "Bestätige dieses Gerät auf der Tracing-Website. Dort funktionieren GitHub, Google, Discord und SSO.",
 				"yourCode": "Dein Code",
 				"copyCode": "Code kopieren",
 				"codeCopied": "Code kopiert",
@@ -4432,7 +4432,7 @@
 			"unlock": {
 				"buy": "Unlock for {{price}}",
 				"buyNoPrice": "Unlock",
-				"message": "Signing in to Kaneo Cloud is always included. Connecting the app to a self-hosted server is a one-time purchase that supports Kaneo's development.",
+				"message": "Signing in to Tracing Cloud is always included. Connecting the app to a self-hosted server is a one-time purchase that supports Tracing's development.",
 				"nothingToRestore": "No earlier purchase was found for this store account.",
 				"restore": "Restore purchase",
 				"title": "Connect your own server",
@@ -4888,7 +4888,7 @@
 		"background": {
 			"summary_one": "{{count}} weitere neue Benachrichtigung",
 			"summary_other": "{{count}} weitere neue Benachrichtigungen",
-			"channelName": "Kaneo-Aktivität",
+			"channelName": "Tracing-Aktivität",
 			"channelDescription": "Zuweisungen, Kommentare und Erwähnungen aus deinen Workspaces"
 		},
 		"ui": {
@@ -4982,7 +4982,7 @@
 				"delivery": "Zustellung und Ereignisse",
 				"deliveryHint": "E-Mail, ntfy, Gotify, Webhooks",
 				"invitations": "Einladungen",
-				"permissionDenied": "Erlaube zuerst Benachrichtigungen für Kaneo in den Systemeinstellungen."
+				"permissionDenied": "Erlaube zuerst Benachrichtigungen für Tracing in den Systemeinstellungen."
 			},
 			"connection": {
 				"title": "Verbindung",
@@ -5034,7 +5034,7 @@
 		},
 		"notificationSettings": {
 			"title": "Benachrichtigungen",
-			"description": "Wo Kaneo dich erreicht und worüber.",
+			"description": "Wo Tracing dich erreicht und worüber.",
 			"on": "An",
 			"off": "Aus",
 			"notSet": "Nicht eingerichtet",
@@ -5192,7 +5192,7 @@
 			}
 		},
 		"permissions": {
-			"photos": "Kaneo verwendet deine Fotos, um Bilder an Aufgaben und Kommentare anzuhängen, und für dein Profilbild."
+			"photos": "Tracing verwendet deine Fotos, um Bilder an Aufgaben und Kommentare anzuhängen, und für dein Profilbild."
 		},
 		"parity": {
 			"signInTagline": "Melde dich im Projektarbeitsbereich von Go Figure an.",
@@ -5427,7 +5427,7 @@
 	"parity": {
 		"categories": {
 			"title": "Statuskategorien",
-			"description": "Kategorien legen fest, wie Planungsfunktionen Arbeit zählen. Kaneos Einstellung für den Endstatus steuert weiterhin die bestehenden Automatisierungen.",
+			"description": "Kategorien legen fest, wie Planungsfunktionen Arbeit zählen. Tracings Einstellung für den Endstatus steuert weiterhin die bestehenden Automatisierungen.",
 			"backlog": "Backlog",
 			"unstarted": "Nicht begonnen",
 			"started": "Begonnen",

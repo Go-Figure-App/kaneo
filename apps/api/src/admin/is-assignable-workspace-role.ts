@@ -1,4 +1,4 @@
-import { DEFAULT_ROLE_NAMES } from "@kaneo/permissions";
+import { DEFAULT_ROLE_NAMES } from "@tracing/permissions";
 import { and, eq } from "drizzle-orm";
 import { schema } from "../database";
 import type { DbOrTx } from "../project-access/db-or-tx";

@@ -27,7 +27,7 @@ beforeEach(async () => {
   );
 });
 
-describe("Gitea credentials are not Kaneo session credentials", () => {
+describe("Gitea credentials are not Tracing session credentials", () => {
   it.each(["verify", "repositories"])(
     "returns 400 for invalid upstream credentials on %s, but 401 for a missing session",
     async (endpoint) => {

@@ -10,7 +10,7 @@ export const updateInstanceSettingsBody = z
   .object({
     instanceName: z.string().trim().max(60).nullable().optional().openapi({
       description:
-        "Shown in page titles and email headers and subjects. Empty or null restores Kaneo.",
+        "Shown in page titles and email headers and subjects. Empty or null restores Tracing.",
     }),
     registrationEnabled: z.boolean().optional().openapi({
       description:
@@ -48,10 +48,11 @@ export type UpdateInstanceSettingsInput = z.infer<
 export const instanceSettingsSchema = z
   .object({
     instanceName: z.string().nullable().openapi({
-      description: "The saved name, or null for the default Kaneo.",
+      description: "The saved name, or null for the default Tracing.",
     }),
     instanceUrl: z.string().nullable().openapi({
-      description: "The web app URL from `KANEO_CLIENT_URL`. Read-only.",
+      description:
+        "The web app URL from `TRACING_CLIENT_URL`, falling back to `KANEO_CLIENT_URL`. Read-only.",
     }),
     registrationEnabled: z.boolean(),
     passwordRegistrationEnabled: z.boolean(),

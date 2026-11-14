@@ -103,7 +103,7 @@ describe("admin avatar management", () => {
     expect(await readAuditLog()).toEqual([]);
   });
 
-  it("can still withdraw an earlier Kaneo upload when the provider manages pictures", async () => {
+  it("can still withdraw an earlier Tracing upload when the provider manages pictures", async () => {
     expect((await upload()).status).toBe(200);
     await manageImageByProvider((await targetImage()) ?? null);
     const removed = await avatar("DELETE");

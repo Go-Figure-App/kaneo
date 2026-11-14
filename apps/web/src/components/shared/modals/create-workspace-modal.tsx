@@ -92,7 +92,7 @@ function CreateWorkspaceModal({ open, onClose }: CreateWorkspaceModalProps) {
             <Breadcrumb>
               <BreadcrumbList>
                 <BreadcrumbItem className="text-muted-foreground font-semibold tracking-wider text-sm">
-                  {t("common:modals.createWorkspace.breadcrumbKaneo")}
+                  {t("common:modals.createWorkspace.breadcrumbTracing")}
                 </BreadcrumbItem>
                 <BreadcrumbSeparator />
                 <BreadcrumbItem className="text-foreground font-medium text-sm">

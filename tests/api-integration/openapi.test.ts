@@ -43,10 +43,10 @@ beforeAll(async () => {
   spec = (await response.json()) as Spec;
 });
 
-describe("Kaneo API OpenAPI spec", () => {
+describe("Tracing API OpenAPI spec", () => {
   it("is a valid OpenAPI 3.1 document", () => {
     expect(spec.openapi).toBe("3.1.0");
-    expect(spec.info.title).toBe("Kaneo API");
+    expect(spec.info.title).toBe("Tracing API");
   });
 
   it("requires bearer auth globally", () => {
@@ -120,7 +120,7 @@ describe("Kaneo API OpenAPI spec", () => {
     );
   });
 
-  it("documents Kaneo errors as ApiError JSON", () => {
+  it("documents Tracing errors as ApiError JSON", () => {
     expect(spec.components.schemas.ApiError).toMatchObject({
       type: "object",
       required: ["message", "code"],

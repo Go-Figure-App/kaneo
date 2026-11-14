@@ -1,4 +1,4 @@
-import type { ImportedRelation } from "@kaneo/importers";
+import type { ImportedRelation } from "@tracing/importers";
 
 export type PlannedImportRelation = {
   sourceTaskId: string;

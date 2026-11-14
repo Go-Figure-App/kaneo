@@ -94,7 +94,10 @@ async function getDiscordEventData(
     return null;
   }
 
-  const clientUrl = process.env.KANEO_CLIENT_URL || "http://localhost:5173";
+  const clientUrl =
+    process.env.TRACING_CLIENT_URL ||
+    process.env.KANEO_CLIENT_URL ||
+    "http://localhost:5173";
   const taskUrl = `${clientUrl}/dashboard/workspace/${taskRow.workspaceId}/project/${taskRow.projectId}/task/${taskId}`;
 
   return {
@@ -166,7 +169,7 @@ async function sendDiscordMessage(
           footer: {
             text: safeActor
               ? `Triggered by ${safeActor}`
-              : "Triggered by Kaneo",
+              : "Triggered by Tracing",
           },
         },
       ],

@@ -1,10 +1,13 @@
-import { sendEmailVerificationEmail } from "@kaneo/email";
+import { sendEmailVerificationEmail } from "@tracing/email";
 import { accountEmailSubject } from "../admin/users/account-email-subjects";
 
 type Recipient = { email: string; name?: string | null; locale?: unknown };
 
 function signInUrl() {
-  const base = process.env.KANEO_CLIENT_URL || "http://localhost:5173";
+  const base =
+    process.env.TRACING_CLIENT_URL ||
+    process.env.KANEO_CLIENT_URL ||
+    "http://localhost:5173";
   return `${base.replace(/\/$/, "")}/auth/sign-in`;
 }
 

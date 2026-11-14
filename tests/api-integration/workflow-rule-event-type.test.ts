@@ -49,7 +49,7 @@ describe("workflow rule event types", () => {
     expect(rows).toHaveLength(0);
   });
 
-  it("accepts a Kaneo event type", async () => {
+  it("accepts a Tracing event type", async () => {
     const { project, columns } = await ownerProject();
 
     const response = await putRule(

@@ -44,7 +44,7 @@ const { publish, sendEmail } = vi.hoisted(() => ({
   sendEmail: vi.fn(async () => undefined),
 }));
 vi.mock("../../apps/api/src/events", () => ({ publishEvent: publish }));
-vi.mock("@kaneo/email", async (original) => ({
+vi.mock("@tracing/email", async (original) => ({
   ...(await original<object>()),
   sendNotificationEmail: sendEmail,
 }));

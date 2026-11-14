@@ -1,4 +1,4 @@
-import * as email from "@kaneo/email";
+import * as email from "@tracing/email";
 import { eq } from "drizzle-orm";
 import { beforeEach, describe, expect, it, vi } from "vite-plus/test";
 import db, { schema } from "../../apps/api/src/database";

@@ -18,13 +18,13 @@ export type TestEmailProps = Pick<
 >;
 
 const copy = {
-  preview: "Outgoing email from your Kaneo instance is working.",
+  preview: "Outgoing email from your Tracing instance is working.",
   title: "Your email settings work",
   subtitle:
-    "An administrator sent this test from the System page. If you can read it, your Kaneo instance can deliver email.",
+    "An administrator sent this test from the System page. If you can read it, your Tracing instance can deliver email.",
   noteTitle: "Nothing else to do",
-  note: "You can delete this email. It contains no links and changes nothing in Kaneo.",
-  footer: "Kaneo test email",
+  note: "You can delete this email. It contains no links and changes nothing in Tracing.",
+  footer: "Tracing test email",
 };
 
 const TestEmail = ({ email, instance, requestedAt }: TestEmailProps) => (

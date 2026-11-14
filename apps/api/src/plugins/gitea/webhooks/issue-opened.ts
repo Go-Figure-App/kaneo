@@ -28,7 +28,7 @@ import {
   findAllIntegrationsByGiteaRepo,
   repoOwnerLogin,
 } from "../services/integration-lookup";
-import { markKaneoComment } from "../utils/comment-origin";
+import { markTracingComment } from "../utils/comment-origin";
 import { createGiteaClient } from "../utils/gitea-api";
 import { addLabelsToIssueGitea } from "../utils/labels";
 import { resolveTargetStatus } from "../utils/resolve-column";
@@ -216,7 +216,10 @@ export async function handleGiteaIssueOpened(
       continue;
     }
 
-    const clientUrl = process.env.KANEO_CLIENT_URL || "http://localhost:5173";
+    const clientUrl =
+      process.env.TRACING_CLIENT_URL ||
+      process.env.KANEO_CLIENT_URL ||
+      "http://localhost:5173";
     const taskUrl = `${clientUrl}/dashboard/workspace/${project.workspaceId}/project/${projectId}/task/${createdTask.id}`;
     const taskIdentifier = `${project.slug.toUpperCase()}-${createdTask.number}`;
 
@@ -254,7 +257,7 @@ export async function handleGiteaIssueOpened(
             config.repositoryOwner,
             config.repositoryName,
             issue.number,
-            markKaneoComment(`[${taskIdentifier}](${taskUrl})`),
+            markTracingComment(`[${taskIdentifier}](${taskUrl})`),
           ),
         );
       }

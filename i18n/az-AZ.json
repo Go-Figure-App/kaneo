@@ -1,6 +1,6 @@
 {
 	"common": {
-		"appName": "Kaneo",
+		"appName": "Tracing",
 		"actions": {
 			"cancel": "Ləğv et",
 			"close": "Bağla",
@@ -96,7 +96,7 @@
 				"errorToast": "Layihəni yaratmaq alınmadı"
 			},
 			"createWorkspace": {
-				"breadcrumbKaneo": "KANEO",
+				"breadcrumbTracing": "Tracing",
 				"title": "Yeni iş sahəsi yarat",
 				"description": "İş sahəniz üçün ad daxil edərək yeni iş sahəsi yaradın.",
 				"namePlaceholder": "İş sahəsinin adı",
@@ -185,7 +185,7 @@
 				"use_a_permanent_email_address_disposable_addresses_cannot_create_accounts_": "Daimi e-poçt ünvanından istifadə edin. Birdəfəlik ünvanlarla hesab yaratmaq olmur."
 			},
 			"instanceStatusError": "Serverə çatmaq mümkün olmadı. Bir az sonra yenidən cəhd edin.",
-			"heading": "Kaneo-ya daxil olun",
+			"heading": "Tracing-ya daxil olun",
 			"submitPassword": "Daxil ol",
 			"invitation": {
 				"title": "{{inviterName}} sizi {{workspaceName}} iş sahəsinə dəvət edib",
@@ -193,7 +193,7 @@
 				"description": "Dəvətin göndərildiyi e-poçtla daxil olun. Dərhal sonra iş sahəsinə qoşulacaqsınız."
 			},
 			"footer": {
-				"newHere": "Kaneo-da yenisiniz?",
+				"newHere": "Tracing-da yenisiniz?",
 				"createAccount": "Hesab yarat",
 				"inviteOnly": "Burada hesablar yalnız dəvətlə yaradılır. Administratordan dəvət istəyin.",
 				"providerSignUp": "Yenisiniz? Hesab yaratmaq üçün yuxarıdakı provayderlərdən biri ilə daxil olun.",
@@ -251,7 +251,7 @@
 			"toggleMessage": "Artıq hesabınız var?",
 			"toggleLink": "Daxil ol",
 			"instanceStatusError": "Serverə çatmaq mümkün olmadı. Bir az sonra yenidən cəhd edin.",
-			"instanceAdminTitle": "Kaneo quraşdırmanızı hazırlayın",
+			"instanceAdminTitle": "Tracing quraşdırmanızı hazırlayın",
 			"instanceAdminSubtitle": "Bu hesab tam giriş hüququ ilə quraşdırmanın inzibatçısı olur.",
 			"heading": "Hesabınızı yaradın",
 			"submitPassword": "Hesab yarat",
@@ -305,7 +305,7 @@
 				"acceptFailed": "Dəvəti qəbul etmək alınmadı",
 				"acceptSuccess": "Dəvət qəbul edildi! Komandaya xoş gəlmisiniz."
 			},
-			"description": "{{inviterName}} sizi Kaneo-da bu iş sahəsinə dəvət edib.",
+			"description": "{{inviterName}} sizi Tracing-da bu iş sahəsinə dəvət edib.",
 			"invitedBy": "Dəvət edən",
 			"sentTo": "Göndərildiyi ünvan",
 			"signedInAs": "Daxil olduğunuz hesab",
@@ -313,7 +313,7 @@
 			"notNow": "İndi yox",
 			"join": "İş sahəsinə qoşul",
 			"switchAccount": "Hesabı dəyiş",
-			"goToKaneo": "Kaneo-ya keç",
+			"goToTracing": "Tracing-ya keç",
 			"mismatch": {
 				"title": "Başqa e-poçtla daxil olmusunuz",
 				"description": "Bu dəvət {{invitedEmail}} ünvanına göndərilib. Siz {{email}} hesabı ilə daxil olmusunuz."
@@ -332,7 +332,7 @@
 			}
 		},
 		"onboarding": {
-			"pageTitle": "Kaneo-ya xoş gəlmisiniz",
+			"pageTitle": "Tracing-ya xoş gəlmisiniz",
 			"workspaceName": "İş sahəsinin adı",
 			"workspaceNamePlaceholder": "Məs., Acme Inc, komandam",
 			"toast": {
@@ -380,7 +380,7 @@
 				},
 				"invite": {
 					"title": "Komandanızı dəvət edin",
-					"description": "Kaneo hamı bir yerdə olanda daha yaxşı işləyir. İnsanları e-poçtla dəvət etmək üçün yan paneldə **Üzvlər** bölməsini açın."
+					"description": "Tracing hamı bir yerdə olanda daha yaxşı işləyir. İnsanları e-poçtla dəvət etmək üçün yan paneldə **Üzvlər** bölməsini açın."
 				},
 				"integrations": {
 					"title": "GitHub, GitLab və ya Gitea qoşun",
@@ -504,7 +504,7 @@
 		"device": {
 			"connect": {
 				"title": "Cihaz qoşun",
-				"description": "Kaneo hesabınıza bağlamaq üçün terminalda və ya tətbiqdə göstərilən kodu daxil edin.",
+				"description": "Tracing hesabınıza bağlamaq üçün terminalda və ya tətbiqdə göstərilən kodu daxil edin.",
 				"label": "Cihaz kodu",
 				"submit": "Davam et",
 				"noCode": "Hələ kodunuz yoxdur? Əvvəlcə tətbiqinizdən girişə başlayın.",
@@ -538,7 +538,7 @@
 				"description": "Təsdiqləmək üçün dərhal bura qayıdacaqsınız.",
 				"submit": "Daxil ol"
 			},
-			"openApp": "Open Kaneo"
+			"openApp": "Open Tracing"
 		},
 		"mcp": {
 			"authorize": {
@@ -611,7 +611,7 @@
 		"notificationsPage": {
 			"pageTitle": "Bildirişlər",
 			"title": "Bildirişlər",
-			"subtitle": "Kaneo sizə nə barədə bildiriş göndərir və onlar sizə harada çatır.",
+			"subtitle": "Tracing sizə nə barədə bildiriş göndərir və onlar sizə harada çatır.",
 			"statusConnected": "Qoşulub",
 			"statusPaused": "Dayandırılıb",
 			"emailTitle": "E-poçt",
@@ -644,7 +644,7 @@
 			"webhookUrlPlaceholder": "https://example.com/webhooks/kaneo",
 			"webhookSecretPlaceholder": "İstəyə bağlı ortaq sirr",
 			"webhookSecretHintConfigured": "İmzalama sirri artıq təyin edilib ({{masked}}). Əvəzləmək üçün yenisini daxil edin.",
-			"webhookSecretHintOptional": "Sirr təyin edildikdə Kaneo sorğunun gövdəsini imzalayır.",
+			"webhookSecretHintOptional": "Sirr təyin edildikdə Tracing sorğunun gövdəsini imzalayır.",
 			"connectWebhook": "Webhook-a qoşul",
 			"eventPreferencesTitle": "Mənə bunlar barədə bildir",
 			"eventPreferencesDescription": "Öz şərhləriniz, xatırlatmalarınız və etdiyiniz vəziyyət dəyişiklikləri barədə sizə bildiriş göndərilmir.",
@@ -682,7 +682,7 @@
 			"toastRuleRemovedGeneric": "İş sahəsinin bildiriş qaydası çıxarıldı",
 			"channelNotConnected": "Qoşulmayıb",
 			"channelOff": "Söndürülüb",
-			"channelsDescription": "Bildirişlər həmişə Kaneo-da göstərilir. Onları başqa yerdə də almaq üçün kanal qoşun.",
+			"channelsDescription": "Bildirişlər həmişə Tracing-da göstərilir. Onları başqa yerdə də almaq üçün kanal qoşun.",
 			"channelsTitle": "Kanallar",
 			"configure": "Tənzimlə",
 			"configureChannel": "{{channel}} kanalını tənzimlə",
@@ -698,7 +698,7 @@
 			"eventStatusChangesHint": "Tapşırıqlarınızdan biri başqa sütuna keçdikdə.",
 			"eventTaskAssignmentsHint": "Kimsə sizə tapşırıq təyin etdikdə.",
 			"loadFailed": "Bildiriş parametrlərini yükləmək alınmadı.",
-			"onlyInKaneo": "Yalnız Kaneo-da",
+			"onlyInTracing": "Yalnız Tracing-da",
 			"optional": "İstəyə bağlı",
 			"projectCount_one": "{{count}} layihə",
 			"projectCount_other": "{{count}} layihə",
@@ -724,14 +724,14 @@
 			"statusSending": "Göndərilir",
 			"stopping": "Dayandırılır...",
 			"stopSending": "Göndərməni dayandır",
-			"stopSendingDescription": "Bu iş sahəsindən gələn bildirişlər yalnız Kaneo-da göstəriləcək.",
+			"stopSendingDescription": "Bu iş sahəsindən gələn bildirişlər yalnız Tracing-da göstəriləcək.",
 			"stopSendingTitle": "{{workspaceName}} üçün göndərmə dayandırılsın?",
 			"workspacesDescription": "Kanallarınızdan hansı iş sahələrinin və layihələrin istifadə edə biləcəyini seçin.",
 			"workspacesTitle": "İş sahələri"
 		},
 		"preferencesPage": {
 			"title": "Tərcihlər",
-			"subtitle": "Kaneo sizin üçün necə görünür və işləyir.",
+			"subtitle": "Tracing sizin üçün necə görünür və işləyir.",
 			"appearanceTitle": "Ümumi",
 			"theme": "Tema",
 			"selectTheme": "Tema seçin",
@@ -776,7 +776,7 @@
 		"developerPage": {
 			"pageTitle": "API açarları",
 			"title": "API açarları",
-			"subtitle": "Skriptlər, CLI və MCP klientləri Kaneo-dan sizin adınızdan istifadə etsin.",
+			"subtitle": "Skriptlər, CLI və MCP klientləri Tracing-dan sizin adınızdan istifadə etsin.",
 			"unnamedKey": "Adsız",
 			"emptyDescription": "CLI, MCP klienti və ya öz skriptlərinizdən istifadə etmək üçün açar yaradın.",
 			"emptyTitle": "Hələ API açarı yoxdur",
@@ -1265,11 +1265,11 @@
 				"removeError": "GitHub inteqrasiyasını çıxarmaq alınmadı",
 				"issuesImported": "Məsələlər uğurla idxal edildi",
 				"importError": "Məsələləri idxal etmək alınmadı",
-				"commentOnEnabled": "Kaneo yeni məsələlərə tapşırıq keçidi olan şərh yazacaq",
+				"commentOnEnabled": "Tracing yeni məsələlərə tapşırıq keçidi olan şərh yazacaq",
 				"commentOnDisabled": "Yeni məsələlərdə tapşırıq keçidi olan şərhlər söndürülüb",
 				"settingsUpdateError": "GitHub inteqrasiyasını yeniləmək alınmadı"
 			},
-			"commentTaskLinkTitle": "Yeni məsələlərə Kaneo keçidi ilə şərh yaz",
+			"commentTaskLinkTitle": "Yeni məsələlərə Tracing keçidi ilə şərh yaz",
 			"commentTaskLinkHint": "GitHub-da olanlar tapşırığa birbaşa keçə bilsin deyə.",
 			"updatePermissions": "İcazələri yenilə",
 			"installGithubApp": "GitHub tətbiqini quraşdır",
@@ -1286,9 +1286,9 @@
 			"linkAccountTitle": "GitHub hesabınızı əlaqələndirin",
 			"linked": "Əlaqələndirilib",
 			"linkGithub": "GitHub-ı əlaqələndir",
-			"verifyMissingPermissions": "Kaneo GitHub tətbiqində icazələr çatışmır: {{list}}.",
-			"verifyNotInstalled": "Kaneo GitHub tətbiqi bu repozitoriyada quraşdırılmayıb.",
-			"verifyReady": "Kaneo GitHub tətbiqi lazımi icazələrlə quraşdırılıb.",
+			"verifyMissingPermissions": "Tracing GitHub tətbiqində icazələr çatışmır: {{list}}.",
+			"verifyNotInstalled": "Tracing GitHub tətbiqi bu repozitoriyada quraşdırılmayıb.",
+			"verifyReady": "Tracing GitHub tətbiqi lazımi icazələrlə quraşdırılıb.",
 			"workflowHint": "Birləşdirmə sorğuları açıldıqda və ya birləşdirildikdə tapşırıqların köçürülməsini burada tənzimləyin:",
 			"workflowLink": "İş axını"
 		},
@@ -1306,13 +1306,13 @@
 				"removeError": "Gitea inteqrasiyasını çıxarmaq alınmadı",
 				"issuesImported": "Məsələlər uğurla idxal edildi",
 				"importError": "Məsələləri idxal etmək alınmadı",
-				"commentOnEnabled": "Kaneo yeni məsələlərə tapşırıq keçidi olan şərh yazacaq",
+				"commentOnEnabled": "Tracing yeni məsələlərə tapşırıq keçidi olan şərh yazacaq",
 				"commentOnDisabled": "Yeni məsələlərdə tapşırıq keçidi olan şərhlər söndürülüb",
 				"settingsUpdateError": "Gitea inteqrasiyasını yeniləmək alınmadı"
 			},
-			"commentTaskLinkTitle": "Yeni məsələlərə Kaneo keçidi ilə şərh yaz",
+			"commentTaskLinkTitle": "Yeni məsələlərə Tracing keçidi ilə şərh yaz",
 			"commentTaskLinkHint": "Gitea-da olanlar tapşırığa birbaşa keçə bilsin deyə.",
-			"webhookHint": "Dəyişikliklərin Kaneo-ya qayıtması üçün bu Webhook-u repozitoriya parametrlərində əlavə edin.",
+			"webhookHint": "Dəyişikliklərin Tracing-ya qayıtması üçün bu Webhook-u repozitoriya parametrlərində əlavə edin.",
 			"baseUrlLabel": "Gitea URL-i",
 			"tokenLabel": "Şəxsi giriş nişanı",
 			"tokenPlaceholder": "Giriş nişanını yapışdırın",
@@ -1395,10 +1395,10 @@
 			},
 			"webhookLabel": "Son nöqtənin URL-i",
 			"webhookPlaceholder": "https://example.com/webhooks/kaneo",
-			"webhookHint": "Kaneo hər aktiv hadisə üçün JSON məlumatları ilə POST sorğuları göndərir.",
+			"webhookHint": "Tracing hər aktiv hadisə üçün JSON məlumatları ilə POST sorğuları göndərir.",
 			"secretLabel": "İmzalama sirri",
 			"secretPlaceholder": "Ortaq sirr",
-			"secretHint": "Kaneo hər sorğunu onunla imzalayır və heş dəyərini X-Kaneo-Signature başlığında göndərir.",
+			"secretHint": "Tracing hər sorğunu onunla imzalayır və heş dəyərini X-Kaneo-Signature başlığında göndərir.",
 			"secretHintConfigured": "Cari sirr: {{secret}}. Əvəzləmək üçün yenisini yapışdırın.",
 			"eventsTitle": "Bu hallarda göndər",
 			"events": {
@@ -1418,7 +1418,7 @@
 			"reminderLeadTimeLabel": "Son tarixdən neçə saat əvvəl",
 			"connect": "Webhook-a qoşul",
 			"activeTitle": "Hadisələr göndərilir",
-			"disconnectDescription": "Kaneo hadisələri göndərməyi dayandırır və yadda saxlanılmış son nöqtəni və sirri silir.",
+			"disconnectDescription": "Tracing hadisələri göndərməyi dayandırır və yadda saxlanılmış son nöqtəni və sirri silir.",
 			"disconnectTitle": "Webhook ayrılsın?",
 			"reminderLeadTimeAfter": "saat əvvəl göndər",
 			"reminderLeadTimeBefore": "Xatırlatmaları tapşırığın son tarixindən"
@@ -1454,7 +1454,7 @@
 		},
 		"repositoryBrowser": {
 			"title": "Repozitoriya seçin",
-			"description": "Kaneo GitHub tətbiqinin gördüyü repozitoriyalar.",
+			"description": "Tracing GitHub tətbiqinin gördüyü repozitoriyalar.",
 			"searchPlaceholder": "Repozitoriyaları axtar",
 			"loadError": "Repozitoriyaları yükləmək alınmadı.",
 			"tryAgain": "Yenidən cəhd et",
@@ -1674,7 +1674,7 @@
 				"active": "Active",
 				"deactivated": "Deactivated"
 			},
-			"subtitle": "Bu Kaneo serverində hesabı olan hər kəs.",
+			"subtitle": "Bu Tracing serverində hesabı olan hər kəs.",
 			"title": "İstifadəçilər",
 			"toast": {
 				"actionError": "Failed to update user status",
@@ -1771,7 +1771,7 @@
 			"sectionTitle": "Giriş",
 			"submit": "Parolu dəyiş",
 			"submitting": "Dəyişdirilir...",
-			"subtitle": "Kaneo-ya necə daxil olursunuz.",
+			"subtitle": "Tracing-ya necə daxil olursunuz.",
 			"title": "Security",
 			"updateError": "Failed to update password.",
 			"updateSuccess": "Password updated.",
@@ -1800,14 +1800,14 @@
 			"browseModalHint": "Giriş nişanınızın üzv olduğu layihələr.",
 			"browseNeedsCredentials": "Baxmaq üçün GitLab URL-ini və giriş nişanını daxil edin.",
 			"commentTaskLinkHint": "GitLab-da olanlar tapşırığa birbaşa keçə bilsin deyə.",
-			"commentTaskLinkTitle": "Comment a Kaneo link on issues opened in GitLab",
+			"commentTaskLinkTitle": "Comment a Tracing link on issues opened in GitLab",
 			"importSectionHint": "Açıq məsələləri və birləşdirmə sorğularını tapşırıq kimi idxal edin.",
 			"openInGitlab": "Open {{project}} in GitLab",
 			"projectPathLabel": "Project path",
 			"searchProjects": "Layihələri axtar",
 			"toast": {
 				"commentOnDisabled": "Task link comments on issues opened in GitLab are turned off",
-				"commentOnEnabled": "Kaneo will comment with a task link on issues opened in GitLab",
+				"commentOnEnabled": "Tracing will comment with a task link on issues opened in GitLab",
 				"importError": "Failed to import issues",
 				"issuesImported": "Issues imported successfully",
 				"removed": "GitLab integration removed",
@@ -1829,7 +1829,7 @@
 				"baseUrlRequired": "GitLab base URL is required",
 				"pathInvalid": "Enter the full path, e.g. group/project"
 			},
-			"webhookHint": "Dəyişikliklərin Kaneo-ya qayıtması üçün bu Webhook-u layihə parametrlərində əlavə edin.",
+			"webhookHint": "Dəyişikliklərin Tracing-ya qayıtması üçün bu Webhook-u layihə parametrlərində əlavə edin.",
 			"loadProjectsError": "Layihələri yükləmək alınmadı.",
 			"importPermissionHint": "Importing requires permission to create and update tasks.",
 			"browseEmpty": "Bu giriş nişanı heç bir layihənin üzvü deyil.",
@@ -1886,7 +1886,7 @@
 			"currentPlan": {
 				"title": "Current plan"
 			},
-			"disabled": "Billing isn't enabled on this instance. Self-hosted Kaneo includes every feature, free forever.",
+			"disabled": "Billing isn't enabled on this instance. Self-hosted Tracing includes every feature, free forever.",
 			"expiredCallout": {
 				"action": "Choose a plan",
 				"adminDescription": "You can still view everything, but creating and editing are paused until you choose a plan. Nothing has been deleted.",
@@ -1904,7 +1904,7 @@
 			},
 			"foundingFree": {
 				"badge": "Free",
-				"description": "This workspace has free access to Kaneo Cloud as an early supporter. Thank you for being here from the start.",
+				"description": "This workspace has free access to Tracing Cloud as an early supporter. Thank you for being here from the start.",
 				"title": "Founding Free"
 			},
 			"interval": {
@@ -1988,8 +1988,8 @@
 			"filtered": "Only matching labels",
 			"impact": "{{matching}} of {{total}} tasks match. {{create}} tasks will be exported, {{pause}} links will pause, and {{review}} links need review to resume.",
 			"impactTitle": "What will change",
-			"incoming": "Repository → Kaneo",
-			"incomingHint": "Choose which issues can be imported or create tasks. Use exact repository label names. Existing links follow the Kaneo task rule.",
+			"incoming": "Repository → Tracing",
+			"incomingHint": "Choose which issues can be imported or create tasks. Use exact repository label names. Existing links follow the Tracing task rule.",
 			"loadError": "Sync rules could not be loaded.",
 			"loading": "Loading sync rules…",
 			"matchLabels": "Label matching",
@@ -1999,8 +1999,8 @@
 			"noDescription": "No description",
 			"noLabels": "Create workspace labels before configuring a task filter.",
 			"open": "Open",
-			"outgoing": "Kaneo → repository",
-			"outgoingHint": "Choose which Kaneo tasks can sync. Losing a matching label pauses both directions for an existing task.",
+			"outgoing": "Tracing → repository",
+			"outgoingHint": "Choose which Tracing tasks can sync. Losing a matching label pauses both directions for an existing task.",
 			"paused": "Sync paused",
 			"pausedHint": "Records and links are preserved. Tasks that match again need review before syncing resumes.",
 			"preserveHint": "Pausing keeps both records and their link. Resuming requires a comparison; historical comments are never replayed.",
@@ -2022,7 +2022,7 @@
 			"sharedHint": "These rules apply to everyone using this project. Hiding advanced settings does not disable them.",
 			"title": "Nə sinxronlaşdırılır",
 			"unavailableLabel": "Unavailable label",
-			"useKaneo": "Keep Kaneo values",
+			"useTracing": "Keep Tracing values",
 			"useRepository": "Keep repository values",
 			"exportPending": "Export matching tasks",
 			"inactiveHint": "This integration is paused. No tasks will be exported until it is reactivated.",
@@ -2035,10 +2035,10 @@
 			"issuesLabelled": "Etiketi olan məsələlər:",
 			"joinAnd": "və",
 			"joinOr": "və ya",
-			"kaneoToProvider": "Kaneo-dan {{provider}} xidmətinə",
+			"kaneoToProvider": "Tracing-dan {{provider}} xidmətinə",
 			"pausedSummary_one": "{{count}} tapşırığın sinxronlaşdırılması dayandı, çünki o artıq sinxronlaşdırma qaydalarına uyğun gəlmir.",
 			"pausedSummary_other": "{{count}} tapşırığın sinxronlaşdırılması dayandı, çünki onlar artıq sinxronlaşdırma qaydalarına uyğun gəlmir.",
-			"providerToKaneo": "{{provider}} xidmətindən Kaneo-ya",
+			"providerToTracing": "{{provider}} xidmətindən Tracing-ya",
 			"reviewPaused": "Nəzərdən keçir",
 			"tasksLabelled": "Etiketi olan tapşırıqlar:"
 		},
@@ -2124,7 +2124,7 @@
 			"searchCount_other": "{{count}} matching workspaces",
 			"searchLabel": "Search workspaces",
 			"searchPlaceholder": "Ad və ya slug ilə axtar",
-			"subtitle": "Bu Kaneo serverindəki bütün iş sahələri, üzv olmadıqlarınız da daxil olmaqla.",
+			"subtitle": "Bu Tracing serverindəki bütün iş sahələri, üzv olmadıqlarınız da daxil olmaqla.",
 			"title": "İş sahələri",
 			"toast": {
 				"added": "Member added",
@@ -2159,7 +2159,7 @@
 				"cancel": "Cancel",
 				"continue": "Continue",
 				"hideSecret": "Hide {{field}}",
-				"sectionDescription": "Kaneo only reads from {{source}}. The key is used for this import and never stored.",
+				"sectionDescription": "Tracing only reads from {{source}}. The key is used for this import and never stored.",
 				"sectionTitle": "Connect",
 				"showSecret": "Show {{field}}",
 				"title": "Import from {{source}}",
@@ -2188,11 +2188,11 @@
 				"title": "Recent imports"
 			},
 			"kaneo": {
-				"apiKeyDescription": "In that Kaneo, open Settings, then API Keys.",
+				"apiKeyDescription": "In that Tracing, open Settings, then API Keys.",
 				"apiKeyLabel": "API key",
 				"apiKeyPlaceholder": "Paste API key",
 				"urlDescription": "The instance you are moving from.",
-				"urlLabel": "Kaneo URL"
+				"urlLabel": "Tracing URL"
 			},
 			"linear": {
 				"apiKeyDescription": "Read access is enough. You can revoke it after the import.",
@@ -2279,9 +2279,9 @@
 				"connectTo": "Connect {{source}}",
 				"description": "Pick the tool you are moving from. Each project you choose becomes a new project here.",
 				"kaneo": {
-					"description": "Move projects between Kaneo Cloud and a self-hosted instance.",
+					"description": "Move projects between Tracing Cloud and a self-hosted instance.",
 					"intro": "Projects from every workspace the key can see. Each one you pick is copied here.",
-					"pickerName": "Another Kaneo"
+					"pickerName": "Another Tracing"
 				},
 				"linear": {
 					"description": "Teams, issues, labels, sub-issues and comments. Paste a personal API key.",
@@ -2319,7 +2319,7 @@
 				"import": "Import",
 				"label": "Import steps"
 			},
-			"subtitle": "Bring your projects from another tool into {{workspace}}. Kaneo only reads from the source.",
+			"subtitle": "Bring your projects from another tool into {{workspace}}. Tracing only reads from the source.",
 			"title": "Import",
 			"toast": {
 				"failed": "Import from {{source}} failed",
@@ -2332,7 +2332,7 @@
 				"apiKeyPlaceholder": "Paste API key",
 				"authorizeButton": "Authorize on Trello",
 				"authorizeDescription": "Opens Trello in a new tab. Read only, expires after a day.",
-				"authorizeLabel": "Authorize Kaneo",
+				"authorizeLabel": "Authorize Tracing",
 				"authorizeNeedsKey": "Enter the API key first. Read only, expires after a day.",
 				"tokenDescription": "Click Allow on Trello, then paste the token it shows you.",
 				"tokenLabel": "Token",
@@ -2420,7 +2420,7 @@
 			"channelLabel": "Kanal",
 			"channelPlaceholder": "#team-updates",
 			"disconnect": "Ayır",
-			"disconnectDescription": "Kaneo {{provider}} xidmətinə paylaşımı dayandırır və yadda saxlanılmış parametrləri silir.",
+			"disconnectDescription": "Tracing {{provider}} xidmətinə paylaşımı dayandırır və yadda saxlanılmış parametrləri silir.",
 			"disconnecting": "Ayrılır…",
 			"disconnectTitle": "{{provider}} ayrılsın?",
 			"events": {
@@ -2643,7 +2643,7 @@
 				"storageOk": "Bucket reachable",
 				"storageWarning": "Can't check the bucket with these credentials ({{code}}).",
 				"title": "Instance",
-				"version": "Kaneo version",
+				"version": "Tracing version",
 				"versionUnknown": "Unknown"
 			},
 			"integrations": {
@@ -3854,13 +3854,13 @@
 	"invitations": {
 		"email": {
 			"subject": "{{inviterName}} sizi {{instanceName}}-da {{workspaceName}} iş sahəsinə qoşulmağa dəvət etdi",
-			"preview": "Kaneo-da {{workspaceName}} iş sahəsinə dəvət almısınız",
+			"preview": "Tracing-da {{workspaceName}} iş sahəsinə dəvət almısınız",
 			"title": "{{workspaceName}} iş sahəsinə qoşul",
-			"subtitle": "{{inviterName}} ({{inviterEmail}}) sizi Kaneo-da əməkdaşlığa dəvət etdi.",
+			"subtitle": "{{inviterName}} ({{inviterEmail}}) sizi Tracing-da əməkdaşlığa dəvət etdi.",
 			"cta": "Dəvəti qəbul et",
 			"sameEmail": "Dəvəti bu məktubu aldığınız e-poçt ünvanı ilə qəbul edə bilərsiniz.",
 			"ignore": "Bu məktubu gözləmirdinizsə, ona məhəl qoymaya bilərsiniz.",
-			"footer": "Kaneo iş sahəsi dəvəti",
+			"footer": "Tracing iş sahəsi dəvəti",
 			"details": {
 				"title": "Dəvət təfərrüatları",
 				"sentTo": "Göndərildi",
@@ -4131,66 +4131,66 @@
 	},
 	"press": {
 		"title": "Press kit",
-		"headline": "Kaneo press kit",
-		"intro": "Kaneo logos and product screenshots for articles, videos, and other media.",
-		"description": "Kaneo press resources: product information, logos, screenshots, and contact details for journalists and creators.",
+		"headline": "Tracing press kit",
+		"intro": "Tracing logos and product screenshots for articles, videos, and other media.",
+		"description": "Tracing press resources: product information, logos, screenshots, and contact details for journalists and creators.",
 		"downloadKit": "Download all assets",
-		"boilerplateTitle": "About Kaneo",
-		"boilerplate": "Kaneo is an open-source project management platform created by Andrej Acevski. Teams can organize tasks in board and list views, assign work, set priorities and due dates, and connect GitHub. Kaneo is available under the MIT license for self-hosting, or as a managed service through Kaneo Cloud.",
+		"boilerplateTitle": "About Tracing",
+		"boilerplate": "Tracing is an open-source project management platform created by Andrej Acevski. Teams can organize tasks in board and list views, assign work, set priorities and due dates, and connect GitHub. Tracing is available under the MIT license for self-hosting, or as a managed service through Tracing Cloud.",
 		"logosTitle": "Logos",
 		"darkLogo": "Dark wordmark",
-		"darkLogoAlt": "Dark Kaneo logo on a light background",
+		"darkLogoAlt": "Dark Tracing logo on a light background",
 		"darkLogoDetail": "SVG",
 		"lightLogo": "Light wordmark",
-		"lightLogoAlt": "Light Kaneo logo on a dark background",
+		"lightLogoAlt": "Light Tracing logo on a dark background",
 		"lightLogoDetail": "SVG",
 		"icon": "App icon",
-		"iconAlt": "Kaneo app icon",
+		"iconAlt": "Tracing app icon",
 		"iconDetail": "PNG, 512 × 512",
 		"download": "Download",
 		"screenshotsTitle": "Screenshots",
 		"lightScreenshot": "Board (light)",
-		"lightScreenshotAlt": "Kaneo board in light theme, with task cards arranged by status",
+		"lightScreenshotAlt": "Tracing board in light theme, with task cards arranged by status",
 		"darkScreenshot": "Board (dark)",
-		"darkScreenshotAlt": "Kaneo board in dark theme, with task cards arranged by status",
+		"darkScreenshotAlt": "Tracing board in dark theme, with task cards arranged by status",
 		"contactTitle": "Press enquiries",
-		"contactBody": "Contact the Kaneo team for product questions, interviews, or additional materials.",
+		"contactBody": "Contact the Tracing team for product questions, interviews, or additional materials.",
 		"usageContrast": "Choose the light wordmark for dark backgrounds and the dark wordmark for light backgrounds.",
 		"usageProportions": "Keep the original proportions and colours, without stretching or adding effects.",
 		"usageSpace": "Leave enough space around the logo to keep it clear and readable.",
 		"darkListScreenshot": "List (dark)",
-		"darkListScreenshotAlt": "Kaneo task list in dark theme, grouped by status with assignees, priorities, labels, and due dates",
+		"darkListScreenshotAlt": "Tracing task list in dark theme, grouped by status with assignees, priorities, labels, and due dates",
 		"darkTaskScreenshot": "Task details (dark)",
-		"darkTaskScreenshotAlt": "Kaneo task details in dark theme, with a description, checklist, team comment, and task properties",
+		"darkTaskScreenshotAlt": "Tracing task details in dark theme, with a description, checklist, team comment, and task properties",
 		"darkTimelineScreenshot": "Timeline (dark)",
-		"darkTimelineScreenshotAlt": "Kaneo Gantt timeline in dark theme, showing scheduled tasks and their durations",
+		"darkTimelineScreenshotAlt": "Tracing Gantt timeline in dark theme, showing scheduled tasks and their durations",
 		"lightListScreenshot": "List (light)",
-		"lightListScreenshotAlt": "Kaneo task list in light theme, grouped by status with assignees, priorities, labels, and due dates",
+		"lightListScreenshotAlt": "Tracing task list in light theme, grouped by status with assignees, priorities, labels, and due dates",
 		"lightTaskScreenshot": "Task details (light)",
-		"lightTaskScreenshotAlt": "Kaneo task details in light theme, with a description, checklist, team comment, and task properties",
+		"lightTaskScreenshotAlt": "Tracing task details in light theme, with a description, checklist, team comment, and task properties",
 		"lightTimelineScreenshot": "Timeline (light)",
-		"lightTimelineScreenshotAlt": "Kaneo Gantt timeline in light theme, showing scheduled tasks and their durations"
+		"lightTimelineScreenshotAlt": "Tracing Gantt timeline in light theme, showing scheduled tasks and their durations"
 	},
 	"landing": {
 		"sponsors": {
 			"ciSponsor": "Tərəfdaşlar"
 		},
 		"founder": {
-			"title": "Why Kaneo exists",
-			"intro": "I'm Andrej, and I created Kaneo because I was tired of project management tools that got in the way more than they helped. After years of using bloated, overcomplicated platforms that distracted from actual work, I knew there had to be a better way.",
-			"problem": "The problem wasn't that these tools lacked features - it was that they had too many. Every notification, every unnecessary button, every complex workflow was pulling my team away from what mattered: building great products.",
-			"principle": "I believe the best tools are invisible. They should amplify your team's natural workflow, not force you to adapt to theirs. Kaneo is built on the principle that less is more - every feature exists because it solves a real problem, not because it looks impressive in a demo."
+			"title": "Built for Go Figure",
+			"intro": "Tracing is Go Figure’s open-source fork of Kaneo, created by Andrej Acevski.",
+			"problem": "We use Tracing to plan issues, projects, initiatives, and cycles in one workspace.",
+			"principle": "The fork adds Linear-style planning while preserving the original MIT license and upstream attribution."
 		},
 		"hero": {
-			"cloudCta": "Try Kaneo Cloud",
-			"trialNote": "14-day cloud trial. No credit card required.",
+			"cloudCta": "Open Tracing",
+			"trialNote": "Open source under the MIT license.",
 			"github": "GitHub",
 			"productHunt": "Product Hunt",
 			"title": "Project management",
 			"titleAccent": "that doesn't become the project.",
-			"description": "Open-source project management with boards, Gantt charts, and GitHub integration. Self-host for free with SSO included, or let Kaneo Cloud handle the hosting.",
-			"pricingCta": "See pricing",
-			"appStore": "App Store"
+			"description": "Issues, projects, initiatives, cycles, and saved views in one open-source workspace. Built by Go Figure on Kaneo.",
+			"pricingCta": "Self-host Tracing",
+			"appStore": "Mobile source"
 		},
 		"navigation": {
 			"product": "Product",
@@ -4204,12 +4204,12 @@
 			"community": "İcma",
 			"menu": "Menu",
 			"closeMenu": "Close menu",
-			"home": "Kaneo home",
+			"home": "Tracing home",
 			"signIn": "Sign In",
-			"getStarted": "Get Started"
+			"getStarted": "Open Tracing"
 		},
 		"showcase": {
-			"label": "Kaneo product views",
+			"label": "Tracing product views",
 			"controls": "Choose a product view",
 			"play": "Play product views",
 			"pause": "Pause product views",
@@ -4232,7 +4232,7 @@
 			"hosting": {
 				"title": "Run it on your own server.",
 				"description": "Deploy with Docker and keep your workspace on infrastructure you control.",
-				"link": "Self-host Kaneo"
+				"link": "Self-host Tracing"
 			},
 			"source": {
 				"title": "The code is open, too.",
@@ -4240,8 +4240,8 @@
 				"link": "View the source"
 			},
 			"preview": {
-				"taskAlt": "Interactive Kaneo task and subtask preview.",
-				"githubAlt": "Interactive preview of a GitHub merge updating a Kaneo task.",
+				"taskAlt": "Interactive Tracing task and subtask preview.",
+				"githubAlt": "Interactive preview of a GitHub merge updating a Tracing task.",
 				"taskTitle": "Publish the new homepage",
 				"taskDescription": "Update the copy and check the layout before the next release.",
 				"checklistDone": "Review the copy",
@@ -4251,7 +4251,7 @@
 				"date": "Oct 12",
 				"design": "design",
 				"done": "Done",
-				"relationsAlt": "Interactive Kaneo task dependencies preview.",
+				"relationsAlt": "Interactive Tracing task dependencies preview.",
 				"inReview": "In Review",
 				"trySubtasks": "Try checking off a subtask.",
 				"tryGithub": "Preview a merge to see the task update.",
@@ -4273,13 +4273,13 @@
 			}
 		},
 		"seo": {
-			"title": "Kaneo — Open-source, self-hosted project management",
-			"description": "Open-source project management with boards, Gantt charts, and GitHub integration. Self-host for free with SSO included, or use Kaneo Cloud."
+			"title": "Tracing — Open-source, self-hosted project management",
+			"description": "Open-source project management with boards, Gantt charts, and GitHub integration. Self-host for free with SSO included, or use Tracing Cloud."
 		},
 		"resources": {
 			"eyebrow": "Make it your own",
 			"title": "A clear path from trying it to using it.",
-			"description": "Set up your server, connect your tools, or compare Kaneo with your current tracker.",
+			"description": "Set up your server, connect your tools, or compare Tracing with your current tracker.",
 			"sso": {
 				"title": "Bring your own identity provider",
 				"description": "Configure OIDC single sign-on in the free self-hosted build."
@@ -4289,42 +4289,42 @@
 				"description": "Use MCP to work with tasks and projects through an AI client."
 			},
 			"linear": {
-				"title": "Compare Kaneo and Linear",
+				"title": "Compare Tracing and Linear",
 				"description": "See the differences in hosting, licensing, and workflow."
 			},
 			"startups": {
-				"description": "What a startup needs from a tracker, and what Kaneo Cloud costs as you hire.",
+				"description": "What a startup needs from a tracker, and what Tracing Cloud costs as you hire.",
 				"title": "Project management for startups"
 			}
 		},
 		"product": {
 			"title": "Before you get started",
 			"description": "The practical details about hosting, planning, and connecting your team.",
-			"overview": "Kaneo is an open-source, MIT-licensed project management platform with boards, backlog, Gantt and calendar views, custom fields, time tracking, and GitHub integration. Self-host it on your own infrastructure or use Kaneo Cloud.",
+			"overview": "Tracing is Go Figure’s open-source planning workspace with issue tracking, triage, projects, initiatives, roadmaps, cycles, insights, and saved views.",
 			"hosting": {
-				"question": "Is Kaneo free to self-host?",
-				"answer": "Yes. Kaneo is MIT licensed and free to self-host, with single sign-on included. Run the application alongside PostgreSQL using Docker Compose, or deploy with the official Helm chart. You manage infrastructure, updates, and backups.",
-				"link": "Read the installation guide"
+				"question": "How is Tracing hosted?",
+				"answer": "Build and run Tracing on your own infrastructure. Go Figure operates its own workspace; this fork does not offer the upstream commercial cloud plans.",
+				"link": "Self-host Tracing"
 			},
 			"planning": {
-				"question": "Does Kaneo have Gantt charts?",
-				"answer": "Yes. Kaneo includes Gantt and calendar views alongside boards, lists, and backlog planning. Use task start dates and due dates to plan work on a timeline. Budgeting, baseline comparisons, and sprint burndown reports are outside its current scope.",
-				"link": "Compare planning features"
+				"question": "What planning features are included?",
+				"answer": "Plan issues, triage, projects, milestones, initiatives, roadmaps, and cycles. Use saved views and insights to follow the work.",
+				"link": "Explore planning"
 			},
 			"sso": {
-				"question": "Is single sign-on included?",
-				"answer": "Yes. The free self-hosted build supports Google, GitHub, Discord, and custom OAuth/OIDC providers. Configure your provider on your instance without purchasing a separate Kaneo edition.",
-				"link": "Configure OIDC"
+				"question": "Can I configure single sign-on?",
+				"answer": "Self-hosted instances support Google, GitHub, Discord, and custom OAuth/OIDC providers configured by the operator.",
+				"link": "Read the setup guide"
 			},
 			"agents": {
-				"question": "Can AI clients work with Kaneo?",
-				"answer": "Yes. Kaneo provides an MCP server through the @kaneo/mcp package and an HTTP endpoint. Compatible AI clients can read and update tasks using an API key tied to a user, subject to workspace permissions.",
+				"question": "Can AI clients work with Tracing?",
+				"answer": "The authenticated HTTP MCP endpoint supports planning tools with workspace permissions. The CLI and stdio MCP package can be built from this repository.",
 				"link": "Read the MCP guide"
 			},
 			"mobile": {
-				"answer": "Yes. Kaneo is on the App Store for iPhone and iPad, and Android is coming soon. The app is free for Kaneo Cloud accounts. Connecting it to a self-hosted server is a one-time $9.99 unlock per person, and like the rest of Kaneo, the app is open source.",
-				"link": "Download on the App Store",
-				"question": "Is there a mobile app?"
+				"question": "Is there a mobile app?",
+				"answer": "The Expo mobile app is included in this repository. Tracing has not published its own App Store or Play Store listing.",
+				"link": "View mobile source"
 			}
 		},
 		"comparison": {
@@ -4334,9 +4334,9 @@
 		},
 		"selfHostingGuide": {
 			"summary": "What self-hosting involves, with links to the maintained Docker Compose configuration and installation steps.",
-			"answer": "To self-host Kaneo, run the application and PostgreSQL with Docker Compose, configure your public URL and secrets, and put a TLS reverse proxy in front. The installation guide specifies at least 2 GB of RAM and 10 GB of disk space. Plan for ongoing updates, database backups, and storage for uploaded files.",
+			"answer": "To self-host Tracing, run the application and PostgreSQL with Docker Compose, configure your public URL and secrets, and put a TLS reverse proxy in front. The installation guide specifies at least 2 GB of RAM and 10 GB of disk space. Plan for ongoing updates, database backups, and storage for uploaded files.",
 			"requirements": "The documented minimum is 2 GB of RAM and 10 GB of disk space, with Docker 20.10 or newer and Docker Compose V2. Allow more capacity for your workload, database growth, and uploaded files.",
-			"compose": "Use the maintained compose.yml in the Docker Compose guide. It defines PostgreSQL, a persistent database volume, the Kaneo application, and health checks. Configure the environment file before starting the services; for production, pin an image version so updates are deliberate.",
+			"compose": "Use the maintained compose.yml in the Docker Compose guide. It defines PostgreSQL, a persistent database volume, the Tracing application, and health checks. Configure the environment file before starting the services; for production, pin an image version so updates are deliberate.",
 			"backups": "Back up both PostgreSQL and any object storage used for uploads. Choose a schedule based on how much work your team can afford to lose, store copies off the application server, and test restoring them before you need them.",
 			"worth": "Self-hosting makes sense when you need control over infrastructure and data, and someone can own maintenance. Include server capacity, storage, backups, and that maintenance time when comparing costs with a managed service.",
 			"minimum": "The installation guide specifies Docker 20.10 or newer, Docker Compose V2, at least 2 GB of RAM, and 10 GB of disk space. The Compose setup includes PostgreSQL. Redis is optional for a single API instance.",
@@ -4361,7 +4361,7 @@
 				"delivery": "Çatdırılma və hadisələr",
 				"deliveryHint": "E-poçt, ntfy, Gotify, vebhuklar",
 				"invitations": "Dəvətlər",
-				"permissionDenied": "Əvvəlcə sistem ayarlarında Kaneo bildirişlərinə icazə verin.",
+				"permissionDenied": "Əvvəlcə sistem ayarlarında Tracing bildirişlərinə icazə verin.",
 				"phone": "Telefon bildirişləri",
 				"phoneHint": "Təxminən hər 15 dəqiqədən bir yoxlanılır",
 				"title": "Bildirişlər"
@@ -4424,7 +4424,7 @@
 		},
 		"background": {
 			"channelDescription": "İş sahələrinizdəki təyinatlar, şərhlər və adınızın çəkildiyi bildirişlər",
-			"channelName": "Kaneo fəaliyyəti",
+			"channelName": "Tracing fəaliyyəti",
 			"summary_one": "Daha {{count}} yeni bildiriş",
 			"summary_other": "Daha {{count}} yeni bildiriş"
 		},
@@ -4514,10 +4514,10 @@
 			"apiKeyRejected": "Bu API açarı rədd edildi.",
 			"deviceFailed": "Cihazla giriş alınmadı (HTTP {{status}}).",
 			"forbidden": "Bunu etmək üçün icazəniz yoxdur.",
-			"noInstance": "{{url}} ünvanında Kaneo instansiyası tapılmadı (HTTP {{status}}).",
+			"noInstance": "{{url}} ünvanında Tracing instansiyası tapılmadı (HTTP {{status}}).",
 			"noSession": "Server sessiya qaytarmadı. Brauzerdən daxil olmağa çalışın.",
 			"notFound": "Tapılmadı.",
-			"notKaneo": "{{url}} Kaneo serverinə bənzəmir.",
+			"notTracing": "{{url}} Tracing serverinə bənzəmir.",
 			"notSignedIn": "Daxil olmamısınız",
 			"requestFailed": "Sorğu alınmadı ({{status}}).",
 			"serverProblem": "Serverdə problem yarandı ({{status}}).",
@@ -4746,7 +4746,7 @@
 				"webhook": "Vebhuk",
 				"webhookHint": "Bildirişləri URL-yə POST ilə göndər"
 			},
-			"description": "Kaneo sizə haradan və nə barədə xəbər versin.",
+			"description": "Tracing sizə haradan və nə barədə xəbər versin.",
 			"events": {
 				"assignments": "Təyinatlar",
 				"assignmentsHint": "Sizə tapşırıq təyin ediləndə",
@@ -4918,7 +4918,7 @@
 			"browserHint": "GitHub, Google, Discord və ya SSO",
 			"captcha": "Bu server bu addımda brauzer yoxlaması tələb edir. “Brauzerdə davam et” seçin.",
 			"change": "Dəyiş",
-			"cloud": "Kaneo Cloud",
+			"cloud": "Tracing Cloud",
 			"code": {
 				"checkEmail": "E-poçtunuzu yoxlayın",
 				"didntGet": "Almadınız?",
@@ -4940,7 +4940,7 @@
 				"expired": "Giriş kodunun vaxtı bitib. Yenisini almaq üçün yenidən başlayın.",
 				"gettingCode": "Kod alınır…",
 				"linkCopied": "Keçid kopyalandı",
-				"message": "Bu cihazı Kaneo saytından təsdiqləyin. GitHub, Google, Discord və SSO orada işləyir.",
+				"message": "Bu cihazı Tracing saytından təsdiqləyin. GitHub, Google, Discord və SSO orada işləyir.",
 				"openBrowser": "Brauzeri aç",
 				"openFailed": "Brauzeri açmaq alınmadı. Keçidi kopyalayın.",
 				"tryAgain": "Yenidən cəhd et",
@@ -4950,7 +4950,7 @@
 			"email": "E-poçt",
 			"emailCode": "E-poçtla giriş kodu göndər",
 			"invalidClient": "Bu server cihazla girişə icazə vermir. İnzibatçıdan DEVICE_AUTH_CLIENT_IDS parametrinə “kaneo-cli” əlavə etməsini istəyin və ya parol və ya API açarı ilə daxil olun.",
-			"newToKaneo": "Kaneo-da yenisiniz?",
+			"newToTracing": "Tracing-da yenisiniz?",
 			"noPassword": "Parol lazım deyil",
 			"or": "və ya",
 			"password": "Parol",
@@ -4958,19 +4958,19 @@
 			"selfHosted": "Öz serverinizdə",
 			"sendTo": "{{email}} ünvanına göndər",
 			"serverAddress": "Server ünvanı",
-			"serverAddressHint": "Kaneo-nu açdığınız ünvan. TLS olmayan serverlər üçün http:// istifadə edin. API başqa hostda işləyirsə, API ünvanını daxil edin.",
+			"serverAddressHint": "Tracing-nu açdığınız ünvan. TLS olmayan serverlər üçün http:// istifadə edin. API başqa hostda işləyirsə, API ünvanını daxil edin.",
 			"signIn": "Daxil ol",
 			"signUp": {
 				"name": "Ad",
 				"passwordHint": "Ən azı 8 simvol"
 			},
-			"tagline": "Sadə layihə idarəetməsi. Kaneo Cloud-a və ya öz instansiyanıza qoşulun.",
+			"tagline": "Sadə layihə idarəetməsi. Tracing Cloud-a və ya öz instansiyanıza qoşulun.",
 			"togglePassword": "Parolun görünməsini dəyiş",
 			"useApiKey": "API açarından istifadə et",
 			"unlock": {
 				"buy": "Unlock for {{price}}",
 				"buyNoPrice": "Unlock",
-				"message": "Signing in to Kaneo Cloud is always included. Connecting the app to a self-hosted server is a one-time purchase that supports Kaneo's development.",
+				"message": "Signing in to Tracing Cloud is always included. Connecting the app to a self-hosted server is a one-time purchase that supports Tracing's development.",
 				"nothingToRestore": "No earlier purchase was found for this store account.",
 				"restore": "Restore purchase",
 				"title": "Connect your own server",
@@ -5192,7 +5192,7 @@
 			"title": "İş sahələri"
 		},
 		"permissions": {
-			"photos": "Kaneo şəkillərinizdən tapşırıqlara və şərhlərə şəkil əlavə etmək, həmçinin profil şəkliniz üçün istifadə edir."
+			"photos": "Tracing şəkillərinizdən tapşırıqlara və şərhlərə şəkil əlavə etmək, həmçinin profil şəkliniz üçün istifadə edir."
 		},
 		"parity": {
 			"signInTagline": "Go Figure layihə iş sahəsinə daxil olun.",
@@ -5427,7 +5427,7 @@
 	"parity": {
 		"categories": {
 			"title": "Vəziyyət kateqoriyaları",
-			"description": "Kateqoriyalar planlaşdırma funksiyalarında işin necə hesablandığını müəyyən edir. Kaneo-nun son vəziyyət ayarı mövcud avtomatlaşdırmaları idarə etməyə davam edir.",
+			"description": "Kateqoriyalar planlaşdırma funksiyalarında işin necə hesablandığını müəyyən edir. Tracing-nun son vəziyyət ayarı mövcud avtomatlaşdırmaları idarə etməyə davam edir.",
 			"backlog": "Gözləyən işlər",
 			"unstarted": "Başlanmayıb",
 			"started": "Başlanıb",

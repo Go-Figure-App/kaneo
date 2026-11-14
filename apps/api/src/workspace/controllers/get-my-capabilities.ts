@@ -2,7 +2,7 @@ import {
   WORKSPACE_CAPABILITY_NAMES,
   type WorkspaceCapability,
   workspaceCapabilities,
-} from "@kaneo/permissions";
+} from "@tracing/permissions";
 import type { PermissionMap } from "../../utils/role-permissions";
 
 function getMyCapabilities(

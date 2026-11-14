@@ -1,14 +1,14 @@
 {
   "openapi": "3.1.0",
   "info": {
-    "title": "Kaneo API",
+    "title": "Tracing API",
     "version": "1.0.0",
-    "description": "Kaneo Project Management API - Manage projects, tasks, labels, and more"
+    "description": "Tracing Project Management API - Manage projects, tasks, labels, and more"
   },
   "servers": [
     {
-      "url": "https://cloud.kaneo.app/api",
-      "description": "Kaneo API Server"
+      "url": "https://tracing.gofigureapp.io/api",
+      "description": "Tracing API Server"
     }
   ],
   "security": [
@@ -610,7 +610,7 @@
           },
           "instanceName": {
             "type": "string",
-            "description": "Name shown in page titles and emails. Defaults to Kaneo."
+            "description": "Name shown in page titles and emails. Defaults to Tracing."
           },
           "disableRegistration": {
             "type": "boolean"
@@ -2523,7 +2523,7 @@
                     ]
                   }
                 ],
-                "description": "Kaneo workspace label IDs controlling task sync. Missing labels pause sync."
+                "description": "Tracing workspace label IDs controlling task sync. Missing labels pause sync."
               },
               "incoming": {
                 "oneOf": [
@@ -3104,7 +3104,7 @@
           },
           "commentTaskLinkOnGitHubIssue": {
             "type": "boolean",
-            "description": "When on, Kaneo comments a link back to the task on the linked GitHub issue."
+            "description": "When on, Tracing comments a link back to the task on the linked GitHub issue."
           },
           "isActive": {
             "type": [
@@ -3195,7 +3195,7 @@
           },
           "commentTaskLinkOnGitHubIssue": {
             "type": "boolean",
-            "description": "When on, Kaneo comments a link back to the task on the linked GitHub issue."
+            "description": "When on, Tracing comments a link back to the task on the linked GitHub issue."
           },
           "isActive": {
             "type": [
@@ -3380,7 +3380,7 @@
           },
           "commentTaskLinkOnGiteaIssue": {
             "type": "boolean",
-            "description": "When on, Kaneo comments a link back to the task on the linked Gitea issue."
+            "description": "When on, Tracing comments a link back to the task on the linked Gitea issue."
           },
           "isActive": {
             "type": [
@@ -3592,7 +3592,7 @@
           },
           "commentTaskLinkOnGitlabIssue": {
             "type": "boolean",
-            "description": "When on, Kaneo comments a link back to the task on each issue opened in GitLab. Issues Kaneo creates from tasks are not commented on."
+            "description": "When on, Tracing comments a link back to the task on each issue opened in GitLab. Issues Tracing creates from tasks are not commented on."
           },
           "isActive": {
             "type": [
@@ -4325,7 +4325,7 @@
           },
           "eventType": {
             "type": "string",
-            "description": "The Kaneo event that triggers the move: `branch_push`, `pr_opened`, `pr_merged`, `issue_opened`, `issue_closed` or `issue_reopened`."
+            "description": "The Tracing event that triggers the move: `branch_push`, `pr_opened`, `pr_merged`, `issue_opened`, `issue_closed` or `issue_reopened`."
           },
           "columnId": {
             "type": "string",
@@ -4883,7 +4883,7 @@
             "$ref": "#/components/schemas/TrelloImportConnection"
           },
           {
-            "$ref": "#/components/schemas/KaneoImportConnection"
+            "$ref": "#/components/schemas/TracingImportConnection"
           }
         ],
         "discriminator": {
@@ -4894,7 +4894,7 @@
             "linear": "#/components/schemas/LinearImportConnection",
             "jira": "#/components/schemas/JiraImportConnection",
             "trello": "#/components/schemas/TrelloImportConnection",
-            "kaneo": "#/components/schemas/KaneoImportConnection"
+            "kaneo": "#/components/schemas/TracingImportConnection"
           }
         },
         "description": "Where to import from and how to sign in. Credentials are used only for this request and the import it starts; they are never stored, logged, or returned."
@@ -5043,7 +5043,7 @@
             "type": "string",
             "minLength": 1,
             "maxLength": 4096,
-            "description": "A Trello token authorized for this Kaneo instance. Used only for this import and never stored or logged."
+            "description": "A Trello token authorized for this Tracing instance. Used only for this import and never stored or logged."
           },
           "apiKey": {
             "type": "string",
@@ -5057,7 +5057,7 @@
           "token"
         ]
       },
-      "KaneoImportConnection": {
+      "TracingImportConnection": {
         "type": "object",
         "properties": {
           "source": {
@@ -5070,14 +5070,14 @@
             "type": "string",
             "minLength": 1,
             "maxLength": 2048,
-            "description": "Address of the Kaneo instance to import from.",
+            "description": "Address of the Tracing instance to import from.",
             "example": "https://planka.example.com"
           },
           "apiKey": {
             "type": "string",
             "minLength": 1,
             "maxLength": 4096,
-            "description": "An API key from that Kaneo instance. Used only for this import and never stored or logged."
+            "description": "An API key from that Tracing instance. Used only for this import and never stored or logged."
           }
         },
         "required": [
@@ -5196,7 +5196,7 @@
               "string",
               "null"
             ],
-            "description": "The Kaneo project created by the import, once completed."
+            "description": "The Tracing project created by the import, once completed."
           },
           "projectSlug": {
             "type": [
@@ -5285,7 +5285,7 @@
               "string",
               "null"
             ],
-            "description": "Trello page where the user approves read access for Kaneo and copies a token. null when the server has no TRELLO_API_KEY; the user then sends their own Trello API key with the token."
+            "description": "Trello page where the user approves read access for Tracing and copies a token. null when the server has no TRELLO_API_KEY; the user then sends their own Trello API key with the token."
           }
         },
         "required": [
@@ -5326,7 +5326,7 @@
                 "locale"
               ]
             },
-            "description": "Profile fields the custom OAuth/OIDC provider manages for this user. Kaneo updates them at sign-in and refuses changes to them."
+            "description": "Profile fields the custom OAuth/OIDC provider manages for this user. Tracing updates them at sign-in and refuses changes to them."
           }
         },
         "required": [
@@ -5995,7 +5995,7 @@
               "string",
               "null"
             ],
-            "description": "Kaneo release version of this API instance."
+            "description": "Tracing release version of this API instance."
           },
           "api": {
             "type": "object",
@@ -6664,14 +6664,14 @@
               "string",
               "null"
             ],
-            "description": "The saved name, or null for the default Kaneo."
+            "description": "The saved name, or null for the default Tracing."
           },
           "instanceUrl": {
             "type": [
               "string",
               "null"
             ],
-            "description": "The web app URL from `KANEO_CLIENT_URL`. Read-only."
+            "description": "The web app URL from `TRACING_CLIENT_URL`, falling back to `KANEO_CLIENT_URL`. Read-only."
           },
           "registrationEnabled": {
             "type": "boolean"
@@ -10095,7 +10095,7 @@
           "MCP"
         ],
         "summary": "Start MCP authorization",
-        "description": "Begin an MCP OAuth authorization. Redirects the browser to the Kaneo consent page, which then approves or denies the request.",
+        "description": "Begin an MCP OAuth authorization. Redirects the browser to the Tracing consent page, which then approves or denies the request.",
         "security": [],
         "parameters": [
           {
@@ -10163,7 +10163,7 @@
         ],
         "responses": {
           "302": {
-            "description": "Redirect to the Kaneo consent page"
+            "description": "Redirect to the Tracing consent page"
           },
           "400": {
             "description": "Invalid authorization request",
@@ -33483,7 +33483,7 @@
                             ]
                           }
                         ],
-                        "description": "Kaneo workspace label IDs controlling task sync. Missing labels pause sync."
+                        "description": "Tracing workspace label IDs controlling task sync. Missing labels pause sync."
                       },
                       "incoming": {
                         "oneOf": [
@@ -33716,7 +33716,7 @@
                             ]
                           }
                         ],
-                        "description": "Kaneo workspace label IDs controlling task sync. Missing labels pause sync."
+                        "description": "Tracing workspace label IDs controlling task sync. Missing labels pause sync."
                       },
                       "incoming": {
                         "oneOf": [
@@ -33975,7 +33975,7 @@
           "Integration sync"
         ],
         "summary": "Resume a reviewed issue link",
-        "description": "Explicitly choose the current Kaneo or repository title, description and open/closed state. Existing links are reused; historical comments are not replayed. The task must still match its outgoing rule. A changed comparison requires another review.",
+        "description": "Explicitly choose the current Tracing or repository title, description and open/closed state. Existing links are reused; historical comments are not replayed. The task must still match its outgoing rule. A changed comparison requires another review.",
         "parameters": [
           {
             "schema": {
@@ -34260,7 +34260,7 @@
           "GitHub"
         ],
         "summary": "Verify GitHub installation",
-        "description": "Check that the GitHub App is installed on a repository and holds the permissions Kaneo needs. Always 200 -- problems are reported in the body so the client can guide the user.",
+        "description": "Check that the GitHub App is installed on a repository and holds the permissions Tracing needs. Always 200 -- problems are reported in the body so the client can guide the user.",
         "requestBody": {
           "required": true,
           "content": {
@@ -34915,7 +34915,7 @@
           "Gitea"
         ],
         "summary": "Verify Gitea access",
-        "description": "Check that the base URL is a Gitea instance and that the token can reach the repository with the permissions Kaneo needs. Repository permission failures are reported in the body; invalid credentials and upstream errors return an error status. Omit accessToken to use the saved token for the unchanged base URL.",
+        "description": "Check that the base URL is a Gitea instance and that the token can reach the repository with the permissions Tracing needs. Repository permission failures are reported in the body; invalid credentials and upstream errors return an error status. Omit accessToken to use the saved token for the unchanged base URL.",
         "requestBody": {
           "required": true,
           "content": {
@@ -34977,7 +34977,7 @@
             }
           },
           "401": {
-            "description": "Kaneo authentication required",
+            "description": "Tracing authentication required",
             "content": {
               "application/json": {
                 "schema": {
@@ -35549,7 +35549,7 @@
           "GitLab"
         ],
         "summary": "Verify GitLab access",
-        "description": "Check that the base URL is a GitLab instance and that the token can reach the project with the permissions Kaneo needs. An unreachable instance, a missing project, or insufficient permissions are reported in a 200 body so the form can explain them; a token GitLab rejects outright is a 401.",
+        "description": "Check that the base URL is a GitLab instance and that the token can reach the project with the permissions Tracing needs. An unreachable instance, a missing project, or insufficient permissions are reported in a 200 body so the form can explain them; a token GitLab rejects outright is a 401.",
         "requestBody": {
           "required": true,
           "content": {
@@ -35720,7 +35720,7 @@
           "GitLab"
         ],
         "summary": "Create GitLab integration",
-        "description": "Link a project to a GitLab project. Kaneo generates the secret GitLab must send with each webhook; add the webhook in GitLab afterwards. Use the verify route first to confirm the token really reaches the project.",
+        "description": "Link a project to a GitLab project. Tracing generates the secret GitLab must send with each webhook; add the webhook in GitLab afterwards. Use the verify route first to confirm the token really reaches the project.",
         "parameters": [
           {
             "schema": {
@@ -35819,7 +35819,7 @@
             }
           },
           "409": {
-            "description": "That GitLab project is already linked to another Kaneo project",
+            "description": "That GitLab project is already linked to another Tracing project",
             "content": {
               "application/json": {
                 "schema": {
@@ -36151,7 +36151,7 @@
           "Generic Webhook"
         ],
         "summary": "Create webhook integration",
-        "description": "Create or replace the outgoing webhook for a project. Kaneo POSTs the selected task events to this URL, signed with the secret when one is set.",
+        "description": "Create or replace the outgoing webhook for a project. Tracing POSTs the selected task events to this URL, signed with the secret when one is set.",
         "parameters": [
           {
             "schema": {
@@ -40275,7 +40275,7 @@
           "Import"
         ],
         "summary": "List projects in an import source",
-        "description": "Sign in to PLANKA, Plane, Linear, Jira, Trello or another Kaneo instance and list the projects that can be imported. With the parity import feature enabled, Linear lists actual projects and a catch-all per team; otherwise it lists teams. The credentials are used only for this request; they are never stored, logged, or returned.",
+        "description": "Sign in to PLANKA, Plane, Linear, Jira, Trello or another Tracing instance and list the projects that can be imported. With the parity import feature enabled, Linear lists actual projects and a catch-all per team; otherwise it lists teams. The credentials are used only for this request; they are never stored, logged, or returned.",
         "requestBody": {
           "required": true,
           "content": {
@@ -40383,7 +40383,7 @@
           "Import"
         ],
         "summary": "Start an import",
-        "description": "Import the selected source projects into the workspace as new Kaneo projects. Repeating an import creates another copy. With the parity import feature enabled, Linear also imports project plans, milestones, updates, linked initiatives, team cycles, estimates, triage and original identifiers; selecting every source entry includes initiatives without projects. Historical burndown is unavailable. The import runs in the background; poll getImportRun for progress. The credentials are held in memory only while the import runs; they are never stored, logged, or returned. Imported tasks do not send notifications or trigger integrations.",
+        "description": "Import the selected source projects into the workspace as new Tracing projects. Repeating an import creates another copy. With the parity import feature enabled, Linear also imports project plans, milestones, updates, linked initiatives, team cycles, estimates, triage and original identifiers; selecting every source entry includes initiatives without projects. Historical burndown is unavailable. The import runs in the background; poll getImportRun for progress. The credentials are held in memory only while the import runs; they are never stored, logged, or returned. Imported tasks do not send notifications or trigger integrations.",
         "requestBody": {
           "required": true,
           "content": {
@@ -42851,7 +42851,7 @@
           "Admin"
         ],
         "summary": "Remove a user's avatar",
-        "description": "Remove the user's profile picture. A picture managed by the identity provider can't be removed, but an earlier Kaneo upload can. Requires the `users:update` instance permission; API keys are rejected.",
+        "description": "Remove the user's profile picture. A picture managed by the identity provider can't be removed, but an earlier Tracing upload can. Requires the `users:update` instance permission; API keys are rejected.",
         "parameters": [
           {
             "schema": {
@@ -43687,7 +43687,7 @@
                       "null"
                     ],
                     "maxLength": 60,
-                    "description": "Shown in page titles and email headers and subjects. Empty or null restores Kaneo."
+                    "description": "Shown in page titles and email headers and subjects. Empty or null restores Tracing."
                   },
                   "registrationEnabled": {
                     "type": "boolean",

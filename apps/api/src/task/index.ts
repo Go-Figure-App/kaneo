@@ -918,7 +918,9 @@ const task = apiRouter<BaseVariables & { workspaceId: string }>()
       c.req.valid("json"),
     );
     const base = normalizeApiServerUrl(
-      process.env.KANEO_API_URL || new URL(c.req.url).origin,
+      process.env.TRACING_API_URL ||
+        process.env.KANEO_API_URL ||
+        new URL(c.req.url).origin,
     );
     return c.json({ id: asset.id, url: `${base}/asset/${asset.id}` }, 200);
   })
@@ -1329,7 +1331,9 @@ const task = apiRouter<BaseVariables & { workspaceId: string }>()
     }
 
     const apiBaseUrl = normalizeApiServerUrl(
-      process.env.KANEO_API_URL || new URL(c.req.url).origin,
+      process.env.TRACING_API_URL ||
+        process.env.KANEO_API_URL ||
+        new URL(c.req.url).origin,
     );
     return c.json(
       {

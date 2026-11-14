@@ -1,4 +1,4 @@
-export const DEFAULT_INSTANCE_NAME = "Kaneo";
+export const DEFAULT_INSTANCE_NAME = "Tracing";
 
 /** What the `instance_settings` row holds, with defaults for a missing row. */
 export type StoredInstanceSettings = {

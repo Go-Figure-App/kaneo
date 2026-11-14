@@ -17,8 +17,10 @@ export function footerLinks(
 
   return [
     ...leading,
-    { label: "kaneo.app", href: "https://kaneo.app" },
-    { label: copy.help, href: "https://kaneo.app/docs" },
-    { label: copy.privacy, href: "https://kaneo.app/privacy" },
+    { label: "Tracing", href: "https://tracing.gofigureapp.io" },
+    {
+      label: copy.help,
+      href: "https://github.com/Go-Figure-App/tracing#readme",
+    },
   ];
 }

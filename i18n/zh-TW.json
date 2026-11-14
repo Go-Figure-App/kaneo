@@ -1,6 +1,6 @@
 {
 	"common": {
-		"appName": "Kaneo",
+		"appName": "Tracing",
 		"actions": {
 			"cancel": "取消",
 			"close": "關閉",
@@ -96,7 +96,7 @@
 				"errorToast": "無法建立專案"
 			},
 			"createWorkspace": {
-				"breadcrumbKaneo": "KANEO",
+				"breadcrumbTracing": "Tracing",
 				"title": "建立新工作區",
 				"description": "輸入工作區名稱即可建立新工作區。",
 				"namePlaceholder": "工作區名稱",
@@ -185,7 +185,7 @@
 				"use_a_permanent_email_address_disposable_addresses_cannot_create_accounts_": "請使用長期有效的電子郵件地址。拋棄式地址無法建立帳號。"
 			},
 			"instanceStatusError": "無法連線到伺服器，請稍後再試。",
-			"heading": "登入 Kaneo",
+			"heading": "登入 Tracing",
 			"submitPassword": "登入",
 			"invitation": {
 				"title": "{{inviterName}} 邀請你加入 {{workspaceName}}",
@@ -193,7 +193,7 @@
 				"description": "請使用收到邀請的電子郵件登入。登入後你會立即加入該工作區。"
 			},
 			"footer": {
-				"newHere": "第一次使用 Kaneo？",
+				"newHere": "第一次使用 Tracing？",
 				"createAccount": "建立帳號",
 				"inviteOnly": "此處僅限受邀者建立帳號。請向管理員索取邀請。",
 				"providerSignUp": "新使用者？使用上方任一服務登入即可建立帳號。",
@@ -251,7 +251,7 @@
 			"toggleMessage": "已經有帳號了？",
 			"toggleLink": "登入",
 			"instanceStatusError": "無法連線到伺服器，請稍後再試。",
-			"instanceAdminTitle": "設定你的 Kaneo 執行個體",
+			"instanceAdminTitle": "設定你的 Tracing 執行個體",
 			"instanceAdminSubtitle": "此帳號將成為擁有完整權限的執行個體管理員。",
 			"heading": "建立你的帳號",
 			"submitPassword": "建立帳號",
@@ -305,7 +305,7 @@
 				"acceptFailed": "無法接受邀請",
 				"acceptSuccess": "已接受邀請！歡迎加入團隊。"
 			},
-			"description": "{{inviterName}} 邀請你加入 Kaneo 上的這個工作區。",
+			"description": "{{inviterName}} 邀請你加入 Tracing 上的這個工作區。",
 			"invitedBy": "邀請人",
 			"sentTo": "寄送至",
 			"signedInAs": "目前登入帳號",
@@ -313,7 +313,7 @@
 			"notNow": "暫時不要",
 			"join": "加入工作區",
 			"switchAccount": "切換帳號",
-			"goToKaneo": "前往 Kaneo",
+			"goToTracing": "前往 Tracing",
 			"mismatch": {
 				"title": "目前登入的電子郵件不同",
 				"description": "此邀請寄送至 {{invitedEmail}}，但你目前以 {{email}} 登入。"
@@ -332,7 +332,7 @@
 			}
 		},
 		"onboarding": {
-			"pageTitle": "歡迎使用 Kaneo",
+			"pageTitle": "歡迎使用 Tracing",
 			"workspaceName": "工作區名稱",
 			"workspaceNamePlaceholder": "例如：Acme Inc、我的團隊",
 			"toast": {
@@ -379,7 +379,7 @@
 				},
 				"invite": {
 					"title": "邀請你的團隊",
-					"description": "大家都在的時候，Kaneo 最好用。打開側邊欄中的 **成員**，透過電子郵件邀請成員。"
+					"description": "大家都在的時候，Tracing 最好用。打開側邊欄中的 **成員**，透過電子郵件邀請成員。"
 				},
 				"integrations": {
 					"title": "連接 GitHub、GitLab 或 Gitea",
@@ -499,7 +499,7 @@
 		"device": {
 			"connect": {
 				"title": "連結裝置",
-				"description": "輸入終端機或應用程式中顯示的代碼，將其連結到你的 Kaneo 帳號。",
+				"description": "輸入終端機或應用程式中顯示的代碼，將其連結到你的 Tracing 帳號。",
 				"label": "裝置代碼",
 				"submit": "繼續",
 				"noCode": "還沒有代碼？請先從應用程式開始登入。",
@@ -533,7 +533,7 @@
 				"description": "登入後會立即回到這裡進行核准。",
 				"submit": "登入"
 			},
-			"openApp": "Open Kaneo"
+			"openApp": "Open Tracing"
 		},
 		"mcp": {
 			"authorize": {
@@ -605,7 +605,7 @@
 		"notificationsPage": {
 			"pageTitle": "通知",
 			"title": "通知",
-			"subtitle": "Kaneo 會通知你哪些事，以及透過哪些管道通知你。",
+			"subtitle": "Tracing 會通知你哪些事，以及透過哪些管道通知你。",
 			"statusConnected": "已連線",
 			"statusPaused": "已暫停",
 			"emailTitle": "電子郵件",
@@ -638,7 +638,7 @@
 			"webhookUrlPlaceholder": "https://example.com/webhooks/kaneo",
 			"webhookSecretPlaceholder": "共用密鑰（選填）",
 			"webhookSecretHintConfigured": "已設定簽章密鑰（{{masked}}）。輸入新的密鑰即可取代。",
-			"webhookSecretHintOptional": "設定密鑰後，Kaneo 會為請求內容簽章。",
+			"webhookSecretHintOptional": "設定密鑰後，Tracing 會為請求內容簽章。",
 			"connectWebhook": "連接 Webhook",
 			"eventPreferencesTitle": "通知我以下事項",
 			"eventPreferencesDescription": "你自己的留言、提及與狀態變更不會通知你。",
@@ -676,7 +676,7 @@
 			"toastRuleRemovedGeneric": "工作區通知規則已移除",
 			"channelNotConnected": "未連接",
 			"channelOff": "關閉",
-			"channelsDescription": "通知一律會顯示在 Kaneo 中。連接管道後，也能在其他地方收到通知。",
+			"channelsDescription": "通知一律會顯示在 Tracing 中。連接管道後，也能在其他地方收到通知。",
 			"channelsTitle": "管道",
 			"configure": "設定",
 			"configureChannel": "設定 {{channel}}",
@@ -692,7 +692,7 @@
 			"eventStatusChangesHint": "你的任務移動到其他欄位時。",
 			"eventTaskAssignmentsHint": "有人將任務指派給你時。",
 			"loadFailed": "無法載入通知設定。",
-			"onlyInKaneo": "僅在 Kaneo 中",
+			"onlyInTracing": "僅在 Tracing 中",
 			"optional": "選填",
 			"projectCount_other": "{{count}} 個專案",
 			"reminderLeadTimeUnitDaysBefore_other": "天前",
@@ -715,14 +715,14 @@
 			"statusSending": "傳送中",
 			"stopping": "停止中...",
 			"stopSending": "停止傳送",
-			"stopSendingDescription": "此工作區的通知將只會顯示在 Kaneo 中。",
+			"stopSendingDescription": "此工作區的通知將只會顯示在 Tracing 中。",
 			"stopSendingTitle": "要停止從 {{workspaceName}} 傳送通知嗎？",
 			"workspacesDescription": "選擇哪些工作區與專案可以使用你的管道。",
 			"workspacesTitle": "工作區"
 		},
 		"preferencesPage": {
 			"title": "偏好設定",
-			"subtitle": "自訂 Kaneo 的外觀與運作方式。",
+			"subtitle": "自訂 Tracing 的外觀與運作方式。",
 			"appearanceTitle": "一般",
 			"theme": "主題",
 			"selectTheme": "選擇主題",
@@ -767,7 +767,7 @@
 		"developerPage": {
 			"pageTitle": "API 金鑰",
 			"title": "API 金鑰",
-			"subtitle": "讓指令碼、CLI 與 MCP 用戶端以你的身分使用 Kaneo。",
+			"subtitle": "讓指令碼、CLI 與 MCP 用戶端以你的身分使用 Tracing。",
 			"unnamedKey": "未命名",
 			"emptyDescription": "建立金鑰，即可在 CLI、MCP 用戶端或你自己的指令碼中使用。",
 			"emptyTitle": "尚無 API 金鑰",
@@ -1255,11 +1255,11 @@
 				"removeError": "無法移除 GitHub 整合",
 				"issuesImported": "已匯入 Issue",
 				"importError": "無法匯入 Issue",
-				"commentOnEnabled": "Kaneo 會在新的 Issue 下留言並附上任務連結",
+				"commentOnEnabled": "Tracing 會在新的 Issue 下留言並附上任務連結",
 				"commentOnDisabled": "已關閉在新 Issue 下留言任務連結",
 				"settingsUpdateError": "無法更新 GitHub 整合"
 			},
-			"commentTaskLinkTitle": "在新 Issue 下留言 Kaneo 連結",
+			"commentTaskLinkTitle": "在新 Issue 下留言 Tracing 連結",
 			"commentTaskLinkHint": "方便 GitHub 上的人直接前往任務。",
 			"updatePermissions": "更新權限",
 			"installGithubApp": "安裝 GitHub App",
@@ -1276,9 +1276,9 @@
 			"linkAccountTitle": "連結你的 GitHub 帳號",
 			"linked": "已連結",
 			"linkGithub": "連結 GitHub",
-			"verifyMissingPermissions": "Kaneo GitHub App 缺少以下權限：{{list}}。",
-			"verifyNotInstalled": "Kaneo GitHub App 尚未安裝在此 Repo。",
-			"verifyReady": "Kaneo GitHub App 已安裝，且具備所需權限。",
+			"verifyMissingPermissions": "Tracing GitHub App 缺少以下權限：{{list}}。",
+			"verifyNotInstalled": "Tracing GitHub App 尚未安裝在此 Repo。",
+			"verifyReady": "Tracing GitHub App 已安裝，且具備所需權限。",
 			"workflowHint": "若要在 Pull Request 開啟或合併時移動任務，請前往",
 			"workflowLink": "工作流程"
 		},
@@ -1296,13 +1296,13 @@
 				"removeError": "無法移除 Gitea 整合",
 				"issuesImported": "已匯入 Issue",
 				"importError": "無法匯入 Issue",
-				"commentOnEnabled": "Kaneo 會在新的 Issue 下留言並附上任務連結",
+				"commentOnEnabled": "Tracing 會在新的 Issue 下留言並附上任務連結",
 				"commentOnDisabled": "已關閉在新 Issue 下留言任務連結",
 				"settingsUpdateError": "無法更新 Gitea 整合"
 			},
-			"commentTaskLinkTitle": "在新 Issue 下留言 Kaneo 連結",
+			"commentTaskLinkTitle": "在新 Issue 下留言 Tracing 連結",
 			"commentTaskLinkHint": "方便 Gitea 上的人直接前往任務。",
-			"webhookHint": "請在 Repo 設定中新增此 Webhook，讓變更同步回 Kaneo。",
+			"webhookHint": "請在 Repo 設定中新增此 Webhook，讓變更同步回 Tracing。",
 			"baseUrlLabel": "Gitea URL",
 			"tokenLabel": "個人存取 Token",
 			"tokenPlaceholder": "貼上 Token",
@@ -1385,10 +1385,10 @@
 			},
 			"webhookLabel": "端點 URL",
 			"webhookPlaceholder": "https://example.com/webhooks/kaneo",
-			"webhookHint": "Kaneo 會針對每個已啟用的事件傳送帶有 JSON 負載的 POST 請求。",
+			"webhookHint": "Tracing 會針對每個已啟用的事件傳送帶有 JSON 負載的 POST 請求。",
 			"secretLabel": "簽署密鑰",
 			"secretPlaceholder": "共用密鑰",
-			"secretHint": "Kaneo 會用它為每個請求簽章，並在 X-Kaneo-Signature 標頭中傳送摘要。",
+			"secretHint": "Tracing 會用它為每個請求簽章，並在 X-Kaneo-Signature 標頭中傳送摘要。",
 			"secretHintConfigured": "目前的密鑰：{{secret}}。貼上新的密鑰即可取代。",
 			"eventsTitle": "傳送時機",
 			"events": {
@@ -1408,7 +1408,7 @@
 			"reminderLeadTimeLabel": "任務截止前的小時數",
 			"connect": "連線 Webhook",
 			"activeTitle": "正在傳送事件",
-			"disconnectDescription": "Kaneo 將停止傳送事件，並移除已儲存的端點與密鑰。",
+			"disconnectDescription": "Tracing 將停止傳送事件，並移除已儲存的端點與密鑰。",
 			"disconnectTitle": "要中斷 Webhook 連線嗎？",
 			"reminderLeadTimeAfter": "小時傳送提醒",
 			"reminderLeadTimeBefore": "在任務截止前"
@@ -1444,7 +1444,7 @@
 		},
 		"repositoryBrowser": {
 			"title": "選擇 Repo",
-			"description": "Kaneo GitHub App 可存取的 Repo。",
+			"description": "Tracing GitHub App 可存取的 Repo。",
 			"searchPlaceholder": "搜尋 Repo",
 			"loadError": "無法載入 Repo。",
 			"tryAgain": "重試",
@@ -1663,7 +1663,7 @@
 				"active": "使用中",
 				"deactivated": "已停用"
 			},
-			"subtitle": "在此 Kaneo 執行個體上擁有帳號的所有人。",
+			"subtitle": "在此 Tracing 執行個體上擁有帳號的所有人。",
 			"title": "使用者",
 			"toast": {
 				"actionError": "更新使用者狀態失敗",
@@ -1760,7 +1760,7 @@
 			"sectionTitle": "登入",
 			"submit": "變更密碼",
 			"submitting": "變更中...",
-			"subtitle": "你登入 Kaneo 的方式。",
+			"subtitle": "你登入 Tracing 的方式。",
 			"title": "安全性",
 			"updateError": "無法更新密碼。",
 			"updateSuccess": "密碼已更新。",
@@ -1789,14 +1789,14 @@
 			"browseModalHint": "你的 Token 具有成員身分的專案。",
 			"browseNeedsCredentials": "請輸入 GitLab URL 與 Token 以瀏覽。",
 			"commentTaskLinkHint": "方便 GitLab 上的人直接前往任務。",
-			"commentTaskLinkTitle": "在 GitLab 建立的 Issue 下留言 Kaneo 連結",
+			"commentTaskLinkTitle": "在 GitLab 建立的 Issue 下留言 Tracing 連結",
 			"importSectionHint": "將未關閉的 Issue 與 Merge Request 匯入為任務。",
 			"openInGitlab": "在 GitLab 中開啟 {{project}}",
 			"projectPathLabel": "專案路徑",
 			"searchProjects": "搜尋專案",
 			"toast": {
 				"commentOnDisabled": "已關閉在 GitLab 建立的 Issue 下留言任務連結",
-				"commentOnEnabled": "Kaneo 會在 GitLab 中建立的 Issue 下留言並附上任務連結",
+				"commentOnEnabled": "Tracing 會在 GitLab 中建立的 Issue 下留言並附上任務連結",
 				"importError": "無法匯入 Issue",
 				"issuesImported": "已匯入 Issue",
 				"removed": "GitLab 整合已移除",
@@ -1818,7 +1818,7 @@
 				"baseUrlRequired": "必須提供 GitLab 基礎 URL",
 				"pathInvalid": "請輸入完整路徑，例如 group/project"
 			},
-			"webhookHint": "請在專案設定中新增此 Webhook，讓變更同步回 Kaneo。",
+			"webhookHint": "請在專案設定中新增此 Webhook，讓變更同步回 Tracing。",
 			"loadProjectsError": "無法載入專案。",
 			"importPermissionHint": "匯入需要建立與更新任務的權限。",
 			"browseEmpty": "此 Token 不是任何專案的成員。",
@@ -1875,7 +1875,7 @@
 			"currentPlan": {
 				"title": "目前方案"
 			},
-			"disabled": "此執行個體未啟用帳單功能。自架版 Kaneo 內含所有功能，永久免費。",
+			"disabled": "此執行個體未啟用帳單功能。自架版 Tracing 內含所有功能，永久免費。",
 			"expiredCallout": {
 				"action": "選擇方案",
 				"adminDescription": "你仍可檢視所有內容，但在選擇方案之前無法建立與編輯。沒有任何資料被刪除。",
@@ -1893,7 +1893,7 @@
 			},
 			"foundingFree": {
 				"badge": "免費",
-				"description": "此工作區以早期支持者身分，享有 Kaneo Cloud 的免費使用權。感謝你從一開始就陪伴我們。",
+				"description": "此工作區以早期支持者身分，享有 Tracing Cloud 的免費使用權。感謝你從一開始就陪伴我們。",
 				"title": "創始免費方案"
 			},
 			"interval": {
@@ -1967,10 +1967,10 @@
 		"syncRules": {
 			"title": "同步內容",
 			"sharedHint": "這些規則適用於此專案的所有使用者。隱藏進階設定不會停用規則。",
-			"outgoing": "Kaneo → repo",
-			"incoming": "repo → Kaneo",
-			"outgoingHint": "選擇哪些 Kaneo 任務可以同步。現有任務若失去符合條件的標籤，雙向同步都會暫停。",
-			"incomingHint": "選擇哪些 Issue 可以匯入或建立任務。請使用 repo 中的完整標籤名稱。現有連結則依 Kaneo 任務規則處理。",
+			"outgoing": "Tracing → repo",
+			"incoming": "repo → Tracing",
+			"outgoingHint": "選擇哪些 Tracing 任務可以同步。現有任務若失去符合條件的標籤，雙向同步都會暫停。",
+			"incomingHint": "選擇哪些 Issue 可以匯入或建立任務。請使用 repo 中的完整標籤名稱。現有連結則依 Tracing 任務規則處理。",
 			"all": "所有任務與 Issue",
 			"filtered": "僅限符合標籤的項目",
 			"any": "任一選取的標籤",
@@ -2013,7 +2013,7 @@
 			"closed": "已關閉",
 			"noDescription": "沒有描述",
 			"useRepository": "保留 repo 的內容",
-			"useKaneo": "保留 Kaneo 的內容",
+			"useTracing": "保留 Tracing 的內容",
 			"exportPending": "匯出符合條件的任務",
 			"inactiveHint": "此整合已暫停。重新啟用前，不會匯出任何任務。",
 			"allIssues": "所有 Issue",
@@ -2023,9 +2023,9 @@
 			"issuesLabelled": "標有標籤的 Issue：",
 			"joinAnd": "且",
 			"joinOr": "或",
-			"kaneoToProvider": "Kaneo → {{provider}}",
+			"kaneoToProvider": "Tracing → {{provider}}",
 			"pausedSummary_other": "有 {{count}} 個任務不再符合同步規則，已停止同步。",
-			"providerToKaneo": "{{provider}} → Kaneo",
+			"providerToTracing": "{{provider}} → Tracing",
 			"reviewPaused": "檢視",
 			"tasksLabelled": "標有標籤的任務："
 		},
@@ -2108,7 +2108,7 @@
 			"searchCount_other": "{{count}} matching workspaces",
 			"searchLabel": "Search workspaces",
 			"searchPlaceholder": "依名稱或 slug 搜尋",
-			"subtitle": "此 Kaneo 執行個體上的所有工作區，包括你未加入的工作區。",
+			"subtitle": "此 Tracing 執行個體上的所有工作區，包括你未加入的工作區。",
 			"title": "工作區",
 			"toast": {
 				"added": "Member added",
@@ -2143,7 +2143,7 @@
 				"cancel": "Cancel",
 				"continue": "Continue",
 				"hideSecret": "Hide {{field}}",
-				"sectionDescription": "Kaneo only reads from {{source}}. The key is used for this import and never stored.",
+				"sectionDescription": "Tracing only reads from {{source}}. The key is used for this import and never stored.",
 				"sectionTitle": "Connect",
 				"showSecret": "Show {{field}}",
 				"title": "Import from {{source}}",
@@ -2168,11 +2168,11 @@
 				"title": "Recent imports"
 			},
 			"kaneo": {
-				"apiKeyDescription": "In that Kaneo, open Settings, then API Keys.",
+				"apiKeyDescription": "In that Tracing, open Settings, then API Keys.",
 				"apiKeyLabel": "API key",
 				"apiKeyPlaceholder": "Paste API key",
 				"urlDescription": "The instance you are moving from.",
-				"urlLabel": "Kaneo URL"
+				"urlLabel": "Tracing URL"
 			},
 			"linear": {
 				"apiKeyDescription": "Read access is enough. You can revoke it after the import.",
@@ -2256,9 +2256,9 @@
 				"connectTo": "Connect {{source}}",
 				"description": "Pick the tool you are moving from. Each project you choose becomes a new project here.",
 				"kaneo": {
-					"description": "Move projects between Kaneo Cloud and a self-hosted instance.",
+					"description": "Move projects between Tracing Cloud and a self-hosted instance.",
 					"intro": "Projects from every workspace the key can see. Each one you pick is copied here.",
-					"pickerName": "Another Kaneo"
+					"pickerName": "Another Tracing"
 				},
 				"linear": {
 					"description": "Teams, issues, labels, sub-issues and comments. Paste a personal API key.",
@@ -2295,7 +2295,7 @@
 				"import": "Import",
 				"label": "Import steps"
 			},
-			"subtitle": "Bring your projects from another tool into {{workspace}}. Kaneo only reads from the source.",
+			"subtitle": "Bring your projects from another tool into {{workspace}}. Tracing only reads from the source.",
 			"title": "Import",
 			"toast": {
 				"failed": "Import from {{source}} failed",
@@ -2308,7 +2308,7 @@
 				"apiKeyPlaceholder": "Paste API key",
 				"authorizeButton": "Authorize on Trello",
 				"authorizeDescription": "Opens Trello in a new tab. Read only, expires after a day.",
-				"authorizeLabel": "Authorize Kaneo",
+				"authorizeLabel": "Authorize Tracing",
 				"authorizeNeedsKey": "Enter the API key first. Read only, expires after a day.",
 				"tokenDescription": "Click Allow on Trello, then paste the token it shows you.",
 				"tokenLabel": "Token",
@@ -2378,7 +2378,7 @@
 			"channelLabel": "頻道",
 			"channelPlaceholder": "#team-updates",
 			"disconnect": "中斷連線",
-			"disconnectDescription": "Kaneo 將停止發佈到 {{provider}}，並移除已儲存的設定。",
+			"disconnectDescription": "Tracing 將停止發佈到 {{provider}}，並移除已儲存的設定。",
 			"disconnecting": "正在中斷連線…",
 			"disconnectTitle": "要中斷與 {{provider}} 的連線嗎？",
 			"events": {
@@ -2598,7 +2598,7 @@
 				"storageOk": "Bucket reachable",
 				"storageWarning": "Can't check the bucket with these credentials ({{code}}).",
 				"title": "Instance",
-				"version": "Kaneo version",
+				"version": "Tracing version",
 				"versionUnknown": "Unknown"
 			},
 			"integrations": {
@@ -3782,13 +3782,13 @@
 	"invitations": {
 		"email": {
 			"subject": "{{inviterName}} 邀請你加入 {{instanceName}} 上的 {{workspaceName}}",
-			"preview": "你受邀加入 Kaneo 上的 {{workspaceName}}",
+			"preview": "你受邀加入 Tracing 上的 {{workspaceName}}",
 			"title": "加入 {{workspaceName}}",
-			"subtitle": "{{inviterName}}（{{inviterEmail}}）邀請你在 Kaneo 上協作。",
+			"subtitle": "{{inviterName}}（{{inviterEmail}}）邀請你在 Tracing 上協作。",
 			"cta": "接受邀請",
 			"sameEmail": "請使用收到這封郵件的同一個電子郵件地址接受邀請。",
 			"ignore": "如果你沒有預期收到這封郵件，請直接忽略。",
-			"footer": "Kaneo 工作區邀請",
+			"footer": "Tracing 工作區邀請",
 			"details": {
 				"title": "邀請詳細資料",
 				"sentTo": "寄送至",
@@ -4054,66 +4054,66 @@
 	},
 	"press": {
 		"title": "媒體資料包",
-		"headline": "Kaneo 媒體資料包",
-		"intro": "提供文章、影片與其他媒體使用的 Kaneo 標誌與產品截圖。",
-		"description": "Kaneo 媒體資源：產品資訊、標誌、截圖，以及供記者與創作者使用的聯絡方式。",
+		"headline": "Tracing 媒體資料包",
+		"intro": "提供文章、影片與其他媒體使用的 Tracing 標誌與產品截圖。",
+		"description": "Tracing 媒體資源：產品資訊、標誌、截圖，以及供記者與創作者使用的聯絡方式。",
 		"downloadKit": "下載所有素材",
-		"boilerplateTitle": "關於 Kaneo",
-		"boilerplate": "Kaneo 是由 Andrej Acevski 創立的開源專案管理平台。團隊可以在看板與清單檢視中整理任務、指派工作、設定優先順序與截止日期，並串接 GitHub。Kaneo 以 MIT 授權條款釋出，可自行架設，也可透過 Kaneo Cloud 以託管服務使用。",
+		"boilerplateTitle": "關於 Tracing",
+		"boilerplate": "Tracing 是由 Andrej Acevski 創立的開源專案管理平台。團隊可以在看板與清單檢視中整理任務、指派工作、設定優先順序與截止日期，並串接 GitHub。Tracing 以 MIT 授權條款釋出，可自行架設，也可透過 Tracing Cloud 以託管服務使用。",
 		"logosTitle": "標誌",
 		"darkLogo": "深色字標",
-		"darkLogoAlt": "淺色背景上的深色 Kaneo 標誌",
+		"darkLogoAlt": "淺色背景上的深色 Tracing 標誌",
 		"darkLogoDetail": "SVG",
 		"lightLogo": "淺色字標",
-		"lightLogoAlt": "深色背景上的淺色 Kaneo 標誌",
+		"lightLogoAlt": "深色背景上的淺色 Tracing 標誌",
 		"lightLogoDetail": "SVG",
 		"icon": "應用程式圖示",
-		"iconAlt": "Kaneo 應用程式圖示",
+		"iconAlt": "Tracing 應用程式圖示",
 		"iconDetail": "PNG，512 × 512",
 		"download": "下載",
 		"screenshotsTitle": "截圖",
 		"lightScreenshot": "看板（淺色）",
-		"lightScreenshotAlt": "淺色主題的 Kaneo 看板，任務卡片依狀態排列",
+		"lightScreenshotAlt": "淺色主題的 Tracing 看板，任務卡片依狀態排列",
 		"darkScreenshot": "看板（深色）",
-		"darkScreenshotAlt": "深色主題的 Kaneo 看板，任務卡片依狀態排列",
+		"darkScreenshotAlt": "深色主題的 Tracing 看板，任務卡片依狀態排列",
 		"contactTitle": "媒體洽詢",
-		"contactBody": "若有產品問題、訪談或需要其他素材，歡迎聯絡 Kaneo 團隊。",
+		"contactBody": "若有產品問題、訪談或需要其他素材，歡迎聯絡 Tracing 團隊。",
 		"usageContrast": "深色背景請使用淺色字標，淺色背景請使用深色字標。",
 		"usageProportions": "請維持原始比例與色彩，不要拉伸或加上特效。",
 		"usageSpace": "請在標誌周圍保留足夠空間，確保清晰易讀。",
 		"darkListScreenshot": "清單（深色）",
-		"darkListScreenshotAlt": "深色主題的 Kaneo 任務清單，依狀態分組，並顯示負責人、優先順序、標籤與截止日期",
+		"darkListScreenshotAlt": "深色主題的 Tracing 任務清單，依狀態分組，並顯示負責人、優先順序、標籤與截止日期",
 		"darkTaskScreenshot": "任務詳細資料（深色）",
-		"darkTaskScreenshotAlt": "深色主題的 Kaneo 任務詳細資料，包含說明、檢查清單、團隊留言與任務屬性",
+		"darkTaskScreenshotAlt": "深色主題的 Tracing 任務詳細資料，包含說明、檢查清單、團隊留言與任務屬性",
 		"darkTimelineScreenshot": "時間軸（深色）",
-		"darkTimelineScreenshotAlt": "深色主題的 Kaneo 甘特圖時間軸，顯示已排程的任務及其期間",
+		"darkTimelineScreenshotAlt": "深色主題的 Tracing 甘特圖時間軸，顯示已排程的任務及其期間",
 		"lightListScreenshot": "清單（淺色）",
-		"lightListScreenshotAlt": "淺色主題的 Kaneo 任務清單，依狀態分組，並顯示負責人、優先順序、標籤與截止日期",
+		"lightListScreenshotAlt": "淺色主題的 Tracing 任務清單，依狀態分組，並顯示負責人、優先順序、標籤與截止日期",
 		"lightTaskScreenshot": "任務詳細資料（淺色）",
-		"lightTaskScreenshotAlt": "淺色主題的 Kaneo 任務詳細資料，包含說明、檢查清單、團隊留言與任務屬性",
+		"lightTaskScreenshotAlt": "淺色主題的 Tracing 任務詳細資料，包含說明、檢查清單、團隊留言與任務屬性",
 		"lightTimelineScreenshot": "時間軸（淺色）",
-		"lightTimelineScreenshotAlt": "淺色主題的 Kaneo 甘特圖時間軸，顯示已排程的任務及其期間"
+		"lightTimelineScreenshotAlt": "淺色主題的 Tracing 甘特圖時間軸，顯示已排程的任務及其期間"
 	},
 	"landing": {
 		"sponsors": {
 			"ciSponsor": "合作夥伴"
 		},
 		"founder": {
-			"title": "Kaneo 為什麼存在",
-			"intro": "我是 Andrej，我創立 Kaneo，是因為受夠了那些礙事多過幫忙的專案管理工具。多年來使用臃腫又過度複雜、讓人無法專心做事的平台後，我知道一定有更好的方式。",
-			"problem": "這些工具的問題不是功能不夠，而是太多。每一則通知、每一個多餘的按鈕、每一道複雜的流程，都把我的團隊從真正重要的事情上拉開：做出優秀的產品。",
-			"principle": "我相信最好的工具是隱形的。它們應該放大團隊原本的工作方式，不該逼你去適應它們的流程。Kaneo 建立在「少即是多」的原則上：每個功能都是為了解決真實的問題才存在，不為展示時好看。"
+			"title": "Built for Go Figure",
+			"intro": "Tracing is Go Figure’s open-source fork of Kaneo, created by Andrej Acevski.",
+			"problem": "We use Tracing to plan issues, projects, initiatives, and cycles in one workspace.",
+			"principle": "The fork adds Linear-style planning while preserving the original MIT license and upstream attribution."
 		},
 		"hero": {
-			"cloudCta": "試用 Kaneo Cloud",
-			"trialNote": "14 天雲端試用，無需信用卡。",
+			"cloudCta": "Open Tracing",
+			"trialNote": "Open source under the MIT license.",
 			"github": "GitHub",
 			"productHunt": "Product Hunt",
 			"title": "專案管理，",
 			"titleAccent": "別讓它變成另一個專案。",
-			"description": "開源專案管理工具，提供看板、甘特圖與 GitHub 整合。可免費自行架設且內建 SSO，或交給 Kaneo Cloud 代管。",
-			"pricingCta": "See pricing",
-			"appStore": "App Store"
+			"description": "Issues, projects, initiatives, cycles, and saved views in one open-source workspace. Built by Go Figure on Kaneo.",
+			"pricingCta": "Self-host Tracing",
+			"appStore": "Mobile source"
 		},
 		"navigation": {
 			"product": "產品",
@@ -4126,13 +4126,13 @@
 			"roadmap": "路線圖",
 			"menu": "選單",
 			"closeMenu": "關閉選單",
-			"home": "Kaneo 首頁",
+			"home": "Tracing 首頁",
 			"signIn": "登入",
-			"getStarted": "開始使用",
+			"getStarted": "Open Tracing",
 			"community": "社群"
 		},
 		"showcase": {
-			"label": "Kaneo 產品檢視",
+			"label": "Tracing 產品檢視",
 			"controls": "選擇產品檢視",
 			"play": "播放產品檢視",
 			"pause": "暫停產品檢視",
@@ -4155,7 +4155,7 @@
 			"hosting": {
 				"title": "在你自己的伺服器上執行。",
 				"description": "使用 Docker 部署，把工作區放在你能掌控的基礎設施上。",
-				"link": "自行架設 Kaneo"
+				"link": "自行架設 Tracing"
 			},
 			"source": {
 				"title": "程式碼也是開放的。",
@@ -4163,8 +4163,8 @@
 				"link": "檢視原始碼"
 			},
 			"preview": {
-				"taskAlt": "可互動的 Kaneo 任務與子任務預覽。",
-				"githubAlt": "可互動的預覽，示範 GitHub 合併如何更新 Kaneo 任務。",
+				"taskAlt": "可互動的 Tracing 任務與子任務預覽。",
+				"githubAlt": "可互動的預覽，示範 GitHub 合併如何更新 Tracing 任務。",
 				"taskTitle": "發布全新首頁",
 				"taskDescription": "在下次發版前更新文案並檢查版面。",
 				"checklistDone": "審閱文案",
@@ -4174,7 +4174,7 @@
 				"date": "10 月 12 日",
 				"design": "設計",
 				"done": "完成",
-				"relationsAlt": "可互動的 Kaneo 任務相依性預覽。",
+				"relationsAlt": "可互動的 Tracing 任務相依性預覽。",
 				"inReview": "審查中",
 				"trySubtasks": "試著勾選一個子任務。",
 				"tryGithub": "預覽一次合併，看看任務如何更新。",
@@ -4196,13 +4196,13 @@
 			}
 		},
 		"seo": {
-			"title": "Kaneo：開源、可自行架設的專案管理工具",
-			"description": "開源專案管理工具，提供看板、甘特圖與 GitHub 整合。可免費自行架設且內建 SSO，或使用 Kaneo Cloud。"
+			"title": "Tracing：開源、可自行架設的專案管理工具",
+			"description": "開源專案管理工具，提供看板、甘特圖與 GitHub 整合。可免費自行架設且內建 SSO，或使用 Tracing Cloud。"
 		},
 		"resources": {
 			"eyebrow": "專屬於你的工具",
 			"title": "從試用到上手，一條清楚的路。",
-			"description": "架設你的伺服器、連接你的工具，或將 Kaneo 與你目前的追蹤工具比較。",
+			"description": "架設你的伺服器、連接你的工具，或將 Tracing 與你目前的追蹤工具比較。",
 			"sso": {
 				"title": "使用你自己的身分提供者",
 				"description": "在免費的自架版本中設定 OIDC 單一登入。"
@@ -4212,42 +4212,42 @@
 				"description": "透過 AI 用戶端，使用 MCP 處理任務與專案。"
 			},
 			"linear": {
-				"title": "比較 Kaneo 與 Linear",
+				"title": "比較 Tracing 與 Linear",
 				"description": "看看在託管、授權與工作流程上的差異。"
 			},
 			"startups": {
-				"description": "What a startup needs from a tracker, and what Kaneo Cloud costs as you hire.",
+				"description": "What a startup needs from a tracker, and what Tracing Cloud costs as you hire.",
 				"title": "Project management for startups"
 			}
 		},
 		"product": {
 			"title": "開始之前",
 			"description": "關於託管、規劃與串連團隊的實用細節。",
-			"overview": "Kaneo 是採用 MIT 授權的開源專案管理平台，提供看板、待辦事項、甘特圖與行事曆檢視、自訂欄位、時間追蹤與 GitHub 整合。可自行架設在你的基礎設施上，也可使用 Kaneo Cloud。",
+			"overview": "Tracing is Go Figure’s open-source planning workspace with issue tracking, triage, projects, initiatives, roadmaps, cycles, insights, and saved views.",
 			"hosting": {
-				"question": "Kaneo 可以免費自行架設嗎？",
-				"answer": "可以。Kaneo 採用 MIT 授權，可免費自行架設，且內建單一登入。你可以用 Docker Compose 將應用程式與 PostgreSQL 一起執行，或使用官方 Helm chart 部署。基礎設施、更新與備份由你自行管理。",
-				"link": "閱讀安裝指南"
+				"question": "How is Tracing hosted?",
+				"answer": "Build and run Tracing on your own infrastructure. Go Figure operates its own workspace; this fork does not offer the upstream commercial cloud plans.",
+				"link": "Self-host Tracing"
 			},
 			"planning": {
-				"question": "Kaneo 有甘特圖嗎？",
-				"answer": "有。Kaneo 除了看板、清單與待辦事項規劃之外，也提供甘特圖與行事曆檢視。你可以運用任務的開始日期與截止日期，在時間軸上規劃工作。預算、基準線比較與衝刺燃盡報表目前不在支援範圍內。",
-				"link": "比較規劃功能"
+				"question": "What planning features are included?",
+				"answer": "Plan issues, triage, projects, milestones, initiatives, roadmaps, and cycles. Use saved views and insights to follow the work.",
+				"link": "Explore planning"
 			},
 			"sso": {
-				"question": "有內建單一登入嗎？",
-				"answer": "有。免費的自架版本支援 Google、GitHub、Discord，以及自訂的 OAuth/OIDC 提供者。在你的執行個體上設定提供者即可，不需要另外購買 Kaneo 版本。",
-				"link": "設定 OIDC"
+				"question": "Can I configure single sign-on?",
+				"answer": "Self-hosted instances support Google, GitHub, Discord, and custom OAuth/OIDC providers configured by the operator.",
+				"link": "Read the setup guide"
 			},
 			"agents": {
-				"question": "AI 用戶端可以搭配 Kaneo 使用嗎？",
-				"answer": "可以。Kaneo 透過 @kaneo/mcp 套件與 HTTP 端點提供 MCP 伺服器。相容的 AI 用戶端可以使用綁定使用者的 API 金鑰讀取與更新任務，並受工作區權限限制。",
-				"link": "閱讀 MCP 指南"
+				"question": "Can AI clients work with Tracing?",
+				"answer": "The authenticated HTTP MCP endpoint supports planning tools with workspace permissions. The CLI and stdio MCP package can be built from this repository.",
+				"link": "Read the MCP guide"
 			},
 			"mobile": {
-				"answer": "Yes. Kaneo is on the App Store for iPhone and iPad, and Android is coming soon. The app is free for Kaneo Cloud accounts. Connecting it to a self-hosted server is a one-time $9.99 unlock per person, and like the rest of Kaneo, the app is open source.",
-				"link": "Download on the App Store",
-				"question": "Is there a mobile app?"
+				"question": "Is there a mobile app?",
+				"answer": "The Expo mobile app is included in this repository. Tracing has not published its own App Store or Play Store listing.",
+				"link": "View mobile source"
 			}
 		},
 		"comparison": {
@@ -4257,9 +4257,9 @@
 		},
 		"selfHostingGuide": {
 			"summary": "說明自行架設需要做什麼，並附上維護中的 Docker Compose 設定與安裝步驟連結。",
-			"answer": "要自行架設 Kaneo，請用 Docker Compose 執行應用程式與 PostgreSQL，設定公開網址與密鑰，並在前面放一層 TLS 反向代理。安裝指南指定至少需要 2 GB 記憶體與 10 GB 磁碟空間。請規劃後續的更新、資料庫備份，以及上傳檔案的儲存空間。",
+			"answer": "要自行架設 Tracing，請用 Docker Compose 執行應用程式與 PostgreSQL，設定公開網址與密鑰，並在前面放一層 TLS 反向代理。安裝指南指定至少需要 2 GB 記憶體與 10 GB 磁碟空間。請規劃後續的更新、資料庫備份，以及上傳檔案的儲存空間。",
 			"requirements": "文件所列的最低需求為 2 GB 記憶體與 10 GB 磁碟空間，並需要 Docker 20.10 以上版本與 Docker Compose V2。請依你的工作負載、資料庫成長與上傳檔案預留更多容量。",
-			"compose": "請使用 Docker Compose 指南中維護的 compose.yml。其中定義了 PostgreSQL、持久化的資料庫磁碟區、Kaneo 應用程式與健康檢查。啟動服務前請先設定環境檔；正式環境建議固定映像檔版本，以便有計畫地更新。",
+			"compose": "請使用 Docker Compose 指南中維護的 compose.yml。其中定義了 PostgreSQL、持久化的資料庫磁碟區、Tracing 應用程式與健康檢查。啟動服務前請先設定環境檔；正式環境建議固定映像檔版本，以便有計畫地更新。",
 			"backups": "請同時備份 PostgreSQL 與上傳所使用的任何物件儲存。依團隊能承受多少工作損失來決定備份頻率，把副本存放在應用程式伺服器之外，並在需要之前先測試還原。",
 			"worth": "當你需要掌控基礎設施與資料，且有人能負責維護時，自行架設就很合適。與託管服務比較成本時，請把伺服器容量、儲存空間、備份與維護時間一併計入。",
 			"minimum": "安裝指南指定需要 Docker 20.10 以上版本、Docker Compose V2、至少 2 GB 記憶體與 10 GB 磁碟空間。Compose 設定已包含 PostgreSQL。單一 API 執行個體時，Redis 為選用。",
@@ -4284,7 +4284,7 @@
 				"delivery": "通知管道與事件",
 				"deliveryHint": "電子郵件、ntfy、Gotify、Webhook",
 				"invitations": "邀請",
-				"permissionDenied": "請先在系統設定中允許 Kaneo 傳送通知。",
+				"permissionDenied": "請先在系統設定中允許 Tracing 傳送通知。",
 				"phone": "手機通知",
 				"phoneHint": "大約每 15 分鐘檢查一次",
 				"title": "通知"
@@ -4347,7 +4347,7 @@
 		},
 		"background": {
 			"channelDescription": "來自工作區的指派、留言和提及",
-			"channelName": "Kaneo 活動",
+			"channelName": "Tracing 活動",
 			"summary_other": "另有 {{count}} 則新通知"
 		},
 		"board": {
@@ -4434,10 +4434,10 @@
 			"apiKeyRejected": "此 API 金鑰遭到拒絕。",
 			"deviceFailed": "裝置登入失敗（HTTP {{status}}）。",
 			"forbidden": "你沒有執行此操作的權限。",
-			"noInstance": "在 {{url}} 找不到 Kaneo 執行個體（HTTP {{status}}）。",
+			"noInstance": "在 {{url}} 找不到 Tracing 執行個體（HTTP {{status}}）。",
 			"noSession": "伺服器未傳回工作階段，請嘗試透過瀏覽器登入。",
 			"notFound": "找不到。",
-			"notKaneo": "{{url}} 似乎不是 Kaneo 伺服器。",
+			"notTracing": "{{url}} 似乎不是 Tracing 伺服器。",
 			"notSignedIn": "尚未登入",
 			"requestFailed": "請求失敗（{{status}}）。",
 			"serverProblem": "伺服器發生問題（{{status}}）。",
@@ -4663,7 +4663,7 @@
 				"webhook": "Webhook",
 				"webhookHint": "透過 POST 將通知傳送至 URL"
 			},
-			"description": "設定 Kaneo 通知你的方式和內容。",
+			"description": "設定 Tracing 通知你的方式和內容。",
 			"events": {
 				"assignments": "指派",
 				"assignmentsHint": "任務指派給你時",
@@ -4834,7 +4834,7 @@
 			"browserHint": "GitHub、Google、Discord 或 SSO",
 			"captcha": "此步驟需要瀏覽器驗證，請使用「在瀏覽器中繼續」。",
 			"change": "變更",
-			"cloud": "Kaneo Cloud",
+			"cloud": "Tracing Cloud",
 			"code": {
 				"checkEmail": "請查看你的電子郵件",
 				"didntGet": "沒收到嗎？",
@@ -4856,7 +4856,7 @@
 				"expired": "登入驗證碼已過期，請重新開始以取得新的驗證碼。",
 				"gettingCode": "正在取得驗證碼…",
 				"linkCopied": "已複製連結",
-				"message": "請在 Kaneo 網站上核准此裝置。你可以使用 GitHub、Google、Discord 或 SSO。",
+				"message": "請在 Tracing 網站上核准此裝置。你可以使用 GitHub、Google、Discord 或 SSO。",
 				"openBrowser": "開啟瀏覽器",
 				"openFailed": "無法開啟瀏覽器，請複製連結。",
 				"tryAgain": "再試一次",
@@ -4866,7 +4866,7 @@
 			"email": "電子郵件",
 			"emailCode": "透過電子郵件取得登入驗證碼",
 			"invalidClient": "此伺服器不允許裝置登入。請管理員將「kaneo-cli」加入 DEVICE_AUTH_CLIENT_IDS，或使用密碼或 API 金鑰登入。",
-			"newToKaneo": "第一次使用 Kaneo？",
+			"newToTracing": "第一次使用 Tracing？",
 			"noPassword": "不需要密碼",
 			"or": "或",
 			"password": "密碼",
@@ -4874,19 +4874,19 @@
 			"selfHosted": "自行架設",
 			"sendTo": "寄送至 {{email}}",
 			"serverAddress": "伺服器位址",
-			"serverAddressHint": "開啟 Kaneo 時使用的位址。未啟用 TLS 的伺服器請使用 http://。如果 API 在其他主機上執行，請輸入 API 位址。",
+			"serverAddressHint": "開啟 Tracing 時使用的位址。未啟用 TLS 的伺服器請使用 http://。如果 API 在其他主機上執行，請輸入 API 位址。",
 			"signIn": "登入",
 			"signUp": {
 				"name": "姓名",
 				"passwordHint": "至少 8 個字元"
 			},
-			"tagline": "簡單的專案管理。連線至 Kaneo Cloud 或你自己的執行個體。",
+			"tagline": "簡單的專案管理。連線至 Tracing Cloud 或你自己的執行個體。",
 			"togglePassword": "切換密碼顯示",
 			"useApiKey": "使用 API 金鑰",
 			"unlock": {
 				"buy": "Unlock for {{price}}",
 				"buyNoPrice": "Unlock",
-				"message": "Signing in to Kaneo Cloud is always included. Connecting the app to a self-hosted server is a one-time purchase that supports Kaneo's development.",
+				"message": "Signing in to Tracing Cloud is always included. Connecting the app to a self-hosted server is a one-time purchase that supports Tracing's development.",
 				"nothingToRestore": "No earlier purchase was found for this store account.",
 				"restore": "Restore purchase",
 				"title": "Connect your own server",
@@ -5100,7 +5100,7 @@
 			"title": "工作區"
 		},
 		"permissions": {
-			"photos": "Kaneo 會使用你的照片，為任務和留言附加圖片，以及設定你的個人頭像。"
+			"photos": "Tracing 會使用你的照片，為任務和留言附加圖片，以及設定你的個人頭像。"
 		},
 		"parity": {
 			"signInTagline": "登入 Go Figure 的專案工作區。",
@@ -5335,7 +5335,7 @@
 	"parity": {
 		"categories": {
 			"title": "狀態類別",
-			"description": "類別決定規劃功能如何統計工作。Kaneo 的最終狀態設定仍控制現有的自動化流程。",
+			"description": "類別決定規劃功能如何統計工作。Tracing 的最終狀態設定仍控制現有的自動化流程。",
 			"backlog": "待辦清單",
 			"unstarted": "未開始",
 			"started": "已開始",

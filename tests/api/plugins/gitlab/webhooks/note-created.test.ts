@@ -109,7 +109,7 @@ describe("handleGitlabNoteCreated", () => {
     expect(mocks.insertedActivities).toHaveLength(0);
   });
 
-  it("skips a note Kaneo posted itself", async () => {
+  it("skips a note Tracing posted itself", async () => {
     mocks.findExternalLink.mockResolvedValue({
       id: "link-1",
       taskId: "task-1",

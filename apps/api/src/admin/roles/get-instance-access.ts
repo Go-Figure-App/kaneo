@@ -4,7 +4,7 @@ import {
   type InstancePermission,
   isBuiltInInstanceRole,
   parseInstanceRoles,
-} from "@kaneo/permissions";
+} from "@tracing/permissions";
 import { eq, inArray } from "drizzle-orm";
 import db from "../../database";
 import { instanceRoleTable, userTable } from "../../database/schema";

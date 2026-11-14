@@ -16,7 +16,10 @@ import type {
   clientRegistrationSchema,
 } from "../schemas";
 
-const clientUrl = process.env.KANEO_CLIENT_URL || "http://localhost:5173";
+const clientUrl =
+  process.env.TRACING_CLIENT_URL ||
+  process.env.KANEO_CLIENT_URL ||
+  "http://localhost:5173";
 
 type ClientRegistrationInput = z.infer<typeof clientRegistrationSchema>;
 type AuthorizationInput = z.infer<typeof authorizationQuerySchema>;

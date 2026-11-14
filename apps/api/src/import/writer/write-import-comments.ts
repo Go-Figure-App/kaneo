@@ -1,4 +1,4 @@
-import type { ImportedComment, ImportSourceId } from "@kaneo/importers";
+import type { ImportedComment, ImportSourceId } from "@tracing/importers";
 import type db from "../../database";
 import { activityTable } from "../../database/schema";
 import { chunk } from "./chunk";

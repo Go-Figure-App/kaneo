@@ -1,5 +1,5 @@
 import { createHmac } from "node:crypto";
-import { sendNotificationEmail } from "@kaneo/email";
+import { sendNotificationEmail } from "@tracing/email";
 import { and, eq } from "drizzle-orm";
 import db from "../database";
 import {
@@ -36,7 +36,11 @@ type DeliveryContent = {
 };
 
 function getClientUrl() {
-  return process.env.KANEO_CLIENT_URL || "http://localhost:5173";
+  return (
+    process.env.TRACING_CLIENT_URL ||
+    process.env.KANEO_CLIENT_URL ||
+    "http://localhost:5173"
+  );
 }
 
 function buildTaskUrl(workspaceId: string, projectId: string, taskId: string) {
@@ -104,7 +108,7 @@ function buildDeliveryContent(
         title: "New task created",
         body: taskTitle
           ? `A new task was created: ${taskTitle}`
-          : "A new task was created in Kaneo.",
+          : "A new task was created in Tracing.",
       };
     }
     case "workspace_created": {
@@ -116,7 +120,7 @@ function buildDeliveryContent(
         title: "Workspace created",
         body: workspaceName
           ? `Workspace created: ${workspaceName}`
-          : "A new workspace was created in Kaneo.",
+          : "A new workspace was created in Tracing.",
       };
     }
     case "task_status_changed": {
@@ -128,7 +132,7 @@ function buildDeliveryContent(
         body:
           taskTitle && oldStatus && newStatus
             ? `${taskTitle} moved from ${oldStatus} to ${newStatus}.`
-            : "A task status changed in Kaneo.",
+            : "A task status changed in Tracing.",
       };
     }
     case "task_assignee_changed": {
@@ -137,7 +141,7 @@ function buildDeliveryContent(
         title: "Task assigned to you",
         body: taskTitle
           ? `You were assigned to ${taskTitle}.`
-          : "A task was assigned to you in Kaneo.",
+          : "A task was assigned to you in Tracing.",
       };
     }
     case "time_entry_created": {
@@ -146,7 +150,7 @@ function buildDeliveryContent(
         title: "Time entry created",
         body: taskTitle
           ? `A time entry was created for ${taskTitle}.`
-          : "A time entry was created in Kaneo.",
+          : "A time entry was created in Tracing.",
       };
     }
     case "due_date_reminder": {
@@ -182,7 +186,7 @@ function buildDeliveryContent(
           : "You were mentioned",
         body: taskTitle
           ? `You were mentioned in ${taskTitle}.`
-          : "You were mentioned in a Kaneo task.",
+          : "You were mentioned in a Tracing task.",
       };
     }
     case "task_comment": {
@@ -197,13 +201,13 @@ function buildDeliveryContent(
           : "New task comment",
         body: taskTitle
           ? `A new comment was added to ${taskTitle}.`
-          : "A new comment was added to a Kaneo task.",
+          : "A new comment was added to a Tracing task.",
       };
     }
     default:
       return {
-        title: notification.title ?? "New Kaneo notification",
-        body: notification.content ?? "You have a new notification in Kaneo.",
+        title: notification.title ?? "New Tracing notification",
+        body: notification.content ?? "You have a new notification in Tracing.",
       };
   }
 }

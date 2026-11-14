@@ -1,4 +1,4 @@
-import * as email from "@kaneo/email";
+import * as email from "@tracing/email";
 import { eq } from "drizzle-orm";
 import {
   afterEach,
@@ -81,7 +81,7 @@ async function requestReset() {
   expect(typeof subject).toBe("function");
   if (typeof subject !== "function")
     throw new Error("Missing subject resolver");
-  expect(subject("Kaneo")).toBe("Kaneo-Passwort zurücksetzen");
+  expect(subject("Tracing")).toBe("Tracing-Passwort zurücksetzen");
   expect(subject("Acme $&")).toBe("Acme $&-Passwort zurücksetzen");
   return { link, token: link.pathname.split("/").at(-1) };
 }

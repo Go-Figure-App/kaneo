@@ -5,7 +5,7 @@ import { taskDescriptionFromIssue } from "../../../../../apps/api/src/plugins/gi
 const taskId = "uhapfwllr062kqj36fd7k1eq";
 
 describe("taskDescriptionFromIssue", () => {
-  it("removes the footer Kaneo appended to a description", () => {
+  it("removes the footer Tracing appended to a description", () => {
     expect(
       taskDescriptionFromIssue(formatIssueBody("Ten attempts per IP.", taskId)),
     ).toBe("Ten attempts per IP.");
@@ -32,7 +32,7 @@ describe("taskDescriptionFromIssue", () => {
     expect(taskDescriptionFromIssue(null)).toBe("");
   });
 
-  it("keeps a single footer across a GitLab edit followed by a Kaneo edit", () => {
+  it("keeps a single footer across a GitLab edit followed by a Tracing edit", () => {
     const written = formatIssueBody("Original.", taskId);
     const editedInGitlab = written.replace("Original.", "Edited in GitLab.");
 

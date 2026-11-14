@@ -1,4 +1,4 @@
-import type { ImportedProject, ImportSourceId } from "@kaneo/importers";
+import type { ImportedProject, ImportSourceId } from "@tracing/importers";
 import { createId } from "@paralleldrive/cuid2";
 import { eq, sql } from "drizzle-orm";
 import type db from "../../database";

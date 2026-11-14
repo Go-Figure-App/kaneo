@@ -15,10 +15,10 @@ export type StoredProfile = {
 export const PROFILE_FIELD_MANAGED_BY_PROVIDER = {
   code: "PROFILE_FIELD_MANAGED_BY_PROVIDER",
   message:
-    "Profile fields managed by the identity provider cannot be changed in Kaneo.",
+    "Profile fields managed by the identity provider cannot be changed in Tracing.",
 } as const;
 
-// An upload made in Kaneo can still be withdrawn, but never replaced.
+// An upload made in Tracing can still be withdrawn, but never replaced.
 export function canRemoveAvatar(image: string | null) {
   return image === null || isUploadedAvatarUrl(image);
 }

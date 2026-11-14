@@ -39,7 +39,7 @@ describe("parseLinkMetadata", () => {
   it("keeps the row out of the warning", () => {
     const warn = vi.spyOn(console, "warn").mockImplementation(() => undefined);
 
-    // The row can hold a task description synced from Kaneo, so the log gets
+    // The row can hold a task description synced from Tracing, so the log gets
     // the link id to find it by and not the content itself.
     parseLinkMetadata(
       '{"lastSync":{"description":"segredo do cliente"',

@@ -1,4 +1,4 @@
-import type { ImportSourceId } from "@kaneo/importers";
+import type { ImportSourceId } from "@tracing/importers";
 
 export const IMPORT_SOURCE_NAMES: Record<ImportSourceId, string> = {
   planka: "PLANKA",
@@ -6,5 +6,5 @@ export const IMPORT_SOURCE_NAMES: Record<ImportSourceId, string> = {
   linear: "Linear",
   jira: "Jira",
   trello: "Trello",
-  kaneo: "Kaneo",
+  kaneo: "Tracing",
 };

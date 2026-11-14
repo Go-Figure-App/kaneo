@@ -1,7 +1,7 @@
 import {
   WORKSPACE_CAPABILITY_NAMES,
   type WorkspaceCapability,
-} from "@kaneo/permissions";
+} from "@tracing/permissions";
 import { PROJECT_ACCESS_MODES } from "../project-access/project-access-mode";
 import { responseTimestamp, z } from "../openapi";
 

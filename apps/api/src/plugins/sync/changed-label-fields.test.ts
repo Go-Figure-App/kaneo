@@ -3,7 +3,7 @@ import { changedLabelFields } from "./changed-label-fields";
 
 const task = { status: "to-do", priority: "low" };
 
-it("ignores labels Kaneo already accounted for", () => {
+it("ignores labels Tracing already accounted for", () => {
   const known = ["status:in-review", "priority:high"];
   expect(changedLabelFields(known, known, task)).toEqual({
     status: undefined,

@@ -34,12 +34,12 @@ describe("email instance name", () => {
     vi.unstubAllEnvs();
   });
 
-  it("preserves Kaneo in a task title in the notification subject", async () => {
+  it("preserves Tracing in a task title in the notification subject", async () => {
     setBrandNameResolver(async () => "Acme");
-    const title = "You were assigned to Upgrade Kaneo";
+    const title = "You were assigned to Upgrade Tracing";
     await sendNotificationEmail("member@example.test", title, {
       title,
-      message: "Upgrade Kaneo",
+      message: "Upgrade Tracing",
     });
     expect(smtp.sendMail).toHaveBeenCalledWith(
       expect.objectContaining({ subject: title }),
@@ -74,7 +74,7 @@ describe("email instance name", () => {
       (name) => `${name}-Passwort zurücksetzen`,
       {
         resetLink: "https://example.test/reset",
-        userName: "Upgrade Kaneo",
+        userName: "Upgrade Tracing",
         locale: "de-DE",
       },
     );
@@ -85,7 +85,7 @@ describe("email instance name", () => {
         html: expect.stringContaining("Acme $&amp;"),
       }),
     );
-    expect(smtp.sendMail.mock.calls[0]?.[0].html).toContain("Upgrade Kaneo");
+    expect(smtp.sendMail.mock.calls[0]?.[0].html).toContain("Upgrade Tracing");
   });
 
   it("uses the same name in the body and subject across concurrent sends", async () => {
