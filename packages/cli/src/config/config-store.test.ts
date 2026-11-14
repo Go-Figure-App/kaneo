@@ -60,6 +60,26 @@ describe("configPath", () => {
 });
 
 describe("makeConfigStore", () => {
+  it("loads and saves existing Kaneo profiles without losing credentials", async () => {
+    const path = await tempPath();
+    await mkdir(join(path, ".."), { recursive: true });
+    const legacy = {
+      ...withProfile(emptyConfig, "work", () => ({
+        apiUrl: "https://old.example.com",
+        token: "stored-legacy-token",
+        workspaceId: "workspace",
+        user: { id: "u1", name: "User", email: "user@example.com" },
+      })),
+      kind: "kaneo-cli",
+    };
+    await writeFile(path, JSON.stringify(legacy));
+    const store = makeConfigStore(path);
+    const loaded = await Effect.runPromise(store.load);
+    expect(loaded).toEqual({ ...legacy, kind: "tracing-cli" });
+    await Effect.runPromise(store.save(loaded));
+    expect(await Effect.runPromise(store.load)).toEqual(loaded);
+  });
+
   it("returns an empty config when the file is missing", async () => {
     const store = makeConfigStore(await tempPath());
     expect(await Effect.runPromise(store.load)).toEqual(emptyConfig);

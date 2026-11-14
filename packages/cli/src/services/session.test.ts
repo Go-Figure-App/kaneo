@@ -57,6 +57,37 @@ describe("resolveSession", () => {
     expect(Option.getOrThrow(session.workspace).id).toBe("new-workspace");
     expect(Option.getOrThrow(session.project).ref).toBe("NEW");
   });
+  it("falls back to populated legacy values when Tracing values are blank", () => {
+    const session = resolveSession(
+      inputs({
+        env: {
+          TRACING_PROFILE: " ",
+          KANEO_PROFILE: "default",
+          TRACING_API_URL: "",
+          KANEO_API_URL: "https://legacy.example.com",
+          TRACING_WEB_URL: " ",
+          KANEO_WEB_URL: "https://legacy-web.example.com",
+          TRACING_API_KEY: " ",
+          KANEO_API_KEY: "legacy-key",
+          TRACING_WORKSPACE: "",
+          KANEO_WORKSPACE: "legacy-workspace",
+          TRACING_PROJECT: " ",
+          KANEO_PROJECT: "LEGACY",
+        },
+      }),
+    );
+    expect(session.apiUrl).toBe("https://legacy.example.com");
+    expect(session.webUrl).toBe("https://legacy-web.example.com");
+    expect(token(session)).toEqual(Option.some(["legacy-key", "env"]));
+    expect(Option.getOrThrow(session.credentials).variable).toBe(
+      "KANEO_API_KEY",
+    );
+    expect(Option.getOrThrow(session.workspace).variable).toBe(
+      "KANEO_WORKSPACE",
+    );
+    expect(Option.getOrThrow(session.project).ref).toBe("LEGACY");
+  });
+
   it("uses the stored profile by default", () => {
     const session = resolveSession(inputs());
     expect(session.apiUrl).toBe("https://tracing.example.com");
@@ -109,7 +140,7 @@ describe("resolveSession", () => {
         resolveSession(inputs({ env: { KANEO_WORKSPACE: "ws_env" }, repo }))
           .workspace,
       ),
-    ).toEqual({ id: "ws_env", source: "env" });
+    ).toEqual({ id: "ws_env", source: "env", variable: "KANEO_WORKSPACE" });
     expect(
       Option.getOrUndefined(resolveSession(inputs({ repo })).workspace),
     ).toEqual({

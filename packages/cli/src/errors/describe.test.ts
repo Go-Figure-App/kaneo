@@ -58,7 +58,7 @@ describe("describeError", () => {
       ),
     ).toEqual({
       message: "You are not signed in to tracing.gofigureapp.io.",
-      hint: "Run tracing login, or set KANEO_API_KEY.",
+      hint: "Run tracing login, or set TRACING_API_KEY.",
     });
     expect(describeError(new Errors.WorkspaceRequired()).hint).toBe(
       "Pass -w <id>, or run tracing workspace use.",

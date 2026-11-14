@@ -27,6 +27,7 @@ export type ContextReport = {
   readonly output: {
     readonly mode: OutputMode;
     readonly source: OutputSource;
+    readonly variable?: string;
     readonly jq: string | null;
     readonly interactive: boolean;
     readonly stdinIsTTY: boolean;

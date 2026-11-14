@@ -225,7 +225,7 @@ export async function runInstall(argv: string[]): Promise<void> {
   const entryPath = resolvePackageEntryPath();
   const env =
     parsed.apiUrl !== undefined && parsed.apiUrl.length > 0
-      ? { KANEO_API_URL: parsed.apiUrl }
+      ? { TRACING_API_URL: parsed.apiUrl }
       : undefined;
 
   const serverConfig: McpServerEntry = {
@@ -336,12 +336,13 @@ Options:
   --output <path>     Required for --target custom (absolute path to JSON file)
   --project-dir <dir> Base directory for cursor-project (default: current dir)
   --name <string>     MCP server key under mcpServers (default: tracing)
-  --api-url <url>     Set KANEO_API_URL in the generated entry (optional)
+  --api-url <url>     Set TRACING_API_URL in the generated entry (optional)
   -y, --yes           Overwrite existing entry without prompting
   -h, --help          Show this help
 
 Examples:
-  npm install -g @tracing/mcp
+  pnpm --filter @tracing/mcp build
+  node packages/mcp/dist/index.js install
   tracing-mcp install
 
   tracing-mcp install --target cursor-user -y

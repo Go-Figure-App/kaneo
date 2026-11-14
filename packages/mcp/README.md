@@ -12,7 +12,7 @@ For a local stdio connection, build this repository and run:
 
 ```sh
 pnpm --filter @tracing/mcp build
-TRACING_API_URL=https://tracing.gofigureapp.io node packages/mcp/dist/index.js
+TRACING_API_URL=https://tracing.gofigureapp.io node packages/mcp/dist/index.js serve
 ```
 
 The stdio server uses device authorization. `TRACING_API_KEY` can supply an existing API key for a headless client; keep it in the client’s secret configuration. `KANEO_API_URL`, `KANEO_API_KEY`, and `KANEO_MCP_CLIENT_ID` remain compatibility aliases.

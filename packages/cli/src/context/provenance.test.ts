@@ -29,6 +29,32 @@ function inputs(overrides: Partial<SessionInputs> = {}): SessionInputs {
 }
 
 describe("buildProvenance", () => {
+  it("retains the actual environment name and Tracing precedence", () => {
+    const legacy = buildProvenance(
+      inputs({
+        env: {
+          TRACING_API_URL: " ",
+          KANEO_API_URL: "https://legacy.example.com",
+          KANEO_API_KEY: "legacy-token-value",
+        },
+      }),
+    );
+    expect(legacy.server.variable).toBe("KANEO_API_URL");
+    expect(legacy.auth.variable).toBe("KANEO_API_KEY");
+    const current = buildProvenance(
+      inputs({
+        env: {
+          TRACING_API_URL: "https://current.example.com",
+          KANEO_API_URL: "https://legacy.example.com",
+          TRACING_API_KEY: "current-token-value",
+          KANEO_API_KEY: "legacy-token-value",
+        },
+      }),
+    );
+    expect(current.server.variable).toBe("TRACING_API_URL");
+    expect(current.auth.variable).toBe("TRACING_API_KEY");
+  });
+
   it("attributes everything to the active profile by default", () => {
     expect(buildProvenance(inputs())).toEqual({
       server: { url: "https://tracing.example.com", source: "profile" },
@@ -64,10 +90,12 @@ describe("buildProvenance", () => {
     expect(provenance.web).toEqual({
       url: "http://localhost:5173",
       source: "env",
+      variable: "KANEO_WEB_URL",
     });
     expect(provenance.profile).toEqual({
       name: "work",
       source: "env",
+      variable: "KANEO_PROFILE",
       stored: true,
       matchesServer: false,
     });
@@ -97,6 +125,7 @@ describe("buildProvenance", () => {
     expect(provenance.auth).toEqual({
       method: "api-key",
       source: "env",
+      variable: "KANEO_API_KEY",
       fingerprint: null,
     });
     expect(provenance.workspace).toEqual({
@@ -111,7 +140,12 @@ describe("buildProvenance", () => {
     });
     expect(
       buildProvenance(inputs({ env: { KANEO_PROJECT: "MOB" } })).project,
-    ).toEqual({ ref: "MOB", source: "env", path: null });
+    ).toEqual({
+      ref: "MOB",
+      source: "env",
+      path: null,
+      variable: "KANEO_PROJECT",
+    });
   });
 
   it("works signed out with no config file", () => {
@@ -159,6 +193,7 @@ describe("outputProvenance", () => {
     expect(outputProvenance({ ...base, env: { KANEO_JSON: "1" } })).toEqual({
       mode: "json",
       source: "env",
+      variable: "KANEO_JSON",
     });
     expect(outputProvenance(base)).toEqual({
       mode: "human",
