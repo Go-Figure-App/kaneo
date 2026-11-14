@@ -22067,6 +22067,15 @@
 								},
 								"completed": {
 									"type": "string"
+								},
+								"state": {
+									"type": "string"
+								},
+								"initiative": {
+									"type": "string"
+								},
+								"cycle-period": {
+									"type": "string"
 								}
 							},
 							"required": [
@@ -22081,7 +22090,10 @@
 								"estimate",
 								"due",
 								"created",
-								"completed"
+								"completed",
+								"state",
+								"initiative",
+								"cycle-period"
 							]
 						},
 						"groups": {

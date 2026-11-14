@@ -34,3 +34,35 @@ it("retains input identity while editing and when a preceding filter is removed"
     '"value":"2026-12-02"',
   );
 });
+
+it("retains imported workflow names and offers the dynamic current-cycle filter", () => {
+  function Imported() {
+    const [filters, setFilters] = useState<ViewFilters>([
+      { field: "state", operator: "is", values: ["Needs design"] },
+    ]);
+    return (
+      <>
+        <FilterBuilder filters={filters} onChange={setFilters} />
+        <output>{JSON.stringify(filters)}</output>
+      </>
+    );
+  }
+  render(<Imported />);
+  expect(
+    screen.getByRole("button", { name: "parity:views.filterValue" })
+      .textContent,
+  ).toBe("Needs design");
+  fireEvent.change(screen.getByLabelText("parity:views.field"), {
+    target: { value: "cycle-period" },
+  });
+  expect(screen.getByRole("status").textContent).toContain(
+    '"values":["current"]',
+  );
+  expect(
+    screen.getByRole("button", { name: "parity:views.filterValue" })
+      .textContent,
+  ).toBe("parity:cycles.currentCycle");
+  expect(
+    screen.getAllByRole("option").map((option) => option.getAttribute("value")),
+  ).not.toContain("before");
+});

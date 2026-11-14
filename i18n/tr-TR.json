@@ -5821,7 +5821,10 @@
 				"estimate": "Estimate",
 				"due": "Due date",
 				"created": "Created date",
-				"completed": "Completed date"
+				"completed": "Completed date",
+				"cycle-period": "Cycle period",
+				"initiative": "Initiative",
+				"state": "Workflow state"
 			},
 			"groups": {
 				"state": "State",

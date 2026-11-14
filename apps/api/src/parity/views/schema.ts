@@ -14,6 +14,16 @@ const comparison = z.enum(["is", "is-not", "before", "after"]);
 export const taskFilter = z
   .discriminatedUnion("field", [
     z.strictObject({
+      field: z.literal("state"),
+      operator: equality,
+      values: z.array(z.string().min(1).max(200)).min(1).max(50),
+    }),
+    z.strictObject({
+      field: z.literal("cycle-period"),
+      operator: equality,
+      values: z.array(z.literal("current")).length(1),
+    }),
+    z.strictObject({
       field: z.literal("category"),
       operator: equality,
       values: z.array(z.enum(categories)).min(1).max(5),
@@ -24,7 +34,14 @@ export const taskFilter = z
       values: z.array(z.enum(priorities)).min(1).max(5),
     }),
     z.strictObject({
-      field: z.enum(["assignee", "creator", "project", "cycle", "milestone"]),
+      field: z.enum([
+        "assignee",
+        "creator",
+        "project",
+        "cycle",
+        "milestone",
+        "initiative",
+      ]),
       operator: equality,
       values: z.array(id.nullable()).min(1).max(50),
     }),

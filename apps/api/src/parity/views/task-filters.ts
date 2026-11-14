@@ -11,9 +11,17 @@ import {
 } from "drizzle-orm";
 import { HTTPException } from "hono/http-exception";
 import db from "../../database";
-import { activityTable, labelTable, taskTable } from "../../database/schema";
+import {
+  activityTable,
+  columnTable,
+  labelTable,
+  projectTable,
+  taskTable,
+} from "../../database/schema";
 import {
   cycleTable,
+  initiativeTable,
+  initiativeProjectTable,
   projectMilestoneTable,
   taskExtTable,
 } from "../../database/schema-parity";
@@ -66,6 +74,49 @@ export function taskFilterSql(
   timeZone: string,
 ): SQL | undefined {
   switch (filter.field) {
+    case "state":
+      return invert(
+        inArray(
+          sql`coalesce(${columnTable.name}, ${taskTable.status})`,
+          filter.values,
+        ),
+        filter.operator,
+      );
+    case "cycle-period":
+      return invert(
+        sql`${cycleTable.startsAt} <= now() and ${cycleTable.endsAt} > now()`,
+        filter.operator,
+      );
+    case "initiative": {
+      const ids = filter.values.filter((id): id is string => id !== null);
+      const base = and(
+        eq(initiativeProjectTable.projectId, taskTable.projectId),
+        eq(initiativeTable.workspaceId, projectTable.workspaceId),
+      );
+      const query = (selected?: string[]) =>
+        exists(
+          db
+            .select({ id: initiativeTable.id })
+            .from(initiativeProjectTable)
+            .innerJoin(
+              initiativeTable,
+              eq(initiativeTable.id, initiativeProjectTable.initiativeId),
+            )
+            .where(
+              and(
+                base,
+                selected ? inArray(initiativeTable.id, selected) : undefined,
+              ),
+            ),
+        );
+      return invert(
+        or(
+          ids.length ? query(ids) : undefined,
+          filter.values.includes(null) ? not(query()) : undefined,
+        ),
+        filter.operator,
+      );
+    }
     case "category":
       return invert(inArray(taskCategory, filter.values), filter.operator);
     case "priority":
