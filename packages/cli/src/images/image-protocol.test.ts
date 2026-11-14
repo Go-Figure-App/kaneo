@@ -6,6 +6,25 @@ const piped = { isTTY: false, columns: undefined };
 const truecolor: ImageContext = { json: false, color: 3, unicode: true };
 
 describe("detectImageProtocol", () => {
+  it("preserves a legacy image opt-out when the current setting is blank", () => {
+    for (const value of ["", "   "]) {
+      expect(
+        detectImageProtocol(
+          { TRACING_IMAGES: value, KANEO_IMAGES: "off", TERM: "xterm-kitty" },
+          tty,
+          truecolor,
+        ),
+      ).toBe("none");
+    }
+    expect(
+      detectImageProtocol(
+        { TRACING_IMAGES: "kitty", KANEO_IMAGES: "off" },
+        tty,
+        truecolor,
+      ),
+    ).toBe("kitty");
+  });
+
   it("uses the kitty graphics protocol in kitty and Ghostty", () => {
     expect(detectImageProtocol({ TERM: "xterm-kitty" }, tty, truecolor)).toBe(
       "kitty",

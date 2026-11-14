@@ -4,6 +4,8 @@ import type {
   StreamInfo,
 } from "../render/capabilities.js";
 
+import { environmentSetting } from "../services/environment-setting.js";
+
 export type ImageProtocol = "kitty" | "iterm" | "blocks" | "none";
 
 export type ImageContext = {
@@ -16,9 +18,7 @@ const OFF = new Set(["off", "0", "false", "no", "none"]);
 const FORCED = new Set<ImageProtocol>(["kitty", "iterm", "blocks"]);
 
 function forcedProtocol(env: Environment): ImageProtocol | "off" | undefined {
-  const setting = (env.TRACING_IMAGES ?? env.KANEO_IMAGES)
-    ?.trim()
-    .toLowerCase();
+  const setting = environmentSetting(env, "IMAGES")?.value.toLowerCase();
   if (!setting) return undefined;
   if (OFF.has(setting)) return "off";
   return FORCED.has(setting as ImageProtocol)

@@ -15,7 +15,7 @@ For a self-hosted instance, pass its address once. Later commands reuse it:
 tracing login --api-url https://tracing.example.com
 ```
 
-`tracing login` uses [device authorization](/api-reference/authentication) with the `tracing-cli` client ID, which self-hosted Tracing allows by default. If you set `DEVICE_AUTH_CLIENT_IDS`, keep `tracing-cli` in the list.
+`tracing login` uses [device authorization](/api-reference/authentication) with the `tracing-cli` client ID, which Tracing allows by default. If you set `DEVICE_AUTH_CLIENT_IDS`, add `tracing-cli` to that explicit list and retain `kaneo-cli` so older CLI releases can still sign in.
 
 Check or end the session with:
 

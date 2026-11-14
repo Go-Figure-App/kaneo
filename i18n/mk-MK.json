@@ -96,7 +96,7 @@
 				"errorToast": "Неуспешно креирање на проект"
 			},
 			"createWorkspace": {
-				"breadcrumbTracing": "KANEO",
+				"breadcrumbTracing": "Tracing",
 				"title": "Креирај нов работен простор",
 				"description": "Креирај нов работен простор со внесување на име.",
 				"namePlaceholder": "Име на работен простор",

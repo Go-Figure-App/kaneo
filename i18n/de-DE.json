@@ -96,7 +96,7 @@
 				"errorToast": "Projekt konnte nicht erstellt werden"
 			},
 			"createWorkspace": {
-				"breadcrumbTracing": "KANEO",
+				"breadcrumbTracing": "Tracing",
 				"title": "Neuen Workspace erstellen",
 				"description": "Erstelle einen neuen Workspace, indem du einen Namen dafür angibst.",
 				"namePlaceholder": "Workspace-Name",
