@@ -255,7 +255,7 @@ When upgrading, remove `SMTP_IGNORE_TLS=true` and verify delivery with the corre
 - If you enable Discord SSO, you need to set up the Discord application which is used to authenticate users in the [Discord Developer Portal](https://discord.com/developers/applications). See the [Discord SSO guide](/core/social-providers/discord).
 - If you enable Custom OAuth/OIDC, you need to configure your identity provider with the appropriate redirect URI. See the [Custom OAuth/OIDC guide](/core/social-providers/custom-oauth).
 - If you have enabled SMTP, sign-in uses email verification codes by default. Set `DISABLE_EMAIL_OTP_SIGN_IN=true` to use email/password sign-in instead. The password form includes **Forgot password?**, which emails a single-use reset link valid for one hour. Resetting a password revokes existing sessions. Password reset requires SMTP and is unavailable when `DISABLE_LOGIN_FORM=true`.
-- If you need device authorization for clients beyond the defaults (`kaneo-cli`, `kaneo-mcp` when `DEVICE_AUTH_CLIENT_IDS` is unset), set `DEVICE_AUTH_CLIENT_IDS` to the full comma-separated list of trusted client IDs for your deployment.
+- If you need device authorization for clients beyond the defaults (`tracing-cli`, `tracing-mcp`, `tracing-mobile`, `kaneo-cli`, and `kaneo-mcp` when `DEVICE_AUTH_CLIENT_IDS` is unset), set `DEVICE_AUTH_CLIENT_IDS` to the full comma-separated list of trusted client IDs for your deployment.
 
 ## Authentication CAPTCHA
 
