@@ -309,16 +309,16 @@ importers:
         specifier: ^1.6.3
         version: 1.6.3(hono@4.13.14)(zod@4.6.7)
       '@kaneo/email':
-        specifier: workspace:*
+        specifier: workspace:@tracing/email@*
         version: link:../../packages/email
       '@kaneo/importers':
-        specifier: workspace:*
+        specifier: workspace:@tracing/importers@*
         version: link:../../packages/importers
       '@kaneo/mcp':
-        specifier: workspace:*
+        specifier: workspace:@tracing/mcp@*
         version: link:../../packages/mcp
       '@kaneo/permissions':
-        specifier: workspace:*
+        specifier: workspace:@tracing/permissions@*
         version: link:../../packages/permissions
       '@modelcontextprotocol/sdk':
         specifier: 1.32.2
@@ -341,6 +341,18 @@ importers:
       '@sentry/profiling-node':
         specifier: ^11.9.0
         version: 11.9.0
+      '@tracing/email':
+        specifier: workspace:*
+        version: link:../../packages/email
+      '@tracing/importers':
+        specifier: workspace:*
+        version: link:../../packages/importers
+      '@tracing/mcp':
+        specifier: workspace:*
+        version: link:../../packages/mcp
+      '@tracing/permissions':
+        specifier: workspace:*
+        version: link:../../packages/permissions
       bcryptjs:
         specifier: ^3.0.3
         version: 3.0.3
@@ -421,7 +433,7 @@ importers:
         specifier: ~58.0.16
         version: 58.0.16(@expo/log-box@58.0.14)(expo@58.0.19)(react-dom@19.3.1(react@19.3.1))(react-native@0.88.0(@babel/core@7.29.7(supports-color@8.1.1))(@react-native/metro-config@0.88.0(@babel/core@7.29.7(supports-color@8.1.1))(supports-color@8.1.1))(@types/react@19.3.0)(react@19.3.1)(supports-color@8.1.1))(react@19.3.1)
       '@kaneo/editor':
-        specifier: workspace:*
+        specifier: workspace:@tracing/editor@*
         version: link:../../packages/editor
       '@react-native-async-storage/async-storage':
         specifier: 2.2.0
@@ -438,6 +450,9 @@ importers:
       '@tiptap/react':
         specifier: ^3.32.0
         version: 3.32.0(@floating-ui/dom@1.8.0)(@tiptap/core@3.32.0(@tiptap/pm@3.32.0))(@tiptap/pm@3.32.0)(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)
+      '@tracing/editor':
+        specifier: workspace:*
+        version: link:../../packages/editor
       expo:
         specifier: ~58.0.19
         version: 58.0.19(@babel/core@7.29.7(supports-color@8.1.1))(@expo/metro-runtime@58.0.16)(expo-router@58.0.26)(react-dom@19.3.1(react@19.3.1))(react-native-web@0.21.4(react-dom@19.3.1(react@19.3.1))(react@19.3.1))(react-native-worklets@0.13.0(@babel/core@7.29.7(supports-color@8.1.1))(@react-native/metro-config@0.88.0(@babel/core@7.29.7(supports-color@8.1.1))(supports-color@8.1.1))(react-native@0.88.0(@babel/core@7.29.7(supports-color@8.1.1))(@react-native/metro-config@0.88.0(@babel/core@7.29.7(supports-color@8.1.1))(supports-color@8.1.1))(@types/react@19.3.0)(react@19.3.1)(supports-color@8.1.1))(react@19.3.1)(supports-color@8.1.1))(react-native@0.88.0(@babel/core@7.29.7(supports-color@8.1.1))(@react-native/metro-config@0.88.0(@babel/core@7.29.7(supports-color@8.1.1))(supports-color@8.1.1))(@types/react@19.3.0)(react@19.3.1)(supports-color@8.1.1))(react@19.3.1)(supports-color@8.1.1)(typescript@7.0.2)
@@ -928,13 +943,13 @@ importers:
         specifier: ^8.0.9
         version: 8.0.9
       '@kaneo/editor':
-        specifier: workspace:*
+        specifier: workspace:@tracing/editor@*
         version: link:../../packages/editor
       '@kaneo/libs':
-        specifier: workspace:*
+        specifier: workspace:@tracing/libs@*
         version: link:../../packages/libs
       '@kaneo/permissions':
-        specifier: workspace:*
+        specifier: workspace:@tracing/permissions@*
         version: link:../../packages/permissions
       '@rolldown/plugin-babel':
         specifier: ^0.2.4
@@ -948,6 +963,15 @@ importers:
       '@testing-library/react':
         specifier: ^16.3.3
         version: 16.3.3(@testing-library/dom@10.4.2)(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)
+      '@tracing/editor':
+        specifier: workspace:*
+        version: link:../../packages/editor
+      '@tracing/libs':
+        specifier: workspace:*
+        version: link:../../packages/libs
+      '@tracing/permissions':
+        specifier: workspace:*
+        version: link:../../packages/permissions
       '@types/babel__core':
         specifier: ^7.20.5
         version: 7.20.5
@@ -991,9 +1015,15 @@ importers:
         specifier: 1.7.0
         version: 1.7.0(typescript@7.0.2)
       '@kaneo/mcp':
-        specifier: workspace:*
+        specifier: workspace:@tracing/mcp@*
         version: link:../mcp
       '@kaneo/typescript-config':
+        specifier: workspace:@tracing/typescript-config@*
+        version: link:../typescript-config
+      '@tracing/mcp':
+        specifier: workspace:*
+        version: link:../mcp
+      '@tracing/typescript-config':
         specifier: workspace:*
         version: link:../typescript-config
       '@types/node':
@@ -1061,6 +1091,9 @@ importers:
         version: 3.32.0
     devDependencies:
       '@kaneo/typescript-config':
+        specifier: workspace:@tracing/typescript-config@*
+        version: link:../typescript-config
+      '@tracing/typescript-config':
         specifier: workspace:*
         version: link:../typescript-config
       jsdom:
@@ -1123,6 +1156,9 @@ importers:
         version: 1.0.2
     devDependencies:
       '@kaneo/typescript-config':
+        specifier: workspace:@tracing/typescript-config@*
+        version: link:../typescript-config
+      '@tracing/typescript-config':
         specifier: workspace:*
         version: link:../typescript-config
       '@types/node':
@@ -1141,9 +1177,15 @@ importers:
   packages/libs:
     devDependencies:
       '@kaneo/api':
-        specifier: workspace:*
+        specifier: workspace:@tracing/api@*
         version: link:../../apps/api
       '@kaneo/typescript-config':
+        specifier: workspace:@tracing/typescript-config@*
+        version: link:../typescript-config
+      '@tracing/api':
+        specifier: workspace:*
+        version: link:../../apps/api
+      '@tracing/typescript-config':
         specifier: workspace:*
         version: link:../typescript-config
       '@types/react':
@@ -1184,6 +1226,9 @@ importers:
         version: 4.6.7
     devDependencies:
       '@kaneo/typescript-config':
+        specifier: workspace:@tracing/typescript-config@*
+        version: link:../typescript-config
+      '@tracing/typescript-config':
         specifier: workspace:*
         version: link:../typescript-config
       '@types/node':
@@ -1209,6 +1254,9 @@ importers:
         version: 1.7.14(9dfa598265a5ec12fae0ececa5b22a4d)
     devDependencies:
       '@kaneo/typescript-config':
+        specifier: workspace:@tracing/typescript-config@*
+        version: link:../typescript-config
+      '@tracing/typescript-config':
         specifier: workspace:*
         version: link:../typescript-config
       typescript:
@@ -1228,9 +1276,15 @@ importers:
         version: 2.4.2
     devDependencies:
       '@kaneo/importers':
-        specifier: workspace:*
+        specifier: workspace:@tracing/importers@*
         version: link:../importers
       '@kaneo/typescript-config':
+        specifier: workspace:@tracing/typescript-config@*
+        version: link:../typescript-config
+      '@tracing/importers':
+        specifier: workspace:*
+        version: link:../importers
+      '@tracing/typescript-config':
         specifier: workspace:*
         version: link:../typescript-config
       '@types/node':
