@@ -38,11 +38,12 @@ COPY i18n ./i18n
 COPY apps/web ./apps/web
 
 # Build the shared packages first
+# Docker layers cache these outputs; disable Vite+ process tracing in builders.
 WORKDIR /app/packages/permissions
-RUN pnpm run build
+RUN pnpm exec vp run --no-cache build
 
 WORKDIR /app/packages/editor
-RUN pnpm run build
+RUN pnpm exec vp run --no-cache build
 
 # Build the application
 WORKDIR /app/apps/web
@@ -51,7 +52,7 @@ WORKDIR /app/apps/web
 # secret still succeed; the build just runs without it.
 RUN --mount=type=secret,id=SENTRY_AUTH_TOKEN,required=false \
     if [ -f /run/secrets/SENTRY_AUTH_TOKEN ]; then export SENTRY_AUTH_TOKEN="$(cat /run/secrets/SENTRY_AUTH_TOKEN)"; fi; \
-    pnpm run build && find dist -type f -name '*.map' -delete
+    pnpm exec vp run --no-cache build && find dist -type f -name '*.map' -delete
 
 # Production stage with specific version
 FROM nginx:1.30.6-alpine AS runtime
