@@ -6,18 +6,19 @@ export const githubProjects: Comparison = {
   category: "saas",
   title: "Standalone GitHub Projects alternative",
   description:
-    "Tracing is a standalone GitHub Projects alternative with time tracking and roles, for work beyond your repos. Tracing Cloud runs it for you from $4 a month.",
+    "Compare GitHub Projects with Tracing, an MIT-licensed tracker you can self-host with boards, triage, cycles, initiatives, views and insights.",
   summary: "A tracker for the work that does not belong in a repository.",
   heading: "The standalone alternative to GitHub Projects",
   subheading:
     "GitHub Projects is free and fine, right up until you need non-engineering work, time tracking, or a tracker that outlives your GitHub plan. Tracing is a standalone board you own.",
   verdict:
-    "Tracing is a GitHub Projects alternative for teams whose work does not all live in GitHub issues, and Tracing Cloud runs it for you from $4 a month, or $5 per user for teams. GitHub Projects is included with GitHub and excellent for repository-bound work, but it has no time tracking, no workspace roles outside GitHub's own, and it ties your planning history to your GitHub account. Tracing is also MIT-licensed open source, so you can self-host it for free any time.",
+    "Tracing is a self-hosted alternative to GitHub Projects for issue and project planning. It includes boards, triage, project plans, milestones, initiatives, roadmaps, cycles, insights and saved views. Budget for hosting, backups and maintenance; no managed Tracing subscription is offered.",
   facts: {
     license: "MIT, and independent of any repository host",
-    hosting: "EU-hosted Tracing Cloud, or self-host anywhere",
+    hosting: "Self-host Tracing on infrastructure you control",
     sso: "Any OIDC provider on every Tracing build, SAML on GitHub Enterprise",
-    pricing: "Cloud from $4 / month, or $0 self-hosted",
+    pricing:
+      "No license fee; infrastructure and operations are your responsibility",
   },
   rows: [
     { feature: "Open source (MIT)", kaneo: true, them: false },

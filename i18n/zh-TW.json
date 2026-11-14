@@ -1893,7 +1893,7 @@
 			},
 			"foundingFree": {
 				"badge": "免費",
-				"description": "此工作區以早期支持者身分，享有 Tracing Cloud 的免費使用權。感謝你從一開始就陪伴我們。",
+				"description": "This workspace has complimentary access.",
 				"title": "創始免費方案"
 			},
 			"interval": {
@@ -2256,7 +2256,7 @@
 				"connectTo": "Connect {{source}}",
 				"description": "Pick the tool you are moving from. Each project you choose becomes a new project here.",
 				"kaneo": {
-					"description": "Move projects between Tracing Cloud and a self-hosted instance.",
+					"description": "Move projects between Tracing instances.",
 					"intro": "Projects from every workspace the key can see. Each one you pick is copied here.",
 					"pickerName": "Another Tracing"
 				},
@@ -4153,8 +4153,8 @@
 				"link": "設定 GitHub"
 			},
 			"hosting": {
-				"title": "在你自己的伺服器上執行。",
-				"description": "使用 Docker 部署，把工作區放在你能掌控的基礎設施上。",
+				"title": "Run it on your infrastructure.",
+				"description": "Build and self-host Tracing with PostgreSQL. Choose your infrastructure and manage your backups, updates and recovery.",
 				"link": "自行架設 Tracing"
 			},
 			"source": {
@@ -4197,7 +4197,7 @@
 		},
 		"seo": {
 			"title": "Tracing：開源、可自行架設的專案管理工具",
-			"description": "開源專案管理工具，提供看板、甘特圖與 GitHub 整合。可免費自行架設且內建 SSO，或使用 Tracing Cloud。"
+			"description": "Open-source project planning with boards, triage, milestones, initiatives, roadmaps, cycles, insights and saved views. Self-host Tracing on your infrastructure."
 		},
 		"resources": {
 			"eyebrow": "專屬於你的工具",
@@ -4216,7 +4216,7 @@
 				"description": "看看在託管、授權與工作流程上的差異。"
 			},
 			"startups": {
-				"description": "What a startup needs from a tracker, and what Tracing Cloud costs as you hire.",
+				"description": "Planning for a startup, with hosting and operations costs to consider as you grow.",
 				"title": "Project management for startups"
 			}
 		},
@@ -4835,7 +4835,7 @@
 			"browserHint": "GitHub、Google、Discord 或 SSO",
 			"captcha": "此步驟需要瀏覽器驗證，請使用「在瀏覽器中繼續」。",
 			"change": "變更",
-			"cloud": "Tracing Cloud",
+			"cloud": "Tracing",
 			"code": {
 				"checkEmail": "請查看你的電子郵件",
 				"didntGet": "沒收到嗎？",
@@ -4881,13 +4881,13 @@
 				"name": "姓名",
 				"passwordHint": "至少 8 個字元"
 			},
-			"tagline": "簡單的專案管理。連線至 Tracing Cloud 或你自己的執行個體。",
+			"tagline": "Plan your team's work with Tracing.",
 			"togglePassword": "切換密碼顯示",
 			"useApiKey": "使用 API 金鑰",
 			"unlock": {
 				"buy": "Unlock for {{price}}",
 				"buyNoPrice": "Unlock",
-				"message": "Signing in to Tracing Cloud is always included. Connecting the app to a self-hosted server is a one-time purchase that supports Tracing's development.",
+				"message": "This Tracing build connects to your team's instance without an in-app purchase.",
 				"nothingToRestore": "No earlier purchase was found for this store account.",
 				"restore": "Restore purchase",
 				"title": "Connect your own server",
@@ -4895,6 +4895,7 @@
 			}
 		},
 		"taskDetail": {
+			"systemActor": "Tracing",
 			"activity": {
 				"comment": "留言",
 				"deleteMessage": "此操作無法復原。",

@@ -6,20 +6,20 @@ export const monday: Comparison = {
   category: "saas",
   title: "monday.com alternative with no seat minimums",
   description:
-    "Tracing is a monday.com alternative with no seat minimums and every feature on every plan. Tracing Cloud runs it for you from $4 a month, 14-day free trial.",
+    "Compare monday.com with Tracing, an MIT-licensed tracker you can self-host with boards, triage, cycles, initiatives, views and insights.",
   summary:
     "No seat blocks, no three-board free tier, and every feature on every plan.",
   heading: "The monday.com alternative with no seat minimums",
   subheading:
-    "monday.com sells seats in blocks, caps its free plan at two people and three boards, and keeps single sign-on for Enterprise. Tracing Cloud has no seat minimums, and self-hosted Tracing includes single sign-on for free.",
+    "Tracing is an MIT-licensed option for teams evaluating monday.com who want to operate their own project tracker.",
   verdict:
-    "Tracing is a monday.com alternative for teams that want a project tracker without seat blocks, and Tracing Cloud runs it for you from $4 a month, or $5 per user for teams, with no seat minimums. monday.com is a broader work-OS with dashboards, forms, and CRM templates that Tracing does not try to match. Tracing is also MIT-licensed open source, so you can self-host it for free with unlimited users and boards.",
+    "Tracing is a self-hosted alternative to monday.com for issue and project planning. It includes boards, triage, project plans, milestones, initiatives, roadmaps, cycles, insights and saved views. Budget for hosting, backups and maintenance; no managed Tracing subscription is offered.",
   facts: {
     license: "MIT, versus a proprietary licence for monday.com",
-    hosting:
-      "EU-hosted Tracing Cloud, or self-host anywhere. monday.com is cloud only",
+    hosting: "Self-host Tracing on infrastructure you control",
     sso: "Free on every Tracing build, Enterprise tier on monday.com",
-    pricing: "Cloud from $4 / month with no seat minimum, or $0 self-hosted",
+    pricing:
+      "No license fee; infrastructure and operations are your responsibility",
   },
   rows: [
     { feature: "Open source (MIT)", kaneo: true, them: false },
@@ -35,14 +35,14 @@ export const monday: Comparison = {
     { feature: "Boards & workflows", kaneo: true, them: true },
     {
       feature: "Cloud pricing",
-      kaneo: "From $4/mo",
+      kaneo: "No managed hosting plan",
       them: "Per seat, in blocks",
     },
   ],
   reasons: [
     {
       title: "You pay for the people you have",
-      body: "monday.com sells seats in fixed blocks, so a team of six can end up buying ten. Tracing Cloud bills the seats you actually use, and self-hosting bills nothing at all.",
+      body: "Tracing has no license or per-seat fee. You operate the application, database, storage, backups and updates on infrastructure you choose; this fork does not offer a managed hosting plan.",
     },
     {
       title: "No feature ladder",

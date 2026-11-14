@@ -31,7 +31,9 @@ postgresql:
     repository: postgres
     tag: 16-alpine
     pullPolicy: IfNotPresent
-  # Database configuration
+  # Database configuration. These defaults initialize new volumes only.
+  # When upgrading, retain the existing database, username and credentials;
+  # see apps/docs/core/operations/upgrades.mdx.
   auth:
     database: tracing
     username: tracing_user

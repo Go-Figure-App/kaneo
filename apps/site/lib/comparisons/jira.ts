@@ -6,19 +6,19 @@ export const jira: Comparison = {
   category: "saas",
   title: "Lighter Jira alternative: Tracing vs Jira",
   description:
-    "Tracing gives you Jira's boards, backlog, and Gantt views without the admin console. Tracing Cloud runs it for you from $4 a month, with a 14-day free trial.",
-  summary:
-    "Same planning, none of the admin console, and Tracing Cloud runs it for you.",
+    "Compare Jira with Tracing, an MIT-licensed tracker you can self-host with boards, triage, cycles, initiatives, views and insights.",
+  summary: "Self-hosted planning as an alternative to Jira.",
   heading: "The lighter Jira alternative for teams that just want to ship",
   subheading:
     "Jira can run a 500-person org, but most teams just want to plan and ship work without the weight. Tracing is a simple, open-source project manager you can self-host or let us run for you.",
   verdict:
-    "Tracing is a Jira alternative for teams that want to plan and ship without the weight, and Tracing Cloud runs it for you from $4 a month, or $5 per user for teams, with every feature included. It covers boards, backlog, workflows, roles, time tracking, and a public API, and it deliberately leaves out the configuration layer that makes Jira heavy. It is also MIT-licensed open source, so you can self-host it for free with Docker and PostgreSQL.",
+    "Tracing is a self-hosted alternative to Jira for issue and project planning. It includes boards, triage, project plans, milestones, initiatives, roadmaps, cycles, insights and saved views. Budget for hosting, backups and maintenance; no managed Tracing subscription is offered.",
   facts: {
     license: "MIT, versus a proprietary licence for Jira",
-    hosting: "EU-hosted Tracing Cloud, or self-host anywhere",
+    hosting: "Self-host Tracing on infrastructure you control",
     sso: "Free on every Tracing build. Jira needs Atlassian Guard or Enterprise",
-    pricing: "Cloud from $4 / month, or $0 self-hosted",
+    pricing:
+      "No license fee; infrastructure and operations are your responsibility",
   },
   rows: [
     { feature: "Open source (MIT)", kaneo: true, them: false },
@@ -30,7 +30,7 @@ export const jira: Comparison = {
     { feature: "Learning curve", kaneo: "Minutes", them: "Steep" },
     {
       feature: "Cloud pricing",
-      kaneo: "From $4/mo",
+      kaneo: "No managed hosting plan",
       them: "Per user, higher",
     },
   ],
@@ -45,12 +45,12 @@ export const jira: Comparison = {
     },
     {
       title: "Fair, honest pricing",
-      body: "Free forever to self-host, including SSO. Managed cloud starts at $4/month with no per-feature paywalls.",
+      body: "Tracing is MIT licensed and free to self-host, including SSO. Budget separately for infrastructure, backups and operations.",
     },
   ],
   migration: {
     body: "Tracing imports Jira Cloud and Jira Data Center projects from the app with an API token: board columns, issues with their keys, priorities, labels, assignees, sub-tasks, issue links, and comments. Jira is only read, never changed.",
-    href: "https://github.com/Go-Figure-App/tracing/tree/main/apps/docs/core/migrations/from-jira",
+    href: "https://github.com/Go-Figure-App/tracing/blob/main/apps/docs/core/migrations/from-jira.mdx",
     linkText: "Read the import guide",
   },
   honestNote:
@@ -74,7 +74,7 @@ export const jira: Comparison = {
     {
       question: "How much does Tracing cost compared to Jira?",
       answer:
-        "Self-hosting Tracing costs nothing beyond your server. Tracing Cloud is $4 a month for a single user and $5 per user a month for teams. Jira Cloud is free for up to 10 users and then charged per user, with SAML single sign-on requiring an Atlassian Guard subscription or the Enterprise tier that includes it.",
+        "Tracing has no license or per-seat fee. You operate the application, database, storage, backups and updates on infrastructure you choose; this fork does not offer a managed hosting plan. Consult Jira's current pricing and terms separately.",
     },
   ],
   related: ["linear", "asana", "clickup", "openproject"],

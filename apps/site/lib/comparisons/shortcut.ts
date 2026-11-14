@@ -6,20 +6,19 @@ export const shortcut: Comparison = {
   category: "saas",
   title: "Shortcut alternative: Tracing vs Shortcut",
   description:
-    "Tracing is a Shortcut alternative for software teams: a board, a backlog, and little ceremony. Tracing Cloud runs it for you from $4 a month, or self-host it.",
-  summary:
-    "The same lightness for software teams, run for you on Tracing Cloud.",
+    "Compare Shortcut with Tracing, an MIT-licensed tracker you can self-host with boards, triage, cycles, initiatives, views and insights.",
+  summary: "Self-hosted planning as an alternative to Shortcut.",
   heading: "The Shortcut alternative for software teams",
   subheading:
-    "Shortcut is a good tracker for software teams, and it only runs on Shortcut's servers. Tracing gives you the same shape of workflow on Tracing Cloud, or on infrastructure you control.",
+    "Tracing is an MIT-licensed option for teams evaluating Shortcut who want to operate their own project tracker.",
   verdict:
-    "Tracing is a Shortcut alternative for software teams that want a board, a backlog, and not much ceremony, and Tracing Cloud runs it for you from $4 a month, or $5 per user for teams. Shortcut is cloud-only and free only up to 10 users. Tracing is also MIT-licensed open source, so you can self-host it for free with unlimited users.",
+    "Tracing is a self-hosted alternative to Shortcut for issue and project planning. It includes boards, triage, project plans, milestones, initiatives, roadmaps, cycles, insights and saved views. Budget for hosting, backups and maintenance; no managed Tracing subscription is offered.",
   facts: {
     license: "MIT, versus a proprietary licence for Shortcut",
-    hosting:
-      "EU-hosted Tracing Cloud, or self-host anywhere. Shortcut is cloud only",
+    hosting: "Self-host Tracing on infrastructure you control",
     sso: "Free on every Tracing build, Enterprise tier on Shortcut",
-    pricing: "Cloud from $4 / month, or $0 self-hosted",
+    pricing:
+      "No license fee; infrastructure and operations are your responsibility",
   },
   rows: [
     { feature: "Open source (MIT)", kaneo: true, them: false },
@@ -39,7 +38,7 @@ export const shortcut: Comparison = {
     { feature: "Time tracking", kaneo: true, them: false },
     {
       feature: "Cloud pricing",
-      kaneo: "From $4/mo",
+      kaneo: "No managed hosting plan",
       them: "From $8.50/user/mo",
     },
   ],

@@ -18,7 +18,7 @@ export const bestFreeKanbanBoardSoftware: Guide = {
           name: "Tracing",
           meta: "MIT, no paid edition",
           href: "/trello-alternative",
-          body: "Unlimited users, projects, and boards when you self-host, with backlog, workflow rules, roles, time tracking, single sign-on, and an API included. Costs you a small server. There is a managed cloud if you would rather not run it, but the self-hosted build is not a trial.",
+          body: "Unlimited users, projects, and boards when you self-host, with backlog, workflow rules, roles, time tracking, single sign-on, and an API included. Costs you a small server. The self-hosted software has no trial expiration; this fork has no managed hosting plan.",
         },
         {
           name: "WeKan",
@@ -76,7 +76,7 @@ export const bestFreeKanbanBoardSoftware: Guide = {
     {
       question: "What does Tracing cost if I do not want to self-host?",
       answer:
-        "Tracing Cloud is $4 a month for a single user and $5 per user a month for teams, with a 14-day trial and no credit card required. It runs the same MIT-licensed software as the free self-hosted build.",
+        "Tracing is MIT licensed and self-hosted. There is no managed Tracing subscription or per-seat software fee; budget for your chosen infrastructure, storage, backups and maintenance.",
     },
   ],
   related: [

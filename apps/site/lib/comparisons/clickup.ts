@@ -6,20 +6,20 @@ export const clickup: Comparison = {
   category: "saas",
   title: "Focused ClickUp alternative",
   description:
-    "Tracing is a ClickUp alternative with all the planning you need and none of the feature sprawl. Tracing Cloud runs it for you from $4 a month.",
+    "Compare ClickUp with Tracing, an MIT-licensed tracker you can self-host with boards, triage, cycles, initiatives, views and insights.",
   summary:
     "The planning part, without the docs, whiteboards, and chat you turn off anyway.",
   heading: "The focused ClickUp alternative",
   subheading:
     "ClickUp's pitch is that it does everything. That is also the complaint. Tracing does the part your team actually opens every morning, and you can run it on your own server.",
   verdict:
-    "Tracing is a ClickUp alternative for teams that only want the planning part, and Tracing Cloud runs it for you from $4 a month, or $5 per user for teams. ClickUp is cloud-only, with paid tiers from $7 per user a month and SAML single sign-on on its higher tiers, while Tracing covers boards, backlog, workflows, labels, roles, and time tracking, and stops there on purpose. Tracing is also MIT-licensed open source, so you can self-host it for free any time.",
+    "Tracing is a self-hosted alternative to ClickUp for issue and project planning. It includes boards, triage, project plans, milestones, initiatives, roadmaps, cycles, insights and saved views. Budget for hosting, backups and maintenance; no managed Tracing subscription is offered.",
   facts: {
     license: "MIT, versus a proprietary licence for ClickUp",
-    hosting:
-      "EU-hosted Tracing Cloud, or self-host anywhere. ClickUp is cloud only",
+    hosting: "Self-host Tracing on infrastructure you control",
     sso: "Free on every Tracing build, Business tier and above on ClickUp",
-    pricing: "Cloud from $4 / month, or $0 self-hosted",
+    pricing:
+      "No license fee; infrastructure and operations are your responsibility",
   },
   rows: [
     { feature: "Open source (MIT)", kaneo: true, them: false },
@@ -29,7 +29,11 @@ export const clickup: Comparison = {
     { feature: "SSO included", kaneo: "Free", them: "Business and up" },
     { feature: "Time tracking", kaneo: true, them: true },
     { feature: "Feature surface", kaneo: "Focused", them: "Very broad" },
-    { feature: "Cloud pricing", kaneo: "From $4/mo", them: "From $7/user/mo" },
+    {
+      feature: "Cloud pricing",
+      kaneo: "No managed hosting plan",
+      them: "From $7/user/mo",
+    },
   ],
   reasons: [
     {

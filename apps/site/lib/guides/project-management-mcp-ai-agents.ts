@@ -9,7 +9,7 @@ export const projectManagementMcpAiAgents: Guide = {
   summary:
     "How MCP connects AI clients to your tracker, and what to check before you let one write.",
   answer:
-    "Model Context Protocol is the standard way an AI client such as Claude or Cursor talks to an external system, and a growing number of project tools ship an MCP server. Tracing has one, published as @tracing/mcp for stdio clients and available as an HTTP endpoint on your instance, so an agent can list projects, create and update tasks, move them between columns, comment, and log time. The thing to check in any implementation is that the agent inherits your permissions rather than an admin key.",
+    "Model Context Protocol is the standard way an AI client such as Claude or Cursor talks to an external system, and a growing number of project tools ship an MCP server. Tracing provides a built-in HTTP endpoint and a source-built @tracing/mcp package for stdio clients, so an agent can list projects, create and update tasks, move them between columns, comment, and log time. The thing to check in any implementation is that the agent inherits your permissions rather than an admin key.",
   sections: [
     {
       heading: "What MCP actually is",
@@ -22,9 +22,9 @@ export const projectManagementMcpAiAgents: Guide = {
       heading: "How it works in Tracing",
       items: [
         {
-          name: "Stdio server",
+          name: "Source-built stdio server",
           href: "/docs/core/integrations/mcp",
-          body: "The @tracing/mcp package runs locally and connects a desktop client such as Claude Desktop to your Tracing instance using an API key from workspace settings.",
+          body: "Build @tracing/mcp from this repository using the linked installation guide. It runs locally and connects a stdio client to your Tracing instance through device authorization or an API key; it is not published to npm.",
         },
         {
           name: "HTTP endpoint",
@@ -55,7 +55,7 @@ export const projectManagementMcpAiAgents: Guide = {
     {
       question: "Does Tracing have an MCP server?",
       answer:
-        "Yes. @tracing/mcp is published on npm for stdio clients, and Tracing instances also expose MCP over HTTP. Both authenticate with an API key created in workspace settings, so the agent inherits that user's permissions.",
+        "Yes. Tracing instances expose MCP over HTTP with OAuth or a user API key. Stdio clients can build @tracing/mcp from this repository following the MCP guide. Both transports enforce the authenticated user's permissions; the package is not published to npm.",
     },
     {
       question: "Which project management tools support MCP?",

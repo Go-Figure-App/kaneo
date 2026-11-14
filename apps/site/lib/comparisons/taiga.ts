@@ -6,19 +6,19 @@ export const taiga: Comparison = {
   category: "open-source",
   title: "Simpler Taiga alternative",
   description:
-    "Tracing is a simpler Taiga alternative with a board and backlog and no Scrum ceremony. Tracing Cloud runs it for you from $4 a month, with nothing to maintain.",
+    "Compare Taiga with Tracing, an MIT-licensed tracker you can self-host with boards, triage, cycles, initiatives, views and insights.",
   summary: "A board and backlog without adopting Scrum first.",
   heading: "The simpler Taiga alternative",
   subheading:
     "Taiga is built around Scrum and Kanban done properly, sprints, story points, and all. Tracing is for teams who want to plan and ship without adopting a methodology first.",
   verdict:
-    "Tracing is a simpler Taiga alternative for teams that want to plan and ship without adopting a methodology first, and Tracing Cloud runs it for you from $4 a month, or $5 per user for teams. Taiga is MPL-2.0 and organised around agile ceremonies, with sprints, story points, and burndown charts, while Tracing keeps a board, a backlog, workflow columns, and time tracking, and leaves the methodology to you. Both are open source, and Tracing is MIT licensed, so you can self-host it any time.",
+    "Tracing is a self-hosted alternative to Taiga for issue and project planning. It includes boards, triage, project plans, milestones, initiatives, roadmaps, cycles, insights and saved views. Budget for hosting, backups and maintenance; no managed Tracing subscription is offered.",
   facts: {
     license: "MIT, versus MPL-2.0 for Taiga",
-    hosting:
-      "EU-hosted Tracing Cloud. Both self-host, Tracing as a single container plus PostgreSQL",
+    hosting: "Self-host Tracing on infrastructure you control",
     sso: "Free on every Tracing build",
-    pricing: "Tracing Cloud from $4 / month, or $0 self-hosted for both",
+    pricing:
+      "No license fee; infrastructure and operations are your responsibility",
   },
   rows: [
     { feature: "License", kaneo: "MIT", them: "MPL-2.0" },

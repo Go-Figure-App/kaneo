@@ -7,48 +7,35 @@ This chart bootstraps a Tracing deployment on a Kubernetes cluster using the Hel
 - Helm 3.2.0+
 - PV provisioner support in the underlying infrastructure (if persistence is enabled)
 ## Quick Start
-### Basic Installation
-Install directly from GHCR:
-```bash
-helm install tracing ./charts/tracing \
-  --namespace tracing \
-  --create-namespace
-# Access locally
-kubectl port-forward svc/tracing-tracing 5173:5173 -n tracing
+
+The chart and image are built from this repository; Tracing registry artifacts are not published. Build `Dockerfile.tracing` at your reviewed source commit, push the image to a registry your cluster can read, and use that repository/tag in your values. For a local cluster, load the image into that cluster instead.
+
+Create `tracing-values.yaml` with your public URL, image, and existing secrets. Provision `tracing-auth` with an `auth-secret` key of at least 32 characters and `tracing-postgres` with a strong `password` key through your secret manager first. Both secrets must be in the release namespace.
+
+```yaml
+tracing:
+  image:
+    repository: registry.example.com/team/tracing
+    tag: reviewed-commit
+  env:
+    clientUrl: https://pm.example.com
+    existingSecret:
+      enabled: true
+      name: tracing-auth
+postgresql:
+  auth:
+    existingSecret: tracing-postgres
 ```
-Open [http://localhost:5173](http://localhost:5173) and you're ready to go.
-### Production Setup with Ingress
-For real deployments, you'll want proper ingress:
+
+For a new installation:
+
 ```bash
-helm install tracing ./charts/tracing \
-  --namespace tracing \
-  --create-namespace \
-  --set ingress.enabled=true \
-  --set ingress.className=nginx \
-  --set "ingress.hosts[0].host=pm.yourcompany.com"
+helm install tracing ./charts/tracing --namespace tracing --create-namespace -f tracing-values.yaml
+kubectl port-forward svc/tracing 5173:5173 -n tracing
 ```
-### Production Setup with Gateway API
-If your cluster already has Gateway API CRDs and a `Gateway` configured, you can expose Tracing with an `HTTPRoute`:
-```bash
-helm install tracing ./charts/tracing \
-  --namespace tracing \
-  --create-namespace \
-  --set gateway.enabled=true \
-  --set "gateway.parentRefs[0].name=main-gateway" \
-  --set "gateway.parentRefs[0].namespace=gateway-system" \
-  --set "gateway.parentRefs[0].sectionName=https" \
-  --set "gateway.hostnames[0]=pm.yourcompany.com"
-```
-## Installing the Chart
-To install the published chart with the release name `my-tracing`:
-```bash
-helm install my-tracing ./charts/tracing
-```
-To install from a local checkout instead:
-```bash
-helm install my-tracing ./charts/tracing
-```
-The command deploys Tracing on the Kubernetes cluster with default configuration. The [Parameters](#parameters) section lists the parameters that can be configured during installation.
+
+Configure `ingress` or `gateway` for the public URL before signing in. See the parameters below. Existing installations must follow [Upgrading an existing Kaneo release](#upgrading-an-existing-kaneo-release) and retain their release name, namespace, database identity and PVCs.
+
 ## Uninstalling the Chart
 To uninstall/delete the `my-tracing` deployment:
 ```bash
@@ -494,8 +481,23 @@ Helm release name, namespace, existing resource names, PVC and database
 credentials. For a chart that previously used the default `kaneo` name, set
 `nameOverride: kaneo`; retain an existing `fullnameOverride` if one was used.
 This preserves immutable selectors and the existing PostgreSQL resource names.
-Move application settings from `kaneo:` to `tracing:` in your values file; do not
-use the new PostgreSQL defaults for an already initialized volume. Keep the
+Move application settings from `kaneo:` to `tracing:` in your values file. For
+an existing volume initialized with the old defaults, explicitly retain:
+
+```yaml
+nameOverride: kaneo
+postgresql:
+  auth:
+    database: kaneo
+    username: kaneo_user
+    # Retain the current password or existingSecret settings from your values.
+```
+
+Use your actual database and role if customized. Retain any `fullnameOverride`,
+password/secret settings and PVC configuration. PostgreSQL does not rename a
+database or role when these environment variables change. For an external
+database, preserve the existing connection URI and identity under
+`tracing.env.database.external`. Keep the
 existing `AUTH_SECRET`. Render the chart and compare names, selectors, PVCs and
 secrets with the installed release before applying it. `/var/lib/kaneo` remains
 the container's writable runtime path for compatibility.

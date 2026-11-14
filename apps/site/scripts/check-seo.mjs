@@ -5,6 +5,7 @@ import { fileURLToPath } from "node:url";
 const siteDir = fileURLToPath(new URL("../", import.meta.url));
 const outDir = path.join(siteDir, "out");
 const docsDir = path.resolve(siteDir, "../docs");
+const repoDir = path.resolve(siteDir, "../..");
 const origin = "https://tracing.gofigureapp.io";
 // The application serves this route; it is not part of the marketing export.
 const applicationPaths = new Set(["/auth/sign-in"]);
@@ -157,9 +158,33 @@ for (const url of urls) {
   }
   // Ignore script bodies so hydration payloads cannot masquerade as links.
   const body = html.replace(/<script\b[^>]*>[\s\S]*?<\/script>/gi, "");
+  check(
+    !body.includes("Tracing Cloud"),
+    `Inherited hosted-service claim: ${url}`,
+  );
   for (const anchor of tags(body, "a")) {
     if (!anchor.href) continue;
     const target = new URL(anchor.href, url);
+    const repositoryPath =
+      target.origin === "https://github.com" &&
+      target.pathname.match(
+        /^\/Go-Figure-App\/tracing\/(blob|tree)\/main\/(.+)$/,
+      );
+    if (repositoryPath) {
+      const source = path.resolve(
+        repoDir,
+        decodeURIComponent(repositoryPath[2]),
+      );
+      const exists =
+        source.startsWith(`${repoDir}${path.sep}`) && existsSync(source);
+      check(
+        exists &&
+          (repositoryPath[1] === "blob"
+            ? statSync(source).isFile()
+            : statSync(source).isDirectory()),
+        `Broken repository link ${target.pathname} on ${location.pathname}`,
+      );
+    }
     if (target.origin !== origin || applicationPaths.has(target.pathname))
       continue;
     check(

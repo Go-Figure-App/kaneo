@@ -1581,7 +1581,7 @@
 				},
 				"kaneo": {
 					"pickerName": "Another Tracing",
-					"description": "Move projects between Tracing Cloud and a self-hosted instance.",
+					"description": "Move projects between Tracing instances.",
 					"intro": "Projects from every workspace the key can see. Each one you pick is copied here."
 				}
 			},
@@ -2415,7 +2415,7 @@
 			"foundingFree": {
 				"title": "Founding Free",
 				"badge": "Free",
-				"description": "This workspace has free access to Tracing Cloud as an early supporter. Thank you for being here from the start."
+				"description": "This workspace has complimentary access."
 			},
 			"seats_one": "{{count}} seat",
 			"seats_other": "{{count}} seats",
@@ -4230,8 +4230,8 @@
 				"link": "Set up GitHub"
 			},
 			"hosting": {
-				"title": "We run it for you.",
-				"description": "Tracing Cloud handles hosting, backups, and updates, so nobody on your team is on call for the tracker.",
+				"title": "Run it on your infrastructure.",
+				"description": "Build and self-host Tracing with PostgreSQL. Choose your infrastructure and manage your backups, updates and recovery.",
 				"link": "See pricing"
 			},
 			"source": {
@@ -4274,7 +4274,7 @@
 		},
 		"seo": {
 			"title": "Tracing: Project management that doesn't become the project",
-			"description": "Boards, Gantt charts, and GitHub integration, hosted for you on Tracing Cloud. Start a 14-day free trial, no credit card required."
+			"description": "Open-source project planning with boards, triage, milestones, initiatives, roadmaps, cycles, insights and saved views. Self-host Tracing on your infrastructure."
 		},
 		"resources": {
 			"eyebrow": "Make it your own",
@@ -4282,7 +4282,7 @@
 			"description": "See how teams use Tracing, connect your tools, or compare it with your current tracker.",
 			"startups": {
 				"title": "Project management for startups",
-				"description": "What a startup needs from a tracker, and what Tracing Cloud costs as you hire."
+				"description": "Planning for a startup, with hosting and operations costs to consider as you grow."
 			},
 			"sso": {
 				"title": "Bring your own identity provider",
@@ -4373,8 +4373,8 @@
 			"uploadFailed": "Upload failed ({{status}})"
 		},
 		"signIn": {
-			"tagline": "Project management that doesn't become the project. Connect to Tracing Cloud or your own instance.",
-			"cloud": "Tracing Cloud",
+			"tagline": "Plan your team's work with Tracing.",
+			"cloud": "Tracing",
 			"selfHosted": "Self-hosted",
 			"captcha": "This server requires a browser check for this step. Use “Continue in browser” instead.",
 			"invalidClient": "This server doesn’t allow device sign-in. Ask its admin to add “tracing-cli” and retain “kaneo-cli” in DEVICE_AUTH_CLIENT_IDS, or sign in with a password or API key.",
@@ -4431,7 +4431,7 @@
 			},
 			"unlock": {
 				"title": "Connect your own server",
-				"message": "Signing in to Tracing Cloud is always included. Connecting the app to a self-hosted server is a one-time purchase that supports Tracing's development.",
+				"message": "This Tracing build connects to your team's instance without an in-app purchase.",
 				"buy": "Unlock for {{price}}",
 				"buyNoPrice": "Unlock",
 				"restore": "Restore purchase",
@@ -4454,6 +4454,7 @@
 			"join": "Join"
 		},
 		"taskDetail": {
+			"systemActor": "Tracing",
 			"someone": "Someone",
 			"status": {
 				"planned": "Planned",

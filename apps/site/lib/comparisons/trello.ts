@@ -6,19 +6,19 @@ export const trello: Comparison = {
   category: "saas",
   title: "Trello alternative for growing teams: Tracing vs Trello",
   description:
-    "Tracing keeps Trello's simple board and adds a backlog, workflows, and time tracking without Power-Ups. Tracing Cloud runs it for you from $4 a month.",
-  summary:
-    "Keeps the simple board, adds a backlog and workflows, and Tracing Cloud runs it for you.",
+    "Compare Trello with Tracing, an MIT-licensed tracker you can self-host with boards, triage, cycles, initiatives, views and insights.",
+  summary: "Self-hosted planning as an alternative to Trello.",
   heading: "The Trello alternative that stays simple as you grow",
   subheading:
     "Trello nails simple kanban, but your boards live on someone else's servers and grow into paid Power-Ups. Tracing keeps the simplicity, adds backlog and workflows, and lets you own the whole thing.",
   verdict:
-    "Tracing is a Trello alternative for teams that want the same simple board with room to grow, and Tracing Cloud runs it for you from $4 a month, or $5 per user for teams. It keeps the drag-and-drop board Trello is loved for and adds backlog planning, configurable workflows, roles, and time tracking without Power-Ups. It is also MIT-licensed open source, so you can self-host it for free any time.",
+    "Tracing is a self-hosted alternative to Trello for issue and project planning. It includes boards, triage, project plans, milestones, initiatives, roadmaps, cycles, insights and saved views. Budget for hosting, backups and maintenance; no managed Tracing subscription is offered.",
   facts: {
     license: "MIT, versus a proprietary licence for Trello",
-    hosting: "EU-hosted Tracing Cloud, or self-host anywhere",
+    hosting: "Self-host Tracing on infrastructure you control",
     sso: "Free on every Tracing build, Enterprise-tier on Trello",
-    pricing: "Cloud from $4 / month, or $0 self-hosted",
+    pricing:
+      "No license fee; infrastructure and operations are your responsibility",
   },
   rows: [
     { feature: "Open source (MIT)", kaneo: true, them: false },
@@ -28,7 +28,11 @@ export const trello: Comparison = {
     { feature: "Backlog & workflows", kaneo: true, them: "Power-Ups" },
     { feature: "Free to self-host", kaneo: true, them: false },
     { feature: "SSO included", kaneo: "Free", them: "Enterprise" },
-    { feature: "Cloud pricing", kaneo: "From $4/mo", them: "Per user" },
+    {
+      feature: "Cloud pricing",
+      kaneo: "No managed hosting plan",
+      them: "Per user",
+    },
   ],
   reasons: [
     {
@@ -41,12 +45,12 @@ export const trello: Comparison = {
     },
     {
       title: "Your boards, your servers",
-      body: "Self-host under MIT for free, or use our managed cloud. Your data is exportable and never locked in.",
+      body: "Self-host under the MIT license with no software fee. Project exports and the public API provide ways to retrieve your data.",
     },
   ],
   migration: {
     body: "Tracing imports your Trello boards from the app: authorize Trello, pick the boards, and lists, cards, checklists, dates, labels, members, comments, and archived cards come across.",
-    href: "https://github.com/Go-Figure-App/tracing/tree/main/apps/docs/core/migrations/from-trello",
+    href: "https://github.com/Go-Figure-App/tracing/blob/main/apps/docs/core/migrations/from-trello.mdx",
     linkText: "Read the import guide",
   },
   honestNote:
@@ -75,7 +79,7 @@ export const trello: Comparison = {
     {
       question: "Is Tracing free?",
       answer:
-        "Self-hosting Tracing is free forever under the MIT license, with unlimited users and projects and no feature gates. The managed cloud is $4 a month for one person or $5 per user a month for a team, after a 14-day trial.",
+        "Tracing is MIT licensed and has no software license or per-seat fee. Operators pay for infrastructure and maintenance. This fork does not offer a managed subscription or a hosted trial.",
     },
   ],
   related: ["planka", "wekan", "kanboard", "notion"],

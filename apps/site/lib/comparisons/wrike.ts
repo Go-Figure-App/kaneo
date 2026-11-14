@@ -6,18 +6,19 @@ export const wrike: Comparison = {
   category: "saas",
   title: "Simpler Wrike alternative",
   description:
-    "Tracing is a simpler Wrike alternative with no user bands and every feature on every plan. Tracing Cloud runs it for you from $4 a month, 14-day free trial.",
+    "Compare Wrike with Tracing, an MIT-licensed tracker you can self-host with boards, triage, cycles, initiatives, views and insights.",
   summary: "One feature set instead of user bands and tier maths.",
   heading: "The simpler Wrike alternative",
   subheading:
-    "Wrike prices in user bands and sells the good parts by tier. Tracing is one product with every feature on every plan, and Tracing Cloud runs it for you.",
+    "Tracing is an MIT-licensed option for teams evaluating Wrike who want to operate their own project tracker.",
   verdict:
-    "Tracing is a simpler Wrike alternative, and Tracing Cloud runs it for you from $4 a month, or $5 per user for teams, with every feature on every plan. Wrike is cloud-first, priced per user from $10 a month with plan-specific user ranges, and aimed at larger operations teams, while Tracing trades Wrike's resource management and proofing for a simpler tracker. Tracing is also MIT-licensed open source, so you can run it on your own infrastructure at no cost.",
+    "Tracing is a self-hosted alternative to Wrike for issue and project planning. It includes boards, triage, project plans, milestones, initiatives, roadmaps, cycles, insights and saved views. Budget for hosting, backups and maintenance; no managed Tracing subscription is offered.",
   facts: {
     license: "MIT, versus a proprietary licence for Wrike",
-    hosting: "EU-hosted Tracing Cloud, or self-host anywhere",
+    hosting: "Self-host Tracing on infrastructure you control",
     sso: "Free on every Tracing build, higher tiers on Wrike",
-    pricing: "Cloud from $4 / month, or $0 self-hosted",
+    pricing:
+      "No license fee; infrastructure and operations are your responsibility",
   },
   rows: [
     { feature: "Open source (MIT)", kaneo: true, them: false },
@@ -27,7 +28,11 @@ export const wrike: Comparison = {
     { feature: "SSO included", kaneo: "Free", them: "Higher tiers" },
     { feature: "Time tracking", kaneo: true, them: "Business and up" },
     { feature: "Resource management", kaneo: false, them: true },
-    { feature: "Cloud pricing", kaneo: "From $4/mo", them: "From $10/user/mo" },
+    {
+      feature: "Cloud pricing",
+      kaneo: "No managed hosting plan",
+      them: "From $10/user/mo",
+    },
   ],
   reasons: [
     {

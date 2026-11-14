@@ -56,7 +56,7 @@ One Tracing project is created per PLANKA **board**, because the board is what h
 
 ### Troubleshooting
 
-**PLANKA runs on the same server or network as Tracing**: by default, Tracing blocks private network addresses. The operator must set `TRACING_ALLOW_PRIVATE_WEBHOOK_DESTINATIONS=true` on the Tracing API, and you must enter a URL the Tracing server can reach, such as the PLANKA container's name on the shared Docker network. See [Self-hosted instances](/core/migrations#self-hosted-instances). If Tracing can't reach PLANKA at all, for example on Tracing Cloud, use the [CLI](#import-with-the-cli).
+**PLANKA runs on the same server or network as Tracing**: by default, Tracing blocks private network addresses. The operator must set `TRACING_ALLOW_PRIVATE_WEBHOOK_DESTINATIONS=true` on the Tracing API, and you must enter a URL the Tracing server can reach, such as the PLANKA container's name on the shared Docker network. See [Self-hosted instances](/core/migrations#self-hosted-instances). If Tracing can't reach PLANKA at all, for example because the services are on separate networks, use the [CLI](#import-with-the-cli).
 
 **"This PLANKA instance requires you to accept its terms"**: sign in through the PLANKA web UI once and accept them, then try again.
 

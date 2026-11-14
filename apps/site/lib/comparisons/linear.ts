@@ -6,19 +6,19 @@ export const linear: Comparison = {
   category: "saas",
   title: "Linear alternative: Tracing vs Linear",
   description:
-    "Tracing is a fast, focused Linear alternative with boards, backlog, and workflows. Tracing Cloud runs it for you from $4 a month, and you can self-host it too.",
-  summary: "A fast, focused tracker that Tracing Cloud runs for you.",
+    "Compare Linear with Tracing, an MIT-licensed tracker you can self-host with boards, triage, cycles, initiatives, views and insights.",
+  summary: "Self-hosted planning as an alternative to Linear.",
   heading: "The fast, focused Linear alternative",
   subheading:
-    "Linear is fast and beautifully focused, but it's closed-source and cloud-only. Tracing gives you a clean, focused workflow on Tracing Cloud, and you can run it yourself whenever you want.",
+    "Tracing is an MIT-licensed option for teams evaluating Linear who want to operate their own project tracker.",
   verdict:
-    "Tracing is a fast, uncluttered Linear alternative, and Tracing Cloud runs it for you from $4 a month, or $5 per user for teams. It keeps keyboard-friendly boards, backlog, and workflows, and it does not try to reproduce Linear's cycles, triage, or insights. Unlike Linear, it is MIT-licensed open source, so you can also run it on your own Docker host.",
+    "Tracing is a self-hosted alternative to Linear for issue and project planning. It includes boards, triage, project plans, milestones, initiatives, roadmaps, cycles, insights and saved views. Budget for hosting, backups and maintenance; no managed Tracing subscription is offered.",
   facts: {
     license: "MIT, versus a proprietary licence for Linear",
-    hosting:
-      "EU-hosted Tracing Cloud, or self-host anywhere. Linear is cloud only",
+    hosting: "Self-host Tracing on infrastructure you control",
     sso: "Free on every Tracing build, paid plans on Linear",
-    pricing: "Cloud from $4 / month, or $0 self-hosted",
+    pricing:
+      "No license fee; infrastructure and operations are your responsibility",
   },
   rows: [
     { feature: "Open source (MIT)", kaneo: true, them: false },
@@ -27,7 +27,11 @@ export const linear: Comparison = {
     { feature: "Fast, focused UI", kaneo: true, them: true },
     { feature: "Free to self-host", kaneo: true, them: false },
     { feature: "SSO included", kaneo: "Free", them: "Paid plans" },
-    { feature: "Cloud pricing", kaneo: "From $4/mo", them: "Per user" },
+    {
+      feature: "Cloud pricing",
+      kaneo: "No managed hosting plan",
+      them: "Per user",
+    },
   ],
   reasons: [
     {
@@ -40,12 +44,12 @@ export const linear: Comparison = {
     },
     {
       title: "Honest pricing",
-      body: "Free forever to self-host with every feature, including SSO. Managed cloud from $4/month, with no seats-gated features.",
+      body: "Tracing has no license or per-seat fee. You operate the application, database, storage, backups and updates on infrastructure you choose; this fork does not offer a managed hosting plan.",
     },
   ],
   migration: {
-    body: "Tracing imports Linear teams from the app with a personal API key: workflow states, issues with their numbers, priorities, labels, assignees, comments, and relations. Linear is only read, never changed.",
-    href: "https://github.com/Go-Figure-App/tracing/tree/main/apps/docs/core/migrations/from-linear",
+    body: "With planning import enabled, Tracing imports Linear projects, issues, estimates, milestones, cycles, initiatives and planning metadata through a read-only connection. Without that feature, the base importer remains available. Review the import report and verify the destination before retiring Linear.",
+    href: "https://github.com/Go-Figure-App/tracing/blob/main/apps/docs/core/migrations/from-linear.mdx",
     linkText: "Read the import guide",
   },
   honestNote:
@@ -69,7 +73,7 @@ export const linear: Comparison = {
     {
       question: "How does Tracing pricing compare to Linear?",
       answer:
-        "Tracing is free to self-host with every feature including SSO, and its cloud is $4 a month for one user or $5 per user a month for teams. Linear is priced per user with a free tier capped by issue count, and SSO on its paid plans.",
+        "Tracing has no license or per-seat fee. You operate the application, database, storage, backups and updates on infrastructure you choose; this fork does not offer a managed hosting plan. Consult Linear's current pricing and terms separately.",
     },
   ],
   related: ["jira", "plane", "huly", "shortcut"],

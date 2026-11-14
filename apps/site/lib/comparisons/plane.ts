@@ -6,20 +6,19 @@ export const plane: Comparison = {
   category: "open-source",
   title: "Lighter Plane alternative",
   description:
-    "Tracing is a lighter Plane alternative with one edition and no features held back. Tracing Cloud runs it for you from $4 a month, with nothing to maintain.",
-  summary:
-    "One edition with nothing held back, and nothing to maintain on Tracing Cloud.",
+    "Compare Plane with Tracing, an MIT-licensed tracker you can self-host with boards, triage, cycles, initiatives, views and insights.",
+  summary: "Self-hosted planning as an alternative to Plane.",
   heading: "The lighter Plane alternative",
   subheading:
-    "Plane is a capable open-source tracker with a Community edition and a Commercial edition above it. Tracing has one edition with every feature, Tracing Cloud runs it for you, and it is a much smaller install if you self-host.",
+    "Tracing is an MIT-licensed option for teams evaluating Plane who want to operate their own project tracker.",
   verdict:
-    "Tracing is a lighter Plane alternative for teams that want one edition with every feature, and Tracing Cloud runs it for you from $4 a month, or $5 per user for teams, with nothing to maintain. Plane's Community edition is AGPL-3.0 and free, with a separate Commercial edition and paid cloud tiers where single sign-on and advanced controls live, while Tracing has a single edition and runs as one container plus PostgreSQL. Tracing is also MIT licensed, so you can self-host it for free with single sign-on included.",
+    "Tracing is a self-hosted alternative to Plane for issue and project planning. It includes boards, triage, project plans, milestones, initiatives, roadmaps, cycles, insights and saved views. Budget for hosting, backups and maintenance; no managed Tracing subscription is offered.",
   facts: {
     license: "MIT, versus AGPL-3.0 for the Plane Community edition",
-    hosting:
-      "EU-hosted Tracing Cloud. Both self-host, Tracing as a single container plus PostgreSQL",
+    hosting: "Self-host Tracing on infrastructure you control",
     sso: "Free on every Tracing build, Pro tier and above on Plane",
-    pricing: "Cloud from $4 / month, or $0 self-hosted",
+    pricing:
+      "No license fee; infrastructure and operations are your responsibility",
   },
   rows: [
     { feature: "License", kaneo: "MIT", them: "AGPL-3.0 (Community)" },
@@ -33,7 +32,11 @@ export const plane: Comparison = {
     },
     { feature: "Cycles & modules", kaneo: false, them: true },
     { feature: "Time tracking", kaneo: true, them: "Paid tiers" },
-    { feature: "Cloud pricing", kaneo: "From $4/mo", them: "From $6/seat/mo" },
+    {
+      feature: "Cloud pricing",
+      kaneo: "No managed hosting plan",
+      them: "From $6/seat/mo",
+    },
   ],
   reasons: [
     {
@@ -51,7 +54,7 @@ export const plane: Comparison = {
   ],
   migration: {
     body: "Tracing imports projects from Plane Cloud or a self-hosted Plane from the app: states, work items with their keys, priorities, dates, labels, comments, and sub-issues. Plane is only read, never changed.",
-    href: "https://github.com/Go-Figure-App/tracing/tree/main/apps/docs/core/migrations/from-plane",
+    href: "https://github.com/Go-Figure-App/tracing/blob/main/apps/docs/core/migrations/from-plane.mdx",
     linkText: "Read the import guide",
   },
   honestNote:

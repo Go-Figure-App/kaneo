@@ -116,7 +116,7 @@ export const selfHostedTrelloAlternatives: Guide = {
     {
       question: "How do I import Trello boards into Tracing?",
       answer:
-        "Export the board to JSON from Trello, then create the tasks through Tracing's public API or its per-project JSON import. There is no one-click importer yet. If you want one, open an issue on GitHub, since import work is prioritised by demand.",
+        "Use Settings → Workspace → Import → Trello to authorize your account and select boards for the built-in importer. A raw Trello JSON export is not accepted by the per-project JSON import: that path reads a Tracing task export or an array of tasks with title fields. Use the Trello importer, or transform the data before sending it through the public API.",
     },
   ],
   related: [

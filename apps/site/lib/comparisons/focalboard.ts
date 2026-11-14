@@ -6,19 +6,19 @@ export const focalboard: Comparison = {
   category: "open-source",
   title: "Maintained Focalboard alternative",
   description:
-    "Tracing is an actively maintained Focalboard alternative with regular releases and a documented API. Tracing Cloud runs it for you, with nothing to maintain.",
+    "Compare Focalboard with Tracing, an MIT-licensed tracker you can self-host with boards, triage, cycles, initiatives, views and insights.",
   summary: "An actively maintained board, independent of Mattermost.",
   heading: "The maintained Focalboard alternative",
   subheading:
     "Standalone Focalboard has been looking for maintainers since Mattermost unbundled it. If you are self-hosting it today, you are running software nobody is on the hook for.",
   verdict:
-    "Tracing is an actively maintained Focalboard alternative, and Tracing Cloud runs it for you from $4 a month, or $5 per user for teams, so there is nothing to maintain. Mattermost stopped bundling the Focalboard plugin in 2023 and the standalone project moved to community maintenance, with the plugin continuing separately as Mattermost Boards, while Tracing ships regular releases and a documented API. Tracing is also MIT licensed, so you can self-host it with single sign-on if you prefer.",
+    "Tracing is a self-hosted alternative to Focalboard for issue and project planning. It includes boards, triage, project plans, milestones, initiatives, roadmaps, cycles, insights and saved views. Budget for hosting, backups and maintenance; no managed Tracing subscription is offered.",
   facts: {
     license: "MIT, versus Focalboard's mixed Mattermost licensing",
-    hosting:
-      "EU-hosted Tracing Cloud. Both self-host, Tracing as Docker plus PostgreSQL",
+    hosting: "Self-host Tracing on infrastructure you control",
     sso: "Free on Tracing through Google, GitHub, Discord, or any OIDC provider",
-    pricing: "Cloud from $4 / month, or $0 self-hosted",
+    pricing:
+      "No license fee; infrastructure and operations are your responsibility",
   },
   rows: [
     {

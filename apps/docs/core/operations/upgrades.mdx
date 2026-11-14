@@ -25,6 +25,27 @@ docker compose ps
 docker compose logs --tail=100 tracing
 ```
 
+## Helm upgrades from Kaneo
+
+Keep the Helm release name, namespace, resource names, PVCs and existing credentials. Move application values from `kaneo:` to `tracing:`. A retained PostgreSQL volume already contains its database and role; changing `POSTGRES_DB` or `POSTGRES_USER` does not rename or create them.
+
+For an installation initialized with the old chart defaults, merge these values into your existing values file:
+
+```yaml
+nameOverride: kaneo
+postgresql:
+  auth:
+    database: kaneo
+    username: kaneo_user
+    # Keep the existing password or existingSecret configuration.
+```
+
+Use the actual database and role if customized, retain any `fullnameOverride`, and preserve `AUTH_SECRET`. For external PostgreSQL, carry forward the existing connection URI and identity into `tracing.env.database.external`. Render the chart and compare names, selectors, PVCs and credentials with the installed release before applying it. See the [chart upgrade instructions](https://github.com/Go-Figure-App/tracing/blob/main/charts/tracing/README.md#upgrading-an-existing-kaneo-release).
+
+## Mobile device sign-in compatibility
+
+Upgrade the server before distributing the Tracing mobile build. The new app uses the `tracing-mobile` device client ID. Servers predating that default must explicitly include it in `DEVICE_AUTH_CLIENT_IDS`, retaining every CLI/MCP client ID still in use. The current default set is `tracing-cli,tracing-mcp,tracing-mobile,kaneo-cli,kaneo-mcp`. Restart the server after changing the setting; older servers with an unset allowlist can reject the new mobile client.
+
 ## Check the result
 
 - Request `/api/health` and confirm the container becomes healthy.

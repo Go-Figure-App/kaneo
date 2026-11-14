@@ -36,7 +36,7 @@ export const projectManagementForSmallTeams: Guide = {
         {
           name: "You have more than fifteen people and hate per-seat billing",
           href: "/basecamp-alternative",
-          body: "Basecamp's flat pricing gets cheaper per head as you grow, and it bundles messages and docs. Tracing Cloud at $5 per user a month is cheaper below roughly twenty people, and self-hosting is cheaper at any size if you can run it.",
+          body: "Tracing is MIT licensed and self-hosted. There is no managed Tracing subscription or per-seat software fee; budget for your chosen infrastructure, storage, backups and maintenance.",
         },
         {
           name: "You are a software team that wants polish",
@@ -64,7 +64,7 @@ export const projectManagementForSmallTeams: Guide = {
       question:
         "What is the cheapest project management tool for a small team?",
       answer:
-        "Self-hosting an open-source tool such as Tracing, Kanboard, or WeKan costs only a server, typically a few dollars a month for any number of people. Among hosted options, Tracing Cloud is $4 a month for one user and $5 per user a month for teams, and Basecamp's flat rate wins once you pass roughly fifteen people.",
+        "Tracing is MIT licensed and self-hosted. There is no managed Tracing subscription or per-seat software fee; budget for your chosen infrastructure, storage, backups and maintenance.",
     },
     {
       question: "Do small teams need project management software at all?",

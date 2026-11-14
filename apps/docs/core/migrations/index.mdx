@@ -3,7 +3,7 @@ title: Import from other tools
 description: Bring projects from Linear, Jira, Trello, Plane, PLANKA, or another Tracing instance into a Tracing workspace.
 ---
 
-Tracing can copy projects from another tool into your workspace. You connect a source with a key, choose the projects you want, and Tracing recreates them as new Tracing projects. Tracing only reads from the source; nothing there is changed. Imports work on [Tracing Cloud](https://tracing.gofigureapp.io) and on self-hosted instances.
+Tracing can copy projects from another tool into your workspace. You connect a source with a key, choose the projects you want, and Tracing recreates them as new Tracing projects. Tracing only reads from the source; nothing there is changed. Imports run on your Tracing instance.
 
 ## Sources
 
@@ -79,4 +79,4 @@ By default, Tracing blocks imports from addresses on a private network, for exam
 
 The one-click **Authorize on Trello** button needs `TRELLO_API_KEY` on the API. See [Set up Trello on a self-hosted instance](/core/migrations/from-trello#set-up-trello-on-a-self-hosted-instance).
 
-If your source is on a private network and your Tracing instance can't reach it (for example, you use Tracing Cloud), the in-app importer can't connect. For PLANKA, use the [command line importer](/core/migrations/from-planka#import-with-the-cli), which runs on your own machine.
+If your source is on a private network and your Tracing instance can't reach it (for example, the services are on separate networks), the in-app importer can't connect. For PLANKA, use the [command line importer](/core/migrations/from-planka#import-with-the-cli), which runs on your own machine.

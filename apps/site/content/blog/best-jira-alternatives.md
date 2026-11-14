@@ -45,7 +45,7 @@ Three patterns come up again and again.
 
 | Tool | Open source | Self-host | SSO included | Starting price |
 | --- | --- | --- | --- | --- |
-| Tracing | Yes (MIT) | Yes | Yes, on every plan | Cloud from $4/mo, self-host free |
+| Tracing | Yes (MIT) | Yes | Yes, on every plan | No software fee; self-hosting costs apply |
 | Linear | No | No | Paid plans | Per user, cloud only |
 | Plane | Community edition (AGPL-3.0) | Yes | Pro tier and above | $0 Community, paid cloud tiers |
 | OpenProject | Community edition (GPLv3) | Yes | Enterprise add-on | $0 Community, Enterprise priced separately |
@@ -77,7 +77,7 @@ We are the team behind Tracing, which is one of the tools on this list. Rather t
 
 Tracing brings boards, backlog planning, Gantt and calendar views, custom fields, and time tracking into one focused tracker. Teams can plan dates, capture project-specific details, and move tasks through their own workflow columns, with integration events keeping statuses in sync. Workspace roles, labels, priorities, task relations, comments, and attachments cover the daily collaboration around that work.
 
-Most teams run it on Tracing Cloud, which is hosted in the EU and starts at $4 a month, with automatic backups, automatic updates, single sign-on, and email support. Tracing is also open source under the MIT licence, which matters less for how you use it day to day and more for what happens if you ever want out: you can export everything or move the whole thing onto your own server, so the switching cost that keeps teams stuck on Jira does not apply here.
+Tracing is MIT licensed and self-hosted. You choose the infrastructure and operate the application, database, backups and updates. There is no managed Tracing subscription; include maintenance time when comparing its cost with hosted products.
 
 **Key features**
 
@@ -88,7 +88,7 @@ Most teams run it on Tracing Cloud, which is hosted in the EU and starts at $4 a
 - Workspace roles and permissions, labels, priorities, and task relations
 - Time tracking, comments, and attachments
 - Single sign-on with Google, GitHub, Discord, or any OIDC provider, on every plan
-- Automatic backups, updates, and email support on Tracing Cloud
+- Hosting, updates and recovery are operated by your team
 - Documented public REST API, API keys, webhooks, and an MCP server for AI agents
 - GitHub, GitLab, and Gitea integrations, plus notifications in Slack, Discord, Telegram, and Mattermost
 - Per-project JSON export and import
@@ -97,11 +97,11 @@ Most teams run it on Tracing Cloud, which is hosted in the EU and starts at $4 a
 
 **Cons:** No dedicated sprint planning with story points or burndown reports, no app marketplace, and no service desk with SLAs. Custom fields and workflow rules cover project-level needs, but do not reproduce Jira's issue-type and permission schemes.
 
-**Pricing:** Tracing Cloud is $4 a month for a single user and $5 per user a month for teams, billed on exact headcount, with a 14-day trial and no credit card required. Annual billing works out at $3.33 and $4.17 a month. Self-hosting under MIT is available if you would rather run it yourself.
+**Pricing:** Tracing has no software license or per-seat fee. Budget for infrastructure, backups and operations; this fork does not offer a managed subscription.
 
 **Best for:** Small and mid-sized teams who want to plan and ship work without administering a tool.
 
-**Why choose it over Jira:** A ten-person team is $50 a month on Tracing Cloud, against Jira's per-user pricing plus an Atlassian Guard subscription to get single sign-on, and there is no admin console for anyone to own. You get boards, backlog, Gantt and calendar planning, custom fields, workflow rules, and roles in one product.
+Tracing is MIT licensed and self-hosted. You choose the infrastructure and operate the application, database, backups and updates. There is no managed Tracing subscription; include maintenance time when comparing its cost with hosted products.
 
 ### 2. Linear
 
@@ -291,13 +291,13 @@ Being honest about this saves you a painful quarter.
 
 Jira exports issues to CSV and has a well-documented REST API, so a scripted migration is realistic for anything up to a few thousand issues. The parts that hurt are attachments, comment history with author attribution, and issue links.
 
-Do a dry run into a scratch project first, check that assignees resolve by email address, and keep the Jira instance readable for a quarter rather than cancelling it the same week. Tracing imports Jira Cloud and Jira Data Center projects from the app, keeping issue keys, columns, priorities, labels, assignees, sub-tasks, issue links, and comments ([import guide](https://github.com/Go-Figure-App/tracing/tree/main/apps/docs/core/migrations/from-jira)). Attachments, sprints, and custom fields do not come across.
+Do a dry run into a scratch project first, check that assignees resolve by email address, and keep the Jira instance readable for a quarter rather than cancelling it the same week. Tracing imports Jira Cloud and Jira Data Center projects from the app, keeping issue keys, columns, priorities, labels, assignees, sub-tasks, issue links, and comments ([import guide](https://github.com/Go-Figure-App/tracing/blob/main/apps/docs/core/migrations/from-jira.mdx)). Attachments, sprints, and custom fields do not come across.
 
 ## Frequently asked questions
 
 ### What is the best free alternative to Jira?
 
-Tracing is MIT licensed and free to self-host, including Gantt and calendar views, custom fields, and time tracking. Consider OpenProject if you also need budgets and cost reporting, or Taiga for Scrum. Self-hosting means taking on the server, upgrades, and backups. Tracing Cloud starts at $4 a month if you want those handled for you.
+Tracing is MIT licensed and self-hosted. You choose the infrastructure and operate the application, database, backups and updates. There is no managed Tracing subscription; include maintenance time when comparing its cost with hosted products.
 
 ### Can Jira be self-hosted for free?
 
@@ -313,7 +313,7 @@ Tracing, Taiga, and Redmine (through a plugin) include single sign-on without a 
 
 ### How much cheaper are Jira alternatives?
 
-Hosted alternatives mostly sit in the $5 to $11 per user a month range, so a ten-person team pays roughly $50 to $110 a month. Tracing Cloud is at the bottom of that range at $5 per user a month with single sign-on included, where Jira would add an Atlassian Guard subscription on top to get the same thing. Self-hosting an open-source option costs the price of a small VPS, plus the time someone spends keeping it running.
+Tracing is MIT licensed and self-hosted. You choose the infrastructure and operate the application, database, backups and updates. There is no managed Tracing subscription; include maintenance time when comparing its cost with hosted products.
 
 ### Do I need to move everything at once?
 
@@ -325,4 +325,4 @@ If you need Jira's full scope, keep Jira. It earns its complexity at the scale i
 
 If you are a team of five to fifty who wants boards, backlog, Gantt and calendar planning, custom fields, and single sign-on included, most of that complexity is working against you.
 
-Tracing Cloud gives you all of that, hosted in the EU from $4 a month, with backups and updates handled and nothing for anyone to administer. There is a 14-day trial and no credit card, and because Tracing is open source you can export everything or move it onto your own server whenever you like.
+Tracing is MIT licensed and self-hosted. You choose the infrastructure and operate the application, database, backups and updates. There is no managed Tracing subscription; include maintenance time when comparing its cost with hosted products.

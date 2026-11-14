@@ -6,20 +6,19 @@ export const wekan: Comparison = {
   category: "open-source",
   title: "WeKan alternative on a modern stack",
   description:
-    "Tracing is a WeKan alternative on a modern stack, with backlog planning, roles, and time tracking built in. Tracing Cloud runs it for you from $4 a month.",
-  summary:
-    "A backlog and roles on a modern stack, run for you on Tracing Cloud.",
+    "Compare WeKan with Tracing, an MIT-licensed tracker you can self-host with boards, triage, cycles, initiatives, views and insights.",
+  summary: "Self-hosted planning as an alternative to WeKan.",
   heading: "The WeKan alternative on a modern stack",
   subheading:
-    "WeKan has kept open-source kanban alive for years, on Meteor and MongoDB. Tracing runs on PostgreSQL with a backlog, roles, and time tracking, and Tracing Cloud hosts it for you.",
+    "Tracing is an MIT-licensed option for teams evaluating WeKan who want to operate their own project tracker.",
   verdict:
-    "Tracing is a WeKan alternative on a modern stack, and Tracing Cloud runs it for you from $4 a month, or $5 per user for teams, so there is nothing to maintain. WeKan is the long-standing Trello-style board built on Meteor and MongoDB, while Tracing is newer, built on PostgreSQL with a React front end, and adds backlog planning, workspace roles, and time tracking. Both are MIT licensed and self-hostable, so you can always run Tracing yourself.",
+    "Tracing is a self-hosted alternative to WeKan for issue and project planning. It includes boards, triage, project plans, milestones, initiatives, roadmaps, cycles, insights and saved views. Budget for hosting, backups and maintenance; no managed Tracing subscription is offered.",
   facts: {
     license: "MIT for both",
-    hosting:
-      "EU-hosted Tracing Cloud. Both self-host, Tracing on PostgreSQL, WeKan on MongoDB",
+    hosting: "Self-host Tracing on infrastructure you control",
     sso: "Free on both, through OIDC",
-    pricing: "Tracing Cloud from $4 / month, or $0 self-hosted",
+    pricing:
+      "No license fee; infrastructure and operations are your responsibility",
   },
   rows: [
     { feature: "License", kaneo: "MIT", them: "MIT" },
@@ -56,7 +55,7 @@ export const wekan: Comparison = {
     {
       question: "WeKan or Tracing?",
       answer:
-        "Pick WeKan if you want a pure Trello-style board with swimlanes and the widest range of install methods. Pick Tracing if you want backlog planning, workspace roles, time tracking, and a PostgreSQL stack, or if you want a managed cloud option.",
+        "Pick WeKan if you want a pure Trello-style board with swimlanes and the widest range of install methods. Pick Tracing if you want backlog planning, workspace roles, time tracking, and a PostgreSQL stack and want to operate it yourself.",
     },
     {
       question: "Do both support single sign-on?",

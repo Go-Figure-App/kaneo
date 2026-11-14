@@ -6,20 +6,19 @@ export const basecamp: Comparison = {
   category: "saas",
   title: "Basecamp alternative for software teams",
   description:
-    "Tracing is a Basecamp alternative with real kanban boards and a backlog for shipping software. Tracing Cloud runs it for you from $4 a month.",
-  summary:
-    "Boards and a backlog for shipping software, run for you on Tracing Cloud.",
+    "Compare Basecamp with Tracing, an MIT-licensed tracker you can self-host with boards, triage, cycles, initiatives, views and insights.",
+  summary: "Self-hosted planning as an alternative to Basecamp.",
   heading: "The Basecamp alternative for shipping software",
   subheading:
     "Basecamp is calm, opinionated, and organised around message boards and to-do lists. Tracing is calm and opinionated too, with a board and backlog built for shipping software.",
   verdict:
-    "Tracing is a Basecamp alternative for teams that ship software from a kanban board and backlog, and Tracing Cloud runs it for you from $4 a month, or $5 per user for teams. Basecamp charges a flat monthly fee with no per-user pricing, which is a genuinely good deal for larger teams, but it is cloud-only and organised around message boards and to-do lists. Tracing is also MIT-licensed open source, so you can run it on your own server for free.",
+    "Tracing is a self-hosted alternative to Basecamp for issue and project planning. It includes boards, triage, project plans, milestones, initiatives, roadmaps, cycles, insights and saved views. Budget for hosting, backups and maintenance; no managed Tracing subscription is offered.",
   facts: {
     license: "MIT, versus a proprietary licence for Basecamp",
-    hosting:
-      "EU-hosted Tracing Cloud, or self-host anywhere. Basecamp is cloud only",
+    hosting: "Self-host Tracing on infrastructure you control",
     sso: "Google, GitHub, Discord, or any OIDC provider, free on Tracing",
-    pricing: "Cloud from $4 / month, or $0 self-hosted. Basecamp is flat-rate",
+    pricing:
+      "No license fee; infrastructure and operations are your responsibility",
   },
   rows: [
     { feature: "Open source (MIT)", kaneo: true, them: false },
@@ -33,7 +32,11 @@ export const basecamp: Comparison = {
     { feature: "Message boards & chat", kaneo: false, them: true },
     { feature: "Time tracking", kaneo: true, them: "Higher tiers" },
     { feature: "Pricing model", kaneo: "Free or per user", them: "Flat rate" },
-    { feature: "Cloud pricing", kaneo: "From $4/mo", them: "From $25/mo flat" },
+    {
+      feature: "Cloud pricing",
+      kaneo: "No managed hosting plan",
+      them: "From $25/mo flat",
+    },
   ],
   reasons: [
     {

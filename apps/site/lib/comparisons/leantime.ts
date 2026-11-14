@@ -6,19 +6,19 @@ export const leantime: Comparison = {
   category: "open-source",
   title: "Focused Leantime alternative",
   description:
-    "Tracing is a focused Leantime alternative: boards, backlog, workflows, and time tracking. Tracing Cloud runs it for you from $4 a month, nothing to maintain.",
+    "Compare Leantime with Tracing, an MIT-licensed tracker you can self-host with boards, triage, cycles, initiatives, views and insights.",
   summary: "The tracker underneath, without the goals and strategy layer.",
   heading: "The focused Leantime alternative",
   subheading:
-    "Leantime wraps goals, research boards, and strategy around your tasks. Tracing is the tracker underneath, without the strategy layer, and Tracing Cloud runs it for you.",
+    "Tracing is an MIT-licensed option for teams evaluating Leantime who want to operate their own project tracker.",
   verdict:
-    "Tracing is a focused Leantime alternative for teams that want a tracker without the strategy layer, and Tracing Cloud runs it for you from $4 a month, or $5 per user for teams, with nothing to maintain. Leantime is AGPLv3, aimed at non-project-managers, and layers goals, ideas, and retrospectives on top of task management, while Tracing stays a focused tracker with boards, backlog, workflow rules, roles, and time tracking. Both are open source, and Tracing is MIT licensed, so you can self-host it any time.",
+    "Tracing is a self-hosted alternative to Leantime for issue and project planning. It includes boards, triage, project plans, milestones, initiatives, roadmaps, cycles, insights and saved views. Budget for hosting, backups and maintenance; no managed Tracing subscription is offered.",
   facts: {
     license: "MIT, versus AGPLv3 for the Leantime community edition",
-    hosting:
-      "EU-hosted Tracing Cloud. Both self-host, Tracing on Docker plus PostgreSQL, Leantime on PHP plus MySQL",
+    hosting: "Self-host Tracing on infrastructure you control",
     sso: "Free on every Tracing build",
-    pricing: "Tracing Cloud from $4 / month, or $0 self-hosted for both",
+    pricing:
+      "No license fee; infrastructure and operations are your responsibility",
   },
   rows: [
     { feature: "License", kaneo: "MIT", them: "AGPLv3" },
@@ -28,7 +28,11 @@ export const leantime: Comparison = {
     { feature: "Backlog planning", kaneo: true, them: true },
     { feature: "Time tracking", kaneo: true, them: true },
     { feature: "Stack", kaneo: "Node + PostgreSQL", them: "PHP + MySQL" },
-    { feature: "Cloud pricing", kaneo: "From $4/mo", them: "Per user" },
+    {
+      feature: "Cloud pricing",
+      kaneo: "No managed hosting plan",
+      them: "Per user",
+    },
   ],
   reasons: [
     {

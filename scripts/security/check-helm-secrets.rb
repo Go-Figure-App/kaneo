@@ -58,3 +58,16 @@ end
   verify(client['value'] == url.strip.sub(%r{/$}, ''), 'Public origin must be trimmed and safe for API URL derivation')
 end
 puts 'Helm required-origin validation and URL rendering checks passed'
+
+# An initialized legacy PVC keeps its database and role during the rebrand.
+legacy = render(*args, '--is-upgrade', '--set', 'nameOverride=kaneo', '--set', 'fullnameOverride=kaneo', '--set', 'postgresql.auth.database=kaneo', '--set', 'postgresql.auth.username=kaneo_user', '--set', 'postgresql.auth.existingSecret=old-postgres')
+postgres = legacy.find { |d| d['kind'] == 'Deployment' && d['metadata']['name'] == 'kaneo-postgresql' }
+postgres_env = postgres.fetch('spec').fetch('template').fetch('spec').fetch('containers').first.fetch('env')
+verify(postgres_env.find { |env| env['name'] == 'POSTGRES_DB' }['value'] == 'kaneo', 'Upgrade must preserve the initialized database name')
+verify(postgres_env.find { |env| env['name'] == 'POSTGRES_USER' }['value'] == 'kaneo_user', 'Upgrade must preserve the initialized database role')
+password_ref = postgres_env.find { |env| env['name'] == 'POSTGRES_PASSWORD' }.fetch('valueFrom').fetch('secretKeyRef')
+verify(password_ref == { 'name' => 'old-postgres', 'key' => 'password' }, 'Upgrade must preserve the PostgreSQL password secret')
+database = app_env(legacy).find { |env| env['name'] == 'DATABASE_URL' }.fetch('value')
+verify(database == 'postgresql://kaneo_user:$(TRACING_POSTGRES_PASSWORD)@kaneo-postgresql:5432/kaneo', 'App must connect to the existing database and role')
+verify(legacy.any? { |d| d['kind'] == 'PersistentVolumeClaim' && d['metadata']['name'] == 'kaneo-postgresql-data' }, 'Upgrade must retain the PostgreSQL PVC name')
+puts 'Helm legacy database identity and PVC upgrade checks passed'

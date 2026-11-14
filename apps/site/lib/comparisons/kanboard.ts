@@ -6,19 +6,19 @@ export const kanboard: Comparison = {
   category: "open-source",
   title: "Modern Kanboard alternative",
   description:
-    "Tracing is a Kanboard alternative with a modern interface, realtime boards, and team features. Tracing Cloud runs it for you from $4 a month, or self-host it.",
+    "Compare Kanboard with Tracing, an MIT-licensed tracker you can self-host with boards, triage, cycles, initiatives, views and insights.",
   summary: "The same small footprint, with an interface people will open.",
   heading: "The Kanboard alternative with a modern interface",
   subheading:
     "Kanboard is admirably small and famously plain. Tracing keeps the small footprint and gives your team something they will want to look at every day.",
   verdict:
-    "Tracing is a Kanboard alternative for teams that want a modern interface, and Tracing Cloud runs it for you from $4 a month, or $5 per user for teams. Kanboard is a minimal PHP application that runs almost anywhere, including on SQLite, while Tracing is a modern React and PostgreSQL app with realtime boards, workspace roles, time tracking, and integrations. Both are MIT licensed, so you can still self-host Tracing in minutes.",
+    "Tracing is a self-hosted alternative to Kanboard for issue and project planning. It includes boards, triage, project plans, milestones, initiatives, roadmaps, cycles, insights and saved views. Budget for hosting, backups and maintenance; no managed Tracing subscription is offered.",
   facts: {
     license: "MIT for both",
-    hosting:
-      "EU-hosted Tracing Cloud, or Docker plus PostgreSQL. Kanboard is PHP with SQLite or MySQL",
+    hosting: "Self-host Tracing on infrastructure you control",
     sso: "Built into Tracing, plugin-based on Kanboard",
-    pricing: "Tracing Cloud from $4 / month, or $0 self-hosted for both",
+    pricing:
+      "No license fee; infrastructure and operations are your responsibility",
   },
   rows: [
     { feature: "License", kaneo: "MIT", them: "MIT" },

@@ -6,19 +6,19 @@ export const planka: Comparison = {
   category: "open-source",
   title: "PLANKA alternative with SSO included",
   description:
-    "Tracing is a PLANKA alternative with an importer for your PLANKA boards and free SSO when self-hosted. Tracing Cloud runs it for you from $4 a month.",
-  summary:
-    "A PLANKA importer, free OIDC SSO when self-hosted, or Tracing Cloud from $4 a month.",
+    "Compare PLANKA with Tracing, an MIT-licensed tracker you can self-host with boards, triage, cycles, initiatives, views and insights.",
+  summary: "Self-hosted planning as an alternative to PLANKA.",
   heading: "The PLANKA alternative with SSO included",
   subheading:
-    "PLANKA 2.2 moved SSO into its paid Pro tier, and self-hosters who signed in with OIDC woke up to deactivated accounts. Tracing Cloud runs Tracing for you, and if you self-host, SSO ships to everyone at no cost.",
+    "Tracing is an MIT-licensed option for teams evaluating PLANKA who want to operate their own project tracker.",
   verdict:
-    "Tracing is a PLANKA alternative for teams moving their boards, and Tracing Cloud runs it for you from $4 a month, or $5 per user for teams. Its importer reads boards, lists, cards, labels, assignees, checklists, and comments straight from the PLANKA API, since PLANKA has no export of its own. Tracing is also MIT-licensed open source, and OIDC single sign-on stays free on every self-hosted build.",
+    "Tracing is a self-hosted alternative to PLANKA for issue and project planning. It includes boards, triage, project plans, milestones, initiatives, roadmaps, cycles, insights and saved views. Budget for hosting, backups and maintenance; no managed Tracing subscription is offered.",
   facts: {
     license: "MIT, versus PLANKA's source-available Fair Use licence",
-    hosting: "EU-hosted Tracing Cloud. Both self-host",
+    hosting: "Self-host Tracing on infrastructure you control",
     sso: "Free on Tracing, Pro tier on PLANKA since 2.2",
-    pricing: "Cloud from $4 / month, or $0 self-hosted",
+    pricing:
+      "No license fee; infrastructure and operations are your responsibility",
   },
   rows: [
     { feature: "License", kaneo: "MIT", them: "Fair Use (source-available)" },
@@ -28,7 +28,11 @@ export const planka: Comparison = {
     { feature: "SSO / OIDC", kaneo: "Free", them: "Pro only" },
     { feature: "Backlog & workflows", kaneo: true, them: false },
     { feature: "Data export", kaneo: "Built in", them: false },
-    { feature: "Cloud pricing", kaneo: "From $4/mo", them: "Per user" },
+    {
+      feature: "Cloud pricing",
+      kaneo: "No managed hosting plan",
+      them: "Per user",
+    },
   ],
   reasons: [
     {
@@ -46,7 +50,7 @@ export const planka: Comparison = {
   ],
   migration: {
     body: "PLANKA has no export feature, so we wrote an importer that reads your boards straight from its API and recreates them in Tracing: lists, cards, labels, assignees, checklists, and comments. Run it from the Tracing app, or use the command line importer when PLANKA sits on a private network.",
-    href: "https://github.com/Go-Figure-App/tracing/tree/main/apps/docs/core/migrations/from-planka",
+    href: "https://github.com/Go-Figure-App/tracing/blob/main/apps/docs/core/migrations/from-planka.mdx",
     linkText: "Read the migration guide",
   },
   honestNote:

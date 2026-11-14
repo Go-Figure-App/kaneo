@@ -45,7 +45,7 @@ This is a comparison of the 10 tools worth considering, from open-source boards 
 
 | Tool | Open source | Self-host | SSO included | Starting price |
 | --- | --- | --- | --- | --- |
-| Tracing | Yes (MIT) | Yes | Yes, on every plan | Cloud from $4/mo, self-host free |
+| Tracing | Yes (MIT) | Yes | Yes, on every plan | No software fee; self-hosting costs apply |
 | PLANKA | Source-available (Fair Use) | Yes | Pro tier | Community edition free |
 | ClickUp | No | No | Business tier and above | From $7 per user / month |
 | Asana | No | No | Enterprise tier | From $10.99 per user / month |
@@ -76,7 +76,7 @@ We build Tracing, which is the first entry on this list. So here are the criteri
 
 Tracing keeps the part of Trello that works, a fast board you can read at a glance, and adds the structure teams end up building by hand. Boards and lists for day-to-day work, a backlog for what is coming, workflow columns that mean something, and Gantt and calendar views when dates matter. Priorities, labels, assignees, custom fields, task relations, comments, attachments, and time tracking are built in rather than bolted on.
 
-Tracing Cloud is hosted in the EU and costs $5 per user a month, with single sign-on on every plan. Tracing is also open source under the MIT licence, so you can export everything or move to your own server whenever you want. Self-hosting is one application container plus PostgreSQL.
+Tracing is MIT licensed and self-hosted. You choose the infrastructure and operate the application, database, backups and updates. There is no managed Tracing subscription; include maintenance time when comparing its cost with hosted products.
 
 **Key features**
 
@@ -95,7 +95,7 @@ Tracing Cloud is hosted in the EU and costs $5 per user a month, with single sig
 
 **Cons:** No Power-Up marketplace, no butler-style automation builder beyond rules that move tasks on integration events, and Trello attachments, custom fields, and Power-Up data do not come across in the import.
 
-**Pricing:** Tracing Cloud is $4 a month for one user and $5 per user a month for teams, 14-day trial, no credit card. Annual billing works out at $3.33 and $4.17 a month. Self-hosting under MIT is free.
+**Pricing:** Tracing has no software license or per-seat fee. Budget for infrastructure, backups and operations; this fork does not offer a managed subscription.
 
 **Best for:** Teams who like Trello's board but need a backlog, schedules, and roles, with a choice of managed hosting or their own server.
 
@@ -266,17 +266,16 @@ Rough monthly figures at October 2026 list prices, on annual billing:
 | Notion (Plus) | $100 | $500 |
 | ClickUp (Unlimited) | $70 | $350 |
 | Trello (Standard) | $50 | $250 |
-| Tracing Cloud | ~$42 | ~$208 |
 | Tracing self-hosted | Cost of a VPS, plus your time | Cost of a VPS, plus your time |
 | Basecamp | $25 flat (Freelancer) | $59 flat (Studio) |
 
-Tracing Cloud is the cheapest per-seat row, below even Trello Standard, and it includes the Gantt and calendar views Trello keeps for Premium plus single sign-on Trello keeps for Enterprise. At fifty users it is roughly $290 a month less than Trello Premium. Basecamp's flat rate wins at real scale if its way of working suits you. The self-hosted line never moves, but it swaps the bill for someone's time, and that cost is easy to leave out of a table like this.
+Tracing is MIT licensed and self-hosted. You choose the infrastructure and operate the application, database, backups and updates. There is no managed Tracing subscription; include maintenance time when comparing its cost with hosted products.
 
 ## Migrating off Trello
 
 Any board member can export a board to JSON from the board menu, on every plan, with its cards, lists, labels, checklists, and members. The JSON only carries the 1,000 most recent actions, which is where comments live, so a busy board's older comment history may be missing. CSV export is limited to Premium Workspaces and leaves out comments. Attachments are links rather than files, so download the ones that matter separately.
 
-From there it is a scripting job against the target tool's API, unless the tool has a Trello importer. Tracing has one built in: authorize Trello, pick your boards, and lists, cards, checklists, labels, members, comments, and archived cards come across ([import guide](https://github.com/Go-Figure-App/tracing/tree/main/apps/docs/core/migrations/from-trello)). Import one board first, check that card members matched the right people (Trello hides emails, so Tracing matches by full name), and keep Trello readable for a few weeks rather than cancelling on day one.
+From there it is a scripting job against the target tool's API, unless the tool has a Trello importer. Tracing has one built in: authorize Trello, pick your boards, and lists, cards, checklists, labels, members, comments, and archived cards come across ([import guide](https://github.com/Go-Figure-App/tracing/blob/main/apps/docs/core/migrations/from-trello.mdx)). Import one board first, check that card members matched the right people (Trello hides emails, so Tracing matches by full name), and keep Trello readable for a few weeks rather than cancelling on day one.
 
 ## Frequently asked questions
 
@@ -308,4 +307,4 @@ Simplicity and familiarity. Almost everyone has used Trello, the learning curve 
 
 If Trello's free plan covers your team and the board is all you need, stay. It is still the simplest board there is.
 
-If your board has quietly become a backlog, a workflow, and a schedule held together by labels and Power-Ups, Tracing gives you those as features. Tracing Cloud is $5 per user a month, hosted in the EU, with single sign-on on every plan and backups and updates handled for you. Fourteen-day trial, no credit card, and an MIT-licensed codebase underneath, so you can always take your data and host it yourself.
+Tracing is MIT licensed and self-hosted. You choose the infrastructure and operate the application, database, backups and updates. There is no managed Tracing subscription; include maintenance time when comparing its cost with hosted products.

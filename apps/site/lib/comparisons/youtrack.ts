@@ -6,19 +6,19 @@ export const youtrack: Comparison = {
   category: "saas",
   title: "YouTrack alternative: Tracing vs YouTrack",
   description:
-    "Tracing is a YouTrack alternative with no ten-user ceiling and no annual server licence. Tracing Cloud runs it for you from $4 a month, 14-day free trial.",
+    "Compare YouTrack with Tracing, an MIT-licensed tracker you can self-host with boards, triage, cycles, initiatives, views and insights.",
   summary: "No annual server licence and no ten-user ceiling.",
   heading: "The YouTrack alternative without the server licence",
   subheading:
-    "YouTrack is free until your eleventh teammate, and self-hosting it means buying a JetBrains server licence. Tracing Cloud runs Tracing for you, and self-hosting it is free at any size.",
+    "Tracing is an MIT-licensed option for teams evaluating YouTrack who want to operate their own project tracker.",
   verdict:
-    "Tracing is a YouTrack alternative for teams that have outgrown a ten-user free tier, and Tracing Cloud runs it for you from $4 a month, or $5 per user for teams. YouTrack is proprietary: free for up to 10 users in cloud and server form, then per-user cloud pricing or a paid annual server licence. Tracing is also MIT-licensed open source, with no user cap when self-hosted.",
+    "Tracing is a self-hosted alternative to YouTrack for issue and project planning. It includes boards, triage, project plans, milestones, initiatives, roadmaps, cycles, insights and saved views. Budget for hosting, backups and maintenance; no managed Tracing subscription is offered.",
   facts: {
     license: "MIT, versus a proprietary JetBrains licence",
-    hosting:
-      "EU-hosted Tracing Cloud, or self-host free. YouTrack Server needs a paid licence past the free tier",
+    hosting: "Self-host Tracing on infrastructure you control",
     sso: "Free on every Tracing build",
-    pricing: "Cloud from $4 / month, or $0 self-hosted",
+    pricing:
+      "No license fee; infrastructure and operations are your responsibility",
   },
   rows: [
     { feature: "Open source (MIT)", kaneo: true, them: false },
@@ -38,7 +38,7 @@ export const youtrack: Comparison = {
     { feature: "Learning curve", kaneo: "Minutes", them: "Moderate" },
     {
       feature: "Cloud pricing",
-      kaneo: "From $4/mo",
+      kaneo: "No managed hosting plan",
       them: "From $4.50/user/mo",
     },
   ],

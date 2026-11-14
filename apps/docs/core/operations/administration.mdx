@@ -53,7 +53,7 @@ Choose **Create user** and enter their name, email, and instance role. You never
 - **Password sign-in available:** Tracing emails them a link to set their own password. The link works once and expires in 2 days. If it expires, or SMTP wasn't configured yet, send a new one with **Send password reset link**.
 - **Password sign-up turned off (in [settings](#instance-settings) or with `DISABLE_PASSWORD_REGISTRATION`), or `DISABLE_LOGIN_FORM` set:** the account is created for single sign-on. No email is sent, and the email is marked verified so their first sign-in through GitHub, Google, Discord, or your OIDC provider with that address links to it.
 
-When no role is chosen, the account gets the [default role](#instance-settings). Administrators can create users even when registration is closed. An email that already belongs to an account is rejected. On Tracing Cloud, disposable email addresses are rejected as they are for sign-up.
+When no role is chosen, the account gets the [default role](#instance-settings). Administrators can create users even when registration is closed. An email that already belongs to an account is rejected.
 
 ## Custom roles
 

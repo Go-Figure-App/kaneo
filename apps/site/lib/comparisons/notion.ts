@@ -6,20 +6,20 @@ export const notion: Comparison = {
   category: "saas",
   title: "Notion alternative for managing projects",
   description:
-    "Tracing is a Notion alternative for project tracking: real boards, backlog, and workflows, not databases you build. Tracing Cloud runs it from $4 a month.",
+    "Compare Notion with Tracing, an MIT-licensed tracker you can self-host with boards, triage, cycles, initiatives, views and insights.",
   summary:
     "A real tracker instead of a task database somebody has to maintain.",
   heading: "The Notion alternative for running projects",
   subheading:
     "Notion is a wonderful place to write and a fiddly place to track work. Tracing is a purpose-built tracker you can self-host, so nobody has to maintain the board that runs your team.",
   verdict:
-    "Tracing is a Notion alternative for project tracking specifically, and Tracing Cloud runs it for you from $4 a month, or $5 per user for teams. Where Notion asks you to build a task database and keep it working, Tracing ships boards, backlog, workflow columns, roles, and time tracking as product features, though it is not a replacement for Notion's docs and wiki. Tracing is also MIT-licensed open source, so you can self-host it for free any time.",
+    "Tracing is a self-hosted alternative to Notion for issue and project planning. It includes boards, triage, project plans, milestones, initiatives, roadmaps, cycles, insights and saved views. Budget for hosting, backups and maintenance; no managed Tracing subscription is offered.",
   facts: {
     license: "MIT, versus a proprietary licence for Notion",
-    hosting:
-      "EU-hosted Tracing Cloud, or self-host anywhere. Notion is cloud only",
+    hosting: "Self-host Tracing on infrastructure you control",
     sso: "Free on every Tracing build, Business tier on Notion",
-    pricing: "Cloud from $4 / month, or $0 self-hosted",
+    pricing:
+      "No license fee; infrastructure and operations are your responsibility",
   },
   rows: [
     { feature: "Open source (MIT)", kaneo: true, them: false },
@@ -35,7 +35,7 @@ export const notion: Comparison = {
     { feature: "Time tracking", kaneo: true, them: false },
     {
       feature: "Cloud pricing",
-      kaneo: "From $4/mo",
+      kaneo: "No managed hosting plan",
       them: "From $10/member/mo",
     },
   ],

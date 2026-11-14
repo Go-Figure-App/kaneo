@@ -1300,7 +1300,9 @@ export function ActivityFeed({
         const name =
           member?.name ??
           a.externalUserName ??
-          (a.userId ? t("mobile:taskDetail.someone") : "Tracing");
+          (a.userId
+            ? t("mobile:taskDetail.someone")
+            : t("mobile:taskDetail.systemActor"));
         if (a.type !== "comment") {
           return (
             <View

@@ -6,19 +6,19 @@ export const huly: Comparison = {
   category: "open-source",
   title: "Focused Huly alternative",
   description:
-    "Tracing is a focused Huly alternative that does project tracking and nothing else. Tracing Cloud runs it for you from $4 a month, with nothing to maintain.",
-  summary: "Project tracking only, run for you on Tracing Cloud.",
+    "Compare Huly with Tracing, an MIT-licensed tracker you can self-host with boards, triage, cycles, initiatives, views and insights.",
+  summary: "Self-hosted planning as an alternative to Huly.",
   heading: "The focused Huly alternative",
   subheading:
-    "Huly puts tracking, chat, documents, HR, and CRM in one workspace. Tracing does the tracking part, and Tracing Cloud runs it for you.",
+    "Tracing is an MIT-licensed option for teams evaluating Huly who want to operate their own project tracker.",
   verdict:
-    "Tracing is a focused Huly alternative for teams that only need project tracking, and Tracing Cloud runs it for you from $4 a month, or $5 per user for teams, with nothing to maintain. Huly is an all-in-one workspace under EPL-2.0 covering project tracking, chat, documents, HR, and CRM, with a correspondingly large deployment, while Tracing does project tracking only. Tracing is also MIT licensed, so you can self-host it as a single container plus PostgreSQL.",
+    "Tracing is a self-hosted alternative to Huly for issue and project planning. It includes boards, triage, project plans, milestones, initiatives, roadmaps, cycles, insights and saved views. Budget for hosting, backups and maintenance; no managed Tracing subscription is offered.",
   facts: {
     license: "MIT, versus EPL-2.0 for Huly",
-    hosting:
-      "EU-hosted Tracing Cloud, or self-host one container. Huly is a multi-service platform",
+    hosting: "Self-host Tracing on infrastructure you control",
     sso: "Free on every Tracing build",
-    pricing: "Cloud from $4 / month, or $0 self-hosted",
+    pricing:
+      "No license fee; infrastructure and operations are your responsibility",
   },
   rows: [
     { feature: "License", kaneo: "MIT", them: "EPL-2.0" },
@@ -38,7 +38,7 @@ export const huly: Comparison = {
     { feature: "Backlog planning", kaneo: true, them: true },
     {
       feature: "Cloud pricing",
-      kaneo: "From $4/mo",
+      kaneo: "No managed hosting plan",
       them: "Free tier, then per user",
     },
   ],

@@ -1914,7 +1914,7 @@
 			},
 			"foundingFree": {
 				"badge": "Gratuit",
-				"description": "Cet espace de travail bénéficie d'un accès gratuit à Tracing Cloud en tant que soutien de la première heure. Merci d'être là depuis le début.",
+				"description": "This workspace has complimentary access.",
 				"title": "Gratuit pour les premiers soutiens"
 			},
 			"interval": {
@@ -2302,7 +2302,7 @@
 				"connectTo": "Connecter {{source}}",
 				"description": "Choisissez l'outil depuis lequel vous migrez. Chaque projet sélectionné devient un nouveau projet ici.",
 				"kaneo": {
-					"description": "Transférez des projets entre Tracing Cloud et une instance auto-hébergée.",
+					"description": "Move projects between Tracing instances.",
 					"intro": "Les projets de tous les espaces de travail accessibles avec cette clé. Chaque projet sélectionné est copié ici.",
 					"pickerName": "Une autre instance Tracing"
 				},
@@ -4307,8 +4307,8 @@
 				"link": "Configurer GitHub"
 			},
 			"hosting": {
-				"title": "Exécutez-le sur votre propre serveur.",
-				"description": "Déployez avec Docker et conservez votre espace de travail sur une infrastructure que vous contrôlez.",
+				"title": "Run it on your infrastructure.",
+				"description": "Build and self-host Tracing with PostgreSQL. Choose your infrastructure and manage your backups, updates and recovery.",
 				"link": "Auto-héberger Tracing"
 			},
 			"source": {
@@ -4351,7 +4351,7 @@
 		},
 		"seo": {
 			"title": "Tracing — Gestion de projet open source et auto-hébergée",
-			"description": "Une gestion de projet open source avec des tableaux, des diagrammes de Gantt et une intégration GitHub. Auto-hébergez gratuitement avec le SSO inclus, ou utilisez Tracing Cloud."
+			"description": "Open-source project planning with boards, triage, milestones, initiatives, roadmaps, cycles, insights and saved views. Self-host Tracing on your infrastructure."
 		},
 		"resources": {
 			"eyebrow": "Adaptez-le à vos besoins",
@@ -4370,7 +4370,7 @@
 				"description": "Découvrez les différences d'hébergement, de licence et de flux de travail."
 			},
 			"startups": {
-				"description": "What a startup needs from a tracker, and what Tracing Cloud costs as you hire.",
+				"description": "Planning for a startup, with hosting and operations costs to consider as you grow.",
 				"title": "Project management for startups"
 			}
 		},
@@ -4450,8 +4450,8 @@
 			"uploadFailed": "Échec de l'envoi ({{status}})"
 		},
 		"signIn": {
-			"tagline": "La gestion de projet en toute simplicité. Connectez-vous à Tracing Cloud ou à votre propre instance.",
-			"cloud": "Tracing Cloud",
+			"tagline": "Plan your team's work with Tracing.",
+			"cloud": "Tracing",
 			"selfHosted": "Auto-hébergé",
 			"captcha": "Ce serveur exige une vérification dans le navigateur pour cette étape. Utilisez plutôt « Continuer dans le navigateur ».",
 			"invalidClient": "Ce serveur n'autorise pas la connexion par appareil. Demandez à son administrateur d'ajouter « kaneo-cli » à DEVICE_AUTH_CLIENT_IDS, ou connectez-vous avec un mot de passe ou une clé API.",
@@ -4509,7 +4509,7 @@
 			"unlock": {
 				"buy": "Unlock for {{price}}",
 				"buyNoPrice": "Unlock",
-				"message": "Signing in to Tracing Cloud is always included. Connecting the app to a self-hosted server is a one-time purchase that supports Tracing's development.",
+				"message": "This Tracing build connects to your team's instance without an in-app purchase.",
 				"nothingToRestore": "No earlier purchase was found for this store account.",
 				"restore": "Restore purchase",
 				"title": "Connect your own server",
@@ -4531,6 +4531,7 @@
 			"join": "Rejoindre"
 		},
 		"taskDetail": {
+			"systemActor": "Tracing",
 			"someone": "Quelqu'un",
 			"status": {
 				"planned": "Planifiée",

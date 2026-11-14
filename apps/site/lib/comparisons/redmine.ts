@@ -6,20 +6,19 @@ export const redmine: Comparison = {
   category: "open-source",
   title: "Modern Redmine alternative",
   description:
-    "Tracing is a modern Redmine alternative with boards, workflows, and time tracking built in, no plugins needed. Tracing Cloud runs it for you from $4 a month.",
-  summary:
-    "Redmine's ideas with an interface from this decade, run for you on Tracing Cloud.",
+    "Compare Redmine with Tracing, an MIT-licensed tracker you can self-host with boards, triage, cycles, initiatives, views and insights.",
+  summary: "Self-hosted planning as an alternative to Redmine.",
   heading: "The modern Redmine alternative",
   subheading:
-    "Redmine has been quietly running teams for two decades, and it looks it. Tracing is the same idea with an interface from this decade, and Tracing Cloud runs it for you.",
+    "Tracing is an MIT-licensed option for teams evaluating Redmine who want to operate their own project tracker.",
   verdict:
-    "Tracing is a modern Redmine alternative, and Tracing Cloud runs it for you from $4 a month, or $5 per user for teams, with nothing to maintain. Redmine is a Rails application from 2006 whose kanban boards, single sign-on, and modern conveniences generally come from third-party plugins, while Tracing ships boards, workflows, time tracking, and realtime updates as core features. Both are free and self-hostable, and Tracing's self-hosted build includes single sign-on.",
+    "Tracing is a self-hosted alternative to Redmine for issue and project planning. It includes boards, triage, project plans, milestones, initiatives, roadmaps, cycles, insights and saved views. Budget for hosting, backups and maintenance; no managed Tracing subscription is offered.",
   facts: {
     license: "MIT, versus GPLv2 for Redmine",
-    hosting:
-      "EU-hosted Tracing Cloud. Both self-host, Tracing as Docker plus PostgreSQL",
+    hosting: "Self-host Tracing on infrastructure you control",
     sso: "Built in on Tracing, LDAP or plugins on Redmine",
-    pricing: "Tracing Cloud from $4 / month, or $0 self-hosted for both",
+    pricing:
+      "No license fee; infrastructure and operations are your responsibility",
   },
   rows: [
     { feature: "License", kaneo: "MIT", them: "GPLv2" },

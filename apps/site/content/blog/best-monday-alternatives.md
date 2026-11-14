@@ -45,7 +45,7 @@ This is a comparison of the 10 tools worth looking at, including the open-source
 
 | Tool | Open source | Self-host | Seat minimum | SSO included | Starting price |
 | --- | --- | --- | --- | --- | --- |
-| Tracing | Yes (MIT) | Yes | None | Yes, on every plan | Cloud from $4/mo, self-host free |
+| Tracing | Yes (MIT) | Yes | None | Yes, on every plan | No software fee; self-hosting costs apply |
 | ClickUp | No | No | None | Business tier and above | From $7 per user / month |
 | Asana | No | No | None | Enterprise tier | From $10.99 per user / month |
 | Trello | No | No | None | Enterprise tier | Free tier, then per user |
@@ -76,7 +76,7 @@ We build Tracing, which is the first entry. So the criteria are stated up front,
 
 Tracing covers project delivery with boards, lists, backlog planning, Gantt and calendar views, and custom fields for project-specific details. Configurable workflow columns and rules can move tasks when integration events arrive. Roles, labels, priorities, task relations, comments, attachments, and time tracking round out the day-to-day workflow.
 
-The pricing model is the part that matters most here. Tracing Cloud bills on exact headcount at $5 per user a month with no minimum, so a team of eleven pays for eleven people rather than the next seat block up. It is hosted in the EU, with backups, updates, and email support included, and single sign-on on every plan instead of an Enterprise contract. Tracing is open source under the MIT licence too, so exporting everything or moving it onto your own server stays an option you can actually take.
+Tracing is MIT licensed and self-hosted. You choose the infrastructure and operate the application, database, backups and updates. There is no managed Tracing subscription; include maintenance time when comparing its cost with hosted products.
 
 **Key features**
 
@@ -87,7 +87,7 @@ The pricing model is the part that matters most here. Tracing Cloud bills on exa
 - Workspace roles and permissions
 - Labels, priorities, task relations, comments, attachments, and time tracking
 - Single sign-on with Google, GitHub, Discord, or any OIDC provider, on every plan
-- Automatic backups, updates, and email support on Tracing Cloud
+- Hosting, updates and recovery are operated by your team
 - Public REST API, API keys, webhooks, and an MCP server for AI agents
 - GitHub, GitLab, and Gitea integrations, plus notifications in Slack, Discord, Telegram, and Mattermost
 - Per-project JSON export and import
@@ -96,7 +96,7 @@ The pricing model is the part that matters most here. Tracing Cloud bills on exa
 
 **Cons:** No dashboard builder, intake forms, CRM or HR template library, or app marketplace. Custom fields support text, numbers, dates, dropdowns, and checkboxes; they do not provide monday.com-style formula or mirror columns. Workflow rules map integration events to columns rather than offering a general automation recipe builder.
 
-**Pricing:** Tracing Cloud is $4 a month for one user and $5 per user a month for teams, 14-day trial, no credit card. Annual billing works out at $3.33 and $4.17 a month. Self-hosting under MIT is available if you would rather run it yourself.
+**Pricing:** Tracing has no software license or per-seat fee. Budget for infrastructure, backups and operations; this fork does not offer a managed subscription.
 
 **Best for:** Teams who want a fast project tracker priced on their actual headcount, and who are not using monday.com's work-OS layer.
 
@@ -266,11 +266,10 @@ Rough monthly figures at August 2026 list prices, before annual discounts, to sh
 | Asana (Starter) | ~$110 | ~$550 |
 | Wrike (Team) | ~$100 | ~$500 |
 | ClickUp (Unlimited) | ~$70 | ~$350 |
-| Tracing Cloud | $50 | $250 |
 | Tracing self-hosted | Cost of a VPS, plus your time | Cost of a VPS, plus your time |
 | Basecamp | Flat rate | Flat rate |
 
-Tracing Cloud is the cheapest managed row there, and unlike monday.com it bills on your actual headcount rather than the seat block you land in, so the number moves one person at a time instead of jumping. Basecamp's flat rate and the self-hosted line do not scale with headcount at all, though the self-hosted line trades the bill for somebody's time.
+Tracing is MIT licensed and self-hosted. You choose the infrastructure and operate the application, database, backups and updates. There is no managed Tracing subscription; include maintenance time when comparing its cost with hosted products.
 
 ## Migrating off monday.com
 
@@ -282,7 +281,7 @@ Export one active board first and import it somewhere as a test. Map status colu
 
 ### What is the best free alternative to monday.com?
 
-ClickUp's free tier is the most feature-generous of the hosted plans and Trello's is the most immediately usable. If you are willing to run a server, Tracing is MIT licensed and self-hostable. Once you price in the server, the upgrades, and the backups, a managed plan usually wins, and Tracing Cloud starts at $4 a month with single sign-on included.
+Tracing is MIT licensed and self-hosted. You choose the infrastructure and operate the application, database, backups and updates. There is no managed Tracing subscription; include maintenance time when comparing its cost with hosted products.
 
 ### Is there an open-source alternative to monday.com?
 
@@ -298,7 +297,7 @@ Users are sold in tiers rather than by exact headcount, so a team whose size fal
 
 ### Which monday.com alternative is cheapest for a large team?
 
-Among managed tools, Basecamp's flat rate wins at genuine scale, and Tracing Cloud at $5 per user a month with no seat minimum is roughly half of Asana's entry tier and bills on exact headcount. Self-hosting an open-source tool is cheaper on paper, because the bill is a server rather than a headcount, provided you have someone to run it.
+Tracing is MIT licensed and self-hosted. You choose the infrastructure and operate the application, database, backups and updates. There is no managed Tracing subscription; include maintenance time when comparing its cost with hosted products.
 
 ### Does monday.com include single sign-on?
 
@@ -308,4 +307,4 @@ SSO is an Enterprise-tier feature. If you need SAML or OIDC against your own ide
 
 If you use monday.com's dashboards, forms, automations, and CRM boards, keep it. That combination is genuinely hard to reassemble from other tools.
 
-If your team needs boards, schedules, custom fields, time tracking, and integration-driven workflow rules, Tracing covers that work with a smaller setup. Tracing Cloud is $5 per user a month billed on exact headcount, hosted in the EU, with single sign-on on every plan and backups and updates handled for you. Fourteen-day trial, no credit card, and an open-source codebase underneath so you are never locked in.
+Tracing is MIT licensed and self-hosted. You choose the infrastructure and operate the application, database, backups and updates. There is no managed Tracing subscription; include maintenance time when comparing its cost with hosted products.

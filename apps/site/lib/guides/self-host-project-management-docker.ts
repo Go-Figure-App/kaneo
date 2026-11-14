@@ -61,7 +61,7 @@ export const selfHostProjectManagementDocker: Guide = {
       heading: "Is self-hosting worth it?",
       body: [
         landing.selfHostingGuide.worth,
-        "It is not worth it if nobody wants to own updates and backups. That is a real job, small but recurring. If no one wants it, a managed cloud is the honest answer, and Tracing Cloud is $4 a month for one person or $5 per user a month for a team, running the same MIT-licensed software you could host yourself.",
+        "Self-hosting requires someone to own updates, backups and recovery. If nobody can take that responsibility, evaluate a managed provider separately; this fork does not offer a hosted subscription.",
       ],
     },
   ],

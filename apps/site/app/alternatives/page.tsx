@@ -15,7 +15,7 @@ import { withSocialMetadata } from "@/lib/metadata";
 export const metadata: Metadata = withSocialMetadata({
   title: "Tracing alternatives and comparisons",
   description:
-    "How Tracing compares to Jira, Trello, Asana, ClickUp, monday.com, Plane, OpenProject, Redmine, and other project management tools, with Tracing Cloud from $4 a month.",
+    "Compare self-hosted Tracing with Jira, Trello, Asana, ClickUp, monday.com, Plane, OpenProject, Redmine, and other project management tools.",
   alternates: { canonical: "/alternatives" },
 });
 
@@ -65,7 +65,7 @@ export default function Page() {
             <PageIntro
               eyebrow="Comparisons"
               title={<>How Tracing compares</>}
-              description="Tracing Cloud is managed, EU-hosted project management from $4 a month, and it is open source if you would rather run it yourself. Here is how it sits next to the tools people usually weigh it against, and where each of them is the better answer."
+              description="Tracing is an MIT-licensed project manager that you build and operate on your own infrastructure. Compare its planning features and operating responsibilities with the alternatives below."
             />
           </div>
         </section>

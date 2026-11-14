@@ -6,19 +6,19 @@ export const azureDevops: Comparison = {
   category: "saas",
   title: "Standalone Azure DevOps Boards alternative",
   description:
-    "Tracing is a standalone Azure DevOps Boards alternative with no Microsoft account or Azure tenant required. Tracing Cloud runs it for you from $4 a month.",
-  summary:
-    "Work tracking without a Microsoft tenant, run for you on Tracing Cloud.",
+    "Compare Azure DevOps Boards with Tracing, an MIT-licensed tracker you can self-host with boards, triage, cycles, initiatives, views and insights.",
+  summary: "Self-hosted planning as an alternative to Azure DevOps Boards.",
   heading: "The standalone alternative to Azure DevOps Boards",
   subheading:
     "Azure Boards is free for five people and then priced per user, and it only makes sense if the rest of your stack is Microsoft. Tracing is a standalone tracker you can host anywhere.",
   verdict:
-    "Tracing is a standalone alternative to Azure DevOps Boards for teams outside the Microsoft stack, and Tracing Cloud runs it for you from $4 a month, or $5 per user for teams. Azure DevOps is free for the first 5 users and then $6 per user a month, tied to a Microsoft Entra tenant and the wider Azure DevOps suite, while Tracing has no tenant requirement. Tracing is also MIT-licensed open source, so you can self-host it for free for any number of people.",
+    "Tracing is a self-hosted alternative to Azure DevOps Boards for issue and project planning. It includes boards, triage, project plans, milestones, initiatives, roadmaps, cycles, insights and saved views. Budget for hosting, backups and maintenance; no managed Tracing subscription is offered.",
   facts: {
     license: "MIT, versus a proprietary Microsoft licence",
-    hosting: "EU-hosted Tracing Cloud, or self-host anywhere",
+    hosting: "Self-host Tracing on infrastructure you control",
     sso: "Any OIDC provider, free on every Tracing build",
-    pricing: "Cloud from $4 / month, or $0 self-hosted",
+    pricing:
+      "No license fee; infrastructure and operations are your responsibility",
   },
   rows: [
     { feature: "Open source (MIT)", kaneo: true, them: false },
@@ -38,7 +38,7 @@ export const azureDevops: Comparison = {
     { feature: "Setup", kaneo: "Minutes", them: "Org and project setup" },
     {
       feature: "Cloud pricing",
-      kaneo: "From $4/mo",
+      kaneo: "No managed hosting plan",
       them: "$6/user/mo after 5",
     },
   ],

@@ -233,6 +233,10 @@ test("default Worker path signs an App JWT and uses an edge-compatible redirect 
     assert.equal(options.redirect, "manual");
     const endpoint = String(url).replace("https://api.github.com/", "");
     if (endpoint.endsWith("/access_tokens")) {
+      assert.deepEqual(JSON.parse(options.body), {
+        repositories: ["tracing"],
+        permissions: { contents: "write", pull_requests: "read" },
+      });
       const jwt = options.headers.Authorization.slice(7).split(".");
       assert.equal(
         await crypto.subtle.verify(

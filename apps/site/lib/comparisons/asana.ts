@@ -6,19 +6,19 @@ export const asana: Comparison = {
   category: "saas",
   title: "Simpler Asana alternative",
   description:
-    "Tracing covers boards, backlog, Gantt, and time tracking with every feature on every plan. Tracing Cloud runs it for you from $4 a month, 14-day free trial.",
+    "Compare Asana with Tracing, an MIT-licensed tracker you can self-host with boards, triage, cycles, initiatives, views and insights.",
   summary: "No two-user free tier, and every feature on every Tracing plan.",
   heading: "The simpler Asana alternative",
   subheading:
-    "Asana's free plan now stops at two people, and single sign-on only arrives at the Enterprise tier. Tracing Cloud gives every team the same product from $4 a month, and self-hosted Tracing includes single sign-on for free.",
+    "Tracing is an MIT-licensed option for teams evaluating Asana who want to operate their own project tracker.",
   verdict:
-    "Tracing is an Asana alternative for teams that want boards, backlog, and timelines in one simple tracker, and Tracing Cloud runs it for you from $4 a month, or $5 per user for teams. Asana is cloud-only, priced per user from $10.99 a month, and keeps SAML single sign-on for its Enterprise tier, while Tracing covers boards, backlog, Gantt and calendar views, custom fields, workflows, roles, and time tracking, leaving Asana's portfolios, goals, and workload views out of scope. Asana is not open source and cannot be self-hosted, but Tracing is MIT licensed, so you can always run it yourself for free.",
+    "Tracing is a self-hosted alternative to Asana for issue and project planning. It includes boards, triage, project plans, milestones, initiatives, roadmaps, cycles, insights and saved views. Budget for hosting, backups and maintenance; no managed Tracing subscription is offered.",
   facts: {
     license: "MIT, versus a proprietary licence for Asana",
-    hosting:
-      "EU-hosted Tracing Cloud, or self-host anywhere. Asana is cloud only",
+    hosting: "Self-host Tracing on infrastructure you control",
     sso: "Free on every Tracing build, Enterprise tier on Asana",
-    pricing: "Cloud from $4 / month, or $0 self-hosted",
+    pricing:
+      "No license fee; infrastructure and operations are your responsibility",
   },
   rows: [
     { feature: "Open source (MIT)", kaneo: true, them: false },
@@ -34,7 +34,7 @@ export const asana: Comparison = {
     { feature: "Learning curve", kaneo: "Minutes", them: "Moderate" },
     {
       feature: "Cloud pricing",
-      kaneo: "From $4/mo",
+      kaneo: "No managed hosting plan",
       them: "From $10.99/user/mo",
     },
   ],

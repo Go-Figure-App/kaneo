@@ -6,20 +6,20 @@ export const openproject: Comparison = {
   category: "open-source",
   title: "Lightweight OpenProject alternative",
   description:
-    "Tracing is a lighter OpenProject alternative with no 25-user minimum and no Enterprise add-on. Tracing Cloud runs it for you from $4 a month.",
+    "Compare OpenProject with Tracing, an MIT-licensed tracker you can self-host with boards, triage, cycles, initiatives, views and insights.",
   summary:
     "One container instead of a platform, with nothing held back for Enterprise.",
   heading: "The lightweight OpenProject alternative",
   subheading:
     "OpenProject is a serious, mature platform, and it asks for a serious install. Tracing is one container and a database, MIT licensed, with single sign-on in the free build.",
   verdict:
-    "Tracing is a lighter OpenProject alternative, and Tracing Cloud runs it for you from $4 a month, or $5 per user for teams, with no seat minimum and nothing to maintain. OpenProject's Community edition is GPL and keeps single sign-on, custom branding, and several other features for its Enterprise add-on, whose cloud plans start at a 25-user minimum, while Tracing has no paid edition and no feature gates. Tracing is also MIT licensed, so you can self-host it with single sign-on included.",
+    "Tracing is a self-hosted alternative to OpenProject for issue and project planning. It includes boards, triage, project plans, milestones, initiatives, roadmaps, cycles, insights and saved views. Budget for hosting, backups and maintenance; no managed Tracing subscription is offered.",
   facts: {
     license: "MIT, versus GPLv3 for the OpenProject Community edition",
-    hosting:
-      "EU-hosted Tracing Cloud. Both self-host, Tracing as a single container plus PostgreSQL",
+    hosting: "Self-host Tracing on infrastructure you control",
     sso: "Free on every Tracing build, Enterprise add-on for OpenProject",
-    pricing: "Cloud from $4 / month with no seat minimum, or $0 self-hosted",
+    pricing:
+      "No license fee; infrastructure and operations are your responsibility",
   },
   rows: [
     { feature: "License", kaneo: "MIT", them: "GPLv3 (Community)" },
