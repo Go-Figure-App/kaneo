@@ -5759,7 +5759,8 @@
 				"estimate": "Estimate",
 				"labels": "Labels",
 				"due": "Due date"
-			}
+			},
+			"includeArchivedProjects": "包含已归档项目"
 		},
 		"import": {
 			"description": "Projects, initiatives, milestones, cycles, estimates and original issue IDs, with issues and comments.",

@@ -213,3 +213,33 @@ it("evaluates current cycle at request time, retaining unassigned issues in the 
   );
   expect(await matching(c.workspace.id, filter)).toEqual([]);
 });
+
+it("includes archived projects only when requested and still enforces project restrictions", async () => {
+  const c = await insightsFixture();
+  await db
+    .update(schema.projectTable)
+    .set({ archivedAt: new Date() })
+    .where(eq(schema.projectTable.id, c.alpha.id));
+  await db
+    .update(schema.projectTable)
+    .set({ archivedAt: new Date() })
+    .where(eq(schema.projectTable.id, c.beta.id));
+  mockAuthenticatedSession(c.restricted);
+  const api = projectAccessApi();
+  const hidden = await (await api(`/parity/tasks/${c.workspace.id}`)).json();
+  expect(hidden.items).toEqual([]);
+  const included = await (
+    await api(`/parity/tasks/${c.workspace.id}?includeArchivedProjects=true`)
+  ).json();
+  expect(included.items.map((t: { id: string }) => t.id).sort()).toEqual(
+    [c.alphaTask.id, c.second.id, c.open.id].sort(),
+  );
+  const disabled = await (
+    await api(`/parity/tasks/${c.workspace.id}?includeArchivedProjects=false`)
+  ).json();
+  expect(disabled.items).toEqual([]);
+  const invalid = await api(
+    `/parity/tasks/${c.workspace.id}?includeArchivedProjects=yes`,
+  );
+  expect(invalid.status).toBe(400);
+});

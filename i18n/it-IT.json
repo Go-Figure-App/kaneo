@@ -5946,7 +5946,8 @@
 				"estimate": "Estimate",
 				"labels": "Labels",
 				"due": "Due date"
-			}
+			},
+			"includeArchivedProjects": "Includi progetti archiviati"
 		},
 		"import": {
 			"description": "Projects, initiatives, milestones, cycles, estimates and original issue IDs, with issues and comments.",

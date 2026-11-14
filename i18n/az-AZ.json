@@ -5851,7 +5851,8 @@
 				"estimate": "Estimate",
 				"labels": "Labels",
 				"due": "Due date"
-			}
+			},
+			"includeArchivedProjects": "Arxivlənmiş layihələri daxil et"
 		},
 		"import": {
 			"description": "Projects, initiatives, milestones, cycles, estimates and original issue IDs, with issues and comments.",

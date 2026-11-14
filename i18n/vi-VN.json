@@ -5759,7 +5759,8 @@
 				"estimate": "Estimate",
 				"labels": "Labels",
 				"due": "Due date"
-			}
+			},
+			"includeArchivedProjects": "Bao gồm dự án đã lưu trữ"
 		},
 		"import": {
 			"description": "Projects, initiatives, milestones, cycles, estimates and original issue IDs, with issues and comments.",

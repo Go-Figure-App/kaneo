@@ -22194,6 +22194,9 @@
 								"labels",
 								"due"
 							]
+						},
+						"includeArchivedProjects": {
+							"type": "string"
 						}
 					},
 					"required": [

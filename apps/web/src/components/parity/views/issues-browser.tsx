@@ -71,6 +71,7 @@ export function IssuesBrowser({
       filters,
       display.orderBy,
       display.direction,
+      display.includeArchivedProjects,
       deferredSearch,
       view?.projectId,
     ],
@@ -83,6 +84,9 @@ export function IssuesBrowser({
         projectId: view?.projectId ?? undefined,
         orderBy: display.orderBy,
         direction: display.direction,
+        includeArchivedProjects: display.includeArchivedProjects
+          ? "true"
+          : undefined,
       }),
     initialPageParam: 1,
     getNextPageParam: (page) => (page.hasMore ? page.page + 1 : undefined),

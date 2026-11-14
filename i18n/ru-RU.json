@@ -6093,7 +6093,8 @@
 				"estimate": "Estimate",
 				"labels": "Labels",
 				"due": "Due date"
-			}
+			},
+			"includeArchivedProjects": "Включить архивные проекты"
 		},
 		"import": {
 			"description": "Projects, initiatives, milestones, cycles, estimates and original issue IDs, with issues and comments.",

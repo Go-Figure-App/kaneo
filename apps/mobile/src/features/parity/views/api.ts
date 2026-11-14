@@ -23,6 +23,9 @@ export const viewsApi = {
                 projectId: view.projectId ?? undefined,
                 orderBy: view.display.orderBy,
                 direction: view.display.direction,
+                includeArchivedProjects: view.display.includeArchivedProjects
+                  ? "true"
+                  : undefined,
               }
             : {}),
         },

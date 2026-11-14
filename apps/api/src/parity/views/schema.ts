@@ -79,6 +79,7 @@ export const filtersSchema = z
   );
 export type TaskFilter = z.infer<typeof taskFilter>;
 export const displaySchema = z.strictObject({
+  includeArchivedProjects: z.boolean().optional(),
   layout: z.enum(["list", "board"]).default("list"),
   groupBy: z
     .enum(["state", "assignee", "project", "priority", "cycle", "label"])
@@ -116,6 +117,7 @@ export const workspaceTaskQuery = pageQuery
       .default("priority"),
     direction: z.enum(["asc", "desc"]).default("asc"),
     projectId: id.optional(),
+    includeArchivedProjects: z.enum(["true", "false"]).optional(),
   })
   .strict();
 export type WorkspaceTaskQuery = z.infer<typeof workspaceTaskQuery>;

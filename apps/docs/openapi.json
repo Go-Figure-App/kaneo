@@ -15624,6 +15624,18 @@
             "required": false,
             "name": "projectId",
             "in": "query"
+          },
+          {
+            "schema": {
+              "type": "string",
+              "enum": [
+                "true",
+                "false"
+              ]
+            },
+            "required": false,
+            "name": "includeArchivedProjects",
+            "in": "query"
           }
         ],
         "responses": {
@@ -16277,6 +16289,9 @@
                           "display": {
                             "type": "object",
                             "properties": {
+                              "includeArchivedProjects": {
+                                "type": "boolean"
+                              },
                               "layout": {
                                 "type": "string",
                                 "enum": [
@@ -16820,6 +16835,9 @@
                   "display": {
                     "type": "object",
                     "properties": {
+                      "includeArchivedProjects": {
+                        "type": "boolean"
+                      },
                       "layout": {
                         "type": "string",
                         "enum": [
@@ -17251,6 +17269,9 @@
                     "display": {
                       "type": "object",
                       "properties": {
+                        "includeArchivedProjects": {
+                          "type": "boolean"
+                        },
                         "layout": {
                           "type": "string",
                           "enum": [
@@ -17789,6 +17810,9 @@
                     "display": {
                       "type": "object",
                       "properties": {
+                        "includeArchivedProjects": {
+                          "type": "boolean"
+                        },
                         "layout": {
                           "type": "string",
                           "enum": [
@@ -18324,6 +18348,9 @@
                   "display": {
                     "type": "object",
                     "properties": {
+                      "includeArchivedProjects": {
+                        "type": "boolean"
+                      },
                       "layout": {
                         "type": "string",
                         "enum": [
@@ -18755,6 +18782,9 @@
                     "display": {
                       "type": "object",
                       "properties": {
+                        "includeArchivedProjects": {
+                          "type": "boolean"
+                        },
                         "layout": {
                           "type": "string",
                           "enum": [

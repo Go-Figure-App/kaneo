@@ -607,3 +607,8 @@ changes stay in the owned Views modules and their tests.
 Archived issues resolve their last recorded workflow slug against columns in
 their own project for exact-state filters. Missing/deleted states fall back to
 the archive status; filtering never restores or moves an archived issue.
+
+Saved display preferences can opt into archived projects. The default remains
+active projects; the opt-in keeps workspace activity and per-project access
+checks, and is forwarded by both web and mobile. This preserves Linear views
+that explicitly include archived items without restoring those projects.
