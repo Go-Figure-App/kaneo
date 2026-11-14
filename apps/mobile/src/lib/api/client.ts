@@ -3,7 +3,11 @@ import { sessionStore, type Session } from "../session";
 
 export const CLOUD_URL = "https://tracing.gofigureapp.io";
 
-/** Device-authorization client accepted by default Tracing instances (shared with the official CLI). */
+/**
+ * Upgrade the server or add tracing-mobile to DEVICE_AUTH_CLIENT_IDS before
+ * deploying this client to servers whose default allowlist predates the ID.
+ * See apps/docs/core/operations/upgrades.mdx for the server-first rollout.
+ */
 export const DEVICE_CLIENT_ID = "tracing-mobile";
 
 export class ApiError extends Error {
