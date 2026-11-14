@@ -571,3 +571,17 @@ This rehearsal uses connector exports through a private local GraphQL fixture, n
 The initial PR CI run (43538165893) passed every job from a clean checkout: 5,324 workspace unit tests, 2,337 PostgreSQL cases with three inherited skips, all ten parity browser flows and all three feature-off flows. Review corrections reduce nested discovery pages to fit Linear's documented complexity limit, clear a failed workspace-read promise so later projects can retry, sort initiative-project numeric strings numerically, check cancellation after project placement, acquire the scheduler's advisory lock before settings/cycle writes, and rank exact original identifiers ahead of incidental text matches. Regression tests cover recovery and successful cache reuse, later nested pages, differing order digit lengths, complete rollback including settings, cancellation during placement, concurrent cycle allocation and a one-result search with competing text matches. The two new non-English keys retain the documented English fallback used by earlier phases.
 
 Review-fix verification passed nine focused unit tests, 38 PostgreSQL cases across the affected import/cycle/search suites and the corrected search-fixture rerun, all 22 workspace typecheck/build tasks, formatting and lint. All 15 queries still validate against the public schema; a conservative static complexity estimate is below 10,000 for each query (the largest is 7,259). Authenticated live-source validation remains separate.
+
+
+## Railway cutover build compatibility
+
+The bundled and standalone API/web Docker builds use `vp run --no-cache build`.
+This keeps the existing task dependency graph while disabling Vite+ task caching
+and process/file tracking inside the container build. Docker layers already cache
+these outputs. Railway's builder failed before compilation with `Resource busy
+(os error 16)` when Vite+ tried to spawn cache-tracked TypeScript tasks; local
+development and GitHub task caching retain their existing configuration.
+
+Shared-file register: `Dockerfile.kaneo`, `apps/api/Dockerfile` and
+`apps/web/Dockerfile` change only their build invocation and its explanation.
+No runtime configuration, application behavior or database model changes.

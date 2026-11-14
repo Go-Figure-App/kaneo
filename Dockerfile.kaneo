@@ -27,17 +27,18 @@ COPY packages/mcp ./packages/mcp
 COPY i18n ./i18n
 COPY apps/api ./apps/api
 
+# Docker layers cache these outputs; disable Vite+ process tracing in builders.
 WORKDIR /app/packages/email
-RUN pnpm run build
+RUN pnpm exec vp run --no-cache build
 
 WORKDIR /app/packages/permissions
-RUN pnpm run build
+RUN pnpm exec vp run --no-cache build
 
 WORKDIR /app/packages/importers
-RUN pnpm run build
+RUN pnpm exec vp run --no-cache build
 
 WORKDIR /app/apps/api
-RUN pnpm run build
+RUN pnpm exec vp run --no-cache build
 
 # Assembles the production node_modules on the BUILD platform (native, no QEMU emulation).
 # All API runtime deps are pure JavaScript (bcrypt was replaced with bcryptjs), so this
@@ -95,13 +96,13 @@ COPY i18n ./i18n
 COPY apps/web ./apps/web
 
 WORKDIR /app/packages/permissions
-RUN pnpm run build
+RUN pnpm exec vp run --no-cache build
 
 WORKDIR /app/packages/editor
-RUN pnpm run build
+RUN pnpm exec vp run --no-cache build
 
 WORKDIR /app/apps/web
-RUN pnpm run build && find dist -type f -name '*.map' -delete
+RUN pnpm exec vp run --no-cache build && find dist -type f -name '*.map' -delete
 
 FROM node:24.22.2-alpine AS runtime
 
