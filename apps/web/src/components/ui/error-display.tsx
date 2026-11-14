@@ -92,7 +92,7 @@ export function ErrorDisplay({
               <Button
                 onClick={() =>
                   window.open(
-                    "https://github.com/Go-Figure-App/tracing#readme",
+                    "https://github.com/Go-Figure-App/tracing/blob/main/apps/docs/core/installation/environment-variables.mdx#general-urls",
                     "_blank",
                   )
                 }
