@@ -96,7 +96,7 @@
 				"errorToast": "Не удалось создать проект"
 			},
 			"createWorkspace": {
-				"breadcrumbTracing": "KANEO",
+				"breadcrumbTracing": "Tracing",
 				"title": "Создать новую рабочую область",
 				"description": "Создайте новую рабочую область, указав её название.",
 				"namePlaceholder": "Название рабочей области",

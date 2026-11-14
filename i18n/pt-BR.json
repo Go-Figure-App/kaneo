@@ -96,7 +96,7 @@
 				"errorToast": "Falha ao criar projeto"
 			},
 			"createWorkspace": {
-				"breadcrumbTracing": "KANEO",
+				"breadcrumbTracing": "Tracing",
 				"title": "Criar um novo espaço de trabalho",
 				"description": "Crie um novo espaço de trabalho fornecendo um nome para ele.",
 				"namePlaceholder": "Nome do espaço de trabalho",

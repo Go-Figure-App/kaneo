@@ -96,7 +96,7 @@
 				"errorToast": "Proje oluşturulamadı"
 			},
 			"createWorkspace": {
-				"breadcrumbTracing": "KANEO",
+				"breadcrumbTracing": "Tracing",
 				"title": "Yeni çalışma alanı oluştur",
 				"description": "Çalışma alanınız için bir ad girerek yeni bir çalışma alanı oluşturun.",
 				"namePlaceholder": "Çalışma alanı adı",

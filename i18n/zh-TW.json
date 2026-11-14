@@ -96,7 +96,7 @@
 				"errorToast": "無法建立專案"
 			},
 			"createWorkspace": {
-				"breadcrumbTracing": "KANEO",
+				"breadcrumbTracing": "Tracing",
 				"title": "建立新工作區",
 				"description": "輸入工作區名稱即可建立新工作區。",
 				"namePlaceholder": "工作區名稱",

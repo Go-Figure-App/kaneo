@@ -96,7 +96,7 @@
 				"errorToast": "Failed to create project"
 			},
 			"createWorkspace": {
-				"breadcrumbTracing": "KANEO",
+				"breadcrumbTracing": "Tracing",
 				"title": "Create a new workspace",
 				"description": "Create a new workspace by providing a name for your workspace.",
 				"namePlaceholder": "Workspace name",
@@ -4377,7 +4377,7 @@
 			"cloud": "Tracing Cloud",
 			"selfHosted": "Self-hosted",
 			"captcha": "This server requires a browser check for this step. Use “Continue in browser” instead.",
-			"invalidClient": "This server doesn’t allow device sign-in. Ask its admin to add “kaneo-cli” to DEVICE_AUTH_CLIENT_IDS, or sign in with a password or API key.",
+			"invalidClient": "This server doesn’t allow device sign-in. Ask its admin to add “tracing-cli” and retain “kaneo-cli” in DEVICE_AUTH_CLIENT_IDS, or sign in with a password or API key.",
 			"serverAddress": "Server address",
 			"serverAddressHint": "The address you open Tracing at. Use http:// for servers without TLS. If the API runs on another host, enter the API address.",
 			"connect": "Connect",

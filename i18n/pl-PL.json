@@ -96,7 +96,7 @@
 				"errorToast": "Nie udało się utworzyć projektu"
 			},
 			"createWorkspace": {
-				"breadcrumbTracing": "KANEO",
+				"breadcrumbTracing": "Tracing",
 				"title": "Utwórz nowy obszar roboczy",
 				"description": "Utwórz nowy obszar roboczy, podając jego nazwę.",
 				"namePlaceholder": "Nazwa obszaru roboczego",
