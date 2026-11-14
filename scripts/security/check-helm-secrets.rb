@@ -17,7 +17,7 @@ def app_env(docs)
 end
 
 secret = 'test-auth-secret-at-least-32-characters'
-args = ['--set', "tracing.env.authSecret=#{secret}", '--set', 'tracing.env.clientUrl=https://kaneo.example.com']
+args = ['--set', "tracing.env.authSecret=#{secret}", '--set', 'tracing.env.clientUrl=https://tracing.example.com']
 first = render(*args)
 second = render(*args, '--is-upgrade')
 [first, second].each do |docs|
@@ -31,7 +31,7 @@ second = render(*args, '--is-upgrade')
   end
 end
 
-external = render('--set', 'tracing.env.clientUrl=https://kaneo.example.com', '--set', 'tracing.env.existingSecret.enabled=true', '--set', 'tracing.env.existingSecret.name=operator-secret')
+external = render('--set', 'tracing.env.clientUrl=https://tracing.example.com', '--set', 'tracing.env.existingSecret.enabled=true', '--set', 'tracing.env.existingSecret.name=operator-secret')
 ref = app_env(external).find { |e| e['name'] == 'AUTH_SECRET' }.fetch('valueFrom').fetch('secretKeyRef')
 verify(ref == { 'name' => 'operator-secret', 'key' => 'auth-secret' }, 'Existing secret reference changed')
 verify(external.none? { |d| d['kind'] == 'Secret' && d['metadata']['name'].end_with?('-auth') }, 'Existing secret must not be overwritten')
@@ -52,9 +52,9 @@ puts 'Helm secret, upgrade, external-secret validation and pod security checks p
   _, stderr, status = Open3.capture3('helm', 'template', 'security-test', 'charts/tracing', '--set', "tracing.env.authSecret=#{secret}", '--set-string', "tracing.env.clientUrl=#{url}")
   verify(!status.success? && stderr.include?('tracing.env.clientUrl'), "Invalid clientUrl must produce an actionable error: #{url.inspect}")
 end
-['https://kaneo.example.com', 'http://localhost:8080', 'http://[::1]:8080/', ' https://kaneo.example.com/ '].each do |url|
+['https://tracing.example.com', 'http://localhost:8080', 'http://[::1]:8080/', ' https://tracing.example.com/ '].each do |url|
   docs = render(*args, '--set-string', "tracing.env.clientUrl=#{url}")
-  client = app_env(docs).find { |env| env['name'] == 'KANEO_CLIENT_URL' }
+  client = app_env(docs).find { |env| env['name'] == 'TRACING_CLIENT_URL' }
   verify(client['value'] == url.strip.sub(%r{/$}, ''), 'Public origin must be trimmed and safe for API URL derivation')
 end
 puts 'Helm required-origin validation and URL rendering checks passed'
