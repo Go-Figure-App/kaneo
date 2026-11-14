@@ -8,7 +8,7 @@ import { integrationPlugins } from "../../plugins";
 
 function instanceUrl() {
   return (
-    (process.env.TRACING_CLIENT_URL ?? process.env.KANEO_CLIENT_URL)?.trim() ||
+    (process.env.TRACING_CLIENT_URL || process.env.KANEO_CLIENT_URL)?.trim() ||
     null
   );
 }

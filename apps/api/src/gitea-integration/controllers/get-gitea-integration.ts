@@ -32,7 +32,8 @@ async function getGiteaIntegration(
   const config = JSON.parse(integration.config) as GiteaConfig;
 
   const apiBase = normalizeApiServerUrl(
-    (process.env.TRACING_API_URL ?? process.env.KANEO_API_URL) ||
+    process.env.TRACING_API_URL ||
+      process.env.KANEO_API_URL ||
       "http://localhost:1337",
   );
 

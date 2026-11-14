@@ -17,7 +17,8 @@ import type {
 } from "../schemas";
 
 const clientUrl =
-  (process.env.TRACING_CLIENT_URL ?? process.env.KANEO_CLIENT_URL) ||
+  process.env.TRACING_CLIENT_URL ||
+  process.env.KANEO_CLIENT_URL ||
   "http://localhost:5173";
 
 type ClientRegistrationInput = z.infer<typeof clientRegistrationSchema>;

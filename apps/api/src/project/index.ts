@@ -690,7 +690,8 @@ const project = apiRouter<BaseVariables & { workspaceId: string }>()
     await publishEvent("project.updated", { projectId: id });
 
     const apiBaseUrl = normalizeApiServerUrl(
-      (process.env.TRACING_API_URL ?? process.env.KANEO_API_URL) ||
+      process.env.TRACING_API_URL ||
+        process.env.KANEO_API_URL ||
         new URL(c.req.url).origin,
     );
     return c.json(

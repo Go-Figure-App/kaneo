@@ -6671,7 +6671,7 @@
               "string",
               "null"
             ],
-            "description": "The web app URL from `KANEO_CLIENT_URL`. Read-only."
+            "description": "The web app URL from `TRACING_CLIENT_URL`, falling back to `KANEO_CLIENT_URL`. Read-only."
           },
           "registrationEnabled": {
             "type": "boolean"
