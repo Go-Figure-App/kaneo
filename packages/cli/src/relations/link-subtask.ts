@@ -51,7 +51,7 @@ export const linkToParent = Effect.fn("relations.linkToParent")(function* (
       (error) =>
         new InvalidArgument({
           message: `Created ${child.label}, but could not make it a subtask of ${parentLabel}: ${describeError(error).message}`,
-          hint: `Link it with kaneo task relation add ${child.argument} subtask-of ${taskArgument(ref)}`,
+          hint: `Link it with tracing task relation add ${child.argument} subtask-of ${taskArgument(ref)}`,
         }),
     ),
   );

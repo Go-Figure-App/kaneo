@@ -1,5 +1,5 @@
 {
-	"name": "@kaneo/web",
+	"name": "@tracing/web",
 	"private": true,
 	"version": "0.0.0",
 	"type": "module",
@@ -111,9 +111,9 @@
 	},
 	"devDependencies": {
 		"@babel/core": "^8.0.9",
-		"@kaneo/editor": "workspace:*",
-		"@kaneo/libs": "workspace:*",
-		"@kaneo/permissions": "workspace:*",
+		"@tracing/editor": "workspace:*",
+		"@tracing/libs": "workspace:*",
+		"@tracing/permissions": "workspace:*",
 		"@rolldown/plugin-babel": "^0.2.4",
 		"@tailwindcss/postcss": "^4.3.3",
 		"@testing-library/jest-dom": "^7.0.1",

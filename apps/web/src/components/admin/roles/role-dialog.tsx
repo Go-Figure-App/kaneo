@@ -1,4 +1,4 @@
-import { INSTANCE_ROLE_NAME_PATTERN } from "@kaneo/permissions";
+import { INSTANCE_ROLE_NAME_PATTERN } from "@tracing/permissions";
 import { type FormEvent, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Button } from "@/components/ui/button";

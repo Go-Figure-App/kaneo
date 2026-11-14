@@ -4,7 +4,7 @@ import {
   type DeviceTokenPoll,
   pollDeviceTokenOnce,
   requestDeviceCode,
-} from "@kaneo/mcp/device-flow";
+} from "@tracing/mcp/device-flow";
 import { Context, Effect, Layer } from "effect";
 import {
   DeviceClientRejected,
@@ -13,7 +13,7 @@ import {
 } from "../errors/errors.js";
 import { sanitizeText } from "../render/sanitize.js";
 
-export const DEVICE_CLIENT_ID = "kaneo-cli";
+export const DEVICE_CLIENT_ID = "tracing-cli";
 
 export type DeviceAuthShape = {
   readonly requestCode: (
@@ -29,7 +29,7 @@ export type DeviceAuthShape = {
 };
 
 export class DeviceAuth extends Context.Service<DeviceAuth, DeviceAuthShape>()(
-  "kaneo/DeviceAuth",
+  "tracing/DeviceAuth",
 ) {}
 
 export function toDeviceFailure(apiUrl: string, endpoint: string) {

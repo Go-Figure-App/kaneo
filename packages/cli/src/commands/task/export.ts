@@ -74,7 +74,7 @@ export const taskExport = Command.make(
   (options) => runTaskExport(options),
 ).pipe(
   Command.withDescription(
-    "Export a project's tasks as JSON, ready for kaneo task import",
+    "Export a project's tasks as JSON, ready for tracing task import",
   ),
   Command.provide(ApiLayer),
 );

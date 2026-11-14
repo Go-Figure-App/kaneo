@@ -1,7 +1,7 @@
 import type { CallToolResult } from "@modelcontextprotocol/sdk/types.js";
 import { z } from "zod";
-import { encodeCustomFieldValue } from "../kaneo/custom-field-value.js";
-import { buildFullTaskUpdateBody } from "../kaneo/task-helpers.js";
+import { encodeCustomFieldValue } from "../tracing/custom-field-value.js";
+import { buildFullTaskUpdateBody } from "../tracing/task-helpers.js";
 import { errorResult, textResult } from "../utils/mcp-result.js";
 import { getCurrentUser } from "./get-current-user.js";
 import { registerTriageTools } from "./parity/triage.js";
@@ -76,7 +76,7 @@ export function registerTools(
     "whoami",
     {
       description:
-        "Return the current Kaneo user for the configured authentication method.",
+        "Return the current Tracing user for the configured authentication method.",
       inputSchema: z.object({}),
     },
     async () => run(() => getCurrentUser(client)),

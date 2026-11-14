@@ -50,7 +50,7 @@ const del = <T>(
   query?: Record<string, string | undefined>,
 ) => request<T>(path, { method: "DELETE", body, query });
 
-/** Kaneo REST API. Every route lives under `/api`; Better Auth routes are under `/api/auth`. */
+/** Tracing REST API. Every route lives under `/api`; Better Auth routes are under `/api/auth`. */
 export const api = {
   // --- User ---
   me: () => get<CurrentUser>("api/user/me"),

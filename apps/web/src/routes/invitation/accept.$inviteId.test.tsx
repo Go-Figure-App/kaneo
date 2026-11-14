@@ -60,7 +60,7 @@ const AcceptInvitation = (Route as unknown as { component: ComponentType })
 const invitation = {
   id: "invitation-1",
   email: "invitee@kaneo.test",
-  workspaceName: "Kaneo",
+  workspaceName: "Tracing",
   inviterName: "Ada",
   expiresAt: "2999-01-01T00:00:00.000Z",
   status: "pending",

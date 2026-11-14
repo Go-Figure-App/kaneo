@@ -1,5 +1,5 @@
 import { Effect, Schema } from "effect";
-import { KaneoApi } from "./kaneo-api.js";
+import { TracingApi } from "./tracing-api.js";
 
 const NullableString = Schema.NullOr(Schema.String);
 
@@ -34,7 +34,7 @@ export const updateTaskStatus = Effect.fnUntraced(function* (
   taskId: string,
   status: string,
 ) {
-  const api = yield* KaneoApi;
+  const api = yield* TracingApi;
   return yield* api.request(
     "PUT",
     `/api/task/status/${encodeURIComponent(taskId)}`,
@@ -50,7 +50,7 @@ export const moveTask = Effect.fnUntraced(function* (
     readonly status: string | undefined;
   },
 ) {
-  const api = yield* KaneoApi;
+  const api = yield* TracingApi;
   return yield* api.request(
     "PUT",
     `/api/task/move/${encodeURIComponent(taskId)}`,
@@ -70,7 +70,7 @@ export const updateTaskAssignee = Effect.fnUntraced(function* (
   taskId: string,
   userId: string | null,
 ) {
-  const api = yield* KaneoApi;
+  const api = yield* TracingApi;
   return yield* api.request(
     "PUT",
     `/api/task/assignee/${encodeURIComponent(taskId)}`,
@@ -83,7 +83,7 @@ export const createComment = Effect.fnUntraced(function* (
   taskId: string,
   content: string,
 ) {
-  const api = yield* KaneoApi;
+  const api = yield* TracingApi;
   return yield* api.request(
     "POST",
     `/api/comment/${encodeURIComponent(taskId)}`,

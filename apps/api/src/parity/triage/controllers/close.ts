@@ -1,4 +1,4 @@
-import { sendNotificationEmail } from "@kaneo/email";
+import { sendNotificationEmail } from "@tracing/email";
 import { and, asc, eq, or } from "drizzle-orm";
 import { HTTPException } from "hono/http-exception";
 import {
@@ -101,7 +101,7 @@ export async function closeTriage(
         .set({
           status: column.slug,
           columnId: column.id,
-          // Canceled intake must not generate a new board task through Kaneo's
+          // Canceled intake must not generate a new board task through Tracing's
           // final-column recurrence subscriber. Keep the old rule in activity.
           recurrence: null,
           position: await nextTaskPosition(

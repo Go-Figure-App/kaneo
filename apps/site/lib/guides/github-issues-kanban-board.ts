@@ -10,17 +10,17 @@ export const githubIssuesKanbanBoard: Guide = {
   summary:
     "What two-way issue sync covers, how pull requests move tasks, and when GitHub Projects is enough.",
   answer:
-    "Yes. Kaneo is an MIT-licensed project board you can self-host that connects a project to a GitHub repository through a GitHub App. Tasks and issues sync in both directions, including titles, descriptions, comments, priority and status labels, and open or closed state. Branch pushes, opened pull requests, and merged pull requests can move tasks between columns automatically.",
+    "Yes. Tracing is an MIT-licensed project board you can self-host that connects a project to a GitHub repository through a GitHub App. Tasks and issues sync in both directions, including titles, descriptions, comments, priority and status labels, and open or closed state. Branch pushes, opened pull requests, and merged pull requests can move tasks between columns automatically.",
   sections: [
     {
       heading: "What syncs, and in which direction",
       items: [
         {
-          name: "Kaneo to GitHub",
+          name: "Tracing to GitHub",
           body: "Creating a task opens an issue with priority and status labels and a comment linking back to the task. Changes to the title, description, priority, and status follow it, and moving a task to done closes the issue.",
         },
         {
-          name: "GitHub to Kaneo",
+          name: "GitHub to Tracing",
           body: "Opening an issue creates a task. Edits, comments, labels, and closing or reopening the issue update the linked task. Labels that are not priority or status labels sync as ordinary labels.",
         },
         {
@@ -32,7 +32,7 @@ export const githubIssuesKanbanBoard: Guide = {
     {
       heading: "How branches and pull requests move tasks",
       body: [
-        "Kaneo matches a branch to a task by a naming pattern, by default the project key and task number such as proj-123. Pushing that branch moves the task to in progress, opening a pull request moves it to in review, and merging moves it to done. Each mapping is configurable per project under workflow automation rules.",
+        "Tracing matches a branch to a task by a naming pattern, by default the project key and task number such as proj-123. Pushing that branch moves the task to in progress, opening a pull request moves it to in review, and merging moves it to done. Each mapping is configurable per project under workflow automation rules.",
         "Pull requests can also reference a task directly with the project key in the title or body, such as fix(PROJ-42), or with a GitHub issue reference like Closes #61 when that issue is linked to a task.",
       ],
     },
@@ -46,14 +46,14 @@ export const githubIssuesKanbanBoard: Guide = {
     {
       heading: "Setting it up",
       body: [
-        "A self-hosted Kaneo instance registers its own GitHub App once, with read and write access to issues and read access to pull requests, contents, and metadata, and a webhook pointed at the Kaneo API. You then install the app on the repositories you want and connect each Kaneo project to one repository.",
+        "A self-hosted Tracing instance registers its own GitHub App once, with read and write access to issues and read access to pull requests, contents, and metadata, and a webhook pointed at the Tracing API. You then install the app on the repositories you want and connect each Tracing project to one repository.",
         "Try it on a test repository first. Sync creates real issues and comments, so check the event-to-column mappings against your actual columns before connecting a busy repository.",
       ],
     },
   ],
   faq: [
     {
-      question: "Does Kaneo sync GitHub issues both ways?",
+      question: "Does Tracing sync GitHub issues both ways?",
       answer:
         "Yes. Tasks create issues and issues create tasks. Titles, descriptions, comments, labels, priority, status, and open or closed state stay in step in both directions.",
     },
@@ -70,11 +70,14 @@ export const githubIssuesKanbanBoard: Guide = {
     {
       question: "Does it work with GitLab or Gitea too?",
       answer:
-        "Yes. Kaneo has GitLab and Gitea integrations with the same two-way issue sync and branch and merge request automation, including self-managed GitLab and self-hosted Gitea servers.",
+        "Yes. Tracing has GitLab and Gitea integrations with the same two-way issue sync and branch and merge request automation, including self-managed GitLab and self-hosted Gitea servers.",
     },
   ],
   related: [
-    { label: "Kaneo vs GitHub Projects", href: "/github-projects-alternative" },
+    {
+      label: "Tracing vs GitHub Projects",
+      href: "/github-projects-alternative",
+    },
     {
       label: "GitHub integration docs",
       href: "/docs/core/integrations/github/setup",

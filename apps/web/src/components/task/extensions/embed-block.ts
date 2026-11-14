@@ -1,4 +1,4 @@
-import { EmbedBlock as EmbedBlockNode } from "@kaneo/editor";
+import { EmbedBlock as EmbedBlockNode } from "@tracing/editor";
 import { i18n } from "@/lib/i18n";
 
 export const EmbedBlock = EmbedBlockNode.configure({

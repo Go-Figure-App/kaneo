@@ -88,7 +88,9 @@ async function getMattermostEventData(
         .limit(1)
     : [];
 
-  const clientUrl = process.env.KANEO_CLIENT_URL || "http://localhost:5173";
+  const clientUrl =
+    (process.env.TRACING_CLIENT_URL ?? process.env.KANEO_CLIENT_URL) ||
+    "http://localhost:5173";
   const taskUrl = `${clientUrl}/dashboard/workspace/${taskRow.workspaceId}/project/${taskRow.projectId}/task/${taskId}`;
 
   return {
@@ -138,7 +140,7 @@ async function sendMattermostMessage(
           },
           {
             title: "Triggered by",
-            value: data.actorName ? escapeText(data.actorName) : "Kaneo",
+            value: data.actorName ? escapeText(data.actorName) : "Tracing",
             short: true,
           },
         ],

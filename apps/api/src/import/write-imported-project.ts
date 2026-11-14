@@ -1,4 +1,4 @@
-import type { ImportedProject, ImportSourceId } from "@kaneo/importers";
+import type { ImportedProject, ImportSourceId } from "@tracing/importers";
 import { publishEvent } from "../events";
 import type { ImportCounts } from "./import-run-project";
 import { createImportProject } from "./writer/create-import-project";

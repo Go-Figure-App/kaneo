@@ -1,7 +1,7 @@
 import type {
   DeviceCodeResponse,
   DeviceTokenPoll,
-} from "@kaneo/mcp/device-flow";
+} from "@tracing/mcp/device-flow";
 import { type Duration, Effect, Fiber, Layer, Result } from "effect";
 import { TestClock } from "effect/testing";
 import { describe, expect, it } from "vite-plus/test";
@@ -15,7 +15,7 @@ import {
 const code: DeviceCodeResponse = {
   device_code: "device",
   user_code: "ABCDEFGH",
-  verification_uri: "https://app.kaneo.test/device",
+  verification_uri: "https://app.tracing.test/device",
   interval: 5,
   expires_in: 60,
 };
@@ -93,11 +93,11 @@ describe("formatUserCode", () => {
 
 describe("webUrlFromVerificationUri", () => {
   it("strips the device path", () => {
-    expect(webUrlFromVerificationUri("https://app.kaneo.test/device")).toBe(
-      "https://app.kaneo.test",
+    expect(webUrlFromVerificationUri("https://app.tracing.test/device")).toBe(
+      "https://app.tracing.test",
     );
-    expect(webUrlFromVerificationUri("https://x.test/kaneo/device/")).toBe(
-      "https://x.test/kaneo",
+    expect(webUrlFromVerificationUri("https://x.test/tracing/device/")).toBe(
+      "https://x.test/tracing",
     );
     expect(webUrlFromVerificationUri("nope")).toBeUndefined();
   });

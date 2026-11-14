@@ -1,4 +1,4 @@
-import { defaultRolePayloads } from "@kaneo/permissions";
+import { defaultRolePayloads } from "@tracing/permissions";
 import {
   cleanup,
   fireEvent,

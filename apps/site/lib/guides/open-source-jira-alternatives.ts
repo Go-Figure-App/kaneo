@@ -5,11 +5,11 @@ export const openSourceJiraAlternatives: Guide = {
   question: "What are the best free, open-source Jira alternatives?",
   title: "5 Free, Open-Source Jira Alternatives (2026)",
   description:
-    "Jira is not open source, and self-hosting it costs money. Kaneo, Plane, OpenProject, Redmine, and Taiga compared on licence, single sign-on, and fit.",
+    "Jira is not open source, and self-hosting it costs money. Tracing, Plane, OpenProject, Redmine, and Taiga compared on licence, single sign-on, and fit.",
   summary:
     "Five self-hostable trackers that replace Jira, and the Jira features none of them have.",
   answer:
-    "Jira is not open source, and self-hosting it means a paid Data Center subscription. The realistic free, open-source Jira alternatives are Kaneo, Plane, OpenProject, Redmine, and Taiga. Kaneo is the lightest and is MIT licensed with single sign-on included, Plane is closest in interface to a modern tracker, OpenProject is closest to Jira in scope, Redmine has the deepest plugin ecosystem, and Taiga is the strongest for Scrum. None of them replicate Jira's schemes, marketplace, or Jira Service Management.",
+    "Jira is not open source, and self-hosting it means a paid Data Center subscription. The realistic free, open-source Jira alternatives are Tracing, Plane, OpenProject, Redmine, and Taiga. Tracing is the lightest and is MIT licensed with single sign-on included, Plane is closest in interface to a modern tracker, OpenProject is closest to Jira in scope, Redmine has the deepest plugin ecosystem, and Taiga is the strongest for Scrum. None of them replicate Jira's schemes, marketplace, or Jira Service Management.",
   sections: [
     {
       heading: "At a glance",
@@ -23,7 +23,7 @@ export const openSourceJiraAlternatives: Guide = {
         ],
         rows: [
           [
-            "Kaneo",
+            "Tracing",
             "MIT",
             "Yes, every feature",
             "Yes, any OIDC provider",
@@ -79,7 +79,7 @@ export const openSourceJiraAlternatives: Guide = {
       heading: "The alternatives, and who each is for",
       items: [
         {
-          name: "Kaneo",
+          name: "Tracing",
           meta: "MIT, self-hosted free",
           href: "/jira-alternative",
           body: "For teams who want boards, backlog, Gantt and calendar planning, custom fields, workflow rules, roles, and time tracking in a focused tracker. One container plus PostgreSQL, SSO through any OIDC provider in the free build, a documented public API, and an MCP server. No dedicated sprint reports, issue-type schemes, or app marketplace.",
@@ -122,7 +122,7 @@ export const openSourceJiraAlternatives: Guide = {
       heading: "Moving your issues",
       body: [
         "Jira exports issues to CSV and has a well-documented REST API, so a scripted migration is realistic for anything up to a few thousand issues. The parts that hurt are attachments, comment history with author attribution, and issue links.",
-        "Do a dry run into a scratch project first, check that assignees resolve by email address, and keep the Jira instance readable for a quarter rather than cancelling it the same week. Kaneo has a public API and per-project JSON import, and we are happy to help with a migration script if you open an issue on GitHub.",
+        "Do a dry run into a scratch project first, check that assignees resolve by email address, and keep the Jira instance readable for a quarter rather than cancelling it the same week. Tracing has a public API and per-project JSON import, and we are happy to help with a migration script if you open an issue on GitHub.",
       ],
     },
   ],
@@ -135,7 +135,7 @@ export const openSourceJiraAlternatives: Guide = {
     {
       question: "What is the best free Jira alternative?",
       answer:
-        "For a free, self-hosted tool, Kaneo is the lightest to run and the only option here with OIDC single sign-on in the free build. Taiga is the strongest for Scrum, OpenProject the closest to Jira in scope, and Plane the closest to a modern hosted tracker.",
+        "For a free, self-hosted tool, Tracing is the lightest to run and the only option here with OIDC single sign-on in the free build. Taiga is the strongest for Scrum, OpenProject the closest to Jira in scope, and Plane the closest to a modern hosted tracker.",
     },
     {
       question: "Is there a free version of Jira?",
@@ -150,7 +150,7 @@ export const openSourceJiraAlternatives: Guide = {
     {
       question: "What is the closest open-source tool to Jira?",
       answer:
-        "OpenProject, in scope and structure. If what you liked about Jira was the board and backlog rather than the schemes and reports, Kaneo or Plane will feel closer to what you actually used.",
+        "OpenProject, in scope and structure. If what you liked about Jira was the board and backlog rather than the schemes and reports, Tracing or Plane will feel closer to what you actually used.",
     },
     {
       question: "How long does a Jira migration take?",
@@ -159,7 +159,7 @@ export const openSourceJiraAlternatives: Guide = {
     },
   ],
   related: [
-    { label: "Kaneo vs Jira", href: "/jira-alternative" },
+    { label: "Tracing vs Jira", href: "/jira-alternative" },
     {
       label: "Best Jira alternatives, including paid tools",
       href: "/blog/best-jira-alternatives",

@@ -49,12 +49,12 @@ export const runLabelEdit = Effect.fn("command.label.edit")(
     const target = yield* chooseLabel(
       workspaceLabels(labels),
       options.label,
-      "kaneo label edit Bug --color crimson",
+      "tracing label edit Bug --color crimson",
     );
     if (target.deletionStartedAt) {
       return yield* new InvalidArgument({
         message: `The label "${target.name}" is being deleted.`,
-        hint: `Run kaneo label delete ${quoteName(target.name)} to finish deleting it.`,
+        hint: `Run tracing label delete ${quoteName(target.name)} to finish deleting it.`,
       });
     }
     const name = Option.getOrElse(newName, () => target.name);

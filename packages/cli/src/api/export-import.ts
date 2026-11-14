@@ -1,5 +1,5 @@
 import { Effect, Schema } from "effect";
-import { KaneoApi } from "./kaneo-api.js";
+import { TracingApi } from "./tracing-api.js";
 
 const NullableString = Schema.NullOr(Schema.String);
 
@@ -62,7 +62,7 @@ export const ImportResult = Schema.Struct({
 export type ImportResult = typeof ImportResult.Type;
 
 export const exportTasks = Effect.fnUntraced(function* (projectId: string) {
-  const api = yield* KaneoApi;
+  const api = yield* TracingApi;
   return yield* api.request(
     "GET",
     `/api/task/export/${encodeURIComponent(projectId)}`,
@@ -74,7 +74,7 @@ export const importTasks = Effect.fnUntraced(function* (
   projectId: string,
   tasks: ReadonlyArray<ImportTaskBody>,
 ) {
-  const api = yield* KaneoApi;
+  const api = yield* TracingApi;
   return yield* api.request(
     "POST",
     `/api/task/import/${encodeURIComponent(projectId)}`,

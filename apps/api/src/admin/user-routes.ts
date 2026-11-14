@@ -170,7 +170,7 @@ const removeAvatarRoute = createRoute({
   tags: ["Admin"],
   summary: "Remove a user's avatar",
   description:
-    "Remove the user's profile picture. A picture managed by the identity provider can't be removed, but an earlier Kaneo upload can. Requires the `users:update` instance permission; API keys are rejected.",
+    "Remove the user's profile picture. A picture managed by the identity provider can't be removed, but an earlier Tracing upload can. Requires the `users:update` instance permission; API keys are rejected.",
   middleware: [
     requireUserSession,
     requireInstancePermission("users:update"),

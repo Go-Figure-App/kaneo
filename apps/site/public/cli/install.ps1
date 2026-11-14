@@ -1,4 +1,4 @@
-function Install-KaneoCli {
+function Install-TracingCli {
     [Diagnostics.CodeAnalysis.SuppressMessageAttribute('PSAvoidUsingWriteHost', '')]
     [Diagnostics.CodeAnalysis.SuppressMessageAttribute('PSUseShouldProcessForStateChangingFunctions', '')]
     [CmdletBinding()]
@@ -60,7 +60,7 @@ function Install-KaneoCli {
 
     function Get-LatestVersion {
         for ($page = 1; $page -le 3; $page++) {
-            $url = "https://api.github.com/repos/usekaneo/kaneo/releases?per_page=100&page=$page"
+            $url = "https://api.github.com/repos/Go-Figure-App/tracing/releases?per_page=100&page=$page"
             try {
                 $response = Invoke-RestMethod -UseBasicParsing -Uri $url -Headers @{ Accept = 'application/vnd.github+json' }
             }
@@ -88,7 +88,7 @@ function Install-KaneoCli {
                 return $best.Version
             }
         }
-        throw 'No Kaneo CLI release found on GitHub. See https://github.com/usekaneo/kaneo/releases or set KANEO_VERSION.'
+        throw 'No Tracing CLI release found on GitHub. See https://github.com/Go-Figure-App/tracing/releases or set KANEO_VERSION.'
     }
 
     function Get-UserPath {
@@ -123,14 +123,14 @@ function Install-KaneoCli {
         return [Environment]::ExpandEnvironmentVariables($Path).Trim().Trim('"').TrimEnd('\', '/').ToLowerInvariant()
     }
 
-    function Find-FirstKaneo {
+    function Find-FirstTracing {
         param([string[]]$Directories)
         foreach ($directory in $Directories) {
             if (-not $directory) {
                 continue
             }
             $expanded = [Environment]::ExpandEnvironmentVariables($directory).Trim().Trim('"')
-            foreach ($name in 'kaneo.exe', 'kaneo.cmd', 'kaneo.bat', 'kaneo.com', 'kaneo.ps1') {
+            foreach ($name in 'tracing.exe', 'tracing.cmd', 'tracing.bat', 'tracing.com', 'tracing.ps1') {
                 try {
                     $candidate = [IO.Path]::Combine($expanded, $name)
                 }
@@ -146,7 +146,7 @@ function Install-KaneoCli {
     }
 
     if ($PSVersionTable.PSEdition -eq 'Core' -and -not $IsWindows) {
-        throw 'This script is for Windows. On macOS and Linux run: curl -fsSL https://kaneo.app/cli/install.sh | sh'
+        throw 'This script is for Windows. On macOS and Linux run: curl -fsSL https://tracing.gofigureapp.io/cli/install.sh | sh'
     }
 
     $machineArch = $env:PROCESSOR_ARCHITEW6432
@@ -154,9 +154,9 @@ function Install-KaneoCli {
         $machineArch = $env:PROCESSOR_ARCHITECTURE
     }
     if ($machineArch -ne 'AMD64' -and $machineArch -ne 'ARM64') {
-        throw "Unsupported CPU architecture: $machineArch. The Kaneo CLI for Windows runs on x64 and arm64 PCs."
+        throw "Unsupported CPU architecture: $machineArch. The Tracing CLI for Windows runs on x64 and arm64 PCs."
     }
-    $asset = 'kaneo-windows-x64.exe'
+    $asset = 'tracing-windows-x64.exe'
 
     if ($PSVersionTable.PSVersion.Major -lt 6) {
         [Net.ServicePointManager]::SecurityProtocol = [Net.ServicePointManager]::SecurityProtocol -bor [Net.SecurityProtocolType]::Tls12
@@ -173,7 +173,7 @@ function Install-KaneoCli {
         throw 'KANEO_VERSION is required when KANEO_DOWNLOAD_URL is set, for example $env:KANEO_VERSION = "0.1.0".'
     }
     else {
-        Write-Line 'Looking up the latest Kaneo CLI release...' 'DarkGray'
+        Write-Line 'Looking up the latest Tracing CLI release...' 'DarkGray'
         $version = Get-LatestVersion
     }
 
@@ -181,7 +181,7 @@ function Install-KaneoCli {
         $baseUrl = $env:KANEO_DOWNLOAD_URL.TrimEnd('/', '\')
     }
     else {
-        $baseUrl = 'https://github.com/usekaneo/kaneo/releases/download'
+        $baseUrl = 'https://github.com/Go-Figure-App/tracing/releases/download'
     }
     $releaseUrl = "$baseUrl/cli-v$version"
     $sumsUrl = "$releaseUrl/SHA256SUMS"
@@ -191,7 +191,7 @@ function Install-KaneoCli {
         $installDir = $env:KANEO_INSTALL_DIR
     }
     else {
-        $installDir = Join-Path $env:LOCALAPPDATA 'Programs\kaneo'
+        $installDir = Join-Path $env:LOCALAPPDATA 'Programs\tracing'
     }
     $installDir = $ExecutionContext.SessionState.Path.GetUnresolvedProviderPathFromPSPath($installDir)
     if ($installDir.Length -gt [IO.Path]::GetPathRoot($installDir).Length) {
@@ -203,23 +203,23 @@ function Install-KaneoCli {
     catch {
         throw "Could not create $installDir ($($_.Exception.Message)). Set KANEO_INSTALL_DIR to a directory you can write to."
     }
-    $target = Join-Path $installDir 'kaneo.exe'
+    $target = Join-Path $installDir 'tracing.exe'
     if (Test-Path -LiteralPath $target -PathType Container) {
         throw "$target is a directory. Remove it or set KANEO_INSTALL_DIR to another directory."
     }
 
-    Write-Line "Installing kaneo $version for windows x64" 'Cyan'
+    Write-Line "Installing tracing $version for windows x64" 'Cyan'
     Write-Line "From $assetUrl" 'DarkGray'
 
-    $tempDir = Join-Path ([IO.Path]::GetTempPath()) ('kaneo-install-' + [guid]::NewGuid().ToString('N'))
-    $staged = Join-Path $installDir ('.kaneo-' + [guid]::NewGuid().ToString('N').Substring(0, 12) + '.exe')
+    $tempDir = Join-Path ([IO.Path]::GetTempPath()) ('tracing-install-' + [guid]::NewGuid().ToString('N'))
+    $staged = Join-Path $installDir ('.tracing-' + [guid]::NewGuid().ToString('N').Substring(0, 12) + '.exe')
     New-Item -ItemType Directory -Force -Path $tempDir | Out-Null
 
     try {
         $sumsFile = Join-Path $tempDir 'SHA256SUMS'
         $result = Get-RemoteFile -Url $sumsUrl -OutFile $sumsFile
         if ($result -eq 'missing') {
-            throw "Kaneo CLI $version was not found: $sumsUrl does not exist. Check the version at https://github.com/usekaneo/kaneo/releases."
+            throw "Tracing CLI $version was not found: $sumsUrl does not exist. Check the version at https://github.com/Go-Figure-App/tracing/releases."
         }
         if ($result -ne 'ok') {
             throw "Could not download $sumsUrl ($($result.Substring(8))). Check your internet connection and try again."
@@ -234,7 +234,7 @@ function Install-KaneoCli {
             }
         }
         if (-not $expected) {
-            throw "Kaneo CLI $version has no build named $asset. Check https://github.com/usekaneo/kaneo/releases for the files it provides."
+            throw "Tracing CLI $version has no build named $asset. Check https://github.com/Go-Figure-App/tracing/releases for the files it provides."
         }
         if ($expected -notmatch '^[0-9a-f]{64}$') {
             throw "SHA256SUMS has an invalid checksum for $asset."
@@ -247,7 +247,7 @@ function Install-KaneoCli {
             throw "Could not write to $installDir ($($_.Exception.Message)). Set KANEO_INSTALL_DIR to a directory you can write to."
         }
         if ($result -eq 'missing') {
-            throw "Kaneo CLI $version is missing the $asset file: $assetUrl was not found."
+            throw "Tracing CLI $version is missing the $asset file: $assetUrl was not found."
         }
         if ($result -ne 'ok') {
             throw "Could not download $assetUrl ($($result.Substring(8))). Check your internet connection and try again."
@@ -267,7 +267,7 @@ function Install-KaneoCli {
             $versionOutput = $_.Exception.Message
         }
         if ($exitCode -ne 0) {
-            throw "The downloaded kaneo does not run on this system, so nothing was installed. Output: $versionOutput"
+            throw "The downloaded tracing does not run on this system, so nothing was installed. Output: $versionOutput"
         }
 
         try {
@@ -279,7 +279,7 @@ function Install-KaneoCli {
             }
         }
         catch {
-            throw "Could not replace $target ($($_.Exception.Message)). Close any running kaneo and run the installer again."
+            throw "Could not replace $target ($($_.Exception.Message)). Close any running tracing and run the installer again."
         }
     }
     finally {
@@ -299,7 +299,7 @@ function Install-KaneoCli {
         $installedVersion = $Matches[1]
     }
     $installedVersion = $installedVersion -replace '^v', ''
-    Write-Line "Installed kaneo $installedVersion to $target" 'Green'
+    Write-Line "Installed tracing $installedVersion to $target" 'Green'
 
     $installKey = ConvertTo-PathKey $installDir
     $machineEntries = @(([string][Environment]::GetEnvironmentVariable('Path', 'Machine')) -split ';' | Where-Object { $_ })
@@ -311,7 +311,7 @@ function Install-KaneoCli {
         $userEntries = @($installDir) + $userEntries
         Set-UserPath -Value ($userEntries -join ';')
         Write-Line ''
-        Write-Line "Added $installDir to your user PATH. Open a new terminal to use kaneo."
+        Write-Line "Added $installDir to your user PATH. Open a new terminal to use tracing."
     }
 
     $sessionEntries = @($env:Path -split ';' | Where-Object { $_ })
@@ -319,15 +319,15 @@ function Install-KaneoCli {
         $env:Path = "$installDir;$env:Path"
     }
 
-    $first = Find-FirstKaneo -Directories ($machineEntries + $userEntries)
+    $first = Find-FirstTracing -Directories ($machineEntries + $userEntries)
     if ($first -and (ConvertTo-PathKey (Split-Path -Parent $first)) -ne $installKey) {
         Write-Line ''
-        Write-Warn "Another kaneo comes first on your PATH: $first"
+        Write-Warn "Another tracing comes first on your PATH: $first"
         Write-Warn "New terminals run that one, not $target. It may be an older community CLI. Remove it, or move $installDir earlier in your PATH."
     }
 
     Write-Line ''
-    Write-Line 'Run kaneo login to sign in, or kaneo --help to see every command.'
+    Write-Line 'Run tracing login to sign in, or tracing --help to see every command.'
 }
 
-Install-KaneoCli
+Install-TracingCli

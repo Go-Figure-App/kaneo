@@ -1,4 +1,4 @@
-import type { ImportedPerson } from "@kaneo/importers";
+import type { ImportedPerson } from "@tracing/importers";
 
 export type AssignableMember = { id: string; name: string; email: string };
 

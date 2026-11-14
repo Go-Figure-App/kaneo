@@ -11,15 +11,15 @@ export function getWorkspaceRuleSummary(
   availability: ChannelAvailabilityMap,
   t: TFunction,
 ) {
-  const onlyInKaneo = t("settings:notificationsPage.onlyInKaneo");
-  if (!rule) return onlyInKaneo;
+  const onlyInTracing = t("settings:notificationsPage.onlyInTracing");
+  if (!rule) return onlyInTracing;
 
   const channels = NOTIFICATION_CHANNELS.filter(
     (channel) =>
       rule[RULE_CHANNEL_KEYS[channel]] && availability[channel] === "available",
   ).map((channel) => t(CHANNEL_NAME_KEYS[channel]));
 
-  if (channels.length === 0) return onlyInKaneo;
+  if (channels.length === 0) return onlyInTracing;
 
   const projects =
     rule.projectMode === "all"

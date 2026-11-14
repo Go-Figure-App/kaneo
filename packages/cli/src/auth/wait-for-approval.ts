@@ -1,4 +1,4 @@
-import type { DeviceCodeResponse } from "@kaneo/mcp/device-flow";
+import type { DeviceCodeResponse } from "@tracing/mcp/device-flow";
 import { Duration, Effect, Option, Ref, Schedule } from "effect";
 import { DeviceLoginDenied, DeviceLoginExpired } from "../errors/errors.js";
 import { DeviceAuth } from "../services/device-auth.js";

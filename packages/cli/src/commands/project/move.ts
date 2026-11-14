@@ -33,7 +33,7 @@ export const runProjectMove = Effect.fn("command.project.move")(
       useContext: false,
       prompt: "Choose a project to move",
       missing: "Which project should be moved?",
-      example: "kaneo project move KAN --to acme",
+      example: "tracing project move KAN --to acme",
     });
     const workspaces =
       yield* withSpinner("Loading workspaces")(listWorkspaces());
@@ -41,7 +41,7 @@ export const runProjectMove = Effect.fn("command.project.move")(
     if (match.kind === "none") {
       return yield* new InvalidArgument({
         message: `No workspace matches "${options.to}".`,
-        hint: "Run kaneo workspace list to see the ids and slugs.",
+        hint: "Run tracing workspace list to see the ids and slugs.",
       });
     }
     if (match.kind === "ambiguous") {

@@ -130,7 +130,7 @@ export function renderTaskDetail(ui: Ui, view: TaskDetailView): string[] {
   if (description.truncated) {
     lines.push(
       "",
-      `${INDENT}${theme.muted("Run")} ${theme.strong(`kaneo task open ${reference}`)} ${theme.muted("to read the rest.")}`,
+      `${INDENT}${theme.muted("Run")} ${theme.strong(`tracing task open ${reference}`)} ${theme.muted("to read the rest.")}`,
     );
   }
   lines.push("");

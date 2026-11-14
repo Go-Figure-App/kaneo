@@ -2,7 +2,7 @@ import {
   CUSTOM_ROLE_PERMISSIONS,
   INSTANCE_PERMISSIONS,
   INSTANCE_ROLE_NAME_PATTERN,
-} from "@kaneo/permissions";
+} from "@tracing/permissions";
 import { z } from "../../openapi";
 
 const permissionList = z

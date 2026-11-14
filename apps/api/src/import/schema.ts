@@ -90,7 +90,7 @@ const jiraConnection = z
 const trelloConnection = z
   .object({
     source: z.literal("trello"),
-    token: secret("A Trello token authorized for this Kaneo instance."),
+    token: secret("A Trello token authorized for this Tracing instance."),
     apiKey: z.string().trim().min(1).max(256).optional().openapi({
       description:
         "Trello API key, a public app identifier. Defaults to the server's TRELLO_API_KEY.",
@@ -101,10 +101,10 @@ const trelloConnection = z
 const kaneoConnection = z
   .object({
     source: z.literal("kaneo"),
-    url: sourceUrl("Address of the Kaneo instance to import from."),
-    apiKey: secret("An API key from that Kaneo instance."),
+    url: sourceUrl("Address of the Tracing instance to import from."),
+    apiKey: secret("An API key from that Tracing instance."),
   })
-  .openapi("KaneoImportConnection");
+  .openapi("TracingImportConnection");
 
 export const importConnectionSchema = z
   .discriminatedUnion("source", [

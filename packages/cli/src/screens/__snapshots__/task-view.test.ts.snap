@@ -14,7 +14,7 @@ exports[`task view screen > fully loaded task at 80 columns, no color 1`] = `
     Start      Oct 1
     Created    Sep 29
     Time       3h · ● Timer running (Ada Lovelace)
-    Project    Kaneo Web · KAN
+    Project    Tracing Web · KAN
     Parent     ● KAN-4 Auth overhaul
 
     Steps
@@ -37,7 +37,7 @@ exports[`task view screen > fully loaded task at 80 columns, no color 1`] = `
     Related     ● MOB-3   Mobile sign in
 
   Links
-    fix(auth): keep state on devic…  github.com/usekaneo/kaneo/pull/1960  github
+    fix(auth): keep state o…  github.com/Go-Figure-App/tracing/pull/1960  github
     sentry.io/issues/4211
 
   Custom fields
@@ -58,7 +58,7 @@ exports[`task view screen > fully loaded task at 80 columns, no color 1`] = `
       • do we still need the fallback?
       • can we drop the retry? …
 
-    and 2 more, run kaneo comment list KAN-12
+    and 2 more, run tracing comment list KAN-12
 
 "
 `;
@@ -66,7 +66,7 @@ exports[`task view screen > fully loaded task at 80 columns, no color 1`] = `
 exports[`task view screen > fully loaded task at 80 columns, truecolor 1`] = `
 "
 
-  ]8;;https://kaneo.test/dashboard/workspace/ws_1/project/p1/task/t12\\[38;2;115;115;115mKAN-12[39m]8;;\\ [1mFix login redirect after device approval[22m
+  ]8;;https://tracing.test/dashboard/workspace/ws_1/project/p1/task/t12\\[38;2;115;115;115mKAN-12[39m]8;;\\ [1mFix login redirect after device approval[22m
 
     [38;2;115;115;115mStatus    [39m [38;2;59;130;246m●[39m In Progress
     [38;2;115;115;115mPriority  [39m [38;2;239;68;68m▲ [39m[38;2;239;68;68mUrgent[39m
@@ -77,8 +77,8 @@ exports[`task view screen > fully loaded task at 80 columns, truecolor 1`] = `
     [38;2;115;115;115mStart     [39m Oct 1
     [38;2;115;115;115mCreated   [39m Sep 29
     [38;2;115;115;115mTime      [39m 3h[38;2;115;115;115m · [39m[38;2;5;150;105m● Timer running[39m[38;2;115;115;115m (Ada Lovelace)[39m
-    [38;2;115;115;115mProject   [39m Kaneo Web [38;2;115;115;115m· KAN[39m
-    [38;2;115;115;115mParent    [39m [38;2;100;116;139m●[39m ]8;;https://kaneo.test/dashboard/workspace/ws_1/project/p1/task/t4\\[38;2;115;115;115mKAN-4[39m]8;;\\ Auth overhaul
+    [38;2;115;115;115mProject   [39m Tracing Web [38;2;115;115;115m· KAN[39m
+    [38;2;115;115;115mParent    [39m [38;2;100;116;139m●[39m ]8;;https://tracing.test/dashboard/workspace/ws_1/project/p1/task/t4\\[38;2;115;115;115mKAN-4[39m]8;;\\ Auth overhaul
 
     [1mSteps[22m
 
@@ -88,19 +88,19 @@ exports[`task view screen > fully loaded task at 80 columns, truecolor 1`] = `
     [image: Redirect loop]
 
   [1mSubtasks[22m [38;2;115;115;115m2 of 5 done[39m
-    [38;2;5;150;105m●[39m ]8;;https://kaneo.test/dashboard/workspace/ws_1/project/p1/task/t13\\[38;2;115;115;115mKAN-13[39m]8;;\\  Reproduce on Safari                           [38;2;5;150;105m✓[39m
-    [38;2;5;150;105m●[39m ]8;;https://kaneo.test/dashboard/workspace/ws_1/project/p1/task/t14\\[38;2;115;115;115mKAN-14[39m]8;;\\  Add a regression test                         [38;2;5;150;105m✓[39m
-    [38;2;59;130;246m●[39m ]8;;https://kaneo.test/dashboard/workspace/ws_1/project/p1/task/t15\\[38;2;115;115;115mKAN-15[39m]8;;\\  Handle expired device codes
-    [38;2;100;116;139m●[39m ]8;;https://kaneo.test/dashboard/workspace/ws_1/project/p1/task/t16\\[38;2;115;115;115mKAN-16[39m]8;;\\  Update the login docs
-    [38;2;100;116;139m●[39m ]8;;https://kaneo.test/dashboard/workspace/ws_1/project/p1/task/t17\\[38;2;115;115;115mKAN-17[39m]8;;\\  Clean up the redirect helper and its callers
+    [38;2;5;150;105m●[39m ]8;;https://tracing.test/dashboard/workspace/ws_1/project/p1/task/t13\\[38;2;115;115;115mKAN-13[39m]8;;\\  Reproduce on Safari                           [38;2;5;150;105m✓[39m
+    [38;2;5;150;105m●[39m ]8;;https://tracing.test/dashboard/workspace/ws_1/project/p1/task/t14\\[38;2;115;115;115mKAN-14[39m]8;;\\  Add a regression test                         [38;2;5;150;105m✓[39m
+    [38;2;59;130;246m●[39m ]8;;https://tracing.test/dashboard/workspace/ws_1/project/p1/task/t15\\[38;2;115;115;115mKAN-15[39m]8;;\\  Handle expired device codes
+    [38;2;100;116;139m●[39m ]8;;https://tracing.test/dashboard/workspace/ws_1/project/p1/task/t16\\[38;2;115;115;115mKAN-16[39m]8;;\\  Update the login docs
+    [38;2;100;116;139m●[39m ]8;;https://tracing.test/dashboard/workspace/ws_1/project/p1/task/t17\\[38;2;115;115;115mKAN-17[39m]8;;\\  Clean up the redirect helper and its callers
 
   [1mRelations[22m
-    [38;2;115;115;115mBlocks[39m      [38;2;100;116;139m●[39m ]8;;https://kaneo.test/dashboard/workspace/ws_1/project/p1/task/t20\\[38;2;115;115;115mKAN-20[39m]8;;\\  Release 2.36
-    [38;2;115;115;115mBlocked by[39m  [38;2;100;116;139m●[39m ]8;;https://kaneo.test/dashboard/workspace/ws_1/project/p1/task/t9\\[38;2;115;115;115mKAN-9[39m]8;;\\   Session cookie on the API domain
-    [38;2;115;115;115mRelated[39m     [38;2;100;116;139m●[39m ]8;;https://kaneo.test/dashboard/workspace/ws_1/project/p2/task/m3\\[38;2;115;115;115mMOB-3[39m]8;;\\   Mobile sign in
+    [38;2;115;115;115mBlocks[39m      [38;2;100;116;139m●[39m ]8;;https://tracing.test/dashboard/workspace/ws_1/project/p1/task/t20\\[38;2;115;115;115mKAN-20[39m]8;;\\  Release 2.36
+    [38;2;115;115;115mBlocked by[39m  [38;2;100;116;139m●[39m ]8;;https://tracing.test/dashboard/workspace/ws_1/project/p1/task/t9\\[38;2;115;115;115mKAN-9[39m]8;;\\   Session cookie on the API domain
+    [38;2;115;115;115mRelated[39m     [38;2;100;116;139m●[39m ]8;;https://tracing.test/dashboard/workspace/ws_1/project/p2/task/m3\\[38;2;115;115;115mMOB-3[39m]8;;\\   Mobile sign in
 
   [1mLinks[22m
-    ]8;;https://github.com/usekaneo/kaneo/pull/1960\\fix(auth): keep state on devic…]8;;\\  ]8;;https://github.com/usekaneo/kaneo/pull/1960\\[38;2;59;130;246mgithub.com/usekaneo/kaneo/pull/1960[39m]8;;\\  [38;2;115;115;115mgithub[39m
+    ]8;;https://github.com/Go-Figure-App/tracing/pull/1960\\fix(auth): keep state o…]8;;\\  ]8;;https://github.com/Go-Figure-App/tracing/pull/1960\\[38;2;59;130;246mgithub.com/Go-Figure-App/tracing/pull/1960[39m]8;;\\  [38;2;115;115;115mgithub[39m
     ]8;;https://sentry.io/issues/4211/\\sentry.io/issues/4211]8;;\\
 
   [1mCustom fields[22m
@@ -121,7 +121,7 @@ exports[`task view screen > fully loaded task at 80 columns, truecolor 1`] = `
       • do we still need the fallback?
       • can we drop the retry?[38;2;115;115;115m …[39m
 
-    [38;2;115;115;115mand 2 more, run[39m [1mkaneo comment list KAN-12[22m
+    [38;2;115;115;115mand 2 more, run[39m [1mtracing comment list KAN-12[22m
 
 "
 `;
@@ -140,7 +140,7 @@ exports[`task view screen > fully loaded task at 120 columns, no color 1`] = `
     Start      Oct 1
     Created    Sep 29
     Time       3h · ● Timer running (Ada Lovelace)
-    Project    Kaneo Web · KAN
+    Project    Tracing Web · KAN
     Parent     ● KAN-4 Auth overhaul
 
     Steps
@@ -163,7 +163,7 @@ exports[`task view screen > fully loaded task at 120 columns, no color 1`] = `
     Related     ● MOB-3   Mobile sign in
 
   Links
-    fix(auth): keep state on device redirect  github.com/usekaneo/kaneo/pull/1960  github
+    fix(auth): keep state on device redirect  github.com/Go-Figure-App/tracing/pull/1960  github
     sentry.io/issues/4211
 
   Custom fields
@@ -184,7 +184,7 @@ exports[`task view screen > fully loaded task at 120 columns, no color 1`] = `
       • do we still need the fallback?
       • can we drop the retry? …
 
-    and 2 more, run kaneo comment list KAN-12
+    and 2 more, run tracing comment list KAN-12
 
 "
 `;
@@ -192,7 +192,7 @@ exports[`task view screen > fully loaded task at 120 columns, no color 1`] = `
 exports[`task view screen > fully loaded task at 120 columns, truecolor 1`] = `
 "
 
-  ]8;;https://kaneo.test/dashboard/workspace/ws_1/project/p1/task/t12\\[38;2;115;115;115mKAN-12[39m]8;;\\ [1mFix login redirect after device approval[22m
+  ]8;;https://tracing.test/dashboard/workspace/ws_1/project/p1/task/t12\\[38;2;115;115;115mKAN-12[39m]8;;\\ [1mFix login redirect after device approval[22m
 
     [38;2;115;115;115mStatus    [39m [38;2;59;130;246m●[39m In Progress
     [38;2;115;115;115mPriority  [39m [38;2;239;68;68m▲ [39m[38;2;239;68;68mUrgent[39m
@@ -203,8 +203,8 @@ exports[`task view screen > fully loaded task at 120 columns, truecolor 1`] = `
     [38;2;115;115;115mStart     [39m Oct 1
     [38;2;115;115;115mCreated   [39m Sep 29
     [38;2;115;115;115mTime      [39m 3h[38;2;115;115;115m · [39m[38;2;5;150;105m● Timer running[39m[38;2;115;115;115m (Ada Lovelace)[39m
-    [38;2;115;115;115mProject   [39m Kaneo Web [38;2;115;115;115m· KAN[39m
-    [38;2;115;115;115mParent    [39m [38;2;100;116;139m●[39m ]8;;https://kaneo.test/dashboard/workspace/ws_1/project/p1/task/t4\\[38;2;115;115;115mKAN-4[39m]8;;\\ Auth overhaul
+    [38;2;115;115;115mProject   [39m Tracing Web [38;2;115;115;115m· KAN[39m
+    [38;2;115;115;115mParent    [39m [38;2;100;116;139m●[39m ]8;;https://tracing.test/dashboard/workspace/ws_1/project/p1/task/t4\\[38;2;115;115;115mKAN-4[39m]8;;\\ Auth overhaul
 
     [1mSteps[22m
 
@@ -214,19 +214,19 @@ exports[`task view screen > fully loaded task at 120 columns, truecolor 1`] = `
     [image: Redirect loop]
 
   [1mSubtasks[22m [38;2;115;115;115m2 of 5 done[39m
-    [38;2;5;150;105m●[39m ]8;;https://kaneo.test/dashboard/workspace/ws_1/project/p1/task/t13\\[38;2;115;115;115mKAN-13[39m]8;;\\  Reproduce on Safari                           [38;2;5;150;105m✓[39m
-    [38;2;5;150;105m●[39m ]8;;https://kaneo.test/dashboard/workspace/ws_1/project/p1/task/t14\\[38;2;115;115;115mKAN-14[39m]8;;\\  Add a regression test                         [38;2;5;150;105m✓[39m
-    [38;2;59;130;246m●[39m ]8;;https://kaneo.test/dashboard/workspace/ws_1/project/p1/task/t15\\[38;2;115;115;115mKAN-15[39m]8;;\\  Handle expired device codes
-    [38;2;100;116;139m●[39m ]8;;https://kaneo.test/dashboard/workspace/ws_1/project/p1/task/t16\\[38;2;115;115;115mKAN-16[39m]8;;\\  Update the login docs
-    [38;2;100;116;139m●[39m ]8;;https://kaneo.test/dashboard/workspace/ws_1/project/p1/task/t17\\[38;2;115;115;115mKAN-17[39m]8;;\\  Clean up the redirect helper and its callers
+    [38;2;5;150;105m●[39m ]8;;https://tracing.test/dashboard/workspace/ws_1/project/p1/task/t13\\[38;2;115;115;115mKAN-13[39m]8;;\\  Reproduce on Safari                           [38;2;5;150;105m✓[39m
+    [38;2;5;150;105m●[39m ]8;;https://tracing.test/dashboard/workspace/ws_1/project/p1/task/t14\\[38;2;115;115;115mKAN-14[39m]8;;\\  Add a regression test                         [38;2;5;150;105m✓[39m
+    [38;2;59;130;246m●[39m ]8;;https://tracing.test/dashboard/workspace/ws_1/project/p1/task/t15\\[38;2;115;115;115mKAN-15[39m]8;;\\  Handle expired device codes
+    [38;2;100;116;139m●[39m ]8;;https://tracing.test/dashboard/workspace/ws_1/project/p1/task/t16\\[38;2;115;115;115mKAN-16[39m]8;;\\  Update the login docs
+    [38;2;100;116;139m●[39m ]8;;https://tracing.test/dashboard/workspace/ws_1/project/p1/task/t17\\[38;2;115;115;115mKAN-17[39m]8;;\\  Clean up the redirect helper and its callers
 
   [1mRelations[22m
-    [38;2;115;115;115mBlocks[39m      [38;2;100;116;139m●[39m ]8;;https://kaneo.test/dashboard/workspace/ws_1/project/p1/task/t20\\[38;2;115;115;115mKAN-20[39m]8;;\\  Release 2.36
-    [38;2;115;115;115mBlocked by[39m  [38;2;100;116;139m●[39m ]8;;https://kaneo.test/dashboard/workspace/ws_1/project/p1/task/t9\\[38;2;115;115;115mKAN-9[39m]8;;\\   Session cookie on the API domain
-    [38;2;115;115;115mRelated[39m     [38;2;100;116;139m●[39m ]8;;https://kaneo.test/dashboard/workspace/ws_1/project/p2/task/m3\\[38;2;115;115;115mMOB-3[39m]8;;\\   Mobile sign in
+    [38;2;115;115;115mBlocks[39m      [38;2;100;116;139m●[39m ]8;;https://tracing.test/dashboard/workspace/ws_1/project/p1/task/t20\\[38;2;115;115;115mKAN-20[39m]8;;\\  Release 2.36
+    [38;2;115;115;115mBlocked by[39m  [38;2;100;116;139m●[39m ]8;;https://tracing.test/dashboard/workspace/ws_1/project/p1/task/t9\\[38;2;115;115;115mKAN-9[39m]8;;\\   Session cookie on the API domain
+    [38;2;115;115;115mRelated[39m     [38;2;100;116;139m●[39m ]8;;https://tracing.test/dashboard/workspace/ws_1/project/p2/task/m3\\[38;2;115;115;115mMOB-3[39m]8;;\\   Mobile sign in
 
   [1mLinks[22m
-    ]8;;https://github.com/usekaneo/kaneo/pull/1960\\fix(auth): keep state on device redirect]8;;\\  ]8;;https://github.com/usekaneo/kaneo/pull/1960\\[38;2;59;130;246mgithub.com/usekaneo/kaneo/pull/1960[39m]8;;\\  [38;2;115;115;115mgithub[39m
+    ]8;;https://github.com/Go-Figure-App/tracing/pull/1960\\fix(auth): keep state on device redirect]8;;\\  ]8;;https://github.com/Go-Figure-App/tracing/pull/1960\\[38;2;59;130;246mgithub.com/Go-Figure-App/tracing/pull/1960[39m]8;;\\  [38;2;115;115;115mgithub[39m
     ]8;;https://sentry.io/issues/4211/\\sentry.io/issues/4211]8;;\\
 
   [1mCustom fields[22m
@@ -247,7 +247,7 @@ exports[`task view screen > fully loaded task at 120 columns, truecolor 1`] = `
       • do we still need the fallback?
       • can we drop the retry?[38;2;115;115;115m …[39m
 
-    [38;2;115;115;115mand 2 more, run[39m [1mkaneo comment list KAN-12[22m
+    [38;2;115;115;115mand 2 more, run[39m [1mtracing comment list KAN-12[22m
 
 "
 `;

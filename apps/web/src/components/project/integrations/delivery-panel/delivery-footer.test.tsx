@@ -22,7 +22,7 @@ function renderFooter(
         busy={false}
         connectLabel="Connect Slack"
         connected
-        disconnectDescription="Kaneo stops posting to Slack."
+        disconnectDescription="Tracing stops posting to Slack."
         disconnectTitle="Disconnect Slack?"
         disconnecting={false}
         onDisconnect={vi.fn().mockResolvedValue(true)}

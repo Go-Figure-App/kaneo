@@ -1,9 +1,9 @@
-import { DeviceCodeRequestError } from "@kaneo/mcp/device-flow";
+import { DeviceCodeRequestError } from "@tracing/mcp/device-flow";
 import { describe, expect, it } from "vite-plus/test";
 import { sanitizeDeviceCode, toDeviceFailure } from "./device-auth.js";
 
 const toFailure = toDeviceFailure(
-  "https://cloud.kaneo.app",
+  "https://tracing.gofigureapp.io",
   "POST /api/auth/device/code",
 );
 
@@ -17,7 +17,7 @@ describe("toDeviceFailure", () => {
     );
     expect(failure).toMatchObject({
       _tag: "DeviceClientRejected",
-      clientId: "kaneo-cli",
+      clientId: "tracing-cli",
     });
   });
 

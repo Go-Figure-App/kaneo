@@ -109,7 +109,7 @@ export const whatIsProjectScope: Guide = {
       ],
     },
     {
-      heading: "Keeping scope visible in Kaneo",
+      heading: "Keeping scope visible in Tracing",
       body: [
         "Write the objective, deliverables, and out-of-scope list in the project description under project settings. It is the first thing a new teammate reads, and the place to point at when a request comes in.",
         "Route new requests into the Backlog with Plan rather than straight onto the board. Planned work stays out of the active view until someone decides to take it on, which is exactly the decision scope creep skips.",

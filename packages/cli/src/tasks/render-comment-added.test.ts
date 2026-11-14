@@ -11,7 +11,7 @@ const ui = (columns: number) =>
     animate: false,
     columns,
   });
-const url = "https://kaneo.test/task/1";
+const url = "https://tracing.test/task/1";
 
 describe("renderCommentAdded", () => {
   it("shows the first line of the comment", () => {

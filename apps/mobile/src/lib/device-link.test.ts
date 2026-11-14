@@ -21,8 +21,10 @@ describe("reachableDeviceLink", () => {
   });
 
   it("keeps links that are already reachable", () => {
-    const link = "https://cloud.kaneo.app/device?user_code=ABCD";
-    expect(reachableDeviceLink(link, "https://cloud.kaneo.app")).toBe(link);
+    const link = "https://tracing.gofigureapp.io/device?user_code=ABCD";
+    expect(reachableDeviceLink(link, "https://tracing.gofigureapp.io")).toBe(
+      link,
+    );
     expect(reachableDeviceLink(link, "http://localhost:1337")).toBe(link);
   });
 

@@ -78,7 +78,7 @@ const verifyRoute = createRoute({
   tags: ["Gitea"],
   summary: "Verify Gitea access",
   description:
-    "Check that the base URL is a Gitea instance and that the token can reach the repository with the permissions Kaneo needs. Repository permission failures are reported in the body; invalid credentials and upstream errors return an error status. Omit accessToken to use the saved token for the unchanged base URL.",
+    "Check that the base URL is a Gitea instance and that the token can reach the repository with the permissions Tracing needs. Repository permission failures are reported in the body; invalid credentials and upstream errors return an error status. Omit accessToken to use the saved token for the unchanged base URL.",
   middleware: manageAccess,
   request: {
     body: {
@@ -88,7 +88,7 @@ const verifyRoute = createRoute({
   },
   responses: {
     200: jsonResponse("Verification result", giteaVerificationResultSchema),
-    401: errorResponse("Kaneo authentication required"),
+    401: errorResponse("Tracing authentication required"),
     500: errorResponse("Gitea verification failed"),
     400: errorResponse("Invalid body, or invalid Gitea credentials"),
     403: errorResponse(

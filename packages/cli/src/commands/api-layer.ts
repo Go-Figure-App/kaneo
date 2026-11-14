@@ -1,5 +1,5 @@
 import { Layer } from "effect";
-import { KaneoApiLive } from "../api/kaneo-api.js";
+import { TracingApiLive } from "../api/tracing-api.js";
 import { SessionLive } from "../services/session.js";
 
-export const ApiLayer = KaneoApiLive.pipe(Layer.provideMerge(SessionLive));
+export const ApiLayer = TracingApiLive.pipe(Layer.provideMerge(SessionLive));

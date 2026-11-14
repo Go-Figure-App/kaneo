@@ -1,4 +1,4 @@
-import type { CustomRolePermission } from "@kaneo/permissions";
+import type { CustomRolePermission } from "@tracing/permissions";
 
 type PermissionGroup = {
   id: string;

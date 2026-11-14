@@ -71,7 +71,7 @@ export function checkWorkspaceSlug(
   if (isReservedSlug(slug)) {
     return Result.fail(
       new InvalidArgument({
-        message: `"${slug}" is reserved by Kaneo.`,
+        message: `"${slug}" is reserved by Tracing.`,
         hint: "Choose another slug.",
       }),
     );

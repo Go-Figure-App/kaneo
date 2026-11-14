@@ -1,5 +1,5 @@
 import { Effect, Schema } from "effect";
-import { KaneoApi } from "./kaneo-api.js";
+import { TracingApi } from "./tracing-api.js";
 
 export const TaskComment = Schema.Struct({
   id: Schema.String,
@@ -28,7 +28,7 @@ function commentPath(id: string): string {
 }
 
 export const listComments = Effect.fnUntraced(function* (taskId: string) {
-  const api = yield* KaneoApi;
+  const api = yield* TracingApi;
   return yield* api.request("GET", commentPath(taskId), TaskCommentList);
 });
 
@@ -36,13 +36,13 @@ export const updateComment = Effect.fnUntraced(function* (
   id: string,
   content: string,
 ) {
-  const api = yield* KaneoApi;
+  const api = yield* TracingApi;
   return yield* api.request("PUT", commentPath(id), CommentRow, {
     body: { content },
   });
 });
 
 export const deleteComment = Effect.fnUntraced(function* (id: string) {
-  const api = yield* KaneoApi;
+  const api = yield* TracingApi;
   return yield* api.request("DELETE", commentPath(id), CommentRow);
 });

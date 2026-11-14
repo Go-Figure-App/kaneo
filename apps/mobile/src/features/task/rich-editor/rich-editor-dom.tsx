@@ -1,6 +1,6 @@
 "use dom";
 
-import { createBaseExtensions } from "@kaneo/editor";
+import { createBaseExtensions } from "@tracing/editor";
 import type { Editor } from "@tiptap/core";
 import { EditorContent, useEditor } from "@tiptap/react";
 import { useDOMImperativeHandle, type DOMImperativeFactory } from "expo/dom";

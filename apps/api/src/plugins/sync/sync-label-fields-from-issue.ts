@@ -179,13 +179,13 @@ async function readAndApply(
 
 /**
  * Applies status and priority from the issue's current labels. Webhook label
- * snapshots can predate Kaneo's latest write, so applying them echoed old
+ * snapshots can predate Tracing's latest write, so applying them echoed old
  * values back (#1956). The lease is the one outbound field-label sync holds
  * while it rewrites labels. One attempt runs within the delivery's budget; a
  * busy lease, transient failure or slow provider defers the read to replay.
  *
  * Links from before `syncFieldLabels` existed have no record of the labels
- * Kaneo accounted for. They apply only `added`, the field label a webhook
+ * Tracing accounted for. They apply only `added`, the field label a webhook
  * reports as added, kept with a deferral until replay; `null` marks a
  * removal, which leaves them untouched. Without either, the first read only
  * records the labels. Pass one `deadline` for every integration a delivery

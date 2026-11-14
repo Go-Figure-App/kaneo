@@ -1,4 +1,4 @@
-import { isSmtpConfigured } from "@kaneo/email";
+import { isSmtpConfigured } from "@tracing/email";
 import {
   DEFAULT_STORED_SETTINGS,
   type InstanceSettings,

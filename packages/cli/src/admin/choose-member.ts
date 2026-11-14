@@ -17,7 +17,7 @@ export const chooseMember = Effect.fnUntraced(function* (
     if (match) return match;
     return yield* new InvalidArgument({
       message: `No workspace member matches "${reference.value}".`,
-      hint: "Use an email address, a name, or an id. Run kaneo member list to see them.",
+      hint: "Use an email address, a name, or an id. Run tracing member list to see them.",
     });
   }
   if (output.interactive && members.length > 0) {

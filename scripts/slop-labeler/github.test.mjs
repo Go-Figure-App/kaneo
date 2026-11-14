@@ -32,7 +32,7 @@ test("rejects oversized responses and malformed blobs", async () => {
     async () => new Response('"' + "a".repeat(8_000_001) + '"'),
   );
   await assert.rejects(
-    oversized.request("/repos/usekaneo/kaneo/pulls/42"),
+    oversized.request("/repos/Go-Figure-App/tracing/pulls/42"),
     /limit/,
   );
   const sha = "a".repeat(40);
@@ -56,7 +56,7 @@ test("HTTP failures do not include source response contents or tokens", async ()
     async () => new Response("sensitive untrusted content", { status: 403 }),
   );
   await assert.rejects(
-    github.request("/repos/usekaneo/kaneo/pulls/42"),
+    github.request("/repos/Go-Figure-App/tracing/pulls/42"),
     (error) => {
       assert.equal(error.status, 403);
       assert.doesNotMatch(error.message, /sensitive|token/);

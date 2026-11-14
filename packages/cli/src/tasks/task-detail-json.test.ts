@@ -21,7 +21,7 @@ const project: Project = {
   id: "project-1",
   workspaceId: "workspace-1",
   slug: "kan",
-  name: "Kaneo Web",
+  name: "Tracing Web",
   icon: null,
   description: null,
   archivedAt: null,
@@ -48,7 +48,7 @@ describe("toTaskDetailJson", () => {
         columns: [column],
         workspaceId: "workspace-1",
         ticketId: "KAN-12",
-        url: "https://kaneo.test/task-1",
+        url: "https://tracing.test/task-1",
       }),
     ).toEqual({
       id: "task-1",
@@ -66,9 +66,9 @@ describe("toTaskDetailJson", () => {
       createdAt: "2026-10-01T10:00:00.000Z",
       projectId: "project-1",
       projectKey: "KAN",
-      projectName: "Kaneo Web",
+      projectName: "Tracing Web",
       workspaceId: "workspace-1",
-      url: "https://kaneo.test/task-1",
+      url: "https://tracing.test/task-1",
     });
   });
 
@@ -86,7 +86,7 @@ describe("toTaskDetailJson", () => {
         columns: [column],
         workspaceId: "workspace-1",
         ticketId: "KAN-12",
-        url: "https://kaneo.test/task-1",
+        url: "https://tracing.test/task-1",
       }).recurrence,
     ).toEqual(recurrence);
   });
@@ -103,7 +103,7 @@ describe("toTaskDetailJson", () => {
       columns: [column],
       workspaceId: "workspace-1",
       ticketId: null,
-      url: "https://kaneo.test/task-1",
+      url: "https://tracing.test/task-1",
     });
     expect(json.statusName).toBe("planned");
     expect(json.assignee).toBeNull();

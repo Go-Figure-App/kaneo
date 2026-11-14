@@ -1,5 +1,5 @@
 import { Effect, Schema } from "effect";
-import { KaneoApi } from "./kaneo-api.js";
+import { TracingApi } from "./tracing-api.js";
 
 const PAGE_SIZE = 100;
 
@@ -39,7 +39,7 @@ const RoleList = Schema.Array(Schema.Struct({ role: Schema.String }));
 export const listOrganizationMembers = Effect.fnUntraced(function* (
   workspaceId: string,
 ) {
-  const api = yield* KaneoApi;
+  const api = yield* TracingApi;
   const members: OrganizationMember[] = [];
   for (;;) {
     const page = yield* api.request(
@@ -64,7 +64,7 @@ export const listOrganizationMembers = Effect.fnUntraced(function* (
 export const listCustomRoles = Effect.fnUntraced(function* (
   workspaceId: string,
 ) {
-  const api = yield* KaneoApi;
+  const api = yield* TracingApi;
   const roles = yield* api.request(
     "GET",
     "/api/auth/organization/list-roles",
@@ -78,7 +78,7 @@ export const hasWorkspacePermission = Effect.fnUntraced(function* (
   workspaceId: string,
   permissions: Readonly<Record<string, ReadonlyArray<string>>>,
 ) {
-  const api = yield* KaneoApi;
+  const api = yield* TracingApi;
   const result = yield* api.request(
     "POST",
     "/api/auth/organization/has-permission",
@@ -92,7 +92,7 @@ export const removeOrganizationMember = Effect.fnUntraced(function* (
   workspaceId: string,
   memberId: string,
 ) {
-  const api = yield* KaneoApi;
+  const api = yield* TracingApi;
   return yield* api.request(
     "POST",
     "/api/auth/organization/remove-member",
@@ -106,7 +106,7 @@ export const updateOrganizationMemberRole = Effect.fnUntraced(function* (
   memberId: string,
   role: string,
 ) {
-  const api = yield* KaneoApi;
+  const api = yield* TracingApi;
   const updated = yield* api.request(
     "POST",
     "/api/auth/organization/update-member-role",

@@ -42,7 +42,7 @@ rewrite(
 );
 
 rewrite(
-  "charts/kaneo/Chart.yaml",
+  "charts/tracing/Chart.yaml",
   (source) =>
     source
       .replace(/^version:.*$/m, `version: ${version}`)

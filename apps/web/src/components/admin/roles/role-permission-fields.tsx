@@ -1,4 +1,4 @@
-import type { CustomRolePermission } from "@kaneo/permissions";
+import type { CustomRolePermission } from "@tracing/permissions";
 import { useId } from "react";
 import { useTranslation } from "react-i18next";
 import { Checkbox } from "@/components/ui/checkbox";

@@ -1,5 +1,5 @@
 {
-	"name": "@kaneo/editor",
+	"name": "@tracing/editor",
 	"version": "0.0.0",
 	"private": true,
 	"type": "module",
@@ -34,7 +34,7 @@
 		"@tiptap/starter-kit": "^3.32.0"
 	},
 	"devDependencies": {
-		"@kaneo/typescript-config": "workspace:*",
+		"@tracing/typescript-config": "workspace:*",
 		"jsdom": "^30.1.3",
 		"typescript": "^7.0.2",
 		"vite": "catalog:",

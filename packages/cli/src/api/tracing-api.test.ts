@@ -10,12 +10,12 @@ import {
   type Responder,
   testSession,
 } from "../testing/test-layers.js";
-import { KaneoApi, KaneoApiLayer } from "./kaneo-api.js";
+import { TracingApi, TracingApiLayer } from "./tracing-api.js";
 
 const User = Schema.Struct({ id: Schema.String, name: Schema.String });
 
 function run<A, E>(
-  effect: Effect.Effect<A, E, KaneoApi>,
+  effect: Effect.Effect<A, E, TracingApi>,
   respond: Responder,
   options: {
     session?: Parameters<typeof testSession>[0];
@@ -24,7 +24,7 @@ function run<A, E>(
 ) {
   const recorded: RecordedRequest[] = [];
   const store = options.store ?? memoryConfigStore();
-  const layer = KaneoApiLayer.pipe(
+  const layer = TracingApiLayer.pipe(
     Layer.provide(
       Layer.mergeAll(
         fakeHttpClient(respond, recorded),
@@ -42,13 +42,13 @@ function run<A, E>(
 }
 
 const getUser = Effect.gen(function* () {
-  const api = yield* KaneoApi;
+  const api = yield* TracingApi;
   return yield* api.request("GET", "/api/user/me", User, {
     query: { a: 1, b: undefined },
   });
 });
 
-describe("KaneoApi", () => {
+describe("TracingApi", () => {
   it("sends the bearer token and decodes the body", async () => {
     const { recorded, result } = run(getUser, () =>
       json({ id: "u1", name: "Ada", extra: 1 }),
@@ -56,7 +56,7 @@ describe("KaneoApi", () => {
     expect(await result).toEqual(Result.succeed({ id: "u1", name: "Ada" }));
     expect(recorded[0]).toMatchObject({
       method: "GET",
-      url: "https://kaneo.test/api/user/me?a=1",
+      url: "https://tracing.test/api/user/me?a=1",
       authorization: "Bearer test-token",
     });
   });
@@ -97,7 +97,7 @@ describe("KaneoApi", () => {
   it("forgets an expired stored token", async () => {
     const store = memoryConfigStore(
       withProfile(emptyConfig, "default", () => ({
-        apiUrl: "https://kaneo.test",
+        apiUrl: "https://tracing.test",
         token: "old",
       })),
     );
@@ -112,18 +112,18 @@ describe("KaneoApi", () => {
       "SessionExpired",
     );
     expect(store.read().profiles.default?.token).toBeUndefined();
-    expect(store.read().profiles.default?.apiUrl).toBe("https://kaneo.test");
+    expect(store.read().profiles.default?.apiUrl).toBe("https://tracing.test");
   });
 
   it("keeps the login when a route answers 401 but the session still works", async () => {
     const store = memoryConfigStore(
       withProfile(emptyConfig, "default", () => ({
-        apiUrl: "https://kaneo.test",
+        apiUrl: "https://tracing.test",
         token: "keep",
       })),
     );
     const removeMember = Effect.gen(function* () {
-      const api = yield* KaneoApi;
+      const api = yield* TracingApi;
       return yield* api.request(
         "POST",
         "/api/auth/organization/remove-member",
@@ -151,7 +151,7 @@ describe("KaneoApi", () => {
   it("treats a rejected API key as a credentials problem, not an expired login", async () => {
     const store = memoryConfigStore(
       withProfile(emptyConfig, "default", () => ({
-        apiUrl: "https://kaneo.test",
+        apiUrl: "https://tracing.test",
         token: "keep",
       })),
     );
@@ -183,7 +183,7 @@ describe("KaneoApi", () => {
   it("retries a 429 after Retry-After", async () => {
     let calls = 0;
     const recorded: RecordedRequest[] = [];
-    const layer = KaneoApiLayer.pipe(
+    const layer = TracingApiLayer.pipe(
       Layer.provide(
         Layer.mergeAll(
           fakeHttpClient(() => {

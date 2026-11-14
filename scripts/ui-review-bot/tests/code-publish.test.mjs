@@ -20,7 +20,7 @@ const options = {
   actor: "peekareq[bot]",
   eventName: "workflow_dispatch",
   event: {
-    repository: { full_name: "usekaneo/kaneo" },
+    repository: { full_name: "Go-Figure-App/tracing" },
     sender: { type: "User", login: "maintainer" },
     inputs: { pr: "1735" },
   },
@@ -42,7 +42,7 @@ function mock({
       return {
         state: "open",
         head: { sha: head },
-        base: { sha: base, repo: { full_name: "usekaneo/kaneo" } },
+        base: { sha: base, repo: { full_name: "Go-Figure-App/tracing" } },
       };
     if (endpoint.includes("/comments?"))
       return [

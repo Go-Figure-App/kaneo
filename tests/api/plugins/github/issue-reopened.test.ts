@@ -89,7 +89,7 @@ it.each(["null", "[]", "42", '"text"', "invalid JSON"])(
     expect(m.status).toHaveBeenCalledTimes(2);
   },
 );
-it("retains the Kaneo-origin skip rule for valid metadata", async () => {
+it("retains the Tracing-origin skip rule for valid metadata", async () => {
   m.find.mockResolvedValue([{ id: "integration-1" }]);
   m.links.mockResolvedValue({
     id: "first",
@@ -130,7 +130,7 @@ vi.mock(
     };
   },
 );
-it("skips a reopen that Kaneo already applied", async () => {
+it("skips a reopen that Tracing already applied", async () => {
   m.find.mockResolvedValue([{ id: "integration-1" }]);
   m.links.mockResolvedValue({
     id: "first",

@@ -1,4 +1,4 @@
-const DEFAULT_BRAND = "Kaneo";
+const DEFAULT_BRAND = "Tracing";
 
 let resolveName: () => Promise<string | null | undefined> = async () => null;
 

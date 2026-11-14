@@ -37,10 +37,10 @@ test("Seroval retains shared references, cycles and application value types", ()
 test("Seroval serializes the actual typed-array type instead of an own constructor name", () => {
   const bytes = new Uint8Array([1, 2]);
   Object.defineProperty(bytes, "constructor", {
-    value: { name: "KaneoInjectedConstructor" },
+    value: { name: "TracingInjectedConstructor" },
   });
   const serialized = seroval.serialize(bytes);
-  assert.doesNotMatch(serialized, /KaneoInjectedConstructor/);
+  assert.doesNotMatch(serialized, /TracingInjectedConstructor/);
   assert.deepEqual(seroval.deserialize(serialized), new Uint8Array([1, 2]));
 });
 

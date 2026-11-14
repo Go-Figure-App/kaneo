@@ -37,11 +37,11 @@ export const runMemberRole = Effect.fn("command.member.role")(
     );
     const target = yield* chooseMember(members, options.member, {
       question: "Change the role of",
-      example: "kaneo member role grace@example.com admin",
+      example: "tracing member role grace@example.com admin",
     });
     const role = yield* resolveRole(workspaceId, options.role, {
       question: `New role for ${target.name}`,
-      example: `kaneo member role ${target.email} admin`,
+      example: `tracing member role ${target.email} admin`,
     });
     const result = { ...target, role, previousRole: target.role };
 
@@ -66,7 +66,7 @@ export const runMemberRole = Effect.fn("command.member.role")(
               /without an owner/i.test(error.message)
                 ? new InvalidArgument({
                     message: "The workspace needs at least one owner.",
-                    hint: "Make another member an owner first with kaneo member role <member> owner.",
+                    hint: "Make another member an owner first with tracing member role <member> owner.",
                   })
                 : error,
             ),

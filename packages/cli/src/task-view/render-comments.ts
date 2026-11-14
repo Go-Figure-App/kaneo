@@ -83,7 +83,7 @@ export function renderComments(ui: Ui, view: CommentsView): string[] {
   }
   if (hidden > 0) {
     const more = `and ${hidden} more, run`;
-    const command = `kaneo comment list ${view.reference}`;
+    const command = `tracing comment list ${view.reference}`;
     const fits =
       HEAD.length + stringWidth(more) + 1 + stringWidth(command) <=
       ui.caps.columns;

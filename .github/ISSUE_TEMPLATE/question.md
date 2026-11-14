@@ -1,6 +1,6 @@
 ---
 name: Question or help
-about: Ask a question about Kaneo
+about: Ask a question about Tracing
 labels: question
 ---
 

@@ -1,15 +1,15 @@
 {
 	"expo": {
-		"name": "Kaneo",
-		"slug": "kaneo",
+		"name": "Tracing",
+		"slug": "tracing",
 		"version": "1.0.0",
 		"orientation": "portrait",
 		"icon": "./assets/images/icon.png",
-		"scheme": "kaneo",
+		"scheme": "tracing",
 		"userInterfaceStyle": "automatic",
 		"backgroundColor": "#FAFAFA",
 		"ios": {
-			"bundleIdentifier": "app.kaneo",
+			"bundleIdentifier": "io.gofigureapp.tracing",
 			"supportsTablet": true,
 			"icon": "./assets/images/icon.png",
 			"config": {
@@ -23,7 +23,7 @@
 			}
 		},
 		"android": {
-			"package": "app.kaneo",
+			"package": "io.gofigureapp.tracing",
 			"versionCode": 5,
 			"adaptiveIcon": {
 				"backgroundColor": "#141414",
@@ -58,7 +58,7 @@
 			[
 				"expo-image-picker",
 				{
-					"photosPermission": "Kaneo uses your photos to attach images to tasks and comments, and for your profile photo.",
+					"photosPermission": "Tracing uses your photos to attach images to tasks and comments, and for your profile photo.",
 					"cameraPermission": false,
 					"microphonePermission": false
 				}

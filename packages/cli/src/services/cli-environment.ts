@@ -15,7 +15,7 @@ export type CliEnvironmentShape = {
 export class CliEnvironment extends Context.Service<
   CliEnvironment,
   CliEnvironmentShape
->()("kaneo/CliEnvironment") {}
+>()("tracing/CliEnvironment") {}
 
 export function processEnvironment(): CliEnvironmentShape {
   return {

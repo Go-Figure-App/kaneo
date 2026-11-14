@@ -1,6 +1,6 @@
 # Peekareq
 
-A maintainer comments `/peekareq` on an open Kaneo PR. The bot selects up to three UI scenarios, captures the PR in Chromium, frames the changed component, uploads three distinct previews, and posts this line followed by a description/image table:
+A maintainer comments `/peekareq` on an open Tracing PR. The bot selects up to three UI scenarios, captures the PR in Chromium, frames the changed component, uploads three distinct previews, and posts this line followed by a description/image table:
 
 > This UI-screenshot was auto-made by a beta tool made by @tinsever
 
@@ -8,7 +8,7 @@ Below the screenshot table, **Findings (Beta)** and **Run info** are collapsed b
 
 ## GitHub setup
 
-- Install the GitHub App on `usekaneo/kaneo` with **Contents: Read and write** and **Pull requests: Read and write**, and **Issues: Read-only**. The installation owner must approve permission updates.
+- Install the GitHub App on `Go-Figure-App/tracing` with **Contents: Read and write** and **Pull requests: Read and write**, and **Issues: Read-only**. The installation owner must approve permission updates.
 - Set Actions variable `APP_CLIENT_ID` and secrets `APP_PRIVATE_KEY` (the complete PEM file) and `OPENROUTER_API_KEY`.
 - Put this directory and both `ui-review.yml` and `ui-review-run.yml` workflows on the default branch.
 - Deploy `worker/` to Cloudflare (see below). Enable the App webhook at its `/webhook` URL, set the same signing secret, and subscribe only to **Issue comment**.

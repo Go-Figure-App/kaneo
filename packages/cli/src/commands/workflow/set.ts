@@ -24,7 +24,7 @@ import { renderRuleChange } from "../../workflow/render-rules.js";
 import type { RuleJson } from "../../workflow/rule-json.js";
 import { ApiLayer } from "../api-layer.js";
 
-const USAGE = "kaneo workflow set github pr_merged done";
+const USAGE = "tracing workflow set github pr_merged done";
 
 const choose = Effect.fnUntraced(function* <A>(
   input: Option.Option<string>,

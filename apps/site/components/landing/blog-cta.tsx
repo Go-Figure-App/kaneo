@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
-const SIGN_UP = "https://cloud.kaneo.app/auth/sign-up";
+const SIGN_UP = "https://tracing.gofigureapp.io/auth/sign-up";
 const PRICING = "/pricing";
 
 export function BlogCta({ compact = false }: { compact?: boolean }) {
@@ -18,7 +18,7 @@ export function BlogCta({ compact = false }: { compact?: boolean }) {
           compact ? "text-base" : "text-xl md:text-2xl",
         )}
       >
-        Put your team on Kaneo Cloud
+        Put your team on Tracing Cloud
       </p>
       <p
         className={cn(

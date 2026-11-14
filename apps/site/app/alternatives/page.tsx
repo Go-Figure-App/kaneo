@@ -13,9 +13,9 @@ import { guideList, guidePath } from "@/lib/guides";
 import { withSocialMetadata } from "@/lib/metadata";
 
 export const metadata: Metadata = withSocialMetadata({
-  title: "Kaneo alternatives and comparisons",
+  title: "Tracing alternatives and comparisons",
   description:
-    "How Kaneo compares to Jira, Trello, Asana, ClickUp, monday.com, Plane, OpenProject, Redmine, and other project management tools, with Kaneo Cloud from $4 a month.",
+    "How Tracing compares to Jira, Trello, Asana, ClickUp, monday.com, Plane, OpenProject, Redmine, and other project management tools, with Tracing Cloud from $4 a month.",
   alternates: { canonical: "/alternatives" },
 });
 
@@ -41,7 +41,7 @@ export default function Page() {
     <>
       <JsonLd
         data={breadcrumbJsonLd([
-          { name: "Kaneo", path: "/" },
+          { name: "Tracing", path: "/" },
           { name: "Alternatives", path: "/alternatives" },
         ])}
       />
@@ -49,12 +49,12 @@ export default function Page() {
         data={{
           "@context": "https://schema.org",
           "@type": "ItemList",
-          name: "Kaneo comparisons",
+          name: "Tracing comparisons",
           itemListElement: comparisonList.map((comparison, index) => ({
             "@type": "ListItem",
             position: index + 1,
-            name: `Kaneo vs ${comparison.competitor}`,
-            url: `https://kaneo.app${alternativePath(comparison.slug)}`,
+            name: `Tracing vs ${comparison.competitor}`,
+            url: `https://tracing.gofigureapp.io${alternativePath(comparison.slug)}`,
           })),
         }}
       />
@@ -64,8 +64,8 @@ export default function Page() {
           <div className="mx-auto w-full max-w-6xl">
             <PageIntro
               eyebrow="Comparisons"
-              title={<>How Kaneo compares</>}
-              description="Kaneo Cloud is managed, EU-hosted project management from $4 a month, and it is open source if you would rather run it yourself. Here is how it sits next to the tools people usually weigh it against, and where each of them is the better answer."
+              title={<>How Tracing compares</>}
+              description="Tracing Cloud is managed, EU-hosted project management from $4 a month, and it is open source if you would rather run it yourself. Here is how it sits next to the tools people usually weigh it against, and where each of them is the better answer."
             />
           </div>
         </section>
@@ -96,7 +96,7 @@ export default function Page() {
                             Checked {formatBlogDateShort(comparison.verifiedOn)}
                           </time>,
                         ]}
-                        title={`Kaneo vs ${comparison.competitor}`}
+                        title={`Tracing vs ${comparison.competitor}`}
                       />
                     ))}
                 </div>

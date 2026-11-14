@@ -38,7 +38,7 @@ const platform: FieldJson = {
 describe("renderFieldList", () => {
   it("shows name, type, options and required in 80 columns", () => {
     const lines = renderFieldList(ui, {
-      projectName: "Kaneo Web",
+      projectName: "Tracing Web",
       fields: [points, platform],
     });
     expect(lines).toEqual([
@@ -51,7 +51,7 @@ describe("renderFieldList", () => {
 
   it("shortens long option lists instead of wrapping", () => {
     const lines = renderFieldList(ui, {
-      projectName: "Kaneo Web",
+      projectName: "Tracing Web",
       fields: [
         {
           ...platform,
@@ -65,11 +65,11 @@ describe("renderFieldList", () => {
 
   it("explains how to add the first field", () => {
     expect(
-      renderFieldList(ui, { projectName: "Kaneo Web", fields: [] }),
+      renderFieldList(ui, { projectName: "Tracing Web", fields: [] }),
     ).toEqual([
       "",
-      "  No custom fields in Kaneo Web yet.",
-      "  Add one with kaneo field create <name> --type text.",
+      "  No custom fields in Tracing Web yet.",
+      "  Add one with tracing field create <name> --type text.",
       "",
     ]);
   });

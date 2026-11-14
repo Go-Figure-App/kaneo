@@ -3,7 +3,7 @@ import { getAdminAccess } from "./get-admin-access";
 
 const mocks = vi.hoisted(() => ({ get: vi.fn() }));
 
-vi.mock("@kaneo/libs", () => ({
+vi.mock("@tracing/libs", () => ({
   client: { admin: { access: { $get: mocks.get } } },
 }));
 

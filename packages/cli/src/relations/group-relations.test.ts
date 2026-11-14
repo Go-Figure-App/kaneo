@@ -41,7 +41,7 @@ const relation = (
 const context = {
   projectSlugs: new Map([["p1", "kan"]]),
   workspaceId: "w1",
-  webUrl: "https://kaneo.test",
+  webUrl: "https://tracing.test",
 };
 
 const all = [
@@ -62,7 +62,7 @@ describe("groupRelations", () => {
       title: "Task parent",
       status: "to-do",
       completed: false,
-      url: "https://kaneo.test/dashboard/workspace/w1/project/p1/task/parent",
+      url: "https://tracing.test/dashboard/workspace/w1/project/p1/task/parent",
     });
     expect(grouped.subtasks.map((item) => item.ticketId)).toEqual([
       "KAN-4",

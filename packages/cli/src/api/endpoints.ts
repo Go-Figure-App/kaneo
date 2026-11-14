@@ -1,7 +1,7 @@
 import { Effect } from "effect";
 import type { Credentials } from "../services/session.js";
 import { fromOrganizations } from "./from-organizations.js";
-import { KaneoApi, type Query } from "./kaneo-api.js";
+import { TracingApi, type Query } from "./tracing-api.js";
 import {
   AssignedTasks,
   BoardPage,
@@ -18,7 +18,7 @@ import {
 export const getCurrentUser = Effect.fnUntraced(function* (
   credentials?: Credentials,
 ) {
-  const api = yield* KaneoApi;
+  const api = yield* TracingApi;
   return yield* api.request("GET", "/api/user/me", CurrentUser, {
     credentials,
   });
@@ -27,7 +27,7 @@ export const getCurrentUser = Effect.fnUntraced(function* (
 export const listWorkspaces = Effect.fnUntraced(function* (
   credentials?: Credentials,
 ) {
-  const api = yield* KaneoApi;
+  const api = yield* TracingApi;
   return yield* api
     .request("GET", "/api/workspace", WorkspaceList, { credentials })
     .pipe(
@@ -42,7 +42,7 @@ export const listWorkspaces = Effect.fnUntraced(function* (
 });
 
 export const getWorkspace = Effect.fnUntraced(function* (workspaceId: string) {
-  const api = yield* KaneoApi;
+  const api = yield* TracingApi;
   return yield* api
     .request(
       "GET",
@@ -67,7 +67,7 @@ export const getWorkspace = Effect.fnUntraced(function* (workspaceId: string) {
 });
 
 export const listProjects = Effect.fnUntraced(function* (workspaceId: string) {
-  const api = yield* KaneoApi;
+  const api = yield* TracingApi;
   return yield* api.request("GET", "/api/project", ProjectList, {
     query: { workspaceId },
   });
@@ -77,7 +77,7 @@ export const getBoardPage = Effect.fnUntraced(function* (
   projectId: string,
   query: Query,
 ) {
-  const api = yield* KaneoApi;
+  const api = yield* TracingApi;
   return yield* api.request(
     "GET",
     `/api/task/tasks/${encodeURIComponent(projectId)}`,
@@ -89,14 +89,14 @@ export const getBoardPage = Effect.fnUntraced(function* (
 export const listAssignedTasks = Effect.fnUntraced(function* (
   workspaceId: string,
 ) {
-  const api = yield* KaneoApi;
+  const api = yield* TracingApi;
   return yield* api.request("GET", "/api/task/assigned", AssignedTasks, {
     query: { workspaceId },
   });
 });
 
 export const getProject = Effect.fnUntraced(function* (projectId: string) {
-  const api = yield* KaneoApi;
+  const api = yield* TracingApi;
   return yield* api.request(
     "GET",
     `/api/project/${encodeURIComponent(projectId)}`,
@@ -105,7 +105,7 @@ export const getProject = Effect.fnUntraced(function* (projectId: string) {
 });
 
 export const listColumns = Effect.fnUntraced(function* (projectId: string) {
-  const api = yield* KaneoApi;
+  const api = yield* TracingApi;
   return yield* api.request(
     "GET",
     `/api/column/${encodeURIComponent(projectId)}`,
@@ -114,7 +114,7 @@ export const listColumns = Effect.fnUntraced(function* (projectId: string) {
 });
 
 export const listMembers = Effect.fnUntraced(function* (workspaceId: string) {
-  const api = yield* KaneoApi;
+  const api = yield* TracingApi;
   return yield* api.request(
     "GET",
     `/api/workspace/${encodeURIComponent(workspaceId)}/members`,

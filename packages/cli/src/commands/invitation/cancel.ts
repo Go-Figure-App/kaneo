@@ -30,7 +30,7 @@ export const runInvitationCancel = Effect.fn("command.invitation.cancel")(
     if (Option.isNone(options.invitation) && !output.interactive) {
       return yield* new InvalidArgument({
         message: "Which invitation should be canceled?",
-        hint: "Pass its id or email address. Run kaneo invitation list to see them.",
+        hint: "Pass its id or email address. Run tracing invitation list to see them.",
       });
     }
     const workspaceId = yield* resolveWorkspaceId();
@@ -63,7 +63,7 @@ export const runInvitationCancel = Effect.fn("command.invitation.cancel")(
         message: Option.isSome(wanted)
           ? `No pending invitation matches "${wanted.value}" in this workspace.`
           : "This workspace has no pending invitations.",
-        hint: "Run kaneo invitation list to see the pending ones.",
+        hint: "Run tracing invitation list to see the pending ones.",
       });
     }
 

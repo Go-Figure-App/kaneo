@@ -13,6 +13,10 @@ export function resolveOutputMode(
   if (flags.some((flag) => flag === "--jq" || flag.startsWith("--jq=")))
     return "json";
   if (flags.includes("--human")) return "human";
-  if (env.KANEO_JSON === "true" || env.KANEO_JSON === "1") return "json";
+  if (
+    (env.TRACING_JSON ?? env.KANEO_JSON) === "true" ||
+    (env.TRACING_JSON ?? env.KANEO_JSON) === "1"
+  )
+    return "json";
   return stdoutIsTTY ? "human" : "json";
 }

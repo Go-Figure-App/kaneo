@@ -18,7 +18,7 @@ import {
   User,
   Webhook,
 } from "lucide-react";
-import type { InstancePermission } from "@kaneo/permissions";
+import type { InstancePermission } from "@tracing/permissions";
 import {
   canAccessAdminPage,
   type AdminPage,

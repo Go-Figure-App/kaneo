@@ -4,9 +4,9 @@ import messages from "../../../i18n/en-US.json";
 export const press = messages.press;
 
 export const pressLinks = {
-  website: "https://kaneo.app",
-  source: "https://github.com/usekaneo/kaneo",
-  docs: "https://kaneo.app/docs/core",
-  cloud: "https://cloud.kaneo.app",
-  email: "support@kaneo.app",
+  website: "https://tracing.gofigureapp.io",
+  source: "https://github.com/Go-Figure-App/tracing",
+  docs: "https://github.com/Go-Figure-App/tracing/tree/main/apps/docs/core",
+  cloud: "https://tracing.gofigureapp.io",
+  email: "tracing@gofigureapp.io",
 };

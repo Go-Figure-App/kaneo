@@ -80,7 +80,7 @@ describe("renderTaskSections", () => {
     const links = lines.indexOf("  Links");
     expect(lines.slice(links, links + 7)).toEqual([
       "  Links",
-      "    fix(auth): keep state on device redirect  github.com/usekaneo/kaneo/pull/1960  github",
+      "    fix(auth): keep state on device redirect  github.com/Go-Figure-App/tracing/pull/1960  github",
       "    sentry.io/issues/4211",
       "",
       "  Custom fields",
@@ -107,7 +107,7 @@ describe("renderTaskSections", () => {
       "      • do we still need the fallback?",
       "      • can we drop the retry? …",
       "",
-      "    and 2 more, run kaneo comment list KAN-12",
+      "    and 2 more, run tracing comment list KAN-12",
       "",
     ]);
   });

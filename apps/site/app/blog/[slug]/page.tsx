@@ -18,7 +18,7 @@ export async function generateMetadata({
   const post = getPost(slug);
   if (!post) return {};
 
-  const url = `https://kaneo.app${blogPath(post.slug)}`;
+  const url = `https://tracing.gofigureapp.io${blogPath(post.slug)}`;
 
   return {
     title: post.title,
@@ -27,7 +27,7 @@ export async function generateMetadata({
     alternates: { canonical: blogPath(post.slug) },
     openGraph: {
       type: "article",
-      title: `${post.title} | Kaneo`,
+      title: `${post.title} | Tracing`,
       description: post.description,
       url,
       publishedTime: post.date,

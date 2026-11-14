@@ -8,11 +8,11 @@ import {
 
 describe("deriveProjectKey", () => {
   it("takes the first three letters of a single word, like the web app", () => {
-    expect(deriveProjectKey("Kaneo")).toBe("KAN");
+    expect(deriveProjectKey("Tracing")).toBe("TRA");
   });
 
   it("takes the initials of the first three words", () => {
-    expect(deriveProjectKey("Kaneo Web")).toBe("KW");
+    expect(deriveProjectKey("Tracing Web")).toBe("TW");
     expect(deriveProjectKey("Alpha Beta Gamma Delta")).toBe("ABG");
   });
 
@@ -63,13 +63,15 @@ describe("validateProjectKey", () => {
 
 describe("suggestProjectKey", () => {
   it("first tries a longer prefix of the name", () => {
-    expect(suggestProjectKey("Kaneo Mobile", "KM", ["KM", "kan"])).toBe("KANE");
+    expect(suggestProjectKey("Tracing Mobile", "TM", ["TM", "tra"])).toBe(
+      "TRAC",
+    );
   });
 
   it("falls back to a numbered key", () => {
-    expect(suggestProjectKey("Kaneo", "KAN", ["KAN", "KANE"])).toBe("KAN2");
-    expect(suggestProjectKey("Kaneo", "KAN", ["kan", "kane", "kan2"])).toBe(
-      "KAN3",
+    expect(suggestProjectKey("Tracing", "TRA", ["TRA", "TRAC"])).toBe("TRA2");
+    expect(suggestProjectKey("Tracing", "TRA", ["tra", "trac", "tra2"])).toBe(
+      "TRA3",
     );
   });
 

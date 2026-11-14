@@ -1,7 +1,7 @@
 import {
   isValidUrl,
-  KaneoIssueLink as KaneoIssueLinkNode,
-} from "@kaneo/editor";
+  TracingIssueLink as TracingIssueLinkNode,
+} from "@tracing/editor";
 import { useQuery } from "@tanstack/react-query";
 import type { NodeViewProps } from "@tiptap/react";
 import { NodeViewWrapper, ReactNodeViewRenderer } from "@tiptap/react";
@@ -31,7 +31,7 @@ function parseTaskRouteFromUrl(url: string) {
   }
 }
 
-function KaneoIssueLinkView({ node }: NodeViewProps) {
+function TracingIssueLinkView({ node }: NodeViewProps) {
   const { t } = useTranslation();
   const issueKey = String(node.attrs.issueKey || "");
   const taskIdAttr = String(node.attrs.taskId || "");
@@ -122,8 +122,8 @@ function KaneoIssueLinkView({ node }: NodeViewProps) {
   );
 }
 
-export const KaneoIssueLink = KaneoIssueLinkNode.extend({
+export const TracingIssueLink = TracingIssueLinkNode.extend({
   addNodeView() {
-    return ReactNodeViewRenderer(KaneoIssueLinkView);
+    return ReactNodeViewRenderer(TracingIssueLinkView);
   },
 });

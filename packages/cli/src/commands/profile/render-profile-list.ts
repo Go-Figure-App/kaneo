@@ -19,7 +19,7 @@ export function renderProfileList(
   if (profiles.length === 0) {
     return [
       "",
-      `  ${theme.muted("No stored logins yet. Run kaneo login to add one.")}`,
+      `  ${theme.muted("No stored logins yet. Run tracing login to add one.")}`,
       "",
     ];
   }

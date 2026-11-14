@@ -68,7 +68,7 @@ export const runWorkspaceDelete = Effect.fn("command.workspace.delete")(
     );
     if (Option.getOrUndefined(session.workspace)?.id === workspace.id) {
       yield* note((ui) => [
-        `  ${ui.theme.warning(ui.glyphs.warning)} It was your current workspace. Run kaneo workspace use to choose another.`,
+        `  ${ui.theme.warning(ui.glyphs.warning)} It was your current workspace. Run tracing workspace use to choose another.`,
         "",
       ]);
     }

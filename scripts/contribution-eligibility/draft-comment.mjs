@@ -6,4 +6,4 @@ Since October 5, 2026, contributors who have not been vouched for must link thei
 
 Please open a bug report or feature request first, then wait for a maintainer to approve the scope and add the label. If an approved issue already exists, link it in your pull request description with \`Fixes #123\` or \`Closes #123\`. Once the contribution eligibility check passes, you can mark your pull request ready for review.
 
-Read more: https://github.com/usekaneo/kaneo?tab=contributing-ov-file#contribution-eligibility`;
+Read more: https://github.com/Go-Figure-App/tracing?tab=contributing-ov-file#contribution-eligibility`;

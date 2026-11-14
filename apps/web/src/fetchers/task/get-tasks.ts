@@ -1,4 +1,4 @@
-import { client } from "@kaneo/libs";
+import { client } from "@tracing/libs";
 import type { InferResponseType } from "hono/client";
 import { HttpError } from "@/lib/http-error";
 import { loadBoardPages } from "./load-board-pages";

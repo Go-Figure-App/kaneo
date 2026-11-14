@@ -3,7 +3,7 @@ import { canSyncTask } from "../../sync/eligibility";
 import { findExternalLinkByTaskAndType } from "../../github/services/link-manager";
 import type { PluginContext, TaskCommentCreatedEvent } from "../../types";
 import type { GiteaConfig } from "../config";
-import { markKaneoComment } from "../utils/comment-origin";
+import { markTracingComment } from "../utils/comment-origin";
 import { createGiteaClient } from "../utils/gitea-api";
 
 export async function handleTaskCommentCreated(
@@ -66,7 +66,7 @@ export async function handleTaskCommentCreated(
         repositoryOwner,
         repositoryName,
         issueNumber,
-        markKaneoComment(event.comment),
+        markTracingComment(event.comment),
       ),
     );
   } catch (error) {

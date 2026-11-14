@@ -1,10 +1,10 @@
 import { i18n } from "../i18n";
 import { sessionStore, type Session } from "../session";
 
-export const CLOUD_URL = "https://cloud.kaneo.app";
+export const CLOUD_URL = "https://tracing.gofigureapp.io";
 
-/** Device-authorization client accepted by default Kaneo instances (shared with the official CLI). */
-export const DEVICE_CLIENT_ID = "kaneo-cli";
+/** Device-authorization client accepted by default Tracing instances (shared with the official CLI). */
+export const DEVICE_CLIENT_ID = "tracing-mobile";
 
 export class ApiError extends Error {
   status?: number;
@@ -57,7 +57,7 @@ export type RequestOptions = {
   /** Return the raw Response instead of parsing JSON (for header access). */
   raw?: boolean;
   /**
-   * Kaneo's validators mostly treat absent fields as "leave unset" and reject `null`, so null
+   * Tracing's validators mostly treat absent fields as "leave unset" and reject `null`, so null
    * properties are dropped by default. A few routes need an explicit null (unassign, clear avatar).
    */
   keepNulls?: boolean;

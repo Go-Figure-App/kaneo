@@ -9,7 +9,7 @@ import {
 describe("parseConfig", () => {
   it("reads the official format", () => {
     const config = withProfile(emptyConfig, "default", () => ({
-      apiUrl: "https://cloud.kaneo.app",
+      apiUrl: "https://tracing.gofigureapp.io",
       token: "secret",
     }));
     expect(parseConfig(serializeConfig(config))).toEqual({
@@ -28,7 +28,7 @@ describe("parseConfig", () => {
 
   it("reports a broken official file as invalid", () => {
     const parsed = parseConfig(
-      '{"kind":"kaneo-cli","version":1,"profiles":{}}',
+      '{"kind":"tracing-cli","version":1,"profiles":{}}',
     );
     expect(parsed.status).toBe("invalid");
   });

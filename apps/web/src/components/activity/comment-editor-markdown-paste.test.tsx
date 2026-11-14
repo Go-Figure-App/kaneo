@@ -39,7 +39,7 @@ vi.mock("@/components/task/extensions/attachment-card", () => ({
   AttachmentCard: inert("attachmentCardStub"),
 }));
 vi.mock("@/components/task/extensions/kaneo-issue-link", () => ({
-  KaneoIssueLink: inert("kaneoIssueLinkStub"),
+  TracingIssueLink: inert("kaneoIssueLinkStub"),
 }));
 vi.mock("@/components/task/extensions/mention-suggestion", () => ({
   MentionSuggestion: inert("mentionSuggestionStub"),

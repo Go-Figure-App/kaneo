@@ -5,10 +5,10 @@ import { ArrowRight, Check } from "lucide-react";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 
-const APP_URL = "https://cloud.kaneo.app";
+const APP_URL = "https://tracing.gofigureapp.io";
 
 const MANAGED_CONTACT =
-  "mailto:support@kaneo.app?subject=Managed%20Kaneo%20instance&body=Team%20size%3A%0AIdentity%20provider%3A%0AAnything%20else%20we%20should%20know%3A";
+  "mailto:tracing@gofigureapp.io?subject=Managed%20Tracing%20instance&body=Team%20size%3A%0AIdentity%20provider%3A%0AAnything%20else%20we%20should%20know%3A";
 
 const MANAGED_PRICE = {
   price: 299,
@@ -72,7 +72,7 @@ const plans: Plan[] = [
   {
     id: "managed-instance",
     name: "Managed instance",
-    tagline: "Your own Kaneo, run by us",
+    tagline: "Your own Tracing, run by us",
     monthly: MANAGED_PRICE,
     annual: MANAGED_PRICE,
     features: [

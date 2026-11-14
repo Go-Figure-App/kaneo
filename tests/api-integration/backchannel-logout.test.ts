@@ -279,7 +279,7 @@ describe("API integration: back-channel logout", () => {
     expect(await remainingSessionIds()).toEqual([]);
   });
 
-  it("answers 200 for a subject without a Kaneo account", async () => {
+  it("answers 200 for a subject without a Tracing account", async () => {
     const user = await seedUser("kc-user-1");
     const kept = await seedSession(user.id, "kc-session-1");
 

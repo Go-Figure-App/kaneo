@@ -94,7 +94,7 @@ export default function CommentCard({
             : externalSource === "linear"
               ? "Linear"
               : externalSource === "kaneo"
-                ? "Kaneo"
+                ? "Tracing"
                 : externalSource;
   // Gitea and GitLab profile URLs depend on the instance.
   const githubProfileUrl =

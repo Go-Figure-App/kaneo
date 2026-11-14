@@ -236,7 +236,7 @@ export function createApp() {
   const { upgradeWebSocket, injectWebSocket } = nodeWs;
   const corsOriginSource = [
     process.env.CORS_ORIGINS,
-    process.env.KANEO_CLIENT_URL,
+    process.env.TRACING_CLIENT_URL ?? process.env.KANEO_CLIENT_URL,
   ].find((value) => value?.trim());
   const corsOrigins = corsOriginSource
     ?.split(",")
@@ -670,17 +670,18 @@ export function createApp() {
     const document = api.getOpenAPI31Document({
       openapi: "3.1.0",
       info: {
-        title: "Kaneo API",
+        title: "Tracing API",
         version: "1.0.0",
         description:
-          "Kaneo Project Management API - Manage projects, tasks, labels, and more",
+          "Tracing Project Management API - Manage projects, tasks, labels, and more",
       },
       servers: [
         {
           url: normalizeApiServerUrl(
-            process.env.KANEO_API_URL || "https://cloud.kaneo.app",
+            (process.env.TRACING_API_URL ?? process.env.KANEO_API_URL) ||
+              "https://tracing.gofigureapp.io",
           ),
-          description: "Kaneo API Server",
+          description: "Tracing API Server",
         },
       ],
       security: [{ bearerAuth: [] }],
@@ -770,7 +771,8 @@ export function createApp() {
       // Optional `ui=1` forces redirect when Sec-Fetch-* headers are missing (e.g. some clients).
       if (forceUiRedirect || secFetchDest === "document") {
         const clientUrl = (
-          process.env.KANEO_CLIENT_URL || "http://localhost:5173"
+          (process.env.TRACING_CLIENT_URL ?? process.env.KANEO_CLIENT_URL) ||
+          "http://localhost:5173"
         ).replace(/\/$/, "");
         const deviceUrl = new URL(`${clientUrl}/device`);
         if (userCode) {
@@ -890,10 +892,10 @@ export function createApp() {
   app.route(
     "/",
     mcpWellKnownRoutes(
-      (process.env.KANEO_API_URL || "http://localhost:1337").replace(
-        /\/api\/?$/,
-        "",
-      ),
+      (
+        (process.env.TRACING_API_URL ?? process.env.KANEO_API_URL) ||
+        "http://localhost:1337"
+      ).replace(/\/api\/?$/, ""),
     ),
   );
 
@@ -1094,7 +1096,7 @@ export async function startServer(
     },
     () => {
       console.log(
-        `⚡ API is running at ${process.env.KANEO_API_URL || "http://localhost:1337"}`,
+        `⚡ API is running at ${(process.env.TRACING_API_URL ?? process.env.KANEO_API_URL) || "http://localhost:1337"}`,
       );
     },
   );

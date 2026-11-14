@@ -1,4 +1,4 @@
-/** Kaneo REST API shapes. Optional fields may be missing or null depending on the server version. */
+/** Tracing REST API shapes. Optional fields may be missing or null depending on the server version. */
 
 export type Json =
   | null

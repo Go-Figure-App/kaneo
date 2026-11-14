@@ -35,7 +35,7 @@ describe("fileMarkdown", () => {
 
   it("writes other files as attachment tags", () => {
     expect(fileMarkdown(spec)).toBe(
-      '<kaneo-attachment url="http://localhost:1337/api/asset/p1" filename="spec &quot;final&quot;.pdf" mime-type="application/pdf" size="2048" />',
+      '<tracing-attachment url="http://localhost:1337/api/asset/p1" filename="spec &quot;final&quot;.pdf" mime-type="application/pdf" size="2048" />',
     );
   });
 });

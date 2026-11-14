@@ -39,7 +39,7 @@ export function pickLabels(
       return Result.fail(
         new InvalidArgument({
           message: `The label ${match.label.name} is being deleted.`,
-          hint: `Run kaneo label delete ${quoteName(match.label.name)} to finish deleting it.`,
+          hint: `Run tracing label delete ${quoteName(match.label.name)} to finish deleting it.`,
         }),
       );
     }
@@ -55,7 +55,7 @@ export function pickLabels(
         missing.length === 1
           ? `No label named "${first}" in this workspace.`
           : `No labels named ${missing.map((name) => `"${name}"`).join(", ")} in this workspace.`,
-      hint: `${existingHint(available)} Create one with kaneo label create ${quoteName(first)}.`,
+      hint: `${existingHint(available)} Create one with tracing label create ${quoteName(first)}.`,
     }),
   );
 }

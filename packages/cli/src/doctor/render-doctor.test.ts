@@ -46,7 +46,7 @@ describe("renderDoctor", () => {
           {
             name: "config",
             ok: true,
-            detail: "/home/a/.config/kaneo/config.json",
+            detail: "/home/a/.config/tracing/config.json",
           },
         ],
       }).at(-2),

@@ -1,4 +1,4 @@
-import type { CustomRolePermission } from "@kaneo/permissions";
+import type { CustomRolePermission } from "@tracing/permissions";
 import db from "../../database";
 import { instanceRoleTable } from "../../database/schema";
 import type { AdminAuditRequest } from "../audit/admin-audit-request";

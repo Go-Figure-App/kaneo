@@ -1,4 +1,4 @@
-import { isBuiltInInstanceRole } from "@kaneo/permissions";
+import { isBuiltInInstanceRole } from "@tracing/permissions";
 import { APIError } from "better-auth/api";
 import { inArray } from "drizzle-orm";
 import db from "../../database";

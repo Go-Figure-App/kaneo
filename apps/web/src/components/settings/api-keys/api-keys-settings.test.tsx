@@ -63,7 +63,7 @@ vi.mock("@/lib/toast", () => ({
 
 const activeKey: TestKey = {
   id: "cli",
-  name: "Kaneo CLI",
+  name: "Tracing CLI",
   start: "kn_8f2a",
   createdAt: "2026-09-02T00:00:00Z",
   expiresAt: null,
@@ -98,7 +98,7 @@ beforeEach(() => {
 describe("API keys list", () => {
   it("shows the key prefix, expiry state and an expired badge only on expired keys", () => {
     render(<ApiKeysSettings />);
-    expect(screen.getByText("Kaneo CLI")).toBeInTheDocument();
+    expect(screen.getByText("Tracing CLI")).toBeInTheDocument();
     expect(screen.getByText("kn_8f2a…")).toBeInTheDocument();
     expect(
       screen.getAllByText(/settings:apiKey\.row\.neverExpires/),

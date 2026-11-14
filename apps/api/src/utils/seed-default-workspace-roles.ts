@@ -1,4 +1,4 @@
-import { DEFAULT_ROLE_NAMES, defaultRolePayloads } from "@kaneo/permissions";
+import { DEFAULT_ROLE_NAMES, defaultRolePayloads } from "@tracing/permissions";
 import { and, inArray, sql } from "drizzle-orm";
 import db, { schema } from "../database";
 

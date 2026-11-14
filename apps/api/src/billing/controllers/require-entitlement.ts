@@ -22,7 +22,7 @@ export async function requireWorkspaceEntitlement(
   if (!entitlement.active) {
     throw new HTTPException(402, {
       message:
-        "This workspace's Kaneo Cloud plan has expired. Subscribe to continue creating and editing.",
+        "This workspace's Tracing Cloud plan has expired. Subscribe to continue creating and editing.",
     });
   }
 }

@@ -91,9 +91,9 @@ export const workBreakdownStructure: Guide = {
       ],
     },
     {
-      heading: "A work breakdown structure in Kaneo",
+      heading: "A work breakdown structure in Tracing",
       body: [
-        "Kaneo has no dedicated WBS diagram, but the structure maps directly onto tasks and subtasks. Create a task for each deliverable and add its work packages as subtasks; each subtask has its own owner and status, and opening one shows a link back to its parent.",
+        "Tracing has no dedicated WBS diagram, but the structure maps directly onto tasks and subtasks. Create a task for each deliverable and add its work packages as subtasks; each subtask has its own owner and status, and opening one shows a link back to its parent.",
         "Put the WBS code in the task title or a text custom field if you need to refer to it elsewhere, and use labels to tag each task with its deliverable so you can filter the board by it. Add start and due dates to the work packages to see them on the Gantt view.",
       ],
     },

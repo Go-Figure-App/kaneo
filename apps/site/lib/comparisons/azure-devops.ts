@@ -6,18 +6,18 @@ export const azureDevops: Comparison = {
   category: "saas",
   title: "Standalone Azure DevOps Boards alternative",
   description:
-    "Kaneo is a standalone Azure DevOps Boards alternative with no Microsoft account or Azure tenant required. Kaneo Cloud runs it for you from $4 a month.",
+    "Tracing is a standalone Azure DevOps Boards alternative with no Microsoft account or Azure tenant required. Tracing Cloud runs it for you from $4 a month.",
   summary:
-    "Work tracking without a Microsoft tenant, run for you on Kaneo Cloud.",
+    "Work tracking without a Microsoft tenant, run for you on Tracing Cloud.",
   heading: "The standalone alternative to Azure DevOps Boards",
   subheading:
-    "Azure Boards is free for five people and then priced per user, and it only makes sense if the rest of your stack is Microsoft. Kaneo is a standalone tracker you can host anywhere.",
+    "Azure Boards is free for five people and then priced per user, and it only makes sense if the rest of your stack is Microsoft. Tracing is a standalone tracker you can host anywhere.",
   verdict:
-    "Kaneo is a standalone alternative to Azure DevOps Boards for teams outside the Microsoft stack, and Kaneo Cloud runs it for you from $4 a month, or $5 per user for teams. Azure DevOps is free for the first 5 users and then $6 per user a month, tied to a Microsoft Entra tenant and the wider Azure DevOps suite, while Kaneo has no tenant requirement. Kaneo is also MIT-licensed open source, so you can self-host it for free for any number of people.",
+    "Tracing is a standalone alternative to Azure DevOps Boards for teams outside the Microsoft stack, and Tracing Cloud runs it for you from $4 a month, or $5 per user for teams. Azure DevOps is free for the first 5 users and then $6 per user a month, tied to a Microsoft Entra tenant and the wider Azure DevOps suite, while Tracing has no tenant requirement. Tracing is also MIT-licensed open source, so you can self-host it for free for any number of people.",
   facts: {
     license: "MIT, versus a proprietary Microsoft licence",
-    hosting: "EU-hosted Kaneo Cloud, or self-host anywhere",
-    sso: "Any OIDC provider, free on every Kaneo build",
+    hosting: "EU-hosted Tracing Cloud, or self-host anywhere",
+    sso: "Any OIDC provider, free on every Tracing build",
     pricing: "Cloud from $4 / month, or $0 self-hosted",
   },
   rows: [
@@ -45,19 +45,19 @@ export const azureDevops: Comparison = {
   reasons: [
     {
       title: "No tenant, no org sprawl",
-      body: "Kaneo needs a server and a database. There is no organisation, no project collection, and no directory to reconcile before someone can be assigned a task.",
+      body: "Tracing needs a server and a database. There is no organisation, no project collection, and no directory to reconcile before someone can be assigned a task.",
     },
     {
       title: "Understandable in a morning",
-      body: "Azure Boards inherits work-item types, area paths, and iteration paths from TFS. Kaneo has projects, workflow columns, labels, and priorities.",
+      body: "Azure Boards inherits work-item types, area paths, and iteration paths from TFS. Tracing has projects, workflow columns, labels, and priorities.",
     },
     {
       title: "Portable by default",
-      body: "MIT licence, public API, JSON export per project. Nothing about Kaneo assumes you will stay on one cloud provider.",
+      body: "MIT licence, public API, JSON export per project. Nothing about Tracing assumes you will stay on one cloud provider.",
     },
   ],
   honestNote:
-    "If your organisation is already on Microsoft Entra, and you use Azure Repos, Pipelines, and Test Plans, keeping work items in the same place is the sensible choice. Kaneo has no CI, no repos, and no test management, and it will not pretend otherwise.",
+    "If your organisation is already on Microsoft Entra, and you use Azure Repos, Pipelines, and Test Plans, keeping work items in the same place is the sensible choice. Tracing has no CI, no repos, and no test management, and it will not pretend otherwise.",
   faq: [
     {
       question: "What does Azure DevOps cost?",
@@ -67,17 +67,17 @@ export const azureDevops: Comparison = {
     {
       question: "Can Azure Boards be self-hosted?",
       answer:
-        "Only through Azure DevOps Server, the on-premise edition, which is licensed separately and is a substantial install. Kaneo self-hosts with Docker and PostgreSQL under the MIT license at no cost.",
+        "Only through Azure DevOps Server, the on-premise edition, which is licensed separately and is a substantial install. Tracing self-hosts with Docker and PostgreSQL under the MIT license at no cost.",
     },
     {
       question: "Is there an open-source alternative to Azure Boards?",
       answer:
-        "Kaneo, Redmine, OpenProject, and Plane all cover work tracking without a Microsoft tenant. Kaneo is the lightest to run and includes SSO through any OIDC provider, including Entra ID.",
+        "Tracing, Redmine, OpenProject, and Plane all cover work tracking without a Microsoft tenant. Tracing is the lightest to run and includes SSO through any OIDC provider, including Entra ID.",
     },
     {
-      question: "Can Kaneo connect to my Git repositories?",
+      question: "Can Tracing connect to my Git repositories?",
       answer:
-        "Kaneo integrates with GitHub, GitLab, and Gitea, and has outgoing webhooks and a documented public API for anything else, including Azure Repos.",
+        "Tracing integrates with GitHub, GitLab, and Gitea, and has outgoing webhooks and a documented public API for anything else, including Azure Repos.",
     },
   ],
   related: ["jira", "github-projects", "redmine", "openproject"],
@@ -87,6 +87,6 @@ export const azureDevops: Comparison = {
       label: "Azure DevOps pricing",
       href: "https://azure.microsoft.com/en-us/pricing/details/devops/azure-devops-services/",
     },
-    { label: "Kaneo pricing", href: "/pricing" },
+    { label: "Tracing pricing", href: "/pricing" },
   ],
 };

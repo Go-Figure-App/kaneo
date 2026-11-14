@@ -40,14 +40,14 @@ const chooseWorkspace = Effect.fn("workspace.use.choose")(function* (
     }
     return yield* new InvalidArgument({
       message: `No workspace matches "${reference.value}".`,
-      hint: "Run kaneo workspace list to see your workspaces.",
+      hint: "Run tracing workspace list to see your workspaces.",
     });
   }
   const [only] = workspaces;
   if (!only) {
     return yield* new InvalidArgument({
       message: "You are not a member of any workspace yet.",
-      hint: "Create one in the Kaneo web app, then run this again.",
+      hint: "Create one in the Tracing web app, then run this again.",
     });
   }
   if (workspaces.length === 1) return only;
@@ -78,7 +78,7 @@ export const runWorkspaceUse = Effect.fn("command.workspace.use")(
     if (Option.isNone(options.workspace) && !output.interactive) {
       return yield* new InvalidArgument({
         message: "Which workspace should be the default?",
-        hint: "Pass its slug, name or id, for example kaneo workspace use acme-studio. Run kaneo workspace list to see them.",
+        hint: "Pass its slug, name or id, for example tracing workspace use acme-studio. Run tracing workspace list to see them.",
       });
     }
 

@@ -1,4 +1,4 @@
-import type { CustomRolePermission } from "@kaneo/permissions";
+import type { CustomRolePermission } from "@tracing/permissions";
 import type { getAdminRoles } from "./get-admin-roles";
 
 export type AdminRole = Awaited<ReturnType<typeof getAdminRoles>>[number];

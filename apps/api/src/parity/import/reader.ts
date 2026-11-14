@@ -2,7 +2,7 @@ import {
   createLinearGraphQL,
   type LinearGraphQL,
   type LinearGraphQLOptions,
-} from "@kaneo/importers/linear";
+} from "@tracing/importers/linear";
 import { collectPages } from "./pagination";
 import * as queries from "./queries";
 import type {

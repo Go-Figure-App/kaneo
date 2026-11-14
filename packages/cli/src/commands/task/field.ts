@@ -39,7 +39,7 @@ export const runTaskField = Effect.fn("command.task.field")(
     if (options.clear && Option.isNone(options.field)) {
       return yield* new InvalidArgument({
         message: "Which field should be cleared?",
-        hint: 'Pass the field name, for example kaneo task field KAN-12 "Story points" --clear.',
+        hint: 'Pass the field name, for example tracing task field KAN-12 "Story points" --clear.',
       });
     }
     const resolved = yield* withSpinner(`Loading ${options.task}`)(

@@ -3,19 +3,19 @@ title: "Notifications"
 description: "Choose which workspaces can send updates to your email or another personal channel."
 ---
 
-Open **Settings → Account → Notifications** to choose how Kaneo reaches you. These settings belong to your account and do not change anyone else's notifications.
+Open **Settings → Account → Notifications** to choose how Tracing reaches you. These settings belong to your account and do not change anyone else's notifications.
 
-Your inbox in Kaneo keeps working whether or not you enable external delivery. For messages to a shared team channel, use a [project integration](/core/integrations/index).
+Your inbox in Tracing keeps working whether or not you enable external delivery. For messages to a shared team channel, use a [project integration](/core/integrations/index).
 
 ## 1. Choose which events you want
 
-Use the event preferences at the top of the page to control task assignments, comments and mentions, status changes, and due-date reminders. These categories are enabled by default. Turning one off stops new notifications in that category, including in the Kaneo inbox.
+Use the event preferences at the top of the page to control task assignments, comments and mentions, status changes, and due-date reminders. These categories are enabled by default. Turning one off stops new notifications in that category, including in the Tracing inbox.
 
 Due-date reminders default to one day before the deadline. Choose a whole number of hours (1–720) or days (1–30), then save. External delivery still needs a channel and workspace rule below.
 
-<Frame caption="Choose notification categories and how early Kaneo should remind you about due dates.">
-  <img className="block dark:hidden" src="/images/product/notifications-light.png" alt="Choose notification categories and how early Kaneo should remind you about due dates." />
-  <img className="hidden dark:block" src="/images/product/notifications-dark.png" alt="Choose notification categories and how early Kaneo should remind you about due dates." />
+<Frame caption="Choose notification categories and how early Tracing should remind you about due dates.">
+  <img className="block dark:hidden" src="/images/product/notifications-light.png" alt="Choose notification categories and how early Tracing should remind you about due dates." />
+  <img className="hidden dark:block" src="/images/product/notifications-dark.png" alt="Choose notification categories and how early Tracing should remind you about due dates." />
 </Frame>
 
 ## 2. Connect a channel
@@ -29,7 +29,7 @@ Due-date reminders default to one day before the deadline. Choose a whole number
 
 For channels with tokens or signing secrets, the instance operator must first set `NOTIFICATION_SECRET_ENCRYPTION_KEY`. Configure and enable a channel on this page. Use the Gotify base URL, such as `https://gotify.example.com`, without adding its message API path.
 
-For a signed custom webhook, Kaneo sends `X-Kaneo-Signature` as the HMAC-SHA256 hex digest of the raw JSON request body. Your receiver can verify it with the shared secret.
+For a signed custom webhook, Tracing sends `X-Kaneo-Signature` as the HMAC-SHA256 hex digest of the raw JSON request body. Your receiver can verify it with the shared secret.
 
 ## 3. Choose the workspaces and projects
 
@@ -46,11 +46,11 @@ For example, you can receive email for the website launch and use ntfy for anoth
 
 Pause the workspace rule to stop forwarding that workspace's notifications. Disable a channel on the rule to stop only that destination. Disable the account-level channel to stop using it across your rules.
 
-Changes apply to new notifications. Kaneo does not replay older inbox items when you enable delivery again. If delivery fails, the notification still remains in your Kaneo inbox.
+Changes apply to new notifications. Tracing does not replay older inbox items when you enable delivery again. If delivery fails, the notification still remains in your Tracing inbox.
 
 ## Which notifications are forwarded?
 
-Forwarding uses the notifications Kaneo creates for your account and respects your event preferences. A project event does not automatically notify every member. Use a project integration when you want a shared feed of project activity.
+Forwarding uses the notifications Tracing creates for your account and respects your event preferences. A project event does not automatically notify every member. Use a project integration when you want a shared feed of project activity.
 
 A notification without a workspace or project context may stay in the inbox only.
 
@@ -58,6 +58,6 @@ A notification without a workspace or project context may stay in the inbox only
 
 Check the channel is enabled, the workspace rule is active, and the project is included. For email, ask the instance operator to check SMTP and its delivery logs.
 
-HTTP destinations must be reachable from the Kaneo API. By default, local and private network addresses are rejected. On a trusted private deployment, an operator can choose to allow them with [`KANEO_ALLOW_PRIVATE_WEBHOOK_DESTINATIONS`](/core/installation/environment-variables#notifications); this changes a server-side security boundary, not an account preference.
+HTTP destinations must be reachable from the Tracing API. By default, local and private network addresses are rejected. On a trusted private deployment, an operator can choose to allow them with [`TRACING_ALLOW_PRIVATE_WEBHOOK_DESTINATIONS`](/core/installation/environment-variables#notifications); this changes a server-side security boundary, not an account preference.
 
 If a notification appears in the inbox but never reaches your destination, check the destination service's logs and credentials next.

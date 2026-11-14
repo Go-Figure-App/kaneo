@@ -1,4 +1,4 @@
-import { parseInstanceRoles } from "@kaneo/permissions";
+import { parseInstanceRoles } from "@tracing/permissions";
 
 /**
  * The one role the directory shows and edits: admin when present, else the

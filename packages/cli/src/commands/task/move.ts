@@ -46,7 +46,7 @@ export const runTaskMove = Effect.fn("command.task.move")(function* (options: {
         return Effect.fail(
           new InvalidArgument({
             message: `${fromLabel} is already in ${match.name}.`,
-            hint: "Pass --project with another project key, or use kaneo task status to change its column.",
+            hint: "Pass --project with another project key, or use tracing task status to change its column.",
           }),
         );
       }

@@ -367,7 +367,7 @@ describe("API integration: profile fields managed by the custom provider", () =>
       expect(await loadProfile(userId)).toMatchObject({ image: PICTURE });
     });
 
-    it("still removes a picture uploaded to Kaneo before", async () => {
+    it("still removes a picture uploaded to Tracing before", async () => {
       vi.stubEnv("CUSTOM_OAUTH_MANAGED_PROFILE_FIELDS", "image");
       const { app } = createApp();
       const { userId, cookies } = await signUpProviderUser(app);

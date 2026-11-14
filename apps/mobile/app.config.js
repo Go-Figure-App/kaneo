@@ -1,23 +1,25 @@
-// Go Figure overrides for the upstream Kaneo app. Upstream's app.json stays
+// Go Figure overrides for the upstream Tracing app. Upstream's app.json stays
 // untouched so merges from usekaneo/kaneo never conflict; everything Go Figure
 // changes about the app's identity lives here.
 module.exports = ({ config }) => ({
   ...config,
-  name: "GF Kaneo",
+  name: "Tracing",
+  slug: "tracing",
+  scheme: ["tracing", "kaneo"],
   // Set both after running `eas init` under the Go Figure Expo account.
   owner: process.env.GOFIGURE_EXPO_OWNER,
   ios: {
     ...config.ios,
-    bundleIdentifier: "io.gofigureapp.kaneo",
+    bundleIdentifier: "io.gofigureapp.tracing",
   },
   android: {
     ...config.android,
-    package: "io.gofigureapp.kaneo",
+    package: "io.gofigureapp.tracing",
   },
   extra: {
     ...config.extra,
     parityServerUrl:
-      process.env.GOFIGURE_LOCAL_SERVER_URL || "https://kaneo.gofigureapp.io",
+      process.env.GOFIGURE_LOCAL_SERVER_URL || "https://tracing.gofigureapp.io",
     eas: { projectId: process.env.GOFIGURE_EAS_PROJECT_ID },
   },
 });

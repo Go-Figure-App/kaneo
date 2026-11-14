@@ -16,7 +16,7 @@ export const chooseLabel = Effect.fn("labels.choose")(function* (
     if (labels.length === 0) {
       return yield* new InvalidArgument({
         message: "This workspace has no labels yet.",
-        hint: "Create one with kaneo label create <name>.",
+        hint: "Create one with tracing label create <name>.",
       });
     }
     if (output.interactive) {
@@ -44,6 +44,6 @@ export const chooseLabel = Effect.fn("labels.choose")(function* (
   }
   return yield* new InvalidArgument({
     message: `No label named "${reference.value.trim()}" in this workspace.`,
-    hint: "Run kaneo label list to see the labels.",
+    hint: "Run tracing label list to see the labels.",
   });
 });

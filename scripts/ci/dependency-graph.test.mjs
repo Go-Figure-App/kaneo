@@ -365,7 +365,7 @@ test("trusted submission sends one complete snapshot to GitHub and rejects unsuc
     GITHUB_REF: context.ref,
     GITHUB_ACTIONS: "true",
     GITHUB_EVENT_NAME: "workflow_dispatch",
-    GITHUB_REPOSITORY: "usekaneo/kaneo",
+    GITHUB_REPOSITORY: "Go-Figure-App/tracing",
     GITHUB_RUN_ID: "123",
     GITHUB_RUN_ATTEMPT: "2",
     GITHUB_TOKEN: "synthetic-test-token",
@@ -373,7 +373,7 @@ test("trusted submission sends one complete snapshot to GitHub and rejects unsuc
   const network = t.mock.method(globalThis, "fetch", async (url, options) => {
     assert.equal(
       url,
-      "https://api.github.com/repos/usekaneo/kaneo/dependency-graph/snapshots",
+      "https://api.github.com/repos/Go-Figure-App/tracing/dependency-graph/snapshots",
     );
     assert.equal(options.method, "POST");
     assert.equal(options.redirect, "error");

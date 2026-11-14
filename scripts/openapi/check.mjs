@@ -38,10 +38,10 @@ function pnpm(args) {
 }
 
 function generate(into) {
-  pnpm(["exec", "vp", "run", "--filter", "@kaneo/api^...", "build"]);
+  pnpm(["exec", "vp", "run", "--filter", "@tracing/api^...", "build"]);
   pnpm([
     "--filter",
-    "@kaneo/api",
+    "@tracing/api",
     "exec",
     "tsx",
     "scripts/export-openapi.ts",

@@ -13,7 +13,7 @@ vi.mock("@/fetchers/integration-sync/review-sync-resume", () => ({
 vi.mock("@tanstack/react-router", () => ({
   useNavigate: () => mocks.navigate,
 }));
-vi.mock("@kaneo/libs", () => ({ windowId: "test" }));
+vi.mock("@tracing/libs", () => ({ windowId: "test" }));
 vi.mock("@/lib/auth-client", () => ({
   authClient: { useSession: () => ({ data: { user: { id: "user" } } }) },
 }));

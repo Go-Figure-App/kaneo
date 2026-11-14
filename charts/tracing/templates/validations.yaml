@@ -1,0 +1,22 @@
+{{- $publicExposureEnabled := or .Values.ingress.enabled .Values.gateway.enabled -}}
+{{- if and (not .Values.tracing.env.existingSecret.enabled) (or (not .Values.tracing.env.authSecret) (lt (len (.Values.tracing.env.authSecret | toString)) 32)) -}}
+{{- fail "tracing.env.authSecret must be explicitly set to at least 32 characters or provided via tracing.env.existingSecret" -}}
+{{- end -}}
+{{- if and $publicExposureEnabled .Values.postgresql.enabled (not .Values.postgresql.auth.existingSecret) (eq .Values.postgresql.auth.password "tracing_password") -}}
+{{- fail "postgresql.auth.password must be changed or provided via postgresql.auth.existingSecret before enabling ingress or gateway" -}}
+{{- end -}}
+{{- if and .Values.autoscaling.enabled .Values.autoscaling.targetCPUUtilizationPercentage (not (dig "requests" "cpu" "" .Values.tracing.resources)) -}}
+{{- fail "tracing.resources.requests.cpu must be set when autoscaling CPU utilization is enabled" -}}
+{{- end -}}
+
+{{- if and .Values.tracing.env.existingSecret.enabled (or (not .Values.tracing.env.existingSecret.name) (not .Values.tracing.env.existingSecret.key)) -}}
+{{- fail "tracing.env.existingSecret requires a non-empty name and key" -}}
+{{- end -}}
+{{- $clientUrl := .Values.tracing.env.clientUrl | trim -}}
+{{- if not $clientUrl -}}
+{{- fail "tracing.env.clientUrl is required: set the public HTTP(S) origin used to access Tracing (for example https://tracing.example.com)" -}}
+{{- end -}}
+{{- $parsedClientUrl := urlParse $clientUrl -}}
+{{- if or (not (has $parsedClientUrl.scheme (list "http" "https"))) (not $parsedClientUrl.host) $parsedClientUrl.userinfo $parsedClientUrl.query $parsedClientUrl.fragment (not (has $parsedClientUrl.path (list "" "/"))) -}}
+{{- fail "tracing.env.clientUrl must be an HTTP(S) origin without credentials, a path, a query or a fragment" -}}
+{{- end -}}

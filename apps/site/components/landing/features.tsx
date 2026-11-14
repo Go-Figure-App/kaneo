@@ -52,7 +52,10 @@ export function Features() {
           <div>
             <h3>{copy.source.title}</h3>
             <p>{copy.source.description}</p>
-            <a href="https://github.com/usekaneo/kaneo" className={styles.link}>
+            <a
+              href="https://github.com/Go-Figure-App/tracing"
+              className={styles.link}
+            >
               {copy.source.link}
               <ArrowUpRight size={14} aria-hidden="true" />
             </a>

@@ -6,19 +6,19 @@ export const openproject: Comparison = {
   category: "open-source",
   title: "Lightweight OpenProject alternative",
   description:
-    "Kaneo is a lighter OpenProject alternative with no 25-user minimum and no Enterprise add-on. Kaneo Cloud runs it for you from $4 a month.",
+    "Tracing is a lighter OpenProject alternative with no 25-user minimum and no Enterprise add-on. Tracing Cloud runs it for you from $4 a month.",
   summary:
     "One container instead of a platform, with nothing held back for Enterprise.",
   heading: "The lightweight OpenProject alternative",
   subheading:
-    "OpenProject is a serious, mature platform, and it asks for a serious install. Kaneo is one container and a database, MIT licensed, with single sign-on in the free build.",
+    "OpenProject is a serious, mature platform, and it asks for a serious install. Tracing is one container and a database, MIT licensed, with single sign-on in the free build.",
   verdict:
-    "Kaneo is a lighter OpenProject alternative, and Kaneo Cloud runs it for you from $4 a month, or $5 per user for teams, with no seat minimum and nothing to maintain. OpenProject's Community edition is GPL and keeps single sign-on, custom branding, and several other features for its Enterprise add-on, whose cloud plans start at a 25-user minimum, while Kaneo has no paid edition and no feature gates. Kaneo is also MIT licensed, so you can self-host it with single sign-on included.",
+    "Tracing is a lighter OpenProject alternative, and Tracing Cloud runs it for you from $4 a month, or $5 per user for teams, with no seat minimum and nothing to maintain. OpenProject's Community edition is GPL and keeps single sign-on, custom branding, and several other features for its Enterprise add-on, whose cloud plans start at a 25-user minimum, while Tracing has no paid edition and no feature gates. Tracing is also MIT licensed, so you can self-host it with single sign-on included.",
   facts: {
     license: "MIT, versus GPLv3 for the OpenProject Community edition",
     hosting:
-      "EU-hosted Kaneo Cloud. Both self-host, Kaneo as a single container plus PostgreSQL",
-    sso: "Free on every Kaneo build, Enterprise add-on for OpenProject",
+      "EU-hosted Tracing Cloud. Both self-host, Tracing as a single container plus PostgreSQL",
+    sso: "Free on every Tracing build, Enterprise add-on for OpenProject",
     pricing: "Cloud from $4 / month with no seat minimum, or $0 self-hosted",
   },
   rows: [
@@ -34,19 +34,19 @@ export const openproject: Comparison = {
   reasons: [
     {
       title: "Nothing is held back for Enterprise",
-      body: "OpenProject reserves single sign-on, custom themes, and other capabilities for its Enterprise add-on. Kaneo has one edition, and single sign-on is part of it.",
+      body: "OpenProject reserves single sign-on, custom themes, and other capabilities for its Enterprise add-on. Tracing has one edition, and single sign-on is part of it.",
     },
     {
       title: "Small enough to run yourself",
-      body: "Kaneo is one container plus PostgreSQL, deployable with Docker Compose or Helm. OpenProject is a substantially larger Rails application with more moving parts to keep healthy.",
+      body: "Tracing is one container plus PostgreSQL, deployable with Docker Compose or Helm. OpenProject is a substantially larger Rails application with more moving parts to keep healthy.",
     },
     {
       title: "MIT, not copyleft",
-      body: "If you plan to fork Kaneo or build something on top of it commercially, MIT keeps that simple. GPLv3 imposes conditions that some companies would rather avoid.",
+      body: "If you plan to fork Tracing or build something on top of it commercially, MIT keeps that simple. GPLv3 imposes conditions that some companies would rather avoid.",
     },
   ],
   honestNote:
-    "Both tools offer Gantt views. OpenProject goes further with baseline comparisons, budgets, cost reporting, work-package hierarchies, and BIM support. Those are reasons to choose it when project controls go beyond scheduling tasks. Kaneo combines Gantt and calendar planning with boards, custom fields, and time tracking in a smaller setup.",
+    "Both tools offer Gantt views. OpenProject goes further with baseline comparisons, budgets, cost reporting, work-package hierarchies, and BIM support. Those are reasons to choose it when project controls go beyond scheduling tasks. Tracing combines Gantt and calendar planning with boards, custom fields, and time tracking in a smaller setup.",
   faq: [
     {
       question: "Is OpenProject completely free?",
@@ -56,17 +56,17 @@ export const openproject: Comparison = {
     {
       question: "What is a simpler alternative to OpenProject?",
       answer:
-        "Kaneo, Vikunja, and Taiga are all lighter to run. Kaneo is MIT licensed, includes SSO for free, and is a single container plus a PostgreSQL database.",
+        "Tracing, Vikunja, and Taiga are all lighter to run. Tracing is MIT licensed, includes SSO for free, and is a single container plus a PostgreSQL database.",
     },
     {
-      question: "Does Kaneo have Gantt charts?",
+      question: "Does Tracing have Gantt charts?",
       answer:
-        "Yes. Kaneo has a Gantt view for tasks with start and due dates, alongside calendar, board, and list views. It does not have baseline comparisons, budgets, or cost reporting. If those are central to your work, consider OpenProject.",
+        "Yes. Tracing has a Gantt view for tasks with start and due dates, alongside calendar, board, and list views. It does not have baseline comparisons, budgets, or cost reporting. If those are central to your work, consider OpenProject.",
     },
     {
-      question: "Can I migrate from OpenProject to Kaneo?",
+      question: "Can I migrate from OpenProject to Tracing?",
       answer:
-        "There is no dedicated importer yet. OpenProject has a full REST API and Kaneo has a documented public API and per-project JSON import, so a scripted migration is realistic. Open an issue on GitHub if you want a supported path.",
+        "There is no dedicated importer yet. OpenProject has a full REST API and Tracing has a documented public API and per-project JSON import, so a scripted migration is realistic. Open an issue on GitHub if you want a supported path.",
     },
   ],
   related: ["redmine", "jira", "taiga", "plane"],
@@ -76,6 +76,6 @@ export const openproject: Comparison = {
       label: "OpenProject pricing",
       href: "https://www.openproject.org/pricing/",
     },
-    { label: "Kaneo pricing", href: "/pricing" },
+    { label: "Tracing pricing", href: "/pricing" },
   ],
 };

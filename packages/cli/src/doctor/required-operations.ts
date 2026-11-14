@@ -1,4 +1,4 @@
-import type { HttpMethod } from "../api/kaneo-api.js";
+import type { HttpMethod } from "../api/tracing-api.js";
 
 export type RequiredOperation = {
   readonly method: HttpMethod;

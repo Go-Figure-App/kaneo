@@ -51,7 +51,7 @@ describe("renderLabelList", () => {
   it("points to label create when there are none", () => {
     expect(renderLabelList(ui(), [])).toEqual([
       "",
-      "  No labels in this workspace yet. Create one with kaneo label create <name>.",
+      "  No labels in this workspace yet. Create one with tracing label create <name>.",
       "",
     ]);
   });

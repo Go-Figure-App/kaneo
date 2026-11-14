@@ -38,7 +38,7 @@ const run = {
 };
 const images = run.results.map((item, i) => ({
   description: item.name,
-  url: `https://raw.githubusercontent.com/usekaneo/kaneo/${"b".repeat(40)}/screenshots/pr-1719/test-run/${i + 1}.png`,
+  url: `https://raw.githubusercontent.com/Go-Figure-App/tracing/${"b".repeat(40)}/screenshots/pr-1719/test-run/${i + 1}.png`,
 }));
 
 function mock(
@@ -59,7 +59,8 @@ function mock(
         throw new Error("Upload denied");
       if (endpoint.includes("/git/")) return { sha: "b".repeat(40) };
       return {
-        html_url: "https://github.com/usekaneo/kaneo/pull/1719#issuecomment-1",
+        html_url:
+          "https://github.com/Go-Figure-App/tracing/pull/1719#issuecomment-1",
       };
     }
     if (endpoint === "user") return { login: "tinsever" };

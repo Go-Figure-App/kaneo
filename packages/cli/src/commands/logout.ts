@@ -1,6 +1,6 @@
 import { Effect, Option, Redacted, Schema } from "effect";
 import { Command } from "effect/cli";
-import { KaneoApi } from "../api/kaneo-api.js";
+import { TracingApi } from "../api/tracing-api.js";
 import { ConfigStore } from "../config/config-store.js";
 import { withProfile } from "../config/format.js";
 import { emit } from "../output/emit.js";
@@ -32,7 +32,7 @@ export function renderLogout(ui: Ui, result: LogoutResult): string[] {
 export const runLogout = Effect.fn("command.logout")(function* () {
   const session = yield* Session;
   const store = yield* ConfigStore;
-  const api = yield* KaneoApi;
+  const api = yield* TracingApi;
   const token = session.profile?.token;
 
   if (token) {

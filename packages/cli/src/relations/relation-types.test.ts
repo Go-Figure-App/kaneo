@@ -38,7 +38,7 @@ describe("parseRelationType", () => {
     expect(Result.isFailure(result)).toBe(true);
     if (Result.isFailure(result)) {
       expect(result.failure.message).toBe(
-        'Kaneo has no "duplicates" relation.',
+        'Tracing has no "duplicates" relation.',
       );
       expect(result.failure.hint).toContain("relates-to is the closest match");
     }

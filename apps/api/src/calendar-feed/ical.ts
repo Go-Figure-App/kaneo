@@ -61,7 +61,7 @@ function calendarHeader(name: string) {
   return [
     "BEGIN:VCALENDAR",
     "VERSION:2.0",
-    "PRODID:-//Kaneo//Calendar Feed//EN",
+    "PRODID:-//Tracing//Calendar Feed//EN",
     "CALSCALE:GREGORIAN",
     `X-WR-CALNAME:${escapeText(name)}`,
   ];

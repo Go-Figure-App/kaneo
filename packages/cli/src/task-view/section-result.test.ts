@@ -32,7 +32,7 @@ describe("optionalSection", () => {
   });
 
   it("lets sign-in failures through", async () => {
-    const apiUrl = "https://kaneo.test";
+    const apiUrl = "https://tracing.test";
     for (const error of [
       new NotSignedIn({ apiUrl }),
       new SessionExpired({ apiUrl }),

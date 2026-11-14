@@ -17,7 +17,7 @@ describe("renderTaskDuplicated", () => {
       renderTaskDuplicated(ui, {
         sourceLabel: "KAN-3",
         label: "KAN-19",
-        url: "https://kaneo.test/t",
+        url: "https://tracing.test/t",
         title: "Fix login redirect",
       }),
     ).toEqual(["", "  ✓ Duplicated KAN-3 → KAN-19 · Fix login redirect", ""]);
@@ -27,7 +27,7 @@ describe("renderTaskDuplicated", () => {
     const [, line] = renderTaskDuplicated(ui, {
       sourceLabel: "KAN-3",
       label: "MOB-120",
-      url: "https://kaneo.test/t",
+      url: "https://tracing.test/t",
       title: "A very long task title ".repeat(6),
     });
     expect(stringWidth(line ?? "")).toBeLessThanOrEqual(80);

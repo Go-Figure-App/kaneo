@@ -1,4 +1,4 @@
-import { verifySmtpConnection } from "@kaneo/email";
+import { verifySmtpConnection } from "@tracing/email";
 import { safeErrorCode } from "./safe-error-code";
 import type { ServiceStatus } from "./service-status";
 import { withTimeout } from "./with-timeout";

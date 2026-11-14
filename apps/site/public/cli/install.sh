@@ -77,15 +77,15 @@ detect_platform() {
     Darwin) os=darwin ;;
     Linux) os=linux ;;
     MINGW* | MSYS* | CYGWIN* | Windows_NT)
-      fail "This script does not run on Windows. Open PowerShell and run: irm https://kaneo.app/cli/install.ps1 | iex"
+      fail "This script does not run on Windows. Open PowerShell and run: irm https://tracing.gofigureapp.io/cli/install.ps1 | iex"
       ;;
-    *) fail "Unsupported operating system: $kernel. The Kaneo CLI is available for macOS, Linux and Windows." ;;
+    *) fail "Unsupported operating system: $kernel. The Tracing CLI is available for macOS, Linux and Windows." ;;
   esac
 
   case $machine in
     x86_64 | amd64 | x64) arch=x64 ;;
     arm64 | aarch64) arch=arm64 ;;
-    *) fail "Unsupported CPU architecture: $machine. The Kaneo CLI is available for x64 and arm64." ;;
+    *) fail "Unsupported CPU architecture: $machine. The Tracing CLI is available for x64 and arm64." ;;
   esac
 
   if [ "$os" = darwin ] && [ "$arch" = x64 ]; then
@@ -104,7 +104,7 @@ detect_platform() {
     fi
   fi
 
-  asset="kaneo-$os-$arch$libc"
+  asset="tracing-$os-$arch$libc"
 }
 
 need_tools() {
@@ -199,11 +199,11 @@ resolve_version() {
     fail "KANEO_VERSION is required when KANEO_DOWNLOAD_URL is set, for example KANEO_VERSION=0.1.0."
   fi
 
-  say "${dim}Looking up the latest Kaneo CLI release...${reset}"
+  say "${dim}Looking up the latest Tracing CLI release...${reset}"
   releases_file="$tmp_dir/releases.json"
   page=1
   while [ "$page" -le 3 ]; do
-    if ! download "https://api.github.com/repos/usekaneo/kaneo/releases?per_page=100&page=$page" "$releases_file"; then
+    if ! download "https://api.github.com/repos/Go-Figure-App/tracing/releases?per_page=100&page=$page" "$releases_file"; then
       fail "Could not look up the latest release on GitHub. Check your internet connection, or set KANEO_VERSION to skip the lookup. Without a token GitHub allows 60 lookups per hour."
     fi
     version=$(latest_cli_version <"$releases_file")
@@ -216,14 +216,14 @@ resolve_version() {
     page=$((page + 1))
   done
 
-  fail "No Kaneo CLI release found on GitHub. See https://github.com/usekaneo/kaneo/releases or set KANEO_VERSION."
+  fail "No Tracing CLI release found on GitHub. See https://github.com/Go-Figure-App/tracing/releases or set KANEO_VERSION."
 }
 
 prepare_install_dir() {
   install_dir=${KANEO_INSTALL_DIR:-}
   if [ -z "$install_dir" ]; then
     if [ -z "${HOME:-}" ]; then
-      fail "HOME is not set. Set KANEO_INSTALL_DIR to the directory to install kaneo into."
+      fail "HOME is not set. Set KANEO_INSTALL_DIR to the directory to install tracing into."
     fi
     install_dir="$HOME/.local/bin"
   fi
@@ -244,7 +244,7 @@ prepare_install_dir() {
     fail "$install_dir is not writable. Set KANEO_INSTALL_DIR to a directory you can write to."
   fi
 
-  target="$install_dir/kaneo"
+  target="$install_dir/tracing"
   if [ -d "$target" ]; then
     fail "$target is a directory. Remove it or set KANEO_INSTALL_DIR to another directory."
   fi
@@ -262,26 +262,26 @@ install_binary() {
   if [ -n "${KANEO_DOWNLOAD_URL:-}" ]; then
     base_url=${KANEO_DOWNLOAD_URL%/}
   else
-    base_url="https://github.com/usekaneo/kaneo/releases/download"
+    base_url="https://github.com/Go-Figure-App/tracing/releases/download"
   fi
   release_url="$base_url/cli-v$version"
   sums_url="$release_url/SHA256SUMS"
   asset_url="$release_url/$asset"
 
-  say "Installing ${bold}kaneo $version${reset} for $os $arch${libc:+ (musl)}"
+  say "Installing ${bold}tracing $version${reset} for $os $arch${libc:+ (musl)}"
   say "${dim}From $asset_url${reset}"
 
   sums_file="$tmp_dir/SHA256SUMS"
   download "$sums_url" "$sums_file"
   case $? in
     0) ;;
-    2) fail "Kaneo CLI $version was not found: $sums_url does not exist. Check the version at https://github.com/usekaneo/kaneo/releases." ;;
+    2) fail "Tracing CLI $version was not found: $sums_url does not exist. Check the version at https://github.com/Go-Figure-App/tracing/releases." ;;
     *) fail "Could not download $sums_url${download_error:+ ($download_error)}. Check your internet connection and try again." ;;
   esac
 
   expected=$(awk -v name="$asset" '$2 == name || $2 == "*" name { print tolower($1); exit }' "$sums_file")
   if [ -z "$expected" ]; then
-    fail "Kaneo CLI $version has no build named $asset. Check https://github.com/usekaneo/kaneo/releases for the files it provides."
+    fail "Tracing CLI $version has no build named $asset. Check https://github.com/Go-Figure-App/tracing/releases for the files it provides."
   fi
   case $expected in
     *[!0-9a-f]*) fail "SHA256SUMS has an invalid checksum for $asset." ;;
@@ -291,7 +291,7 @@ install_binary() {
     fail "SHA256SUMS has an invalid checksum for $asset."
   fi
 
-  if ! staged=$(mktemp "$install_dir/.kaneo.XXXXXX"); then
+  if ! staged=$(mktemp "$install_dir/.tracing.XXXXXX"); then
     staged=''
     fail "Could not create a temporary file in $install_dir."
   fi
@@ -299,7 +299,7 @@ install_binary() {
   download "$asset_url" "$staged"
   case $? in
     0) ;;
-    2) fail "Kaneo CLI $version is missing the $asset file: $asset_url was not found." ;;
+    2) fail "Tracing CLI $version is missing the $asset file: $asset_url was not found." ;;
     *) fail "Could not download $asset_url${download_error:+ ($download_error)}. Check your internet connection and try again." ;;
   esac
 
@@ -314,16 +314,16 @@ install_binary() {
 
   version_output=''
   if [ -z "$missing_libstdcxx" ] && ! version_output=$("$staged" --version </dev/null 2>&1); then
-    fail "The downloaded kaneo does not run on this system, so nothing was installed.${version_output:+ Output: $version_output}"
+    fail "The downloaded tracing does not run on this system, so nothing was installed.${version_output:+ Output: $version_output}"
   fi
 
   if ! mv -f "$staged" "$target"; then
-    fail "Could not move kaneo into $install_dir."
+    fail "Could not move tracing into $install_dir."
   fi
   staged=''
 
   installed_version=$(installed_version_from "$version_output")
-  say "${green}Installed${reset} ${bold}kaneo ${installed_version:-$version}${reset} to $target"
+  say "${green}Installed${reset} ${bold}tracing ${installed_version:-$version}${reset} to $target"
 }
 
 path_contains() {
@@ -389,31 +389,31 @@ print_path_help() {
 }
 
 check_shadowing() {
-  found=$(command -v kaneo 2>/dev/null) || return 0
+  found=$(command -v tracing 2>/dev/null) || return 0
   case $found in
     /*) ;;
     *) return 0 ;;
   esac
   found_dir=$(CDPATH='' cd -- "$(dirname -- "$found")" 2>/dev/null && pwd -P) || return 0
   own_dir=$(CDPATH='' cd -- "$install_dir" 2>/dev/null && pwd -P) || return 0
-  if [ "$found_dir/$(basename -- "$found")" = "$own_dir/kaneo" ]; then
+  if [ "$found_dir/$(basename -- "$found")" = "$own_dir/tracing" ]; then
     return 0
   fi
 
   say ""
   if [ "$1" = on_path ]; then
-    warn "Another kaneo comes first on your PATH: $found"
-    warn "Typing kaneo runs that one, not $target. It may be an older community CLI. Remove it, or put $install_dir earlier in your PATH."
+    warn "Another tracing comes first on your PATH: $found"
+    warn "Typing tracing runs that one, not $target. It may be an older community CLI. Remove it, or put $install_dir earlier in your PATH."
   else
-    warn "Another kaneo is on your PATH: $found"
-    warn "Typing kaneo runs that one until $install_dir is at the front of your PATH. It may be an older community CLI that you can remove."
+    warn "Another tracing is on your PATH: $found"
+    warn "Typing tracing runs that one until $install_dir is at the front of your PATH. It may be an older community CLI that you can remove."
   fi
 }
 
 finish() {
   if [ -n "$missing_libstdcxx" ]; then
     say ""
-    warn "kaneo needs the libstdc++ library, which was not found on this system. On Alpine, install it with:"
+    warn "tracing needs the libstdc++ library, which was not found on this system. On Alpine, install it with:"
     say ""
     say "  ${bold}apk add libstdc++${reset}"
   fi
@@ -424,7 +424,7 @@ finish() {
     check_shadowing off_path
   fi
   say ""
-  say "Run ${bold}kaneo login${reset} to sign in, or ${bold}kaneo --help${reset} to see every command."
+  say "Run ${bold}tracing login${reset} to sign in, or ${bold}tracing --help${reset} to see every command."
 }
 
 main() {

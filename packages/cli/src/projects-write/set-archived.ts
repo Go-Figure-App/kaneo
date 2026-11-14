@@ -26,7 +26,7 @@ export const setArchived = Effect.fn("projects.setArchived")(function* (
     useContext: true,
     prompt: `Choose a project to ${verb}`,
     missing: `Which project should be ${verb}d?`,
-    example: `kaneo project ${verb} KAN`,
+    example: `tracing project ${verb} KAN`,
   });
 
   if ((project.archivedAt !== null) === archived) {
@@ -57,7 +57,7 @@ export const setArchived = Effect.fn("projects.setArchived")(function* (
             workspaceId,
             name: project.name,
             key: project.slug,
-            retry: `kaneo project edit ${project.id}`,
+            retry: `tracing project edit ${project.id}`,
           }),
         ),
       );

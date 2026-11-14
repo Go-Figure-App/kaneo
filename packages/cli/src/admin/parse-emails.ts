@@ -26,7 +26,7 @@ export function parseEmails(
     return Result.fail(
       new InvalidArgument({
         message: "Who should be invited?",
-        hint: "Pass one or more email addresses, for example kaneo member invite grace@example.com.",
+        hint: "Pass one or more email addresses, for example tracing member invite grace@example.com.",
       }),
     );
   }

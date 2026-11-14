@@ -1,4 +1,4 @@
-import type { ImportedTask } from "@kaneo/importers";
+import type { ImportedTask } from "@tracing/importers";
 import { describe, expect, it } from "vite-plus/test";
 import { parseImportDate, planImportTasks } from "./plan-import-tasks";
 

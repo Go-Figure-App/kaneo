@@ -16,7 +16,7 @@ describe("renderTimerChange", () => {
       renderTimerChange(ui, {
         verb: "Stopped",
         label: "KAN-12",
-        url: "https://kaneo.test/t",
+        url: "https://tracing.test/t",
         details: ["1h 25m"],
       }),
     ).toEqual(["", "  ✓ Stopped KAN-12 · 1h 25m", ""]);
@@ -27,7 +27,7 @@ describe("renderTimerChange", () => {
       renderTimerChange(ui, {
         verb: "Logged",
         label: "KAN-3",
-        url: "https://kaneo.test/t",
+        url: "https://tracing.test/t",
         details: ["45m", "Yesterday", ""],
       }),
     ).toEqual(["", "  ✓ Logged KAN-3 · 45m · Yesterday", ""]);

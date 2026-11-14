@@ -5,7 +5,7 @@ import {
 
 /**
  * Status and priority set by the issue's current labels. `known` holds the
- * field labels Kaneo has accounted for; only labels added since then count,
+ * field labels Tracing has accounted for; only labels added since then count,
  * so echoes and redeliveries of the same labels change nothing.
  */
 export function changedLabelFields(

@@ -1,5 +1,5 @@
 import { Effect, Schema } from "effect";
-import { KaneoApi } from "./kaneo-api.js";
+import { TracingApi } from "./tracing-api.js";
 
 const NullableString = Schema.NullOr(Schema.String);
 
@@ -29,7 +29,7 @@ function rulePath(id: string): string {
 export const listWorkflowRules = Effect.fnUntraced(function* (
   projectId: string,
 ) {
-  const api = yield* KaneoApi;
+  const api = yield* TracingApi;
   return yield* api.request("GET", rulePath(projectId), WorkflowRuleList);
 });
 
@@ -41,11 +41,11 @@ export const upsertWorkflowRule = Effect.fnUntraced(function* (
     readonly columnId: string;
   },
 ) {
-  const api = yield* KaneoApi;
+  const api = yield* TracingApi;
   return yield* api.request("PUT", rulePath(projectId), SavedRule, { body });
 });
 
 export const deleteWorkflowRule = Effect.fnUntraced(function* (id: string) {
-  const api = yield* KaneoApi;
+  const api = yield* TracingApi;
   return yield* api.request("DELETE", rulePath(id), SavedRule);
 });

@@ -22,7 +22,7 @@ const all: BlogCategory[] = [
   {
     slug: "updates",
     name: "Updates",
-    description: "Releases, changes, and news from the Kaneo project.",
+    description: "Releases, changes, and news from the Tracing project.",
   },
 ];
 

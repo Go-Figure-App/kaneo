@@ -1,4 +1,4 @@
-import * as email from "@kaneo/email";
+import * as email from "@tracing/email";
 import {
   afterEach,
   beforeEach,

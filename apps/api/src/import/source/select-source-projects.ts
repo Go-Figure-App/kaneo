@@ -1,4 +1,4 @@
-import type { SourceProject } from "@kaneo/importers";
+import type { SourceProject } from "@tracing/importers";
 import { HTTPException } from "hono/http-exception";
 import {
   type ImportRunProject,

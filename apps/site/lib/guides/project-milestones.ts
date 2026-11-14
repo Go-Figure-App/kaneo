@@ -91,9 +91,9 @@ export const projectMilestones: Guide = {
       ],
     },
     {
-      heading: "Milestones in Kaneo",
+      heading: "Milestones in Tracing",
       body: [
-        "Kaneo has no separate milestone type. Create a short task for each milestone with a due date and a milestone label, and it appears on the Gantt and Calendar views alongside the work leading up to it. Filter by the label to get the milestone-only view for stakeholders.",
+        "Tracing has no separate milestone type. Create a short task for each milestone with a due date and a milestone label, and it appears on the Gantt and Calendar views alongside the work leading up to it. Filter by the label to get the milestone-only view for stakeholders.",
         "Mark the tasks that must finish first with a Blocks relation to the milestone task, so anyone opening it can see what it is waiting on. When the milestone is reached, move it to Done like any other task.",
       ],
     },

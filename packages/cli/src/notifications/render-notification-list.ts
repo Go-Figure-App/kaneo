@@ -94,7 +94,7 @@ export function renderNotificationList(
   }
   if (view.unreadCount > 0) {
     lines.push(
-      `  ${theme.muted("Mark them read with")} ${theme.strong("kaneo notification read <id>")} ${theme.muted("or")} ${theme.strong("--all")}`,
+      `  ${theme.muted("Mark them read with")} ${theme.strong("tracing notification read <id>")} ${theme.muted("or")} ${theme.strong("--all")}`,
     );
   }
   lines.push("");

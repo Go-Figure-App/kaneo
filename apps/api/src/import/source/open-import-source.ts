@@ -2,7 +2,7 @@ import {
   connectSource,
   type ImportSource,
   type ImportSourceId,
-} from "@kaneo/importers";
+} from "@tracing/importers";
 import { HTTPException } from "hono/http-exception";
 import { createGuardedFetch } from "../guarded-fetch";
 import type { ImportConnectionInput } from "../schema";

@@ -1,4 +1,4 @@
-import { client } from "@kaneo/libs";
+import { client } from "@tracing/libs";
 import { HttpError } from "@/lib/http-error";
 import { ADMIN_AUDIT_LOG_PAGE_SIZE } from "./audit-log-types";
 

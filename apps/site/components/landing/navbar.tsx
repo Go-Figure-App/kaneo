@@ -51,7 +51,7 @@ const navigationLinks: NavigationLink[] = [
       { href: "/alternatives", label: landing.navigation.comparisons },
       { href: "/community", label: landing.navigation.community },
       {
-        href: "https://cloud.kaneo.app/public-project/vlu4ak2w8rs9rn1r4lirj2u1",
+        href: "https://github.com/Go-Figure-App/tracing/issues",
         label: landing.navigation.roadmap,
       },
     ],
@@ -120,14 +120,14 @@ export function Navbar() {
             className="hidden text-sm md:inline-flex"
             size="sm"
             variant="ghost"
-            render={<a href="https://cloud.kaneo.app/auth/sign-in" />}
+            render={<a href="https://tracing.gofigureapp.io/auth/sign-in" />}
           >
             {landing.navigation.signIn}
           </Button>
           <Button
             className="text-sm"
             size="sm"
-            render={<a href="https://cloud.kaneo.app/auth/sign-up" />}
+            render={<a href="https://tracing.gofigureapp.io/auth/sign-up" />}
           >
             {landing.navigation.getStarted}
           </Button>
@@ -219,13 +219,13 @@ function MobileNavigation() {
           <Button
             className="h-11"
             variant="outline"
-            render={<a href="https://cloud.kaneo.app/auth/sign-in" />}
+            render={<a href="https://tracing.gofigureapp.io/auth/sign-in" />}
           >
             {landing.navigation.signIn}
           </Button>
           <Button
             className="h-11"
-            render={<a href="https://cloud.kaneo.app/auth/sign-up" />}
+            render={<a href="https://tracing.gofigureapp.io/auth/sign-up" />}
           >
             {landing.navigation.getStarted}
           </Button>

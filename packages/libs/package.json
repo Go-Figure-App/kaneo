@@ -1,5 +1,5 @@
 {
-	"name": "@kaneo/libs",
+	"name": "@tracing/libs",
 	"version": "0.0.0",
 	"private": true,
 	"main": "./src/index.ts",
@@ -12,8 +12,8 @@
 		"test:watch": "vp test --config vitest.config.ts"
 	},
 	"devDependencies": {
-		"@kaneo/api": "workspace:*",
-		"@kaneo/typescript-config": "workspace:*",
+		"@tracing/api": "workspace:*",
+		"@tracing/typescript-config": "workspace:*",
 		"@types/react": "^19.3.0",
 		"@types/react-dom": "^19.3.0",
 		"hono": "^4.13.14",

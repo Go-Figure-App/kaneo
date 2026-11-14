@@ -41,7 +41,7 @@ function fixture(run) {
       JSON.stringify({ version: pkg, type: "module" }),
     );
     writeFileSync(
-      resolve(dir, "charts/kaneo/Chart.yaml"),
+      resolve(dir, "charts/tracing/Chart.yaml"),
       `name: kaneo\nversion: ${chart}\nappVersion: "${pkg}"\n`,
     );
   };
@@ -51,7 +51,7 @@ function fixture(run) {
     return git("rev-parse", "HEAD");
   };
   try {
-    mkdirSync(resolve(dir, "charts/kaneo"), { recursive: true });
+    mkdirSync(resolve(dir, "charts/tracing"), { recursive: true });
     mkdirSync(resolve(dir, "scripts/security"), { recursive: true });
     mkdirSync(resolve(dir, "scripts/release"), { recursive: true });
     for (const file of [

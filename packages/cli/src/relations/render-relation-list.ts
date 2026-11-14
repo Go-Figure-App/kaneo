@@ -59,7 +59,7 @@ export function renderRelationList(ui: Ui, view: RelationListView): string[] {
       "",
       heading,
       "",
-      `  ${theme.muted("No linked tasks. Link one with")} ${theme.strong(`kaneo task relation add ${view.label} <type> <task>`)}`,
+      `  ${theme.muted("No linked tasks. Link one with")} ${theme.strong(`tracing task relation add ${view.label} <type> <task>`)}`,
       "",
     ];
   }

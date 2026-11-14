@@ -29,7 +29,12 @@ const columns: Column[] = [
   },
 ];
 
-const project = { id: "p1", slug: "kan", name: "Kaneo Web", workspaceId: "w1" };
+const project = {
+  id: "p1",
+  slug: "kan",
+  name: "Tracing Web",
+  workspaceId: "w1",
+};
 
 const plan = planImport(
   [
@@ -44,12 +49,12 @@ describe("renderImportWarnings", () => {
     const report = buildImportReport({
       project,
       columns,
-      webUrl: "https://kaneo.test",
+      webUrl: "https://tracing.test",
       plan,
       outcomes: null,
     });
     expect(renderImportWarnings(ui, report)).toEqual([
-      "  ▲ 1 task uses a status Kaneo Web does not have (backlog); it lands in Planned.",
+      "  ▲ 1 task uses a status Tracing Web does not have (backlog); it lands in Planned.",
       "  ● Statuses matched to columns: To Do → to-do",
       "  ▲ Labels are not imported; 1 task in the file has labels.",
     ]);
@@ -63,16 +68,16 @@ describe("renderImportReport", () => {
       buildImportReport({
         project,
         columns,
-        webUrl: "https://kaneo.test",
+        webUrl: "https://tracing.test",
         plan,
         outcomes: null,
       }),
     );
     expect(lines).toEqual([
       "",
-      "  ● Dry run: 2 tasks would be imported into Kaneo Web · KAN",
+      "  ● Dry run: 2 tasks would be imported into Tracing Web · KAN",
       "",
-      "  ▲ 1 task uses a status Kaneo Web does not have (backlog); it lands in Planned.",
+      "  ▲ 1 task uses a status Tracing Web does not have (backlog); it lands in Planned.",
       "  ● Statuses matched to columns: To Do → to-do",
       "  ▲ Labels are not imported; 1 task in the file has labels.",
       "",
@@ -90,7 +95,7 @@ describe("renderImportReport", () => {
       buildImportReport({
         project,
         columns,
-        webUrl: "https://kaneo.test",
+        webUrl: "https://tracing.test",
         plan,
         outcomes: [
           {
@@ -112,7 +117,7 @@ describe("renderImportReport", () => {
       }),
     );
     expect(lines[1]).toBe(
-      "  ✗ Imported 1 of 2 tasks into Kaneo Web · KAN; 1 failed",
+      "  ✗ Imported 1 of 2 tasks into Tracing Web · KAN; 1 failed",
     );
     expect(lines[3]).toBe("    ✓  KAN-7  To Do    Fix login redirect");
     expect(lines[4]).toBe(

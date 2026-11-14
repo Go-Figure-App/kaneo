@@ -16,7 +16,7 @@ export function renderFieldList(
     return [
       "",
       `  ${theme.muted(`No custom fields in ${view.projectName} yet.`)}`,
-      `  ${theme.muted("Add one with kaneo field create <name> --type text.")}`,
+      `  ${theme.muted("Add one with tracing field create <name> --type text.")}`,
       "",
     ];
   }

@@ -83,7 +83,7 @@ const resolveTitle = Effect.fnUntraced(function* (
   if (output.interactive) return yield* promptTitle();
   return yield* new InvalidArgument({
     message: "A task title is required.",
-    hint: 'Pass it as the first argument, for example kaneo task create "Fix login redirect".',
+    hint: 'Pass it as the first argument, for example tracing task create "Fix login redirect".',
   });
 });
 
@@ -163,7 +163,7 @@ export const runTaskCreate = Effect.fn("command.task.create")(
               (error) =>
                 new InvalidArgument({
                   message: `Created ${createdLabel}, but could not add the labels: ${describeError(error).message}`,
-                  hint: `Add them with kaneo task edit ${createdArgument} ${labels.map((label) => `--add-label ${shellSafeOr(label.name, label.id)}`).join(" ")}`,
+                  hint: `Add them with tracing task edit ${createdArgument} ${labels.map((label) => `--add-label ${shellSafeOr(label.name, label.id)}`).join(" ")}`,
                 }),
             ),
           )

@@ -12,7 +12,7 @@ import {
 function config(overrides: Partial<GetConfigResponse> = {}) {
   return {
     isCloud: false,
-    instanceName: "Kaneo",
+    instanceName: "Tracing",
     disableRegistration: false,
     disablePasswordRegistration: false,
     disableEmailOtpSignIn: false,

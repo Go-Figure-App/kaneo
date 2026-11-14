@@ -1,4 +1,4 @@
-import { normalizeBaseUrl } from "@kaneo/mcp/normalize-base-url";
+import { normalizeBaseUrl } from "@tracing/mcp/normalize-base-url";
 import { type ConfigFile, withProfile } from "../../config/format.js";
 
 export type RememberedWorkspace =

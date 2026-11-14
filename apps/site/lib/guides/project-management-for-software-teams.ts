@@ -56,9 +56,9 @@ export const projectManagementForSoftwareTeams: Guide = {
       ],
     },
     {
-      heading: "How Kaneo fits",
+      heading: "How Tracing fits",
       body: [
-        "Kaneo connects to GitHub, Gitea, and GitLab. Issues and comments sync both ways, pull requests (merge requests on GitLab) link to tasks, and per-project automations move a task when a branch is pushed or a pull request is opened or merged.",
+        "Tracing connects to GitHub, Gitea, and GitLab. Issues and comments sync both ways, pull requests (merge requests on GitLab) link to tasks, and per-project automations move a task when a branch is pushed or a pull request is opened or merged.",
         "Each project has a board, list, backlog, and Gantt and calendar views, with labels, priorities, custom fields, task relations, and time tracking. A public API and an MCP server let scripts and AI agents such as Claude and Cursor work with tasks directly.",
         "It is open source under the MIT license, free to self-host with Docker or Helm, and runs as one container plus PostgreSQL. It has no sprints or story points, so it fits teams working kanban-style best.",
       ],
@@ -68,7 +68,7 @@ export const projectManagementForSoftwareTeams: Guide = {
     {
       question: "What is the best project management tool for developers?",
       answer:
-        "The one that integrates with your repository host and needs the least manual updating. For an open-source, self-hostable option with GitHub, Gitea, and GitLab sync, Kaneo is a good fit; hosted options are covered in our comparisons.",
+        "The one that integrates with your repository host and needs the least manual updating. For an open-source, self-hostable option with GitHub, Gitea, and GitLab sync, Tracing is a good fit; hosted options are covered in our comparisons.",
     },
     {
       question: "Is GitHub Projects enough for a software team?",
@@ -96,7 +96,10 @@ export const projectManagementForSoftwareTeams: Guide = {
       label: "Self-hosted kanban with two-way GitHub issue sync",
       href: "/guides/github-issues-kanban-board",
     },
-    { label: "Kaneo vs GitHub Projects", href: "/github-projects-alternative" },
+    {
+      label: "Tracing vs GitHub Projects",
+      href: "/github-projects-alternative",
+    },
     { label: "Kanban vs scrum", href: "/guides/kanban-vs-scrum" },
   ],
   updatedOn: "2026-10-19",

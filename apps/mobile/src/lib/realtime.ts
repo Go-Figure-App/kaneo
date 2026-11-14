@@ -12,7 +12,7 @@ import { useSession } from "./session";
 export type { RealtimeEvent };
 
 /**
- * Kaneo pushes change hints over WebSockets: `/api/ws/user` for notifications and access changes,
+ * Tracing pushes change hints over WebSockets: `/api/ws/user` for notifications and access changes,
  * `/api/ws/{projectId}` for board updates. Native clients authenticate with the same bearer token
  * or API key. Reconnects with backoff, and only while the app is in the foreground.
  */

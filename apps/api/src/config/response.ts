@@ -5,7 +5,7 @@ export const configSchema = z
   .object({
     isCloud: z.boolean(),
     instanceName: z.string().openapi({
-      description: "Name shown in page titles and emails. Defaults to Kaneo.",
+      description: "Name shown in page titles and emails. Defaults to Tracing.",
     }),
     disableRegistration: z.boolean(),
     disablePasswordRegistration: z.boolean(),

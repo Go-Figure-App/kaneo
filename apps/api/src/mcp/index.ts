@@ -33,11 +33,16 @@ import {
 } from "./schemas";
 import { createMcpServerForUser } from "./legacy-server";
 
-const publicApiUrl = (process.env.KANEO_API_URL || "http://localhost:1337")
+const publicApiUrl = (
+  (process.env.TRACING_API_URL ?? process.env.KANEO_API_URL) ||
+  "http://localhost:1337"
+)
   .replace(/\/api\/?$/, "")
   .replace(/\/+$/, "");
 const internalApiUrl = (
-  process.env.KANEO_INTERNAL_API_URL || "http://127.0.0.1:1337"
+  (process.env.TRACING_INTERNAL_API_URL ??
+    process.env.KANEO_INTERNAL_API_URL) ||
+  "http://127.0.0.1:1337"
 )
   .replace(/\/api\/?$/, "")
   .replace(/\/+$/, "");
@@ -131,11 +136,11 @@ const authorizeRoute = createRoute({
   tags: ["MCP"],
   summary: "Start MCP authorization",
   description:
-    "Begin an MCP OAuth authorization. Redirects the browser to the Kaneo consent page, which then approves or denies the request.",
+    "Begin an MCP OAuth authorization. Redirects the browser to the Tracing consent page, which then approves or denies the request.",
   security: [],
   request: { query: authorizationQuerySchema },
   responses: {
-    302: { description: "Redirect to the Kaneo consent page" },
+    302: { description: "Redirect to the Tracing consent page" },
     400: jsonError("Invalid authorization request"),
   },
 });

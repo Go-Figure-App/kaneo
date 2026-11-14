@@ -87,11 +87,11 @@ export const whatIsAGanttChart: Guide = {
       ],
     },
     {
-      heading: "Gantt charts in Kaneo",
+      heading: "Gantt charts in Tracing",
       body: [
-        "Every Kaneo project has a Gantt view. In the Tasks view, open Display and choose Gantt. Tasks with a start date, a due date, or both appear on a shared timeline, and the project's search and filters apply, so you can show one assignee's or one label's work.",
+        "Every Tracing project has a Gantt view. In the Tasks view, open Display and choose Gantt. Tasks with a start date, a due date, or both appear on a shared timeline, and the project's search and filters apply, so you can show one assignee's or one label's work.",
         "Drag a bar to move a task, or drag either end to change its start or due date. Scheduled tasks in the backlog are included, so you can lay out upcoming work before it reaches the board.",
-        "Kaneo's Gantt view does not draw dependency lines or calculate the critical path. Record order with Blocks relations on each task and work out the path as in the example above. If you need automatic scheduling, baselines, and cost tracking, a heavier tool such as OpenProject is a better fit.",
+        "Tracing's Gantt view does not draw dependency lines or calculate the critical path. Record order with Blocks relations on each task and work out the path as in the example above. If you need automatic scheduling, baselines, and cost tracking, a heavier tool such as OpenProject is a better fit.",
       ],
     },
   ],
@@ -119,7 +119,7 @@ export const whatIsAGanttChart: Guide = {
     {
       question: "Is there a free Gantt chart tool?",
       answer:
-        "Yes. Kaneo includes a Gantt view in every project and is free to self-host under the MIT license. OpenProject's Community edition and spreadsheet templates are other free options.",
+        "Yes. Tracing includes a Gantt view in every project and is free to self-host under the MIT license. OpenProject's Community edition and spreadsheet templates are other free options.",
     },
   ],
   related: [
@@ -135,7 +135,7 @@ export const whatIsAGanttChart: Guide = {
       label: "What is project planning?",
       href: "/guides/what-is-project-planning",
     },
-    { label: "Kaneo vs OpenProject", href: "/openproject-alternative" },
+    { label: "Tracing vs OpenProject", href: "/openproject-alternative" },
   ],
   updatedOn: "2026-10-19",
 };

@@ -1,4 +1,4 @@
-import type { ImportedComment } from "@kaneo/importers";
+import type { ImportedComment } from "@tracing/importers";
 import { describe, expect, it } from "vite-plus/test";
 import { writeImportComments } from "./write-import-comments";
 

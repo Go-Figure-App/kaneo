@@ -1,5 +1,5 @@
 {
-	"name": "@kaneo/permissions",
+	"name": "@tracing/permissions",
 	"version": "0.0.0",
 	"private": true,
 	"type": "module",
@@ -22,7 +22,7 @@
 		"better-auth": "1.7.14"
 	},
 	"devDependencies": {
-		"@kaneo/typescript-config": "workspace:*",
+		"@tracing/typescript-config": "workspace:*",
 		"typescript": "^7.0.2",
 		"vite": "catalog:",
 		"vite-plus": "catalog:"

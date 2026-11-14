@@ -11,7 +11,10 @@ export function outputProvenance(input: {
 }): { readonly mode: OutputMode; readonly source: OutputSource } {
   if (input.json) return { mode: "json", source: "flag" };
   if (input.human) return { mode: "human", source: "flag" };
-  if (input.env.KANEO_JSON === "true" || input.env.KANEO_JSON === "1") {
+  if (
+    (input.env.TRACING_JSON ?? input.env.KANEO_JSON) === "true" ||
+    (input.env.TRACING_JSON ?? input.env.KANEO_JSON) === "1"
+  ) {
     return { mode: "json", source: "env" };
   }
   return input.stdoutIsTTY

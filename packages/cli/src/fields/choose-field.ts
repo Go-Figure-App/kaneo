@@ -16,7 +16,7 @@ export function unknownField(
     hint:
       fields.length > 0
         ? `Fields: ${fields.map((field) => field.name).join(", ")}.`
-        : "This project has no custom fields. Add one with kaneo field create.",
+        : "This project has no custom fields. Add one with tracing field create.",
   });
 }
 
@@ -48,7 +48,7 @@ export const chooseField = Effect.fnUntraced(function* (
   if (fields.length === 0) {
     return yield* new InvalidArgument({
       message: `${options.projectName} has no custom fields.`,
-      hint: "Add one with kaneo field create <name> --type text.",
+      hint: "Add one with tracing field create <name> --type text.",
     });
   }
   return yield* new InvalidArgument({

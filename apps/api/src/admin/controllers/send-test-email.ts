@@ -2,7 +2,7 @@ import {
   getSmtpErrorDetails,
   isSmtpConfigured,
   sendTestEmail,
-} from "@kaneo/email";
+} from "@tracing/email";
 import { HTTPException } from "hono/http-exception";
 import { ApiError } from "../../errors/api-error";
 import type { AdminAuditRequest } from "../audit/admin-audit-request";
@@ -18,7 +18,7 @@ const testEmailLimiter = createAttemptLimiter({
 function notConfigured() {
   return new ApiError(409, {
     message:
-      "Email is not configured on this instance. Set SMTP_HOST and SMTP_FROM, then restart Kaneo.",
+      "Email is not configured on this instance. Set SMTP_HOST and SMTP_FROM, then restart Tracing.",
     code: "SMTP_NOT_CONFIGURED",
   });
 }

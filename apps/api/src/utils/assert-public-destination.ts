@@ -130,8 +130,10 @@ export function isDisallowedAddress(address: string): boolean {
 
 export function privateDestinationsAllowed(): boolean {
   return (
-    process.env.KANEO_ALLOW_PRIVATE_WEBHOOK_DESTINATIONS === "true" ||
-    process.env.KANEO_ALLOW_PRIVATE_WEBHOOK_DESTINATIONS === "1"
+    (process.env.TRACING_ALLOW_PRIVATE_WEBHOOK_DESTINATIONS ??
+      process.env.KANEO_ALLOW_PRIVATE_WEBHOOK_DESTINATIONS) === "true" ||
+    (process.env.TRACING_ALLOW_PRIVATE_WEBHOOK_DESTINATIONS ??
+      process.env.KANEO_ALLOW_PRIVATE_WEBHOOK_DESTINATIONS) === "1"
   );
 }
 

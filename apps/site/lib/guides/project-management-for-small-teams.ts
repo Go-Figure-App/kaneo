@@ -9,7 +9,7 @@ export const projectManagementForSmallTeams: Guide = {
   summary:
     "Pricing shape, adoption, and admin overhead matter more than feature lists below twenty people.",
   answer:
-    "For a team under twenty people, the deciding factors are pricing shape, whether people will actually update it, and how much administration it needs. Kaneo is a good fit if you want an open-source tracker that is free to self-host or $5 per user a month managed. Trello is the easiest hosted start, Basecamp's flat rate is the best deal once you pass about fifteen people, and Linear is the most polished if budget is not the constraint.",
+    "For a team under twenty people, the deciding factors are pricing shape, whether people will actually update it, and how much administration it needs. Tracing is a good fit if you want an open-source tracker that is free to self-host or $5 per user a month managed. Trello is the easiest hosted start, Basecamp's flat rate is the best deal once you pass about fifteen people, and Linear is the most polished if budget is not the constraint.",
   sections: [
     {
       heading: "What actually matters at this size",
@@ -26,7 +26,7 @@ export const projectManagementForSmallTeams: Guide = {
         {
           name: "You want to own your data",
           href: "/alternatives",
-          body: "Self-host an open-source tracker. Kaneo is MIT licensed, one container plus PostgreSQL, with single sign-on and time tracking in the free build. Vikunja and Kanboard are lighter still if the team is small and the needs are simple.",
+          body: "Self-host an open-source tracker. Tracing is MIT licensed, one container plus PostgreSQL, with single sign-on and time tracking in the free build. Vikunja and Kanboard are lighter still if the team is small and the needs are simple.",
         },
         {
           name: "You want the fastest start",
@@ -36,17 +36,17 @@ export const projectManagementForSmallTeams: Guide = {
         {
           name: "You have more than fifteen people and hate per-seat billing",
           href: "/basecamp-alternative",
-          body: "Basecamp's flat pricing gets cheaper per head as you grow, and it bundles messages and docs. Kaneo Cloud at $5 per user a month is cheaper below roughly twenty people, and self-hosting is cheaper at any size if you can run it.",
+          body: "Basecamp's flat pricing gets cheaper per head as you grow, and it bundles messages and docs. Tracing Cloud at $5 per user a month is cheaper below roughly twenty people, and self-hosting is cheaper at any size if you can run it.",
         },
         {
           name: "You are a software team that wants polish",
           href: "/linear-alternative",
-          body: "Linear, if cloud-only is acceptable. Kaneo or Plane if you want something open source you can host, with Kaneo the smaller of the two.",
+          body: "Linear, if cloud-only is acceptable. Tracing or Plane if you want something open source you can host, with Tracing the smaller of the two.",
         },
         {
           name: "You need budgets and project controls",
           href: "/openproject-alternative",
-          body: "Kaneo includes Gantt and calendar views for scheduling tasks. If you also need budgets, cost reporting, and baseline comparisons, consider OpenProject. Decide based on the project controls your team actually uses.",
+          body: "Tracing includes Gantt and calendar views for scheduling tasks. If you also need budgets, cost reporting, and baseline comparisons, consider OpenProject. Decide based on the project controls your team actually uses.",
         },
       ],
     },
@@ -64,7 +64,7 @@ export const projectManagementForSmallTeams: Guide = {
       question:
         "What is the cheapest project management tool for a small team?",
       answer:
-        "Self-hosting an open-source tool such as Kaneo, Kanboard, or WeKan costs only a server, typically a few dollars a month for any number of people. Among hosted options, Kaneo Cloud is $4 a month for one user and $5 per user a month for teams, and Basecamp's flat rate wins once you pass roughly fifteen people.",
+        "Self-hosting an open-source tool such as Tracing, Kanboard, or WeKan costs only a server, typically a few dollars a month for any number of people. Among hosted options, Tracing Cloud is $4 a month for one user and $5 per user a month for teams, and Basecamp's flat rate wins once you pass roughly fifteen people.",
     },
     {
       question: "Do small teams need project management software at all?",
@@ -79,7 +79,7 @@ export const projectManagementForSmallTeams: Guide = {
     {
       question: "How do we migrate later if we choose wrong?",
       answer:
-        "Check for an export and an API before you start. Kaneo exports each project to JSON and has a documented public API, so moving in or out is a scripting job rather than a rewrite of your history.",
+        "Check for an export and an API before you start. Tracing exports each project to JSON and has a documented public API, so moving in or out is a scripting job rather than a rewrite of your history.",
     },
   ],
   related: [

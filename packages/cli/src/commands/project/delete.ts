@@ -35,7 +35,7 @@ export const runProjectDelete = Effect.fn("command.project.delete")(
       useContext: false,
       prompt: "Choose a project to delete",
       missing: "Which project should be deleted?",
-      example: "kaneo project delete KAN",
+      example: "tracing project delete KAN",
     });
     const key = project.slug.toUpperCase();
 
@@ -43,7 +43,7 @@ export const runProjectDelete = Effect.fn("command.project.delete")(
       yes: options.yes,
       action: `Deleting ${project.name}`,
       key,
-      warning: `This permanently deletes ${project.name} (${key}) ${contents(project.statistics.totalTasks)}. It cannot be undone; kaneo project archive ${key} keeps the data instead.`,
+      warning: `This permanently deletes ${project.name} (${key}) ${contents(project.statistics.totalTasks)}. It cannot be undone; tracing project archive ${key} keeps the data instead.`,
     });
 
     const deleted = yield* withSpinner(`Deleting ${project.name}`)(

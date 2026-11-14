@@ -190,7 +190,7 @@ export const sendTrialReminderEmail = async (
 };
 
 /**
- * Emails an administrator asks Kaneo to send. They report delivery so the
+ * Emails an administrator asks Tracing to send. They report delivery so the
  * administrator can be told, and throw when the SMTP server rejects them.
  */
 async function sendAdministratorEmail(

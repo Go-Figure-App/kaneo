@@ -96,7 +96,7 @@ describe("importGitlabIssues labels on an already linked task", () => {
     expect(mocks.deleteLabels).not.toHaveBeenCalled();
   });
 
-  it("adds GitLab labels without removing the ones set in Kaneo", async () => {
+  it("adds GitLab labels without removing the ones set in Tracing", async () => {
     mocks.listIssues.mockResolvedValueOnce([
       linkedIssue(["bug", "priority:high"]),
     ]);

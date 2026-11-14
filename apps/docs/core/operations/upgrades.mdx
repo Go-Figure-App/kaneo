@@ -1,22 +1,22 @@
 ---
-title: "Upgrade Kaneo"
+title: "Upgrade Tracing"
 description: "Choose a release, protect your data, and check the result."
 ---
 
-Kaneo runs database migrations when the API starts. An upgrade can change your database as well as the application, so prepare a recovery point before changing the image.
+Tracing runs database migrations when the API starts. An upgrade can change your database as well as the application, so prepare a recovery point before changing the image.
 
 ## Before you upgrade
 
-1. Read the [release notes](https://github.com/usekaneo/kaneo/releases) between your current and target versions.
+1. Read the [release notes](https://github.com/Go-Figure-App/tracing/releases) between your current and target versions.
 2. Record the current image tag or digest and keep a copy of your Compose file and environment files.
 3. Create a [database and file backup](/core/operations/backups), and check that you can restore it.
 4. Choose a short maintenance window. Try the new release against a restored copy first when the change is substantial.
 
-Do not change the PostgreSQL major version as part of an ordinary Kaneo image update. A database major upgrade needs its own migration procedure. See [Upgrade PostgreSQL 16 to 18](/core/operations/postgresql-18) if you plan to make that change.
+Do not change the PostgreSQL major version as part of an ordinary Tracing image update. A database major upgrade needs its own migration procedure. See [Upgrade PostgreSQL 16 to 18](/core/operations/postgresql-18) if you plan to make that change.
 
 ## Docker Compose
 
-In the Compose setup from this guide, set `KANEO_IMAGE_TAG` in `.env` to the release you chose. If your Compose file hardcodes the image tag, edit that instead. Pulling an image does not restart the running container.
+In the Compose setup from this guide, set `TRACING_IMAGE_TAG` in `.env` to the release you chose. If your Compose file hardcodes the image tag, edit that instead. Pulling an image does not restart the running container.
 
 ```bash
 docker compose pull kaneo

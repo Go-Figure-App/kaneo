@@ -1,4 +1,4 @@
-import type { ImportedColumn } from "@kaneo/importers";
+import type { ImportedColumn } from "@tracing/importers";
 import { toSlug } from "../../column/to-slug";
 import { VIRTUAL_STATUSES } from "../../task/validate-task-fields";
 

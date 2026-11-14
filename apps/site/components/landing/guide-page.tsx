@@ -13,7 +13,7 @@ import { Button } from "@/components/ui/button";
 import type { Guide } from "@/lib/guides";
 import { guidePath } from "@/lib/guides";
 
-const SIGN_UP = "https://cloud.kaneo.app/auth/sign-up";
+const SIGN_UP = "https://tracing.gofigureapp.io/auth/sign-up";
 
 function formatUpdatedOn(value: string) {
   return new Date(`${value}T00:00:00Z`).toLocaleDateString("en-GB", {
@@ -32,7 +32,7 @@ export function GuidePage({ data }: { data: Guide }) {
       <JsonLd data={faqJsonLd(data.faq)} />
       <JsonLd
         data={breadcrumbJsonLd([
-          { name: "Kaneo", path: "/" },
+          { name: "Tracing", path: "/" },
           { name: "Guides", path: "/guides" },
           { name: data.question, path },
         ])}
@@ -45,9 +45,9 @@ export function GuidePage({ data }: { data: Guide }) {
           description: data.description,
           dateModified: data.updatedOn,
           inLanguage: "en",
-          mainEntityOfPage: `https://kaneo.app${path}`,
-          author: { "@type": "Organization", name: "Kaneo" },
-          publisher: { "@type": "Organization", name: "Kaneo" },
+          mainEntityOfPage: `https://tracing.gofigureapp.io${path}`,
+          author: { "@type": "Organization", name: "Tracing" },
+          publisher: { "@type": "Organization", name: "Tracing" },
         }}
       />
       <Navbar />
@@ -65,7 +65,7 @@ export function GuidePage({ data }: { data: Guide }) {
             </FadeIn>
             <p className="mt-4 text-muted-foreground text-xs">
               Last updated {formatUpdatedOn(data.updatedOn)}. Written by the
-              Kaneo team, who also build one of the tools mentioned.
+              Tracing team, who also build one of the tools mentioned.
             </p>
           </div>
         </section>
@@ -162,7 +162,7 @@ export function GuidePage({ data }: { data: Guide }) {
                   className="h-12 px-5 text-sm sm:h-12"
                   render={<a href={SIGN_UP} />}
                 >
-                  Try Kaneo Cloud free
+                  Try Tracing Cloud free
                 </Button>
                 <Button
                   variant="outline"

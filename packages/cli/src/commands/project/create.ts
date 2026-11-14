@@ -50,7 +50,7 @@ const resolveName = Effect.fnUntraced(function* (name: Option.Option<string>) {
   if (output.interactive) return yield* promptName();
   return yield* new InvalidArgument({
     message: "A project name is required.",
-    hint: 'Pass it as the first argument, for example kaneo project create "Kaneo Web".',
+    hint: 'Pass it as the first argument, for example tracing project create "Tracing Web".',
   });
 });
 
@@ -117,7 +117,7 @@ export const runProjectCreate = Effect.fn("command.project.create")(
               (error) =>
                 new InvalidArgument({
                   message: `Created ${created.name} (${created.slug.toUpperCase()}), but could not save its description: ${describeError(error).message}`,
-                  hint: `Set it with kaneo project edit ${created.slug.toUpperCase()} --description-file <path>.`,
+                  hint: `Set it with tracing project edit ${created.slug.toUpperCase()} --description-file <path>.`,
                 }),
             ),
           );

@@ -2,7 +2,7 @@ import { describe, expect, it } from "vite-plus/test";
 import type { Avatar } from "./avatar.js";
 import { placeAvatar } from "./avatar-layout.js";
 
-const account = ["", "  ✓ Ada", "", "    Server     kaneo.test", ""];
+const account = ["", "  ✓ Ada", "", "    Server     tracing.test", ""];
 
 const picture = (placement: Avatar["placement"]): Avatar => ({
   lines: ["AAAA", "BBBB", "CCCC", "DDDD", "EEEE"],
@@ -21,7 +21,7 @@ describe("placeAvatar", () => {
       "  AAAA",
       "  BBBB   ✓ Ada",
       "  CCCC",
-      "  DDDD     Server     kaneo.test",
+      "  DDDD     Server     tracing.test",
       "  EEEE",
       "",
     ]);

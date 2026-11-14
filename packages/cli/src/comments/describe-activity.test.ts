@@ -121,9 +121,9 @@ describe("describeActivity", () => {
     expect(
       summary({
         type: "moved",
-        eventData: { fromProjectName: "Kaneo Web", toProjectName: "Mobile" },
+        eventData: { fromProjectName: "Tracing Web", toProjectName: "Mobile" },
       }),
-    ).toBe("moved the task from Kaneo Web to Mobile");
+    ).toBe("moved the task from Tracing Web to Mobile");
     expect(
       summary({
         type: "moved",

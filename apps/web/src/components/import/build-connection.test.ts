@@ -160,23 +160,23 @@ describe("buildConnection", () => {
     ).toBeNull();
   });
 
-  it("needs both the Kaneo URL and API key", () => {
+  it("needs both the Tracing URL and API key", () => {
     expect(
       buildConnection(
         "kaneo",
-        values({ url: "https://cloud.kaneo.app" }),
+        values({ url: "https://tracing.gofigureapp.io" }),
         withServerKey,
       ),
     ).toBeNull();
     expect(
       buildConnection(
         "kaneo",
-        values({ url: "https://cloud.kaneo.app", apiKey: "kaneo_1" }),
+        values({ url: "https://tracing.gofigureapp.io", apiKey: "kaneo_1" }),
         withServerKey,
       ),
     ).toEqual({
       source: "kaneo",
-      url: "https://cloud.kaneo.app",
+      url: "https://tracing.gofigureapp.io",
       apiKey: "kaneo_1",
     });
   });

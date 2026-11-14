@@ -14,7 +14,7 @@ import {
 describe("classifyFailure", () => {
   it("shows requested help as normal output", () => {
     const cause = Cause.fail(
-      new CliError.ShowHelp({ commandPath: ["kaneo"], errors: [] }),
+      new CliError.ShowHelp({ commandPath: ["tracing"], errors: [] }),
     );
     expect(classifyFailure(cause, "USAGE")).toEqual({
       kind: "help",
@@ -25,11 +25,11 @@ describe("classifyFailure", () => {
   it("turns parse errors into a failure with a help hint", () => {
     const cause = Cause.fail(
       new CliError.ShowHelp({
-        commandPath: ["kaneo", "task", "list"],
+        commandPath: ["tracing", "task", "list"],
         errors: [
           new CliError.UnrecognizedOption({
             option: "--bogus",
-            command: ["kaneo", "task", "list"],
+            command: ["tracing", "task", "list"],
             suggestions: [],
           }),
         ],
@@ -38,7 +38,7 @@ describe("classifyFailure", () => {
     const outcome = classifyFailure(cause, "USAGE");
     expect(outcome.kind).toBe("failure");
     expect(outcome.kind === "failure" && outcome.failure.hint).toBe(
-      "Run kaneo task list --help to see the options.",
+      "Run tracing task list --help to see the options.",
     );
   });
 
@@ -90,7 +90,7 @@ describe("renderFailure", () => {
       columns: 80,
     });
     expect(
-      renderFailure(ui, { message: "Nope", hint: "Run kaneo login" }),
-    ).toEqual(["✗ Nope", "  → Run kaneo login"]);
+      renderFailure(ui, { message: "Nope", hint: "Run tracing login" }),
+    ).toEqual(["✗ Nope", "  → Run tracing login"]);
   });
 });

@@ -1,4 +1,4 @@
-import { KaneoTaskItem } from "@kaneo/editor";
+import { TracingTaskItem } from "@tracing/editor";
 import type { NodeViewProps } from "@tiptap/react";
 import {
   NodeViewContent,
@@ -39,7 +39,7 @@ function TaskItemNodeView({ editor, node, updateAttributes }: NodeViewProps) {
   );
 }
 
-export const TaskItemWithCheckbox = KaneoTaskItem.extend({
+export const TaskItemWithCheckbox = TracingTaskItem.extend({
   addNodeView() {
     return ReactNodeViewRenderer(TaskItemNodeView);
   },

@@ -90,7 +90,7 @@ function titleChangedPayload(title: string) {
   };
 }
 
-function linkWithLastTitleWrittenByKaneo(title: string) {
+function linkWithLastTitleWrittenByTracing(title: string) {
   return {
     id: "link-1",
     taskId: "task-1",
@@ -133,20 +133,20 @@ describe("handleGitlabIssueUpdated", () => {
     expect(mocks.taskUpdates).toEqual([{ title: "Fix the login bug" }]);
   });
 
-  it("ignores the echo of a title Kaneo just wrote", async () => {
+  it("ignores the echo of a title Tracing just wrote", async () => {
     mocks.findExternalLink.mockResolvedValue(
-      linkWithLastTitleWrittenByKaneo("Written by Kaneo"),
+      linkWithLastTitleWrittenByTracing("Written by Tracing"),
     );
 
-    await handleGitlabIssueUpdated(titleChangedPayload("Written by Kaneo"));
+    await handleGitlabIssueUpdated(titleChangedPayload("Written by Tracing"));
 
     expect(mocks.taskUpdates).toHaveLength(0);
     expect(mocks.updateExternalLink).not.toHaveBeenCalled();
   });
 
-  it("keeps a different title edited right after Kaneo's own write", async () => {
+  it("keeps a different title edited right after Tracing's own write", async () => {
     mocks.findExternalLink.mockResolvedValue(
-      linkWithLastTitleWrittenByKaneo("Written by Kaneo"),
+      linkWithLastTitleWrittenByTracing("Written by Tracing"),
     );
 
     await handleGitlabIssueUpdated(titleChangedPayload("Edited in GitLab"));

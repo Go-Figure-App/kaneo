@@ -17,7 +17,7 @@ describe("renderImageLinks", () => {
         ui,
         [
           {
-            url: "https://kaneo.test/api/asset/a-very-long-asset-identifier",
+            url: "https://tracing.test/api/asset/a-very-long-asset-identifier",
             alt: "A screenshot with a caption that is too long",
           },
         ],
@@ -25,20 +25,20 @@ describe("renderImageLinks", () => {
       ),
     ).toEqual([
       "  1. A screenshot with a caption that i…",
-      "     https://kaneo.test/api/asset/a-very-long-asset-identifier",
+      "     https://tracing.test/api/asset/a-very-long-asset-identifier",
       "",
     ]);
   });
 
   it("aligns numbers and mentions hidden images", () => {
     const images = Array.from({ length: 10 }, (_, index) => ({
-      url: `https://kaneo.test/${index}`,
+      url: `https://tracing.test/${index}`,
       alt: "",
     }));
     const lines = renderImageLinks(ui, images, { indent: 0, hidden: 1 });
     expect(lines[0]).toBe(" 1. Image");
     expect(lines[18]).toBe("10. Image");
-    expect(lines[19]).toBe("    https://kaneo.test/9");
+    expect(lines[19]).toBe("    https://tracing.test/9");
     expect(lines[20]).toBe("1 more image not shown");
   });
 });

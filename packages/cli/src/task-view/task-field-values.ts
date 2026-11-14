@@ -1,5 +1,5 @@
 import { Effect, Schema } from "effect";
-import { KaneoApi } from "../api/kaneo-api.js";
+import { TracingApi } from "../api/tracing-api.js";
 
 export const TaskFieldValue = Schema.Struct({
   fieldId: Schema.String,
@@ -15,7 +15,7 @@ const TaskFieldValueList = Schema.Array(TaskFieldValue);
 export const listTaskFieldValuesWithNames = Effect.fnUntraced(function* (
   taskId: string,
 ) {
-  const api = yield* KaneoApi;
+  const api = yield* TracingApi;
   return yield* api.request(
     "GET",
     `/api/custom-field/task/${encodeURIComponent(taskId)}`,

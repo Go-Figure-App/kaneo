@@ -1,6 +1,6 @@
 # Go Figure planning fork
 
-Phase 0 implements the foundation from the technical design attached to [GOF-272](https://linear.app/gofigure/issue/GOF-272). Later phases require a separate branch, pull request and review. The fork remote is `Go-Figure-App/kaneo`; never open parity pull requests against `usekaneo/kaneo`.
+Phase 0 implements the foundation from the technical design attached to [GOF-272](https://linear.app/gofigure/issue/GOF-272). Later phases require a separate branch, pull request and review. The fork remote is `Go-Figure-App/tracing`; never open parity pull requests against `usekaneo/kaneo`.
 
 ## Boundaries
 
@@ -22,7 +22,7 @@ Validated against upstream `cb70ff64` (v2.49.0), with the existing Go Figure mob
 2. **Task properties support small insertions.** `components/task/properties/properties-rail.tsx` already composes `PropertyRow`; `property-chips.tsx` handles compact layouts. Later phases can mount parity components in those two places, just like custom fields. No task-panel changes are needed in Phase 0.
 3. **The importer cannot transparently carry planning metadata.** `packages/importers/src/linear/source.ts` lists Linear teams, not Linear projects, and `ImportedProject`/`ImportedTask` have no planning metadata. `writeProjectContent` constructs its source-to-destination task map internally and returns counts, not that map. Phase 7 needs a parity source/writer path or an explicit hook exposing that mapping. No shared importer types were changed in this phase.
 
-Other design/code differences: startup must seed categories after upstream `migrateColumns`; existing tasks have a real `column_id` as well as a status slug; activity for a project move uses type `moved`. Kaneo's final flag still drives upstream automations, while parity categories drive planning. The deployment has one bundled Kaneo service plus Postgres, rather than the three services assumed by the design. Railway was inspected read-only.
+Other design/code differences: startup must seed categories after upstream `migrateColumns`; existing tasks have a real `column_id` as well as a status slug; activity for a project move uses type `moved`. Tracing's final flag still drives upstream automations, while parity categories drive planning. The deployment has one bundled Tracing service plus Postgres, rather than the three services assumed by the design. Railway was inspected read-only.
 
 ## Configuration and behavior
 
@@ -54,7 +54,7 @@ Generate future parity migrations from `apps/api` with `pnpm exec drizzle-kit ge
 
 ### Mobile
 
-The existing fork config retains name `GF Kaneo` and bundle/package ID `io.gofigureapp.kaneo`. The build fixes its server to `https://kaneo.gofigureapp.io`, hides server selection and removes the purchase screen, purchase module and `react-native-purchases`. Stored credentials for a different server are cleared on hydration; they cannot be saved by this build.
+The existing fork config retains name `Tracing` and bundle/package ID `io.gofigureapp.kaneo`. The build fixes its server to `https://tracing.gofigureapp.io`, hides server selection and removes the purchase screen, purchase module and `react-native-purchases`. Stored credentials for a different server are cleared on hydration; they cannot be saved by this build.
 
 For local simulator testing only, `GOFIGURE_LOCAL_SERVER_URL=http://localhost:18173` overrides the fixed address at build/Metro startup. Do not set that override for distribution builds. The existing device-login URL scheme remains `kaneo://` to match the server's approval page. Expo SDK 58 [app configuration](https://docs.expo.dev/versions/v58.0.0/config/app/) and [Constants](https://docs.expo.dev/versions/v58.0.0/sdk/constants/) docs were checked. Native builds must be rebuilt after removing the purchases library.
 
@@ -66,7 +66,7 @@ For local simulator testing only, `GOFIGURE_LOCAL_SERVER_URL=http://localhost:18
 | `apps/api/src/index.ts` | Mount/type parity routes; run separate migrations and initialize subscribers after upstream startup. |
 | `apps/api/src/database/index.ts` | Register side tables in the existing database client. |
 | `apps/api/Dockerfile` | Copy parity migrations into the standalone API image. |
-| `Dockerfile.kaneo` | Copy parity migrations into the bundled image. |
+| `Dockerfile.tracing` | Copy parity migrations into the bundled image. |
 | `apps/docs/openapi.json` | Generated contract for the three foundation routes. |
 | `apps/web/src/routes/_layout/_authenticated/dashboard/settings/projects/$projectId/workflow.tsx` | Mount the parity category component. |
 | `apps/web/src/hooks/use-user-websocket.ts` | Forward hints and access changes to parity cache handling. |
@@ -145,7 +145,7 @@ The maintainer explicitly authorized retiring irrelevant CI/CD. These additional
 
 ## Fork CI and review
 
-`.github/workflows/parity-ci.yml` runs on pull requests, pushes to `main` and manual dispatches in `Go-Figure-App/kaneo`. It uses standard GitHub-hosted Ubuntu runners, read-only repository permissions, pinned actions, and synthetic PostgreSQL data. Checks cover active-workflow validation with checksum-verified actionlint, lint, locale parity, OpenAPI, typecheck, all workspace unit suites, four integration shards, the bundled Docker build, upstream browser flows with parity disabled, and parity browser flows with it enabled. The final result requires every job to succeed; skipped or cancelled jobs fail the gate. Packages run serially inside the unit job to avoid import-time resource contention.
+`.github/workflows/parity-ci.yml` runs on pull requests, pushes to `main` and manual dispatches in `Go-Figure-App/tracing`. It uses standard GitHub-hosted Ubuntu runners, read-only repository permissions, pinned actions, and synthetic PostgreSQL data. Checks cover active-workflow validation with checksum-verified actionlint, lint, locale parity, OpenAPI, typecheck, all workspace unit suites, four integration shards, the bundled Docker build, upstream browser flows with parity disabled, and parity browser flows with it enabled. The final result requires every job to succeed; skipped or cancelled jobs fail the gate. Packages run serially inside the unit job to avoid import-time resource contention.
 
 CI retains browser failure artifacts for seven days; it does not publish images, deploy to Railway or submit mobile builds. The 28 inherited workflows have been removed from the active directory. The six that GitHub registered before this change were also disabled, and their queued runs were canceled. This prevents inherited Blacksmith, publishing, Pages, release, sponsor, labeling, and review jobs from activating after merge. CodeRabbit reviews are enabled, and maintainers can also request `@coderabbitai review`. Review findings and the latest commit's checks must be addressed before merging. Production deployment remains a separate approval step.
 
@@ -187,7 +187,7 @@ All checks used synthetic data and disposable PostgreSQL databases on this machi
 | OpenAPI check | Generated contract is up to date. |
 | Web production build | Passed; existing large-chunk warnings remain. |
 | Built-bundle Playwright | All 3 upstream flows passed, plus the parity workflow-category flow with a second browser page receiving the user-socket hint. |
-| iOS native build and simulator | Built with 0 errors and 1 build warning. `GF Kaneo` on iPhone 17 / iOS 27 signed into the disposable server and displayed the test workspace/project. Server selection and the purchase screen were absent. |
+| iOS native build and simulator | Built with 0 errors and 1 build warning. `Tracing` on iPhone 17 / iOS 27 signed into the disposable server and displayed the test workspace/project. Server selection and the purchase screen were absent. |
 
 Failures encountered and resolved without changing upstream assertions:
 
@@ -220,7 +220,7 @@ Phase 1 starts after this phase receives approval and its latest CI run is green
 
 ## Phase 0 merged
 
-[PR #1](https://github.com/Go-Figure-App/kaneo/pull/1) merged as `d7b7b71` after CodeRabbit approved the final head and all nine checks passed. The subsequent main-branch CI run `43390076716` passed all eight jobs.
+[PR #1](https://github.com/Go-Figure-App/tracing/pull/1) merged as `d7b7b71` after CodeRabbit approved the final head and all nine checks passed. The subsequent main-branch CI run `43390076716` passed all eight jobs.
 
 ## Phase 1: triage
 
@@ -292,17 +292,17 @@ The initial PR CI passed quality, workspace units, Docker/browser tests and thre
 
 ## Manufact MCP assessment
 
-Reviewed 2026-11-13. Kaneo already serves authenticated MCP at `/api/mcp`; both HTTP transports and stdio use `packages/mcp/src/tools/register.ts`. Extend that registrar with each planning phase so authorization continues through the same API. The published upstream npm package does not contain this fork's new tools; use our build or the fork's endpoint after an approved deployment.
+Reviewed 2026-11-13. Tracing already serves authenticated MCP at `/api/mcp`; both HTTP transports and stdio use `packages/mcp/src/tools/register.ts`. Extend that registrar with each planning phase so authorization continues through the same API. The published upstream npm package does not contain this fork's new tools; use our build or the fork's endpoint after an approved deployment.
 
-The proposed first integration is a direct external connection to the existing endpoint for inspection and evaluations. Manufact supports other MCP SDKs and existing OAuth, so this does not require rewriting Kaneo onto mcp-use. External connections currently require setup assistance. A proxy or separately hosted server is a later routing/deployment decision. See [integration options](https://docs.manufact.com/dashboard/framework-and-cloud) and [OAuth test accounts](https://docs.manufact.com/dashboard/dashboard-oauth).
+The proposed first integration is a direct external connection to the existing endpoint for inspection and evaluations. Manufact supports other MCP SDKs and existing OAuth, so this does not require rewriting Tracing onto mcp-use. External connections currently require setup assistance. A proxy or separately hosted server is a later routing/deployment decision. See [integration options](https://docs.manufact.com/dashboard/framework-and-cloud) and [OAuth test accounts](https://docs.manufact.com/dashboard/dashboard-oauth).
 
 Published base usage rates are $0.10/1,000 tool calls, $0.70/evaluation, $0.07/build minute, $0.15/GB egress and $5/million managed-chat tokens. These consume a shared allowance; a $100 grant is not an unlimited plan. Account balance, grant terms and expiry have not been verified. The [billing documentation](https://docs.manufact.com/dashboard/billing) lists external connections on every plan, while the [pricing table](https://manufact.com/pricing) lists them only on Enterprise; confirm the account entitlement before choosing a plan. No subscription, deployment or credit consumption was initiated.
 
-Once the account and deployment are approved, verify the credit balance and overage limit, connect a dedicated test account through Kaneo OAuth, and evaluate tool discovery, pending-item creation, acceptance, required decline comments and hidden-project denial against a disposable workspace. Keep real Linear exports out of public fixtures and Manufact payload capture. Authenticate through the official sign-in flow, without putting credentials in source files or PR comments.
+Once the account and deployment are approved, verify the credit balance and overage limit, connect a dedicated test account through Tracing OAuth, and evaluate tool discovery, pending-item creation, acceptance, required decline comments and hidden-project denial against a disposable workspace. Keep real Linear exports out of public fixtures and Manufact payload capture. Authenticate through the official sign-in flow, without putting credentials in source files or PR comments.
 
 ## Phase 2 — project planning and initiatives
 
-Phase 2 adds project status, lead, start/target dates and priority, milestones, health updates, and initiatives with many-to-many project links. Enable `projects,initiatives`; `initiatives` also enables `projects` because its linked-project pages use project plans. Features still default off. The previous phase merged as [PR #2](https://github.com/Go-Figure-App/kaneo/pull/2); its merge commit passed Go Figure CI.
+Phase 2 adds project status, lead, start/target dates and priority, milestones, health updates, and initiatives with many-to-many project links. Enable `projects,initiatives`; `initiatives` also enables `projects` because its linked-project pages use project plans. Features still default off. The previous phase merged as [PR #2](https://github.com/Go-Figure-App/tracing/pull/2); its merge commit passed Go Figure CI.
 
 The API lives in `parity/planning`. Four new tables and one milestone lookup index are introduced by `0002_planning.sql`; all foreign keys are inline in new table declarations. The migration test now compares every existing upstream table's columns and the upstream migration ledger before and after parity migration. No upstream schema or migration is changed.
 
@@ -332,7 +332,7 @@ Eight MCP tools use the same authenticated API: `get_project_plan`, `update_proj
 | `apps/mobile/src/features/home/home-tab.tsx` | Open active project overviews before boards when enabled. |
 | `apps/mobile/src/features/task/properties.tsx` | Mount the native milestone picker. |
 | `packages/mcp/src/tools/register.ts` | Register the eight planning tools. |
-| `Dockerfile.kaneo` | Install web dependencies from manifests before copying source, retaining the install cache on UI changes. |
+| `Dockerfile.tracing` | Install web dependencies from manifests before copying source, retaining the install cache on UI changes. |
 | `apps/docs/openapi.json` | Generated planning contract. |
 | `apps/web/src/query-client/index.ts`, `apps/mobile/src/lib/query.ts` | Clear parity caches on forbidden/missing-resource responses, including native action failures, using an owned helper. |
 | `i18n/en-US.json`, the 20 other catalogs, `i18n/schema.json` | Add web/native planning keys. New non-English copy currently uses the permitted English fallback; existing translations are unchanged. Only parity branches of the generated schema are synchronized to avoid unrelated inherited drift. |
@@ -436,7 +436,7 @@ Lint, localization, generated OpenAPI and all 22 workspace typecheck/build tasks
 
 Phase 4 review fixes resolve every cycle boundary from its local calendar date, including skipped midnight in America/Santiago, and wait for task event handlers before announcing the next rollover or bulk change. State grouping keeps project-local column slugs distinct. Cycle assignment and task filters remain clearable when metadata requests fail on web and native; the board clearing shortcuts include the cycle filter. Chart dates and native totals use the current locale. Request bodies reject unsupported fields, with regenerated OpenAPI schemas. Regression tests cover skipped midnight, bounded event delivery, cross-project grouping, metadata failures, shortcut composition, fresh-cache invalidation and a date-controlled disable scenario. Cycle total reducers share one owned module to keep the PR within the current review file limit.
 
-Review-fix verification passed 11 API unit tests, nine native cycle tests, 33 focused web tests, 27 PostgreSQL integration tests, and the seven-test scheduler/event-delivery rerun. All 22 workspace typecheck/build tasks, lint, localization and regenerated OpenAPI checks passed. The final bundled image passed the expanded cycle browser flow, including both clear-filter shortcuts. A fresh iOS development bundle verified clearing a cycle while its options endpoint returned 503, restoring the assignment, refreshed totals and localized daily-history dates. Local Docker disk exhaustion was resolved by removing only obsolete Kaneo test images and their build cache.
+Review-fix verification passed 11 API unit tests, nine native cycle tests, 33 focused web tests, 27 PostgreSQL integration tests, and the seven-test scheduler/event-delivery rerun. All 22 workspace typecheck/build tasks, lint, localization and regenerated OpenAPI checks passed. The final bundled image passed the expanded cycle browser flow, including both clear-filter shortcuts. A fresh iOS development bundle verified clearing a cycle while its options endpoint returned 503, restoring the assignment, refreshed totals and localized daily-history dates. Local Docker disk exhaustion was resolved by removing only obsolete Tracing test images and their build cache.
 
 ## Phase 5: Insights
 
@@ -475,7 +475,7 @@ Focused PostgreSQL tests cover every metric, all task slices, timestamp percenti
 
 Review corrections publish an internal lifecycle event after its transaction commits, preventing an intervening report from caching pre-commit timestamps. Time-in-state history omits an uncertain trailing interval when the last recorded state differs from the current task. The feature-off browser assertion waits for the feature response and checks the actual navigation button. Narrowed burndown ranges retain an interpolated ideal line at the requested boundaries. Access-sync events now clear protected data while retaining mounted query observers and refetching them; removing those queries previously stranded the dashboard in its loading state despite successful responses. Nine focused web tests, eleven PostgreSQL cases and three reporting unit tests passed after these corrections. The subsequent CI run exposed an incomplete upstream WebSocket test double: its empty cache lacked `findAll`, so the access handler threw before reaching the existing assertions. The fixture now models that query-cache method without changing any assertions.
 
-The iPhone 17 / iOS 27 preview verified the Insights navigation, current-cycle card, workspace-local dates, zero delivery totals and explicit missing duration history. A synthetic task was temporarily completed and restored for refresh verification, but the simulator control surface became unavailable before the pull gesture could be verified. Android and distribution builds were not exercised. Initial local unit timeouts passed on focused rerun and in CI; local workflow checks requiring localhost listeners passed all 48 tests with the appropriate execution permission. Only obsolete Kaneo images and verified runtime-cache descendants were removed to recover local Docker space.
+The iPhone 17 / iOS 27 preview verified the Insights navigation, current-cycle card, workspace-local dates, zero delivery totals and explicit missing duration history. A synthetic task was temporarily completed and restored for refresh verification, but the simulator control surface became unavailable before the pull gesture could be verified. Android and distribution builds were not exercised. Initial local unit timeouts passed on focused rerun and in CI; local workflow checks requiring localhost listeners passed all 48 tests with the appropriate execution permission. Only obsolete Tracing images and verified runtime-cache descendants were removed to recover local Docker space.
 
 Phase 5 final verification: PR #6 was approved at `9dcb89aca8178ca14a36a80f0aa3bc511e5f8427` and merged as `e0045a7d8aba03cbb2fc788f8a40671e8aa86b9f`. Both the final PR run (43499758523) and post-merge run (43517308605) passed every Go Figure CI job. Returning to native Insights after a synthetic status change verified focus refresh; pull-to-refresh remains unverified. A read-only local rehearsal checked 48 reports across 16 imported cycles and 95 historical days without exposing aggregate-only history.
 
@@ -562,7 +562,7 @@ Past cycles without completion timestamps close at their scheduled end with an e
 
 The full workspace unit verification passed 3,272 non-web tests and 404 web files / 2,052 tests. All 22 workspace typecheck/build tasks, formatting, lint, all 21 localization catalogs and generated OpenAPI checks passed. The 15 GraphQL queries were checked against the current public schema (290 field selections and 58 arguments); this is not authenticated live-source validation. Five reader/pagination unit cases and 26 initial PostgreSQL import/upstream cases passed. The expanded archive regression run passed all 53 tests across import, planning, Insights, Views and cycle scheduling. The complete PostgreSQL run passed all 218 upstream/existing files; its only two failures were newly added archive regressions encountered before their corrections were loaded. Both passed in the clean 53-test rerun and the final 13-test import rerun (2,337 passing cases across the corrected runs, three inherited skips). PR CI will verify the final commit from a clean checkout.
 
-The bundled image passed all ten parity browser flows and all three feature-off upstream flows. Import covers project discovery, catch-all selection, real background persistence through a test-only HTTP fixture, reload, original-ID search, initiative and triage visibility, project navigation, and a visible final-stage error. The synthetic Linear fixture is mounted only by the disposable parity Compose overlay; it is absent from production images. All 53 browser-security checks passed. Workflow/release/security verification passed 174 tests initially; the two nginx checks affected by local Docker disk exhaustion passed unchanged after reclaiming only obsolete Kaneo verification images and their build cache.
+The bundled image passed all ten parity browser flows and all three feature-off upstream flows. Import covers project discovery, catch-all selection, real background persistence through a test-only HTTP fixture, reload, original-ID search, initiative and triage visibility, project navigation, and a visible final-stage error. The synthetic Linear fixture is mounted only by the disposable parity Compose overlay; it is absent from production images. All 53 browser-security checks passed. Workflow/release/security verification passed 174 tests initially; the two nginx checks affected by local Docker disk exhaustion passed unchanged after reclaiming only obsolete Tracing verification images and their build cache.
 
 The private local rehearsal ran 241 authorized Go Figure issues through the actual reader and writer: 27 projects plus one catch-all, four initiatives, 25 milestones, 16 cycles, 36 archived issues, 528 workflow spans, and 11 relationships including two duplicate links. Every issue's title, description, known creation/update/lifecycle instants, numeric estimate, cycle and milestone reference was compared with the export. Exact cycle numbers and start/end instants were checked. A second read-only API comparison verified all 241 paginated issues, counts for 27 project plans, 16 cycles and four initiatives, and 20 original-identifier searches. The iPhone 17 / iOS 27 simulator verified the imported project list, original-identifier search, navigation to the matching issue under its new project ID, cycle assignment, original Linear link and historical activity. No native implementation change was necessary.
 
@@ -582,7 +582,7 @@ these outputs. Railway's builder failed before compilation with `Resource busy
 (os error 16)` when Vite+ tried to spawn cache-tracked TypeScript tasks; local
 development and GitHub task caching retain their existing configuration.
 
-Shared-file register: `Dockerfile.kaneo`, `apps/api/Dockerfile` and
+Shared-file register: `Dockerfile.tracing`, `apps/api/Dockerfile` and
 `apps/web/Dockerfile` change only their build invocation and its explanation.
 No runtime configuration, application behavior or database model changes.
 
@@ -615,3 +615,26 @@ that explicitly include archived items without restoring those projects.
 
 The live export also contains already-qualified grouped label names. The import
 mapper adds a group prefix only when absent, preserving both Linear shapes.
+
+
+## Tracing rebrand
+
+The user authorized renaming the fork across application copy, email, native
+identity, repository links, workspace package names, CLI, MCP, docs, and
+deployment artifacts. This crosses the original shared-file boundaries; it
+does not alter database models or rewrite existing imported records.
+
+`TRACING_*` server and client settings take precedence over legacy `KANEO_*`
+aliases. Existing CLI repository links and stored logins remain readable, and
+MCP sign-out clears both credential locations. Mobile accepts both URL schemes;
+the approval page chooses only the two fixed schemes and preserves old clients.
+Headers, cookies, storage formats, import provider IDs, migrations and licenses
+retain their compatibility identifiers. See `BRANDING.md`.
+
+Docker and Helm examples build this fork rather than pulling an upstream image.
+The active CI accepts both repository names during the rename and builds
+`Dockerfile.tracing`. Renamed CLI/MCP packages are private workspace packages;
+no npm, container, chart, Homebrew, or app-store publication is claimed.
+Upstream analytics scripts and inherited commercial-plan claims were removed
+from the app and primary website pages. Changed marketing copy uses the existing
+English fallback in translated catalogs until native translations are supplied.

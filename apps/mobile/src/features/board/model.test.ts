@@ -57,7 +57,7 @@ describe("filterCount", () => {
 describe("lanes", () => {
   const data: BoardData = {
     id: "p1",
-    name: "Kaneo",
+    name: "Tracing",
     slug: "kan",
     workspaceId: "w1",
     columns: [
@@ -103,7 +103,7 @@ describe("lanes", () => {
 describe("endPosition", () => {
   const data: BoardData = {
     id: "p1",
-    name: "Kaneo",
+    name: "Tracing",
     slug: "kan",
     workspaceId: "w1",
     columns: [

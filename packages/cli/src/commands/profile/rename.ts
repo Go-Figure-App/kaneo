@@ -38,13 +38,13 @@ export const runProfileRename = Effect.fn("command.profile.rename")(
     if (renamed.kind === "missing") {
       return yield* new InvalidArgument({
         message: `There is no profile named "${options.from}".`,
-        hint: "Run kaneo profile list to see the stored profiles.",
+        hint: "Run tracing profile list to see the stored profiles.",
       });
     }
     if (renamed.kind === "taken") {
       return yield* new InvalidArgument({
         message: `A profile named "${to}" already exists.`,
-        hint: `Pick another name, or remove it first with kaneo profile remove ${to}.`,
+        hint: `Pick another name, or remove it first with tracing profile remove ${to}.`,
       });
     }
     yield* store.save(renamed.config);

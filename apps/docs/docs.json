@@ -1,7 +1,7 @@
 {
 	"$schema": "https://mintlify.com/docs.json",
 	"theme": "almond",
-	"name": "Kaneo",
+	"name": "Tracing",
 	"colors": {
 		"primary": "#111111",
 		"light": "#fafafa",
@@ -23,7 +23,7 @@
 	},
 	"fonts": {
 		"family": "Geist Variable",
-		"source": "https://kaneo.app/docs/fonts/geist.woff2",
+		"source": "https://tracing.gofigureapp.io/docs/fonts/geist.woff2",
 		"format": "woff2"
 	},
 	"favicon": "/favicon.svg",
@@ -48,7 +48,7 @@
 	"navigation": {
 		"tabs": [
 			{
-				"tab": "Using Kaneo",
+				"tab": "Using Tracing",
 				"groups": [
 					{
 						"group": "Start here",
@@ -219,12 +219,12 @@
 			"anchors": [
 				{
 					"anchor": "Website",
-					"href": "https://kaneo.app",
+					"href": "https://tracing.gofigureapp.io",
 					"icon": "globe"
 				},
 				{
 					"anchor": "GitHub",
-					"href": "https://github.com/usekaneo/kaneo",
+					"href": "https://github.com/Go-Figure-App/tracing",
 					"icon": "github"
 				}
 			]
@@ -234,13 +234,13 @@
 		"links": [
 			{
 				"label": "GitHub",
-				"href": "https://github.com/usekaneo/kaneo"
+				"href": "https://github.com/Go-Figure-App/tracing"
 			}
 		],
 		"primary": {
 			"type": "button",
-			"label": "Open Kaneo",
-			"href": "https://cloud.kaneo.app"
+			"label": "Open Tracing",
+			"href": "https://tracing.gofigureapp.io"
 		}
 	},
 	"contextual": {
@@ -248,20 +248,18 @@
 	},
 	"footer": {
 		"socials": {
-			"website": "https://kaneo.app",
-			"github": "https://github.com/usekaneo/kaneo",
-			"x": "https://x.com/usekaneo"
+			"website": "https://tracing.gofigureapp.io",
+			"github": "https://github.com/Go-Figure-App/tracing"
 		}
 	},
 	"seo": {
 		"indexing": "all",
 		"metatags": {
-			"og:site_name": "Kaneo Docs",
+			"og:site_name": "Tracing Docs",
 			"og:type": "website",
-			"og:image": "https://kaneo.app/images/hero.png",
+			"og:image": "https://tracing.gofigureapp.io/images/hero.png",
 			"twitter:card": "summary_large_image",
-			"twitter:site": "@usekaneo",
-			"twitter:image": "https://kaneo.app/images/hero.png"
+			"twitter:image": "https://tracing.gofigureapp.io/images/hero.png"
 		}
 	},
 	"integrations": {

@@ -1,4 +1,4 @@
-import type { InstancePermission } from "@kaneo/permissions";
+import type { InstancePermission } from "@tracing/permissions";
 import { queryOptions, useQuery } from "@tanstack/react-query";
 import useAuth from "@/components/providers/auth-provider/hooks/use-auth";
 import { getAdminAccess } from "@/fetchers/admin/get-admin-access";

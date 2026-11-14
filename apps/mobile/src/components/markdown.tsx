@@ -14,7 +14,7 @@ import { font, radius, useColors } from "@/theme";
 import { MarkdownTaskItem } from "./markdown-task-item";
 import { MarkdownTextRun } from "./markdown-text-run";
 
-/** Renders Kaneo Markdown (with its custom tags rewritten) in the app's type styles. */
+/** Renders Tracing Markdown (with its custom tags rewritten) in the app's type styles. */
 export function MarkdownText({
   children,
   size = 15,

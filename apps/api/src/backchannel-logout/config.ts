@@ -36,7 +36,7 @@ export function assertBackchannelLogoutEnv(
   );
   if (resolveBackchannelLogoutConfig(env).enabled && !requestsOpenId) {
     console.warn(
-      "CUSTOM_OAUTH_BACKCHANNEL_LOGOUT is enabled, but CUSTOM_OAUTH_SCOPES lacks openid. Logout tokens with a session ID will not match any Kaneo session.",
+      "CUSTOM_OAUTH_BACKCHANNEL_LOGOUT is enabled, but CUSTOM_OAUTH_SCOPES lacks openid. Logout tokens with a session ID will not match any Tracing session.",
     );
   }
 }

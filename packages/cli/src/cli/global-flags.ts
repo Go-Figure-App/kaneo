@@ -30,7 +30,7 @@ export const TokenFlag = GlobalFlag.Setting("token")({
 
 export const ApiUrlFlag = GlobalFlag.Setting("api-url")({
   flag: Flag.String("api-url").pipe(
-    Flag.withDescription("Kaneo server URL (or KANEO_API_URL)"),
+    Flag.withDescription("Tracing server URL (or TRACING_API_URL)"),
     Flag.optional,
   ),
 });
@@ -38,14 +38,14 @@ export const ApiUrlFlag = GlobalFlag.Setting("api-url")({
 export const WorkspaceFlag = GlobalFlag.Setting("workspace")({
   flag: Flag.String("workspace").pipe(
     Flag.withAlias("w"),
-    Flag.withDescription("Workspace id (or KANEO_WORKSPACE)"),
+    Flag.withDescription("Workspace id (or TRACING_WORKSPACE)"),
     Flag.optional,
   ),
 });
 
 export const ProfileFlag = GlobalFlag.Setting("profile")({
   flag: Flag.String("profile").pipe(
-    Flag.withDescription("Stored login to use (or KANEO_PROFILE)"),
+    Flag.withDescription("Stored login to use (or TRACING_PROFILE)"),
     Flag.optional,
   ),
 });

@@ -1,4 +1,4 @@
-import { isSmtpConfigured } from "@kaneo/email";
+import { isSmtpConfigured } from "@tracing/email";
 import { eq } from "drizzle-orm";
 import db from "../../database";
 import {

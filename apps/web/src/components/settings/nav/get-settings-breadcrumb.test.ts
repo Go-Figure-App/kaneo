@@ -13,7 +13,7 @@ const nav = buildSettingsNav({
     "audit:read",
     "system:read",
   ],
-  projects: [{ id: "p1", name: "Kaneo Web" }],
+  projects: [{ id: "p1", name: "Tracing Web" }],
 });
 
 describe("getSettingsBreadcrumb", () => {
@@ -36,7 +36,7 @@ describe("getSettingsBreadcrumb", () => {
         "/dashboard/settings/projects/p1/integrations",
       ),
     ).toEqual({
-      section: "Kaneo Web",
+      section: "Tracing Web",
       page: "settings:projectIntegrations.title",
     });
   });

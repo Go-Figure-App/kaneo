@@ -10,7 +10,7 @@ export type Comparison = {
   summary: string;
   heading: string;
   subheading: string;
-  /** Two or three sentences that answer "is Kaneo a good X alternative" outright. */
+  /** Two or three sentences that answer "is Tracing a good X alternative" outright. */
   verdict: string;
   facts: {
     license: string;

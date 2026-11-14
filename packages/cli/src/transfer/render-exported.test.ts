@@ -16,11 +16,15 @@ describe("renderExported", () => {
       renderExported(ui, {
         file: "kan.json",
         tasks: 15,
-        project: { name: "Kaneo Web", key: "KAN", url: "https://kaneo.test/p" },
+        project: {
+          name: "Tracing Web",
+          key: "KAN",
+          url: "https://tracing.test/p",
+        },
       }),
     ).toEqual([
       "",
-      "  ✓ Exported 15 tasks from Kaneo Web · KAN → kan.json",
+      "  ✓ Exported 15 tasks from Tracing Web · KAN → kan.json",
       "",
     ]);
   });

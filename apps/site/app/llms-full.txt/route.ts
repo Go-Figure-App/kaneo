@@ -6,7 +6,7 @@ import { productMarkdown } from "@/lib/product";
 
 export const dynamic = "force-static";
 
-const SITE = "https://kaneo.app";
+const SITE = "https://tracing.gofigureapp.io";
 
 function link(label: string, href: string) {
   return `[${label}](${new URL(href, SITE).href})`;
@@ -36,14 +36,14 @@ function comparisonMarkdown() {
         .map((entry) => `**${entry.question}**\n\n${entry.answer}`)
         .join("\n\n");
 
-      return `## Kaneo vs ${data.competitor}
+      return `## Tracing vs ${data.competitor}
 
 URL: ${SITE}${alternativePath(data.slug)}
 Competitor details checked: ${data.verifiedOn}
 
 ${data.verdict}
 
-| | Kaneo | ${data.competitor} |
+| | Tracing | ${data.competitor} |
 | --- | --- | --- |
 ${rows}
 
@@ -111,9 +111,9 @@ ${post.markdown}`,
 }
 
 export function GET() {
-  const body = `# Kaneo, full content
+  const body = `# Tracing, full content
 
-> Kaneo is a project management platform, available as managed Kaneo Cloud or self-hosted under the MIT license. This file contains the full text of Kaneo's comparison pages, guides, and blog posts. Written by the Kaneo team, who build one of the tools discussed.
+> Tracing is a project management platform, available as managed Tracing Cloud or self-hosted under the MIT license. This file contains the full text of Tracing's comparison pages, guides, and blog posts. Written by the Tracing team, who build one of the tools discussed.
 
 ## Product facts
 

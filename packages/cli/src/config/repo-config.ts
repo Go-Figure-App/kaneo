@@ -4,7 +4,7 @@ import { dirname, join } from "node:path";
 import { Effect } from "effect";
 import { InvalidArgument } from "../errors/errors.js";
 
-export const REPO_CONFIG_FILE = ".kaneo.json";
+export const REPO_CONFIG_FILE = ".tracing.json";
 
 export type RepoConfig = {
   readonly path: string;
@@ -45,8 +45,12 @@ export function findRepoConfig(
 ): RepoConfig | undefined {
   let directory = cwd;
   for (;;) {
-    const path = join(directory, REPO_CONFIG_FILE);
-    const text = read(path);
+    let path = join(directory, REPO_CONFIG_FILE);
+    let text = read(path);
+    if (text === undefined) {
+      path = join(directory, ".kaneo.json");
+      text = read(path);
+    }
     if (text !== undefined) {
       let parsed: unknown;
       try {
@@ -84,16 +88,18 @@ export function linkFilePath(
   exists: (path: string) => boolean = existsSync,
 ): string {
   const root = findRepoRoot(cwd, exists);
-  if (root === undefined) return join(cwd, REPO_CONFIG_FILE);
   let directory = cwd;
-  while (directory !== root) {
+  for (;;) {
     const candidate = join(directory, REPO_CONFIG_FILE);
     if (exists(candidate)) return candidate;
+    const legacy = join(directory, ".kaneo.json");
+    if (exists(legacy)) return legacy;
+    if (root === undefined || directory === root) break;
     const parent = dirname(directory);
     if (parent === directory) break;
     directory = parent;
   }
-  return join(root, REPO_CONFIG_FILE);
+  return join(root ?? cwd, REPO_CONFIG_FILE);
 }
 
 export function parseRepoConfigObject(

@@ -1,5 +1,5 @@
 import { Effect, Schema } from "effect";
-import { KaneoApi } from "./kaneo-api.js";
+import { TracingApi } from "./tracing-api.js";
 
 export type BulkOperation =
   | "updateStatus"
@@ -21,6 +21,6 @@ export const bulkUpdateTasks = Effect.fnUntraced(function* (body: {
   readonly operation: BulkOperation;
   readonly value?: string | null;
 }) {
-  const api = yield* KaneoApi;
+  const api = yield* TracingApi;
   return yield* api.request("PATCH", "/api/task/bulk", BulkResult, { body });
 });

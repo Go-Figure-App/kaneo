@@ -1,4 +1,4 @@
-# Keep cloud-testing dependencies out of Kaneo's production build graph.
+# Keep cloud-testing dependencies out of Tracing's production build graph.
 packages:
   - .
 

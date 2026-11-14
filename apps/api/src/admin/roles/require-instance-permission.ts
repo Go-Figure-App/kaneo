@@ -1,4 +1,4 @@
-import type { InstancePermission } from "@kaneo/permissions";
+import type { InstancePermission } from "@tracing/permissions";
 import type { Context, Next } from "hono";
 import { ApiError } from "../../errors/api-error";
 import { getUserAccess } from "./get-instance-access";

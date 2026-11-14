@@ -72,7 +72,7 @@ describe("renderSentInvitations", () => {
 
   it("suggests inviting someone when the list is empty", () => {
     expect(renderSentInvitations(ui, { invitations: [], now })[1]).toBe(
-      "  No pending invitations. Invite someone with kaneo member invite <email>.",
+      "  No pending invitations. Invite someone with tracing member invite <email>.",
     );
   });
 });
@@ -87,7 +87,7 @@ describe("renderReceivedInvitations", () => {
       "",
       "  Side Project  from Grace Hopper  expires Oct 15  inv_4b1e88c2f0",
       "",
-      "  Run kaneo invitation accept <id> to join.",
+      "  Run tracing invitation accept <id> to join.",
       "",
     ]);
     for (const line of lines) expect(stringWidth(line)).toBeLessThanOrEqual(80);

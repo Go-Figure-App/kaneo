@@ -87,7 +87,7 @@ export const raciChart: Guide = {
       ],
     },
     {
-      heading: "Using RACI with Kaneo",
+      heading: "Using RACI with Tracing",
       body: [
         "Keep the chart itself in the project description, where everyone on the project can read it. Each task's assignee is its Responsible person, so the board and My tasks already show who is doing what.",
         "For the Accountable person, add a text custom field called Accountable, or a dropdown with the names of the people who sign off, and filter by it before a review. Consulted people can be mentioned in comments when their input is needed; Informed people can be workspace members with the Viewer role, or follow along through the project's notifications in Slack, Discord, or another channel.",

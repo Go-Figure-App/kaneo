@@ -10,8 +10,8 @@ import { Markdown } from "@tiptap/markdown";
 import StarterKit from "@tiptap/starter-kit";
 import { AttachmentCard } from "./attachment-card";
 import { EmbedBlock } from "./embed-block";
-import { KaneoImage } from "./kaneo-image";
-import { KaneoIssueLink } from "./kaneo-issue-link";
+import { TracingImage } from "./kaneo-image";
+import { TracingIssueLink } from "./kaneo-issue-link";
 import { SafeHardBreak } from "./safe-hard-break";
 
 export type BaseExtensionNodes = {
@@ -39,7 +39,7 @@ export function createBaseExtensions({
   nodes = {},
   tableResizable = true,
 }: BaseExtensionsOptions): AnyExtension[] {
-  const image = nodes.image ?? KaneoImage;
+  const image = nodes.image ?? TracingImage;
   const taskItem = nodes.taskItem ?? TaskItem;
 
   return [
@@ -55,7 +55,7 @@ export function createBaseExtensions({
     ...decorations,
     nodes.embedBlock ?? EmbedBlock,
     nodes.attachmentCard ?? AttachmentCard,
-    nodes.kaneoIssueLink ?? KaneoIssueLink,
+    nodes.kaneoIssueLink ?? TracingIssueLink,
     ...extra,
     TaskList,
     image.configure({

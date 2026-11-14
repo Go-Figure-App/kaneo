@@ -9,7 +9,7 @@ import {
 import importGithubIssues from "./import-github-issues";
 
 const { request } = vi.hoisted(() => ({ request: vi.fn() }));
-vi.mock("@kaneo/libs", () => ({
+vi.mock("@tracing/libs", () => ({
   client: { "github-integration": { "import-issues": { $post: request } } },
 }));
 const progress = {

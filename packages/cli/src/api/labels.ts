@@ -1,5 +1,5 @@
 import { Effect, Schema } from "effect";
-import { KaneoApi } from "./kaneo-api.js";
+import { TracingApi } from "./tracing-api.js";
 
 const NullableString = Schema.NullOr(Schema.String);
 
@@ -29,7 +29,7 @@ function labelPath(id: string, suffix = ""): string {
 export const listWorkspaceLabels = Effect.fnUntraced(function* (
   workspaceId: string,
 ) {
-  const api = yield* KaneoApi;
+  const api = yield* TracingApi;
   return yield* api.request(
     "GET",
     `/api/label/workspace/${encodeURIComponent(workspaceId)}`,
@@ -38,7 +38,7 @@ export const listWorkspaceLabels = Effect.fnUntraced(function* (
 });
 
 export const listTaskLabels = Effect.fnUntraced(function* (taskId: string) {
-  const api = yield* KaneoApi;
+  const api = yield* TracingApi;
   return yield* api.request(
     "GET",
     `/api/label/task/${encodeURIComponent(taskId)}`,
@@ -51,7 +51,7 @@ export const createLabel = Effect.fnUntraced(function* (body: {
   readonly name: string;
   readonly color: string;
 }) {
-  const api = yield* KaneoApi;
+  const api = yield* TracingApi;
   return yield* api.request("POST", "/api/label", Label, { body });
 });
 
@@ -59,12 +59,12 @@ export const updateLabel = Effect.fnUntraced(function* (
   id: string,
   body: { readonly name: string; readonly color: string },
 ) {
-  const api = yield* KaneoApi;
+  const api = yield* TracingApi;
   return yield* api.request("PUT", labelPath(id), Label, { body });
 });
 
 export const deleteLabelStep = Effect.fnUntraced(function* (id: string) {
-  const api = yield* KaneoApi;
+  const api = yield* TracingApi;
   return yield* api.request("DELETE", labelPath(id), LabelDeletion);
 });
 
@@ -72,7 +72,7 @@ export const attachLabelToTask = Effect.fnUntraced(function* (
   workspaceLabelId: string,
   taskId: string,
 ) {
-  const api = yield* KaneoApi;
+  const api = yield* TracingApi;
   return yield* api.request(
     "PUT",
     labelPath(workspaceLabelId, "/task"),
@@ -86,6 +86,6 @@ export const attachLabelToTask = Effect.fnUntraced(function* (
 export const detachLabelFromTask = Effect.fnUntraced(function* (
   taskLabelId: string,
 ) {
-  const api = yield* KaneoApi;
+  const api = yield* TracingApi;
   return yield* api.request("DELETE", labelPath(taskLabelId, "/task"), Label);
 });

@@ -1,5 +1,5 @@
 import { Effect, Schema } from "effect";
-import { KaneoApi } from "./kaneo-api.js";
+import { TracingApi } from "./tracing-api.js";
 
 export const ACTIVITY_LIMIT_MAX = 100;
 
@@ -22,7 +22,7 @@ export const listTaskActivity = Effect.fnUntraced(function* (
   taskId: string,
   limit: number | undefined,
 ) {
-  const api = yield* KaneoApi;
+  const api = yield* TracingApi;
   return yield* api.request(
     "GET",
     `/api/activity/${encodeURIComponent(taskId)}`,

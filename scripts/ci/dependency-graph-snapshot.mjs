@@ -26,7 +26,7 @@ export function buildSnapshot(sources, { sha, ref, runId, scanned }) {
     detector: {
       name: "kaneo-pnpm-locks",
       version: "1.0.0",
-      url: "https://github.com/usekaneo/kaneo/blob/main/scripts/ci/dependency-graph.mjs",
+      url: "https://github.com/Go-Figure-App/tracing/blob/main/scripts/ci/dependency-graph.mjs",
     },
     scanned,
     manifests: Object.fromEntries(

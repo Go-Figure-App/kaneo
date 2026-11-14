@@ -1,4 +1,4 @@
-import { isBuiltInInstanceRole } from "@kaneo/permissions";
+import { isBuiltInInstanceRole } from "@tracing/permissions";
 import { and, eq, ne, sql } from "drizzle-orm";
 import { instanceRoleTable, userTable } from "../../database/schema";
 import { ApiError } from "../../errors/api-error";

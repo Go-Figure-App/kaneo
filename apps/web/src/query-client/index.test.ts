@@ -9,7 +9,7 @@ const { handleUnauthorized, listProjects, verify } = vi.hoisted(() => ({
   verify: vi.fn(),
 }));
 
-vi.mock("@kaneo/libs", () => ({
+vi.mock("@tracing/libs", () => ({
   client: {
     "gitlab-integration": {
       projects: { $post: listProjects },
@@ -50,7 +50,7 @@ beforeEach(() => {
 });
 
 describe("global unauthorized handling", () => {
-  it("keeps the Kaneo session when GitLab rejects a token while listing projects", async () => {
+  it("keeps the Tracing session when GitLab rejects a token while listing projects", async () => {
     listProjects.mockResolvedValue(gitlabRejected());
 
     await expect(
@@ -67,7 +67,7 @@ describe("global unauthorized handling", () => {
     expect(handleUnauthorized).not.toHaveBeenCalled();
   });
 
-  it("keeps the Kaneo session when GitLab rejects a token during verification", async () => {
+  it("keeps the Tracing session when GitLab rejects a token during verification", async () => {
     verify.mockResolvedValue(gitlabRejected());
 
     const mutation = queryClient.getMutationCache().build(queryClient, {
@@ -82,7 +82,7 @@ describe("global unauthorized handling", () => {
     expect(handleUnauthorized).not.toHaveBeenCalled();
   });
 
-  it("signs out when Kaneo rejects the session", async () => {
+  it("signs out when Tracing rejects the session", async () => {
     listProjects.mockResolvedValue(sessionRejected());
 
     await expect(

@@ -118,7 +118,7 @@ export const taskImport = Command.make(
   {
     file: Argument.String("file").pipe(
       Argument.withDescription(
-        "JSON file from kaneo task export (or a list of tasks), or - for stdin",
+        "JSON file from tracing task export (or a list of tasks), or - for stdin",
       ),
     ),
     project: Flag.String("project").pipe(

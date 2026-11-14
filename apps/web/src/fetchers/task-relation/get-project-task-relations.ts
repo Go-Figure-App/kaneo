@@ -1,4 +1,4 @@
-import { client } from "@kaneo/libs";
+import { client } from "@tracing/libs";
 
 async function getProjectTaskRelations(projectId: string) {
   const response = await client["task-relation"].project[":projectId"].$get({

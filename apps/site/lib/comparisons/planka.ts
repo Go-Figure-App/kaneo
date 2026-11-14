@@ -6,18 +6,18 @@ export const planka: Comparison = {
   category: "open-source",
   title: "PLANKA alternative with SSO included",
   description:
-    "Kaneo is a PLANKA alternative with an importer for your PLANKA boards and free SSO when self-hosted. Kaneo Cloud runs it for you from $4 a month.",
+    "Tracing is a PLANKA alternative with an importer for your PLANKA boards and free SSO when self-hosted. Tracing Cloud runs it for you from $4 a month.",
   summary:
-    "A PLANKA importer, free OIDC SSO when self-hosted, or Kaneo Cloud from $4 a month.",
+    "A PLANKA importer, free OIDC SSO when self-hosted, or Tracing Cloud from $4 a month.",
   heading: "The PLANKA alternative with SSO included",
   subheading:
-    "PLANKA 2.2 moved SSO into its paid Pro tier, and self-hosters who signed in with OIDC woke up to deactivated accounts. Kaneo Cloud runs Kaneo for you, and if you self-host, SSO ships to everyone at no cost.",
+    "PLANKA 2.2 moved SSO into its paid Pro tier, and self-hosters who signed in with OIDC woke up to deactivated accounts. Tracing Cloud runs Tracing for you, and if you self-host, SSO ships to everyone at no cost.",
   verdict:
-    "Kaneo is a PLANKA alternative for teams moving their boards, and Kaneo Cloud runs it for you from $4 a month, or $5 per user for teams. Its importer reads boards, lists, cards, labels, assignees, checklists, and comments straight from the PLANKA API, since PLANKA has no export of its own. Kaneo is also MIT-licensed open source, and OIDC single sign-on stays free on every self-hosted build.",
+    "Tracing is a PLANKA alternative for teams moving their boards, and Tracing Cloud runs it for you from $4 a month, or $5 per user for teams. Its importer reads boards, lists, cards, labels, assignees, checklists, and comments straight from the PLANKA API, since PLANKA has no export of its own. Tracing is also MIT-licensed open source, and OIDC single sign-on stays free on every self-hosted build.",
   facts: {
     license: "MIT, versus PLANKA's source-available Fair Use licence",
-    hosting: "EU-hosted Kaneo Cloud. Both self-host",
-    sso: "Free on Kaneo, Pro tier on PLANKA since 2.2",
+    hosting: "EU-hosted Tracing Cloud. Both self-host",
+    sso: "Free on Tracing, Pro tier on PLANKA since 2.2",
     pricing: "Cloud from $4 / month, or $0 self-hosted",
   },
   rows: [
@@ -37,20 +37,20 @@ export const planka: Comparison = {
     },
     {
       title: "Genuinely MIT",
-      body: "Kaneo is MIT end to end, with no Pro-only files carved out of the repository. You can fork it, run it, and change it without checking which licence a given file falls under.",
+      body: "Tracing is MIT end to end, with no Pro-only files carved out of the repository. You can fork it, run it, and change it without checking which licence a given file falls under.",
     },
     {
       title: "Your data stays portable",
-      body: "Every project exports to JSON from the UI, and the whole API is public and documented. Getting out of Kaneo is as easy as getting in, which is rather the point.",
+      body: "Every project exports to JSON from the UI, and the whole API is public and documented. Getting out of Tracing is as easy as getting in, which is rather the point.",
     },
   ],
   migration: {
-    body: "PLANKA has no export feature, so we wrote an importer that reads your boards straight from its API and recreates them in Kaneo: lists, cards, labels, assignees, checklists, and comments. Run it from the Kaneo app, or use the command line importer when PLANKA sits on a private network.",
-    href: "https://kaneo.app/docs/core/migrations/from-planka",
+    body: "PLANKA has no export feature, so we wrote an importer that reads your boards straight from its API and recreates them in Tracing: lists, cards, labels, assignees, checklists, and comments. Run it from the Tracing app, or use the command line importer when PLANKA sits on a private network.",
+    href: "https://github.com/Go-Figure-App/tracing/tree/main/apps/docs/core/migrations/from-planka",
     linkText: "Read the migration guide",
   },
   honestNote:
-    "PLANKA is a good piece of software with a real team behind it, and paid tiers are a legitimate way to fund open-source work. If you're happy on the Community edition with password logins, or SSO is worth the Pro licence to you, there's no reason to move. Kaneo is for teams that need SSO and don't want it behind a paywall.",
+    "PLANKA is a good piece of software with a real team behind it, and paid tiers are a legitimate way to fund open-source work. If you're happy on the Community edition with password logins, or SSO is worth the Pro licence to you, there's no reason to move. Tracing is for teams that need SSO and don't want it behind a paywall.",
   faq: [
     {
       question: "Why did PLANKA move SSO behind a paid tier?",
@@ -58,19 +58,19 @@ export const planka: Comparison = {
         "PLANKA 2.2 reorganised its editions and put OIDC single sign-on in the paid Pro tier. Self-hosters who had been signing in with OIDC found those accounts deactivated after upgrading. It is a legitimate way to fund the project, but it changes what the free build can do.",
     },
     {
-      question: "How do I migrate from PLANKA to Kaneo?",
+      question: "How do I migrate from PLANKA to Tracing?",
       answer:
-        "In Settings, open Workspace, then Import, choose PLANKA, and connect with your PLANKA URL and an API key. Kaneo recreates lists, cards, labels, assignees, checklists, and comments. If Kaneo cannot reach your PLANKA server, use the @kaneo/planka-import command line tool, which runs on your own machine and has a dry-run mode.",
+        "In Settings, open Workspace, then Import, choose PLANKA, and connect with your PLANKA URL and an API key. Tracing recreates lists, cards, labels, assignees, checklists, and comments. If Tracing cannot reach your PLANKA server, use the @tracing/planka-import command line tool, which runs on your own machine and has a dry-run mode.",
     },
     {
-      question: "Is Kaneo's licence really MIT?",
+      question: "Is Tracing's licence really MIT?",
       answer:
         "Yes, the whole repository is MIT with no source-available carve-outs and no separate enterprise directory. You can fork it, modify it, and run it commercially without checking which licence covers a given file.",
     },
     {
-      question: "Does Kaneo have PLANKA's card features?",
+      question: "Does Tracing have PLANKA's card features?",
       answer:
-        "Kaneo has boards, lists as workflow columns, labels, assignees, due dates, priorities, comments, attachments, task relations, and time tracking, plus backlog planning that PLANKA does not have. Some PLANKA card details, such as its stopwatch UI, work differently.",
+        "Tracing has boards, lists as workflow columns, labels, assignees, due dates, priorities, comments, attachments, task relations, and time tracking, plus backlog planning that PLANKA does not have. Some PLANKA card details, such as its stopwatch UI, work differently.",
     },
   ],
   related: ["trello", "wekan", "kanboard", "vikunja"],
@@ -78,7 +78,7 @@ export const planka: Comparison = {
   sources: [
     { label: "PLANKA pricing", href: "https://planka.app/pricing" },
     {
-      label: "Kaneo migration guide",
+      label: "Tracing migration guide",
       href: "/docs/core/migrations/from-planka",
     },
   ],

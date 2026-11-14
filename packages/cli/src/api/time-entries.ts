@@ -1,6 +1,6 @@
 import { Effect, Schema } from "effect";
 import { NotFound } from "../errors/errors.js";
-import { KaneoApi } from "./kaneo-api.js";
+import { TracingApi } from "./tracing-api.js";
 
 const NullableString = Schema.NullOr(Schema.String);
 
@@ -41,7 +41,7 @@ function entryPath(id: string): string {
 }
 
 export const listTimeEntries = Effect.fnUntraced(function* (taskId: string) {
-  const api = yield* KaneoApi;
+  const api = yield* TracingApi;
   return yield* api.request(
     "GET",
     `/api/time-entry/task/${encodeURIComponent(taskId)}`,
@@ -50,7 +50,7 @@ export const listTimeEntries = Effect.fnUntraced(function* (taskId: string) {
 });
 
 export const getTimeEntry = Effect.fnUntraced(function* (id: string) {
-  const api = yield* KaneoApi;
+  const api = yield* TracingApi;
   const notFound = () =>
     new NotFound({ message: `Time entry ${id} not found.` });
   return yield* api.request("GET", entryPath(id), TimeEntry).pipe(
@@ -67,7 +67,7 @@ export const getTimeEntry = Effect.fnUntraced(function* (id: string) {
 export const createTimeEntry = Effect.fnUntraced(function* (
   body: CreateTimeEntryBody,
 ) {
-  const api = yield* KaneoApi;
+  const api = yield* TracingApi;
   return yield* api.request("POST", "/api/time-entry", TimeEntry, { body });
 });
 
@@ -75,6 +75,6 @@ export const updateTimeEntry = Effect.fnUntraced(function* (
   id: string,
   body: UpdateTimeEntryBody,
 ) {
-  const api = yield* KaneoApi;
+  const api = yield* TracingApi;
   return yield* api.request("PUT", entryPath(id), TimeEntry, { body });
 });
