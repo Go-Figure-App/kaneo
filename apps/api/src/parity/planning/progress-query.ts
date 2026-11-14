@@ -12,6 +12,9 @@ import type { Category } from "../foundation/categories";
 import { addCounts, emptyCounts, type ProgressCounts } from "./progress";
 
 export const taskCategory = sql<Category>`coalesce(${columnExtTable.category}, CASE
+  WHEN ${taskTable.status} = 'archived' AND ${taskExtTable.completedAt} IS NOT NULL THEN 'completed'
+  WHEN ${taskTable.status} = 'archived' AND ${taskExtTable.canceledAt} IS NOT NULL THEN 'canceled'
+  WHEN ${taskTable.status} = 'archived' AND ${taskExtTable.startedAt} IS NOT NULL THEN 'started'
   WHEN coalesce(${columnTable.slug}, ${taskTable.status}) IN ('canceled', 'cancelled', 'declined', 'duplicate') THEN 'canceled'
   WHEN ${columnTable.isFinal} THEN 'completed'
   WHEN coalesce(${columnTable.slug}, ${taskTable.status}) IN ('backlog', 'triage') THEN 'backlog'

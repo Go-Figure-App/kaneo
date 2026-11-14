@@ -479,7 +479,7 @@ The iPhone 17 / iOS 27 preview verified the Insights navigation, current-cycle c
 
 Phase 5 final verification: PR #6 was approved at `9dcb89aca8178ca14a36a80f0aa3bc511e5f8427` and merged as `e0045a7d8aba03cbb2fc788f8a40671e8aa86b9f`. Both the final PR run (43499758523) and post-merge run (43517308605) passed every Go Figure CI job. Returning to native Insights after a synthetic status change verified focus refresh; pull-to-refresh remains unverified. A read-only local rehearsal checked 48 reports across 16 imported cycles and 95 historical days without exposing aggregate-only history.
 
-## Phase 6: Views (in progress)
+## Phase 6: Views
 
 The `views` flag adds a paginated workspace issue API, filter choices, saved personal/shared views, personal favorites, and project issue templates. The additive migration creates only the design's `saved_view`, `favorite` and `task_template` tables; templates use the project/name composite key, and favorites use user/kind/target. No upstream table or migration changes.
 
@@ -489,7 +489,7 @@ Web adds All issues with list/board layouts, rich filters, grouping, ordering an
 
 Mobile opens saved views as read-only task lists. The current upstream mobile board already includes a list toggle, contrary to the design's inventory, so it is reused. New navigation shortcuts are `g t`, `g c`, `g r`, `g v`; `Shift+M` opens the milestone picker. The shared MCP catalog adds `list_saved_views` and `list_workspace_tasks` to HTTP and stdio without requiring a new hosted service. Expo SDK 58 Router docs were checked before native changes.
 
-### Phase 6 shared-file register (implementation in progress)
+### Phase 6 shared-file register
 
 | File | Change and reason |
 | --- | --- |
@@ -524,3 +524,45 @@ Review fixes apply shared-view reference privacy to owners as well as other read
 Template names are encoded as individual path segments, and template application selects each label name once, preferring its workspace row. Saved-view requests capture their submitted filters/display and preserve any edits made while saving or refreshing. A dialog settings change explicitly resets browser drafts; renaming and background refreshes do not. Regression coverage includes both save timing windows, draft resets, reserved URL characters, duplicate labels, shared-view ownership, dead favorite capacity and unnormalized timestamp wire values. All 22 workspace typecheck/build tasks passed again; focused checks passed 26 web tests, three schema tests, two MCP tests and all 12 affected PostgreSQL cases across the initial and corrected-fixture runs. The editor-only full web rerun passed 2,043 tests before these additional review fixes.
 
 The final review-fix web run passed all 403 files / 2,050 tests. A fresh Docker build passed all nine parity browser flows together, including editing and deleting a template containing reserved URL characters while retaining a similarly named template. All three feature-off browser flows also passed together. Final lint, formatting, all 21 localization catalogs and regenerated OpenAPI passed. A further native check restored and reopened the shared view after removing the local failure injection; pull-to-refresh remains unverified.
+
+Phase 6 final verification: PR #7 was approved at `6daa009be2c32626db217934ec4b7892316f976e` with zero unresolved threads and all nine checks passing. It merged as `8e724a689696ceb0528c1d93ff131322e392d7c6`. Final PR CI (43529486248) and post-merge main CI (43530398795) both passed every Go Figure job.
+
+## Phase 7: Linear import
+
+The owned adapter extends the existing import flow under `PARITY_FEATURES=import`. Discovery lists actual Linear projects and a catch-all per team. The upstream team importer remains the feature-off path. New source types and planning writers stay under `apps/api/src/parity/import`; no database-model or migration change is required. Source credentials continue through the existing guarded fetch, redaction, in-memory background job and permission checks.
+
+Read-only preflight verified the current public GraphQL schema and inspected 241 authorized Go Figure issues in a private local export. Original identifiers need an explicit search predicate in addition to external links. Cycle history cannot supply a permission-safe per-project breakdown, so the import preserves cycles and membership without inventing chart history. Production import, cutover, deployment and paid activation remain separate approval steps.
+
+### Phase 7 shared-file register
+
+| File | Change and reason |
+| --- | --- |
+| `packages/importers/package.json`, `packages/importers/src/linear/index.ts` | Export the existing Linear HTTP transport and its types for the owned adapter. |
+| `apps/api/src/import/source/open-import-source.ts` | Select the owned source/writer behind the import flag, retaining guarded fetch and secret redaction. |
+| `apps/api/src/import/run-import-job.ts` | Invoke optional project writer and final relation-linking hook within the existing job/progress lifecycle. |
+| `apps/api/src/import/writer/write-project-content.ts` | Expose task/column mappings to an optional callback inside the existing transaction. |
+| `apps/api/src/search/controllers/global-search.ts` | Mount the owned original-identifier predicate inside existing task access filters. |
+| `apps/api/src/import/index.ts`, `apps/docs/openapi.json` | Describe feature-dependent discovery and imported planning data. |
+| `apps/web/src/components/import/import-flow.tsx`, `import-source-picker.tsx` | Select the feature-aware project terminology and import explanation. |
+| `apps/web/src/components/import/import-run-view.tsx`, `import-run-history-row.tsx` | Use stored source-ID prefixes to identify planning imports after the flag is disabled, and show a failed final linking stage without hiding successfully imported projects. |
+| `i18n/en-US.json`, 20 other catalogs and `i18n/schema.json` | Add the two owned import explanations with the established English fallback. |
+| `tests/e2e/compose.parity.yml` | Enable import and mount a test-only Linear HTTP fixture, guarded to the disposable browser database. Production images do not contain or load the fixture. |
+
+All other changes remain in owned parity modules and tests. The upstream project table has no update timestamp, so that Linear field cannot be preserved there without an unapproved model addition; issue update timestamps are preserved.
+
+
+The reader paginates every root and nested collection, includes archived records, reuses the existing guarded/retrying transport and rejects stalled pagination. Each project and its planning metadata commit together; a failed project leaves no partial destination project. Initiatives and cycles share run-scoped identifiers across projects. Cross-project subtask, blocking, related and duplicate links are added after successful projects commit, with warnings for links to unselected or failed projects. Cancellation is checked after reading and before the project transaction commits. A final linking failure leaves committed projects available and marks the run failed with a visible error.
+
+Original identifiers are stored in `external_link` and searchable through global search and the workspace issue API, inside their existing access filters. Source people map only to existing destination members. Unmatched ownership and authorship remain unassigned; upstream comment display retains the external author name. Issue creation/update and lifecycle instants, available workflow spans, project dates, milestones, updates and cycle instants are preserved. Invalid required timestamps fail the project. Existing workspace settings are preserved; a new settings row takes the source team's timezone and estimate scale, keeps automatic cycles off, and warns about incompatible team settings. Colliding cycle numbers receive a free workspace number while their names retain the source team and number.
+
+Past cycles without completion timestamps close at their scheduled end with an explicit warning, preventing imported work from being rolled forward automatically. No aggregate-only burndown, close summary or per-project history is invented. Archived completed/canceled issues retain their terminal category in reports; archived issues are excluded from current workload and rollover. Linear's proposed initiatives map to planned; canceled initiatives map to archived/planned with a warning. Archived milestones retain their contents as ordinary milestones because the approved model has no milestone archive state. Repeating the import creates another copy, as explained before starting it.
+
+### Phase 7 verification
+
+The full workspace unit verification passed 3,272 non-web tests and 404 web files / 2,052 tests. All 22 workspace typecheck/build tasks, formatting, lint, all 21 localization catalogs and generated OpenAPI checks passed. The 15 GraphQL queries were checked against the current public schema (290 field selections and 58 arguments); this is not authenticated live-source validation. Five reader/pagination unit cases and 26 initial PostgreSQL import/upstream cases passed. The expanded archive regression run passed all 53 tests across import, planning, Insights, Views and cycle scheduling. The complete PostgreSQL run passed all 218 upstream/existing files; its only two failures were newly added archive regressions encountered before their corrections were loaded. Both passed in the clean 53-test rerun and the final 13-test import rerun (2,337 passing cases across the corrected runs, three inherited skips). PR CI will verify the final commit from a clean checkout.
+
+The bundled image passed all ten parity browser flows and all three feature-off upstream flows. Import covers project discovery, catch-all selection, real background persistence through a test-only HTTP fixture, reload, original-ID search, initiative and triage visibility, project navigation, and a visible final-stage error. The synthetic Linear fixture is mounted only by the disposable parity Compose overlay; it is absent from production images. All 53 browser-security checks passed. Workflow/release/security verification passed 174 tests initially; the two nginx checks affected by local Docker disk exhaustion passed unchanged after reclaiming only obsolete Kaneo verification images and their build cache.
+
+The private local rehearsal ran 241 authorized Go Figure issues through the actual reader and writer: 27 projects plus one catch-all, four initiatives, 25 milestones, 16 cycles, 36 archived issues, 528 workflow spans, and 11 relationships including two duplicate links. Every issue's title, description, known creation/update/lifecycle instants, numeric estimate, cycle and milestone reference was compared with the export. Exact cycle numbers and start/end instants were checked. A second read-only API comparison verified all 241 paginated issues, counts for 27 project plans, 16 cycles and four initiatives, and 20 original-identifier searches. The iPhone 17 / iOS 27 simulator verified the imported project list, original-identifier search, navigation to the matching issue under its new project ID, cycle assignment, original Linear link and historical activity. No native implementation change was necessary.
+
+This rehearsal uses connector exports through a private local GraphQL fixture, not a live personal API key. Team timezone/estimate configuration, project health, milestone/cycle creation timestamps, comments/updates, person email matching and workflow display order were unavailable in those exports; synthetic tests cover those paths, and the rehearsal does not claim to validate their real source values. Private records, scripts and credentials remain outside the repository and CI. Production cutover, Railway changes, distribution uploads and paid Manufact activation are not included.

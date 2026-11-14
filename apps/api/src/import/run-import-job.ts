@@ -92,15 +92,21 @@ async function importProject(
     return;
   }
 
+  if (job.signal.aborted || store.isDetached()) return;
   await store.save({ message: `Saving ${entry.name}` });
 
   try {
-    const written = await writeImportedProject({
+    const write = job.opened.writeProject ?? writeImportedProject;
+    const written = await write({
       workspaceId: job.workspaceId,
       userId: job.userId,
       source: job.opened.sourceId,
       project,
       includeComments: job.includeComments,
+      runId: job.runId,
+      sourceProjectId: entry.sourceId,
+      selectedProjectIds: job.state.projects.map((project) => project.sourceId),
+      signal: job.signal,
     });
     await store.save({
       projects: updateProject(job, index, {
@@ -134,6 +140,14 @@ export async function runImportJob(job: ImportJob): Promise<void> {
     for (let index = 0; index < job.state.projects.length; index++) {
       if (job.signal.aborted || store.isDetached()) break;
       await importProject(job, store, index);
+    }
+    if (!job.signal.aborted && !store.isDetached() && job.opened.finish) {
+      job.state.projects = await job.opened.finish({
+        workspaceId: job.workspaceId,
+        projects: job.state.projects,
+        signal: job.signal,
+      });
+      await store.save({ projects: job.state.projects });
     }
     if (job.signal.aborted) error = stopReason(job.signal);
   } catch (unexpected) {

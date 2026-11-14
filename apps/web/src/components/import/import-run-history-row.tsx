@@ -7,6 +7,10 @@ import { ImportSourceLogoTile } from "@/components/import/import-source-logo-til
 import { IMPORT_UNIT_COPY } from "@/components/import/import-unit-copy";
 import type { ImportRun } from "@/fetchers/import/get-import-run";
 import { formatRelativeTime } from "@/lib/format";
+import {
+  isPlanningImport,
+  planningImportSource,
+} from "@/components/parity/import/source";
 
 type ImportRunHistoryRowProps = {
   run: ImportRun;
@@ -14,7 +18,10 @@ type ImportRunHistoryRowProps = {
 
 export function ImportRunHistoryRow({ run }: ImportRunHistoryRowProps) {
   const { t } = useTranslation();
-  const source = getImportSource(run.source);
+  const source = planningImportSource(
+    getImportSource(run.source),
+    isPlanningImport(run),
+  );
 
   return (
     <li>

@@ -13,6 +13,7 @@ import { canAccessProject } from "../../project-access/can-access-project";
 import { projectAccessCondition } from "../../project-access/project-access-condition";
 import { escapeLikePattern } from "../like-pattern";
 import { TASK_SHORT_ID_PATTERN } from "../task-short-id";
+import { originalIdentifierMatches } from "../../parity/import/search";
 
 type SearchParams = {
   query: string;
@@ -278,6 +279,7 @@ async function globalSearch(params: SearchParams): Promise<{
           or(
             ilike(taskTable.title, searchPattern),
             ilike(taskTable.description, searchPattern),
+            originalIdentifierMatches(query),
           ),
         ),
       )

@@ -21,6 +21,10 @@ import {
 } from "@/components/ui/empty";
 import { Spinner } from "@/components/ui/spinner";
 import useImportRun from "@/hooks/queries/import/use-import-run";
+import {
+  isPlanningImport,
+  planningImportSource,
+} from "@/components/parity/import/source";
 
 type ImportRunViewProps = {
   workspaceId: string;
@@ -77,7 +81,10 @@ export function ImportRunView({
     );
   }
 
-  const source = getImportSource(run.source);
+  const source = planningImportSource(
+    getImportSource(run.source),
+    isPlanningImport(run),
+  );
   const copy = IMPORT_UNIT_COPY[source.unit];
   const running = run.status === "running";
   const progress = getImportRunProgress(run.projects);
@@ -85,7 +92,7 @@ export function ImportRunView({
 
   const title = running
     ? t("settings:workspaceImport.run.importingTitle", { source: source.name })
-    : outcome === "failed"
+    : outcome === "failed" || run.status === "failed"
       ? t("settings:workspaceImport.run.failedTitle")
       : t("settings:workspaceImport.run.finishedTitle");
 
@@ -120,6 +127,11 @@ export function ImportRunView({
       }
     >
       <div className="space-y-3">
+        {run.error ? (
+          <p role="alert" className="text-destructive text-sm">
+            {run.error}
+          </p>
+        ) : null}
         <ImportRunCard run={run} source={source} progress={progress} />
         {running ? (
           <p className="flex items-center gap-2 text-muted-foreground text-xs">

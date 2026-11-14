@@ -65,11 +65,24 @@ export async function syncLifecycle(
       return column?.category ?? defaultCategory(slug, column?.isFinal);
     };
     const column = columns.find((row) => row.id === task.columnId);
-    const current = column?.category ?? categoryOf(task.status);
     const [previous] = await tx
       .select()
       .from(taskExtTable)
       .where(eq(taskExtTable.taskId, taskId));
+    // Archival removes the board column, but does not reopen completed work.
+    const latestStatus = history.at(-1);
+    const current =
+      task.status === "archived"
+        ? latestStatus
+          ? categoryOf(latestStatus.status, latestStatus.projectId)
+          : previous?.completedAt
+            ? "completed"
+            : previous?.canceledAt
+              ? "canceled"
+              : previous?.startedAt
+                ? "started"
+                : "unstarted"
+        : (column?.category ?? categoryOf(task.status));
     const events = history.map((event) => ({
       category: categoryOf(event.status, event.projectId),
       fromCategory:

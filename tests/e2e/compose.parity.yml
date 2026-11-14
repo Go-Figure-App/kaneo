@@ -1,4 +1,9 @@
 services:
   kaneo:
     environment:
-      PARITY_FEATURES: foundation,triage,projects,initiatives,roadmap,cycles,insights,views
+      PARITY_FEATURES: foundation,triage,projects,initiatives,roadmap,cycles,insights,views,import
+      PARITY_E2E_LINEAR_FIXTURE: "1"
+      NODE_OPTIONS: --import /app/tests/e2e/parity-linear-preload.mjs
+    volumes:
+      - ./parity-linear-preload.mjs:/app/tests/e2e/parity-linear-preload.mjs:ro
+      - ../../apps/api/src/parity/import/__fixtures__/linear.ts:/app/apps/api/src/parity/import/__fixtures__/linear.ts:ro
