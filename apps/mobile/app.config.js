@@ -5,8 +5,7 @@ module.exports = ({ config }) => ({
   name: "Tracing",
   slug: "tracing",
   scheme: ["tracing", "kaneo"],
-  // Set both after running `eas init` under the Go Figure Expo account.
-  owner: process.env.GOFIGURE_EXPO_OWNER,
+  owner: process.env.GOFIGURE_EXPO_OWNER || "gofigure",
   ios: {
     ...config.ios,
     bundleIdentifier: "io.gofigureapp.tracing",
@@ -19,6 +18,10 @@ module.exports = ({ config }) => ({
     ...config.extra,
     parityServerUrl:
       process.env.GOFIGURE_LOCAL_SERVER_URL || "https://tracing.gofigureapp.io",
-    eas: { projectId: process.env.GOFIGURE_EAS_PROJECT_ID },
+    eas: {
+      projectId:
+        process.env.GOFIGURE_EAS_PROJECT_ID ||
+        "4dfa905a-804d-4710-a412-559fc4428e21",
+    },
   },
 });
