@@ -57,7 +57,7 @@ Name | Description |
 | `AUTH_SECRET` | The secret used by the authentication service. **Must be at least 32 characters long**, use a long, random value in production. Example: use `openssl rand -base64 32` to generate a secure key in Linux/macOS.
 | `COOKIE_DOMAIN` | Optional cookie domain override. Leave unset for host-only cookies. Set a parent domain only when your deployment needs cookies shared across its trusted subdomains. |
 | `AUTH_SECRET_FILE` | Path to a UTF-8 file containing the authentication secret. Used when `AUTH_SECRET` is unset; the same 32-character minimum applies. |
-| `DEVICE_AUTH_CLIENT_IDS` | **Optional.** Comma-separated list of allowed device authorization client IDs. When unset, Tracing allows `tracing-cli`, `tracing-mcp`, `kaneo-cli`, and `kaneo-mcp` by default, so no extra configuration is required for the CLI or MCP. If you set an explicit list, include `tracing-cli,tracing-mcp` for current clients and retain `kaneo-cli,kaneo-mcp` for older clients. Add other IDs only for trusted clients. |
+| `DEVICE_AUTH_CLIENT_IDS` | **Optional.** Comma-separated list of allowed device authorization client IDs. When unset, Tracing allows `tracing-cli`, `tracing-mcp`, `tracing-mobile`, `kaneo-cli`, and `kaneo-mcp` by default, so no extra configuration is required for the CLI or MCP. If you set an explicit list, include `tracing-cli,tracing-mcp,tracing-mobile` for current CLI, MCP, and mobile clients and retain `kaneo-cli,kaneo-mcp` for older clients. Add other IDs only for trusted clients. |
 
 The source-built Tracing image supports `_FILE` secrets. See [Keep secrets in files](/core/installation/docker-compose#keep-secrets-in-files) for Compose configuration.
 
