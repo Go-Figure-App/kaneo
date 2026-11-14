@@ -19,7 +19,7 @@ const readStdin = Effect.fnUntraced(function* (flag: string) {
   if (environment.stdin.isTTY) {
     return yield* new InvalidArgument({
       message: `${flag} - reads from stdin, but nothing is piped in.`,
-      hint: `Pipe the text in, for example: cat notes.md | kaneo ... ${flag} -`,
+      hint: `Pipe the text in, for example: cat notes.md | tracing ... ${flag} -`,
     });
   }
   return yield* Effect.tryPromise({

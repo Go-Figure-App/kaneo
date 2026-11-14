@@ -101,7 +101,7 @@ export const runTaskRepeat = Effect.fn("command.task.repeat")(
         Effect.fail(
           new InvalidArgument({
             message: `${label} is done, so it cannot start repeating.`,
-            hint: `Move it back to an open column with kaneo task status ${label}, or set the rule on its next task.`,
+            hint: `Move it back to an open column with tracing task status ${label}, or set the rule on its next task.`,
           }),
         ),
       ),

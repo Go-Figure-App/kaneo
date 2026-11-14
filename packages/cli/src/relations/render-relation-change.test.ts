@@ -15,8 +15,8 @@ const ui = (columns: number) =>
     columns,
   });
 
-const task = { label: "KAN-3", url: "https://kaneo.test/3" };
-const other = { label: "KAN-4", url: "https://kaneo.test/4" };
+const task = { label: "KAN-3", url: "https://tracing.test/3" };
+const other = { label: "KAN-4", url: "https://tracing.test/4" };
 
 describe("renderRelationLinked", () => {
   it("reads as a sentence from the first task", () => {

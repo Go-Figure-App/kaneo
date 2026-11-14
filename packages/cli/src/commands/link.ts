@@ -50,14 +50,14 @@ const chooseWorkspace = Effect.fn("link.workspace")(function* (
         match.kind === "ambiguous"
           ? `"${reference.value}" matches ${match.candidates.length} workspaces.`
           : `No workspace matches "${reference.value}".`,
-      hint: "Pass the workspace id or slug. Run kaneo workspace list to see them.",
+      hint: "Pass the workspace id or slug. Run tracing workspace list to see them.",
     });
   }
   const [only] = workspaces;
   if (!only) {
     return yield* new InvalidArgument({
       message: "You are not a member of any workspace yet.",
-      hint: "Create one in the Kaneo web app, then run this again.",
+      hint: "Create one in the Tracing web app, then run this again.",
     });
   }
   if (workspaces.length === 1) return only;
@@ -87,7 +87,7 @@ const chooseProject = Effect.fn("link.project")(function* (
   if (!only) {
     return yield* new InvalidArgument({
       message: `${workspace.name} has no projects yet.`,
-      hint: "Create one in the Kaneo web app, then run this again.",
+      hint: "Create one in the Tracing web app, then run this again.",
     });
   }
   if (projects.length === 1) return only;
@@ -116,13 +116,13 @@ export const runLink = Effect.fn("command.link")(function* (options: {
   if (!output.interactive && Option.isNone(workspaceRef)) {
     return yield* new InvalidArgument({
       message: "Which workspace should this repository use?",
-      hint: "Pass -w with the workspace id or slug, for example kaneo link -w acme-studio -p KAN.",
+      hint: "Pass -w with the workspace id or slug, for example tracing link -w acme-studio -p KAN.",
     });
   }
   if (!output.interactive && Option.isNone(options.project)) {
     return yield* new InvalidArgument({
       message: "Which project should this repository use?",
-      hint: "Pass -p with the project key, for example kaneo link -w acme-studio -p KAN.",
+      hint: "Pass -p with the project key, for example tracing link -w acme-studio -p KAN.",
     });
   }
 
@@ -146,14 +146,17 @@ export const runLink = Effect.fn("command.link")(function* (options: {
     renderLink,
   );
 
-  const overrides = ["KANEO_WORKSPACE", "KANEO_PROJECT"].filter((name) =>
-    environment.env[name]?.trim(),
-  );
+  const overrides = [
+    "TRACING_WORKSPACE",
+    "KANEO_WORKSPACE",
+    "TRACING_PROJECT",
+    "KANEO_PROJECT",
+  ].filter((name) => environment.env[name]?.trim());
   if (overrides.length > 0) {
     yield* note((ui) => [
       ...overrides.map(
         (name) =>
-          `  ${ui.theme.warning(ui.glyphs.warning)} ${name} is set and overrides .kaneo.json until you unset it.`,
+          `  ${ui.theme.warning(ui.glyphs.warning)} ${name} is set and overrides .tracing.json until you unset it.`,
       ),
       "",
     ]);
@@ -172,7 +175,7 @@ export const linkCommand = Command.make(
   (options) => runLink(options),
 ).pipe(
   Command.withDescription(
-    "Save the workspace (-w) and project (-p) for this repository in .kaneo.json",
+    "Save the workspace (-w) and project (-p) for this repository in .tracing.json",
   ),
   Command.provide(ApiLayer),
 );

@@ -24,7 +24,7 @@ export function renderLabelList(
   if (rows.length === 0) {
     return [
       "",
-      `  ${theme.muted("No labels in this workspace yet. Create one with kaneo label create <name>.")}`,
+      `  ${theme.muted("No labels in this workspace yet. Create one with tracing label create <name>.")}`,
       "",
     ];
   }

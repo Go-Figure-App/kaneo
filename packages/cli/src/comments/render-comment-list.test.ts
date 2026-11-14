@@ -29,7 +29,7 @@ const comment = (overrides: Partial<CommentJson>): CommentJson => ({
 const view = {
   label: "KAN-3",
   title: "Fix login redirect",
-  url: "https://kaneo.test/task/1",
+  url: "https://tracing.test/task/1",
   now,
 };
 
@@ -94,7 +94,7 @@ describe("renderCommentList", () => {
       "",
       "  KAN-3 Fix login redirect · 0 comments",
       "",
-      "  No comments yet. Add one with kaneo comment add KAN-3",
+      "  No comments yet. Add one with tracing comment add KAN-3",
       "",
     ]);
   });

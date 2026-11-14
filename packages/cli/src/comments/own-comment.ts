@@ -5,7 +5,7 @@ import { InvalidArgument } from "../errors/errors.js";
 function notYours(id: string): InvalidArgument {
   return new InvalidArgument({
     message: `Comment ${id} was not found, or someone else wrote it.`,
-    hint: "You can only change your own comments. Run kaneo comment list <task> to see the ids.",
+    hint: "You can only change your own comments. Run tracing comment list <task> to see the ids.",
   });
 }
 

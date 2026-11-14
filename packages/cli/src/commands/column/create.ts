@@ -26,7 +26,7 @@ const askName = Effect.fnUntraced(function* (name: Option.Option<string>) {
   if (!output.interactive) {
     return yield* new InvalidArgument({
       message: "A column name is required.",
-      hint: 'Pass it as the first argument, for example kaneo column create "QA".',
+      hint: 'Pass it as the first argument, for example tracing column create "QA".',
     });
   }
   return yield* Prompt.run(

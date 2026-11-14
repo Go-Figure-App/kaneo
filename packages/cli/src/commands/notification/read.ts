@@ -81,7 +81,7 @@ export const runNotificationRead = Effect.fn("command.notification.read")(
     } else {
       return yield* new InvalidArgument({
         message: "Which notifications should be marked read?",
-        hint: "Pass ids from kaneo notification list, or --all.",
+        hint: "Pass ids from tracing notification list, or --all.",
       });
     }
     const unique = [...new Set(ids)];
@@ -102,7 +102,7 @@ export const notificationRead = Command.make(
   {
     ids: Argument.String("id").pipe(
       Argument.withDescription(
-        "Notification ids or the short ids from kaneo notification list",
+        "Notification ids or the short ids from tracing notification list",
       ),
       Argument.variadic(),
     ),

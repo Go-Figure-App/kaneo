@@ -11,7 +11,7 @@ const ui = makeUi({
 });
 
 describe("renderAttached", () => {
-  const attached = { label: "KAN-1", url: "https://kaneo.test/t" };
+  const attached = { label: "KAN-1", url: "https://tracing.test/t" };
 
   it("names one or two files and counts more", () => {
     expect(

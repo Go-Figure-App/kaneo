@@ -67,7 +67,7 @@ export function parseBulkChange(
     return Result.fail(
       new InvalidArgument({
         message: `Pass one change per call, not ${names.join(" and ")}.`,
-        hint: "Run kaneo task bulk once for each change.",
+        hint: "Run tracing task bulk once for each change.",
       }),
     );
   }

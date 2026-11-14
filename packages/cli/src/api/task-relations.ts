@@ -1,5 +1,5 @@
 import { Effect, Schema } from "effect";
-import { KaneoApi } from "./kaneo-api.js";
+import { TracingApi } from "./tracing-api.js";
 
 export const API_RELATION_TYPES = ["subtask", "blocks", "related"] as const;
 export type ApiRelationType = (typeof API_RELATION_TYPES)[number];
@@ -41,7 +41,7 @@ export type NewTaskRelation = {
 };
 
 export const listTaskRelations = Effect.fnUntraced(function* (taskId: string) {
-  const api = yield* KaneoApi;
+  const api = yield* TracingApi;
   return yield* api.request(
     "GET",
     `/api/task-relation/${encodeURIComponent(taskId)}`,
@@ -52,14 +52,14 @@ export const listTaskRelations = Effect.fnUntraced(function* (taskId: string) {
 export const createTaskRelation = Effect.fnUntraced(function* (
   relation: NewTaskRelation,
 ) {
-  const api = yield* KaneoApi;
+  const api = yield* TracingApi;
   return yield* api.request("POST", "/api/task-relation", TaskRelation, {
     body: relation,
   });
 });
 
 export const deleteTaskRelation = Effect.fnUntraced(function* (id: string) {
-  const api = yield* KaneoApi;
+  const api = yield* TracingApi;
   return yield* api.request(
     "DELETE",
     `/api/task-relation/${encodeURIComponent(id)}`,

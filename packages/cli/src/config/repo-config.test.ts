@@ -10,15 +10,27 @@ import {
 } from "./repo-config.js";
 
 describe("findRepoConfig", () => {
+  it("reads legacy links while preferring a Tracing file in the same directory", () => {
+    const files: Record<string, string> = {
+      "/repo/.kaneo.json": '{"workspace":"legacy","project":"OLD"}',
+    };
+    expect(findRepoConfig("/repo/src", (path) => files[path])?.workspace).toBe(
+      "legacy",
+    );
+    files["/repo/.tracing.json"] = '{"workspace":"current","project":"NEW"}';
+    expect(findRepoConfig("/repo/src", (path) => files[path])?.workspace).toBe(
+      "current",
+    );
+  });
   const files: Record<string, string> = {
-    "/work/app/.kaneo.json": '{"workspace":"ws_1","project":"KAN"}',
-    "/broken/.kaneo.json": "{nope",
+    "/work/app/.tracing.json": '{"workspace":"ws_1","project":"KAN"}',
+    "/broken/.tracing.json": "{nope",
   };
   const read = (path: string) => files[path];
 
   it("walks up from the working directory", () => {
     expect(findRepoConfig("/work/app/src/deep", read)).toEqual({
-      path: "/work/app/.kaneo.json",
+      path: "/work/app/.tracing.json",
       workspace: "ws_1",
       project: "KAN",
     });
@@ -34,24 +46,40 @@ describe("linkFilePath", () => {
   const existing = (paths: ReadonlyArray<string>) => (path: string) =>
     paths.includes(path);
 
+  it("updates and unlinks the existing legacy file without leaving an active shadow", () => {
+    expect(
+      linkFilePath("/repo/src", existing(["/repo/.git", "/repo/.kaneo.json"])),
+    ).toBe("/repo/.kaneo.json");
+    expect(
+      linkFilePath(
+        "/repo/src",
+        existing([
+          "/repo/.git",
+          "/repo/.kaneo.json",
+          "/repo/src/.tracing.json",
+        ]),
+      ),
+    ).toBe("/repo/src/.tracing.json");
+  });
+
   it("writes at the git repository root", () => {
     expect(linkFilePath("/repo/packages/app", existing(["/repo/.git"]))).toBe(
-      "/repo/.kaneo.json",
+      "/repo/.tracing.json",
     );
   });
 
-  it("updates a closer .kaneo.json inside the repository", () => {
+  it("updates a closer .tracing.json inside the repository", () => {
     expect(
       linkFilePath(
         "/repo/packages/app/src",
-        existing(["/repo/.git", "/repo/packages/app/.kaneo.json"]),
+        existing(["/repo/.git", "/repo/packages/app/.tracing.json"]),
       ),
-    ).toBe("/repo/packages/app/.kaneo.json");
+    ).toBe("/repo/packages/app/.tracing.json");
   });
 
   it("uses the current directory outside a repository", () => {
-    expect(linkFilePath("/tmp/scratch", existing(["/tmp/.kaneo.json"]))).toBe(
-      "/tmp/scratch/.kaneo.json",
+    expect(linkFilePath("/tmp/scratch", existing(["/tmp/.tracing.json"]))).toBe(
+      "/tmp/scratch/.tracing.json",
     );
   });
 });

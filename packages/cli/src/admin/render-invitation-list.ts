@@ -24,7 +24,7 @@ export function renderSentInvitations(
   if (view.invitations.length === 0) {
     return [
       "",
-      `  ${theme.muted("No pending invitations. Invite someone with kaneo member invite <email>.")}`,
+      `  ${theme.muted("No pending invitations. Invite someone with tracing member invite <email>.")}`,
       "",
     ];
   }
@@ -119,7 +119,7 @@ export function renderReceivedInvitations(
       { width: ui.caps.columns, indent: 2 },
     ),
     "",
-    `  ${theme.muted("Run")} ${theme.strong("kaneo invitation accept <id>")} ${theme.muted("to join.")}`,
+    `  ${theme.muted("Run")} ${theme.strong("tracing invitation accept <id>")} ${theme.muted("to join.")}`,
     "",
   ];
 }

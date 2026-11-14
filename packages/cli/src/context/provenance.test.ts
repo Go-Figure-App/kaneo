@@ -6,7 +6,7 @@ import { outputProvenance } from "./output-provenance.js";
 import { buildProvenance, fingerprint } from "./provenance.js";
 
 const config = withProfile(emptyConfig, "work", () => ({
-  apiUrl: "https://kaneo.example.com",
+  apiUrl: "https://tracing.example.com",
   webUrl: "https://app.example.com",
   token: "stored-session-token-1234",
   workspaceId: "ws_profile",
@@ -29,9 +29,35 @@ function inputs(overrides: Partial<SessionInputs> = {}): SessionInputs {
 }
 
 describe("buildProvenance", () => {
+  it("retains the actual environment name and Tracing precedence", () => {
+    const legacy = buildProvenance(
+      inputs({
+        env: {
+          TRACING_API_URL: " ",
+          KANEO_API_URL: "https://legacy.example.com",
+          KANEO_API_KEY: "legacy-token-value",
+        },
+      }),
+    );
+    expect(legacy.server.variable).toBe("KANEO_API_URL");
+    expect(legacy.auth.variable).toBe("KANEO_API_KEY");
+    const current = buildProvenance(
+      inputs({
+        env: {
+          TRACING_API_URL: "https://current.example.com",
+          KANEO_API_URL: "https://legacy.example.com",
+          TRACING_API_KEY: "current-token-value",
+          KANEO_API_KEY: "legacy-token-value",
+        },
+      }),
+    );
+    expect(current.server.variable).toBe("TRACING_API_URL");
+    expect(current.auth.variable).toBe("TRACING_API_KEY");
+  });
+
   it("attributes everything to the active profile by default", () => {
     expect(buildProvenance(inputs())).toEqual({
-      server: { url: "https://kaneo.example.com", source: "profile" },
+      server: { url: "https://tracing.example.com", source: "profile" },
       web: { url: "https://app.example.com", source: "profile" },
       profile: {
         name: "work",
@@ -64,10 +90,12 @@ describe("buildProvenance", () => {
     expect(provenance.web).toEqual({
       url: "http://localhost:5173",
       source: "env",
+      variable: "KANEO_WEB_URL",
     });
     expect(provenance.profile).toEqual({
       name: "work",
       source: "env",
+      variable: "KANEO_PROFILE",
       stored: true,
       matchesServer: false,
     });
@@ -83,12 +111,12 @@ describe("buildProvenance", () => {
     });
   });
 
-  it("points at .kaneo.json for the repository link", () => {
+  it("points at .tracing.json for the repository link", () => {
     const provenance = buildProvenance(
       inputs({
         env: { KANEO_API_KEY: "short" },
         repo: {
-          path: "/repo/.kaneo.json",
+          path: "/repo/.tracing.json",
           workspace: "ws_repo",
           project: "KAN",
         },
@@ -97,27 +125,33 @@ describe("buildProvenance", () => {
     expect(provenance.auth).toEqual({
       method: "api-key",
       source: "env",
+      variable: "KANEO_API_KEY",
       fingerprint: null,
     });
     expect(provenance.workspace).toEqual({
       id: "ws_repo",
       source: "repo",
-      path: "/repo/.kaneo.json",
+      path: "/repo/.tracing.json",
     });
     expect(provenance.project).toEqual({
       ref: "KAN",
       source: "repo",
-      path: "/repo/.kaneo.json",
+      path: "/repo/.tracing.json",
     });
     expect(
       buildProvenance(inputs({ env: { KANEO_PROJECT: "MOB" } })).project,
-    ).toEqual({ ref: "MOB", source: "env", path: null });
+    ).toEqual({
+      ref: "MOB",
+      source: "env",
+      path: null,
+      variable: "KANEO_PROJECT",
+    });
   });
 
   it("works signed out with no config file", () => {
     const provenance = buildProvenance(inputs({ config: emptyConfig }));
     expect(provenance.server).toEqual({
-      url: "https://cloud.kaneo.app",
+      url: "https://tracing.gofigureapp.io",
       source: "default",
     });
     expect(provenance.web.source).toBe("server");
@@ -138,7 +172,7 @@ describe("buildProvenance", () => {
 
 describe("fingerprint", () => {
   it("shows only the last four characters of long secrets", () => {
-    expect(fingerprint("kaneo_live_abcdef123456")).toBe("3456");
+    expect(fingerprint("tracing_live_abcdef123456")).toBe("3456");
     expect(fingerprint("short")).toBeNull();
   });
 });
@@ -159,6 +193,7 @@ describe("outputProvenance", () => {
     expect(outputProvenance({ ...base, env: { KANEO_JSON: "1" } })).toEqual({
       mode: "json",
       source: "env",
+      variable: "KANEO_JSON",
     });
     expect(outputProvenance(base)).toEqual({
       mode: "human",

@@ -12,7 +12,7 @@ const ui = makeUi({
 
 const todo = { slug: "to-do", name: "To Do", isFinal: false };
 const progress = { slug: "in-progress", name: "In Progress", isFinal: false };
-const url = "https://kaneo.test/task/1";
+const url = "https://tracing.test/task/1";
 
 describe("renderStatusChange", () => {
   it("shows the move between columns", () => {

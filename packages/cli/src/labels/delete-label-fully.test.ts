@@ -1,7 +1,7 @@
 import { Effect, Fiber, Layer, Result, Schema } from "effect";
 import { TestClock } from "effect/testing";
 import { describe, expect, it } from "vite-plus/test";
-import { KaneoApi } from "../api/kaneo-api.js";
+import { TracingApi } from "../api/tracing-api.js";
 import { RateLimited } from "../errors/errors.js";
 import { deleteLabelFully } from "./delete-label-fully.js";
 
@@ -12,7 +12,7 @@ type Reply =
 function scripted(replies: ReadonlyArray<Reply>) {
   const calls: Array<{ method: string; path: string; at: number }> = [];
   let index = 0;
-  const layer = Layer.succeed(KaneoApi, {
+  const layer = Layer.succeed(TracingApi, {
     request: (method, path, schema) =>
       Effect.gen(function* () {
         const at = yield* Effect.clockWith((clock) => clock.currentTimeMillis);
@@ -36,7 +36,7 @@ function scripted(replies: ReadonlyArray<Reply>) {
   return { layer, calls };
 }
 
-const run = (layer: Layer.Layer<KaneoApi>, advance: string) =>
+const run = (layer: Layer.Layer<TracingApi>, advance: string) =>
   Effect.runPromise(
     Effect.gen(function* () {
       const fiber = yield* Effect.forkChild(

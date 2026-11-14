@@ -1,3 +1,4 @@
+import { environmentSetting } from "./environment-setting.js";
 import { Context, Effect, Layer, Option, Redacted } from "effect";
 import {
   ApiUrlFlag,
@@ -14,17 +15,18 @@ import {
 } from "../config/format.js";
 import { findRepoConfig, type RepoConfig } from "../config/repo-config.js";
 import type { ConfigUnreadable } from "../errors/errors.js";
-import { normalizeBaseUrl } from "@kaneo/mcp/normalize-base-url";
+import { normalizeBaseUrl } from "@tracing/mcp/normalize-base-url";
 import type { Environment } from "../render/capabilities.js";
 import { CliEnvironment } from "./cli-environment.js";
 
-export const DEFAULT_API_URL = "https://cloud.kaneo.app";
+export const DEFAULT_API_URL = "https://tracing.gofigureapp.io";
 
 export type TokenSource = "flag" | "env" | "profile";
 
 export type Credentials = {
   readonly token: Redacted.Redacted<string>;
   readonly source: TokenSource;
+  readonly variable?: string;
 };
 
 export type WorkspaceSource = "flag" | "env" | "repo" | "profile";
@@ -32,6 +34,7 @@ export type WorkspaceSource = "flag" | "env" | "repo" | "profile";
 export type WorkspaceRef = {
   readonly id: string;
   readonly source: WorkspaceSource;
+  readonly variable?: string;
 };
 
 export type ProjectRef = {
@@ -53,7 +56,7 @@ export type SessionShape = {
 };
 
 export class Session extends Context.Service<Session, SessionShape>()(
-  "kaneo/Session",
+  "tracing/Session",
 ) {}
 
 export type SessionInputs = {
@@ -78,30 +81,38 @@ function nonEmpty(value: string | undefined): Option.Option<string> {
 export function resolveSession(inputs: SessionInputs): SessionShape {
   const { flags, env, config, repo } = inputs;
   const profileName = Option.getOrElse(
-    Option.orElse(flags.profile, () => nonEmpty(env.KANEO_PROFILE)),
+    Option.orElse(flags.profile, () =>
+      nonEmpty(environmentSetting(env, "PROFILE")?.value),
+    ),
     () => config.activeProfile || DEFAULT_PROFILE,
   );
   const profile = config.profiles[profileName];
   const apiUrl = normalizeBaseUrl(
     Option.getOrElse(
-      Option.orElse(flags.apiUrl, () => nonEmpty(env.KANEO_API_URL)),
+      Option.orElse(flags.apiUrl, () =>
+        nonEmpty(environmentSetting(env, "API_URL")?.value),
+      ),
       () => profile?.apiUrl ?? DEFAULT_API_URL,
     ),
   );
   const profileMatches =
     profile !== undefined && normalizeBaseUrl(profile.apiUrl) === apiUrl;
   const webUrl = normalizeBaseUrl(
-    env.KANEO_WEB_URL ||
+    environmentSetting(env, "WEB_URL")?.value ||
       (profileMatches ? profile.webUrl : undefined) ||
       apiUrl,
   );
 
   const credentials: Option.Option<Credentials> = Option.firstSomeOf([
     Option.map(flags.token, (token) => ({ token, source: "flag" as const })),
-    Option.map(nonEmpty(env.KANEO_API_KEY), (token) => ({
-      token: Redacted.make(token),
-      source: "env" as const,
-    })),
+    Option.map(
+      nonEmpty(environmentSetting(env, "API_KEY")?.value),
+      (token) => ({
+        token: Redacted.make(token),
+        source: "env" as const,
+        variable: environmentSetting(env, "API_KEY")?.name,
+      }),
+    ),
     profileMatches && profile.token
       ? Option.some({
           token: Redacted.make(profile.token),
@@ -112,9 +123,10 @@ export function resolveSession(inputs: SessionInputs): SessionShape {
 
   const workspace: Option.Option<WorkspaceRef> = Option.firstSomeOf([
     Option.map(flags.workspace, (id) => ({ id, source: "flag" as const })),
-    Option.map(nonEmpty(env.KANEO_WORKSPACE), (id) => ({
+    Option.map(nonEmpty(environmentSetting(env, "WORKSPACE")?.value), (id) => ({
       id,
       source: "env" as const,
+      variable: environmentSetting(env, "WORKSPACE")?.name,
     })),
     Option.map(Option.fromUndefinedOr(repo?.workspace), (id) => ({
       id,
@@ -126,13 +138,13 @@ export function resolveSession(inputs: SessionInputs): SessionShape {
   ]);
 
   const project: Option.Option<ProjectRef> = Option.firstSomeOf([
-    Option.map(nonEmpty(env.KANEO_PROJECT), (ref) => ({
+    Option.map(nonEmpty(environmentSetting(env, "PROJECT")?.value), (ref) => ({
       ref,
-      source: "KANEO_PROJECT",
+      source: environmentSetting(env, "PROJECT")!.name,
     })),
     Option.map(Option.fromUndefinedOr(repo?.project), (ref) => ({
       ref,
-      source: repo?.path ?? ".kaneo.json",
+      source: repo?.path ?? ".tracing.json",
     })),
   ]);
 

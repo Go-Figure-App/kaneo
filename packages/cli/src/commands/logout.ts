@@ -1,6 +1,6 @@
 import { Effect, Option, Redacted, Schema } from "effect";
 import { Command } from "effect/cli";
-import { KaneoApi } from "../api/kaneo-api.js";
+import { TracingApi } from "../api/tracing-api.js";
 import { ConfigStore } from "../config/config-store.js";
 import { withProfile } from "../config/format.js";
 import { emit } from "../output/emit.js";
@@ -23,7 +23,7 @@ export function renderLogout(ui: Ui, result: LogoutResult): string[] {
     : [`  ${theme.muted(glyphs.dot)} You were not signed in to ${host}`];
   if (result.apiKeyStillSet) {
     lines.push(
-      `  ${theme.warning(glyphs.warning)} KANEO_API_KEY is still set, so commands keep using it.`,
+      `  ${theme.warning(glyphs.warning)} An API key environment variable (TRACING_API_KEY or KANEO_API_KEY) is still set, so commands keep using it.`,
     );
   }
   return lines;
@@ -32,7 +32,7 @@ export function renderLogout(ui: Ui, result: LogoutResult): string[] {
 export const runLogout = Effect.fn("command.logout")(function* () {
   const session = yield* Session;
   const store = yield* ConfigStore;
-  const api = yield* KaneoApi;
+  const api = yield* TracingApi;
   const token = session.profile?.token;
 
   if (token) {

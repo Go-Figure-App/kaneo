@@ -38,7 +38,9 @@ describe("sanitizeDeep", () => {
 
 describe("isSafeUrl", () => {
   it("accepts plain http and https URLs only", () => {
-    expect(isSafeUrl("https://cloud.kaneo.app/dashboard?x=1&y=2")).toBe(true);
+    expect(isSafeUrl("https://tracing.gofigureapp.io/dashboard?x=1&y=2")).toBe(
+      true,
+    );
     expect(isSafeUrl("http://localhost:1337/device")).toBe(true);
     expect(isSafeUrl(`https://x.test/${ESC}]8;;evil`)).toBe(false);
     expect(isSafeUrl("https://x.test/a b")).toBe(false);

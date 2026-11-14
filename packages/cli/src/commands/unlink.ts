@@ -1,14 +1,8 @@
 import { basename, dirname } from "node:path";
 import { Effect } from "effect";
 import { Command, Flag } from "effect/cli";
-import {
-  deleteRepoConfig,
-  hasRepoLink,
-  linkFilePath,
-  readRepoConfigObject,
-  removeRepoLink,
-  writeRepoConfig,
-} from "../config/repo-config.js";
+import { linkFilePath, removeRepoLink } from "../config/repo-config.js";
+import { readRepoLinks, clearRepoLinks } from "../config/unlink-repo.js";
 import { Cancelled } from "../errors/errors.js";
 import { emit } from "../output/emit.js";
 import { Output } from "../output/output.js";
@@ -27,7 +21,7 @@ export function renderUnlink(ui: Ui, result: UnlinkResult): string[] {
   const { theme, glyphs } = ui;
   if (!result.path || !result.unlinked) {
     return [
-      `  ${theme.muted(glyphs.dot)} This directory is not linked to Kaneo`,
+      `  ${theme.muted(glyphs.dot)} This directory is not linked to Tracing`,
     ];
   }
   const detail = result.deleted
@@ -44,9 +38,9 @@ export const runUnlink = Effect.fn("command.unlink")(function* (options: {
   const environment = yield* CliEnvironment;
   const output = yield* Output;
   const path = linkFilePath(environment.cwd);
-  const existing = yield* readRepoConfigObject(path);
+  const files = yield* readRepoLinks(path);
 
-  if (!path || !existing || !hasRepoLink(existing)) {
+  if (files.length === 0) {
     yield* emit<UnlinkResult>(
       { path: path ?? null, unlinked: false, deleted: false },
       renderUnlink,
@@ -56,20 +50,17 @@ export const runUnlink = Effect.fn("command.unlink")(function* (options: {
 
   if (!options.yes && output.interactive) {
     const confirmed = yield* confirm(
-      `Remove the Kaneo workspace and project from ${path}?`,
+      `Remove the Tracing workspace and project from ${files.map((file) => file.path).join(" and ")}?`,
     );
     if (!confirmed) return yield* new Cancelled();
   }
 
-  const remaining = removeRepoLink(existing);
-  if (remaining) {
-    yield* writeRepoConfig(path, remaining);
-  } else {
-    yield* deleteRepoConfig(path);
-  }
+  const first = files[0]!;
+  const remaining = removeRepoLink(first.value);
+  yield* clearRepoLinks(files);
 
   yield* emit<UnlinkResult>(
-    { path, unlinked: true, deleted: remaining === undefined },
+    { path: first.path, unlinked: true, deleted: remaining === undefined },
     renderUnlink,
   );
 });
@@ -85,6 +76,8 @@ export const unlinkCommand = Command.make(
   },
   (options) => runUnlink(options),
 ).pipe(
-  Command.withDescription("Remove this repository's .kaneo.json settings"),
+  Command.withDescription(
+    "Remove this repository's Tracing and legacy Kaneo links",
+  ),
   Command.provide(ApiLayer),
 );

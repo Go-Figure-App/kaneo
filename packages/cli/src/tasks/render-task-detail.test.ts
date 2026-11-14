@@ -19,7 +19,7 @@ const task: TaskViewJson = {
   number: 12,
   title: "Fix login redirect after device approval",
   description:
-    "## Steps\n\n1. Sign in with **device** flow\n2. See [the bug](https://kaneo.test/b)",
+    "## Steps\n\n1. Sign in with **device** flow\n2. See [the bug](https://tracing.test/b)",
   status: "in-progress",
   statusName: "In Progress",
   priority: "urgent",
@@ -30,9 +30,9 @@ const task: TaskViewJson = {
   createdAt: new Date(2026, 8, 30, 9).toISOString(),
   projectId: "project-1",
   projectKey: "KAN",
-  projectName: "Kaneo Web",
+  projectName: "Tracing Web",
   workspaceId: "workspace-1",
-  url: "https://kaneo.test/dashboard/workspace/workspace-1/project/project-1/task/task-1",
+  url: "https://tracing.test/dashboard/workspace/workspace-1/project/project-1/task/task-1",
   labels: [],
   parent: null,
   subtasks: [],
@@ -56,12 +56,12 @@ describe("renderTaskDetail", () => {
       "    Due        ◷ Yesterday",
       "    Start      Oct 1",
       "    Created    Sep 30",
-      "    Project    Kaneo Web · KAN",
+      "    Project    Tracing Web · KAN",
       "",
       "    Steps",
       "",
       "    1. Sign in with device flow",
-      "    2. See the bug (https://kaneo.test/b)",
+      "    2. See the bug (https://tracing.test/b)",
       "",
     ]);
   });
@@ -91,7 +91,7 @@ describe("renderTaskDetail", () => {
       "    Due        None",
       "    Start      None",
       "    Created    Sep 30",
-      "    Project    Kaneo Web · KAN",
+      "    Project    Tracing Web · KAN",
       "",
       "    No description.",
       "",
@@ -113,7 +113,7 @@ describe("renderTaskDetail", () => {
     const body = lines.slice(12);
     expect(body.filter((line) => line !== "").length).toBe(41);
     expect(lines.at(-2)).toBe(
-      "    Run kaneo task open KAN-12 to read the rest.",
+      "    Run tracing task open KAN-12 to read the rest.",
     );
     const full = renderTaskDetail(ui, {
       task: { ...task, description },
@@ -163,7 +163,7 @@ describe("renderTaskDetail rows", () => {
           title: "Auth overhaul",
           status: "to-do",
           completed: false,
-          url: "https://kaneo.test/task-4",
+          url: "https://tracing.test/task-4",
         },
       }),
     ).toEqual([
@@ -175,7 +175,7 @@ describe("renderTaskDetail rows", () => {
       "    Start      Oct 1",
       "    Created    Sep 30",
       "    Time       2h 30m · ● Timer running (Ada Lovelace)",
-      "    Project    Kaneo Web · KAN",
+      "    Project    Tracing Web · KAN",
       "    Parent     ● KAN-4 Auth overhaul",
     ]);
   });
@@ -234,7 +234,7 @@ describe("renderTaskDetail rows", () => {
           title: "A parent task with a title that is much longer than the row",
           status: "to-do",
           completed: false,
-          url: "https://kaneo.test/task-4",
+          url: "https://tracing.test/task-4",
         },
       },
       60,

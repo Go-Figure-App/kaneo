@@ -35,7 +35,7 @@ export const runTimeEdit = Effect.fn("command.time.edit")(function* (options: {
   if (seconds !== undefined && entry.endTime === null) {
     return yield* new InvalidArgument({
       message: "This entry is still running.",
-      hint: "Stop it with kaneo time stop, then set its duration.",
+      hint: "Stop it with tracing time stop, then set its duration.",
     });
   }
   const description = Option.getOrUndefined(options.note)?.trim();
@@ -88,7 +88,7 @@ export const timeEdit = Command.make(
   "edit",
   {
     entry: Argument.String("entry-id").pipe(
-      Argument.withDescription("Time entry id, from kaneo time list"),
+      Argument.withDescription("Time entry id, from tracing time list"),
     ),
     duration: Flag.String("duration").pipe(
       Flag.withAlias("d"),

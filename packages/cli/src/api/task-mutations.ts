@@ -1,5 +1,5 @@
 import { Effect, Schema } from "effect";
-import { KaneoApi } from "./kaneo-api.js";
+import { TracingApi } from "./tracing-api.js";
 import type { TaskRecurrence } from "./schemas.js";
 
 const NullableString = Schema.NullOr(Schema.String);
@@ -52,7 +52,7 @@ export const createTask = Effect.fnUntraced(function* (
   projectId: string,
   body: CreateTaskBody,
 ) {
-  const api = yield* KaneoApi;
+  const api = yield* TracingApi;
   return yield* api.request(
     "POST",
     `/api/task/${encodeURIComponent(projectId)}`,
@@ -67,7 +67,7 @@ export const updateTaskTitle = Effect.fnUntraced(function* (
   id: string,
   title: string,
 ) {
-  const api = yield* KaneoApi;
+  const api = yield* TracingApi;
   return yield* api.request("PUT", taskPath("title", id), UpdatedTask, {
     body: { title },
   });
@@ -77,7 +77,7 @@ export const updateTaskDescription = Effect.fnUntraced(function* (
   id: string,
   description: string,
 ) {
-  const api = yield* KaneoApi;
+  const api = yield* TracingApi;
   return yield* api.request("PUT", taskPath("description", id), UpdatedTask, {
     body: { description },
   });
@@ -87,7 +87,7 @@ export const updateTaskPriority = Effect.fnUntraced(function* (
   id: string,
   priority: Priority,
 ) {
-  const api = yield* KaneoApi;
+  const api = yield* TracingApi;
   return yield* api.request("PUT", taskPath("priority", id), UpdatedTask, {
     body: { priority },
   });
@@ -97,7 +97,7 @@ export const updateTaskDueDate = Effect.fnUntraced(function* (
   id: string,
   dueDate: string | null,
 ) {
-  const api = yield* KaneoApi;
+  const api = yield* TracingApi;
   return yield* api.request("PUT", taskPath("due-date", id), UpdatedTask, {
     body: dueDate === null ? {} : { dueDate },
   });
@@ -107,7 +107,7 @@ export const updateTaskRecurrence = Effect.fnUntraced(function* (
   id: string,
   recurrence: TaskRecurrence | null,
 ) {
-  const api = yield* KaneoApi;
+  const api = yield* TracingApi;
   return yield* api.request("PUT", taskPath("recurrence", id), UpdatedTask, {
     body: { recurrence },
   });
@@ -117,7 +117,7 @@ export const updateTaskStartDate = Effect.fnUntraced(function* (
   id: string,
   startDate: string | null,
 ) {
-  const api = yield* KaneoApi;
+  const api = yield* TracingApi;
   const path = `/api/task/${encodeURIComponent(id)}`;
   const current = yield* api.request("GET", path, EditableTask, {
     query: { view: "detail" },
@@ -137,7 +137,7 @@ export const updateTaskStartDate = Effect.fnUntraced(function* (
 });
 
 export const deleteTask = Effect.fnUntraced(function* (id: string) {
-  const api = yield* KaneoApi;
+  const api = yield* TracingApi;
   return yield* api.request(
     "DELETE",
     `/api/task/${encodeURIComponent(id)}`,

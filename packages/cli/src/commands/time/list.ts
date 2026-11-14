@@ -12,7 +12,7 @@ import { ApiLayer } from "../api-layer.js";
 export const runTimeList = Effect.fn("command.time.list")(function* (options: {
   readonly task: Option.Option<string>;
 }) {
-  const reference = yield* askTask(options.task, "kaneo time list KAN-12");
+  const reference = yield* askTask(options.task, "tracing time list KAN-12");
   const { resolved, entries } = yield* withSpinner(
     `Loading time on ${reference}`,
   )(

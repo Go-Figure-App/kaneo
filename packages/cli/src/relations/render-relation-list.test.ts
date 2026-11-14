@@ -24,13 +24,13 @@ const task = (
   title,
   status,
   completed,
-  url: `https://kaneo.test/${ticketId}`,
+  url: `https://tracing.test/${ticketId}`,
 });
 
 const view = {
   label: "KAN-3",
   title: "Fix login redirect",
-  url: "https://kaneo.test/KAN-3",
+  url: "https://tracing.test/KAN-3",
 };
 
 describe("renderRelationList", () => {
@@ -109,7 +109,7 @@ describe("renderRelationList", () => {
       "",
       "  KAN-3 Fix login redirect · Relations",
       "",
-      "  No linked tasks. Link one with kaneo task relation add KAN-3 <type> <task>",
+      "  No linked tasks. Link one with tracing task relation add KAN-3 <type> <task>",
       "",
     ]);
   });

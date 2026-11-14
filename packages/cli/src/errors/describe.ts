@@ -18,27 +18,28 @@ export function describeError(error: AppError): Failure {
     case "NotSignedIn":
       return {
         message: `You are not signed in to ${host(error.apiUrl)}.`,
-        hint: "Run kaneo login, or set KANEO_API_KEY.",
+        hint: "Run tracing login, or set TRACING_API_KEY.",
       };
     case "SessionExpired":
       return {
         message: `Your session for ${host(error.apiUrl)} has expired.`,
-        hint: "Run kaneo login to sign in again.",
+        hint: "Run tracing login to sign in again.",
       };
     case "CredentialsRejected":
       return error.source === "flag"
         ? {
             message: "The token passed with --token was rejected.",
-            hint: "Check the token, or run kaneo login.",
+            hint: "Check the token, or run tracing login.",
           }
         : {
-            message: "The API key in KANEO_API_KEY was rejected.",
-            hint: "Create a new key in Settings, then API keys, or unset KANEO_API_KEY.",
+            message:
+              "The API key from TRACING_API_KEY or KANEO_API_KEY was rejected.",
+            hint: "Create a new key in Settings, then API keys, or unset the active TRACING_API_KEY / KANEO_API_KEY variable.",
           };
     case "SessionRequired":
       return {
         message: error.message,
-        hint: "API keys cannot do this. Unset KANEO_API_KEY and run kaneo login.",
+        hint: "API keys cannot do this. Unset TRACING_API_KEY and KANEO_API_KEY, then run tracing login.",
       };
     case "PermissionDenied":
       return {
@@ -56,7 +57,7 @@ export function describeError(error: AppError): Failure {
       return { message: error.message, hint: null };
     case "RateLimited":
       return {
-        message: "Too many requests to the Kaneo API.",
+        message: "Too many requests to the Tracing API.",
         hint:
           error.retryAfterSeconds === null
             ? "Wait a moment and try again."
@@ -75,12 +76,12 @@ export function describeError(error: AppError): Failure {
     case "UnexpectedResponse":
       return {
         message: `The server sent a response this CLI does not understand (${error.endpoint}): ${error.detail}`,
-        hint: "Update the CLI by running its install command again (https://kaneo.app/docs/cli/install#update), or check the server version.",
+        hint: "Update the CLI by running its install command again (https://tracing.gofigureapp.io/docs/cli/install#update), or check the server version.",
       };
     case "WorkspaceRequired":
       return {
         message: "No workspace selected.",
-        hint: "Pass -w <id>, or run kaneo workspace use.",
+        hint: "Pass -w <id>, or run tracing workspace use.",
       };
     case "ProjectRequired":
       return {
@@ -92,34 +93,34 @@ export function describeError(error: AppError): Failure {
         message: error.source
           ? `No project matches "${error.query}" (from ${error.source}) in this workspace.`
           : `No project matches "${error.query}" in this workspace.`,
-        hint: "Run kaneo project list to see the project keys.",
+        hint: "Run tracing project list to see the project keys.",
       };
     case "DeviceClientRejected":
       return {
-        message: `${host(error.apiUrl)} does not allow browser sign-in from the Kaneo CLI (client ID ${error.clientId}).`,
-        hint: `Ask the server admin to add ${error.clientId} to DEVICE_AUTH_CLIENT_IDS, or use an API key with KANEO_API_KEY.`,
+        message: `${host(error.apiUrl)} does not allow browser sign-in from the Tracing CLI (client ID ${error.clientId}).`,
+        hint: `Ask the server admin to add ${error.clientId} to DEVICE_AUTH_CLIENT_IDS, or use an API key with TRACING_API_KEY.`,
       };
     case "DeviceLoginDenied":
       return {
         message: "The sign-in request was denied in the browser.",
-        hint: "Run kaneo login to try again.",
+        hint: "Run tracing login to try again.",
       };
     case "DeviceLoginExpired":
       return {
         message: "The sign-in code expired before it was approved.",
-        hint: "Run kaneo login to get a new code.",
+        hint: "Run tracing login to get a new code.",
       };
     case "ConfigUnreadable":
       return error.reason === "foreign"
         ? {
-            message: `${error.path} was written by a different kaneo CLI, so it was left untouched.`,
-            hint: "Move the file aside, or set KANEO_CONFIG to use another file.",
+            message: `${error.path} was written by a different tracing CLI, so it was left untouched.`,
+            hint: "Move the file aside, or set TRACING_CONFIG to use another file.",
           }
         : {
             message: `Could not read ${error.path}: ${error.detail}`,
             hint:
               error.reason === "invalid"
-                ? "Fix or delete the file, then run kaneo login."
+                ? "Fix or delete the file, then run tracing login."
                 : null,
           };
     case "InvalidArgument":

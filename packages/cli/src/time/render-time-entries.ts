@@ -27,7 +27,7 @@ export function renderTimeEntries(ui: Ui, view: TimeEntriesView): string[] {
       "",
       `  ${theme.muted("No time logged yet.")}`,
       "",
-      `  ${theme.muted("Log some with")} ${theme.strong(`kaneo time log ${view.label} 1h`)}`,
+      `  ${theme.muted("Log some with")} ${theme.strong(`tracing time log ${view.label} 1h`)}`,
       "",
     ];
   }

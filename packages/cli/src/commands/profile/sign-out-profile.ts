@@ -1,4 +1,4 @@
-import { normalizeBaseUrl } from "@kaneo/mcp/normalize-base-url";
+import { normalizeBaseUrl } from "@tracing/mcp/normalize-base-url";
 import { Duration, Effect } from "effect";
 import { FetchHttpClient, HttpClient, HttpClientRequest } from "effect/http";
 

@@ -9,7 +9,7 @@ const ui = makeUi({
   animate: false,
   columns: 80,
 });
-const url = "https://kaneo.test/task/1";
+const url = "https://tracing.test/task/1";
 
 describe("renderAssignment", () => {
   it("names the new assignee", () => {

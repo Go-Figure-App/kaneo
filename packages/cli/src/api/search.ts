@@ -1,5 +1,5 @@
 import { Effect, Schema } from "effect";
-import { KaneoApi } from "./kaneo-api.js";
+import { TracingApi } from "./tracing-api.js";
 
 const OptionalString = Schema.optionalKey(Schema.String);
 
@@ -45,7 +45,7 @@ export const searchWorkspace = Effect.fnUntraced(function* (params: {
   readonly projectId: string | undefined;
   readonly limit: number;
 }) {
-  const api = yield* KaneoApi;
+  const api = yield* TracingApi;
   return yield* api.request("GET", "/api/search", SearchResponse, {
     query: {
       q: params.query,

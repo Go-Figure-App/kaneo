@@ -54,8 +54,8 @@ describe("showImages", () => {
   it("draws each image with its caption, and placeholders for failures", async () => {
     const { text, requested } = await run({ KANEO_IMAGES: "blocks" });
     expect(requested).toEqual([
-      "https://kaneo.test/api/asset/a1",
-      "https://kaneo.test/api/asset/missing",
+      "https://tracing.test/api/asset/a1",
+      "https://tracing.test/api/asset/missing",
       "https://cdn.test/c.png",
     ]);
     const green = "\u001b[38;2;0;128;0;48;2;0;128;0m▀▀\u001b[39;49m";
@@ -80,9 +80,9 @@ describe("showImages", () => {
     expect(text).toBe(
       [
         "  1. Login page",
-        "     https://kaneo.test/api/asset/a1",
+        "     https://tracing.test/api/asset/a1",
         "  2. Gone",
-        "     https://kaneo.test/api/asset/missing",
+        "     https://tracing.test/api/asset/missing",
         "  1 more image not shown",
         "",
         "",

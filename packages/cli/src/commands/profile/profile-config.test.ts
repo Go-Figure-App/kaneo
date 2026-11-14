@@ -10,12 +10,12 @@ import {
 import { renderProfileList } from "./render-profile-list.js";
 
 const config: ConfigFile = {
-  kind: "kaneo-cli",
+  kind: "tracing-cli",
   version: 1,
   activeProfile: "work",
   profiles: {
     work: {
-      apiUrl: "https://cloud.kaneo.app",
+      apiUrl: "https://tracing.gofigureapp.io",
       token: "secret-token",
       user: { id: "u1", name: "Ada Lovelace", email: "ada@example.com" },
     },
@@ -47,8 +47,8 @@ describe("profile config", () => {
     ]);
     expect(renderProfileList(ui, profiles)).toEqual([
       "",
-      "  ●  work  cloud.kaneo.app  Ada Lovelace · ada@example.com",
-      "     home  localhost:1337   signed out",
+      "  ●  work  tracing.gofigureapp.io  Ada Lovelace · ada@example.com",
+      "     home  localhost:1337          signed out",
       "",
     ]);
   });

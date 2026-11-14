@@ -30,11 +30,11 @@ describe("pickLabels", () => {
       failure(pickLabels(labels, ["Bug", "Urgent", "Needs review"])),
     ).toEqual({
       message: 'No labels named "Urgent", "Needs review" in this workspace.',
-      hint: "Existing labels: Bug, Docs. Create one with kaneo label create Urgent.",
+      hint: "Existing labels: Bug, Docs. Create one with tracing label create Urgent.",
     });
     expect(failure(pickLabels([], ["Needs review"]))).toEqual({
       message: 'No label named "Needs review" in this workspace.',
-      hint: 'This workspace has no labels yet. Create one with kaneo label create "Needs review".',
+      hint: 'This workspace has no labels yet. Create one with tracing label create "Needs review".',
     });
   });
 
@@ -44,7 +44,7 @@ describe("pickLabels", () => {
     });
     expect(failure(pickLabels([deleting], ["old"]))).toEqual({
       message: "The label Old is being deleted.",
-      hint: "Run kaneo label delete Old to finish deleting it.",
+      hint: "Run tracing label delete Old to finish deleting it.",
     });
   });
 

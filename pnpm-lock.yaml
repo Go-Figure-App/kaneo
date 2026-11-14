@@ -1002,12 +1002,6 @@ importers:
       '@gabrielbryk/jq-ts':
         specifier: 1.7.0
         version: 1.7.0(typescript@7.0.2)
-      '@kaneo/mcp':
-        specifier: workspace:@tracing/mcp@*
-        version: link:../mcp
-      '@kaneo/typescript-config':
-        specifier: workspace:@tracing/typescript-config@*
-        version: link:../typescript-config
       '@tracing/mcp':
         specifier: workspace:*
         version: link:../mcp
@@ -1213,9 +1207,6 @@ importers:
         specifier: ^4.6.7
         version: 4.6.7
     devDependencies:
-      '@kaneo/typescript-config':
-        specifier: workspace:@tracing/typescript-config@*
-        version: link:../typescript-config
       '@tracing/typescript-config':
         specifier: workspace:*
         version: link:../typescript-config

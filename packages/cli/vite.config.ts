@@ -2,7 +2,7 @@ import { defineConfig } from "vite-plus";
 
 export default defineConfig({
   pack: {
-    entry: { kaneo: "src/bin.ts" },
+    entry: { tracing: "src/bin.ts" },
     format: "esm",
     platform: "node",
     target: "node20",
@@ -17,7 +17,7 @@ export default defineConfig({
         "effect",
         "@effect/platform-node",
         "@effect/platform-node-shared",
-        "@kaneo/mcp",
+        "@tracing/mcp",
         "@gabrielbryk/jq-ts",
         "pngjs",
         "jpeg-js",

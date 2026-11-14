@@ -52,6 +52,6 @@ export const resolveWorkspace = Effect.fn("admin.resolveWorkspace")(function* (
   }
   return yield* new InvalidArgument({
     message: `No workspace matches "${text}".`,
-    hint: "Run kaneo workspace list to see your workspaces.",
+    hint: "Run tracing workspace list to see your workspaces.",
   });
 });

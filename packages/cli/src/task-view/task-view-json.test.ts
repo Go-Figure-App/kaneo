@@ -63,7 +63,7 @@ describe("toTaskViewJson", () => {
     expect(json.links).toEqual([
       {
         id: "x1",
-        url: "https://github.com/usekaneo/kaneo/pull/1960",
+        url: "https://github.com/Go-Figure-App/tracing/pull/1960",
         title: "fix(auth): keep state on device redirect",
         source: "github",
         resourceType: "pull_request",

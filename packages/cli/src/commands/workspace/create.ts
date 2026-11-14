@@ -43,7 +43,7 @@ const resolveName = Effect.fnUntraced(function* (name: Option.Option<string>) {
   }
   return yield* new InvalidArgument({
     message: "A workspace name is required.",
-    hint: 'Pass it as the first argument, for example kaneo workspace create "Acme Studio".',
+    hint: 'Pass it as the first argument, for example tracing workspace create "Acme Studio".',
   });
 });
 
@@ -100,7 +100,7 @@ export const runWorkspaceCreate = Effect.fn("command.workspace.create")(
       renderWorkspaceChange(ui, {
         verb: "Created",
         workspace: value,
-        next: `Run kaneo workspace use ${value.slug} to make it your default.`,
+        next: `Run tracing workspace use ${value.slug} to make it your default.`,
       }),
     );
   },

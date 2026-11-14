@@ -10,7 +10,7 @@ function failed(
     body: { message: "boom", code: null, missingPermissions: [] },
     retryAfterSeconds: null,
     tokenSource: "profile",
-    apiUrl: "https://cloud.kaneo.app",
+    apiUrl: "https://tracing.gofigureapp.io",
     ...overrides,
   };
 }

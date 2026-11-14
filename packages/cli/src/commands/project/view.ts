@@ -25,7 +25,7 @@ export const runProjectView = Effect.fn("command.project.view")(
         Effect.fail(
           new InvalidArgument({
             message: "Which project should be shown?",
-            hint: "Pass its key or id, for example kaneo project view KAN.",
+            hint: "Pass its key or id, for example tracing project view KAN.",
           }),
         ),
       ),

@@ -1,3 +1,4 @@
+import { environmentSetting } from "../../services/environment-setting.js";
 import { Effect, Option } from "effect";
 import { Argument, Command } from "effect/cli";
 import { ConfigStore } from "../../config/config-store.js";
@@ -48,7 +49,7 @@ export const runProfileUse = Effect.fn("command.profile.use")(
     if (names.length === 0) {
       return yield* new InvalidArgument({
         message: "There are no stored logins yet.",
-        hint: "Run kaneo login to add one.",
+        hint: "Run tracing login to add one.",
       });
     }
     const name = Option.isSome(options.name)
@@ -66,7 +67,7 @@ export const runProfileUse = Effect.fn("command.profile.use")(
           )
         : yield* new InvalidArgument({
             message: "Which profile should be used?",
-            hint: `Pass its name, for example kaneo profile use ${names[0]}. Run kaneo profile list to see them.`,
+            hint: `Pass its name, for example tracing profile use ${names[0]}. Run tracing profile list to see them.`,
           });
 
     const updated = useProfile(config, name);
@@ -83,10 +84,10 @@ export const runProfileUse = Effect.fn("command.profile.use")(
       renderProfileUsed,
     );
 
-    const override = environment.env.KANEO_PROFILE?.trim();
-    if (override && override !== name) {
+    const override = environmentSetting(environment.env, "PROFILE");
+    if (override && override.value !== name) {
       yield* note((ui) => [
-        `  ${ui.theme.warning(ui.glyphs.warning)} KANEO_PROFILE is set to ${override} and is used instead until you unset it.`,
+        `  ${ui.theme.warning(ui.glyphs.warning)} ${override.name} is set to ${override.value} and is used instead until you unset it.`,
         "",
       ]);
     }

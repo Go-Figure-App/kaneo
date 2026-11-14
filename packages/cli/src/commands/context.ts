@@ -121,6 +121,7 @@ export const runContext = Effect.fn("command.context")(function* () {
       output: {
         mode: output.mode,
         source: mode.source,
+        ...(mode.variable ? { variable: mode.variable } : {}),
         jq: Option.getOrNull(Option.map(jq, (filter) => filter.expression)),
         interactive: output.interactive,
         stdinIsTTY: environment.stdin.isTTY,

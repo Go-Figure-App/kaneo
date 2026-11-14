@@ -10,7 +10,7 @@ const ui = makeUi({
   columns: 80,
 });
 
-const image = { url: "https://kaneo.test/api/asset/a1", alt: "Diagram" };
+const image = { url: "https://tracing.test/api/asset/a1", alt: "Diagram" };
 
 describe("renderPlaceholder", () => {
   it("names the image and why it is not shown", () => {
@@ -23,7 +23,7 @@ describe("renderPlaceholder", () => {
   it("links the label to the image", () => {
     const linked = makeUi({ ...ui.caps, hyperlinks: true });
     expect(renderPlaceholder(linked, image, 60)).toBe(
-      "\u001b]8;;https://kaneo.test/api/asset/a1\u001b\\[image: Diagram]\u001b]8;;\u001b\\",
+      "\u001b]8;;https://tracing.test/api/asset/a1\u001b\\[image: Diagram]\u001b]8;;\u001b\\",
     );
   });
 });

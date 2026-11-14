@@ -1,6 +1,6 @@
 import { Effect, Option } from "effect";
 import { getProject, listColumns } from "../api/endpoints.js";
-import { KaneoApi } from "../api/kaneo-api.js";
+import { TracingApi } from "../api/tracing-api.js";
 import {
   type Column,
   type Project,
@@ -31,7 +31,7 @@ export const fetchTask = Effect.fn("tasks.fetch")(function* (
   reference: string,
 ) {
   const session = yield* Session;
-  const api = yield* KaneoApi;
+  const api = yield* TracingApi;
   const trimmed = reference.trim();
   const notFound = () =>
     new NotFound({ message: `Task ${trimmed} not found.` });

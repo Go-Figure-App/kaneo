@@ -37,7 +37,7 @@ export type RequestOptions = {
   readonly raw?: boolean;
 };
 
-export type KaneoApiShape = {
+export type TracingApiShape = {
   readonly request: <T>(
     method: HttpMethod,
     path: string,
@@ -46,8 +46,8 @@ export type KaneoApiShape = {
   ) => Effect.Effect<T, ApiFailure>;
 };
 
-export class KaneoApi extends Context.Service<KaneoApi, KaneoApiShape>()(
-  "kaneo/KaneoApi",
+export class TracingApi extends Context.Service<TracingApi, TracingApiShape>()(
+  "tracing/TracingApi",
 ) {}
 
 const REQUEST_TIMEOUT = Duration.seconds(15);
@@ -86,8 +86,8 @@ function toUrlParams(query: Query | undefined): Record<string, string> {
   return params;
 }
 
-export const KaneoApiLayer = Layer.effect(
-  KaneoApi,
+export const TracingApiLayer = Layer.effect(
+  TracingApi,
   Effect.gen(function* () {
     const session = yield* Session;
     const store = yield* ConfigStore;
@@ -221,6 +221,6 @@ export const KaneoApiLayer = Layer.effect(
   }),
 );
 
-export const KaneoApiLive = KaneoApiLayer.pipe(
+export const TracingApiLive = TracingApiLayer.pipe(
   Layer.provide(FetchHttpClient.layer),
 );

@@ -16,7 +16,7 @@ const move = {
   fromLabel: "KAN-12",
   toLabel: "MOB-4",
   title: "Fix login redirect",
-  url: "https://kaneo.test/task/1",
+  url: "https://tracing.test/task/1",
 };
 
 describe("renderTaskMove", () => {

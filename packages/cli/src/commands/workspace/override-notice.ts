@@ -13,7 +13,7 @@ export function overrideNotice(
     return "-w overrides this default for the commands you pass it to.";
   }
   if (source === "env") {
-    return "KANEO_WORKSPACE is set and is used instead of this default until you unset it.";
+    return `${current.value.variable ?? "TRACING_WORKSPACE or KANEO_WORKSPACE"} is set and is used instead of this default until you unset it.`;
   }
-  return `${repoPath ?? ".kaneo.json"} sets another workspace, which is used instead inside that folder.`;
+  return `${repoPath ?? ".tracing.json"} sets another workspace, which is used instead inside that folder.`;
 }

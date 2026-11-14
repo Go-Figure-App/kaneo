@@ -1,4 +1,5 @@
 import { chmod, mkdir, readFile, unlink, writeFile } from "node:fs/promises";
+import { existsSync } from "node:fs";
 import { homedir } from "node:os";
 import path from "node:path";
 
@@ -15,7 +16,12 @@ const DIR_MODE = 0o700;
 function configDir(): string {
   const base =
     process.env.XDG_CONFIG_HOME?.trim() || path.join(homedir(), ".config");
-  return path.join(base, "kaneo-mcp");
+  const current = path.join(base, "tracing-mcp");
+  const legacy = path.join(base, "kaneo-mcp");
+  return !existsSync(path.join(current, "credentials.json")) &&
+    existsSync(path.join(legacy, "credentials.json"))
+    ? legacy
+    : current;
 }
 
 export function credentialsPath(): string {
@@ -55,9 +61,14 @@ export async function saveCredentials(data: StoredCredentials): Promise<void> {
 }
 
 export async function clearCredentials(): Promise<void> {
-  try {
-    await unlink(credentialsPath());
-  } catch {
-    /* noop */
+  const base =
+    process.env.XDG_CONFIG_HOME?.trim() || path.join(homedir(), ".config");
+  // Clear both names so a legacy login cannot reappear after signing out.
+  for (const directory of ["tracing-mcp", "kaneo-mcp"]) {
+    try {
+      await unlink(path.join(base, directory, "credentials.json"));
+    } catch (error) {
+      if ((error as NodeJS.ErrnoException).code !== "ENOENT") throw error;
+    }
   }
 }

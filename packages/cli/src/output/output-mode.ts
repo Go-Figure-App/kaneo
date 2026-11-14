@@ -1,3 +1,4 @@
+import { environmentSetting } from "../services/environment-setting.js";
 import type { Environment } from "../render/capabilities.js";
 
 export type OutputMode = "json" | "human";
@@ -13,6 +14,10 @@ export function resolveOutputMode(
   if (flags.some((flag) => flag === "--jq" || flag.startsWith("--jq=")))
     return "json";
   if (flags.includes("--human")) return "human";
-  if (env.KANEO_JSON === "true" || env.KANEO_JSON === "1") return "json";
+  if (
+    environmentSetting(env, "JSON")?.value === "true" ||
+    environmentSetting(env, "JSON")?.value === "1"
+  )
+    return "json";
   return stdoutIsTTY ? "human" : "json";
 }

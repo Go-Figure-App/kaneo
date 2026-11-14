@@ -1,5 +1,5 @@
 import { Effect, Schema } from "effect";
-import { KaneoApi } from "./kaneo-api.js";
+import { TracingApi } from "./tracing-api.js";
 
 export const DuplicatedTask = Schema.Struct({
   id: Schema.String,
@@ -14,7 +14,7 @@ export const duplicateTask = Effect.fnUntraced(function* (
   taskId: string,
   title: string | undefined,
 ) {
-  const api = yield* KaneoApi;
+  const api = yield* TracingApi;
   return yield* api.request(
     "POST",
     `/api/task/duplicate/${encodeURIComponent(taskId)}`,

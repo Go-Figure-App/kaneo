@@ -78,18 +78,19 @@ export function inlineText(source: string): string {
       (_, escaped?: string, _ticks?: string, code?: string) =>
         keep(escaped ?? code?.trim() ?? ""),
     )
-    .replace(/<kaneo-mention\b[^>]*>(?:<\/kaneo-mention>)?/giu, (tag) =>
-      keep(`@${decodeEntities(attribute(tag, "label"))}`),
+    .replace(
+      /<(?:tracing|kaneo)-mention\b[^>]*>(?:<\/(?:tracing|kaneo)-mention>)?/giu,
+      (tag) => keep(`@${decodeEntities(attribute(tag, "label"))}`),
     )
-    .replace(/<kaneo-issue-link\b[^>]*>/giu, (tag) =>
+    .replace(/<(?:tracing|kaneo)-issue-link\b[^>]*>/giu, (tag) =>
       keep(
         decodeEntities(attribute(tag, "issue-key") || attribute(tag, "url")),
       ),
     )
-    .replace(/<kaneo-embed\b[^>]*>/giu, (tag) =>
+    .replace(/<(?:tracing|kaneo)-embed\b[^>]*>/giu, (tag) =>
       keep(decodeEntities(attribute(tag, "url"))),
     )
-    .replace(/<kaneo-attachment\b[^>]*>/giu, (tag) => {
+    .replace(/<(?:tracing|kaneo)-attachment\b[^>]*>/giu, (tag) => {
       const name = decodeEntities(attribute(tag, "filename"));
       return keep(name ? `[attachment: ${name}]` : "[attachment]");
     })

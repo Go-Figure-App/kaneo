@@ -16,11 +16,11 @@ export function nameClashError(
   if (clash.label.deletionStartedAt) {
     return new InvalidArgument({
       message: `The label "${clash.label.name}" is still being deleted.`,
-      hint: `Run kaneo label delete ${existing} to finish, then try again.`,
+      hint: `Run tracing label delete ${existing} to finish, then try again.`,
     });
   }
   return new InvalidArgument({
     message: `A label named "${clash.label.name}" already exists.`,
-    hint: `Pick another name, or change the existing one with kaneo label edit ${existing}.`,
+    hint: `Pick another name, or change the existing one with tracing label edit ${existing}.`,
   });
 }

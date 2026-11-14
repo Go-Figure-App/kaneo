@@ -31,7 +31,7 @@ export const runTaskLinkRemove = Effect.fn("command.task.link.remove")(
     if (match.kind === "none") {
       return yield* new InvalidArgument({
         message: `${label} has no link matching "${options.link.trim()}".`,
-        hint: `Run kaneo task link list ${label} to see the link ids.`,
+        hint: `Run tracing task link list ${label} to see the link ids.`,
       });
     }
     if (match.kind === "ambiguous") {
@@ -82,7 +82,7 @@ export const taskLinkRemove = Command.make(
     ),
     link: Argument.String("link").pipe(
       Argument.withDescription(
-        "Link id from kaneo task link list (the first characters are enough), or its URL",
+        "Link id from tracing task link list (the first characters are enough), or its URL",
       ),
     ),
     yes: Flag.Boolean("yes").pipe(

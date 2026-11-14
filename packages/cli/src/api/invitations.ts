@@ -1,5 +1,5 @@
 import { Effect, Schema } from "effect";
-import { KaneoApi } from "./kaneo-api.js";
+import { TracingApi } from "./tracing-api.js";
 
 export const SentInvitation = Schema.Struct({
   id: Schema.String,
@@ -46,7 +46,7 @@ const Anything = Schema.Unknown;
 export const getInvitationDetails = Effect.fnUntraced(function* (
   invitationId: string,
 ) {
-  const api = yield* KaneoApi;
+  const api = yield* TracingApi;
   return yield* api.request(
     "GET",
     `/api/invitation/${encodeURIComponent(invitationId)}`,
@@ -57,7 +57,7 @@ export const getInvitationDetails = Effect.fnUntraced(function* (
 export const listSentInvitations = Effect.fnUntraced(function* (
   workspaceId: string,
 ) {
-  const api = yield* KaneoApi;
+  const api = yield* TracingApi;
   return yield* api.request(
     "GET",
     "/api/auth/organization/list-invitations",
@@ -67,7 +67,7 @@ export const listSentInvitations = Effect.fnUntraced(function* (
 });
 
 export const listReceivedInvitations = Effect.fnUntraced(function* () {
-  const api = yield* KaneoApi;
+  const api = yield* TracingApi;
   return yield* api.request(
     "GET",
     "/api/invitation/pending",
@@ -81,7 +81,7 @@ export const inviteMember = Effect.fnUntraced(function* (body: {
   readonly role: string;
   readonly resend: boolean;
 }) {
-  const api = yield* KaneoApi;
+  const api = yield* TracingApi;
   return yield* api.request(
     "POST",
     "/api/auth/organization/invite-member",
@@ -100,7 +100,7 @@ export const inviteMember = Effect.fnUntraced(function* (body: {
 export const acceptInvitation = Effect.fnUntraced(function* (
   invitationId: string,
 ) {
-  const api = yield* KaneoApi;
+  const api = yield* TracingApi;
   return yield* api.request(
     "POST",
     "/api/auth/organization/accept-invitation",
@@ -112,7 +112,7 @@ export const acceptInvitation = Effect.fnUntraced(function* (
 export const rejectInvitation = Effect.fnUntraced(function* (
   invitationId: string,
 ) {
-  const api = yield* KaneoApi;
+  const api = yield* TracingApi;
   return yield* api.request(
     "POST",
     "/api/auth/organization/reject-invitation",
@@ -124,7 +124,7 @@ export const rejectInvitation = Effect.fnUntraced(function* (
 export const cancelInvitation = Effect.fnUntraced(function* (
   invitationId: string,
 ) {
-  const api = yield* KaneoApi;
+  const api = yield* TracingApi;
   return yield* api.request(
     "POST",
     "/api/auth/organization/cancel-invitation",

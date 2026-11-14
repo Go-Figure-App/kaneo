@@ -29,13 +29,13 @@ function assigned(
     statusName: "In Progress",
     priority: "high",
     dueDate: new Date(2026, 9, 8, 12).toISOString(),
-    projectName: "Kaneo Web",
+    projectName: "Tracing Web",
     projectSlug: "kan",
     ...overrides,
   };
 }
 
-const webUrl = "https://kaneo.test";
+const webUrl = "https://tracing.test";
 
 describe("toMineTaskJson", () => {
   it("adds the ticket id, workspace and link", () => {
@@ -49,10 +49,10 @@ describe("toMineTaskJson", () => {
       priority: "high",
       dueDate: new Date(2026, 9, 8, 12).toISOString(),
       projectId: "p_kan",
-      projectName: "Kaneo Web",
+      projectName: "Tracing Web",
       projectSlug: "kan",
       workspaceId: "ws_1",
-      url: "https://kaneo.test/dashboard/workspace/ws_1/project/p_kan/task/t1",
+      url: "https://tracing.test/dashboard/workspace/ws_1/project/p_kan/task/t1",
     });
   });
 
@@ -102,8 +102,8 @@ describe("renderMine", () => {
     ).toEqual([
       "",
       "  Acme Studio · 3 open",
-      "    KAN-1  Fix login redirect after…  ● In Progress  ▆ High  ◷ Today  Kaneo Web",
-      "    MOB-4  Dark mode polish           ● To Do        ▂ Low            Mobile App",
+      "    KAN-1  Fix login redirect afte…  ● In Progress  ▆ High  ◷ Today  Tracing Web",
+      "    MOB-4  Dark mode polish          ● To Do        ▂ Low            Mobile App",
       "    and 1 more, sorted by due date",
       "",
     ]);

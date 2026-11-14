@@ -35,8 +35,8 @@ export const runTimeStop = Effect.fn("command.time.stop")(function* (options: {
         ? `No timer of yours is running on ${options.task.value}.`
         : "No timer is running.",
       hint: Option.isSome(options.task)
-        ? "Run kaneo time list to see its entries."
-        : "If you started one elsewhere on a task not assigned to you, pass the task: kaneo time stop KAN-12.",
+        ? "Run tracing time list to see its entries."
+        : "If you started one elsewhere on a task not assigned to you, pass the task: tracing time stop KAN-12.",
     });
   }
   const timer = running.value;

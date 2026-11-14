@@ -15,13 +15,13 @@ export const viewNow = new Date(2026, 9, 7, 12, 0, 0);
 const at = (days: number, hours = 0) =>
   new Date(2026, 9, 7 + days, 12 + hours, 0, 0).toISOString();
 
-export const webUrl = "https://kaneo.test";
+export const webUrl = "https://tracing.test";
 
 const project: Project = {
   id: "p1",
   workspaceId: "ws_1",
   slug: "kan",
-  name: "Kaneo Web",
+  name: "Tracing Web",
   icon: null,
   description: null,
   archivedAt: null,
@@ -229,7 +229,7 @@ export const sectionsFixture: TaskViewSections = {
     externalLink({
       id: "x1",
       taskId: "t12",
-      url: "https://github.com/usekaneo/kaneo/pull/1960",
+      url: "https://github.com/Go-Figure-App/tracing/pull/1960",
       title: "fix(auth): keep state on device redirect",
       resourceType: "pull_request",
       integrationId: "i1",

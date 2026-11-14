@@ -1,6 +1,6 @@
 import { Effect, Layer, Result } from "effect";
 import { describe, expect, it } from "vite-plus/test";
-import { KaneoApiLayer } from "../api/kaneo-api.js";
+import { TracingApiLayer } from "../api/tracing-api.js";
 import {
   fakeHttpClient,
   json,
@@ -46,7 +46,7 @@ function run(
 ) {
   const recorded: RecordedRequest[] = [];
   const all = { ...baseRoutes, ...routes };
-  const layer = KaneoApiLayer.pipe(
+  const layer = TracingApiLayer.pipe(
     Layer.provideMerge(
       Layer.mergeAll(
         fakeHttpClient((request) => {

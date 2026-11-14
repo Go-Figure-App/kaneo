@@ -29,7 +29,7 @@ const opened: RuleJson = {
 describe("renderRuleList", () => {
   it("shows integration, event, column and key in 80 columns", () => {
     const lines = renderRuleList(ui, {
-      projectName: "Kaneo Web",
+      projectName: "Tracing Web",
       rules: [merged, opened],
     });
     expect(lines).toEqual([
@@ -43,21 +43,21 @@ describe("renderRuleList", () => {
 
   it("flags a rule whose column is gone", () => {
     const lines = renderRuleList(ui, {
-      projectName: "Kaneo Web",
+      projectName: "Tracing Web",
       rules: [{ ...merged, column: { id: "col_x", name: null, slug: null } }],
     });
     expect(lines[1]).toContain("missing column");
   });
 
   it("explains the defaults when there are no rules", () => {
-    expect(renderRuleList(ui, { projectName: "Kaneo Web", rules: [] })).toEqual(
-      [
-        "",
-        "  No workflow rules in Kaneo Web. Integrations use their default columns.",
-        "  Add one with kaneo workflow set github pr_merged done.",
-        "",
-      ],
-    );
+    expect(
+      renderRuleList(ui, { projectName: "Tracing Web", rules: [] }),
+    ).toEqual([
+      "",
+      "  No workflow rules in Tracing Web. Integrations use their default columns.",
+      "  Add one with tracing workflow set github pr_merged done.",
+      "",
+    ]);
   });
 });
 

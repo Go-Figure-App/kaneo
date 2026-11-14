@@ -38,7 +38,7 @@ const resolveName = Effect.fnUntraced(function* (name: Option.Option<string>) {
   }
   return yield* new InvalidArgument({
     message: "A label name is required.",
-    hint: "Pass it as the first argument, for example kaneo label create Bug.",
+    hint: "Pass it as the first argument, for example tracing label create Bug.",
   });
 });
 

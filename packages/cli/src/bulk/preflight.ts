@@ -25,7 +25,7 @@ export function checkFound<T extends { readonly id: string }>(
           unique.length === 1
             ? `Task ${unique[0]} was not found, so nothing was changed.`
             : `Tasks ${list(unique)} were not found, so nothing was changed.`,
-        hint: "Check the ticket ids, or run kaneo task list to see them.",
+        hint: "Check the ticket ids, or run tracing task list to see them.",
       }),
     );
   }
@@ -50,7 +50,7 @@ export function checkSameWorkspace(
   return Result.fail(
     new InvalidArgument({
       message: "The tasks belong to more than one workspace.",
-      hint: "Run kaneo task bulk once per workspace.",
+      hint: "Run tracing task bulk once per workspace.",
     }),
   );
 }

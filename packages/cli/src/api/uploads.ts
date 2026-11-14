@@ -2,7 +2,7 @@ import { Duration, Effect, Schema } from "effect";
 import { HttpClient, HttpClientRequest } from "effect/http";
 import { ServerError, ServerUnreachable } from "../errors/errors.js";
 import { Session } from "../services/session.js";
-import { KaneoApi } from "./kaneo-api.js";
+import { TracingApi } from "./tracing-api.js";
 
 export const TaskUpload = Schema.Struct({
   key: Schema.String,
@@ -77,7 +77,7 @@ export const uploadTaskFile = Effect.fnUntraced(function* (
   file: UploadFile,
   surface: UploadSurface,
 ) {
-  const api = yield* KaneoApi;
+  const api = yield* TracingApi;
   const details = describe(file, surface);
   const upload = yield* api.request("PUT", uploadPath(taskId), TaskUpload, {
     body: details,

@@ -8,7 +8,7 @@ import { REQUIRED_OPERATIONS } from "./required-operations.js";
 
 const document = {
   openapi: "3.1.0",
-  servers: [{ url: "https://cloud.kaneo.app/api" }],
+  servers: [{ url: "https://tracing.gofigureapp.io/api" }],
   paths: {
     "/user/me": { get: {} },
     "/task/{id}": { get: {}, put: {}, delete: {}, parameters: [] },

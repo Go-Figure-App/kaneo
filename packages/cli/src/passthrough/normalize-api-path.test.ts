@@ -29,8 +29,8 @@ describe("normalizeApiPath", () => {
   });
 
   it("rejects full URLs", () => {
-    expect(target("https://cloud.kaneo.app/api/user/me")).toBe(
-      "https://cloud.kaneo.app/api/user/me is a full URL.",
+    expect(target("https://tracing.gofigureapp.io/api/user/me")).toBe(
+      "https://tracing.gofigureapp.io/api/user/me is a full URL.",
     );
   });
 });

@@ -76,7 +76,7 @@ export function renderWorkspaceList(
   ];
   if (!hasActive) {
     lines.push(
-      `  ${theme.muted("No workspace selected. Run kaneo workspace use to choose one.")}`,
+      `  ${theme.muted("No workspace selected. Run tracing workspace use to choose one.")}`,
       "",
     );
   }

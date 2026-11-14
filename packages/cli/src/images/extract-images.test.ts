@@ -2,6 +2,14 @@ import { describe, expect, it } from "vite-plus/test";
 import { extractImages } from "./extract-images.js";
 
 describe("extractImages", () => {
+  it("reads stored legacy attachment tags", () => {
+    expect(
+      extractImages(
+        '<kaneo-attachment url="/api/asset/legacy" filename="old.png" mime-type="image/png" />',
+      ),
+    ).toEqual([{ url: "/api/asset/legacy", alt: "old.png" }]);
+  });
+
   it("finds Markdown images with titles and escaped alt text", () => {
     expect(
       extractImages(
@@ -39,9 +47,9 @@ describe("extractImages", () => {
     expect(
       extractImages(
         [
-          '<kaneo-attachment url="http://localhost:1337/api/asset/p1" filename="spec.pdf" mime-type="application/pdf" size="10" />',
-          '<kaneo-attachment url="http://localhost:1337/api/asset/i1" filename="diagram.png" mime-type="image/png" size="20" />',
-          '<kaneo-attachment url="http://localhost:1337/api/asset/i2" filename="photo.JPG" />',
+          '<tracing-attachment url="http://localhost:1337/api/asset/p1" filename="spec.pdf" mime-type="application/pdf" size="10" />',
+          '<tracing-attachment url="http://localhost:1337/api/asset/i1" filename="diagram.png" mime-type="image/png" size="20" />',
+          '<tracing-attachment url="http://localhost:1337/api/asset/i2" filename="photo.JPG" />',
         ].join("\n"),
       ),
     ).toEqual([
@@ -53,7 +61,7 @@ describe("extractImages", () => {
   it("keeps document order across syntaxes", () => {
     expect(
       extractImages(
-        '<img src="/api/asset/1">\n\n![two](/api/asset/2)\n\n<kaneo-attachment url="/api/asset/3" filename="3.png" mime-type="image/png" />',
+        '<img src="/api/asset/1">\n\n![two](/api/asset/2)\n\n<tracing-attachment url="/api/asset/3" filename="3.png" mime-type="image/png" />',
       ).map((image) => image.url),
     ).toEqual(["/api/asset/1", "/api/asset/2", "/api/asset/3"]);
   });
@@ -74,6 +82,8 @@ describe("extractImages", () => {
   });
 
   it("returns nothing for text without images", () => {
-    expect(extractImages("Just [a link](https://kaneo.app).")).toEqual([]);
+    expect(
+      extractImages("Just [a link](https://tracing.gofigureapp.io)."),
+    ).toEqual([]);
   });
 });

@@ -18,7 +18,7 @@ const columns: Column[] = [
 const project = {
   id: "p1",
   slug: "kan",
-  name: "Kaneo Web",
+  name: "Tracing Web",
   workspaceId: "w1",
 };
 
@@ -35,12 +35,12 @@ describe("buildImportReport", () => {
     const report = buildImportReport({
       project,
       columns,
-      webUrl: "https://kaneo.test",
+      webUrl: "https://tracing.test",
       plan,
       outcomes: null,
     });
     expect(report).toMatchObject({
-      project: { id: "p1", key: "KAN", name: "Kaneo Web" },
+      project: { id: "p1", key: "KAN", name: "Tracing Web" },
       dryRun: true,
       total: 2,
       imported: 0,
@@ -60,7 +60,7 @@ describe("buildImportReport", () => {
     const report = buildImportReport({
       project,
       columns,
-      webUrl: "https://kaneo.test",
+      webUrl: "https://tracing.test",
       plan,
       outcomes: [
         {
@@ -75,7 +75,7 @@ describe("buildImportReport", () => {
     expect(report.tasks[0]).toMatchObject({
       imported: true,
       ticketId: "KAN-7",
-      url: "https://kaneo.test/dashboard/workspace/w1/project/p1/task/t1",
+      url: "https://tracing.test/dashboard/workspace/w1/project/p1/task/t1",
     });
     expect(report.tasks[1]).toMatchObject({
       imported: false,

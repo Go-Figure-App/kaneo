@@ -19,7 +19,7 @@ export const runCommentEdit = Effect.fn("command.comment.edit")(
     readonly file: Option.Option<string>;
   }) {
     const id = options.comment.trim();
-    const command = `kaneo comment edit ${id}`;
+    const command = `tracing comment edit ${id}`;
     const content = normalizeComment(
       yield* readCommentText({
         words: options.text,
@@ -31,7 +31,7 @@ export const runCommentEdit = Effect.fn("command.comment.edit")(
     if (content === "") {
       return yield* new InvalidArgument({
         message: "The comment is empty.",
-        hint: `To remove it, run kaneo comment delete ${id}.`,
+        hint: `To remove it, run tracing comment delete ${id}.`,
       });
     }
     if (content.length > COMMENT_MAX_LENGTH) {
@@ -76,7 +76,7 @@ export const commentEdit = Command.make(
   "edit",
   {
     comment: Argument.String("comment-id").pipe(
-      Argument.withDescription("The comment id, from kaneo comment list"),
+      Argument.withDescription("The comment id, from tracing comment list"),
     ),
     text: Argument.String("text").pipe(
       Argument.withDescription(

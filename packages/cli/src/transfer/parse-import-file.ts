@@ -13,7 +13,7 @@ export type ImportCandidate = {
 };
 
 const SHAPE_HINT =
-  "Use the output of kaneo task export, or a JSON array of tasks with at least a title.";
+  "Use the output of tracing task export, or a JSON array of tasks with at least a title.";
 
 type Fields = Readonly<Record<string, unknown>>;
 

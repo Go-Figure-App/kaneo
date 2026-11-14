@@ -25,8 +25,8 @@ import { apiCommand } from "../commands/api.js";
 import { doctorCommand } from "../commands/doctor.js";
 import { globalFlags } from "./global-flags.js";
 
-export const root = Command.make("kaneo", {}, () => runHome()).pipe(
-  Command.withDescription("Kaneo from your terminal"),
+export const root = Command.make("tracing", {}, () => runHome()).pipe(
+  Command.withDescription("Tracing from your terminal"),
   Command.provide(ApiLayer),
   Command.withSubcommands([
     login,

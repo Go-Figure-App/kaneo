@@ -1,5 +1,5 @@
 import { Effect, Schema } from "effect";
-import { KaneoApi } from "./kaneo-api.js";
+import { TracingApi } from "./tracing-api.js";
 
 const NullableString = Schema.NullOr(Schema.String);
 
@@ -52,7 +52,7 @@ const TASK_PAGE_SIZE = 100;
 export const listColumnDetails = Effect.fnUntraced(function* (
   projectId: string,
 ) {
-  const api = yield* KaneoApi;
+  const api = yield* TracingApi;
   return yield* api.request(
     "GET",
     `/api/column/${encodeURIComponent(projectId)}`,
@@ -64,7 +64,7 @@ export const countColumnTasks = Effect.fnUntraced(function* (
   projectId: string,
   slug: string,
 ) {
-  const api = yield* KaneoApi;
+  const api = yield* TracingApi;
   const page = yield* api.request(
     "GET",
     `/api/task/tasks/${encodeURIComponent(projectId)}`,
@@ -78,7 +78,7 @@ export const listColumnTaskIds = Effect.fnUntraced(function* (
   projectId: string,
   slug: string,
 ) {
-  const api = yield* KaneoApi;
+  const api = yield* TracingApi;
   const ids: string[] = [];
   let page = 1;
   let totalPages = 1;
@@ -102,7 +102,7 @@ export const createColumn = Effect.fnUntraced(function* (
   projectId: string,
   body: CreateColumnBody,
 ) {
-  const api = yield* KaneoApi;
+  const api = yield* TracingApi;
   return yield* api.request(
     "POST",
     `/api/column/${encodeURIComponent(projectId)}`,
@@ -115,7 +115,7 @@ export const updateColumn = Effect.fnUntraced(function* (
   id: string,
   body: UpdateColumnBody,
 ) {
-  const api = yield* KaneoApi;
+  const api = yield* TracingApi;
   return yield* api.request(
     "PUT",
     `/api/column/${encodeURIComponent(id)}`,
@@ -128,7 +128,7 @@ export const reorderColumns = Effect.fnUntraced(function* (
   projectId: string,
   columns: ReadonlyArray<{ readonly id: string; readonly position: number }>,
 ) {
-  const api = yield* KaneoApi;
+  const api = yield* TracingApi;
   return yield* api.request(
     "PUT",
     `/api/column/reorder/${encodeURIComponent(projectId)}`,
@@ -138,7 +138,7 @@ export const reorderColumns = Effect.fnUntraced(function* (
 });
 
 export const deleteColumn = Effect.fnUntraced(function* (id: string) {
-  const api = yield* KaneoApi;
+  const api = yield* TracingApi;
   return yield* api.request(
     "DELETE",
     `/api/column/${encodeURIComponent(id)}`,

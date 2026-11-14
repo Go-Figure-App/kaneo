@@ -39,14 +39,17 @@ async function startMcpServer(): Promise<void> {
 }
 
 function printMainHelp(): void {
-  console.log(`kaneo-mcp: Kaneo MCP server (stdio transport)
+  console.log(`tracing-mcp: Tracing MCP server (stdio transport)
+
+Build first: pnpm --filter @tracing/mcp build
+Use node /absolute/path/to/packages/mcp/dist/index.js in place of tracing-mcp.
 
 Usage:
-  npx @kaneo/mcp         Interactive installer (terminal only; no global install)
-  kaneo-mcp              Same: installer in a TTY; MCP server when stdin is piped
-  kaneo-mcp install      Register in Cursor / Claude / a custom path (explicit)
-  kaneo-mcp serve        Run the MCP server (use from a terminal to test stdio)
-  kaneo-mcp help
+  node packages/mcp/dist/index.js  Source build: installer in a terminal
+  tracing-mcp              Same: installer in a TTY; MCP server when stdin is piped
+  tracing-mcp install      Register in Cursor / Claude / a custom path (explicit)
+  tracing-mcp serve        Run the MCP server (use from a terminal to test stdio)
+  tracing-mcp help
 
 Options:
   -h, --help             Show this help
@@ -54,6 +57,6 @@ Options:
 MCP clients (Cursor, etc.) run this process with a pipe, so they get the server.
 In a normal terminal, the default is the interactive installer.
 
-See also: kaneo-mcp install --help
+See also: tracing-mcp install --help
 `);
 }

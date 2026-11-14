@@ -76,7 +76,7 @@ export function renderWelcome(ui: Ui, result: LoginResult): string[] {
   const { theme, glyphs } = ui;
   const workspace = result.workspace
     ? result.workspace.name
-    : theme.muted("none selected, run kaneo workspace use");
+    : theme.muted("none selected, run tracing workspace use");
   return [
     "",
     ...logo(ui),
@@ -86,7 +86,7 @@ export function renderWelcome(ui: Ui, result: LoginResult): string[] {
     `    ${theme.muted("Server".padEnd(10))} ${host(result.apiUrl)}`,
     `    ${theme.muted("Workspace".padEnd(10))} ${workspace}`,
     "",
-    `  ${theme.muted("Try")} ${theme.strong("kaneo task list")} ${theme.muted("or just")} ${theme.strong("kaneo")}`,
+    `  ${theme.muted("Try")} ${theme.strong("tracing task list")} ${theme.muted("or just")} ${theme.strong("tracing")}`,
     "",
   ];
 }

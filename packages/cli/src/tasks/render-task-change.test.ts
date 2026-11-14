@@ -16,7 +16,7 @@ describe("renderTaskChange", () => {
       renderTaskChange(ui, {
         verb: "Created",
         reference: "KAN-124",
-        url: "https://kaneo.test/task/1",
+        url: "https://tracing.test/task/1",
         detail: "Fix login redirect",
       }),
     ).toEqual(["", "  ✓ Created KAN-124 · Fix login redirect", ""]);
@@ -27,7 +27,7 @@ describe("renderTaskChange", () => {
       renderTaskChange(ui, {
         verb: "Updated",
         reference: "KAN-12",
-        url: "https://kaneo.test/task/1",
+        url: "https://tracing.test/task/1",
         detail: "title, priority",
       }),
     ).toEqual(["", "  ✓ Updated KAN-12 · title, priority", ""]);
@@ -44,11 +44,11 @@ describe("renderTaskChange", () => {
     const [, line] = renderTaskChange(linked, {
       verb: "Created",
       reference: "KAN-1",
-      url: "https://kaneo.test/task/1",
+      url: "https://tracing.test/task/1",
       detail: "Title",
     });
     expect(line).toContain(
-      "\u001b]8;;https://kaneo.test/task/1\u001b\\KAN-1\u001b]8;;\u001b\\",
+      "\u001b]8;;https://tracing.test/task/1\u001b\\KAN-1\u001b]8;;\u001b\\",
     );
   });
 });

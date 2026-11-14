@@ -32,9 +32,9 @@ const column = (
 });
 
 const view = {
-  projectName: "Kaneo Web",
+  projectName: "Tracing Web",
   projectSlug: "kan",
-  projectUrl: "https://kaneo.test/p",
+  projectUrl: "https://tracing.test/p",
   columns: [
     column(0, "To Do", "to-do", 6),
     column(1, "In Progress", "in-progress", 1),
@@ -46,7 +46,7 @@ describe("renderColumnList", () => {
   it("numbers columns in board order at 80 columns", () => {
     expect(renderColumnList(ui(80), view)).toEqual([
       "",
-      "  Kaneo Web · KAN",
+      "  Tracing Web · KAN",
       "",
       "    1  ● To Do        to-do               6 tasks",
       "    2  ● In Progress  in-progress          1 task",

@@ -1,5 +1,5 @@
 import { Effect, Schema } from "effect";
-import { KaneoApi } from "./kaneo-api.js";
+import { TracingApi } from "./tracing-api.js";
 
 const NullableString = Schema.NullOr(Schema.String);
 
@@ -24,7 +24,7 @@ export const listProjectSummaries = Effect.fnUntraced(function* (
   workspaceId: string,
   options: { readonly includeArchived: boolean },
 ) {
-  const api = yield* KaneoApi;
+  const api = yield* TracingApi;
   return yield* api.request("GET", "/api/project", ProjectSummaryList, {
     query: {
       workspaceId,

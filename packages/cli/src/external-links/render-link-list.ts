@@ -24,7 +24,7 @@ export function renderLinkList(ui: Ui, view: LinkListView): string[] {
       "",
       header,
       "",
-      `  ${theme.muted(`No links yet. Add one with kaneo task link add ${view.taskLabel} <url>.`)}`,
+      `  ${theme.muted(`No links yet. Add one with tracing task link add ${view.taskLabel} <url>.`)}`,
       "",
     ];
   }

@@ -63,8 +63,8 @@ export function testSession(
 ) {
   const { token = "test-token", tokenSource = "profile", ...rest } = overrides;
   const session: SessionShape = {
-    apiUrl: "https://kaneo.test",
-    webUrl: "https://kaneo.test",
+    apiUrl: "https://tracing.test",
+    webUrl: "https://tracing.test",
     profileName: "default",
     config: emptyConfig,
     configProblem: Option.none(),

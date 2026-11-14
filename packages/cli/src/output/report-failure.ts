@@ -37,7 +37,7 @@ export function classifyFailure(
     kind: "failure",
     failure: {
       message: `Unexpected error: ${message}`,
-      hint: "Please report this at https://github.com/usekaneo/kaneo/issues",
+      hint: "Please report this at https://github.com/Go-Figure-App/tracing/issues",
     },
   };
 }
