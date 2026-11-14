@@ -1894,7 +1894,7 @@
 			},
 			"foundingFree": {
 				"badge": "Free",
-				"description": "This workspace has complimentary access.",
+				"description": "이 워크스페이스에는 무료 이용 권한이 있습니다.",
 				"title": "Founding Free"
 			},
 			"interval": {
@@ -2256,7 +2256,7 @@
 				"connectTo": "Connect {{source}}",
 				"description": "Pick the tool you are moving from. Each project you choose becomes a new project here.",
 				"kaneo": {
-					"description": "Move projects between Tracing instances.",
+					"description": "Tracing 인스턴스 간에 프로젝트를 이동하세요.",
 					"intro": "Projects from every workspace the key can see. Each one you pick is copied here.",
 					"pickerName": "Another Tracing"
 				},
@@ -4055,11 +4055,11 @@
 	"press": {
 		"title": "Press kit",
 		"headline": "Tracing press kit",
-		"intro": "Tracing logos and app icons for articles, videos, and other media.",
-		"description": "Tracing press resources: product information, logos, and contact details for journalists and creators.",
+		"intro": "기사, 동영상 및 기타 미디어용 Tracing 로고와 앱 아이콘입니다.",
+		"description": "Tracing 보도 자료: 기자와 크리에이터를 위한 제품 정보, 로고 및 연락처입니다.",
 		"downloadKit": "Download all assets",
 		"boilerplateTitle": "About Tracing",
-		"boilerplate": "Tracing is Go Figure’s open-source planning workspace, built on Kaneo by Andrej Acevski. It adds issues, triage, initiatives, roadmaps, cycles, insights, and saved views. The source is available under the MIT license for self-hosting.",
+		"boilerplate": "Tracing은 Andrej Acevski의 Kaneo를 기반으로 만든 Go Figure의 오픈 소스 계획 워크스페이스입니다. 작업, 분류, 이니셔티브, 로드맵, 사이클, 분석 및 저장된 보기를 추가합니다. 소스 코드는 자체 호스팅을 위해 MIT 라이선스로 제공됩니다.",
 		"logosTitle": "Logos",
 		"darkLogo": "Dark wordmark",
 		"darkLogoAlt": "Dark Tracing logo on a light background",
@@ -4153,8 +4153,8 @@
 				"link": "Set up GitHub"
 			},
 			"hosting": {
-				"title": "Run it on your infrastructure.",
-				"description": "Build and self-host Tracing with PostgreSQL. Choose your infrastructure and manage your backups, updates and recovery.",
+				"title": "자체 인프라에서 실행하세요.",
+				"description": "PostgreSQL로 Tracing을 빌드하고 직접 호스팅하세요. 인프라를 선택하고 백업, 업데이트, 복구를 관리하세요.",
 				"link": "Self-host Tracing"
 			},
 			"source": {
@@ -4197,7 +4197,7 @@
 		},
 		"seo": {
 			"title": "Tracing — Open-source, self-hosted project management",
-			"description": "Open-source project planning with boards, triage, milestones, initiatives, roadmaps, cycles, insights and saved views. Self-host Tracing on your infrastructure."
+			"description": "보드, 분류, 마일스톤, 이니셔티브, 로드맵, 사이클, 분석, 저장된 보기를 제공하는 오픈 소스 프로젝트 계획 도구입니다. 자체 인프라에서 Tracing을 호스팅하세요."
 		},
 		"resources": {
 			"eyebrow": "Make it your own",
@@ -4216,7 +4216,7 @@
 				"description": "See the differences in hosting, licensing, and workflow."
 			},
 			"startups": {
-				"description": "Planning for a startup, with hosting and operations costs to consider as you grow.",
+				"description": "성장에 따른 호스팅 및 운영 비용을 고려하는 스타트업용 계획 도구입니다.",
 				"title": "Project management for startups"
 			}
 		},
@@ -4881,13 +4881,13 @@
 				"name": "이름",
 				"passwordHint": "8자 이상"
 			},
-			"tagline": "Plan your team's work with Tracing.",
+			"tagline": "Tracing으로 팀의 업무를 계획하세요.",
 			"togglePassword": "비밀번호 표시 전환",
 			"useApiKey": "API 키 사용",
 			"unlock": {
 				"buy": "Unlock for {{price}}",
 				"buyNoPrice": "Unlock",
-				"message": "This Tracing build connects to your team's instance without an in-app purchase.",
+				"message": "이 Tracing 빌드는 인앱 구매 없이 팀의 인스턴스에 연결됩니다.",
 				"nothingToRestore": "No earlier purchase was found for this store account.",
 				"restore": "Restore purchase",
 				"title": "Connect your own server",

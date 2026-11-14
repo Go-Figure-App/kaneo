@@ -1894,7 +1894,7 @@
 			},
 			"foundingFree": {
 				"badge": "Free",
-				"description": "This workspace has complimentary access.",
+				"description": "Không gian làm việc này có quyền truy cập miễn phí.",
 				"title": "Founding Free"
 			},
 			"interval": {
@@ -2256,7 +2256,7 @@
 				"connectTo": "Connect {{source}}",
 				"description": "Pick the tool you are moving from. Each project you choose becomes a new project here.",
 				"kaneo": {
-					"description": "Move projects between Tracing instances.",
+					"description": "Di chuyển dự án giữa các phiên bản triển khai Tracing.",
 					"intro": "Projects from every workspace the key can see. Each one you pick is copied here.",
 					"pickerName": "Another Tracing"
 				},
@@ -4055,11 +4055,11 @@
 	"press": {
 		"title": "Press kit",
 		"headline": "Tracing press kit",
-		"intro": "Tracing logos and app icons for articles, videos, and other media.",
-		"description": "Tracing press resources: product information, logos, and contact details for journalists and creators.",
+		"intro": "Biểu trưng và biểu tượng ứng dụng Tracing dành cho bài viết, video và các nội dung truyền thông khác.",
+		"description": "Tài liệu báo chí Tracing: thông tin sản phẩm, biểu trưng và thông tin liên hệ dành cho nhà báo và người sáng tạo.",
 		"downloadKit": "Download all assets",
 		"boilerplateTitle": "About Tracing",
-		"boilerplate": "Tracing is Go Figure’s open-source planning workspace, built on Kaneo by Andrej Acevski. It adds issues, triage, initiatives, roadmaps, cycles, insights, and saved views. The source is available under the MIT license for self-hosting.",
+		"boilerplate": "Tracing là không gian lập kế hoạch mã nguồn mở của Go Figure, được xây dựng trên Kaneo của Andrej Acevski. Tracing bổ sung công việc, phân loại, sáng kiến, lộ trình, chu kỳ, phân tích và chế độ xem đã lưu. Mã nguồn được cung cấp theo giấy phép MIT để tự lưu trữ.",
 		"logosTitle": "Logos",
 		"darkLogo": "Dark wordmark",
 		"darkLogoAlt": "Dark Tracing logo on a light background",
@@ -4153,8 +4153,8 @@
 				"link": "Set up GitHub"
 			},
 			"hosting": {
-				"title": "Run it on your infrastructure.",
-				"description": "Build and self-host Tracing with PostgreSQL. Choose your infrastructure and manage your backups, updates and recovery.",
+				"title": "Chạy trên hạ tầng của riêng bạn.",
+				"description": "Biên dịch và tự lưu trữ Tracing với PostgreSQL. Chọn hạ tầng và quản lý việc sao lưu, cập nhật cũng như khôi phục.",
 				"link": "Self-host Tracing"
 			},
 			"source": {
@@ -4197,7 +4197,7 @@
 		},
 		"seo": {
 			"title": "Tracing — Open-source, self-hosted project management",
-			"description": "Open-source project planning with boards, triage, milestones, initiatives, roadmaps, cycles, insights and saved views. Self-host Tracing on your infrastructure."
+			"description": "Lập kế hoạch dự án mã nguồn mở với bảng, phân loại, cột mốc, sáng kiến, lộ trình, chu kỳ, phân tích và chế độ xem đã lưu. Tự lưu trữ Tracing trên hạ tầng của bạn."
 		},
 		"resources": {
 			"eyebrow": "Make it your own",
@@ -4216,7 +4216,7 @@
 				"description": "See the differences in hosting, licensing, and workflow."
 			},
 			"startups": {
-				"description": "Planning for a startup, with hosting and operations costs to consider as you grow.",
+				"description": "Lập kế hoạch cho công ty khởi nghiệp, có tính đến chi phí lưu trữ và vận hành khi phát triển.",
 				"title": "Project management for startups"
 			}
 		},
@@ -4296,7 +4296,7 @@
 			"uploadFailed": "Tải lên thất bại ({{status}})"
 		},
 		"signIn": {
-			"tagline": "Plan your team's work with Tracing.",
+			"tagline": "Lập kế hoạch công việc của nhóm với Tracing.",
 			"cloud": "Tracing",
 			"selfHosted": "Tự lưu trữ",
 			"captcha": "Máy chủ này yêu cầu kiểm tra qua trình duyệt ở bước này. Hãy dùng “Tiếp tục trong trình duyệt”.",
@@ -4355,7 +4355,7 @@
 			"unlock": {
 				"buy": "Unlock for {{price}}",
 				"buyNoPrice": "Unlock",
-				"message": "This Tracing build connects to your team's instance without an in-app purchase.",
+				"message": "Bản dựng Tracing này kết nối với phiên bản triển khai của nhóm mà không cần mua hàng trong ứng dụng.",
 				"nothingToRestore": "No earlier purchase was found for this store account.",
 				"restore": "Restore purchase",
 				"title": "Connect your own server",

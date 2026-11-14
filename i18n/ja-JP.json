@@ -1894,7 +1894,7 @@
 			},
 			"foundingFree": {
 				"badge": "Free",
-				"description": "This workspace has complimentary access.",
+				"description": "このワークスペースは無料で利用できます。",
 				"title": "Founding Free"
 			},
 			"interval": {
@@ -2256,7 +2256,7 @@
 				"connectTo": "Connect {{source}}",
 				"description": "Pick the tool you are moving from. Each project you choose becomes a new project here.",
 				"kaneo": {
-					"description": "Move projects between Tracing instances.",
+					"description": "Tracingのインスタンス間でプロジェクトを移行します。",
 					"intro": "Projects from every workspace the key can see. Each one you pick is copied here.",
 					"pickerName": "Another Tracing"
 				},
@@ -4055,11 +4055,11 @@
 	"press": {
 		"title": "Press kit",
 		"headline": "Tracing press kit",
-		"intro": "Tracing logos and app icons for articles, videos, and other media.",
-		"description": "Tracing press resources: product information, logos, and contact details for journalists and creators.",
+		"intro": "記事、動画などのメディア向けのTracingロゴとアプリアイコン。",
+		"description": "Tracingのプレス資料：報道関係者やクリエイター向けの製品情報、ロゴ、お問い合わせ先。",
 		"downloadKit": "Download all assets",
 		"boilerplateTitle": "About Tracing",
-		"boilerplate": "Tracing is Go Figure’s open-source planning workspace, built on Kaneo by Andrej Acevski. It adds issues, triage, initiatives, roadmaps, cycles, insights, and saved views. The source is available under the MIT license for self-hosting.",
+		"boilerplate": "Tracingは、Andrej Acevskiが開発したKaneoを基にした、Go Figureのオープンソース計画ワークスペースです。タスク、トリアージ、イニシアチブ、ロードマップ、サイクル、分析、保存済みビューを追加しています。ソースコードはセルフホスト向けにMITライセンスで公開されています。",
 		"logosTitle": "Logos",
 		"darkLogo": "Dark wordmark",
 		"darkLogoAlt": "Dark Tracing logo on a light background",
@@ -4153,8 +4153,8 @@
 				"link": "Set up GitHub"
 			},
 			"hosting": {
-				"title": "Run it on your infrastructure.",
-				"description": "Build and self-host Tracing with PostgreSQL. Choose your infrastructure and manage your backups, updates and recovery.",
+				"title": "自社のインフラで運用できます。",
+				"description": "PostgreSQLを使ってTracingをビルドし、セルフホストできます。インフラを選び、バックアップ、更新、復旧を管理してください。",
 				"link": "Self-host Tracing"
 			},
 			"source": {
@@ -4197,7 +4197,7 @@
 		},
 		"seo": {
 			"title": "Tracing — Open-source, self-hosted project management",
-			"description": "Open-source project planning with boards, triage, milestones, initiatives, roadmaps, cycles, insights and saved views. Self-host Tracing on your infrastructure."
+			"description": "ボード、トリアージ、マイルストーン、イニシアチブ、ロードマップ、サイクル、分析、保存済みビューを備えたオープンソースのプロジェクト計画ツール。Tracingを自社のインフラでホストできます。"
 		},
 		"resources": {
 			"eyebrow": "Make it your own",
@@ -4216,7 +4216,7 @@
 				"description": "See the differences in hosting, licensing, and workflow."
 			},
 			"startups": {
-				"description": "Planning for a startup, with hosting and operations costs to consider as you grow.",
+				"description": "スタートアップのための計画。成長に伴うホスティング費用と運用費用も考慮できます。",
 				"title": "Project management for startups"
 			}
 		},
@@ -4881,13 +4881,13 @@
 				"name": "名前",
 				"passwordHint": "8文字以上"
 			},
-			"tagline": "Plan your team's work with Tracing.",
+			"tagline": "Tracingでチームの仕事を計画しましょう。",
 			"togglePassword": "パスワードの表示を切り替え",
 			"useApiKey": "API キーを使用",
 			"unlock": {
 				"buy": "Unlock for {{price}}",
 				"buyNoPrice": "Unlock",
-				"message": "This Tracing build connects to your team's instance without an in-app purchase.",
+				"message": "このTracingビルドは、アプリ内課金なしでチームのインスタンスに接続できます。",
 				"nothingToRestore": "No earlier purchase was found for this store account.",
 				"restore": "Restore purchase",
 				"title": "Connect your own server",

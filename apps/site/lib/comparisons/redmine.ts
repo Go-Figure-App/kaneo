@@ -31,7 +31,7 @@ export const redmine: Comparison = {
     },
     { feature: "Realtime updates", kaneo: true, them: false },
     { feature: "Time tracking", kaneo: true, them: true },
-    { feature: "Official cloud", kaneo: true, them: false },
+    { feature: "Official cloud", kaneo: false, them: false },
     { feature: "Interface", kaneo: "Current", them: "Dated" },
   ],
   reasons: [
@@ -45,7 +45,7 @@ export const redmine: Comparison = {
     },
     {
       title: "A cloud option when you want one",
-      body: "Redmine has no first-party hosting. Tracing gives you the same MIT-licensed software either self-hosted or managed from $4 a month.",
+      body: "Tracing is MIT licensed and self-hosted. Choose your infrastructure and budget for hosting, backups, updates and maintenance.",
     },
   ],
   honestNote:

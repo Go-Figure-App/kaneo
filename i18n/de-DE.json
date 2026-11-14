@@ -1904,7 +1904,7 @@
 			},
 			"foundingFree": {
 				"badge": "Kostenlos",
-				"description": "This workspace has complimentary access.",
+				"description": "Dieser Arbeitsbereich hat kostenlosen Zugang.",
 				"title": "Founding Free"
 			},
 			"interval": {
@@ -2279,7 +2279,7 @@
 				"connectTo": "{{source}} verbinden",
 				"description": "Wähle das Tool aus, von dem du wechselst. Jedes ausgewählte Projekt wird hier zu einem neuen Projekt.",
 				"kaneo": {
-					"description": "Move projects between Tracing instances.",
+					"description": "Projekte zwischen Tracing-Instanzen verschieben.",
 					"intro": "Projekte aus allen Workspaces, auf die der Schlüssel Zugriff hat. Jedes ausgewählte Projekt wird hierher kopiert.",
 					"pickerName": "Andere Tracing-Instanz"
 				},
@@ -4230,8 +4230,8 @@
 				"link": "GitHub einrichten"
 			},
 			"hosting": {
-				"title": "Run it on your infrastructure.",
-				"description": "Build and self-host Tracing with PostgreSQL. Choose your infrastructure and manage your backups, updates and recovery.",
+				"title": "Auf der eigenen Infrastruktur betreiben.",
+				"description": "Tracing mit PostgreSQL aus dem Quellcode erstellen und selbst hosten. Wähle deine Infrastruktur und verwalte Backups, Updates und Wiederherstellung selbst.",
 				"link": "Tracing selbst hosten"
 			},
 			"source": {
@@ -4274,7 +4274,7 @@
 		},
 		"seo": {
 			"title": "Tracing — Selbst gehostetes Open-Source-Projektmanagement",
-			"description": "Open-source project planning with boards, triage, milestones, initiatives, roadmaps, cycles, insights and saved views. Self-host Tracing on your infrastructure."
+			"description": "Open-Source-Projektplanung mit Boards, Triage, Meilensteinen, Initiativen, Roadmaps, Zyklen, Auswertungen und gespeicherten Ansichten. Hoste Tracing auf deiner eigenen Infrastruktur."
 		},
 		"resources": {
 			"eyebrow": "Mach es zu deinem",
@@ -4293,7 +4293,7 @@
 				"description": "Vergleiche die Unterschiede bei Hosting, Lizenzierung und Arbeitsablauf."
 			},
 			"startups": {
-				"description": "Planning for a startup, with hosting and operations costs to consider as you grow.",
+				"description": "Planung für ein Startup, mit Hosting- und Betriebskosten, die beim Wachstum zu berücksichtigen sind.",
 				"title": "Project management for startups"
 			}
 		},
@@ -4373,7 +4373,7 @@
 			"uploadFailed": "Upload fehlgeschlagen ({{status}})"
 		},
 		"signIn": {
-			"tagline": "Plan your team's work with Tracing.",
+			"tagline": "Plane die Arbeit deines Teams mit Tracing.",
 			"cloud": "Tracing",
 			"selfHosted": "Selbst gehostet",
 			"captcha": "Dieser Server verlangt für diesen Schritt eine Browserprüfung. Nutze stattdessen „Im Browser fortfahren“.",
@@ -4432,7 +4432,7 @@
 			"unlock": {
 				"buy": "Unlock for {{price}}",
 				"buyNoPrice": "Unlock",
-				"message": "This Tracing build connects to your team's instance without an in-app purchase.",
+				"message": "Diese Tracing-Version verbindet sich ohne In-App-Kauf mit der Instanz deines Teams.",
 				"nothingToRestore": "No earlier purchase was found for this store account.",
 				"restore": "Restore purchase",
 				"title": "Connect your own server",

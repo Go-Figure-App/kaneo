@@ -1894,7 +1894,7 @@
 			},
 			"foundingFree": {
 				"badge": "Free",
-				"description": "This workspace has complimentary access.",
+				"description": "Ruang kerja ini memiliki akses gratis.",
 				"title": "Founding Free"
 			},
 			"interval": {
@@ -2256,7 +2256,7 @@
 				"connectTo": "Connect {{source}}",
 				"description": "Pick the tool you are moving from. Each project you choose becomes a new project here.",
 				"kaneo": {
-					"description": "Move projects between Tracing instances.",
+					"description": "Pindahkan proyek antarinstans Tracing.",
 					"intro": "Projects from every workspace the key can see. Each one you pick is copied here.",
 					"pickerName": "Another Tracing"
 				},
@@ -4055,11 +4055,11 @@
 	"press": {
 		"title": "Press kit",
 		"headline": "Tracing press kit",
-		"intro": "Tracing logos and app icons for articles, videos, and other media.",
-		"description": "Tracing press resources: product information, logos, and contact details for journalists and creators.",
+		"intro": "Logo dan ikon aplikasi Tracing untuk artikel, video, dan media lainnya.",
+		"description": "Sumber daya pers Tracing: informasi produk, logo, dan detail kontak untuk jurnalis dan kreator.",
 		"downloadKit": "Download all assets",
 		"boilerplateTitle": "About Tracing",
-		"boilerplate": "Tracing is Go Figure’s open-source planning workspace, built on Kaneo by Andrej Acevski. It adds issues, triage, initiatives, roadmaps, cycles, insights, and saved views. The source is available under the MIT license for self-hosting.",
+		"boilerplate": "Tracing adalah ruang kerja perencanaan sumber terbuka milik Go Figure, dibangun di atas Kaneo karya Andrej Acevski. Tracing menambahkan tugas, triase, inisiatif, peta jalan, siklus, analisis, dan tampilan tersimpan. Kode sumber tersedia dengan lisensi MIT untuk dihosting sendiri.",
 		"logosTitle": "Logos",
 		"darkLogo": "Dark wordmark",
 		"darkLogoAlt": "Dark Tracing logo on a light background",
@@ -4153,8 +4153,8 @@
 				"link": "Set up GitHub"
 			},
 			"hosting": {
-				"title": "Run it on your infrastructure.",
-				"description": "Build and self-host Tracing with PostgreSQL. Choose your infrastructure and manage your backups, updates and recovery.",
+				"title": "Jalankan di infrastruktur Anda sendiri.",
+				"description": "Bangun dan hosting Tracing sendiri dengan PostgreSQL. Pilih infrastruktur Anda dan kelola pencadangan, pembaruan, serta pemulihan.",
 				"link": "Self-host Tracing"
 			},
 			"source": {
@@ -4197,7 +4197,7 @@
 		},
 		"seo": {
 			"title": "Tracing — Open-source, self-hosted project management",
-			"description": "Open-source project planning with boards, triage, milestones, initiatives, roadmaps, cycles, insights and saved views. Self-host Tracing on your infrastructure."
+			"description": "Perencanaan proyek sumber terbuka dengan papan, triase, tonggak, inisiatif, peta jalan, siklus, analisis, dan tampilan tersimpan. Hosting Tracing di infrastruktur Anda sendiri."
 		},
 		"resources": {
 			"eyebrow": "Make it your own",
@@ -4216,7 +4216,7 @@
 				"description": "See the differences in hosting, licensing, and workflow."
 			},
 			"startups": {
-				"description": "Planning for a startup, with hosting and operations costs to consider as you grow.",
+				"description": "Perencanaan untuk startup, dengan mempertimbangkan biaya hosting dan operasional seiring pertumbuhan Anda.",
 				"title": "Project management for startups"
 			}
 		},
@@ -4296,7 +4296,7 @@
 			"uploadFailed": "Unggahan gagal ({{status}})"
 		},
 		"signIn": {
-			"tagline": "Plan your team's work with Tracing.",
+			"tagline": "Rencanakan pekerjaan tim Anda dengan Tracing.",
 			"cloud": "Tracing",
 			"selfHosted": "Self-hosted",
 			"captcha": "Server ini memerlukan pemeriksaan browser untuk langkah ini. Gunakan “Lanjutkan di browser”.",
@@ -4355,7 +4355,7 @@
 			"unlock": {
 				"buy": "Unlock for {{price}}",
 				"buyNoPrice": "Unlock",
-				"message": "This Tracing build connects to your team's instance without an in-app purchase.",
+				"message": "Versi Tracing ini terhubung ke instans tim Anda tanpa pembelian dalam aplikasi.",
 				"nothingToRestore": "No earlier purchase was found for this store account.",
 				"restore": "Restore purchase",
 				"title": "Connect your own server",

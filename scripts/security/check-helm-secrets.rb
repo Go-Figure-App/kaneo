@@ -71,3 +71,17 @@ database = app_env(legacy).find { |env| env['name'] == 'DATABASE_URL' }.fetch('v
 verify(database == 'postgresql://kaneo_user:$(TRACING_POSTGRES_PASSWORD)@kaneo-postgresql:5432/kaneo', 'App must connect to the existing database and role')
 verify(legacy.any? { |d| d['kind'] == 'PersistentVolumeClaim' && d['metadata']['name'] == 'kaneo-postgresql-data' }, 'Upgrade must retain the PostgreSQL PVC name')
 puts 'Helm legacy database identity and PVC upgrade checks passed'
+
+# Retained release names still route to the renamed application Service.
+routed = render(*args, '--set', 'postgresql.auth.existingSecret=old-postgres', '--is-upgrade', '--set', 'nameOverride=kaneo', '--set', 'fullnameOverride=kaneo', '--set', 'ingress.enabled=true', '--set', 'ingress.hosts[0].host=tracing.example.com', '--set', 'ingress.hosts[0].paths[0].path=/', '--set', 'ingress.hosts[0].paths[0].pathType=Prefix', '--set', 'ingress.hosts[0].paths[0].service=tracing', '--set', 'ingress.hosts[0].paths[0].port=5173', '--set', 'gateway.enabled=true', '--set', 'gateway.rules[0].backendRefs[0].service=tracing', '--set', 'gateway.rules[0].backendRefs[0].port=5173')
+service = routed.find { |d| d['kind'] == 'Service' && d['metadata']['name'] == 'kaneo-tracing' }
+verify(service, 'Upgrade must expose the renamed application Service')
+ingress = routed.find { |d| d['kind'] == 'Ingress' }
+ingress_backend = ingress.fetch('spec').fetch('rules').first.fetch('http').fetch('paths').first.fetch('backend').fetch('service')
+gateway = routed.find { |d| d['kind'] == 'HTTPRoute' }
+gateway_backend = gateway.fetch('spec').fetch('rules').first.fetch('backendRefs').first
+[ingress_backend, gateway_backend].each do |backend|
+  verify(backend['name'] == service['metadata']['name'], 'Migrated route must resolve to the application Service')
+end
+verify(ingress_backend.dig('port', 'number') == 5173 && gateway_backend['port'] == 5173, 'Migrated routes must retain the application port')
+puts 'Helm retained release name and migrated routing checks passed'

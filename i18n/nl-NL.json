@@ -1904,7 +1904,7 @@
 			},
 			"foundingFree": {
 				"badge": "Free",
-				"description": "This workspace has complimentary access.",
+				"description": "Deze werkruimte heeft gratis toegang.",
 				"title": "Founding Free"
 			},
 			"interval": {
@@ -2279,7 +2279,7 @@
 				"connectTo": "Connect {{source}}",
 				"description": "Pick the tool you are moving from. Each project you choose becomes a new project here.",
 				"kaneo": {
-					"description": "Move projects between Tracing instances.",
+					"description": "Verplaats projecten tussen Tracing-instanties.",
 					"intro": "Projects from every workspace the key can see. Each one you pick is copied here.",
 					"pickerName": "Another Tracing"
 				},
@@ -4132,11 +4132,11 @@
 	"press": {
 		"title": "Press kit",
 		"headline": "Tracing press kit",
-		"intro": "Tracing logos and app icons for articles, videos, and other media.",
-		"description": "Tracing press resources: product information, logos, and contact details for journalists and creators.",
+		"intro": "Tracing-logo’s en app-iconen voor artikelen, video’s en andere media.",
+		"description": "Persmateriaal van Tracing: productinformatie, logo’s en contactgegevens voor journalisten en makers.",
 		"downloadKit": "Download all assets",
 		"boilerplateTitle": "About Tracing",
-		"boilerplate": "Tracing is Go Figure’s open-source planning workspace, built on Kaneo by Andrej Acevski. It adds issues, triage, initiatives, roadmaps, cycles, insights, and saved views. The source is available under the MIT license for self-hosting.",
+		"boilerplate": "Tracing is de opensourceplanningswerkruimte van Go Figure, gebouwd op Kaneo van Andrej Acevski. Het voegt taken, triage, initiatieven, roadmaps, cycli, analyses en opgeslagen weergaven toe. De broncode is beschikbaar onder de MIT-licentie om zelf te hosten.",
 		"logosTitle": "Logos",
 		"darkLogo": "Dark wordmark",
 		"darkLogoAlt": "Dark Tracing logo on a light background",
@@ -4230,8 +4230,8 @@
 				"link": "Set up GitHub"
 			},
 			"hosting": {
-				"title": "Run it on your infrastructure.",
-				"description": "Build and self-host Tracing with PostgreSQL. Choose your infrastructure and manage your backups, updates and recovery.",
+				"title": "Draai het op je eigen infrastructuur.",
+				"description": "Bouw en host Tracing zelf met PostgreSQL. Kies je infrastructuur en beheer je back-ups, updates en herstel.",
 				"link": "Self-host Tracing"
 			},
 			"source": {
@@ -4274,7 +4274,7 @@
 		},
 		"seo": {
 			"title": "Tracing — Open-source, self-hosted project management",
-			"description": "Open-source project planning with boards, triage, milestones, initiatives, roadmaps, cycles, insights and saved views. Self-host Tracing on your infrastructure."
+			"description": "Opensourceprojectplanning met borden, triage, mijlpalen, initiatieven, roadmaps, cycli, analyses en opgeslagen weergaven. Host Tracing op je eigen infrastructuur."
 		},
 		"resources": {
 			"eyebrow": "Make it your own",
@@ -4293,7 +4293,7 @@
 				"description": "See the differences in hosting, licensing, and workflow."
 			},
 			"startups": {
-				"description": "Planning for a startup, with hosting and operations costs to consider as you grow.",
+				"description": "Planning voor een startup, met hosting- en beheerkosten om rekening mee te houden terwijl je groeit.",
 				"title": "Project management for startups"
 			}
 		},
@@ -4965,13 +4965,13 @@
 				"name": "Naam",
 				"passwordHint": "Minimaal 8 tekens"
 			},
-			"tagline": "Plan your team's work with Tracing.",
+			"tagline": "Plan het werk van je team met Tracing.",
 			"togglePassword": "Zichtbaarheid wachtwoord wijzigen",
 			"useApiKey": "API-sleutel gebruiken",
 			"unlock": {
 				"buy": "Unlock for {{price}}",
 				"buyNoPrice": "Unlock",
-				"message": "This Tracing build connects to your team's instance without an in-app purchase.",
+				"message": "Deze versie van Tracing maakt zonder in-appaankoop verbinding met de instantie van je team.",
 				"nothingToRestore": "No earlier purchase was found for this store account.",
 				"restore": "Restore purchase",
 				"title": "Connect your own server",

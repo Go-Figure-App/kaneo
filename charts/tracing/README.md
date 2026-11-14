@@ -31,7 +31,7 @@ For a new installation:
 
 ```bash
 helm install tracing ./charts/tracing --namespace tracing --create-namespace -f tracing-values.yaml
-kubectl port-forward svc/tracing 5173:5173 -n tracing
+kubectl port-forward svc/tracing-tracing 5173:5173 -n tracing
 ```
 
 Configure `ingress` or `gateway` for the public URL before signing in. See the parameters below. Existing installations must follow [Upgrading an existing Kaneo release](#upgrading-an-existing-kaneo-release) and retain their release name, namespace, database identity and PVCs.
@@ -481,6 +481,8 @@ Helm release name, namespace, existing resource names, PVC and database
 credentials. For a chart that previously used the default `kaneo` name, set
 `nameOverride: kaneo`; retain an existing `fullnameOverride` if one was used.
 This preserves immutable selectors and the existing PostgreSQL resource names.
+Change `service: kaneo` to `service: tracing` in retained `ingress.hosts[].paths[]` and `gateway.rules[].backendRefs[]` values. Backend names use `<fullname>-<service>`; the renamed application Service ends in `-tracing`, so retained `-kaneo` routes would not resolve.
+
 Move application settings from `kaneo:` to `tracing:` in your values file. For
 an existing volume initialized with the old defaults, explicitly retain:
 

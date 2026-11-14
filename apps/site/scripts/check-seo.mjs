@@ -199,6 +199,17 @@ for (const url of urls) {
 for (const url of urls)
   check(linkedPages.has(url), `No internal links to sitemap page: ${url}`);
 
+for (const pathname of ["/llms.txt", "/llms-full.txt"]) {
+  const file = targetFile(pathname);
+  check(Boolean(file), `Missing LLM export: ${pathname}`);
+  if (!file) continue;
+  const content = readFileSync(file, "utf8");
+  check(
+    !/Tracing Cloud|^- (?:Cloud|Managed instance):/m.test(content),
+    `Inherited hosted-service claim: ${pathname}`,
+  );
+}
+
 if (failures.size) {
   console.error([...failures].join("\n"));
   process.exit(1);

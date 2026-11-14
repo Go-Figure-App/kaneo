@@ -17,7 +17,7 @@ Every setting has a flag, an environment variable, or both. A flag wins over its
 | Web app address for links | | `TRACING_WEB_URL` (detected during login) |
 | Config file | | `TRACING_CONFIG` |
 
-Logins are stored in `~/.config/tracing/config.json`, or `$XDG_CONFIG_HOME/tracing/config.json`, with permissions that only your user can read. If another tracing CLI already uses that file, the official CLI leaves it untouched and asks you to move it or set `TRACING_CONFIG`. The CLI keeps track of your running timer in `timer.json` next to the config file.
+Logins are stored in `~/.config/tracing/config.json`, or `$XDG_CONFIG_HOME/tracing/config.json`, with permissions that only your user can read. If another tracing CLI already uses that file, the official CLI leaves it untouched and asks you to move it or set `TRACING_CONFIG`. If the new `tracing/config.json` is absent but `kaneo/config.json` exists under the same config base directory, the CLI continues using that legacy file. Explicit `TRACING_CONFIG` (or legacy `KANEO_CONFIG`) overrides this selection. The CLI keeps track of your running timer in `timer.json` next to the selected config file.
 
 ## Repository defaults
 

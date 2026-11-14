@@ -9,7 +9,7 @@ export const projectManagementForSmallTeams: Guide = {
   summary:
     "Pricing shape, adoption, and admin overhead matter more than feature lists below twenty people.",
   answer:
-    "For a team under twenty people, the deciding factors are pricing shape, whether people will actually update it, and how much administration it needs. Tracing is a good fit if you want an open-source tracker that is free to self-host or $5 per user a month managed. Trello is the easiest hosted start, Basecamp's flat rate is the best deal once you pass about fifteen people, and Linear is the most polished if budget is not the constraint.",
+    "For a team under twenty people, the deciding factors are pricing shape, whether people will actually update it, and how much administration it needs. Tracing is a good fit if you want an open-source tracker that is free to self-host, with infrastructure and maintenance costs you manage. Trello is the easiest hosted start, Basecamp's flat rate is the best deal once you pass about fifteen people, and Linear is the most polished if budget is not the constraint.",
   sections: [
     {
       heading: "What actually matters at this size",

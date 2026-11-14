@@ -1914,7 +1914,7 @@
 			},
 			"foundingFree": {
 				"badge": "Gratuit",
-				"description": "This workspace has complimentary access.",
+				"description": "Cet espace de travail bénéficie d’un accès gratuit.",
 				"title": "Gratuit pour les premiers soutiens"
 			},
 			"interval": {
@@ -2302,7 +2302,7 @@
 				"connectTo": "Connecter {{source}}",
 				"description": "Choisissez l'outil depuis lequel vous migrez. Chaque projet sélectionné devient un nouveau projet ici.",
 				"kaneo": {
-					"description": "Move projects between Tracing instances.",
+					"description": "Déplacez des projets entre les instances Tracing.",
 					"intro": "Les projets de tous les espaces de travail accessibles avec cette clé. Chaque projet sélectionné est copié ici.",
 					"pickerName": "Une autre instance Tracing"
 				},
@@ -4209,11 +4209,11 @@
 	"press": {
 		"title": "Kit de presse",
 		"headline": "Kit de presse Tracing",
-		"intro": "Tracing logos and app icons for articles, videos, and other media.",
-		"description": "Tracing press resources: product information, logos, and contact details for journalists and creators.",
+		"intro": "Logos et icônes de l’application Tracing pour les articles, vidéos et autres médias.",
+		"description": "Ressources presse de Tracing : informations produit, logos et coordonnées pour les journalistes et créateurs.",
 		"downloadKit": "Télécharger toutes les ressources",
 		"boilerplateTitle": "À propos de Tracing",
-		"boilerplate": "Tracing is Go Figure’s open-source planning workspace, built on Kaneo by Andrej Acevski. It adds issues, triage, initiatives, roadmaps, cycles, insights, and saved views. The source is available under the MIT license for self-hosting.",
+		"boilerplate": "Tracing est l’espace de planification open source de Go Figure, basé sur Kaneo d’Andrej Acevski. Il ajoute des tâches, le triage, des initiatives, des feuilles de route, des cycles, des analyses et des vues enregistrées. Le code source est disponible sous licence MIT pour l’auto-hébergement.",
 		"logosTitle": "Logos",
 		"darkLogo": "Logotype sombre",
 		"darkLogoAlt": "Logo Tracing sombre sur fond clair",
@@ -4307,8 +4307,8 @@
 				"link": "Configurer GitHub"
 			},
 			"hosting": {
-				"title": "Run it on your infrastructure.",
-				"description": "Build and self-host Tracing with PostgreSQL. Choose your infrastructure and manage your backups, updates and recovery.",
+				"title": "Exécutez-le sur votre propre infrastructure.",
+				"description": "Compilez et hébergez Tracing avec PostgreSQL. Choisissez votre infrastructure et gérez vos sauvegardes, mises à jour et restaurations.",
 				"link": "Auto-héberger Tracing"
 			},
 			"source": {
@@ -4351,7 +4351,7 @@
 		},
 		"seo": {
 			"title": "Tracing — Gestion de projet open source et auto-hébergée",
-			"description": "Open-source project planning with boards, triage, milestones, initiatives, roadmaps, cycles, insights and saved views. Self-host Tracing on your infrastructure."
+			"description": "Planification de projets open source avec tableaux, triage, jalons, initiatives, feuilles de route, cycles, analyses et vues enregistrées. Hébergez Tracing sur votre propre infrastructure."
 		},
 		"resources": {
 			"eyebrow": "Adaptez-le à vos besoins",
@@ -4370,7 +4370,7 @@
 				"description": "Découvrez les différences d'hébergement, de licence et de flux de travail."
 			},
 			"startups": {
-				"description": "Planning for a startup, with hosting and operations costs to consider as you grow.",
+				"description": "La planification pour une startup, en tenant compte des coûts d’hébergement et d’exploitation à mesure que vous grandissez.",
 				"title": "Project management for startups"
 			}
 		},
@@ -4450,7 +4450,7 @@
 			"uploadFailed": "Échec de l'envoi ({{status}})"
 		},
 		"signIn": {
-			"tagline": "Plan your team's work with Tracing.",
+			"tagline": "Planifiez le travail de votre équipe avec Tracing.",
 			"cloud": "Tracing",
 			"selfHosted": "Auto-hébergé",
 			"captcha": "Ce serveur exige une vérification dans le navigateur pour cette étape. Utilisez plutôt « Continuer dans le navigateur ».",
@@ -4509,7 +4509,7 @@
 			"unlock": {
 				"buy": "Unlock for {{price}}",
 				"buyNoPrice": "Unlock",
-				"message": "This Tracing build connects to your team's instance without an in-app purchase.",
+				"message": "Cette version de Tracing se connecte à l’instance de votre équipe sans achat intégré.",
 				"nothingToRestore": "No earlier purchase was found for this store account.",
 				"restore": "Restore purchase",
 				"title": "Connect your own server",

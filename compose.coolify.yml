@@ -7,7 +7,7 @@
 # Assign a domain to the "tracing" service using its container port, e.g. https://tracing.example.com:5173
 # (visitors use the normal HTTPS URL; the port only tells Coolify where to route traffic).
 #
-# The only required environment variable is TRACING_CLIENT_URL (your public URL, without :5173).
+# Set TRACING_CLIENT_URL (your public URL, without :5173), or retain legacy KANEO_CLIENT_URL.
 # AUTH_SECRET and the PostgreSQL password are auto-generated via Coolify magic variables.
 # Do NOT set TRACING_API_URL — the entrypoint derives it from TRACING_CLIENT_URL (public URL + /api).
 # The Tracing image is built from this checkout. Pin the Git revision for repeatable deployments.
@@ -34,8 +34,14 @@ services:
     build:
       context: .
       dockerfile: Dockerfile.tracing
+    # Compose eagerly evaluates nested required-variable expressions. Validate
+    # the selected URL at startup so either the current or legacy name works.
+    command:
+      - /bin/sh
+      - -ec
+      - ': "$${TRACING_CLIENT_URL:?Set TRACING_CLIENT_URL or KANEO_CLIENT_URL}"; exec /usr/local/bin/kaneo-entrypoint.sh'
     environment:
-      - TRACING_CLIENT_URL=${TRACING_CLIENT_URL:?}
+      - TRACING_CLIENT_URL=${TRACING_CLIENT_URL:-${KANEO_CLIENT_URL:-}}
       - AUTH_SECRET=${SERVICE_HEX_64_KANEO:?}
       # The image derives DATABASE_URL from these POSTGRES_* variables at startup.
       # POSTGRES_PASSWORD is the same generated value shared with the postgres service.

@@ -114,7 +114,7 @@ export const cloudVsOnPremiseProjectManagement: Guide = {
       ],
     },
     {
-      heading: "Tracing supports both",
+      heading: "Self-hosting Tracing",
       body: [
         "Tracing is open source under the MIT license. Self-host it for free with Docker Compose or the Helm chart: the app runs in one container with PostgreSQL, Redis is optional, and single sign-on works with any OpenID Connect provider in the free build.",
         "Tracing is MIT licensed and self-hosted. There is no managed Tracing subscription or per-seat software fee; budget for your chosen infrastructure, storage, backups and maintenance.",

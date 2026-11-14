@@ -1904,7 +1904,7 @@
 			},
 			"foundingFree": {
 				"badge": "Free",
-				"description": "This workspace has complimentary access.",
+				"description": "Bu çalışma alanı ücretsiz erişime sahiptir.",
 				"title": "Founding Free"
 			},
 			"interval": {
@@ -2279,7 +2279,7 @@
 				"connectTo": "Connect {{source}}",
 				"description": "Pick the tool you are moving from. Each project you choose becomes a new project here.",
 				"kaneo": {
-					"description": "Move projects between Tracing instances.",
+					"description": "Projeleri Tracing örnekleri arasında taşıyın.",
 					"intro": "Projects from every workspace the key can see. Each one you pick is copied here.",
 					"pickerName": "Another Tracing"
 				},
@@ -4132,11 +4132,11 @@
 	"press": {
 		"title": "Press kit",
 		"headline": "Tracing press kit",
-		"intro": "Tracing logos and app icons for articles, videos, and other media.",
-		"description": "Tracing press resources: product information, logos, and contact details for journalists and creators.",
+		"intro": "Makaleler, videolar ve diğer medya içerikleri için Tracing logoları ve uygulama simgeleri.",
+		"description": "Tracing basın kaynakları: gazeteciler ve içerik üreticileri için ürün bilgileri, logolar ve iletişim bilgileri.",
 		"downloadKit": "Download all assets",
 		"boilerplateTitle": "About Tracing",
-		"boilerplate": "Tracing is Go Figure’s open-source planning workspace, built on Kaneo by Andrej Acevski. It adds issues, triage, initiatives, roadmaps, cycles, insights, and saved views. The source is available under the MIT license for self-hosting.",
+		"boilerplate": "Tracing, Andrej Acevski'nin Kaneo projesi üzerine kurulu, Go Figure'ın açık kaynaklı planlama çalışma alanıdır. Görevler, ön değerlendirme, girişimler, yol haritaları, döngüler, analizler ve kaydedilmiş görünümler ekler. Kaynak kodu, kendi sunucunuzda barındırmanız için MIT lisansıyla sunulur.",
 		"logosTitle": "Logos",
 		"darkLogo": "Dark wordmark",
 		"darkLogoAlt": "Dark Tracing logo on a light background",
@@ -4230,8 +4230,8 @@
 				"link": "Set up GitHub"
 			},
 			"hosting": {
-				"title": "Run it on your infrastructure.",
-				"description": "Build and self-host Tracing with PostgreSQL. Choose your infrastructure and manage your backups, updates and recovery.",
+				"title": "Kendi altyapınızda çalıştırın.",
+				"description": "Tracing'i PostgreSQL ile derleyip kendi sunucunuzda barındırın. Altyapınızı seçin; yedekleme, güncelleme ve kurtarma işlemlerini yönetin.",
 				"link": "Self-host Tracing"
 			},
 			"source": {
@@ -4274,7 +4274,7 @@
 		},
 		"seo": {
 			"title": "Tracing — Open-source, self-hosted project management",
-			"description": "Open-source project planning with boards, triage, milestones, initiatives, roadmaps, cycles, insights and saved views. Self-host Tracing on your infrastructure."
+			"description": "Panolar, ön değerlendirme, kilometre taşları, girişimler, yol haritaları, döngüler, analizler ve kaydedilmiş görünümlerle açık kaynaklı proje planlama. Tracing'i kendi altyapınızda barındırın."
 		},
 		"resources": {
 			"eyebrow": "Make it your own",
@@ -4293,7 +4293,7 @@
 				"description": "See the differences in hosting, licensing, and workflow."
 			},
 			"startups": {
-				"description": "Planning for a startup, with hosting and operations costs to consider as you grow.",
+				"description": "Büyüdükçe barındırma ve işletme maliyetlerini de göz önünde bulundurarak girişiminiz için planlama yapın.",
 				"title": "Project management for startups"
 			}
 		},
@@ -4965,13 +4965,13 @@
 				"name": "Ad Soyad",
 				"passwordHint": "En az 8 karakter"
 			},
-			"tagline": "Plan your team's work with Tracing.",
+			"tagline": "Ekibinizin işlerini Tracing ile planlayın.",
 			"togglePassword": "Parola görünürlüğünü değiştir",
 			"useApiKey": "API anahtarı kullan",
 			"unlock": {
 				"buy": "Unlock for {{price}}",
 				"buyNoPrice": "Unlock",
-				"message": "This Tracing build connects to your team's instance without an in-app purchase.",
+				"message": "Bu Tracing sürümü, uygulama içi satın alma gerektirmeden ekibinizin örneğine bağlanır.",
 				"nothingToRestore": "No earlier purchase was found for this store account.",
 				"restore": "Restore purchase",
 				"title": "Connect your own server",

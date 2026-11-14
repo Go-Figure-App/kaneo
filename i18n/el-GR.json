@@ -1904,7 +1904,7 @@
 			},
 			"foundingFree": {
 				"badge": "Free",
-				"description": "This workspace has complimentary access.",
+				"description": "Αυτός ο χώρος εργασίας έχει δωρεάν πρόσβαση.",
 				"title": "Founding Free"
 			},
 			"interval": {
@@ -2279,7 +2279,7 @@
 				"connectTo": "Connect {{source}}",
 				"description": "Pick the tool you are moving from. Each project you choose becomes a new project here.",
 				"kaneo": {
-					"description": "Move projects between Tracing instances.",
+					"description": "Μεταφέρετε έργα μεταξύ εγκαταστάσεων του Tracing.",
 					"intro": "Projects from every workspace the key can see. Each one you pick is copied here.",
 					"pickerName": "Another Tracing"
 				},
@@ -4132,11 +4132,11 @@
 	"press": {
 		"title": "Press kit",
 		"headline": "Tracing press kit",
-		"intro": "Tracing logos and app icons for articles, videos, and other media.",
-		"description": "Tracing press resources: product information, logos, and contact details for journalists and creators.",
+		"intro": "Λογότυπα και εικονίδια εφαρμογής Tracing για άρθρα, βίντεο και άλλα μέσα.",
+		"description": "Υλικό Τύπου του Tracing: πληροφορίες προϊόντος, λογότυπα και στοιχεία επικοινωνίας για δημοσιογράφους και δημιουργούς.",
 		"downloadKit": "Download all assets",
 		"boilerplateTitle": "About Tracing",
-		"boilerplate": "Tracing is Go Figure’s open-source planning workspace, built on Kaneo by Andrej Acevski. It adds issues, triage, initiatives, roadmaps, cycles, insights, and saved views. The source is available under the MIT license for self-hosting.",
+		"boilerplate": "Το Tracing είναι ο χώρος σχεδιασμού ανοιχτού κώδικα της Go Figure, βασισμένος στο Kaneo του Andrej Acevski. Προσθέτει εργασίες, διαλογή, πρωτοβουλίες, οδικούς χάρτες, κύκλους, αναλύσεις και αποθηκευμένες προβολές. Ο πηγαίος κώδικας διατίθεται με άδεια MIT για αυτοφιλοξενία.",
 		"logosTitle": "Logos",
 		"darkLogo": "Dark wordmark",
 		"darkLogoAlt": "Dark Tracing logo on a light background",
@@ -4230,8 +4230,8 @@
 				"link": "Set up GitHub"
 			},
 			"hosting": {
-				"title": "Run it on your infrastructure.",
-				"description": "Build and self-host Tracing with PostgreSQL. Choose your infrastructure and manage your backups, updates and recovery.",
+				"title": "Εκτελέστε το στη δική σας υποδομή.",
+				"description": "Μεταγλωττίστε και φιλοξενήστε το Tracing με PostgreSQL. Επιλέξτε την υποδομή σας και διαχειριστείτε τα αντίγραφα ασφαλείας, τις ενημερώσεις και την επαναφορά.",
 				"link": "Self-host Tracing"
 			},
 			"source": {
@@ -4274,7 +4274,7 @@
 		},
 		"seo": {
 			"title": "Tracing — Open-source, self-hosted project management",
-			"description": "Open-source project planning with boards, triage, milestones, initiatives, roadmaps, cycles, insights and saved views. Self-host Tracing on your infrastructure."
+			"description": "Σχεδιασμός έργων ανοιχτού κώδικα με πίνακες, διαλογή, ορόσημα, πρωτοβουλίες, οδικούς χάρτες, κύκλους, αναλύσεις και αποθηκευμένες προβολές. Φιλοξενήστε το Tracing στη δική σας υποδομή."
 		},
 		"resources": {
 			"eyebrow": "Make it your own",
@@ -4293,7 +4293,7 @@
 				"description": "See the differences in hosting, licensing, and workflow."
 			},
 			"startups": {
-				"description": "Planning for a startup, with hosting and operations costs to consider as you grow.",
+				"description": "Σχεδιασμός για μια νεοφυή επιχείρηση, λαμβάνοντας υπόψη το κόστος φιλοξενίας και λειτουργίας καθώς αναπτύσσεστε.",
 				"title": "Project management for startups"
 			}
 		},
@@ -4373,7 +4373,7 @@
 			"uploadFailed": "Η μεταφόρτωση απέτυχε ({{status}})"
 		},
 		"signIn": {
-			"tagline": "Plan your team's work with Tracing.",
+			"tagline": "Σχεδιάστε τη δουλειά της ομάδας σας με το Tracing.",
 			"cloud": "Tracing",
 			"selfHosted": "Αυτο-φιλοξενούμενο",
 			"captcha": "Αυτός ο διακομιστής απαιτεί έλεγχο μέσω προγράμματος περιήγησης για αυτό το βήμα. Χρησιμοποιήστε το «Συνέχεια στο πρόγραμμα περιήγησης».",
@@ -4432,7 +4432,7 @@
 			"unlock": {
 				"buy": "Unlock for {{price}}",
 				"buyNoPrice": "Unlock",
-				"message": "This Tracing build connects to your team's instance without an in-app purchase.",
+				"message": "Αυτή η έκδοση του Tracing συνδέεται στην εγκατάσταση της ομάδας σας χωρίς αγορά εντός εφαρμογής.",
 				"nothingToRestore": "No earlier purchase was found for this store account.",
 				"restore": "Restore purchase",
 				"title": "Connect your own server",

@@ -28,7 +28,7 @@ export const kanboard: Comparison = {
     { feature: "OIDC single sign-on", kaneo: "Built in", them: "Plugin" },
     { feature: "Backlog planning", kaneo: true, them: false },
     { feature: "Time tracking", kaneo: true, them: true },
-    { feature: "Official cloud", kaneo: true, them: false },
+    { feature: "Official cloud", kaneo: false, them: false },
   ],
   reasons: [
     {

@@ -28,7 +28,7 @@ export const wekan: Comparison = {
     { feature: "Backlog planning", kaneo: true, them: false },
     { feature: "Workspace roles", kaneo: true, them: "Board permissions" },
     { feature: "Time tracking", kaneo: true, them: false },
-    { feature: "Official cloud", kaneo: true, them: false },
+    { feature: "Official cloud", kaneo: false, them: false },
   ],
   reasons: [
     {

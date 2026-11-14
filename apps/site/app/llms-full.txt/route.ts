@@ -113,7 +113,7 @@ ${post.markdown}`,
 export function GET() {
   const body = `# Tracing, full content
 
-> Tracing is a project management platform, available as managed Tracing Cloud or self-hosted under the MIT license. This file contains the full text of Tracing's comparison pages, guides, and blog posts. Written by the Tracing team, who build one of the tools discussed.
+> Tracing is an MIT-licensed project management platform that you build and self-host on your own infrastructure. This file contains the full text of Tracing's comparison pages, guides, and blog posts. Written by the Tracing team, who build one of the tools discussed.
 
 ## Product facts
 

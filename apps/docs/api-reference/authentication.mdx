@@ -60,9 +60,9 @@ Auth endpoints under `/api/auth` can also have their own per-IP limits, for exam
 
 ## Device authorization
 
-By default, self-hosted Tracing allows the built-in device clients `kaneo-cli` and `kaneo-mcp`.
+When `DEVICE_AUTH_CLIENT_IDS` is unset, Tracing allows `tracing-cli`, `tracing-mcp`, `tracing-mobile`, `kaneo-cli`, and `kaneo-mcp`.
 
-If you want to use a different device client ID, the instance operator must allow it through `DEVICE_AUTH_CLIENT_IDS`.
+Setting `DEVICE_AUTH_CLIENT_IDS` replaces this default set rather than extending it. Include every current or legacy client your instance still needs, along with any additional trusted client IDs.
 
 ### Flow overview
 

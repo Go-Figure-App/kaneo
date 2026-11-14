@@ -24,7 +24,11 @@ export const taiga: Comparison = {
     { feature: "License", kaneo: "MIT", them: "MPL-2.0" },
     { feature: "Self-hostable", kaneo: true, them: true },
     { feature: "Free to self-host", kaneo: true, them: true },
-    { feature: "Sprints & story points", kaneo: false, them: true },
+    {
+      feature: "Iterations & point estimates",
+      kaneo: "Cycles and estimates",
+      them: "Sprints and story points",
+    },
     { feature: "Backlog planning", kaneo: true, them: true },
     { feature: "Time tracking", kaneo: true, them: false },
     {
@@ -53,7 +57,7 @@ export const taiga: Comparison = {
     },
   ],
   honestNote:
-    "Taiga is a well-established agile tool with proper sprint management, story points, burndown charts, and an epics model, and it is free to self-host under MPL-2.0. If your team genuinely runs Scrum, Taiga supports that far better than Tracing does.",
+    "Taiga provides Scrum workflows and an epics model. Tracing provides workspace cycles, estimates and burndown alongside project and initiative planning. Compare the two models against the workflow your team actually uses.",
   faq: [
     {
       question: "Is Taiga free and open source?",
@@ -63,12 +67,12 @@ export const taiga: Comparison = {
     {
       question: "Taiga or Tracing?",
       answer:
-        "Taiga if you run Scrum with sprints, story points, and burndowns. Tracing if you want a board and backlog without ceremony, plus time tracking and single sign-on in a smaller install.",
+        "Compare Taiga’s Scrum model with Tracing’s workspace cycles, estimates, burndown and project planning. Tracing also includes boards, backlog, time tracking and operator-configured single sign-on.",
     },
     {
       question: "Does Tracing support sprints?",
       answer:
-        "Not as a first-class concept. Tracing has backlog planning and workflow columns, which many teams use to run iterations informally, but there are no sprint objects, story points, or burndown charts.",
+        "Yes, through cycles when enabled by the operator: dated iterations with task assignment, numeric point estimates and a burndown chart for each cycle. Workspace settings control the estimate scale.",
     },
     {
       question: "Which is easier to self-host?",

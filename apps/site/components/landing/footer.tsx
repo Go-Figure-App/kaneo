@@ -21,9 +21,9 @@ export function Footer() {
               <p className="font-medium">Product</p>
               <a
                 className="block text-muted-foreground transition-colors hover:text-foreground"
-                href="https://tracing.gofigureapp.io"
+                href="/auth/sign-in"
               >
-                Open Cloud
+                Open Tracing
               </a>
               <a
                 className="block text-muted-foreground transition-colors hover:text-foreground"

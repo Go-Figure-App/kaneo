@@ -93,7 +93,7 @@ export const selfHostedTrelloAlternatives: Guide = {
       heading: "Getting your Trello boards out",
       body: [
         "Trello exports each board to JSON from the board menu on every plan, including cards, lists, labels, and members. Comments come from the 1,000 most recent actions only, so older history on a busy board may be missing. Attachments are links rather than files, so download them separately if they matter.",
-        "From there it is a scripting job against the target tool's API. Tracing has a documented public API and per-project JSON import, so a board of a few hundred cards is an afternoon. Import into a scratch project first and check assignee matching, which usually happens by email address.",
+        "For Tracing, use Settings → Workspace → Import → Trello, authorize your account and select boards. Import one board first and check assignees: Trello hides email addresses, so the importer matches members by full name. Use scripting against the public API only for custom transformations; the generic JSON import cannot read raw Trello exports.",
       ],
     },
   ],

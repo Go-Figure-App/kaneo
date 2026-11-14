@@ -10,7 +10,7 @@ export const jira: Comparison = {
   summary: "Self-hosted planning as an alternative to Jira.",
   heading: "The lighter Jira alternative for teams that just want to ship",
   subheading:
-    "Jira can run a 500-person org, but most teams just want to plan and ship work without the weight. Tracing is a simple, open-source project manager you can self-host or let us run for you.",
+    "Jira can run a 500-person org, but most teams just want to plan and ship work without the weight. Tracing is a simple, open-source project manager you can self-host on infrastructure you control.",
   verdict:
     "Tracing is a self-hosted alternative to Jira for issue and project planning. It includes boards, triage, project plans, milestones, initiatives, roadmaps, cycles, insights and saved views. Budget for hosting, backups and maintenance; no managed Tracing subscription is offered.",
   facts: {
@@ -41,7 +41,7 @@ export const jira: Comparison = {
     },
     {
       title: "Own your data",
-      body: "Self-host Tracing on your own servers under the MIT license, or use our EU-hosted cloud. Either way you can export everything, anytime.",
+      body: "Self-host Tracing on your own servers under the MIT license. Use project exports and the public API to retrieve your data.",
     },
     {
       title: "Fair, honest pricing",

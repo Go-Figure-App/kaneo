@@ -36,7 +36,7 @@ export const focalboard: Comparison = {
     { feature: "SSO / OIDC", kaneo: "Built in", them: "Via Mattermost" },
     { feature: "Backlog planning", kaneo: true, them: false },
     { feature: "Time tracking", kaneo: true, them: false },
-    { feature: "Official cloud", kaneo: true, them: false },
+    { feature: "Official cloud", kaneo: false, them: false },
   ],
   reasons: [
     {

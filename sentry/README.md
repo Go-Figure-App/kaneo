@@ -56,6 +56,12 @@ Two rule families:
 - **Issue rules** (`kind: "issue"`) — trigger on event condition types (first_seen_event, regression_event, etc.). One JSON entry per rule.
 - **Metric rules** (`kind: "metric"`) — trigger on aggregate conditions (count, p95, failure_rate). Each entry creates a Detector (the metric source) and a Workflow (the alert) and links them via `detectorIds`.
 
+## Renaming existing dashboards
+
+Before running the dashboard provisioner against an existing installation, rename each `Kaneo:` dashboard in the Sentry UI to the corresponding `Tracing:` title in `dashboards.json` (Backend, Frontend, MCP and Cron Monitors). Keep the existing dashboards and their IDs. The provisioner matches exact titles; running it first would create duplicates and would not carry the old filters to those new dashboards. Confirm the renamed titles, then run `--dry-run` and check that the existing dashboards will be updated before applying.
+
+These configuration files do not activate or modify a Sentry deployment by themselves.
+
 ## Applying the dashboards
 
 `scripts/provision-sentry-dashboards.sh` reads `sentry/dashboards.json` and creates-or-updates each dashboard by title. The script preserves any filter settings (projects, environment, period) the maintainer has set in the Sentry UI by reading the current dashboard first and only swapping the widgets array.
