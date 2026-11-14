@@ -18,10 +18,11 @@ export type ImportProjectInput = {
   name: string;
   userId: string;
   preferredKey?: string;
+  signal?: AbortSignal;
 };
 
 export async function createImportProject<T>(
-  { workspaceId, name, userId, preferredKey }: ImportProjectInput,
+  { workspaceId, name, userId, preferredKey, signal }: ImportProjectInput,
   fill: (tx: Transaction, project: CreatedProject) => Promise<T>,
 ): Promise<T> {
   const existing = await db
@@ -44,6 +45,7 @@ export async function createImportProject<T>(
         if (!project) throw new Error("Failed to create the imported project");
         const result = await fill(tx, project);
         await placeProject(tx, { workspaceId, projectId: project.id, slug });
+        signal?.throwIfAborted();
         return result;
       }),
     { preferredKey },

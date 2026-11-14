@@ -112,6 +112,7 @@ export async function getCycle(id: string, who: Actor, now = new Date()) {
     ...items[0]!,
     settings,
     historyAvailable:
+      (!cycle.completedAt || days.length > 0) &&
       available.length === days.length &&
       (!cycle.summary || Boolean(cycle.summary.projectTotals)),
     days: available.map((day) => ({

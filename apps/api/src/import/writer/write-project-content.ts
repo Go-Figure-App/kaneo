@@ -15,6 +15,7 @@ import { writeImportComments } from "./write-import-comments";
 import { writeImportLabels } from "./write-import-labels";
 import { writeImportRelations } from "./write-import-relations";
 import { writeImportTasks } from "./write-import-tasks";
+import type { PlannedImportTask, BoardColumn } from "./plan-import-tasks";
 
 type Transaction = Parameters<Parameters<typeof db.transaction>[0]>[0];
 
@@ -25,6 +26,10 @@ export type ProjectContentInput = {
   source: ImportSourceId;
   project: ImportedProject;
   includeComments: boolean;
+  afterWrite?: (context: {
+    tasks: PlannedImportTask[];
+    columns: ReadonlyMap<string, BoardColumn>;
+  }) => Promise<void>;
 };
 
 export async function writeProjectContent(
@@ -36,6 +41,7 @@ export async function writeProjectContent(
     source,
     project,
     includeComments,
+    afterWrite,
   }: ProjectContentInput,
 ): Promise<{ counts: ImportCounts; warnings: string[] }> {
   const now = new Date();
@@ -98,6 +104,7 @@ export async function writeProjectContent(
   );
 
   const unmatched = assignees.warning();
+  await afterWrite?.({ tasks, columns: board.byKey });
   return {
     counts: {
       columns: board.count,

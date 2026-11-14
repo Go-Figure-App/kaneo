@@ -81,7 +81,7 @@ export async function taskMetrics(
     measure === "created-completed"
       ? sql`true`
       : measure === "workload"
-        ? sql`${delivery} and t.category <> 'completed'
+        ? sql`${delivery} and t.category <> 'completed' and t.status <> 'archived'
         ${query.from ? sql`and t.created_at >= ${range.startsAt.toISOString()}::timestamptz` : sql``}
         ${query.to ? sql`and t.created_at < ${range.endsAt.toISOString()}::timestamptz` : sql``}`
         : measure === "time-to-triage"

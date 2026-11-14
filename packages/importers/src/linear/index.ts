@@ -21,6 +21,8 @@ export {
   LINEAR_API_URL,
   LinearApiError,
   RATE_LIMITED_MESSAGE,
+  type LinearGraphQL,
+  type LinearGraphQLOptions,
 } from "./graphql.js";
 export { FALLBACK_COLOR, mapLabels, toHexColor } from "./labels.js";
 export {

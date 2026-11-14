@@ -10,6 +10,7 @@ import {
   sql,
 } from "drizzle-orm";
 import db from "../../database";
+import { originalIdentifierMatches } from "../import/search";
 import {
   columnTable,
   labelTable,
@@ -122,6 +123,7 @@ export async function listWorkspaceTasks(
         needle
           ? or(
               ilike(taskTable.title, needle),
+              originalIdentifierMatches(query.search ?? ""),
               sql`concat(${projectTable.slug}, '-', ${taskTable.number}::text) ilike ${needle}`,
             )
           : undefined,

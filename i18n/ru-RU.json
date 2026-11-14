@@ -6091,6 +6091,10 @@
 				"labels": "Labels",
 				"due": "Due date"
 			}
+		},
+		"import": {
+			"description": "Projects, initiatives, milestones, cycles, estimates and original issue IDs, with issues and comments.",
+			"intro": "Each Linear project becomes a new project. Issues without a project go into one catch-all per team. Linked initiatives and team cycles are included; selecting everything also includes initiatives without projects. Historical burndown is unavailable. Repeating an import creates another copy."
 		}
 	}
 }

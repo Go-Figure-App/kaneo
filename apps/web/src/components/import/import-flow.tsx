@@ -7,6 +7,8 @@ import { ImportOverview } from "@/components/import/import-overview";
 import { ImportRunView } from "@/components/import/import-run-view";
 import { ImportSourceFlow } from "@/components/import/import-source-flow";
 import { useFocusHeadingOnChange } from "@/components/import/use-focus-heading-on-change";
+import { usePlanningEnabled } from "@/components/parity/planning/queries";
+import { planningImportSource } from "@/components/parity/import/source";
 
 type ImportFlowProps = {
   source?: ImportSourceId;
@@ -22,6 +24,7 @@ export function ImportFlow({
   workspaceName,
 }: ImportFlowProps) {
   const navigate = useNavigate();
+  const planning = usePlanningEnabled("import");
   const view = runId
     ? `run:${runId}`
     : source
@@ -51,7 +54,7 @@ export function ImportFlow({
       ) : source ? (
         <ImportSourceFlow
           key={source}
-          source={getImportSource(source)}
+          source={planningImportSource(getImportSource(source), planning)}
           workspaceId={workspaceId}
           workspaceName={workspaceName}
           onCancel={showOverview}

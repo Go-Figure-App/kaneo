@@ -45,6 +45,7 @@ export async function closeCycle(
   const tasks = await tx
     .select({
       taskId: taskTable.id,
+      status: taskTable.status,
       projectId: taskTable.projectId,
       category: taskCategory,
       estimate: taskExtTable.estimate,
@@ -81,7 +82,10 @@ export async function closeCycle(
   const totals = sumTotals(rows.values());
   const rolledOver = next
     ? tasks.filter(
-        (task) => task.category !== "completed" && task.category !== "canceled",
+        (task) =>
+          task.status !== "archived" &&
+          task.category !== "completed" &&
+          task.category !== "canceled",
       )
     : [];
   const projectTotals: Record<string, ProjectCycleSummary> = Object.fromEntries(
