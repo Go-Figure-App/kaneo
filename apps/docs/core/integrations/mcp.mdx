@@ -56,8 +56,9 @@ TRACING_API_URL=https://tracing.gofigureapp.io node packages/mcp/dist/index.js s
 Configure a stdio client to run `node` with the absolute path to
 `packages/mcp/dist/index.js` followed by `serve`, and set `TRACING_API_URL` in
 that client's environment. The built-in HTTP endpoint is simpler for clients
-that support it. The interactive package installer assumes registry distribution;
-use this explicit source command until a package release exists.
+that support it. To generate that configuration interactively, run
+`node packages/mcp/dist/index.js install` from your source checkout. The
+installer records the current Node executable and the local entry path.
 
 The default device client is `tracing-mcp`; `tracing-cli` and legacy Kaneo device
 clients are also allowed by default. On first use, open the printed verification
