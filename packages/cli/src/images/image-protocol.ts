@@ -16,7 +16,9 @@ const OFF = new Set(["off", "0", "false", "no", "none"]);
 const FORCED = new Set<ImageProtocol>(["kitty", "iterm", "blocks"]);
 
 function forcedProtocol(env: Environment): ImageProtocol | "off" | undefined {
-  const setting = env.KANEO_IMAGES?.trim().toLowerCase();
+  const setting = (env.TRACING_IMAGES ?? env.KANEO_IMAGES)
+    ?.trim()
+    .toLowerCase();
   if (!setting) return undefined;
   if (OFF.has(setting)) return "off";
   return FORCED.has(setting as ImageProtocol)

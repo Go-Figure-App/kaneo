@@ -34,7 +34,7 @@ export const runRelationAdd = Effect.fn("command.task.relation.add")(
         Effect.fail(
           new InvalidArgument({
             message: `${label} and ${otherLabel} are already linked this way.`,
-            hint: `Run kaneo task relation list ${label} to see how they are linked.`,
+            hint: `Run tracing task relation list ${label} to see how they are linked.`,
           }),
         ),
       ),
@@ -78,7 +78,7 @@ export const relationAdd = Command.make(
   (options) => runRelationAdd(options),
 ).pipe(
   Command.withDescription(
-    "Link two tasks, for example kaneo task relation add KAN-3 blocked-by KAN-4",
+    "Link two tasks, for example tracing task relation add KAN-3 blocked-by KAN-4",
   ),
   Command.provide(ApiLayer),
 );

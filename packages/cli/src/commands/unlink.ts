@@ -27,7 +27,7 @@ export function renderUnlink(ui: Ui, result: UnlinkResult): string[] {
   const { theme, glyphs } = ui;
   if (!result.path || !result.unlinked) {
     return [
-      `  ${theme.muted(glyphs.dot)} This directory is not linked to Kaneo`,
+      `  ${theme.muted(glyphs.dot)} This directory is not linked to Tracing`,
     ];
   }
   const detail = result.deleted
@@ -56,7 +56,7 @@ export const runUnlink = Effect.fn("command.unlink")(function* (options: {
 
   if (!options.yes && output.interactive) {
     const confirmed = yield* confirm(
-      `Remove the Kaneo workspace and project from ${path}?`,
+      `Remove the Tracing workspace and project from ${path}?`,
     );
     if (!confirmed) return yield* new Cancelled();
   }
@@ -85,6 +85,6 @@ export const unlinkCommand = Command.make(
   },
   (options) => runUnlink(options),
 ).pipe(
-  Command.withDescription("Remove this repository's .kaneo.json settings"),
+  Command.withDescription("Remove this repository's .tracing.json settings"),
   Command.provide(ApiLayer),
 );

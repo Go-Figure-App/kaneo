@@ -21,7 +21,7 @@ export const readImportSource = Effect.fnUntraced(function* (path: string) {
   if (environment.stdin.isTTY) {
     return yield* new InvalidArgument({
       message: "- reads the tasks from stdin, but nothing is piped in.",
-      hint: "Pipe the file in, for example: kaneo task export -p KAN | kaneo task import - -p MOB --yes",
+      hint: "Pipe the file in, for example: tracing task export -p KAN | tracing task import - -p MOB --yes",
     });
   }
   const content = yield* Effect.tryPromise({

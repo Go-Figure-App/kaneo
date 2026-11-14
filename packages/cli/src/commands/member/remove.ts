@@ -37,12 +37,12 @@ export const runMemberRemove = Effect.fn("command.member.remove")(
     );
     const target = yield* chooseMember(members, options.member, {
       question: "Remove which member?",
-      example: "kaneo member remove grace@example.com",
+      example: "tracing member remove grace@example.com",
     });
     if (target.id === me.id) {
       return yield* new InvalidArgument({
         message: "You cannot remove yourself.",
-        hint: "Run kaneo workspace leave <workspace> to leave it.",
+        hint: "Run tracing workspace leave <workspace> to leave it.",
       });
     }
     const mine = members.find((member) => member.id === me.id);
@@ -76,7 +76,7 @@ export const runMemberRemove = Effect.fn("command.member.remove")(
           /only owner/i.test(error.message)
             ? new InvalidArgument({
                 message: `${target.name} is the only owner, so they cannot be removed.`,
-                hint: `Make another member an owner first with kaneo member role <member> owner.`,
+                hint: `Make another member an owner first with tracing member role <member> owner.`,
               })
             : error,
         ),

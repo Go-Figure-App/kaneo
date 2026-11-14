@@ -73,7 +73,7 @@ describe("checkWorkspaceSlug", () => {
   it("refuses reserved slugs", () => {
     const result = checkWorkspaceSlug("api");
     expect(Result.isFailure(result) && result.failure.message).toBe(
-      '"api" is reserved by Kaneo.',
+      '"api" is reserved by Tracing.',
     );
   });
 });

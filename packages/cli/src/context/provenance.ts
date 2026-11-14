@@ -1,4 +1,4 @@
-import { normalizeBaseUrl } from "@kaneo/mcp/normalize-base-url";
+import { normalizeBaseUrl } from "@tracing/mcp/normalize-base-url";
 import { Option, Redacted } from "effect";
 import { resolveSession, type SessionInputs } from "../services/session.js";
 
@@ -56,7 +56,7 @@ export function buildProvenance(inputs: SessionInputs): Provenance {
 
   const profileSource: ProfileSource = Option.isSome(flags.profile)
     ? "flag"
-    : filled(env.KANEO_PROFILE)
+    : filled(env.TRACING_PROFILE ?? env.KANEO_PROFILE)
       ? "env"
       : Object.keys(config.profiles).length > 0 && filled(config.activeProfile)
         ? "config"
@@ -64,17 +64,18 @@ export function buildProvenance(inputs: SessionInputs): Provenance {
 
   const serverSource: ServerSource = Option.isSome(flags.apiUrl)
     ? "flag"
-    : filled(env.KANEO_API_URL)
+    : filled(env.TRACING_API_URL ?? env.KANEO_API_URL)
       ? "env"
       : stored
         ? "profile"
         : "default";
 
-  const webSource: WebSource = env.KANEO_WEB_URL
-    ? "env"
-    : session.profile?.webUrl
-      ? "profile"
-      : "server";
+  const webSource: WebSource =
+    (env.TRACING_WEB_URL ?? env.KANEO_WEB_URL)
+      ? "env"
+      : session.profile?.webUrl
+        ? "profile"
+        : "server";
 
   const credentials = Option.getOrUndefined(session.credentials);
   const workspace = Option.getOrUndefined(session.workspace);

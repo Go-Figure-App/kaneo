@@ -1,5 +1,5 @@
 import { Effect, Schema } from "effect";
-import { KaneoApi } from "./kaneo-api.js";
+import { TracingApi } from "./tracing-api.js";
 
 const NullableString = Schema.NullOr(Schema.String);
 
@@ -26,7 +26,7 @@ function linksPath(taskId: string, suffix = ""): string {
 }
 
 export const listExternalLinks = Effect.fnUntraced(function* (taskId: string) {
-  const api = yield* KaneoApi;
+  const api = yield* TracingApi;
   return yield* api.request("GET", linksPath(taskId), ExternalLinkList);
 });
 
@@ -34,7 +34,7 @@ export const createExternalLink = Effect.fnUntraced(function* (
   taskId: string,
   body: { readonly url: string; readonly title?: string },
 ) {
-  const api = yield* KaneoApi;
+  const api = yield* TracingApi;
   return yield* api.request("POST", linksPath(taskId), ExternalLink, { body });
 });
 
@@ -42,7 +42,7 @@ export const deleteExternalLink = Effect.fnUntraced(function* (
   taskId: string,
   linkId: string,
 ) {
-  const api = yield* KaneoApi;
+  const api = yield* TracingApi;
   return yield* api.request(
     "DELETE",
     linksPath(taskId, `/${encodeURIComponent(linkId)}`),

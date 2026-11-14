@@ -47,7 +47,7 @@ describe("renderWorkspaceList", () => {
     const lines = renderWorkspaceList(ui, [{ ...acme, active: false }, side]);
     expect(lines[1]?.startsWith("  Acme Studio")).toBe(true);
     expect(lines).toContain(
-      "  No workspace selected. Run kaneo workspace use to choose one.",
+      "  No workspace selected. Run tracing workspace use to choose one.",
     );
   });
 

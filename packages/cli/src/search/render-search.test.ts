@@ -24,12 +24,12 @@ function result(overrides: Partial<SearchResultJson>): SearchResultJson {
     snippet: null,
     projectId: "p_kan",
     projectKey: "KAN",
-    projectName: "Kaneo Web",
+    projectName: "Tracing Web",
     workspaceId: "ws_acme",
     assignee: null,
     author: null,
     createdAt: "2026-10-07T19:19:55.746Z",
-    url: "https://kaneo.test/task/t1",
+    url: "https://tracing.test/task/t1",
     ...overrides,
   };
 }
@@ -39,7 +39,7 @@ const results: SearchResultJson[] = [
   result({
     type: "project",
     id: "p_kan",
-    title: "Kaneo Web",
+    title: "Tracing Web",
     ticketId: null,
     status: null,
   }),
@@ -81,7 +81,7 @@ describe("renderSearch", () => {
       "    KAN-6  Review API error shape                    ● In Review",
       "",
       "  Projects 1",
-      "    KAN  Kaneo Web",
+      "    KAN  Tracing Web",
       "",
       "  Comments 1",
       "    KAN-1  Still broken on Safari  Grace Hopper",

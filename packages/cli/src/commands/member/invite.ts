@@ -50,7 +50,7 @@ export const runMemberInvite = Effect.fn("command.member.invite")(
           already.length === 1
             ? `${already[0]} is already a member of this workspace.`
             : `Already members of this workspace: ${already.join(", ")}.`,
-        hint: "Run kaneo member role to change what a member can do.",
+        hint: "Run tracing member role to change what a member can do.",
       });
     }
     const pending = new Set(
@@ -129,7 +129,7 @@ export const runMemberInvite = Effect.fn("command.member.invite")(
     const kept = completed.filter((invite) => invite.role !== role);
     if (kept.length > 0) {
       yield* note((ui) => [
-        `  ${ui.theme.warning(ui.glyphs.warning)} A resent invitation keeps its original role. To change it, run kaneo invitation cancel <id>, then invite again.`,
+        `  ${ui.theme.warning(ui.glyphs.warning)} A resent invitation keeps its original role. To change it, run tracing invitation cancel <id>, then invite again.`,
         "",
       ]);
     }

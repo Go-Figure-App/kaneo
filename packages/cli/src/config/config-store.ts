@@ -20,7 +20,7 @@ export type ConfigStoreShape = {
 export class ConfigStore extends Context.Service<
   ConfigStore,
   ConfigStoreShape
->()("kaneo/ConfigStore") {}
+>()("tracing/ConfigStore") {}
 
 function isMissing(cause: unknown): boolean {
   return (cause as { code?: unknown } | null)?.code === "ENOENT";

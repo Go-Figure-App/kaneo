@@ -1,6 +1,6 @@
 import { Effect, Option, Result, Schema } from "effect";
 import { Argument, Command, Flag } from "effect/cli";
-import { type HttpMethod, KaneoApi } from "../api/kaneo-api.js";
+import { type HttpMethod, TracingApi } from "../api/tracing-api.js";
 import { InvalidArgument } from "../errors/errors.js";
 import { readTextInput } from "../input/read-text-input.js";
 import { emit } from "../output/emit.js";
@@ -66,7 +66,7 @@ export const runApi = Effect.fn("command.api")(function* (options: {
   if (!method) {
     return yield* new InvalidArgument({
       message: `${options.method} is not a supported HTTP method.`,
-      hint: `Use one of ${METHODS.join(", ")}, for example kaneo api GET /user/me.`,
+      hint: `Use one of ${METHODS.join(", ")}, for example tracing api GET /user/me.`,
     });
   }
   const target = normalizeApiPath(options.path);
@@ -81,7 +81,7 @@ export const runApi = Effect.fn("command.api")(function* (options: {
     });
   }
 
-  const api = yield* KaneoApi;
+  const api = yield* TracingApi;
   const response = yield* withSpinner(`${method} ${target.success.path}`)(
     api.request(method, target.success.path, Schema.Unknown, {
       raw: true,
@@ -121,6 +121,6 @@ export const apiCommand = Command.make(
   },
   (options) => runApi(options),
 ).pipe(
-  Command.withDescription("Send an authenticated request to the Kaneo API"),
+  Command.withDescription("Send an authenticated request to the Tracing API"),
   Command.provide(ApiLayer),
 );

@@ -34,13 +34,13 @@ describe("toNotificationJson", () => {
           ]),
           projectSlugs: new Map([["p1", "kan"]]),
         },
-        "https://kaneo.test",
+        "https://tracing.test",
       ).task,
     ).toEqual({
       id: "t1",
       ticketId: "KAN-12",
       title: "Fix login redirect",
-      url: "https://kaneo.test/dashboard/workspace/ws_1/project/p1/task/t1",
+      url: "https://tracing.test/dashboard/workspace/ws_1/project/p1/task/t1",
     });
   });
 
@@ -49,13 +49,13 @@ describe("toNotificationJson", () => {
       toNotificationJson(
         view,
         { tasks: new Map(), projectSlugs: new Map() },
-        "https://kaneo.test",
+        "https://tracing.test",
       ).task,
     ).toEqual({
       id: "t1",
       ticketId: null,
       title: "Fix login",
-      url: "https://kaneo.test/dashboard/workspace/ws_1/project/p1/task/t1",
+      url: "https://tracing.test/dashboard/workspace/ws_1/project/p1/task/t1",
     });
   });
 
@@ -64,7 +64,7 @@ describe("toNotificationJson", () => {
       toNotificationJson(
         { ...view, taskId: null, taskTitle: null, projectId: null },
         { tasks: new Map(), projectSlugs: new Map() },
-        "https://kaneo.test",
+        "https://tracing.test",
       ).task,
     ).toBeNull();
   });

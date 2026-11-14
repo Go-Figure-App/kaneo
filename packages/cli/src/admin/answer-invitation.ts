@@ -16,7 +16,7 @@ import { renderInvitationAnswer } from "./render-invitation-change.js";
 const notPending = (id: string) =>
   new InvalidArgument({
     message: `No pending invitation ${id} for your account.`,
-    hint: "It may have expired, been canceled, or been answered already. Run kaneo invitation pending to see yours.",
+    hint: "It may have expired, been canceled, or been answered already. Run tracing invitation pending to see yours.",
   });
 
 export const answerInvitation = Effect.fnUntraced(function* (
@@ -28,7 +28,7 @@ export const answerInvitation = Effect.fnUntraced(function* (
   if (Option.isNone(reference) && !output.interactive) {
     return yield* new InvalidArgument({
       message: `Which invitation should be ${accept ? "accepted" : "declined"}?`,
-      hint: `Pass its id, for example kaneo invitation ${verb} <id>. Run kaneo invitation pending to see them.`,
+      hint: `Pass its id, for example tracing invitation ${verb} <id>. Run tracing invitation pending to see them.`,
     });
   }
   const received = yield* withSpinner("Loading invitations")(
@@ -55,7 +55,7 @@ export const answerInvitation = Effect.fnUntraced(function* (
   if (!details.valid) {
     return yield* new InvalidArgument({
       message: `${details.error ?? "This invitation can no longer be used"}.`,
-      hint: "Run kaneo invitation pending to see the invitations you can answer.",
+      hint: "Run tracing invitation pending to see the invitations you can answer.",
     });
   }
 
@@ -110,7 +110,7 @@ export const answerInvitation = Effect.fnUntraced(function* (
         accepted: accept,
         workspaceName,
         next: joined
-          ? `Run kaneo workspace use ${joined.slug} to switch to it.`
+          ? `Run tracing workspace use ${joined.slug} to switch to it.`
           : null,
       }),
   );

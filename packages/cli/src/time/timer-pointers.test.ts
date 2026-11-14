@@ -7,12 +7,12 @@ import {
 
 describe("timer pointers", () => {
   it("round-trips through the file format", () => {
-    const pointers = withTimerPointer({}, "https://kaneo.test", {
+    const pointers = withTimerPointer({}, "https://tracing.test", {
       entryId: "e1",
       taskId: "t1",
     });
     expect(parseTimerPointers(serializeTimerPointers(pointers))).toEqual({
-      "https://kaneo.test": { entryId: "e1", taskId: "t1" },
+      "https://tracing.test": { entryId: "e1", taskId: "t1" },
     });
   });
 

@@ -19,7 +19,7 @@ const COLOR_NAMES = ["no color", "16 colors", "256 colors", "truecolor"];
 const CONFIG_STATUS = {
   ok: "",
   missing: "not created yet",
-  foreign: "written by another kaneo CLI",
+  foreign: "written by another tracing CLI",
   invalid: "invalid",
   io: "unreadable",
 } as const;
@@ -33,7 +33,7 @@ function serverSource(report: ContextReport): string {
     case "flag":
       return "--api-url";
     case "env":
-      return "KANEO_API_URL";
+      return "TRACING_API_URL";
     case "profile":
       return profileLabel(report);
     case "default":
@@ -44,7 +44,7 @@ function serverSource(report: ContextReport): string {
 function webSource(report: ContextReport): string {
   switch (report.web.source) {
     case "env":
-      return "KANEO_WEB_URL";
+      return "TRACING_WEB_URL";
     case "profile":
       return profileLabel(report);
     case "server":
@@ -57,7 +57,7 @@ function profileSource(report: ContextReport): string {
     case "flag":
       return "--profile";
     case "env":
-      return "KANEO_PROFILE";
+      return "TRACING_PROFILE";
     case "config":
       return "active in the config file";
     case "default":
@@ -70,7 +70,7 @@ function authSource(report: ContextReport): string {
     case "flag":
       return "--token";
     case "env":
-      return "KANEO_API_KEY";
+      return "TRACING_API_KEY";
     case "profile":
       return profileLabel(report);
     case "none":
@@ -83,9 +83,9 @@ function workspaceSource(report: ContextReport): string {
     case "flag":
       return "-w";
     case "env":
-      return "KANEO_WORKSPACE";
+      return "TRACING_WORKSPACE";
     case "repo":
-      return report.workspace.path ?? ".kaneo.json";
+      return report.workspace.path ?? ".tracing.json";
     case "profile":
       return profileLabel(report);
     case "none":
@@ -96,9 +96,9 @@ function workspaceSource(report: ContextReport): string {
 function projectSource(report: ContextReport): string {
   switch (report.project.source) {
     case "env":
-      return "KANEO_PROJECT";
+      return "TRACING_PROJECT";
     case "repo":
-      return report.project.path ?? ".kaneo.json";
+      return report.project.path ?? ".tracing.json";
     case "none":
       return "";
   }
@@ -109,7 +109,7 @@ function outputSource(report: ContextReport): string {
     case "flag":
       return report.output.mode === "json" ? "--json" : "--human";
     case "env":
-      return "KANEO_JSON";
+      return "TRACING_JSON";
     case "terminal":
       return "stdout is a terminal";
     case "pipe":

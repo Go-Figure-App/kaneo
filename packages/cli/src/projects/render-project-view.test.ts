@@ -18,7 +18,7 @@ const project: Project = {
   id: "p_kan",
   workspaceId: "ws_acme",
   slug: "kan",
-  name: "Kaneo Web",
+  name: "Tracing Web",
   icon: null,
   description: "The web app.\n\nShip the board first.",
   archivedAt: null,
@@ -83,14 +83,14 @@ describe("toProjectView", () => {
       project,
       columns,
       { tasks, total: 9 },
-      "https://kaneo.test",
+      "https://tracing.test",
     );
     expect(view).toMatchObject({
       id: "p_kan",
       key: "KAN",
-      name: "Kaneo Web",
+      name: "Tracing Web",
       description: "The web app.\n\nShip the board first.",
-      url: "https://kaneo.test/dashboard/workspace/ws_acme/project/p_kan/board",
+      url: "https://tracing.test/dashboard/workspace/ws_acme/project/p_kan/board",
       totalTasks: 9,
     });
     expect(view.columns).toHaveLength(4);
@@ -102,15 +102,15 @@ describe("renderProjectView", () => {
     project,
     columns,
     { tasks, total: 9 },
-    "https://kaneo.test",
+    "https://tracing.test",
   );
 
   it("shows the header, description, and one bar per column at 80 columns", () => {
     const lines = renderProjectView(ui(80), { ...view, taskLimit: 1000 });
     expect(lines).toEqual([
       "",
-      "  Kaneo Web · KAN · 9 tasks",
-      "  https://kaneo.test/dashboard/workspace/ws_acme/project/p_kan/board",
+      "  Tracing Web · KAN · 9 tasks",
+      "  https://tracing.test/dashboard/workspace/ws_acme/project/p_kan/board",
       "",
       "  The web app.",
       "",
@@ -150,8 +150,8 @@ describe("renderProjectView", () => {
       taskLimit: 1000,
     });
     expect(lines.slice(1)).toEqual([
-      "  Kaneo Web · KAN · 0 tasks",
-      "  https://kaneo.test/dashboard/workspace/ws_acme/project/p_kan/board",
+      "  Tracing Web · KAN · 0 tasks",
+      "  https://tracing.test/dashboard/workspace/ws_acme/project/p_kan/board",
       "",
       "  This project has no columns yet.",
       "",

@@ -1,6 +1,6 @@
 import { Effect } from "effect";
 import { getBoardPage } from "../api/endpoints.js";
-import type { Query } from "../api/kaneo-api.js";
+import type { Query } from "../api/tracing-api.js";
 import type { BoardLabel, BoardTask } from "../api/schemas.js";
 
 export type TaskSortField =

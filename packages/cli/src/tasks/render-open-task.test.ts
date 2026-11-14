@@ -9,7 +9,7 @@ const ui = makeUi({
   animate: false,
   columns: 80,
 });
-const url = "https://kaneo.test/dashboard/workspace/w/project/p/task/t";
+const url = "https://tracing.test/dashboard/workspace/w/project/p/task/t";
 
 describe("renderOpenTask", () => {
   it("confirms the opened url", () => {

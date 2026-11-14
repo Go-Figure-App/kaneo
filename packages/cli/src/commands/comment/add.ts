@@ -13,7 +13,7 @@ export const runCommentAdd = Effect.fn("command.comment.add")(
     const content = yield* readCommentInput({
       words: options.text,
       file: options.file,
-      command: `kaneo comment add ${options.task}`,
+      command: `tracing comment add ${options.task}`,
     });
     yield* runTaskComment({
       task: options.task,

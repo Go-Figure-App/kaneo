@@ -3,7 +3,7 @@ import { type ConfigFile, emptyConfig } from "../../config/format.js";
 import { rememberWorkspace } from "./remember-workspace.js";
 
 const signedIn: ConfigFile = {
-  kind: "kaneo-cli",
+  kind: "tracing-cli",
   version: 1,
   activeProfile: "default",
   profiles: {
@@ -14,7 +14,7 @@ const signedIn: ConfigFile = {
       workspaceId: "ws_old",
       user: { id: "u1", name: "Ada Lovelace", email: "ada@example.com" },
     },
-    work: { apiUrl: "https://cloud.kaneo.app", token: "other" },
+    work: { apiUrl: "https://tracing.gofigureapp.io", token: "other" },
   },
 };
 
@@ -60,14 +60,14 @@ describe("rememberWorkspace", () => {
     const result = rememberWorkspace(
       signedIn,
       "work",
-      "https://cloud.kaneo.app",
+      "https://tracing.gofigureapp.io",
       "ws_cloud",
     );
     expect(result.kind === "saved" && result.config.activeProfile).toBe(
       "default",
     );
     expect(result.kind === "saved" && result.config.profiles.work).toEqual({
-      apiUrl: "https://cloud.kaneo.app",
+      apiUrl: "https://tracing.gofigureapp.io",
       token: "other",
       workspaceId: "ws_cloud",
     });
@@ -78,7 +78,7 @@ describe("rememberWorkspace", () => {
       rememberWorkspace(signedIn, "work", "http://localhost:1337", "ws_new"),
     ).toEqual({
       kind: "other-server",
-      profileApiUrl: "https://cloud.kaneo.app",
+      profileApiUrl: "https://tracing.gofigureapp.io",
     });
   });
 });

@@ -29,7 +29,7 @@ const entry = (overrides: Partial<ActivityEntry>): ActivityEntry => ({
 const view = {
   label: "KAN-3",
   title: "Fix login redirect",
-  url: "https://kaneo.test/task/1",
+  url: "https://tracing.test/task/1",
   more: false,
   now,
 };

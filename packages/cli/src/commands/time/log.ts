@@ -22,10 +22,13 @@ export const runTimeLog = Effect.fn("command.time.log")(function* (options: {
   readonly date: string;
   readonly note: Option.Option<string>;
 }) {
-  const reference = yield* askTask(options.task, "kaneo time log KAN-12 1h30m");
+  const reference = yield* askTask(
+    options.task,
+    "tracing time log KAN-12 1h30m",
+  );
   const seconds = yield* askDuration(
     options.duration,
-    `kaneo time log ${reference} 1h30m`,
+    `tracing time log ${reference} 1h30m`,
   );
   const now = new Date();
   const range = yield* Effect.fromResult(logRange(seconds, options.date, now));

@@ -45,7 +45,7 @@ const resolveName = Effect.fnUntraced(function* (name: Option.Option<string>) {
   }
   return yield* new InvalidArgument({
     message: "A field name is required.",
-    hint: 'Pass it as the first argument, for example kaneo field create "Story points" --type number.',
+    hint: 'Pass it as the first argument, for example tracing field create "Story points" --type number.',
   });
 });
 

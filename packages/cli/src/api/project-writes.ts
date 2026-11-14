@@ -1,5 +1,5 @@
 import { Effect, Schema } from "effect";
-import { KaneoApi } from "./kaneo-api.js";
+import { TracingApi } from "./tracing-api.js";
 
 const NullableString = Schema.NullOr(Schema.String);
 
@@ -52,14 +52,14 @@ function projectPath(id: string, suffix = ""): string {
 export const listProjectRecords = Effect.fnUntraced(function* (
   workspaceId: string,
 ) {
-  const api = yield* KaneoApi;
+  const api = yield* TracingApi;
   return yield* api.request("GET", "/api/project", ProjectRecordList, {
     query: { workspaceId, includeArchived: "true" },
   });
 });
 
 export const getProjectRecord = Effect.fnUntraced(function* (id: string) {
-  const api = yield* KaneoApi;
+  const api = yield* TracingApi;
   return yield* api.request("GET", projectPath(id), ProjectRecord);
 });
 
@@ -69,7 +69,7 @@ export const createProject = Effect.fnUntraced(function* (body: {
   readonly slug: string;
   readonly icon: string;
 }) {
-  const api = yield* KaneoApi;
+  const api = yield* TracingApi;
   return yield* api.request("POST", "/api/project", ProjectRecord, { body });
 });
 
@@ -77,17 +77,17 @@ export const updateProject = Effect.fnUntraced(function* (
   id: string,
   body: ProjectUpdateBody,
 ) {
-  const api = yield* KaneoApi;
+  const api = yield* TracingApi;
   return yield* api.request("PUT", projectPath(id), ProjectRecord, { body });
 });
 
 export const archiveProject = Effect.fnUntraced(function* (id: string) {
-  const api = yield* KaneoApi;
+  const api = yield* TracingApi;
   return yield* api.request("PUT", projectPath(id, "/archive"), ProjectRecord);
 });
 
 export const unarchiveProject = Effect.fnUntraced(function* (id: string) {
-  const api = yield* KaneoApi;
+  const api = yield* TracingApi;
   return yield* api.request(
     "PUT",
     projectPath(id, "/unarchive"),
@@ -96,7 +96,7 @@ export const unarchiveProject = Effect.fnUntraced(function* (id: string) {
 });
 
 export const deleteProject = Effect.fnUntraced(function* (id: string) {
-  const api = yield* KaneoApi;
+  const api = yield* TracingApi;
   return yield* api.request("DELETE", projectPath(id), ProjectRecord);
 });
 
@@ -104,7 +104,7 @@ export const moveProject = Effect.fnUntraced(function* (
   id: string,
   workspaceId: string,
 ) {
-  const api = yield* KaneoApi;
+  const api = yield* TracingApi;
   return yield* api.request("PUT", projectPath(id, "/move"), MovedProject, {
     body: { workspaceId },
   });

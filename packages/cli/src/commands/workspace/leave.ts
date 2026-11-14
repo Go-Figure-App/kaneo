@@ -31,7 +31,7 @@ export const runWorkspaceLeave = Effect.fn("command.workspace.leave")(
           /only owner/i.test(error.message)
             ? new InvalidArgument({
                 message: `You are the only owner of ${workspace.name}, so you cannot leave it.`,
-                hint: `Make another member an owner first with kaneo member role <member> owner -w ${workspace.slug}, or delete the workspace with kaneo workspace delete ${workspace.slug}.`,
+                hint: `Make another member an owner first with tracing member role <member> owner -w ${workspace.slug}, or delete the workspace with tracing workspace delete ${workspace.slug}.`,
               })
             : error,
         ),
@@ -51,7 +51,7 @@ export const runWorkspaceLeave = Effect.fn("command.workspace.leave")(
     );
     if (Option.getOrUndefined(session.workspace)?.id === workspace.id) {
       yield* note((ui) => [
-        `  ${ui.theme.warning(ui.glyphs.warning)} It was your current workspace. Run kaneo workspace use to choose another.`,
+        `  ${ui.theme.warning(ui.glyphs.warning)} It was your current workspace. Run tracing workspace use to choose another.`,
         "",
       ]);
     }

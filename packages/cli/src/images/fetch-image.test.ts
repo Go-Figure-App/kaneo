@@ -47,7 +47,7 @@ describe("fetchImage", () => {
     const fetched = await result;
     expect(seen).toEqual([
       {
-        url: "https://kaneo.test/api/asset/a1",
+        url: "https://tracing.test/api/asset/a1",
         authorization: "Bearer test-token",
       },
     ]);
@@ -66,7 +66,7 @@ describe("fetchImage", () => {
 
   it("drops the token when a redirect leaves the server", async () => {
     const { seen, result } = run("/api/asset/a1", ({ url }) =>
-      url.startsWith("https://kaneo.test")
+      url.startsWith("https://tracing.test")
         ? new Response(null, {
             status: 302,
             headers: { location: "https://bucket.test/a1?sig=1" },
@@ -76,7 +76,7 @@ describe("fetchImage", () => {
     expect((await result)._tag).toBe("Fetched");
     expect(seen).toEqual([
       {
-        url: "https://kaneo.test/api/asset/a1",
+        url: "https://tracing.test/api/asset/a1",
         authorization: "Bearer test-token",
       },
       { url: "https://bucket.test/a1?sig=1", authorization: undefined },

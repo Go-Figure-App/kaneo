@@ -30,7 +30,7 @@ export const runFieldDelete = Effect.fn("command.field.delete")(
     const field = yield* chooseField(fields, options.field, {
       projectName: project.name,
       question: "Delete which field?",
-      example: 'kaneo field delete "Story points"',
+      example: 'tracing field delete "Story points"',
     });
 
     yield* confirmDestructive({

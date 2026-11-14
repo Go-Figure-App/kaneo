@@ -44,7 +44,7 @@ export function parseRelationType(
   return Result.fail(
     new InvalidArgument({
       message: UNSUPPORTED.has(word)
-        ? `Kaneo has no "${input.trim()}" relation.`
+        ? `Tracing has no "${input.trim()}" relation.`
         : `"${input.trim()}" is not a relation type.`,
       hint: UNSUPPORTED.has(word)
         ? `${TYPE_HINT} relates-to is the closest match.`

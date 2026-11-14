@@ -8,7 +8,7 @@ fi
 
 version=$1
 sums=$2
-base="https://github.com/usekaneo/kaneo/releases/download/cli-v$version"
+base="https://github.com/Go-Figure-App/tracing/releases/download/cli-v$version"
 
 sha() {
   value=$(awk -v name="$1" '$2 == name || $2 == "*" name { print tolower($1); exit }' "$sums")
@@ -25,46 +25,46 @@ sha() {
   printf '%s' "$value"
 }
 
-darwin_arm64=$(sha kaneo-darwin-arm64)
-darwin_x64=$(sha kaneo-darwin-x64)
-linux_arm64=$(sha kaneo-linux-arm64)
-linux_x64=$(sha kaneo-linux-x64)
+darwin_arm64=$(sha tracing-darwin-arm64)
+darwin_x64=$(sha tracing-darwin-x64)
+linux_arm64=$(sha tracing-linux-arm64)
+linux_x64=$(sha tracing-linux-x64)
 
 cat <<EOF
-class Kaneo < Formula
-  desc "Official command-line client for Kaneo, the open source project manager"
-  homepage "https://kaneo.app/docs/cli"
+class Tracing < Formula
+  desc "Official command-line client for Tracing, the open source project manager"
+  homepage "https://tracing.gofigureapp.io/docs/cli"
   version "$version"
   license "MIT"
 
   on_macos do
     on_arm do
-      url "$base/kaneo-darwin-arm64"
+      url "$base/tracing-darwin-arm64"
       sha256 "$darwin_arm64"
     end
     on_intel do
-      url "$base/kaneo-darwin-x64"
+      url "$base/tracing-darwin-x64"
       sha256 "$darwin_x64"
     end
   end
 
   on_linux do
     on_arm do
-      url "$base/kaneo-linux-arm64"
+      url "$base/tracing-linux-arm64"
       sha256 "$linux_arm64"
     end
     on_intel do
-      url "$base/kaneo-linux-x64"
+      url "$base/tracing-linux-x64"
       sha256 "$linux_x64"
     end
   end
 
   def install
-    bin.install Dir["kaneo-*"].first => "kaneo"
+    bin.install Dir["tracing-*"].first => "tracing"
   end
 
   test do
-    assert_match "\\"version\\":\\"#{version}\\"", shell_output("#{bin}/kaneo --version --json")
+    assert_match "\\"version\\":\\"#{version}\\"", shell_output("#{bin}/tracing --version --json")
   end
 end
 EOF

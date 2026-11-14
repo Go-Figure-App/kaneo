@@ -32,7 +32,7 @@ export const runLabelDelete = Effect.fn("command.label.delete")(
     const target = yield* chooseLabel(
       workspaceLabels(labels),
       options.label,
-      "kaneo label delete Bug",
+      "tracing label delete Bug",
     );
     const used = labelUsage(labels).get(target.name) ?? 0;
 
@@ -52,7 +52,7 @@ export const runLabelDelete = Effect.fn("command.label.delete")(
         Effect.fail(
           new InvalidArgument({
             message: `The server is still busy deleting labels, so ${target.name} is only partly deleted.`,
-            hint: `Progress is saved. Run kaneo label delete ${quoteName(target.name)} --yes again in a minute to finish.`,
+            hint: `Progress is saved. Run tracing label delete ${quoteName(target.name)} --yes again in a minute to finish.`,
           }),
         ),
       ),

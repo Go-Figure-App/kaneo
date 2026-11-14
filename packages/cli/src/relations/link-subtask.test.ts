@@ -1,6 +1,6 @@
 import { Effect, Layer, Option, Result } from "effect";
 import { describe, expect, it } from "vite-plus/test";
-import { KaneoApiLayer } from "../api/kaneo-api.js";
+import { TracingApiLayer } from "../api/tracing-api.js";
 import type { ResolvedTask } from "../tasks/resolve-task.js";
 import {
   captureOutput,
@@ -33,7 +33,7 @@ const parent: ResolvedTask = {
     id: "p1",
     workspaceId: "ws_1",
     slug: "kan",
-    name: "Kaneo Web",
+    name: "Tracing Web",
     icon: null,
     description: null,
     archivedAt: null,
@@ -42,12 +42,12 @@ const parent: ResolvedTask = {
   },
   columns: [],
   ticketId: "KAN-1",
-  url: "https://kaneo.test/task/parent",
+  url: "https://tracing.test/task/parent",
 };
 
 function run(respond: Responder) {
   const recorded: RecordedRequest[] = [];
-  const api = KaneoApiLayer.pipe(
+  const api = TracingApiLayer.pipe(
     Layer.provide(
       Layer.mergeAll(
         fakeHttpClient(respond, recorded),
@@ -79,12 +79,12 @@ describe("linkToParent", () => {
         id: "parent",
         ticketId: "KAN-1",
         title: "Auth overhaul",
-        url: "https://kaneo.test/task/parent",
+        url: "https://tracing.test/task/parent",
       }),
     );
     expect(recorded[0]).toMatchObject({
       method: "POST",
-      url: "https://kaneo.test/api/task-relation",
+      url: "https://tracing.test/api/task-relation",
       body: {
         sourceTaskId: "parent",
         targetTaskId: "child",
@@ -102,7 +102,7 @@ describe("linkToParent", () => {
         _tag: "InvalidArgument",
         message:
           "Created KAN-9, but could not make it a subtask of KAN-1: Missing permission",
-        hint: "Link it with kaneo task relation add KAN-9 subtask-of KAN-1",
+        hint: "Link it with tracing task relation add KAN-9 subtask-of KAN-1",
       });
     }
   });
@@ -118,7 +118,7 @@ describe("linkToParent", () => {
         effect.pipe(
           Effect.provide(
             Layer.mergeAll(
-              KaneoApiLayer.pipe(
+              TracingApiLayer.pipe(
                 Layer.provide(
                   Layer.mergeAll(
                     fakeHttpClient(() => json({})),

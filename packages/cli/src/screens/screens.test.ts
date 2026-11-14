@@ -54,16 +54,16 @@ function task(
     createdAt: day(-10),
     projectId: "p1",
     workspaceId: "ws_1",
-    url: `https://cloud.kaneo.app/dashboard/workspace/ws_1/project/p1/task/t${number}`,
+    url: `https://tracing.gofigureapp.io/dashboard/workspace/ws_1/project/p1/task/t${number}`,
   };
 }
 
 const board: TaskListView = {
-  projectName: "Kaneo Web",
+  projectName: "Tracing Web",
   projectSlug: "kan",
   projectId: "p1",
   workspaceId: "ws_1",
-  webUrl: "https://cloud.kaneo.app",
+  webUrl: "https://tracing.gofigureapp.io",
   columns: [
     { slug: "to-do", name: "To Do", isFinal: false },
     { slug: "in-progress", name: "In Progress", isFinal: false },
@@ -109,7 +109,7 @@ const screens = {
       ui,
       {
         signedIn: true,
-        apiUrl: "https://cloud.kaneo.app",
+        apiUrl: "https://tracing.gofigureapp.io",
         user,
         workspace,
         tasks: board.tasks.slice(3, 6).map((item) => ({
@@ -121,7 +121,7 @@ const screens = {
           statusName: item.statusName,
           priority: item.priority,
           dueDate: item.dueDate,
-          projectName: "Kaneo Web",
+          projectName: "Tracing Web",
           projectSlug: "kan",
         })),
         totalTasks: 3,
@@ -131,7 +131,7 @@ const screens = {
   "home signed out": (ui: ReturnType<typeof makeUi>) =>
     renderHome(ui, {
       signedIn: false,
-      apiUrl: "https://cloud.kaneo.app",
+      apiUrl: "https://tracing.gofigureapp.io",
       user: null,
       workspace: null,
       tasks: [],
@@ -139,9 +139,9 @@ const screens = {
     }),
   "login code": (ui: ReturnType<typeof makeUi>) =>
     renderDeviceCode(ui, {
-      apiUrl: "https://cloud.kaneo.app",
+      apiUrl: "https://tracing.gofigureapp.io",
       code: "WDJB-MJHT",
-      url: "https://cloud.kaneo.app/device?user_code=WDJBMJHT",
+      url: "https://tracing.gofigureapp.io/device?user_code=WDJBMJHT",
       copied: true,
       opened: true,
       expiresInSeconds: 1800,
@@ -149,22 +149,22 @@ const screens = {
   "login welcome": (ui: ReturnType<typeof makeUi>) =>
     renderWelcome(ui, {
       user,
-      apiUrl: "https://cloud.kaneo.app",
+      apiUrl: "https://tracing.gofigureapp.io",
       profile: "default",
       workspace,
     }),
   whoami: (ui: ReturnType<typeof makeUi>) =>
     renderWhoami(ui, {
       user,
-      apiUrl: "https://cloud.kaneo.app",
+      apiUrl: "https://tracing.gofigureapp.io",
       profile: "default",
       auth: "login",
       workspace,
     }),
   error: (ui: ReturnType<typeof makeUi>) =>
     renderFailure(ui, {
-      message: "You are not signed in to cloud.kaneo.app.",
-      hint: "Run kaneo login, or set KANEO_API_KEY.",
+      message: "You are not signed in to tracing.gofigureapp.io.",
+      hint: "Run tracing login, or set KANEO_API_KEY.",
     }),
 };
 

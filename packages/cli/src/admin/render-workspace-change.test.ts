@@ -24,13 +24,13 @@ describe("renderWorkspaceChange", () => {
       renderWorkspaceChange(ui, {
         verb: "Created",
         workspace: acme,
-        next: "Run kaneo workspace use acme-studio to make it your default.",
+        next: "Run tracing workspace use acme-studio to make it your default.",
       }),
     ).toEqual([
       "",
       "  ✓ Created Acme Studio · acme-studio",
       "",
-      "  Run kaneo workspace use acme-studio to make it your default.",
+      "  Run tracing workspace use acme-studio to make it your default.",
       "",
     ]);
   });

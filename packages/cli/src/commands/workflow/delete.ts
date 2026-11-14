@@ -53,7 +53,7 @@ const findRule = Effect.fnUntraced(function* (
         rules.length === 0
           ? `${projectName} has no workflow rules.`
           : "Which rule should be deleted?",
-      hint: "Pass the integration and the event, for example kaneo workflow delete github pr_merged, or a rule id.",
+      hint: "Pass the integration and the event, for example tracing workflow delete github pr_merged, or a rule id.",
     });
   }
   const target = Option.isSome(second)
@@ -69,13 +69,13 @@ const findRule = Effect.fnUntraced(function* (
   if (match.kind === "ambiguous") {
     return yield* new InvalidArgument({
       message: `${eventLabel(match.rules[0]?.event ?? "")} has rules for ${match.rules.map((rule) => integrationLabel(rule.integration)).join(" and ")}.`,
-      hint: `Name the integration too, for example kaneo workflow delete ${match.rules[0]?.integration ?? "github"} ${match.rules[0]?.event ?? ""}.`,
+      hint: `Name the integration too, for example tracing workflow delete ${match.rules[0]?.integration ?? "github"} ${match.rules[0]?.event ?? ""}.`,
     });
   }
   const wanted = [first.value, ...Option.toArray(second)].join(" ").trim();
   return yield* new InvalidArgument({
     message: `No workflow rule matches "${wanted}" in ${projectName}.`,
-    hint: "Run kaneo workflow list to see the rules.",
+    hint: "Run tracing workflow list to see the rules.",
   });
 });
 

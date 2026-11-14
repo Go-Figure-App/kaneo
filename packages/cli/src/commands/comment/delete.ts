@@ -49,7 +49,7 @@ export const commentDelete = Command.make(
   "delete",
   {
     comment: Argument.String("comment-id").pipe(
-      Argument.withDescription("The comment id, from kaneo comment list"),
+      Argument.withDescription("The comment id, from tracing comment list"),
     ),
     yes: Flag.Boolean("yes").pipe(
       Flag.withAlias("y"),

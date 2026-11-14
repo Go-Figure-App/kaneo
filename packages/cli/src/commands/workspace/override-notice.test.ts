@@ -24,7 +24,7 @@ describe("overrideNotice", () => {
       "KANEO_WORKSPACE",
     );
     expect(
-      overrideNotice(from("repo"), "/code/app/.kaneo.json", "ws_acme"),
-    ).toContain("/code/app/.kaneo.json");
+      overrideNotice(from("repo"), "/code/app/.tracing.json", "ws_acme"),
+    ).toContain("/code/app/.tracing.json");
   });
 });

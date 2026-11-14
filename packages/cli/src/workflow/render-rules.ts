@@ -27,7 +27,7 @@ export function renderRuleList(
     return [
       "",
       `  ${theme.muted(`No workflow rules in ${view.projectName}. Integrations use their default columns.`)}`,
-      `  ${theme.muted("Add one with kaneo workflow set github pr_merged done.")}`,
+      `  ${theme.muted("Add one with tracing workflow set github pr_merged done.")}`,
       "",
     ];
   }

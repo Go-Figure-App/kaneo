@@ -14,11 +14,11 @@ import {
 } from "../config/format.js";
 import { findRepoConfig, type RepoConfig } from "../config/repo-config.js";
 import type { ConfigUnreadable } from "../errors/errors.js";
-import { normalizeBaseUrl } from "@kaneo/mcp/normalize-base-url";
+import { normalizeBaseUrl } from "@tracing/mcp/normalize-base-url";
 import type { Environment } from "../render/capabilities.js";
 import { CliEnvironment } from "./cli-environment.js";
 
-export const DEFAULT_API_URL = "https://cloud.kaneo.app";
+export const DEFAULT_API_URL = "https://tracing.gofigureapp.io";
 
 export type TokenSource = "flag" | "env" | "profile";
 
@@ -53,7 +53,7 @@ export type SessionShape = {
 };
 
 export class Session extends Context.Service<Session, SessionShape>()(
-  "kaneo/Session",
+  "tracing/Session",
 ) {}
 
 export type SessionInputs = {
@@ -78,27 +78,31 @@ function nonEmpty(value: string | undefined): Option.Option<string> {
 export function resolveSession(inputs: SessionInputs): SessionShape {
   const { flags, env, config, repo } = inputs;
   const profileName = Option.getOrElse(
-    Option.orElse(flags.profile, () => nonEmpty(env.KANEO_PROFILE)),
+    Option.orElse(flags.profile, () =>
+      nonEmpty(env.TRACING_PROFILE ?? env.KANEO_PROFILE),
+    ),
     () => config.activeProfile || DEFAULT_PROFILE,
   );
   const profile = config.profiles[profileName];
   const apiUrl = normalizeBaseUrl(
     Option.getOrElse(
-      Option.orElse(flags.apiUrl, () => nonEmpty(env.KANEO_API_URL)),
+      Option.orElse(flags.apiUrl, () =>
+        nonEmpty(env.TRACING_API_URL ?? env.KANEO_API_URL),
+      ),
       () => profile?.apiUrl ?? DEFAULT_API_URL,
     ),
   );
   const profileMatches =
     profile !== undefined && normalizeBaseUrl(profile.apiUrl) === apiUrl;
   const webUrl = normalizeBaseUrl(
-    env.KANEO_WEB_URL ||
+    (env.TRACING_WEB_URL ?? env.KANEO_WEB_URL) ||
       (profileMatches ? profile.webUrl : undefined) ||
       apiUrl,
   );
 
   const credentials: Option.Option<Credentials> = Option.firstSomeOf([
     Option.map(flags.token, (token) => ({ token, source: "flag" as const })),
-    Option.map(nonEmpty(env.KANEO_API_KEY), (token) => ({
+    Option.map(nonEmpty(env.TRACING_API_KEY ?? env.KANEO_API_KEY), (token) => ({
       token: Redacted.make(token),
       source: "env" as const,
     })),
@@ -112,10 +116,13 @@ export function resolveSession(inputs: SessionInputs): SessionShape {
 
   const workspace: Option.Option<WorkspaceRef> = Option.firstSomeOf([
     Option.map(flags.workspace, (id) => ({ id, source: "flag" as const })),
-    Option.map(nonEmpty(env.KANEO_WORKSPACE), (id) => ({
-      id,
-      source: "env" as const,
-    })),
+    Option.map(
+      nonEmpty(env.TRACING_WORKSPACE ?? env.KANEO_WORKSPACE),
+      (id) => ({
+        id,
+        source: "env" as const,
+      }),
+    ),
     Option.map(Option.fromUndefinedOr(repo?.workspace), (id) => ({
       id,
       source: "repo" as const,
@@ -126,13 +133,13 @@ export function resolveSession(inputs: SessionInputs): SessionShape {
   ]);
 
   const project: Option.Option<ProjectRef> = Option.firstSomeOf([
-    Option.map(nonEmpty(env.KANEO_PROJECT), (ref) => ({
+    Option.map(nonEmpty(env.TRACING_PROJECT ?? env.KANEO_PROJECT), (ref) => ({
       ref,
       source: "KANEO_PROJECT",
     })),
     Option.map(Option.fromUndefinedOr(repo?.project), (ref) => ({
       ref,
-      source: repo?.path ?? ".kaneo.json",
+      source: repo?.path ?? ".tracing.json",
     })),
   ]);
 

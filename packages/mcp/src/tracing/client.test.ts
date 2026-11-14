@@ -1,7 +1,7 @@
 import { afterEach, describe, expect, it, vi } from "vite-plus/test";
-import { KaneoClient } from "./client.js";
+import { TracingClient } from "./client.js";
 
-describe("KaneoClient", () => {
+describe("TracingClient", () => {
   const originalFetch = globalThis.fetch;
 
   afterEach(() => {
@@ -21,7 +21,7 @@ describe("KaneoClient", () => {
       );
     globalThis.fetch = fetchMock as typeof fetch;
 
-    const client = new KaneoClient({
+    const client = new TracingClient({
       baseUrl: "https://api.example.com",
       auth: auth as never,
     });
@@ -61,7 +61,7 @@ describe("KaneoClient", () => {
       );
     globalThis.fetch = fetchMock as typeof fetch;
 
-    const client = new KaneoClient({
+    const client = new TracingClient({
       baseUrl: "https://api.example.com",
       auth: auth as never,
     });
@@ -88,7 +88,7 @@ describe("KaneoClient", () => {
       ),
     ) as typeof fetch;
 
-    const client = new KaneoClient({
+    const client = new TracingClient({
       baseUrl: "https://api.example.com",
       auth: auth as never,
     });
@@ -114,7 +114,7 @@ describe("KaneoClient", () => {
       ),
     ) as typeof fetch;
 
-    const client = new KaneoClient({
+    const client = new TracingClient({
       baseUrl: "https://api.example.com",
       auth: auth as never,
     });
@@ -135,7 +135,7 @@ describe("KaneoClient", () => {
         new Response("Task not found", { status: 404 }),
       ) as typeof fetch;
 
-    const client = new KaneoClient({
+    const client = new TracingClient({
       baseUrl: "https://api.example.com",
       auth: auth as never,
     });

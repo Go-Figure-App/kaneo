@@ -11,7 +11,7 @@ const COMMENT = /<!--[\s\S]*?-->/gu;
 const MARKDOWN_IMAGE =
   /!\[((?:\\[\s\S]|[^\\\]])*)\]\(\s*(<[^>\n]*>|(?:[^\s()]|\([^\s()]*\))+)(?:\s+(?:"(?:\\[\s\S]|[^"\\])*"|'(?:\\[\s\S]|[^'\\])*'))?\s*\)/gu;
 const IMG_TAG = /<img\b[^>]*>/giu;
-const ATTACHMENT_TAG = /<kaneo-attachment\b[^>]*>/giu;
+const ATTACHMENT_TAG = /<tracing-attachment\b[^>]*>/giu;
 const LINKABLE = /^(?:https?:\/\/|\/)/iu;
 const IMAGE_EXTENSION = /\.(?:apng|avif|gif|heic|heif|jpe?g|png|webp)$/iu;
 const ENTITIES: Readonly<Record<string, string>> = {

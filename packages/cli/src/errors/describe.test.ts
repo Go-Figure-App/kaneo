@@ -4,8 +4,8 @@ import * as Errors from "./errors.js";
 import { isAppError } from "./is-app-error.js";
 
 const samples = [
-  new Errors.NotSignedIn({ apiUrl: "https://cloud.kaneo.app" }),
-  new Errors.SessionExpired({ apiUrl: "https://cloud.kaneo.app" }),
+  new Errors.NotSignedIn({ apiUrl: "https://tracing.gofigureapp.io" }),
+  new Errors.SessionExpired({ apiUrl: "https://tracing.gofigureapp.io" }),
   new Errors.CredentialsRejected({ source: "env" }),
   new Errors.SessionRequired({ message: "A user session is required" }),
   new Errors.PermissionDenied({
@@ -18,7 +18,7 @@ const samples = [
   new Errors.RateLimited({ retryAfterSeconds: 30 }),
   new Errors.ServerError({ status: 500, message: "Internal Server Error" }),
   new Errors.ServerUnreachable({
-    apiUrl: "https://cloud.kaneo.app",
+    apiUrl: "https://tracing.gofigureapp.io",
     reason: "ENOTFOUND",
   }),
   new Errors.UnexpectedResponse({
@@ -34,8 +34,8 @@ const samples = [
   new Errors.ProjectRequired(),
   new Errors.ProjectNotFound({ query: "XYZ", source: null }),
   new Errors.DeviceClientRejected({
-    apiUrl: "https://cloud.kaneo.app",
-    clientId: "kaneo-cli",
+    apiUrl: "https://tracing.gofigureapp.io",
+    clientId: "tracing-cli",
   }),
   new Errors.DeviceLoginDenied(),
   new Errors.DeviceLoginExpired(),
@@ -54,14 +54,14 @@ describe("describeError", () => {
   it("points to the next step", () => {
     expect(
       describeError(
-        new Errors.NotSignedIn({ apiUrl: "https://cloud.kaneo.app" }),
+        new Errors.NotSignedIn({ apiUrl: "https://tracing.gofigureapp.io" }),
       ),
     ).toEqual({
-      message: "You are not signed in to cloud.kaneo.app.",
-      hint: "Run kaneo login, or set KANEO_API_KEY.",
+      message: "You are not signed in to tracing.gofigureapp.io.",
+      hint: "Run tracing login, or set KANEO_API_KEY.",
     });
     expect(describeError(new Errors.WorkspaceRequired()).hint).toBe(
-      "Pass -w <id>, or run kaneo workspace use.",
+      "Pass -w <id>, or run tracing workspace use.",
     );
   });
 

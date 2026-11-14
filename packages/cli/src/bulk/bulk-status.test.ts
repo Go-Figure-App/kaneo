@@ -24,7 +24,7 @@ const standard = [
 describe("resolveBulkStatus", () => {
   it("matches by slug, name or alias in every project", () => {
     const projects = [
-      { name: "Kaneo Web", columns: standard },
+      { name: "Tracing Web", columns: standard },
       { name: "Mobile App", columns: standard },
     ];
     expect(Result.getOrThrow(resolveBulkStatus(projects, "wip")).slug).toBe(
@@ -38,7 +38,7 @@ describe("resolveBulkStatus", () => {
   it("names the project without a matching column", () => {
     const result = resolveBulkStatus(
       [
-        { name: "Kaneo Web", columns: standard },
+        { name: "Tracing Web", columns: standard },
         { name: "Mobile App", columns: [column("to-do", "To Do", 0)] },
       ],
       "done",
@@ -54,7 +54,7 @@ describe("resolveBulkStatus", () => {
   it("refuses a name that means different slugs in different projects", () => {
     const result = resolveBulkStatus(
       [
-        { name: "Kaneo Web", columns: standard },
+        { name: "Tracing Web", columns: standard },
         { name: "Mobile App", columns: [column("shipped", "Done", 0)] },
       ],
       "Done",

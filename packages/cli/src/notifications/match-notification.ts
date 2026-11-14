@@ -28,7 +28,7 @@ export function matchNotificationId(
   return Result.fail(
     new InvalidArgument({
       message: `No recent notification matches "${wanted}".`,
-      hint: "Run kaneo notification list to see the ids.",
+      hint: "Run tracing notification list to see the ids.",
     }),
   );
 }

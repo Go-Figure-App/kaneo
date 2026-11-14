@@ -37,7 +37,7 @@ describe("requestDeviceCode", () => {
 
     const result = await requestDeviceCode(
       "https://api.example.com",
-      "kaneo-mcp",
+      "tracing-mcp",
     );
 
     expect(result.device_code).toBe("device-code");
@@ -46,7 +46,7 @@ describe("requestDeviceCode", () => {
       expect.objectContaining({
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ client_id: "kaneo-mcp" }),
+        body: JSON.stringify({ client_id: "tracing-mcp" }),
         signal: expect.any(AbortSignal),
       }),
     );
@@ -65,7 +65,7 @@ describe("requestDeviceCode", () => {
 
     const failure = await requestDeviceCode(
       "https://api.example.com",
-      "kaneo-cli",
+      "tracing-cli",
     ).catch((error: unknown) => error);
 
     expect(failure).toBeInstanceOf(DeviceCodeRequestError);
@@ -81,7 +81,7 @@ describe("requestDeviceCode", () => {
     ) as typeof fetch;
 
     await expect(
-      requestDeviceCode("https://api.example.com", "kaneo-mcp"),
+      requestDeviceCode("https://api.example.com", "tracing-mcp"),
     ).rejects.toThrow(/unexpected response/);
   });
 });
@@ -105,7 +105,7 @@ describe("pollDeviceTokenOnce", () => {
     respondWith({ access_token: "token-123" }, 200);
 
     await expect(
-      pollDeviceTokenOnce("https://api.example.com", "kaneo-cli", "device"),
+      pollDeviceTokenOnce("https://api.example.com", "tracing-cli", "device"),
     ).resolves.toEqual({ status: "approved", accessToken: "token-123" });
   });
 
@@ -118,7 +118,7 @@ describe("pollDeviceTokenOnce", () => {
     respondWith({ error }, 400);
 
     await expect(
-      pollDeviceTokenOnce("https://api.example.com", "kaneo-cli", "device"),
+      pollDeviceTokenOnce("https://api.example.com", "tracing-cli", "device"),
     ).resolves.toEqual({ status });
   });
 
@@ -126,7 +126,7 @@ describe("pollDeviceTokenOnce", () => {
     respondWith({ error: "invalid_grant" }, 400);
 
     await expect(
-      pollDeviceTokenOnce("https://api.example.com", "kaneo-cli", "device"),
+      pollDeviceTokenOnce("https://api.example.com", "tracing-cli", "device"),
     ).rejects.toThrow(/device\/token failed \(400\)/);
   });
 });
@@ -162,7 +162,7 @@ describe("pollDeviceAccessToken", () => {
 
     const promise = pollDeviceAccessToken(
       "https://api.example.com",
-      "kaneo-mcp",
+      "tracing-mcp",
       "device-code",
       1,
       { log },
@@ -193,7 +193,7 @@ describe("pollDeviceAccessToken", () => {
 
     const promise = pollDeviceAccessToken(
       "https://api.example.com",
-      "kaneo-mcp",
+      "tracing-mcp",
       "device-code",
       1,
     );
@@ -214,7 +214,7 @@ describe("pollDeviceAccessToken", () => {
     await expect(
       pollDeviceAccessToken(
         "https://api.example.com",
-        "kaneo-mcp",
+        "tracing-mcp",
         "device-code",
         1,
       ),

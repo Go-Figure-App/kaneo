@@ -79,7 +79,7 @@ const checkLogin = Effect.fn("doctor.login")(function* (session: SessionShape) {
     return {
       name: "login",
       ok: false,
-      detail: "Not signed in. Run kaneo login, or set KANEO_API_KEY.",
+      detail: "Not signed in. Run tracing login, or set KANEO_API_KEY.",
     } satisfies DoctorCheck;
   }
   const user = yield* Effect.result(getCurrentUser());
@@ -110,7 +110,7 @@ const checkWorkspace = Effect.fn("doctor.workspace")(function* (
   }
   const source =
     selected.source === "repo"
-      ? (session.repo?.path ?? ".kaneo.json")
+      ? (session.repo?.path ?? ".tracing.json")
       : selected.source === "profile"
         ? `profile ${session.profileName}`
         : WORKSPACE_SOURCES[selected.source];

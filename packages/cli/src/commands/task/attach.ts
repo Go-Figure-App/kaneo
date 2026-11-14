@@ -34,7 +34,7 @@ import { fetchTask, resolveTask } from "../../tasks/resolve-task.js";
 import { Session } from "../../services/session.js";
 import { ApiLayer } from "../api-layer.js";
 
-const FILES_HINT = "For example: kaneo task attach KAN-12 screenshot.png";
+const FILES_HINT = "For example: tracing task attach KAN-12 screenshot.png";
 const INDENT = 2;
 
 const askForFile = Effect.fnUntraced(function* () {

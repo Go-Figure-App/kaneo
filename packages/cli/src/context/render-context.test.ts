@@ -20,7 +20,7 @@ const report: ContextReport = {
   workspace: {
     id: "ws_1",
     source: "repo",
-    path: "/repo/.kaneo.json",
+    path: "/repo/.tracing.json",
     name: "Acme Studio",
   },
   project: {
@@ -29,9 +29,9 @@ const report: ContextReport = {
     path: null,
     id: "p1",
     key: "KAN",
-    name: "Kaneo Web",
+    name: "Tracing Web",
   },
-  config: { path: "/home/ada/.config/kaneo/config.json", status: "missing" },
+  config: { path: "/home/ada/.config/tracing/config.json", status: "missing" },
   output: {
     mode: "human",
     source: "terminal",
@@ -54,15 +54,15 @@ describe("renderContext", () => {
   it("shows each value with where it came from, never the secret", () => {
     expect(renderContext(ui, report)).toEqual([
       "",
-      "  Server     http://localhost:1337                KANEO_API_URL",
-      "  Web app    http://localhost:1337                same as the server",
-      "  Profile    work                                 --profile",
-      "  Auth       API key …a1b2                        KANEO_API_KEY",
+      "  Server     http://localhost:1337                  TRACING_API_URL",
+      "  Web app    http://localhost:1337                  same as the server",
+      "  Profile    work                                   --profile",
+      "  Auth       API key …a1b2                          TRACING_API_KEY",
       "  User       Ada Lovelace · ada@example.com",
-      "  Workspace  Acme Studio ws_1                     /repo/.kaneo.json",
-      "  Project    Kaneo Web KAN                        KANEO_PROJECT",
-      "  Config     /home/ada/.config/kaneo/config.json  not created yet",
-      "  Output     human                                stdout is a terminal",
+      "  Workspace  Acme Studio ws_1                       /repo/.tracing.json",
+      "  Project    Tracing Web KAN                        TRACING_PROJECT",
+      "  Config     /home/ada/.config/tracing/config.json  not created yet",
+      "  Output     human                                  stdout is a terminal",
       "  Terminal   truecolor · unicode · hyperlinks · 80 columns  interactive",
       "",
     ]);
@@ -74,11 +74,11 @@ describe("renderContext", () => {
       user: null,
       auth: {
         ...report.auth,
-        error: "The API key in KANEO_API_KEY was rejected.",
+        error: "The API key in TRACING_API_KEY was rejected.",
       },
     });
     expect(lines[5]).toBe(
-      "  User       ✗ The API key in KANEO_API_KEY was rejected.",
+      "  User       ✗ The API key in TRACING_API_KEY was rejected.",
     );
   });
 });

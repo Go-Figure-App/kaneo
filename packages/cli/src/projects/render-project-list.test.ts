@@ -21,7 +21,7 @@ function summary(overrides: Partial<ProjectSummary> = {}): ProjectSummary {
     id: "p_kan",
     workspaceId: "ws_acme",
     slug: "kan",
-    name: "Kaneo Web",
+    name: "Tracing Web",
     description: null,
     archivedAt: null,
     statistics: { totalTasks: 7, completionPercentage: 14, dueDate: null },
@@ -37,7 +37,7 @@ const kan = toProjectJson(
       dueDate: new Date(2026, 9, 20, 12).toISOString(),
     },
   }),
-  "https://kaneo.test",
+  "https://tracing.test",
 );
 const mob = toProjectJson(
   summary({
@@ -46,7 +46,7 @@ const mob = toProjectJson(
     name: "Mobile App",
     statistics: { totalTasks: 0, completionPercentage: 0, dueDate: null },
   }),
-  "https://kaneo.test",
+  "https://tracing.test",
 );
 const old = toProjectJson(
   summary({
@@ -56,7 +56,7 @@ const old = toProjectJson(
     archivedAt: "2026-01-01T00:00:00.000Z",
     statistics: { totalTasks: 1, completionPercentage: 100, dueDate: null },
   }),
-  "https://kaneo.test",
+  "https://tracing.test",
 );
 
 describe("toProjectJson", () => {
@@ -64,14 +64,14 @@ describe("toProjectJson", () => {
     expect(kan).toEqual({
       id: "p_kan",
       key: "KAN",
-      name: "Kaneo Web",
+      name: "Tracing Web",
       slug: "kan",
       workspaceId: "ws_acme",
       archived: false,
       totalTasks: 7,
       completion: 14,
       dueDate: new Date(2026, 9, 20, 12).toISOString(),
-      url: "https://kaneo.test/dashboard/workspace/ws_acme/project/p_kan/board",
+      url: "https://tracing.test/dashboard/workspace/ws_acme/project/p_kan/board",
     } satisfies ProjectJson);
     expect(old.archived).toBe(true);
   });
@@ -86,7 +86,7 @@ describe("renderProjectList", () => {
     });
     expect(lines).toEqual([
       "",
-      "  KAN   Kaneo Web              7 tasks   ▰▱▱▱▱▱▱▱▱▱  14%   ◷ Oct 20",
+      "  KAN   Tracing Web            7 tasks   ▰▱▱▱▱▱▱▱▱▱  14%   ◷ Oct 20",
       "  MOB   Mobile App            no tasks",
       "  OLD   Old Site · archived     1 task   ▰▰▰▰▰▰▰▰▰▰ 100%",
       "",

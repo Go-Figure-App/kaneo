@@ -25,7 +25,7 @@ export const runTimeStart = Effect.fn("command.time.start")(
     readonly note: Option.Option<string>;
   }) {
     const output = yield* Output;
-    const reference = yield* askTask(options.task, "kaneo time start KAN-12");
+    const reference = yield* askTask(options.task, "tracing time start KAN-12");
     const [user, resolved] = yield* withSpinner(`Loading ${reference}`)(
       Effect.all([getCurrentUser(), resolveTask(reference)], {
         concurrency: 2,
@@ -45,13 +45,13 @@ export const runTimeStart = Effect.fn("command.time.start")(
       if (timer.task.id === task.id) {
         return yield* new InvalidArgument({
           message,
-          hint: "Stop it with kaneo time stop.",
+          hint: "Stop it with tracing time stop.",
         });
       }
       if (!output.interactive) {
         return yield* new InvalidArgument({
           message,
-          hint: `Stop it first with kaneo time stop, then start ${label}.`,
+          hint: `Stop it first with tracing time stop, then start ${label}.`,
         });
       }
       const switching = yield* confirm(

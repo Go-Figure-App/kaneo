@@ -34,7 +34,7 @@ const entry = (
 
 const view = {
   label: "KAN-12",
-  url: "https://kaneo.test/t12",
+  url: "https://tracing.test/t12",
   title: "Fix login redirect",
   now,
   entries: [
@@ -72,7 +72,7 @@ describe("renderTimeEntries", () => {
       "",
       "  No time logged yet.",
       "",
-      "  Log some with kaneo time log KAN-12 1h",
+      "  Log some with tracing time log KAN-12 1h",
       "",
     ]);
   });

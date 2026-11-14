@@ -1,5 +1,5 @@
 import { Effect, Schema } from "effect";
-import { KaneoApi } from "./kaneo-api.js";
+import { TracingApi } from "./tracing-api.js";
 
 const NullableString = Schema.NullOr(Schema.String);
 
@@ -35,14 +35,14 @@ export type NotificationTask = typeof NotificationTask.Type;
 export const listNotifications = Effect.fnUntraced(function* (
   workspaceId: string | undefined,
 ) {
-  const api = yield* KaneoApi;
+  const api = yield* TracingApi;
   return yield* api.request("GET", "/api/notification", NotificationList, {
     query: { workspaceId },
   });
 });
 
 export const markNotificationRead = Effect.fnUntraced(function* (id: string) {
-  const api = yield* KaneoApi;
+  const api = yield* TracingApi;
   return yield* api.request(
     "PATCH",
     `/api/notification/${encodeURIComponent(id)}/read`,
@@ -53,7 +53,7 @@ export const markNotificationRead = Effect.fnUntraced(function* (id: string) {
 export const markAllNotificationsRead = Effect.fnUntraced(function* (
   workspaceId: string | undefined,
 ) {
-  const api = yield* KaneoApi;
+  const api = yield* TracingApi;
   return yield* api.request("PATCH", "/api/notification/read-all", BulkResult, {
     query: { workspaceId },
   });
@@ -62,7 +62,7 @@ export const markAllNotificationsRead = Effect.fnUntraced(function* (
 export const getNotificationTask = Effect.fnUntraced(function* (
   taskId: string,
 ) {
-  const api = yield* KaneoApi;
+  const api = yield* TracingApi;
   return yield* api.request(
     "GET",
     `/api/task/${encodeURIComponent(taskId)}`,

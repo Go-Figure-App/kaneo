@@ -6,7 +6,7 @@ import {
   memoryConfigStore,
   testSession,
 } from "../testing/test-layers.js";
-import { KaneoApiLayer } from "./kaneo-api.js";
+import { TracingApiLayer } from "./tracing-api.js";
 import { uploadTaskFile } from "./uploads.js";
 
 type Sent = {
@@ -45,7 +45,7 @@ function run(storageStatus = 200) {
         const response = url.hostname.startsWith("bucket")
           ? new Response(null, { status: storageStatus })
           : url.pathname.endsWith("/finalize")
-            ? json({ id: "a1", url: "https://kaneo.test/api/asset/a1" })
+            ? json({ id: "a1", url: "https://tracing.test/api/asset/a1" })
             : json({
                 key: "ws/p/t1/description/k.png",
                 uploadUrl: "https://bucket.test/k.png?X-Amz-Signature=s",
@@ -57,7 +57,7 @@ function run(storageStatus = 200) {
   );
   const session = testSession();
   const layer = Layer.merge(
-    KaneoApiLayer.pipe(
+    TracingApiLayer.pipe(
       Layer.provide(Layer.mergeAll(client, session, memoryConfigStore().layer)),
     ),
     Layer.merge(client, session),
@@ -74,7 +74,7 @@ describe("uploadTaskFile", () => {
   it("asks for an upload URL, sends the bytes to storage, then finalizes", async () => {
     const { sent, result } = run();
     expect(await result).toEqual(
-      Result.succeed({ id: "a1", url: "https://kaneo.test/api/asset/a1" }),
+      Result.succeed({ id: "a1", url: "https://tracing.test/api/asset/a1" }),
     );
     const details = {
       filename: "shot.png",
@@ -85,7 +85,7 @@ describe("uploadTaskFile", () => {
     expect(sent).toEqual([
       {
         method: "PUT",
-        url: "https://kaneo.test/api/task/image-upload/t1",
+        url: "https://tracing.test/api/task/image-upload/t1",
         authorization: "Bearer test-token",
         contentType: "application/json",
         body: details,
@@ -99,7 +99,7 @@ describe("uploadTaskFile", () => {
       },
       {
         method: "POST",
-        url: "https://kaneo.test/api/task/image-upload/t1/finalize",
+        url: "https://tracing.test/api/task/image-upload/t1/finalize",
         authorization: "Bearer test-token",
         contentType: "application/json",
         body: { key: "ws/p/t1/description/k.png", ...details },

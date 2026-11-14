@@ -52,7 +52,7 @@ export const runProjectEdit = Effect.fn("command.project.edit")(
       useContext: true,
       prompt: "Choose a project to edit",
       missing: "Which project should be changed?",
-      example: "kaneo project edit KAN --name Web",
+      example: "tracing project edit KAN --name Web",
     });
     const current = yield* withSpinner(`Loading ${target.name}`)(
       getProjectRecord(target.id),

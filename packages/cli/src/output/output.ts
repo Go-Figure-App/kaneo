@@ -18,7 +18,7 @@ export type OutputShape = {
 };
 
 export class Output extends Context.Service<Output, OutputShape>()(
-  "kaneo/Output",
+  "tracing/Output",
 ) {}
 
 export type OutputSinks = {

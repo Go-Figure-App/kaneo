@@ -19,32 +19,32 @@ describe("renderProjectChange", () => {
     expect(
       renderProjectChange(ui, {
         verb: "Created",
-        name: "Kaneo Web",
+        name: "Tracing Web",
         key: "KAN",
-        url: "https://kaneo.test/p",
+        url: "https://tracing.test/p",
       }),
-    ).toEqual(["", "  ✓ Created project Kaneo Web · KAN", ""]);
+    ).toEqual(["", "  ✓ Created project Tracing Web · KAN", ""]);
   });
 
   it("adds the changed fields and the move target", () => {
     expect(
       renderProjectChange(ui, {
         verb: "Updated",
-        name: "Kaneo Web",
+        name: "Tracing Web",
         key: "WEB",
-        url: "https://kaneo.test/p",
+        url: "https://tracing.test/p",
         detail: "name, key",
       })[1],
-    ).toBe("  ✓ Updated project Kaneo Web · WEB · name, key");
+    ).toBe("  ✓ Updated project Tracing Web · WEB · name, key");
     expect(
       renderProjectChange(ui, {
         verb: "Moved",
-        name: "Kaneo Web",
+        name: "Tracing Web",
         key: "KAN",
-        url: "https://kaneo.test/p",
+        url: "https://tracing.test/p",
         target: "Side Project",
       })[1],
-    ).toBe("  ✓ Moved project Kaneo Web · KAN → Side Project");
+    ).toBe("  ✓ Moved project Tracing Web · KAN → Side Project");
   });
 
   it("shortens a long name to fit 80 columns", () => {
@@ -52,7 +52,7 @@ describe("renderProjectChange", () => {
       verb: "Archived",
       name: "A very long project name ".repeat(5).trim(),
       key: "LONG",
-      url: "https://kaneo.test/p",
+      url: "https://tracing.test/p",
     });
     expect(stringWidth(line ?? "")).toBeLessThanOrEqual(80);
     expect(line).toContain("… · LONG");
@@ -69,12 +69,12 @@ describe("renderProjectChange", () => {
     expect(
       renderProjectChange(ascii, {
         verb: "Deleted",
-        name: "Kaneo Web",
+        name: "Tracing Web",
         key: "KAN",
         url: "",
         detail: "12 tasks",
       })[1],
-    ).toBe("  + Deleted project Kaneo Web - KAN - 12 tasks");
+    ).toBe("  + Deleted project Tracing Web - KAN - 12 tasks");
   });
 });
 
@@ -82,11 +82,11 @@ describe("renderProjectUnchanged", () => {
   it("says the project was already in that state", () => {
     expect(
       renderProjectUnchanged(ui, {
-        name: "Kaneo Web",
+        name: "Tracing Web",
         key: "KAN",
-        url: "https://kaneo.test/p",
+        url: "https://tracing.test/p",
         state: "archived",
       }),
-    ).toEqual(["", "  ✓ Kaneo Web · KAN is already archived", ""]);
+    ).toEqual(["", "  ✓ Tracing Web · KAN is already archived", ""]);
   });
 });

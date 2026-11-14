@@ -20,7 +20,7 @@ const current: ProjectRecord = {
   id: "p1",
   workspaceId: "w1",
   slug: "KAN",
-  name: "Kaneo Web",
+  name: "Tracing Web",
   icon: "Rocket",
   description: "Board",
   isPublic: false,
@@ -98,7 +98,7 @@ describe("buildProjectUpdate", () => {
         { key: "WEB" },
       ),
     ).toEqual({
-      name: "Kaneo Web",
+      name: "Tracing Web",
       icon: "Layout",
       slug: "WEB",
       description: "",

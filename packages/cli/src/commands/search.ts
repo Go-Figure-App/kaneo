@@ -45,7 +45,7 @@ export const runSearch = Effect.fn("command.search")(function* (options: {
   if (typed === "" && !output.interactive) {
     return yield* new InvalidArgument({
       message: "Nothing to search for.",
-      hint: 'Pass the words to search for, for example kaneo search "login redirect".',
+      hint: 'Pass the words to search for, for example tracing search "login redirect".',
     });
   }
   const query = typed === "" ? yield* askQuery() : typed;

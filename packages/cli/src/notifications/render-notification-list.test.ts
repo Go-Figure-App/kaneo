@@ -31,7 +31,7 @@ const item = (
   createdAt: new Date(now.getTime() - minutesAgo * 60 * 1000).toISOString(),
   workspaceId: "ws_1",
   task: ticketId
-    ? { id: "t1", ticketId, title: message, url: "https://kaneo.test/t1" }
+    ? { id: "t1", ticketId, title: message, url: "https://tracing.test/t1" }
     : null,
 });
 
@@ -80,7 +80,7 @@ describe("renderNotificationList", () => {
       "     3d ago          Workspace created                                  qrst1234",
       "",
       "  1 unread",
-      "  Mark them read with kaneo notification read <id> or --all",
+      "  Mark them read with tracing notification read <id> or --all",
       "",
     ]);
   });

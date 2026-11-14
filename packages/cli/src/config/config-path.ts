@@ -1,8 +1,12 @@
 import { join } from "node:path";
+import { existsSync } from "node:fs";
 import type { Environment } from "../render/capabilities.js";
 
 export function configPath(env: Environment, home: string): string {
-  if (env.KANEO_CONFIG) return env.KANEO_CONFIG;
+  const configured = env.TRACING_CONFIG ?? env.KANEO_CONFIG;
+  if (configured) return configured;
   const base = env.XDG_CONFIG_HOME || join(home, ".config");
-  return join(base, "kaneo", "config.json");
+  const current = join(base, "tracing", "config.json");
+  const legacy = join(base, "kaneo", "config.json");
+  return !existsSync(current) && existsSync(legacy) ? legacy : current;
 }

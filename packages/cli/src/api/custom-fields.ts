@@ -1,5 +1,5 @@
 import { Effect, Schema } from "effect";
-import { KaneoApi } from "./kaneo-api.js";
+import { TracingApi } from "./tracing-api.js";
 
 const NullableString = Schema.NullOr(Schema.String);
 
@@ -32,7 +32,7 @@ const SavedValue = Schema.Struct({
 export const listCustomFields = Effect.fnUntraced(function* (
   projectId: string,
 ) {
-  const api = yield* KaneoApi;
+  const api = yield* TracingApi;
   return yield* api.request(
     "GET",
     `/api/custom-field/project/${encodeURIComponent(projectId)}`,
@@ -46,14 +46,14 @@ export const createCustomField = Effect.fnUntraced(function* (body: {
   readonly type: string;
   readonly options?: ReadonlyArray<string>;
 }) {
-  const api = yield* KaneoApi;
+  const api = yield* TracingApi;
   return yield* api.request("POST", "/api/custom-field", CustomField, {
     body,
   });
 });
 
 export const deleteCustomField = Effect.fnUntraced(function* (id: string) {
-  const api = yield* KaneoApi;
+  const api = yield* TracingApi;
   return yield* api.request(
     "DELETE",
     `/api/custom-field/${encodeURIComponent(id)}`,
@@ -64,7 +64,7 @@ export const deleteCustomField = Effect.fnUntraced(function* (id: string) {
 export const listTaskFieldValues = Effect.fnUntraced(function* (
   taskId: string,
 ) {
-  const api = yield* KaneoApi;
+  const api = yield* TracingApi;
   return yield* api.request(
     "GET",
     `/api/custom-field/task/${encodeURIComponent(taskId)}`,
@@ -77,7 +77,7 @@ export const setTaskFieldValue = Effect.fnUntraced(function* (body: {
   readonly fieldId: string;
   readonly value: string;
 }) {
-  const api = yield* KaneoApi;
+  const api = yield* TracingApi;
   return yield* api.request("PUT", "/api/custom-field/value", SavedValue, {
     body,
   });

@@ -26,7 +26,7 @@ export function renderTimerStatus(ui: Ui, view: TimerStatusView): string[] {
       "",
       `  ${theme.muted(glyphs.dot)} No timer running`,
       "",
-      `  ${theme.muted("Start one with")} ${theme.strong("kaneo time start <task>")}`,
+      `  ${theme.muted("Start one with")} ${theme.strong("tracing time start <task>")}`,
       "",
     ];
   }

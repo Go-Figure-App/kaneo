@@ -14,7 +14,7 @@ describe("renderImagesHeading", () => {
   const heading = {
     label: "KAN-1",
     title: "Fix login redirect",
-    url: "https://kaneo.test/t",
+    url: "https://tracing.test/t",
   };
 
   it("counts the images", () => {

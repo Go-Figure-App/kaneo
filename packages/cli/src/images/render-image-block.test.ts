@@ -19,7 +19,7 @@ const linked = makeUi({
   columns: 80,
 });
 
-const image = { url: "https://kaneo.test/api/asset/a1", alt: "Login page" };
+const image = { url: "https://tracing.test/api/asset/a1", alt: "Login page" };
 
 describe("renderImageBlock", () => {
   it("indents the picture and puts the caption below it", () => {
@@ -43,6 +43,8 @@ describe("renderImageBlock", () => {
     expect(stripAnsi(line)).toBe(
       "  [image: Login page] · GIF cannot be shown here",
     );
-    expect(line).toContain("\u001b]8;;https://kaneo.test/api/asset/a1\u001b\\");
+    expect(line).toContain(
+      "\u001b]8;;https://tracing.test/api/asset/a1\u001b\\",
+    );
   });
 });

@@ -22,7 +22,7 @@ export function labelForRemoval(
     : Result.fail(
         new InvalidArgument({
           message: `No label named "${trimmed}" in this workspace.`,
-          hint: "Run kaneo label list to see the label names.",
+          hint: "Run tracing label list to see the label names.",
         }),
       );
 }

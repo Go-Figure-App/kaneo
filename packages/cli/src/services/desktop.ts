@@ -9,7 +9,7 @@ export type DesktopShape = {
 };
 
 export class Desktop extends Context.Service<Desktop, DesktopShape>()(
-  "kaneo/Desktop",
+  "tracing/Desktop",
 ) {}
 
 type Launch = {

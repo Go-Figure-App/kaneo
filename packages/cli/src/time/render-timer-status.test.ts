@@ -16,7 +16,7 @@ describe("renderTimerStatus", () => {
     expect(
       renderTimerStatus(ui, {
         label: "KAN-12",
-        url: "https://kaneo.test/t",
+        url: "https://tracing.test/t",
         title: "Fix login redirect",
         startedAt,
         elapsedSeconds: 5100,
@@ -35,7 +35,7 @@ describe("renderTimerStatus", () => {
       "",
       "  ● No timer running",
       "",
-      "  Start one with kaneo time start <task>",
+      "  Start one with tracing time start <task>",
       "",
     ]);
   });

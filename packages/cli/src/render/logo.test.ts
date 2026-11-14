@@ -16,10 +16,10 @@ describe("logo", () => {
 
   it("collapses to one line on narrow terminals", () => {
     expect(LOGO_WIDTH).toBeGreaterThan(40);
-    expect(logo(make(true, 40))).toEqual(["  ▅▆▇ kaneo"]);
+    expect(logo(make(true, 40))).toEqual(["  ▅▆▇ tracing"]);
   });
 
   it("uses plain text without unicode", () => {
-    expect(logo(make(false, 120))).toEqual(["  kaneo"]);
+    expect(logo(make(false, 120))).toEqual(["  tracing"]);
   });
 });

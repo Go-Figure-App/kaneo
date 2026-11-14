@@ -15,9 +15,9 @@ export const LOGO_WIDTH = Math.max(
 
 export function logo(ui: Ui, indent = 2): string[] {
   const prefix = " ".repeat(indent);
-  if (!ui.caps.unicode) return [`${prefix}${ui.theme.strong("kaneo")}`];
+  if (!ui.caps.unicode) return [`${prefix}${ui.theme.strong("tracing")}`];
   if (ui.caps.columns < LOGO_WIDTH + indent + 2) {
-    return [`${prefix}${ui.theme.strong("▅▆▇ kaneo")}`];
+    return [`${prefix}${ui.theme.strong("▅▆▇ tracing")}`];
   }
   return LOGO_LINES.map((line) => `${prefix}${line}`);
 }

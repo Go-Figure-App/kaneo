@@ -24,34 +24,38 @@ const slugOf = (result: Result.Result<Column | null, unknown>) =>
 
 describe("createStatus", () => {
   it("defaults to the first column by position", () => {
-    expect(slugOf(createStatus(columns, undefined, "Kaneo Web"))).toBe("to-do");
+    expect(slugOf(createStatus(columns, undefined, "Tracing Web"))).toBe(
+      "to-do",
+    );
   });
 
   it("has no default without columns", () => {
-    expect(slugOf(createStatus([], undefined, "Kaneo Web"))).toBeNull();
+    expect(slugOf(createStatus([], undefined, "Tracing Web"))).toBeNull();
   });
 
   it("matches slugs and names without case", () => {
-    expect(slugOf(createStatus(columns, "IN-PROGRESS", "Kaneo Web"))).toBe(
+    expect(slugOf(createStatus(columns, "IN-PROGRESS", "Tracing Web"))).toBe(
       "in-progress",
     );
-    expect(slugOf(createStatus(columns, " in progress ", "Kaneo Web"))).toBe(
+    expect(slugOf(createStatus(columns, " in progress ", "Tracing Web"))).toBe(
       "in-progress",
     );
   });
 
-  it("accepts the same aliases as kaneo task status", () => {
-    const result = createStatus(columns, "doing", "Kaneo Web");
+  it("accepts the same aliases as tracing task status", () => {
+    const result = createStatus(columns, "doing", "Tracing Web");
     expect(Result.isSuccess(result) && result.success?.slug).toBe(
       "in-progress",
     );
   });
 
   it("lists the columns when nothing matches", () => {
-    const result = createStatus(columns, "blocked", "Kaneo Web");
+    const result = createStatus(columns, "blocked", "Tracing Web");
     expect(Result.isFailure(result)).toBe(true);
     if (Result.isFailure(result)) {
-      expect(result.failure.message).toBe('Kaneo Web has no column "blocked".');
+      expect(result.failure.message).toBe(
+        'Tracing Web has no column "blocked".',
+      );
       expect(result.failure.hint).toBe(
         "Pass -s with one of: to-do, in-progress, done.",
       );

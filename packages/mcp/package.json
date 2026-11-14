@@ -1,19 +1,19 @@
 {
   "name": "@tracing/mcp",
   "version": "0.1.14",
-  "mcpName": "io.github.usekaneo/kaneo",
-  "description": "Official MCP (Model Context Protocol) server for Kaneo: manage tasks, projects, and labels from Claude, Cursor, and other MCP clients",
+  "mcpName": "io.github.Go-Figure-App/tracing",
+  "description": "Official MCP (Model Context Protocol) server for Tracing: manage tasks, projects, and labels from Claude, Cursor, and other MCP clients",
   "license": "MIT",
-  "author": "Kaneo (https://kaneo.app)",
-  "homepage": "https://kaneo.app/docs/core/integrations/mcp",
+  "author": "Go Figure (https://github.com/Go-Figure-App)",
+  "homepage": "https://github.com/Go-Figure-App/tracing/tree/main/packages/mcp",
   "repository": {
     "type": "git",
-    "url": "https://github.com/usekaneo/kaneo/",
+    "url": "https://github.com/Go-Figure-App/tracing/",
     "directory": "packages/mcp"
   },
   "type": "module",
   "bin": {
-    "kaneo-mcp": "dist/index.js"
+    "tracing-mcp": "dist/index.js"
   },
   "exports": {
     ".": {
@@ -45,8 +45,8 @@
     "ai-agents",
     "claude",
     "kanban",
-    "kaneo",
-    "kaneo-mcp",
+    "tracing",
+    "tracing-mcp",
     "mcp",
     "mcp-server",
     "model-context-protocol",
@@ -70,12 +70,12 @@
     "zod": "^4.6.7"
   },
   "devDependencies": {
-    "@kaneo/typescript-config": "workspace:@tracing/typescript-config@*",
+    "@tracing/typescript-config": "workspace:*",
     "@types/node": "^26.6.5",
     "@types/prompts": "^2.4.9",
     "tsx": "^4.23.15",
     "typescript": "^7.0.2",
-    "vite-plus": "catalog:",
-    "@tracing/typescript-config": "workspace:*"
-  }
+    "vite-plus": "catalog:"
+  },
+  "private": true
 }

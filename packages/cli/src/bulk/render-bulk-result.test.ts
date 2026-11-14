@@ -12,12 +12,16 @@ const ui = makeUi({
 });
 
 const tasks = [
-  { label: "KAN-1", title: "Fix login redirect", url: "https://kaneo.test/1" },
+  {
+    label: "KAN-1",
+    title: "Fix login redirect",
+    url: "https://tracing.test/1",
+  },
   {
     label: "KAN-12",
     title:
       "A title long enough to need shortening on an eighty column terminal",
-    url: "https://kaneo.test/12",
+    url: "https://tracing.test/12",
   },
 ];
 

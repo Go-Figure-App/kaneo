@@ -8,7 +8,7 @@ import {
 } from "./session.js";
 
 const config = withProfile(emptyConfig, "default", () => ({
-  apiUrl: "https://kaneo.example.com/api/",
+  apiUrl: "https://tracing.example.com/api/",
   webUrl: "https://app.example.com",
   token: "profile-token",
   workspaceId: "ws_profile",
@@ -37,9 +37,29 @@ const token = (session: ReturnType<typeof resolveSession>) =>
   ]);
 
 describe("resolveSession", () => {
+  it("prefers Tracing settings over legacy environment aliases", () => {
+    const session = resolveSession(
+      inputs({
+        env: {
+          TRACING_API_URL: "https://new.example.com",
+          KANEO_API_URL: "https://old.example.com",
+          TRACING_API_KEY: "new-key",
+          KANEO_API_KEY: "old-key",
+          TRACING_WORKSPACE: "new-workspace",
+          KANEO_WORKSPACE: "old-workspace",
+          TRACING_PROJECT: "NEW",
+          KANEO_PROJECT: "OLD",
+        },
+      }),
+    );
+    expect(session.apiUrl).toBe("https://new.example.com");
+    expect(token(session)).toEqual(Option.some(["new-key", "env"]));
+    expect(Option.getOrThrow(session.workspace).id).toBe("new-workspace");
+    expect(Option.getOrThrow(session.project).ref).toBe("NEW");
+  });
   it("uses the stored profile by default", () => {
     const session = resolveSession(inputs());
-    expect(session.apiUrl).toBe("https://kaneo.example.com");
+    expect(session.apiUrl).toBe("https://tracing.example.com");
     expect(session.webUrl).toBe("https://app.example.com");
     expect(token(session)).toEqual(Option.some(["profile-token", "profile"]));
     expect(Option.getOrUndefined(session.workspace)).toEqual({
@@ -80,7 +100,7 @@ describe("resolveSession", () => {
 
   it("resolves the workspace from flag, env, repo file, then profile", () => {
     const repo = {
-      path: "/r/.kaneo.json",
+      path: "/r/.tracing.json",
       workspace: "ws_repo",
       project: undefined,
     };

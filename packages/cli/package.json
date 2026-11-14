@@ -1,18 +1,18 @@
 {
   "name": "@tracing/cli",
   "version": "0.1.1",
-  "description": "Official command-line client for Kaneo: sign in, list and update tasks, and script your boards from the terminal",
+  "description": "Official command-line client for Tracing: sign in, list and update tasks, and script your boards from the terminal",
   "license": "MIT",
-  "author": "Kaneo (https://kaneo.app)",
-  "homepage": "https://kaneo.app/docs/cli",
+  "author": "Go Figure (https://github.com/Go-Figure-App)",
+  "homepage": "https://github.com/Go-Figure-App/tracing/tree/main/packages/cli",
   "repository": {
     "type": "git",
-    "url": "https://github.com/usekaneo/kaneo/",
+    "url": "https://github.com/Go-Figure-App/tracing/",
     "directory": "packages/cli"
   },
   "type": "module",
   "bin": {
-    "kaneo": "dist/kaneo.mjs"
+    "tracing": "dist/tracing.mjs"
   },
   "engines": {
     "node": ">=20"
@@ -28,7 +28,7 @@
   "keywords": [
     "cli",
     "kanban",
-    "kaneo",
+    "tracing",
     "project-management",
     "tasks",
     "terminal"
@@ -45,16 +45,15 @@
   "devDependencies": {
     "@effect/platform-node": "4.0.6",
     "@gabrielbryk/jq-ts": "1.7.0",
-    "@kaneo/mcp": "workspace:@tracing/mcp@*",
-    "@kaneo/typescript-config": "workspace:@tracing/typescript-config@*",
+    "@tracing/mcp": "workspace:*",
+    "@tracing/typescript-config": "workspace:*",
     "@types/node": "^26.6.5",
     "effect": "4.0.6",
     "jpeg-js": "0.4.4",
     "pngjs": "7.0.0",
     "tsx": "^4.23.15",
     "typescript": "^7.0.2",
-    "vite-plus": "catalog:",
-    "@tracing/mcp": "workspace:*",
-    "@tracing/typescript-config": "workspace:*"
-  }
+    "vite-plus": "catalog:"
+  },
+  "private": true
 }

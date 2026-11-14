@@ -10,7 +10,7 @@ const context: SearchContext = {
   type: "all",
   workspaceId: "ws_acme",
   workspaceSlug: "acme-studio",
-  webUrl: "https://kaneo.test",
+  webUrl: "https://tracing.test",
 };
 
 const base = { createdAt: "2026-10-07T19:19:55.746Z", relevanceScore: 3 };
@@ -22,7 +22,7 @@ const task: SearchHit = {
   title: "Fix login redirect",
   description: "<p>After the device   approval</p>",
   projectId: "p_kan",
-  projectName: "Kaneo Web",
+  projectName: "Tracing Web",
   projectSlug: "kan",
   workspaceId: "ws_acme",
   userName: "Ada Lovelace",
@@ -35,7 +35,7 @@ const project: SearchHit = {
   ...base,
   id: "p_kan",
   type: "project",
-  title: "Kaneo Web",
+  title: "Tracing Web",
   projectId: "p_kan",
   projectSlug: "kan",
   workspaceId: "ws_acme",
@@ -96,12 +96,12 @@ describe("normalizeSearchResults", () => {
         snippet: "After the device approval",
         projectId: "p_kan",
         projectKey: "KAN",
-        projectName: "Kaneo Web",
+        projectName: "Tracing Web",
         workspaceId: "ws_acme",
         assignee: "Ada Lovelace",
         author: null,
         createdAt: "2026-10-07T19:19:55.746Z",
-        url: "https://kaneo.test/dashboard/workspace/ws_acme/project/p_kan/task/t1",
+        url: "https://tracing.test/dashboard/workspace/ws_acme/project/p_kan/task/t1",
       },
     ]);
   });
@@ -135,7 +135,7 @@ describe("normalizeSearchResults", () => {
       snippet: "Still broken on Safari",
       author: "Grace Hopper",
       assignee: null,
-      url: "https://kaneo.test/acme-studio/task/KAN-1",
+      url: "https://tracing.test/acme-studio/task/KAN-1",
     });
     expect(second?.snippet).toBe("changed status from To Do to In Progress");
   });
@@ -146,15 +146,15 @@ describe("normalizeSearchResults", () => {
       workspaceSlug: null,
     });
     expect(result?.url).toBe(
-      "https://kaneo.test/dashboard/workspace/ws_acme/project/p_kan/board",
+      "https://tracing.test/dashboard/workspace/ws_acme/project/p_kan/board",
     );
   });
 
   it("links projects and workspaces", () => {
     const results = normalizeSearchResults([project, ownWorkspace], context);
     expect(results.map((result) => result.url)).toEqual([
-      "https://kaneo.test/dashboard/workspace/ws_acme/project/p_kan/board",
-      "https://kaneo.test/dashboard/workspace/ws_acme",
+      "https://tracing.test/dashboard/workspace/ws_acme/project/p_kan/board",
+      "https://tracing.test/dashboard/workspace/ws_acme",
     ]);
     expect(results[0]).toMatchObject({ projectKey: "KAN", ticketId: null });
   });

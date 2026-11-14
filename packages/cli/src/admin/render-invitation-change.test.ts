@@ -70,13 +70,13 @@ describe("renderInvitationAnswer", () => {
       renderInvitationAnswer(ui, {
         accepted: true,
         workspaceName: "Side Project",
-        next: "Run kaneo workspace use side-project to switch to it.",
+        next: "Run tracing workspace use side-project to switch to it.",
       }),
     ).toEqual([
       "",
       "  ✓ Joined Side Project",
       "",
-      "  Run kaneo workspace use side-project to switch to it.",
+      "  Run tracing workspace use side-project to switch to it.",
       "",
     ]);
   });

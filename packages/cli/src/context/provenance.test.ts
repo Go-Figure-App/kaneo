@@ -6,7 +6,7 @@ import { outputProvenance } from "./output-provenance.js";
 import { buildProvenance, fingerprint } from "./provenance.js";
 
 const config = withProfile(emptyConfig, "work", () => ({
-  apiUrl: "https://kaneo.example.com",
+  apiUrl: "https://tracing.example.com",
   webUrl: "https://app.example.com",
   token: "stored-session-token-1234",
   workspaceId: "ws_profile",
@@ -31,7 +31,7 @@ function inputs(overrides: Partial<SessionInputs> = {}): SessionInputs {
 describe("buildProvenance", () => {
   it("attributes everything to the active profile by default", () => {
     expect(buildProvenance(inputs())).toEqual({
-      server: { url: "https://kaneo.example.com", source: "profile" },
+      server: { url: "https://tracing.example.com", source: "profile" },
       web: { url: "https://app.example.com", source: "profile" },
       profile: {
         name: "work",
@@ -83,12 +83,12 @@ describe("buildProvenance", () => {
     });
   });
 
-  it("points at .kaneo.json for the repository link", () => {
+  it("points at .tracing.json for the repository link", () => {
     const provenance = buildProvenance(
       inputs({
         env: { KANEO_API_KEY: "short" },
         repo: {
-          path: "/repo/.kaneo.json",
+          path: "/repo/.tracing.json",
           workspace: "ws_repo",
           project: "KAN",
         },
@@ -102,12 +102,12 @@ describe("buildProvenance", () => {
     expect(provenance.workspace).toEqual({
       id: "ws_repo",
       source: "repo",
-      path: "/repo/.kaneo.json",
+      path: "/repo/.tracing.json",
     });
     expect(provenance.project).toEqual({
       ref: "KAN",
       source: "repo",
-      path: "/repo/.kaneo.json",
+      path: "/repo/.tracing.json",
     });
     expect(
       buildProvenance(inputs({ env: { KANEO_PROJECT: "MOB" } })).project,
@@ -117,7 +117,7 @@ describe("buildProvenance", () => {
   it("works signed out with no config file", () => {
     const provenance = buildProvenance(inputs({ config: emptyConfig }));
     expect(provenance.server).toEqual({
-      url: "https://cloud.kaneo.app",
+      url: "https://tracing.gofigureapp.io",
       source: "default",
     });
     expect(provenance.web.source).toBe("server");
@@ -138,7 +138,7 @@ describe("buildProvenance", () => {
 
 describe("fingerprint", () => {
   it("shows only the last four characters of long secrets", () => {
-    expect(fingerprint("kaneo_live_abcdef123456")).toBe("3456");
+    expect(fingerprint("tracing_live_abcdef123456")).toBe("3456");
     expect(fingerprint("short")).toBeNull();
   });
 });

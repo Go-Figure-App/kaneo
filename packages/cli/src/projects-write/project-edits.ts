@@ -47,7 +47,7 @@ export function parseProjectEdits(
       return Result.fail(
         new InvalidArgument({
           message: "The project name cannot be empty.",
-          hint: 'Pass a name, for example --name "Kaneo Web".',
+          hint: 'Pass a name, for example --name "Tracing Web".',
         }),
       );
     }

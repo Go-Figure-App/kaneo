@@ -11,9 +11,9 @@ describe("keyConflictHint", () => {
     );
   });
 
-  it("points at kaneo project edit when the key has to change first", () => {
-    expect(keyConflictHint("KAN2", "kaneo project edit p1")).toBe(
-      "Give it another key first, for example kaneo project edit p1 --key KAN2.",
+  it("points at tracing project edit when the key has to change first", () => {
+    expect(keyConflictHint("KAN2", "tracing project edit p1")).toBe(
+      "Give it another key first, for example tracing project edit p1 --key KAN2.",
     );
   });
 });

@@ -24,10 +24,10 @@ type HomeResult = {
 };
 
 const COMMANDS: ReadonlyArray<readonly [string, string]> = [
-  ["kaneo task list", "List tasks in a project"],
-  ["kaneo whoami", "Show your account and server"],
-  ["kaneo login", "Sign in with your browser"],
-  ["kaneo --help", "See every command"],
+  ["tracing task list", "List tasks in a project"],
+  ["tracing whoami", "Show your account and server"],
+  ["tracing login", "Sign in with your browser"],
+  ["tracing --help", "See every command"],
 ];
 
 export function renderHome(
@@ -42,7 +42,7 @@ export function renderHome(
     lines.push(
       `  ${theme.muted(glyphs.dot)} Not signed in to ${host}`,
       "",
-      `  ${theme.muted("Run")} ${theme.strong("kaneo login")} ${theme.muted("to get started.")}`,
+      `  ${theme.muted("Run")} ${theme.strong("tracing login")} ${theme.muted("to get started.")}`,
       "",
     );
     return lines;

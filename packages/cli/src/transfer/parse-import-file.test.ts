@@ -3,9 +3,9 @@ import { describe, expect, it } from "vite-plus/test";
 import { parseImportDocument } from "./parse-import-file.js";
 
 describe("parseImportDocument", () => {
-  it("reads the document written by kaneo task export", () => {
+  it("reads the document written by tracing task export", () => {
     const content = JSON.stringify({
-      project: { name: "Kaneo Web", slug: "kan" },
+      project: { name: "Tracing Web", slug: "kan" },
       tasks: [
         {
           title: "Fix login",

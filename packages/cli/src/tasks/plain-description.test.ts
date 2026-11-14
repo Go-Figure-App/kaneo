@@ -41,12 +41,16 @@ describe("inlineText", () => {
   it("writes links as text and url", () => {
     expect(
       inlineText(
-        "see [the docs](https://kaneo.app/docs_page_x) or <https://kaneo.app>",
+        "see [the docs](https://tracing.gofigureapp.io/docs_page_x) or <https://tracing.gofigureapp.io>",
       ),
-    ).toBe("see the docs (https://kaneo.app/docs_page_x) or https://kaneo.app");
-    expect(inlineText("[https://kaneo.app](https://kaneo.app)")).toBe(
-      "https://kaneo.app",
+    ).toBe(
+      "see the docs (https://tracing.gofigureapp.io/docs_page_x) or https://tracing.gofigureapp.io",
     );
+    expect(
+      inlineText(
+        "[https://tracing.gofigureapp.io](https://tracing.gofigureapp.io)",
+      ),
+    ).toBe("https://tracing.gofigureapp.io");
     expect(inlineText("[ada@example.com](mailto:ada@example.com)")).toBe(
       "ada@example.com",
     );
@@ -61,24 +65,24 @@ describe("inlineText", () => {
     ).toBe("[image: wide]");
     expect(
       inlineText(
-        '<kaneo-attachment url="https://cdn/r.pdf" filename="report.pdf" mime-type="application/pdf" size="10" />',
+        '<tracing-attachment url="https://cdn/r.pdf" filename="report.pdf" mime-type="application/pdf" size="10" />',
       ),
     ).toBe("[attachment: report.pdf]");
   });
 
-  it("reads Kaneo mentions, issue links and embeds", () => {
+  it("reads Tracing mentions, issue links and embeds", () => {
     expect(
       inlineText(
-        'ping <kaneo-mention id="u1" label="Ada Lovelace"></kaneo-mention>',
+        'ping <tracing-mention id="u1" label="Ada Lovelace"></tracing-mention>',
       ),
     ).toBe("ping @Ada Lovelace");
     expect(
       inlineText(
-        '<kaneo-issue-link url="https://app/task/1" issue-key="KAN-3" task-id="1" />',
+        '<tracing-issue-link url="https://app/task/1" issue-key="KAN-3" task-id="1" />',
       ),
     ).toBe("KAN-3");
     expect(
-      inlineText('<kaneo-embed url="https://youtu.be/x" mode="embed" />'),
+      inlineText('<tracing-embed url="https://youtu.be/x" mode="embed" />'),
     ).toBe("https://youtu.be/x");
   });
 

@@ -1,5 +1,5 @@
 import { Effect, Schema } from "effect";
-import { KaneoApi } from "./kaneo-api.js";
+import { TracingApi } from "./tracing-api.js";
 
 const NullableString = Schema.NullOr(Schema.String);
 
@@ -27,7 +27,7 @@ export type WorkspaceChanges = {
 };
 
 export const listOrganizations = Effect.fnUntraced(function* () {
-  const api = yield* KaneoApi;
+  const api = yield* TracingApi;
   return yield* api.request(
     "GET",
     "/api/auth/organization/list",
@@ -36,7 +36,7 @@ export const listOrganizations = Effect.fnUntraced(function* () {
 });
 
 export const isWorkspaceSlugFree = Effect.fnUntraced(function* (slug: string) {
-  const api = yield* KaneoApi;
+  const api = yield* TracingApi;
   return yield* api
     .request("POST", "/api/auth/organization/check-slug", SlugCheck, {
       body: { slug },
@@ -55,7 +55,7 @@ export const createOrganization = Effect.fnUntraced(function* (body: {
   readonly name: string;
   readonly slug: string;
 }) {
-  const api = yield* KaneoApi;
+  const api = yield* TracingApi;
   return yield* api.request(
     "POST",
     "/api/auth/organization/create",
@@ -68,7 +68,7 @@ export const updateOrganization = Effect.fnUntraced(function* (
   organizationId: string,
   data: WorkspaceChanges,
 ) {
-  const api = yield* KaneoApi;
+  const api = yield* TracingApi;
   return yield* api.request(
     "POST",
     "/api/auth/organization/update",
@@ -80,7 +80,7 @@ export const updateOrganization = Effect.fnUntraced(function* (
 export const deleteOrganization = Effect.fnUntraced(function* (
   organizationId: string,
 ) {
-  const api = yield* KaneoApi;
+  const api = yield* TracingApi;
   return yield* api.request("POST", "/api/auth/organization/delete", Anything, {
     body: { organizationId },
   });
@@ -89,7 +89,7 @@ export const deleteOrganization = Effect.fnUntraced(function* (
 export const leaveOrganization = Effect.fnUntraced(function* (
   organizationId: string,
 ) {
-  const api = yield* KaneoApi;
+  const api = yield* TracingApi;
   return yield* api.request("POST", "/api/auth/organization/leave", Anything, {
     body: { organizationId },
   });

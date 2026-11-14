@@ -17,7 +17,7 @@ export const ProfileSchema = Schema.Struct({
 export type Profile = typeof ProfileSchema.Type;
 
 export const ConfigFileSchema = Schema.Struct({
-  kind: Schema.Literal("kaneo-cli"),
+  kind: Schema.Literal("tracing-cli"),
   version: Schema.Literal(1),
   activeProfile: Schema.String,
   profiles: Schema.Record(Schema.String, ProfileSchema),
@@ -28,7 +28,7 @@ export type ConfigFile = typeof ConfigFileSchema.Type;
 export const DEFAULT_PROFILE = "default";
 
 export const emptyConfig: ConfigFile = {
-  kind: "kaneo-cli",
+  kind: "tracing-cli",
   version: 1,
   activeProfile: DEFAULT_PROFILE,
   profiles: {},
@@ -51,7 +51,7 @@ export function parseConfig(text: string): ParsedConfig {
   if (
     typeof raw !== "object" ||
     raw === null ||
-    (raw as { kind?: unknown }).kind !== "kaneo-cli"
+    (raw as { kind?: unknown }).kind !== "tracing-cli"
   ) {
     return { status: "foreign" };
   }

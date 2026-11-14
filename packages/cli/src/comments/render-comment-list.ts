@@ -69,7 +69,7 @@ export function renderCommentList(ui: Ui, view: CommentListView): string[] {
       "",
       heading,
       "",
-      `  ${theme.muted("No comments yet. Add one with")} ${theme.strong(`kaneo comment add ${view.label}`)}`,
+      `  ${theme.muted("No comments yet. Add one with")} ${theme.strong(`tracing comment add ${view.label}`)}`,
       "",
     ];
   }
