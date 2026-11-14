@@ -23,7 +23,7 @@ export function renderLogout(ui: Ui, result: LogoutResult): string[] {
     : [`  ${theme.muted(glyphs.dot)} You were not signed in to ${host}`];
   if (result.apiKeyStillSet) {
     lines.push(
-      `  ${theme.warning(glyphs.warning)} KANEO_API_KEY is still set, so commands keep using it.`,
+      `  ${theme.warning(glyphs.warning)} An API key environment variable (TRACING_API_KEY or KANEO_API_KEY) is still set, so commands keep using it.`,
     );
   }
   return lines;

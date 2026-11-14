@@ -33,7 +33,7 @@ function serverSource(report: ContextReport): string {
     case "flag":
       return "--api-url";
     case "env":
-      return "TRACING_API_URL";
+      return report.server.variable ?? "TRACING_API_URL";
     case "profile":
       return profileLabel(report);
     case "default":
@@ -44,7 +44,7 @@ function serverSource(report: ContextReport): string {
 function webSource(report: ContextReport): string {
   switch (report.web.source) {
     case "env":
-      return "TRACING_WEB_URL";
+      return report.web.variable ?? "TRACING_WEB_URL";
     case "profile":
       return profileLabel(report);
     case "server":
@@ -57,7 +57,7 @@ function profileSource(report: ContextReport): string {
     case "flag":
       return "--profile";
     case "env":
-      return "TRACING_PROFILE";
+      return report.profile.variable ?? "TRACING_PROFILE";
     case "config":
       return "active in the config file";
     case "default":
@@ -70,7 +70,7 @@ function authSource(report: ContextReport): string {
     case "flag":
       return "--token";
     case "env":
-      return "TRACING_API_KEY";
+      return report.auth.variable ?? "TRACING_API_KEY";
     case "profile":
       return profileLabel(report);
     case "none":
@@ -83,7 +83,7 @@ function workspaceSource(report: ContextReport): string {
     case "flag":
       return "-w";
     case "env":
-      return "TRACING_WORKSPACE";
+      return report.workspace.variable ?? "TRACING_WORKSPACE";
     case "repo":
       return report.workspace.path ?? ".tracing.json";
     case "profile":
@@ -96,7 +96,7 @@ function workspaceSource(report: ContextReport): string {
 function projectSource(report: ContextReport): string {
   switch (report.project.source) {
     case "env":
-      return "TRACING_PROJECT";
+      return report.project.variable ?? "TRACING_PROJECT";
     case "repo":
       return report.project.path ?? ".tracing.json";
     case "none":
@@ -109,7 +109,7 @@ function outputSource(report: ContextReport): string {
     case "flag":
       return report.output.mode === "json" ? "--json" : "--human";
     case "env":
-      return "TRACING_JSON";
+      return report.output.variable ?? "TRACING_JSON";
     case "terminal":
       return "stdout is a terminal";
     case "pipe":

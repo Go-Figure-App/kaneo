@@ -8,6 +8,21 @@ const plain = (source: string, width = 80, maxLines?: number) =>
   );
 
 describe("inlineText", () => {
+  it("renders persisted legacy mentions, attachments, embeds and issue links", () => {
+    expect(
+      inlineText('<kaneo-mention id="u" label="Ada"></kaneo-mention>'),
+    ).toBe("@Ada");
+    expect(inlineText('<kaneo-embed url="https://example.com/video" />')).toBe(
+      "https://example.com/video",
+    );
+    expect(
+      inlineText(
+        '<kaneo-attachment url="/api/asset/a" filename="report.pdf" />',
+      ),
+    ).toBe("[attachment: report.pdf]");
+    expect(inlineText('<kaneo-issue-link issue-key="GOF-1" />')).toBe("GOF-1");
+  });
+
   it("drops emphasis markers", () => {
     expect(
       inlineText(

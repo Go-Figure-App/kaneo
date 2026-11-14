@@ -34,7 +34,7 @@ export function fileMarkdown(file: UploadedFile): string {
   if (file.kind === "image") {
     return `![${escapeMarkdownText(altTextFor(file.name))}](${formatMarkdownUrl(file.url)})`;
   }
-  return `<tracing-attachment url="${escapeHtml(file.url)}" filename="${escapeHtml(file.name)}" mime-type="${escapeHtml(file.contentType)}" size="${file.size}" />`;
+  return `<kaneo-attachment url="${escapeHtml(file.url)}" filename="${escapeHtml(file.name)}" mime-type="${escapeHtml(file.contentType)}" size="${file.size}" />`;
 }
 
 export function appendToDescription(

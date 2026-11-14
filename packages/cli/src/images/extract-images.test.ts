@@ -2,6 +2,14 @@ import { describe, expect, it } from "vite-plus/test";
 import { extractImages } from "./extract-images.js";
 
 describe("extractImages", () => {
+  it("reads stored legacy attachment tags", () => {
+    expect(
+      extractImages(
+        '<kaneo-attachment url="/api/asset/legacy" filename="old.png" mime-type="image/png" />',
+      ),
+    ).toEqual([{ url: "/api/asset/legacy", alt: "old.png" }]);
+  });
+
   it("finds Markdown images with titles and escaped alt text", () => {
     expect(
       extractImages(

@@ -18,7 +18,7 @@ export function describeError(error: AppError): Failure {
     case "NotSignedIn":
       return {
         message: `You are not signed in to ${host(error.apiUrl)}.`,
-        hint: "Run tracing login, or set KANEO_API_KEY.",
+        hint: "Run tracing login, or set TRACING_API_KEY.",
       };
     case "SessionExpired":
       return {
@@ -32,13 +32,14 @@ export function describeError(error: AppError): Failure {
             hint: "Check the token, or run tracing login.",
           }
         : {
-            message: "The API key in KANEO_API_KEY was rejected.",
-            hint: "Create a new key in Settings, then API keys, or unset KANEO_API_KEY.",
+            message:
+              "The API key from TRACING_API_KEY or KANEO_API_KEY was rejected.",
+            hint: "Create a new key in Settings, then API keys, or unset the active TRACING_API_KEY / KANEO_API_KEY variable.",
           };
     case "SessionRequired":
       return {
         message: error.message,
-        hint: "API keys cannot do this. Unset KANEO_API_KEY and run tracing login.",
+        hint: "API keys cannot do this. Unset TRACING_API_KEY and KANEO_API_KEY, then run tracing login.",
       };
     case "PermissionDenied":
       return {
@@ -97,7 +98,7 @@ export function describeError(error: AppError): Failure {
     case "DeviceClientRejected":
       return {
         message: `${host(error.apiUrl)} does not allow browser sign-in from the Tracing CLI (client ID ${error.clientId}).`,
-        hint: `Ask the server admin to add ${error.clientId} to DEVICE_AUTH_CLIENT_IDS, or use an API key with KANEO_API_KEY.`,
+        hint: `Ask the server admin to add ${error.clientId} to DEVICE_AUTH_CLIENT_IDS, or use an API key with TRACING_API_KEY.`,
       };
     case "DeviceLoginDenied":
       return {
@@ -113,7 +114,7 @@ export function describeError(error: AppError): Failure {
       return error.reason === "foreign"
         ? {
             message: `${error.path} was written by a different tracing CLI, so it was left untouched.`,
-            hint: "Move the file aside, or set KANEO_CONFIG to use another file.",
+            hint: "Move the file aside, or set TRACING_CONFIG to use another file.",
           }
         : {
             message: `Could not read ${error.path}: ${error.detail}`,
