@@ -1,7 +1,7 @@
 {
   "name": "@tracing/mcp",
   "version": "0.1.14",
-  "mcpName": "io.github.usekaneo/kaneo",
+  "mcpName": "io.github.Go-Figure-App/tracing",
   "description": "Official MCP (Model Context Protocol) server for Kaneo: manage tasks, projects, and labels from Claude, Cursor, and other MCP clients",
   "license": "MIT",
   "author": "Kaneo (https://kaneo.app)",
@@ -77,5 +77,6 @@
     "typescript": "^7.0.2",
     "vite-plus": "catalog:",
     "@tracing/typescript-config": "workspace:*"
-  }
+  },
+  "private": true
 }
