@@ -1,9 +1,9 @@
 #!/bin/sh
 set -eu
 
-export KANEO_CLIENT_URL="${TRACING_CLIENT_URL-${KANEO_CLIENT_URL-}}"
-export KANEO_API_URL="${TRACING_API_URL-${KANEO_API_URL-}}"
-export KANEO_TURNSTILE_SITE_KEY="${TRACING_TURNSTILE_SITE_KEY-${KANEO_TURNSTILE_SITE_KEY-}}"
+export KANEO_CLIENT_URL="${TRACING_CLIENT_URL:-${KANEO_CLIENT_URL-}}"
+export KANEO_API_URL="${TRACING_API_URL:-${KANEO_API_URL-}}"
+export KANEO_TURNSTILE_SITE_KEY="${TRACING_TURNSTILE_SITE_KEY:-${KANEO_TURNSTILE_SITE_KEY-}}"
 
 urlencode() {
   node -e 'const input = process.argv[1]; process.stdout.write(encodeURIComponent(input).replace(/[!\x27()*]/g, (char) => `%${char.charCodeAt(0).toString(16).toUpperCase()}`));' -- "$1"
