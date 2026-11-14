@@ -121,6 +121,8 @@ export async function prepare(pr, log, signal) {
           "--ignore-scripts",
           "--prefer-offline",
           "--filter",
+          "@tracing/web...",
+          "--filter",
           "@kaneo/web...",
         ],
         {
@@ -143,16 +145,27 @@ export async function prepare(pr, log, signal) {
       if (!(await exists(path.join(packageDir, "package.json")))) continue;
       if (await exists(path.join(packageDir, "dist/index.js"))) continue;
       log("prepare", `Compiling the shared ${name} package for ${side}`);
-      await command("pnpm", ["--filter", `@kaneo/${name}`, "exec", "tsc"], {
-        cwd: dir,
-        signal,
-        env: {
-          PATH: process.env.PATH,
-          HOME: process.env.HOME,
-          TMPDIR: process.env.TMPDIR || "/tmp",
-          CI: "true",
+      await command(
+        "pnpm",
+        [
+          "--filter",
+          `@tracing/${name}`,
+          "--filter",
+          `@kaneo/${name}`,
+          "exec",
+          "tsc",
+        ],
+        {
+          cwd: dir,
+          signal,
+          env: {
+            PATH: process.env.PATH,
+            HOME: process.env.HOME,
+            TMPDIR: process.env.TMPDIR || "/tmp",
+            CI: "true",
+          },
         },
-      });
+      );
     }
     snapshots[side] = { sha, dir };
   }
