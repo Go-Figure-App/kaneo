@@ -110,7 +110,7 @@ spec:
             {{- toYaml .Values.tracing.resources | nindent 12 }}
           volumeMounts:
             - name: runtime
-              mountPath: /var/lib/tracing
+              mountPath: /var/lib/kaneo
       volumes:
         - name: runtime
           emptyDir: {}

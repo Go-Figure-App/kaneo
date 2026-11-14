@@ -3,60 +3,20 @@ title: "Install with Docker Compose"
 description: "Run Tracing and PostgreSQL, then sign in to your new instance."
 ---
 
-This guide starts a local instance at `http://localhost:5173`. You need Docker with Compose V2 and a terminal. No repository clone is required.
+This guide builds a local instance at `http://localhost:5173`. You need Docker
+with Compose V2. Tracing container images are currently built from this source
+repository; no Tracing registry image is published.
 
-<Tip>
-  Want Tracing in production without being on call for it? A [managed instance](https://tracing.gofigureapp.io/pricing#managed-instance) gives you your own Tracing in the EU, with backups and upgrades handled, from $299 a month.
-</Tip>
-
-## 1. Create a directory
+## 1. Clone the source
 
 ```bash
-mkdir kaneo
-cd kaneo
+git clone https://github.com/Go-Figure-App/tracing.git
+cd tracing
 ```
 
-Save the following as `compose.yml`:
-
-```yaml
-services:
-  postgres:
-    image: postgres:16-alpine
-    environment:
-      POSTGRES_USER: ${POSTGRES_USER:-kaneo}
-      POSTGRES_DB: ${POSTGRES_DB:-kaneo}
-      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?Set POSTGRES_PASSWORD in .env}
-    volumes:
-      - postgres_data:/var/lib/postgresql/data
-    restart: unless-stopped
-    healthcheck:
-      test: ["CMD-SHELL", 'pg_isready -U "$${POSTGRES_USER}" -d "$${POSTGRES_DB}"']
-      interval: 10s
-      timeout: 5s
-      retries: 5
-
-  kaneo:
-    image: ghcr.io/Go-Figure-App/tracing:${TRACING_IMAGE_TAG:-2.28.3}
-    ports:
-      - "127.0.0.1:5173:5173"
-    env_file:
-      - .env
-    depends_on:
-      postgres:
-        condition: service_healthy
-    restart: unless-stopped
-    healthcheck:
-      test: ["CMD", "wget", "-Y", "off", "--quiet", "--spider", "http://127.0.0.1:5173/api/health"]
-      interval: 30s
-      timeout: 5s
-      start_period: 60s
-      retries: 3
-
-volumes:
-  postgres_data:
-```
-
-This example pins Tracing to a release so a pull does not unexpectedly upgrade it. See the [release notes](https://github.com/Go-Figure-App/tracing/releases) when choosing another version. To follow a release line instead, set `TRACING_IMAGE_TAG` to a major tag such as `2` or a major and minor tag such as `2.34`. These tags move to the newest matching release and only exist for lines released since they were introduced, so check the [available tags](https://github.com/Go-Figure-App/tracing/pkgs/container/kaneo) first. Pulling a newer image does not restart Tracing; follow the [upgrade guide](/core/operations/upgrades) to apply it.
+Use the included `compose.yml`, which builds `Dockerfile.tracing` as
+`tracing:local`. For a local-only instance, change its port mapping to
+`127.0.0.1:5173:5173` before starting it.
 
 ## 2. Add configuration
 
@@ -69,7 +29,6 @@ openssl rand -hex 32
 Create `.env` beside `compose.yml`. Replace both placeholders with the generated values:
 
 ```env
-TRACING_IMAGE_TAG=2.28.3
 TRACING_CLIENT_URL=http://localhost:5173
 POSTGRES_DB=kaneo
 POSTGRES_USER=kaneo
@@ -84,7 +43,7 @@ The bundled image derives its database connection from `POSTGRES_*` and its API 
 ## 3. Start and check the services
 
 ```bash
-docker compose up -d
+docker compose up -d --build
 docker compose ps
 curl --fail http://localhost:5173/api/health
 ```
@@ -92,7 +51,7 @@ curl --fail http://localhost:5173/api/health
 Allow time for the first database initialization and migrations. Both services should become healthy. If they do not, check:
 
 ```bash
-docker compose logs --tail=100 kaneo postgres
+docker compose logs --tail=100 tracing postgres
 ```
 
 Open [localhost:5173](http://localhost:5173), create the initial account, and follow [Your first project](/core/index).
@@ -102,20 +61,20 @@ Open [localhost:5173](http://localhost:5173), create the initial account, and fo
 The port is bound to the host's loopback address. To serve Tracing on a domain, follow the [Nginx and HTTPS guide](/core/reverse-proxy/nginx), then set:
 
 ```env
-TRACING_CLIENT_URL=https://kaneo.example.com
+TRACING_CLIENT_URL=https://tracing.example.com
 ```
 
 Apply environment changes by recreating the container:
 
 ```bash
-docker compose up -d --force-recreate kaneo
+docker compose up -d --force-recreate tracing
 ```
 
-A plain restart keeps the old environment. If you use a proxy in another container, connect it to Tracing's Docker network and proxy to `kaneo:5173` instead of the host's loopback address.
+A plain restart keeps the old environment. If you use a proxy in another container, connect it to Tracing's Docker network and proxy to `tracing:5173` instead of the host's loopback address.
 
 ## Keep secrets in files
 
-Instead of putting `POSTGRES_PASSWORD` and `AUTH_SECRET` in `.env`, you can mount them as Docker secret files. This requires a Tracing release that includes `_FILE` support, so raise `TRACING_IMAGE_TAG` past `2.28.3` first.
+Instead of putting `POSTGRES_PASSWORD` and `AUTH_SECRET` in `.env`, you can mount them as Docker secret files. The source build includes `_FILE` support.
 
 Move the values you already use from `.env` into their own files:
 
@@ -143,7 +102,7 @@ services:
     secrets:
       - postgres_password
 
-  kaneo:
+  tracing:
     environment:
       POSTGRES_PASSWORD_FILE: /run/secrets/postgres_password
       AUTH_SECRET_FILE: /run/secrets/auth_secret

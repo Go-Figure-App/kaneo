@@ -66,7 +66,7 @@ One Tracing project is created per PLANKA **board**, because the board is what h
 
 ## Import with the CLI
 
-`@tracing/planka-import` runs on your own machine. It reads your boards from PLANKA's REST API and recreates them in Tracing through Tracing's public API. It does not modify PLANKA or use an intermediary service.
+Build the source package with `pnpm --filter @tracing/planka-import build` from a checkout with locked dependencies installed. It is not published to npm. `@tracing/planka-import` runs on your own machine. It reads your boards from PLANKA's REST API and recreates them in Tracing through Tracing's public API. It does not modify PLANKA or use an intermediary service.
 
 Use it if you prefer the terminal, want to script the migration, or your PLANKA is not reachable from the Tracing server. It maps boards the same way as the in-app import, with the differences noted [below](#how-the-cli-differs).
 
@@ -83,7 +83,7 @@ As with the in-app import, use a PLANKA admin account to keep assignees, and inv
 A dry run reads PLANKA only and writes nothing. It needs no Tracing API key, so it's a safe first step:
 
 ```bash
-npx @tracing/planka-import --planka-url https://planka.example.com --dry-run
+node packages/planka-import/dist/index.js --planka-url https://planka.example.com --dry-run
 ```
 
 You'll be asked for your PLANKA login and which boards to migrate. The output tells you exactly what would be created:
@@ -101,7 +101,7 @@ Planned import:
 When the plan looks right, set `TRACING_API_KEY` in your environment and drop `--dry-run`. The CLI reads the key from that variable:
 
 ```bash
-npx @tracing/planka-import \
+node packages/planka-import/dist/index.js \
   --planka-url https://planka.example.com \
   --kaneo-url https://tracing.gofigureapp.io \
   --workspace ws_123
@@ -112,7 +112,7 @@ Self-hosting Tracing? Point `--kaneo-url` at your own instance. If you leave `--
 To skip the prompts entirely, for example in a script:
 
 ```bash
-npx @tracing/planka-import \
+node packages/planka-import/dist/index.js \
   --planka-url https://planka.example.com \
   --planka-user you@example.com \
   --workspace ws_123 \

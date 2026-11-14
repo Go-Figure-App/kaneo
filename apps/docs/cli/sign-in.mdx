@@ -1,10 +1,10 @@
 ---
 title: Sign in
-description: Connect the CLI to Tracing Cloud or a self-hosted instance, use API keys in CI, and keep several logins.
+description: Connect the CLI to the Go Figure instance or a self-hosted instance, use API keys in CI, and keep several logins.
 ---
 
 ```bash
-kaneo login
+tracing login
 ```
 
 The CLI shows a one-time code, copies it to your clipboard, and opens the approval page of your Tracing web app. Approve the request there and the CLI saves the login. After signing in you can choose a default workspace. Pass `--no-browser` to print the link instead of opening a browser.
@@ -12,16 +12,16 @@ The CLI shows a one-time code, copies it to your clipboard, and opens the approv
 For a self-hosted instance, pass its address once. Later commands reuse it:
 
 ```bash
-kaneo login --api-url https://kaneo.example.com
+tracing login --api-url https://tracing.example.com
 ```
 
-`kaneo login` uses [device authorization](/api-reference/authentication) with the `kaneo-cli` client ID, which self-hosted Tracing allows by default. If you set `DEVICE_AUTH_CLIENT_IDS`, keep `kaneo-cli` in the list.
+`tracing login` uses [device authorization](/api-reference/authentication) with the `tracing-cli` client ID, which self-hosted Tracing allows by default. If you set `DEVICE_AUTH_CLIENT_IDS`, keep `tracing-cli` in the list.
 
 Check or end the session with:
 
 ```bash
-kaneo whoami
-kaneo logout
+tracing whoami
+tracing logout
 ```
 
 ## API keys for CI and scripts
@@ -30,7 +30,7 @@ Create a key in **Settings → Account → API Keys** and set it in the environm
 
 ```bash
 export TRACING_API_KEY=your-key
-kaneo task list -w your-workspace-id -p KAN
+tracing task list -w your-workspace-id -p KAN
 ```
 
 The CLI picks credentials in this order: `--token`, then `TRACING_API_KEY`, then the stored login. A stored login is only ever sent to the server it was created for. A few account-level actions need a signed-in session, and the CLI tells you when an API key cannot be used.
@@ -40,9 +40,9 @@ The CLI picks credentials in this order: `--token`, then `TRACING_API_KEY`, then
 Each login is stored as a profile. The first one is called `default`. To keep a second server or account, sign in with another profile name:
 
 ```bash
-kaneo login --profile work --api-url https://kaneo.example.com
-kaneo profile list
-kaneo profile use default
+tracing login --profile work --api-url https://tracing.example.com
+tracing profile list
+tracing profile use default
 ```
 
-`kaneo login` and `kaneo profile use` make that profile the active one. To use a profile for a single command, pass `--profile work` or set `TRACING_PROFILE=work`. `kaneo profile rename` and `kaneo profile remove` manage the rest.
+`tracing login` and `tracing profile use` make that profile the active one. To use a profile for a single command, pass `--profile work` or set `TRACING_PROFILE=work`. `tracing profile rename` and `tracing profile remove` manage the rest.

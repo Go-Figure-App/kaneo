@@ -16,20 +16,14 @@ Do not change the PostgreSQL major version as part of an ordinary Tracing image 
 
 ## Docker Compose
 
-In the Compose setup from this guide, set `TRACING_IMAGE_TAG` in `.env` to the release you chose. If your Compose file hardcodes the image tag, edit that instead. Pulling an image does not restart the running container.
+Check out the reviewed source commit you chose. The included Compose file builds the local image; no Tracing registry image is currently published.
 
 ```bash
-docker compose pull kaneo
-docker compose up -d kaneo
+docker compose build tracing
+docker compose up -d tracing
 docker compose ps
-docker compose logs --tail=100 kaneo
+docker compose logs --tail=100 tracing
 ```
-
-## drim
-
-Run `drim upgrade` from the deployment directory. It pulls the images selected by your existing Compose file. If those use `latest`, that means the newest published images. Review the file before running it.
-
-Older two-container deployments need the [layout migration](/core/installation/drim-migration); upgrading images does not rewrite their Compose file.
 
 ## Check the result
 
@@ -43,7 +37,7 @@ Keep the backup until you are satisfied with the result.
 
 ## If the upgrade fails
 
-Capture the failing container logs and stop the new application container with `docker compose stop kaneo` while you investigate.
+Capture the failing container logs and stop the new application container with `docker compose stop tracing` while you investigate.
 
 Do not assume an old image can read a newly migrated database. Unless the release explicitly supports that downgrade, recover using the previous application image plus its matching database and file backup. Follow [Backups and recovery](/core/operations/backups), and account for any work created since the backup.
 

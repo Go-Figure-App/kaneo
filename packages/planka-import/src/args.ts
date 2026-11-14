@@ -107,7 +107,7 @@ export const DEFAULT_KANEO_URL = "https://tracing.gofigureapp.io";
 export const HELP_TEXT = `kaneo-planka-import: migrate PLANKA boards into Tracing
 
 Usage:
-  npx @tracing/planka-import --planka-url <url> --kaneo-api-key <key> [options]
+  node packages/planka-import/dist/index.js --planka-url <url> --kaneo-api-key <key> [options]
 
 PLANKA source:
   --planka-url <url>        PLANKA instance URL (required)
@@ -137,7 +137,7 @@ Behaviour:
   -v, --version             Show the version
 
 Examples:
-  npx @tracing/planka-import --planka-url https://planka.acme.com --dry-run
-  npx @tracing/planka-import --planka-url https://planka.acme.com \\
+  node packages/planka-import/dist/index.js --planka-url https://planka.acme.com --dry-run
+  node packages/planka-import/dist/index.js --planka-url https://planka.acme.com \\
     --kaneo-api-key kaneo_xxx --workspace ws_123 --all
 `;

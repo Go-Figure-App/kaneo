@@ -1,130 +1,42 @@
 ---
-title: Install the CLI
+title: Build the CLI
 sidebarTitle: Install
-description: Install, update and remove the kaneo binary on macOS, Linux and Windows.
+description: Build and run the Tracing command-line client from source.
 ---
 
-The Tracing CLI is a single `kaneo` binary. Install it with one command.
+The Tracing CLI is currently distributed as source. Its workspace package and
+binaries have not been published to npm, Homebrew or GitHub Releases.
 
-On macOS and Linux:
-
-```bash
-curl -fsSL https://tracing.gofigureapp.io/cli/install.sh | sh
-```
-
-On Windows, in PowerShell:
-
-```powershell
-irm https://tracing.gofigureapp.io/cli/install.ps1 | iex
-```
-
-The script downloads the build for your system from the [GitHub release](https://github.com/Go-Figure-App/tracing/releases), checks it against the release's SHA-256 checksums, and only then replaces any existing `kaneo`. Nothing else is needed, not even Node.js.
-
-- On macOS and Linux it installs to `~/.local/bin/kaneo`. If that directory is not on your `PATH`, the script prints the command that adds it for your shell (bash, zsh, fish or another).
-- On Windows it installs to `%LOCALAPPDATA%\Programs\kaneo\kaneo.exe` and adds that directory to your user `PATH`. Open a new terminal afterwards.
-
-Then [sign in](/cli/sign-in) and run `kaneo` on its own to see your account, your open tasks and the main commands.
-
-<Tip>
-Both scripts are plain text. Read them before running them: [install.sh](https://github.com/Go-Figure-App/tracing/blob/main/apps/site/public/cli/install.sh) and [install.ps1](https://github.com/Go-Figure-App/tracing/blob/main/apps/site/public/cli/install.ps1), or print one with `curl -fsSL https://tracing.gofigureapp.io/cli/install.sh | less`.
-</Tip>
-
-## Install with Homebrew
-
-On macOS and Linux with [Homebrew](https://brew.sh):
+Use Node.js 24 and the pnpm version declared in the repository's `packageManager`:
 
 ```bash
-brew install usekaneo/tap/kaneo
+git clone https://github.com/Go-Figure-App/tracing.git
+cd tracing
+pnpm install --frozen-lockfile
+pnpm --filter @tracing/cli build
+node packages/cli/dist/tracing.mjs --help
 ```
 
-Update it with `brew upgrade kaneo` and remove it with `brew uninstall kaneo`. Homebrew installs the same binary as the install script, from the CLI release, and checks it against the release checksums.
-
-## Install with npm
-
-With Node.js 20 or newer, you can install the same CLI from npm instead:
+The command examples in these docs use `tracing`. Substitute
+`node /absolute/path/to/tracing/packages/cli/dist/tracing.mjs`, or define a shell
+function pointing to that file. For example, after replacing the path:
 
 ```bash
-npm install -g @tracing/cli
+tracing() { node /absolute/path/to/tracing/packages/cli/dist/tracing.mjs "$@"; }
+tracing login --api-url https://tracing.gofigureapp.io
 ```
 
-Update it with `npm install -g @tracing/cli@latest` and remove it with `npm uninstall -g @tracing/cli`. Every install method shares your logins and settings. Keep one of them per machine: with more than one installed, whichever comes first on your `PATH` runs, and the install script warns about the other copy.
-
-## Install options
-
-Set these environment variables to change what the script does:
-
-| Variable | What it does |
-| --- | --- |
-| `TRACING_VERSION` | Install this version, such as `0.1.0` or `cli-v0.1.0`, instead of the latest release |
-| `TRACING_INSTALL_DIR` | Install into this directory instead of the default |
-| `TRACING_DOWNLOAD_URL` | Download from a mirror instead of GitHub. Requires `TRACING_VERSION` |
-
-Pin a version, or install into another directory:
-
-```bash
-curl -fsSL https://tracing.gofigureapp.io/cli/install.sh | TRACING_VERSION=0.1.0 sh
-curl -fsSL https://tracing.gofigureapp.io/cli/install.sh | TRACING_INSTALL_DIR="$HOME/bin" sh
-```
-
-```powershell
-$env:TRACING_VERSION = "0.1.0"; irm https://tracing.gofigureapp.io/cli/install.ps1 | iex
-$env:TRACING_INSTALL_DIR = "C:\tools\kaneo"; irm https://tracing.gofigureapp.io/cli/install.ps1 | iex
-```
-
-Without `TRACING_VERSION`, the script asks the GitHub API for the newest CLI release (tags that start with `cli-v`). GitHub allows 60 of these lookups per hour from one IP address without a token, so set `TRACING_VERSION` in CI.
-
-## Mirrors and offline machines
-
-`TRACING_DOWNLOAD_URL` replaces `https://github.com/Go-Figure-App/tracing/releases/download`. The script then downloads `<url>/cli-v<version>/SHA256SUMS` and `<url>/cli-v<version>/<file>`, so a mirror keeps the same layout as the GitHub release. It makes no call to the GitHub API, which is why `TRACING_VERSION` is required.
-
-```bash
-curl -fsSL https://tracing.gofigureapp.io/cli/install.sh | TRACING_DOWNLOAD_URL=https://mirror.example.com/kaneo TRACING_VERSION=0.1.0 sh
-```
-
-For a machine without internet access, copy `install.sh` (or `install.ps1`), `SHA256SUMS` and the file for that machine from the release into a `cli-v<version>` folder, then point `TRACING_DOWNLOAD_URL` at the folder that contains it. `install.sh` accepts a `file://` URL when it downloads with curl, and `install.ps1` accepts a local or network path:
-
-```bash
-TRACING_DOWNLOAD_URL=file:///opt/kaneo-mirror TRACING_VERSION=0.1.0 sh install.sh
-```
-
-```powershell
-$env:TRACING_DOWNLOAD_URL = "\\fileserver\kaneo"; $env:TRACING_VERSION = "0.1.0"; Get-Content -Raw .\install.ps1 | iex
-```
-
-## Supported systems
-
-| System | Builds |
-| --- | --- |
-| macOS | Apple silicon and Intel. On Apple silicon the script installs the native build even when the terminal runs under Rosetta |
-| Linux | x64 and arm64, for glibc distributions and for musl distributions such as Alpine |
-| Windows | x64. Windows 11 on Arm runs the x64 build through emulation |
-
-The x64 builds are baseline builds, so they also run on older processors without AVX2. On Alpine and other musl distributions, the CLI needs the C++ runtime library. The script warns when it is missing:
-
-```bash
-apk add libstdc++
-```
-
-Prefer the install script to downloading a binary from the release page with a browser. The macOS builds are signed ad hoc but not notarized, so Gatekeeper can block a copy that a browser downloaded. Files downloaded with `curl`, as the script does, are not affected.
+Run `tracing login --help` for server and API-key options. Existing Kaneo logins
+and repository settings remain supported. New repository settings use
+`.tracing.json`; `TRACING_*` environment variables take precedence over legacy
+`KANEO_*` aliases.
 
 ## Update
 
-Run the install command again. It replaces `kaneo` with the latest release, or with the version in `TRACING_VERSION`, and keeps your logins and settings. Check the result with `kaneo --version`.
-
-If the script warns that another `kaneo` comes first on your `PATH`, for example an older community CLI, it shows both paths. Remove the other one, or move the install directory earlier in your `PATH`.
+Check out the reviewed commit you want to run, install its locked dependencies,
+and rebuild. Keep your current credentials; rebuilding does not remove them.
 
 ## Uninstall
 
-Delete the binary. To also remove your stored logins and settings, delete the config directory:
-
-```bash
-rm ~/.local/bin/kaneo
-rm -rf ~/.config/kaneo
-```
-
-```powershell
-Remove-Item "$env:LOCALAPPDATA\Programs\kaneo" -Recurse
-Remove-Item "$HOME\.config\kaneo" -Recurse
-```
-
-On Windows, also remove `%LOCALAPPDATA%\Programs\kaneo` from your user `PATH` (search the Start menu for "Edit environment variables for your account"). If you set `TRACING_INSTALL_DIR`, `XDG_CONFIG_HOME` or `TRACING_CONFIG`, delete those locations instead.
+Remove the shell function or launcher you created. Run `tracing logout` to remove
+the selected login before removing the build if you also want to sign out.

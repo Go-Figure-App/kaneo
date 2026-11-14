@@ -127,11 +127,11 @@ export function Footer() {
               </a>
               <a
                 className="block text-muted-foreground transition-colors hover:text-foreground"
-                href="https://discord.com/invite/rU4tSyhXXU"
+                href="https://github.com/Go-Figure-App/tracing/issues"
                 target="_blank"
                 rel="noreferrer"
               >
-                Discord
+                Report an issue
               </a>
               <a
                 className="block text-muted-foreground transition-colors hover:text-foreground"
@@ -139,7 +139,7 @@ export function Footer() {
                 target="_blank"
                 rel="noreferrer"
               >
-                Sponsor
+                Support Kaneo upstream
               </a>
               <a
                 className="block text-muted-foreground transition-colors hover:text-foreground"

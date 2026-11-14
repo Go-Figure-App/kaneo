@@ -17,40 +17,40 @@ Every setting has a flag, an environment variable, or both. A flag wins over its
 | Web app address for links | | `TRACING_WEB_URL` (detected during login) |
 | Config file | | `TRACING_CONFIG` |
 
-Logins are stored in `~/.config/kaneo/config.json`, or `$XDG_CONFIG_HOME/kaneo/config.json`, with permissions that only your user can read. If another kaneo CLI already uses that file, the official CLI leaves it untouched and asks you to move it or set `TRACING_CONFIG`. The CLI keeps track of your running timer in `timer.json` next to the config file.
+Logins are stored in `~/.config/tracing/config.json`, or `$XDG_CONFIG_HOME/tracing/config.json`, with permissions that only your user can read. If another tracing CLI already uses that file, the official CLI leaves it untouched and asks you to move it or set `TRACING_CONFIG`. The CLI keeps track of your running timer in `timer.json` next to the config file.
 
 ## Repository defaults
 
 Link a repository to a workspace and project, so commands run anywhere inside it use them:
 
 ```bash
-kaneo link                     # pick from a list in a terminal
-kaneo link -w your-workspace-id -p KAN
+tracing link                     # pick from a list in a terminal
+tracing link -w your-workspace-id -p KAN
 ```
 
-`kaneo link` writes a `.kaneo.json` at the root of the Git repository, or in the current directory outside a repository. It keeps any other keys already in the file:
+`tracing link` writes a `.tracing.json` at the root of the Git repository, or in the current directory outside a repository. It keeps any other keys already in the file:
 
 ```json
 { "workspace": "your-workspace-id", "project": "KAN" }
 ```
 
-Commands look for `.kaneo.json` in the current directory and its parents. `kaneo unlink` removes the two keys, and deletes the file when nothing else is left.
+Commands look for `.tracing.json` in the current directory and its parents. `tracing unlink` removes the two keys, and deletes the file when nothing else is left.
 
-The CLI picks the workspace from `-w`, then `TRACING_WORKSPACE`, then `.kaneo.json`, then the default you chose with `kaneo workspace use`. It picks the project from `-p`, then `TRACING_PROJECT`, then `.kaneo.json`.
+The CLI picks the workspace from `-w`, then `TRACING_WORKSPACE`, then `.tracing.json`, then the default you chose with `tracing workspace use`. It picks the project from `-p`, then `TRACING_PROJECT`, then `.tracing.json`.
 
 ## Check your setup
 
-`kaneo context` shows the server, profile, account, workspace and project in use, and where each one came from. Use it when a command picks the wrong workspace or server.
+`tracing context` shows the server, profile, account, workspace and project in use, and where each one came from. Use it when a command picks the wrong workspace or server.
 
-`kaneo doctor` checks the config file, the server, your login, the workspace, and whether the server has every API operation this CLI uses. It exits with code 1 when a check fails, so it also works in CI:
+`tracing doctor` checks the config file, the server, your login, the workspace, and whether the server has every API operation this CLI uses. It exits with code 1 when a check fails, so it also works in CI:
 
 ```bash
-kaneo doctor
+tracing doctor
 ```
 
 ## Images in the terminal
 
-`kaneo task images` shows the images in a task description, `kaneo task attach` previews the images you upload, and `kaneo whoami` shows your avatar.
+`tracing task images` shows the images in a task description, `tracing task attach` previews the images you upload, and `tracing whoami` shows your avatar.
 
 - Kitty and Ghostty show full images with the Kitty graphics protocol.
 - iTerm2 and WezTerm show full images with the iTerm2 protocol.

@@ -93,7 +93,7 @@ When CPU autoscaling is enabled, set `tracing.resources.requests.cpu`; Kubernete
 | Name                                | Description                                                                                                        | Value                           |
 | ----------------------------------- | ------------------------------------------------------------------------------------------------------------------ | ------------------------------- |
 | `tracing.image.repository`            | Tracing image repository                                                                                             | `tracing`        |
-| `tracing.image.tag`                   | Tracing image tag. Defaults to `Chart.appVersion` when empty                                                         | `""`                            |
+| `tracing.image.tag`                   | Tracing image tag. Build and load the local image, or choose a published image you control                                                         | `local`                            |
 | `tracing.image.pullPolicy`            | Tracing image pull policy                                                                                            | `IfNotPresent`                  |
 | `tracing.service.type`                | Tracing service type                                                                                                 | `ClusterIP`                     |
 | `tracing.service.port`                | Tracing service port                                                                                                 | `5173`                          |
@@ -346,7 +346,7 @@ If you're migrating from a previous SQLite-based installation, you'll need to:
 1. Export your data from SQLite
 2. Deploy the new PostgreSQL-based chart
 3. Import your data into PostgreSQL
-Contact the Tracing community on [Discord](https://discord.gg/rU4tSyhXXU) for migration assistance.
+Report migration issues in the [Tracing repository](https://github.com/Go-Figure-App/tracing/issues).
 ## Troubleshooting
 ### "invalid origin" error on login
 Tracing's API validates the `Origin` header on every request against `TRACING_CLIENT_URL`. The chart now requires `clientUrl` before rendering. On older deployments, an unset or incorrect value can cause login failures.
@@ -444,7 +444,7 @@ tracing:
       drop: ["ALL"]
 ```
 ### OpenShift and read-only containers
-Tracing supports OpenShift's assigned UID. The chart mounts an `emptyDir` at `/var/lib/tracing` for generated frontend assets, nginx state, and temporary files. These files are recreated at startup; application data remains in PostgreSQL and the configured object storage.
+Tracing supports OpenShift's assigned UID. The chart mounts an `emptyDir` at `/var/lib/kaneo` for generated frontend assets, nginx state, and temporary files. These files are recreated at startup; application data remains in PostgreSQL and the configured object storage.
 
 Leave `runAsUser`, `runAsGroup`, and `fsGroup` unset on OpenShift so its security policy can assign permitted IDs. With an external PostgreSQL database, the Tracing container can use:
 ```yaml
@@ -462,15 +462,15 @@ tracing:
 ```
 The bundled PostgreSQL image has its own platform requirements; use an OpenShift-compatible database deployment or an external database on OpenShift.
 
-When running the combined or standalone web image outside Helm with a read-only root filesystem, mount writable storage at `/var/lib/tracing`. For example:
+When running the combined or standalone web image outside Helm with a read-only root filesystem, mount writable storage at `/var/lib/kaneo`. For example:
 ```bash
 docker run --read-only \
-  --tmpfs /var/lib/tracing:rw,mode=0770,uid=1001,gid=0 \
+  --tmpfs /var/lib/kaneo:rw,mode=0770,uid=1001,gid=0 \
   --env-file .env -p 5173:5173 tracing:local
 ```
 For a bind mount, grant write access to the container's UID or a group it belongs to. The image's default user is UID 1001 with GID 0; arbitrary UIDs can write its runtime directory through GID 0 when the root filesystem is writable.
 
-nginx serves the web app from `/var/lib/tracing/html`, where startup writes the runtime configuration, and reads server configuration copied from `/etc/nginx/conf.d` into `/var/lib/tracing/nginx/conf.d`. If you mount your own server configuration, set `root /var/lib/tracing/html;`. The previous `/usr/share/nginx/html` still holds the unconfigured build, so a config that serves it breaks API calls and sign-in; startup logs a warning when a config still uses that path. Files you mount into `/usr/share/nginx/html`, such as a custom favicon, are still copied into `/var/lib/tracing/html` and served, and startup never writes to them. Templates in `/etc/nginx/templates` still render at startup, and `default.conf.template` replaces the bundled server configuration.
+nginx serves the web app from `/var/lib/kaneo/html`, where startup writes the runtime configuration, and reads server configuration copied from `/etc/nginx/conf.d` into `/var/lib/kaneo/nginx/conf.d`. If you mount your own server configuration, set `root /var/lib/kaneo/html;`. The previous `/usr/share/nginx/html` still holds the unconfigured build, so a config that serves it breaks API calls and sign-in; startup logs a warning when a config still uses that path. Files you mount into `/usr/share/nginx/html`, such as a custom favicon, are still copied into `/var/lib/kaneo/html` and served, and startup never writes to them. Templates in `/etc/nginx/templates` still render at startup, and `default.conf.template` replaces the bundled server configuration.
 
 ### Registration Control
 By default, user registration is enabled. To disable new user registration:
@@ -486,3 +486,16 @@ This will prevent new users from registering while still allowing existing users
 The chart stores `tracing.env.authSecret` in a Kubernetes Secret and the application Deployment references its `auth-secret` key. Upgrades preserve the supplied value; the chart does not generate a new signing secret. For production, prefer `tracing.env.existingSecret` so secret material is not supplied in Helm values or retained in Helm release metadata. Limit access to Secrets and Helm release records.
 
 When upgrading from a chart that placed `AUTH_SECRET` directly in the Deployment, consider the old Deployment, ReplicaSets, exported manifests and deployment logs exposed to readers of those resources. If those readers were not authorized to possess the signing secret, rotate it and invalidate affected authentication artifacts as part of the upgrade. Moving the value into a Secret does not revoke earlier copies.
+
+## Upgrading an existing Kaneo release
+
+Back up and rehearse the upgrade against a restored database first. Retain the
+Helm release name, namespace, existing resource names, PVC and database
+credentials. For a chart that previously used the default `kaneo` name, set
+`nameOverride: kaneo`; retain an existing `fullnameOverride` if one was used.
+This preserves immutable selectors and the existing PostgreSQL resource names.
+Move application settings from `kaneo:` to `tracing:` in your values file; do not
+use the new PostgreSQL defaults for an already initialized volume. Keep the
+existing `AUTH_SECRET`. Render the chart and compare names, selectors, PVCs and
+secrets with the installed release before applying it. `/var/lib/kaneo` remains
+the container's writable runtime path for compatibility.

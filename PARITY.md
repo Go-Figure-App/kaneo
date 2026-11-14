@@ -644,3 +644,9 @@ The Tracing rename is delivered as five dependent PRs so each stays within the
 review service file limit. Temporary workspace aliases keep intermediate PRs
 buildable and are removed after consumers move. The UI review runner accepts
 both package names because its base checkout can predate the rename.
+
+Final rename audit: the Helm writable mount retains `/var/lib/kaneo`, matching
+the runtime scripts. Existing Helm releases must preserve selectors, PVCs and
+credentials using the documented name overrides. CLI/MCP/importer setup docs
+use source builds because no Tracing registry artifacts have been published;
+upstream drim and analytics are not presented as Tracing services.

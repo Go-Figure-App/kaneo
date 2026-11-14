@@ -6,7 +6,7 @@ description: Connect Tracing to MCP clients like Cursor and Claude Desktop using
 Tracing supports the Model Context Protocol (MCP) in two ways:
 
 1. **Built-in HTTP endpoint**: every Tracing instance exposes `/api/mcp` out of the box. No extra setup, no extra process.
-2. **Stdio package** ([`@tracing/mcp`](https://www.npmjs.com/package/@tracing/mcp)): the official Tracing MCP package on npm, a local stdio server for clients that prefer stdio transport.
+2. **Local stdio server**: build the `@tracing/mcp` workspace package from this repository. It is not published to npm.
 
 Both offer the same tools for managing workspaces, projects, tasks, custom fields, comments, and labels.
 
@@ -19,7 +19,7 @@ Every Tracing API instance ships with a Streamable HTTP MCP endpoint. This is th
 Point your MCP client at:
 
 ```
-https://your-kaneo-instance.com/api/mcp
+https://tracing.example.com/api/mcp
 ```
 
 With an OAuth-capable client, you will be redirected to Tracing to sign in and explicitly approve the MCP client. After approval, all MCP tools run as your authenticated user.
@@ -45,61 +45,26 @@ The `@tracing/mcp` package runs a local stdio MCP server and authenticates with 
 - A running Tracing API
 - Access to the Tracing web app to approve device login
 
-By default, self-hosted Tracing allows both `kaneo-cli` and `kaneo-mcp` as device auth client IDs.
-
-### Install and register
-
-Use the recommended interactive installer:
+Build from the repository using its locked dependencies:
 
 ```bash
-npx -y @tracing/mcp
+pnpm install --frozen-lockfile
+pnpm --filter @tracing/mcp build
+TRACING_API_URL=https://tracing.gofigureapp.io node packages/mcp/dist/index.js serve
 ```
 
-The installer lets you choose where to register the server configuration:
+Configure a stdio client to run `node` with the absolute path to
+`packages/mcp/dist/index.js` followed by `serve`, and set `TRACING_API_URL` in
+that client's environment. The built-in HTTP endpoint is simpler for clients
+that support it. The interactive package installer assumes registry distribution;
+use this explicit source command until a package release exists.
 
-- Cursor (user-wide)
-- Cursor (project-level)
-- Claude Desktop
-- Custom JSON config path
-
-You can also run the explicit install command:
-
-```bash
-npx -y @tracing/mcp install --target cursor-user -y
-```
-
-Use `--help` to see all available targets and flags:
-
-```bash
-npx -y @tracing/mcp install --help
-```
-
-### Point to a self-hosted instance
-
-When generating config, pass your Tracing base URL:
-
-```bash
-npx -y @tracing/mcp install --target cursor-user -y --api-url https://kaneo.example.com
-```
-
-Or set it via environment variable:
-
-| Variable | Description |
-| --- | --- |
-| `TRACING_API_URL` | Tracing API base URL. Default: `http://localhost:1337`. A trailing `/api` is accepted and normalized. |
-| `TRACING_MCP_CLIENT_ID` | Device auth client ID. Default: `kaneo-mcp`. |
-
-If you override `TRACING_MCP_CLIENT_ID`, make sure it is included in [`DEVICE_AUTH_CLIENT_IDS`](/core/installation/environment-variables).
-
-### Authentication flow
-
-On the first tool call that needs Tracing access, the MCP server:
-
-1. Requests a device code from Tracing
-2. Prints a verification URL and user code
-3. Opens the browser when possible
-4. Polls until you approve sign-in
-5. Stores credentials in `$XDG_CONFIG_HOME/kaneo-mcp/credentials.json`, or `~/.config/kaneo-mcp/credentials.json` when `XDG_CONFIG_HOME` is unset
+The default device client is `tracing-mcp`; `tracing-cli` and legacy Kaneo device
+clients are also allowed by default. On first use, open the printed verification
+URL and approve the device. New credentials use `~/.config/tracing-mcp` (or the
+matching `XDG_CONFIG_HOME` directory). Existing `kaneo-mcp` credentials remain
+usable for the same server. `TRACING_API_KEY` can provide an existing API key for
+a headless client. Keep keys in the client's secret configuration.
 
 ## Available tools
 
@@ -134,7 +99,7 @@ or `null` to clear the value. Dates use `YYYY-MM-DD`.
 To run the stdio server directly:
 
 ```bash
-npx -y @tracing/mcp serve
+node packages/mcp/dist/index.js serve
 ```
 
 When running from source in this monorepo:
