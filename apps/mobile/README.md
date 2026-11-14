@@ -55,7 +55,7 @@ pnpm --filter @tracing/mobile test
 
 ## TestFlight builds
 
-The Expo project is [@gofigure/tracing](https://expo.dev/accounts/gofigure/projects/tracing), with bundle ID `io.gofigureapp.tracing`. The `production` EAS profile creates an App Store-signed build and increments its build number remotely. The Apple Developer team must have a matching bundle ID, distribution certificate, provisioning profile and App Store Connect app record.
+The Expo project is [@gofigure/tracing](https://expo.dev/accounts/gofigure/projects/tracing), with bundle ID `io.gofigureapp.tracing`. The `production` EAS profile creates an App Store-signed build and increments its build number remotely. The EAS post-install hook compiles the shared editor package before Metro bundles the app. The Apple Developer team must have a matching bundle ID, distribution certificate, provisioning profile and App Store Connect app record.
 
 Run from `apps/mobile` after the source revision has passed CI:
 
