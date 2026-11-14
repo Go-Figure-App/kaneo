@@ -1,4 +1,4 @@
-# Kaneo project instructions
+# Tracing project instructions
 
 Canonical guidance: [AGENTS.md](./AGENTS.md)
 

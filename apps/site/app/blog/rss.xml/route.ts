@@ -2,7 +2,7 @@ import { blogPath, getPosts } from "@/lib/blog";
 
 export const dynamic = "force-static";
 
-const SITE = "https://kaneo.app";
+const SITE = "https://tracing.gofigureapp.io";
 
 function escapeXml(value: string) {
   return value
@@ -40,9 +40,9 @@ export function GET() {
   const xml = `<?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/">
   <channel>
-    <title>Kaneo blog</title>
+    <title>Tracing blog</title>
     <link>${SITE}/blog</link>
-    <description>Writing from the Kaneo team on project management, product, and engineering.</description>
+    <description>Writing from the Tracing team on project management, product, and engineering.</description>
     <language>en</language>
     <lastBuildDate>${lastBuildDate}</lastBuildDate>
     <atom:link href="${SITE}/blog/rss.xml" rel="self" type="application/rss+xml" />

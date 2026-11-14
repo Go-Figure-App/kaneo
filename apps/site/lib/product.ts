@@ -1,6 +1,7 @@
 import { landing } from "@/lib/landing";
 
-export const appStoreUrl = "https://apps.apple.com/app/id6828574501";
+export const appStoreUrl =
+  "https://github.com/Go-Figure-App/tracing/tree/main/apps/mobile";
 
 // The homepage and text exports use the same answers so product facts stay aligned.
 export const productAnswers = [
@@ -15,7 +16,7 @@ export function productMarkdown() {
   return `${landing.product.overview}\n\n${productAnswers
     .map(
       ({ question, answer, link, href }) =>
-        `### ${question}\n\n${answer}\n\n[${link}](${new URL(href, "https://kaneo.app")})`,
+        `### ${question}\n\n${answer}\n\n[${link}](${new URL(href, "https://tracing.gofigureapp.io")})`,
     )
     .join("\n\n")}`;
 }

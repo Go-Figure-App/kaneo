@@ -9,7 +9,7 @@ export const projectManagementToolsWithFreeSso: Guide = {
   summary:
     "Where single sign-on is included, where it costs extra, and why it keeps moving behind paywalls.",
   answer:
-    "Among self-hosted tools, Kaneo, Vikunja, and WeKan include OIDC single sign-on in their free builds, and Redmine and Kanboard can do it through plugins. OpenProject, Plane, and PLANKA reserve it for a paid edition or tier. Among hosted SaaS tools, SSO is almost always an Enterprise-tier feature: Asana, monday.com, and Shortcut all place SAML on their top plans, Jira requires an Atlassian Guard subscription or its Enterprise tier, and Notion and ClickUp put it mid-tier.",
+    "Among self-hosted tools, Tracing, Vikunja, and WeKan include OIDC single sign-on in their free builds, and Redmine and Kanboard can do it through plugins. OpenProject, Plane, and PLANKA reserve it for a paid edition or tier. Among hosted SaaS tools, SSO is almost always an Enterprise-tier feature: Asana, monday.com, and Shortcut all place SAML on their top plans, Jira requires an Atlassian Guard subscription or its Enterprise tier, and Notion and ClickUp put it mid-tier.",
   sections: [
     {
       heading: "Why single sign-on ends up behind a paywall",
@@ -23,7 +23,7 @@ export const projectManagementToolsWithFreeSso: Guide = {
       heading: "Self-hosted tools: where SSO sits",
       items: [
         {
-          name: "Kaneo",
+          name: "Tracing",
           meta: "Free, every build",
           href: "/planka-alternative",
           body: "Google, GitHub, Discord, or any OIDC provider, configured with environment variables. No paid edition, so it cannot move later without changing the licence of a project that is MIT throughout.",
@@ -83,10 +83,10 @@ export const projectManagementToolsWithFreeSso: Guide = {
     {
       question: "Which self-hosted project management tool has free SSO?",
       answer:
-        "Kaneo, Vikunja, and WeKan include OIDC on the free build. Kaneo also has no paid edition at all, so there is no tier for it to move into later.",
+        "Tracing, Vikunja, and WeKan include OIDC on the free build. Tracing also has no paid edition at all, so there is no tier for it to move into later.",
     },
     {
-      question: "How do I set up OIDC single sign-on in Kaneo?",
+      question: "How do I set up OIDC single sign-on in Tracing?",
       answer:
         "Set the client ID, client secret, and the provider's authorization, token, and user-info URLs as environment variables, or point CUSTOM_OAUTH_DISCOVERY_URL at its discovery document, then restart the container. Google, GitHub, and Discord have dedicated settings, and any standards-compliant provider such as Keycloak, Authentik, Pocket ID, or Entra ID works through the custom OAuth configuration.",
     },
@@ -97,8 +97,8 @@ export const projectManagementToolsWithFreeSso: Guide = {
     },
   ],
   related: [
-    { label: "Kaneo vs PLANKA", href: "/planka-alternative" },
-    { label: "Kaneo vs OpenProject", href: "/openproject-alternative" },
+    { label: "Tracing vs PLANKA", href: "/planka-alternative" },
+    { label: "Tracing vs OpenProject", href: "/openproject-alternative" },
     {
       label: "Custom OAuth and OIDC setup",
       href: "/docs/core/social-providers/custom-oauth",

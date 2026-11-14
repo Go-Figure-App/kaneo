@@ -19,7 +19,7 @@ services:
     image: kaneo-browserstack:test
     build:
       context: ../..
-      dockerfile: Dockerfile.kaneo
+      dockerfile: Dockerfile.tracing
     ports:
       - "127.0.0.1:18173:5173"
     environment:

@@ -6,20 +6,20 @@ export const redmine: Comparison = {
   category: "open-source",
   title: "Modern Redmine alternative",
   description:
-    "Kaneo is a modern Redmine alternative with boards, workflows, and time tracking built in, no plugins needed. Kaneo Cloud runs it for you from $4 a month.",
+    "Tracing is a modern Redmine alternative with boards, workflows, and time tracking built in, no plugins needed. Tracing Cloud runs it for you from $4 a month.",
   summary:
-    "Redmine's ideas with an interface from this decade, run for you on Kaneo Cloud.",
+    "Redmine's ideas with an interface from this decade, run for you on Tracing Cloud.",
   heading: "The modern Redmine alternative",
   subheading:
-    "Redmine has been quietly running teams for two decades, and it looks it. Kaneo is the same idea with an interface from this decade, and Kaneo Cloud runs it for you.",
+    "Redmine has been quietly running teams for two decades, and it looks it. Tracing is the same idea with an interface from this decade, and Tracing Cloud runs it for you.",
   verdict:
-    "Kaneo is a modern Redmine alternative, and Kaneo Cloud runs it for you from $4 a month, or $5 per user for teams, with nothing to maintain. Redmine is a Rails application from 2006 whose kanban boards, single sign-on, and modern conveniences generally come from third-party plugins, while Kaneo ships boards, workflows, time tracking, and realtime updates as core features. Both are free and self-hostable, and Kaneo's self-hosted build includes single sign-on.",
+    "Tracing is a modern Redmine alternative, and Tracing Cloud runs it for you from $4 a month, or $5 per user for teams, with nothing to maintain. Redmine is a Rails application from 2006 whose kanban boards, single sign-on, and modern conveniences generally come from third-party plugins, while Tracing ships boards, workflows, time tracking, and realtime updates as core features. Both are free and self-hostable, and Tracing's self-hosted build includes single sign-on.",
   facts: {
     license: "MIT, versus GPLv2 for Redmine",
     hosting:
-      "EU-hosted Kaneo Cloud. Both self-host, Kaneo as Docker plus PostgreSQL",
-    sso: "Built in on Kaneo, LDAP or plugins on Redmine",
-    pricing: "Kaneo Cloud from $4 / month, or $0 self-hosted for both",
+      "EU-hosted Tracing Cloud. Both self-host, Tracing as Docker plus PostgreSQL",
+    sso: "Built in on Tracing, LDAP or plugins on Redmine",
+    pricing: "Tracing Cloud from $4 / month, or $0 self-hosted for both",
   },
   rows: [
     { feature: "License", kaneo: "MIT", them: "GPLv2" },
@@ -38,19 +38,19 @@ export const redmine: Comparison = {
   reasons: [
     {
       title: "No plugin archaeology",
-      body: "A usable Redmine often means a stack of community plugins, each pinned to a Redmine version. Kaneo's boards, workflows, and SSO are part of the product and upgrade with it.",
+      body: "A usable Redmine often means a stack of community plugins, each pinned to a Redmine version. Tracing's boards, workflows, and SSO are part of the product and upgrade with it.",
     },
     {
       title: "People will actually open it",
-      body: "Redmine's interface is functional and unloved. Kaneo is a fast single-page app with realtime board updates, which matters when adoption is the hard part.",
+      body: "Redmine's interface is functional and unloved. Tracing is a fast single-page app with realtime board updates, which matters when adoption is the hard part.",
     },
     {
       title: "A cloud option when you want one",
-      body: "Redmine has no first-party hosting. Kaneo gives you the same MIT-licensed software either self-hosted or managed from $4 a month.",
+      body: "Redmine has no first-party hosting. Tracing gives you the same MIT-licensed software either self-hosted or managed from $4 a month.",
     },
   ],
   honestNote:
-    "Redmine is battle-tested, endlessly extensible, and still maintained, with an ecosystem covering almost anything through plugins. If you already run it, know its quirks, and depend on that ecosystem, there is no urgent reason to move. Kaneo is for teams starting fresh who want less to maintain.",
+    "Redmine is battle-tested, endlessly extensible, and still maintained, with an ecosystem covering almost anything through plugins. If you already run it, know its quirks, and depend on that ecosystem, there is no urgent reason to move. Tracing is for teams starting fresh who want less to maintain.",
   faq: [
     {
       question: "Is Redmine still maintained?",
@@ -60,23 +60,23 @@ export const redmine: Comparison = {
     {
       question: "What is the best modern Redmine alternative?",
       answer:
-        "Kaneo if you want something small, modern, and MIT licensed. OpenProject if you want a Redmine-descended platform with Gantt charts and enterprise support. Plane or Huly if you want a Linear-style interface.",
+        "Tracing if you want something small, modern, and MIT licensed. OpenProject if you want a Redmine-descended platform with Gantt charts and enterprise support. Plane or Huly if you want a Linear-style interface.",
     },
     {
-      question: "Does Kaneo support LDAP?",
+      question: "Does Tracing support LDAP?",
       answer:
-        "Kaneo authenticates through Google, GitHub, Discord, or any OIDC provider, which covers most directories through an identity provider such as Keycloak, Authentik, or Entra ID. There is no direct LDAP bind.",
+        "Tracing authenticates through Google, GitHub, Discord, or any OIDC provider, which covers most directories through an identity provider such as Keycloak, Authentik, or Entra ID. There is no direct LDAP bind.",
     },
     {
-      question: "Can I migrate Redmine issues to Kaneo?",
+      question: "Can I migrate Redmine issues to Tracing?",
       answer:
-        "There is no dedicated importer. Redmine has a REST API and Kaneo has a public API plus per-project JSON import, so a scripted migration is straightforward for someone comfortable with either API.",
+        "There is no dedicated importer. Redmine has a REST API and Tracing has a public API plus per-project JSON import, so a scripted migration is straightforward for someone comfortable with either API.",
     },
   ],
   related: ["openproject", "jira", "kanboard", "taiga"],
   verifiedOn: "2026-08-19",
   sources: [
     { label: "Redmine", href: "https://www.redmine.org/" },
-    { label: "Kaneo pricing", href: "/pricing" },
+    { label: "Tracing pricing", href: "/pricing" },
   ],
 };

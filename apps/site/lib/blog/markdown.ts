@@ -32,7 +32,10 @@ function escapeAttribute(value: string) {
 }
 
 function isExternal(href: string) {
-  return /^https?:\/\//.test(href) && !href.startsWith("https://kaneo.app");
+  return (
+    /^https?:\/\//.test(href) &&
+    !href.startsWith("https://tracing.gofigureapp.io")
+  );
 }
 
 /**

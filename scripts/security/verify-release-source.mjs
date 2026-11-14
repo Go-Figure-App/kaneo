@@ -49,7 +49,7 @@ if (mode === "nightly") {
     approved = git("rev-parse", "--verify", `${tag}^{commit}`);
     git("merge-base", "--is-ancestor", approved, "refs/remotes/origin/main");
     const pkg = JSON.parse(git("show", `${approved}:package.json`));
-    const chart = git("show", `${approved}:charts/kaneo/Chart.yaml`);
+    const chart = git("show", `${approved}:charts/tracing/Chart.yaml`);
     const field = (name) =>
       chart.match(
         new RegExp(`^${name}:\\s*["']?([^\\s"']+)["']?\\s*$`, "m"),

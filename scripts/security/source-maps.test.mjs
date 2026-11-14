@@ -14,7 +14,7 @@ import { resolve } from "node:path";
 import test from "node:test";
 
 const root = resolve(import.meta.dirname, "../..");
-for (const config of ["nginx.conf", "nginx.kaneo.conf"]) {
+for (const config of ["nginx.conf", "nginx.tracing.conf"]) {
   test(`${config} refuses existing source maps and still serves the application`, () => {
     const fixture = mkdtempSync(resolve(tmpdir(), "kaneo-map-test-"));
     try {

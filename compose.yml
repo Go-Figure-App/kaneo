@@ -15,8 +15,11 @@ services:
       timeout: 5s
       retries: 5
 
-  kaneo:
-    image: ghcr.io/usekaneo/kaneo:latest
+  tracing:
+    image: tracing:local
+    build:
+      context: .
+      dockerfile: Dockerfile.tracing
     ports:
       - "5173:5173"
     env_file:

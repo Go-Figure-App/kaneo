@@ -92,10 +92,10 @@ export const moscowPrioritization: Guide = {
       ],
     },
     {
-      heading: "MoSCoW in Kaneo",
+      heading: "MoSCoW in Tracing",
       body: [
         "Create four labels, Must, Should, Could, and Won't, or a dropdown custom field with those values, and tag each item in the release. Filter the backlog or board by the field to see each group, and by Must alone when checking whether the release is on track.",
-        "Use Kaneo's priority field for the order within a group. Items marked Won't can stay in the backlog, so they are there for the next release without cluttering the board.",
+        "Use Tracing's priority field for the order within a group. Items marked Won't can stay in the backlog, so they are there for the next release without cluttering the board.",
       ],
     },
   ],

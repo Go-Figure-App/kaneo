@@ -9,7 +9,7 @@ import { guideList, guidePath } from "@/lib/guides";
 
 export const dynamic = "force-static";
 
-const SITE = "https://kaneo.app";
+const SITE = "https://tracing.gofigureapp.io";
 
 type Entry = { path: string; lastmod?: string };
 

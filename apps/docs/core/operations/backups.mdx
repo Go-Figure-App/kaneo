@@ -3,7 +3,7 @@ title: "Backups and recovery"
 description: "Save the database, uploaded files, and configuration, then prove you can restore them."
 ---
 
-A complete Kaneo backup has three parts:
+A complete Tracing backup has three parts:
 
 | Part | What it contains |
 | --- | --- |
@@ -17,7 +17,7 @@ The commands below apply to the [Docker Compose setup](/core/installation/docker
 
 ## Make a consistent backup
 
-Schedule a maintenance window and stop every Kaneo API instance that can write to this database. For the single-container setup:
+Schedule a maintenance window and stop every Tracing API instance that can write to this database. For the single-container setup:
 
 ```bash
 docker compose stop kaneo
@@ -51,7 +51,7 @@ The custom archive is created by [pg_dump](https://www.postgresql.org/docs/16/ap
 
 ## Save uploaded files
 
-Keep Kaneo stopped while saving storage, so the database records and files stay aligned.
+Keep Tracing stopped while saving storage, so the database records and files stay aligned.
 
 For the single-node Silo service in this guide, copy its complete data directory while it is stopped. `docker compose cp` can copy from a stopped container. Include the hidden metadata files:
 
@@ -62,7 +62,7 @@ docker compose cp silo:/data/. "$backup_dir/silo-data/"
 docker compose start silo
 ```
 
-Check the copy succeeded before restarting Kaneo. For large volumes, a consistent filesystem snapshot may be more practical. Record the volume name and snapshot identifier beside the database dump. See the [Compose copy reference](https://docs.docker.com/reference/cli/docker/compose/cp/).
+Check the copy succeeded before restarting Tracing. For large volumes, a consistent filesystem snapshot may be more practical. Record the volume name and snapshot identifier beside the database dump. See the [Compose copy reference](https://docs.docker.com/reference/cli/docker/compose/cp/).
 
 For managed object storage, use a recoverable bucket snapshot or versioned backup and record its recovery point. Make sure your retention policy will preserve objects deleted after the backup. Store any encryption keys and bucket policies needed for recovery separately and securely.
 
@@ -112,7 +112,7 @@ Use a new, empty recovery volume for each rehearsal. Do not run the restore repe
 
 1. Restore PostgreSQL into an empty recovery database.
 2. Restore the matching storage backup, preserving bucket names, object keys, and required key material. For a fresh single-node Silo recovery volume, create the stopped container with `docker compose create silo`, copy the saved `silo-data/.` into `silo:/data/` with `docker compose cp`, check ownership matches the container's runtime user, then start it. Do not overlay a recovery copy onto a live storage volume.
-3. Deploy the Kaneo image recorded with the backup. Restore its `AUTH_SECRET` and other required settings.
+3. Deploy the Tracing image recorded with the backup. Restore its `AUTH_SECRET` and other required settings.
 4. Set the recovery instance's URLs, database connection, and storage endpoint to the recovery services.
 5. Before starting it, isolate outbound email, webhooks, and repository integrations at the network level. Integration credentials can be present in the restored database, not only in `.env`.
 6. Sign in, compare several projects and tasks with the expected backup state, and open existing attachments. Try a new task and file upload.

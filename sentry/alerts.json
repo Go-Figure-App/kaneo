@@ -10,12 +10,12 @@
 	"_comment_dataset": "Sentry is migrating transaction-based alerts away from `dataset: transactions`. Use `dataset: events_analytics_platform` (with `is_transaction:true` in the query) for transaction-based metrics.",
 	"alerts": [
 		{
-			"name": "Kaneo API: New issue",
+			"name": "Tracing API: New issue",
 			"description": "First time a new issue is seen in kaneo-api. Triages everything that isn't yet bucketed.",
 			"kind": "issue",
 			"projects": ["kaneo-api"],
 			"workflow": {
-				"name": "Kaneo API: New issue",
+				"name": "Tracing API: New issue",
 				"enabled": true,
 				"triggers": {
 					"logicType": "any-short",
@@ -30,12 +30,12 @@
 			}
 		},
 		{
-			"name": "Kaneo API: New error spike",
+			"name": "Tracing API: New error spike",
 			"description": "More than 50 error events in 5 minutes. Detector is created alongside this workflow.",
 			"kind": "metric",
 			"project": "kaneo-api",
 			"detector": {
-				"name": "Kaneo API: Error spike detector",
+				"name": "Tracing API: Error spike detector",
 				"description": "count(error events) > 50 in a 5-minute window",
 				"type": "metric_issue",
 				"config": {
@@ -70,7 +70,7 @@
 				}
 			},
 			"workflow": {
-				"name": "Kaneo API: New error spike",
+				"name": "Tracing API: New error spike",
 				"enabled": true
 			}
 		},
@@ -91,12 +91,12 @@
 			}
 		},
 		{
-			"name": "Kaneo API: Slow p95 latency",
+			"name": "Tracing API: Slow p95 latency",
 			"description": "p95 of transaction.duration > 1500ms in any 10-minute window on /api/* routes.",
 			"kind": "metric",
 			"project": "kaneo-api",
 			"detector": {
-				"name": "Kaneo API: Slow p95 latency detector",
+				"name": "Tracing API: Slow p95 latency detector",
 				"description": "p95(transaction.duration) > 1500ms over 10 minutes",
 				"type": "metric_issue",
 				"config": {
@@ -131,17 +131,17 @@
 				}
 			},
 			"workflow": {
-				"name": "Kaneo API: Slow p95 latency",
+				"name": "Tracing API: Slow p95 latency",
 				"enabled": true
 			}
 		},
 		{
-			"name": "Kaneo API: MCP error rate",
+			"name": "Tracing API: MCP error rate",
 			"description": "MCP tool errors exceed 5% over a 1h window. Helps catch regressions before users do.",
 			"kind": "metric",
 			"project": "kaneo-api",
 			"detector": {
-				"name": "Kaneo API: MCP error rate detector",
+				"name": "Tracing API: MCP error rate detector",
 				"description": "MCP error rate > 5% over 1 hour",
 				"type": "metric_issue",
 				"config": {
@@ -176,17 +176,17 @@
 				}
 			},
 			"workflow": {
-				"name": "Kaneo API: MCP error rate",
+				"name": "Tracing API: MCP error rate",
 				"enabled": true
 			}
 		},
 		{
-			"name": "Kaneo Web: New issue",
+			"name": "Tracing Web: New issue",
 			"description": "New React ErrorBoundary or unhandled exception in kaneo-web.",
 			"kind": "issue",
 			"projects": ["kaneo-web"],
 			"workflow": {
-				"name": "Kaneo Web: New issue",
+				"name": "Tracing Web: New issue",
 				"enabled": true,
 				"triggers": {
 					"logicType": "any-short",

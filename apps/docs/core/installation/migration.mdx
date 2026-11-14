@@ -3,9 +3,9 @@ title: Move to the bundled container
 description: Replace separate API and web containers while keeping your existing database and configuration.
 ---
 
-Use this guide only if your deployment still has separate `ghcr.io/usekaneo/api` and `ghcr.io/usekaneo/web` services. The bundled `ghcr.io/usekaneo/kaneo` image serves both on port 5173. Separate images remain available for deployments that need them.
+Use this guide only if your deployment still has separate `ghcr.io/usekaneo/api` and `ghcr.io/usekaneo/web` services. The bundled `ghcr.io/Go-Figure-App/tracing` image serves both on port 5173. Separate images remain available for deployments that need them.
 
-If you already use the bundled image, follow [Upgrade Kaneo](/core/operations/upgrades). For drim-managed deployments, see [Migrate to drim](/core/installation/drim-migration).
+If you already use the bundled image, follow [Upgrade Tracing](/core/operations/upgrades). For drim-managed deployments, see [Migrate to drim](/core/installation/drim-migration).
 
 ## Before changing the layout
 
@@ -14,24 +14,24 @@ If you already use the bundled image, follow [Upgrade Kaneo](/core/operations/up
 3. Keep the same Compose project name, database volume, PostgreSQL major version, database credentials, and `AUTH_SECRET`.
 4. Save copies of your Compose file, `.env`, and reverse-proxy configuration.
 
-Changing the application layout does not require replacing PostgreSQL or moving its data. A newer Kaneo image can run database migrations, so an older image alone is not a complete rollback.
+Changing the application layout does not require replacing PostgreSQL or moving its data. A newer Tracing image can run database migrations, so an older image alone is not a complete rollback.
 
 ## Replace the application services
 
-In your existing Compose file, replace `api` and `web` with this service. Set `KANEO_IMAGE_TAG` in `.env` to your chosen release tag. Keep the existing database service and volumes.
+In your existing Compose file, replace `api` and `web` with this service. Set `TRACING_IMAGE_TAG` in `.env` to your chosen release tag. Keep the existing database service and volumes.
 
 ```yaml
   kaneo:
-    image: ghcr.io/usekaneo/kaneo:${KANEO_IMAGE_TAG:?Set KANEO_IMAGE_TAG in .env}
+    image: ghcr.io/Go-Figure-App/tracing:${TRACING_IMAGE_TAG:?Set TRACING_IMAGE_TAG in .env}
     env_file: .env
     ports:
       - "127.0.0.1:5173:5173"
     restart: unless-stopped
 ```
 
-This port binding assumes your reverse proxy runs on the host. If the proxy is another container, attach Kaneo to its network and point it at `http://kaneo:5173` instead. Preserve any existing networks needed to reach the database or storage.
+This port binding assumes your reverse proxy runs on the host. If the proxy is another container, attach Tracing to its network and point it at `http://kaneo:5173` instead. Preserve any existing networks needed to reach the database or storage.
 
-Set `KANEO_CLIENT_URL` to your public web origin. In a same-origin deployment, remove an old `KANEO_API_URL` override that points to the separate API service: the bundled entrypoint derives `KANEO_CLIENT_URL` plus `/api`.
+Set `TRACING_CLIENT_URL` to your public web origin. In a same-origin deployment, remove an old `TRACING_API_URL` override that points to the separate API service: the bundled entrypoint derives `TRACING_CLIENT_URL` plus `/api`.
 
 Keep `DATABASE_URL` if it already identifies the correct database. Alternatively, the bundled image can derive it from `POSTGRES_USER`, `POSTGRES_PASSWORD`, `POSTGRES_DB`, `POSTGRES_HOST` (default `postgres`), and `POSTGRES_PORT` (default `5432`). Preserve the existing values; changing an environment variable does not rename a database or reset its password.
 
@@ -59,16 +59,16 @@ Check `/api/health` through the public URL, then sign in, open an existing proje
 
 ## Migrating an old Helm values file
 
-The bundled chart uses `kaneo.*` values. Old split-container charts used `api.*` and `web.*`. Compare your file with the [values for your selected chart release](https://github.com/usekaneo/kaneo/tree/main/charts/kaneo) before upgrading.
+The bundled chart uses `kaneo.*` values. Old split-container charts used `api.*` and `web.*`. Compare your file with the [values for your selected chart release](https://github.com/Go-Figure-App/tracing/tree/main/charts/tracing) before upgrading.
 
 | Old setting | Bundled chart setting |
 | --- | --- |
-| `api.image.*` | `kaneo.image.*`, with repository `ghcr.io/usekaneo/kaneo` |
+| `api.image.*` | `kaneo.image.*`, with repository `ghcr.io/Go-Figure-App/tracing` |
 | `api.resources` | `kaneo.resources` |
 | `api.env.*` | Corresponding settings under `kaneo.env` |
 | `api.livenessProbe` / `api.readinessProbe` | `kaneo.livenessProbe` / `kaneo.readinessProbe` |
 | Separate API and web services | One `kaneo.service`, port 5173 |
-| Ingress targets for API and web | Bundled Kaneo service on port 5173 |
+| Ingress targets for API and web | Bundled Tracing service on port 5173 |
 
 Check the probes as well as their key names: current probes use `/api/health` and the named port `kaneo`. Keep your PostgreSQL PVC and existing credential secrets. The application image defaults to the chart’s `appVersion` when `kaneo.image.tag` is empty.
 

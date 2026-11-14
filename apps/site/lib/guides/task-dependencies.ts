@@ -94,10 +94,10 @@ export const taskDependencies: Guide = {
       ],
     },
     {
-      heading: "Tracking dependencies in Kaneo",
+      heading: "Tracking dependencies in Tracing",
       body: [
         "Open a task's Relations and choose Blocks to link it to work that has to wait for it. The other task shows the inverse, blocked by, so whoever picks it up sees what it waits on. Choose Related for a connection that is not a dependency, and Remove relation to unlink tasks without deleting either.",
-        "Give dependent tasks start and due dates and check the order on the Gantt view, where you can drag bars to reschedule. Kaneo tracks finish-to-start style blocking; it does not model lead and lag or draw dependency lines on the chart.",
+        "Give dependent tasks start and due dates and check the order on the Gantt view, where you can drag bars to reschedule. Tracing tracks finish-to-start style blocking; it does not model lead and lag or draw dependency lines on the chart.",
       ],
     },
   ],

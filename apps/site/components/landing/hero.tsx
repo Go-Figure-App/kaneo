@@ -1,6 +1,6 @@
 "use client";
 
-import { ArrowRight, ArrowUpRight } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { AppleIcon } from "@/components/icons/apple-icon";
 import { GithubIcon } from "@/components/icons/github-icon";
 import { FadeIn } from "@/components/landing/fade-in";
@@ -35,7 +35,9 @@ export function Hero() {
                 <Button
                   size="lg"
                   className="h-12 gap-3 px-5 text-sm sm:h-12"
-                  render={<a href="https://cloud.kaneo.app/auth/sign-up" />}
+                  render={
+                    <a href="https://tracing.gofigureapp.io/auth/sign-in" />
+                  }
                 >
                   {landing.hero.cloudCta}
                   <ArrowRight aria-hidden="true" className="size-4" />
@@ -55,7 +57,7 @@ export function Hero() {
             </div>
             <div className="mt-4 flex flex-wrap items-center gap-x-6">
               <a
-                href="https://github.com/usekaneo/kaneo"
+                href="https://github.com/Go-Figure-App/tracing"
                 className="inline-flex min-h-11 items-center gap-2 rounded-sm text-xs text-muted-foreground transition-colors hover:text-foreground focus-visible:outline-2 focus-visible:outline-ring focus-visible:outline-offset-4"
               >
                 <GithubIcon className="size-3.5" />
@@ -67,13 +69,6 @@ export function Hero() {
               >
                 <AppleIcon className="size-3.5" />
                 {landing.hero.appStore}
-              </a>
-              <a
-                href="https://www.producthunt.com/products/kaneo"
-                className="inline-flex min-h-11 items-center gap-1.5 rounded-sm text-xs text-muted-foreground transition-colors hover:text-foreground focus-visible:outline-2 focus-visible:outline-ring focus-visible:outline-offset-4"
-              >
-                {landing.hero.productHunt}
-                <ArrowUpRight aria-hidden="true" className="size-3.5" />
               </a>
             </div>
           </FadeIn>

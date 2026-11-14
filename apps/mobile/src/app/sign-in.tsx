@@ -26,7 +26,7 @@ import {
   type TextInputInstance,
 } from "react-native";
 
-import { KaneoLogo } from "@/components/brand";
+import { TracingLogo } from "@/components/brand";
 import { BackButton, Screen } from "@/components/screen";
 import { Txt } from "@/components/text";
 import { useToast } from "@/components/toast";
@@ -48,7 +48,7 @@ type Step = "start" | "otp" | "device" | "apiKey" | "signUp";
 
 const CODE_SLOTS = [0, 1, 2, 3, 4, 5];
 // The scheme from app.json; the web approval page links back here after approving.
-const APP_RETURN_URL = "kaneo://";
+const APP_RETURN_URL = "tracing://";
 
 function friendly(e: unknown): string {
   const text = userMessage(e);
@@ -289,7 +289,7 @@ function StartStep(props: {
   return (
     <View style={{ gap: 28, paddingTop: 56, flexGrow: 1 }}>
       <View style={{ gap: 12 }}>
-        <KaneoLogo height={34} />
+        <TracingLogo height={34} />
         <Txt variant="body" tone="muted" style={{ lineHeight: 22 }}>
           {props.fixedServer
             ? t("mobile:parity.signInTagline")
@@ -751,7 +751,7 @@ function DeviceStep({
 
   const openBrowser = async (link: string) => {
     // Tells the approval page to send the user back here when they're done.
-    const url = `${link}${link.includes("?") ? "&" : "?"}from=app`;
+    const url = `${link}${link.includes("?") ? "&" : "?"}from=app&app_scheme=tracing`;
     try {
       // Unlike a plain browser tab, an auth session closes when the page returns to the app.
       await WebBrowser.openAuthSessionAsync(url, APP_RETURN_URL);

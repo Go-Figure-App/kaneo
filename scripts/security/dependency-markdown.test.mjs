@@ -13,7 +13,7 @@ const MarkdownIt = rendererRequire("markdown-it");
 test("mobile Markdown keeps the token format consumed by its native renderer", () => {
   const parser = new MarkdownIt({ typographer: true, linkify: true });
   const tokens = parser.parse(
-    "# Heading\n\n**bold** [Kaneo](https://kaneo.app)\n\n```ts\nconst n = 1;\n```",
+    "# Heading\n\n**bold** [Tracing](https://tracing.gofigureapp.io)\n\n```ts\nconst n = 1;\n```",
     {},
   );
   assert.equal(tokens[0].type, "heading_open");
@@ -23,7 +23,7 @@ test("mobile Markdown keeps the token format consumed by its native renderer", (
   );
   assert.ok(inline.children.some((token) => token.type === "strong_open"));
   const link = inline.children.find((token) => token.type === "link_open");
-  assert.deepEqual(link.attrs, [["href", "https://kaneo.app"]]);
+  assert.deepEqual(link.attrs, [["href", "https://tracing.gofigureapp.io"]]);
   const fence = tokens.find((token) => token.type === "fence");
   assert.equal(fence.info, "ts");
   assert.equal(fence.content, "const n = 1;\n");

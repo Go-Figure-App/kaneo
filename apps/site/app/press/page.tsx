@@ -13,14 +13,14 @@ export const metadata: Metadata = {
   description: press.description,
   alternates: { canonical: "/press" },
   openGraph: {
-    title: `${press.title} | Kaneo`,
+    title: `${press.title} | Tracing`,
     description: press.description,
     url: "/press",
     images: [{ url: "/images/hero.png", width: 1200, height: 630 }],
   },
   twitter: {
     card: "summary_large_image",
-    title: `${press.title} | Kaneo`,
+    title: `${press.title} | Tracing`,
     description: press.description,
     images: ["/images/hero.png"],
   },

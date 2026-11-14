@@ -93,10 +93,10 @@ export const kanbanVsScrum: Guide = {
       ],
     },
     {
-      heading: "Running either in Kaneo",
+      heading: "Running either in Tracing",
       body: [
-        "Kaneo is built around a kanban board with a separate backlog, so kanban teams can use it as it comes: set the columns in the workflow settings, keep upcoming work in the Backlog, and pull it onto the board when someone has capacity.",
-        "Kaneo has no built-in sprints, story points, or burndown charts. Teams running lightweight scrum use a label per sprint, a number custom field for estimates, and due dates for the sprint end, then filter the board by the current sprint's label. Teams that need velocity tracking and burndowns should pick a scrum-focused tool such as Taiga.",
+        "Tracing is built around a kanban board with a separate backlog, so kanban teams can use it as it comes: set the columns in the workflow settings, keep upcoming work in the Backlog, and pull it onto the board when someone has capacity.",
+        "Tracing has no built-in sprints, story points, or burndown charts. Teams running lightweight scrum use a label per sprint, a number custom field for estimates, and due dates for the sprint end, then filter the board by the current sprint's label. Teams that need velocity tracking and burndowns should pick a scrum-focused tool such as Taiga.",
       ],
     },
   ],
@@ -126,7 +126,7 @@ export const kanbanVsScrum: Guide = {
     { label: "What is kanban?", href: "/guides/what-is-kanban" },
     { label: "Agile vs scrum", href: "/guides/agile-vs-scrum" },
     { label: "Backlog grooming", href: "/guides/backlog-grooming" },
-    { label: "Kaneo vs Taiga", href: "/taiga-alternative" },
+    { label: "Tracing vs Taiga", href: "/taiga-alternative" },
   ],
   updatedOn: "2026-10-19",
 };

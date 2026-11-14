@@ -82,10 +82,10 @@ export const agileVsScrum: Guide = {
       ],
     },
     {
-      heading: "Agile work in Kaneo",
+      heading: "Agile work in Tracing",
       body: [
-        "Kaneo is a kanban-style tracker: a board with columns you define, a backlog for upcoming work, and Gantt and calendar views for anything with a date. That covers kanban and most lightweight agile setups as they come.",
-        "There are no built-in sprints or story points. Teams running scrum in Kaneo usually tag each sprint with a label, keep estimates in a number custom field, and filter the board by the current sprint. If burndown charts and velocity are central to how you work, a scrum-focused tool will serve you better.",
+        "Tracing is a kanban-style tracker: a board with columns you define, a backlog for upcoming work, and Gantt and calendar views for anything with a date. That covers kanban and most lightweight agile setups as they come.",
+        "There are no built-in sprints or story points. Teams running scrum in Tracing usually tag each sprint with a label, keep estimates in a number custom field, and filter the board by the current sprint. If burndown charts and velocity are central to how you work, a scrum-focused tool will serve you better.",
       ],
     },
   ],

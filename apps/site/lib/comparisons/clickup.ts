@@ -6,19 +6,19 @@ export const clickup: Comparison = {
   category: "saas",
   title: "Focused ClickUp alternative",
   description:
-    "Kaneo is a ClickUp alternative with all the planning you need and none of the feature sprawl. Kaneo Cloud runs it for you from $4 a month.",
+    "Tracing is a ClickUp alternative with all the planning you need and none of the feature sprawl. Tracing Cloud runs it for you from $4 a month.",
   summary:
     "The planning part, without the docs, whiteboards, and chat you turn off anyway.",
   heading: "The focused ClickUp alternative",
   subheading:
-    "ClickUp's pitch is that it does everything. That is also the complaint. Kaneo does the part your team actually opens every morning, and you can run it on your own server.",
+    "ClickUp's pitch is that it does everything. That is also the complaint. Tracing does the part your team actually opens every morning, and you can run it on your own server.",
   verdict:
-    "Kaneo is a ClickUp alternative for teams that only want the planning part, and Kaneo Cloud runs it for you from $4 a month, or $5 per user for teams. ClickUp is cloud-only, with paid tiers from $7 per user a month and SAML single sign-on on its higher tiers, while Kaneo covers boards, backlog, workflows, labels, roles, and time tracking, and stops there on purpose. Kaneo is also MIT-licensed open source, so you can self-host it for free any time.",
+    "Tracing is a ClickUp alternative for teams that only want the planning part, and Tracing Cloud runs it for you from $4 a month, or $5 per user for teams. ClickUp is cloud-only, with paid tiers from $7 per user a month and SAML single sign-on on its higher tiers, while Tracing covers boards, backlog, workflows, labels, roles, and time tracking, and stops there on purpose. Tracing is also MIT-licensed open source, so you can self-host it for free any time.",
   facts: {
     license: "MIT, versus a proprietary licence for ClickUp",
     hosting:
-      "EU-hosted Kaneo Cloud, or self-host anywhere. ClickUp is cloud only",
-    sso: "Free on every Kaneo build, Business tier and above on ClickUp",
+      "EU-hosted Tracing Cloud, or self-host anywhere. ClickUp is cloud only",
+    sso: "Free on every Tracing build, Business tier and above on ClickUp",
     pricing: "Cloud from $4 / month, or $0 self-hosted",
   },
   rows: [
@@ -34,24 +34,24 @@ export const clickup: Comparison = {
   reasons: [
     {
       title: "Fewer things to turn off",
-      body: "ClickUp ships docs, whiteboards, chat, goals, and forms, and most teams spend their first week disabling them. Kaneo has one job and does not ask you to configure it.",
+      body: "ClickUp ships docs, whiteboards, chat, goals, and forms, and most teams spend their first week disabling them. Tracing has one job and does not ask you to configure it.",
     },
     {
       title: "Storage on your terms",
-      body: "ClickUp's free plan caps attachments at 60MB. Self-hosted Kaneo keeps attachments in S3-compatible storage you control, including MinIO on your own hardware, so the limit is whatever you provision.",
+      body: "ClickUp's free plan caps attachments at 60MB. Self-hosted Tracing keeps attachments in S3-compatible storage you control, including MinIO on your own hardware, so the limit is whatever you provision.",
     },
     {
       title: "One product, one price",
-      body: "Self-hosted Kaneo includes everything, SSO included. There is no Business tier to reach before your team can sign in with Google.",
+      body: "Self-hosted Tracing includes everything, SSO included. There is no Business tier to reach before your team can sign in with Google.",
     },
   ],
   honestNote:
-    "ClickUp is remarkably capable if you genuinely want one tool for docs, whiteboards, chat, dashboards, and tasks, and you have someone willing to set it up properly. Kaneo will feel bare next to it. That is the trade being offered.",
+    "ClickUp is remarkably capable if you genuinely want one tool for docs, whiteboards, chat, dashboards, and tasks, and you have someone willing to set it up properly. Tracing will feel bare next to it. That is the trade being offered.",
   faq: [
     {
       question: "Is there a self-hosted alternative to ClickUp?",
       answer:
-        "Yes. Kaneo, Plane, OpenProject, Vikunja, and Taiga can all be self-hosted. Kaneo is MIT licensed and runs as a single container with PostgreSQL, which makes it one of the simplest to keep online.",
+        "Yes. Tracing, Plane, OpenProject, Vikunja, and Taiga can all be self-hosted. Tracing is MIT licensed and runs as a single container with PostgreSQL, which makes it one of the simplest to keep online.",
     },
     {
       question: "Can ClickUp be self-hosted?",
@@ -64,15 +64,15 @@ export const clickup: Comparison = {
         "The Free Forever plan has unlimited tasks and members but caps storage at 60MB and limits several features by usage. Paid tiers are $7 per user a month for Unlimited and $12 for Business, billed annually, with Google SSO on Business and custom SAML at the Enterprise level.",
     },
     {
-      question: "Does Kaneo replace ClickUp Docs and Whiteboards?",
+      question: "Does Tracing replace ClickUp Docs and Whiteboards?",
       answer:
-        "No. Kaneo has task descriptions, comments, and attachments, but no document editor, whiteboard, or chat. If those are the reason you use ClickUp, Kaneo is not a like-for-like swap.",
+        "No. Tracing has task descriptions, comments, and attachments, but no document editor, whiteboard, or chat. If those are the reason you use ClickUp, Tracing is not a like-for-like swap.",
     },
   ],
   related: ["asana", "monday", "notion", "plane"],
   verifiedOn: "2026-08-19",
   sources: [
     { label: "ClickUp pricing", href: "https://clickup.com/pricing" },
-    { label: "Kaneo pricing", href: "/pricing" },
+    { label: "Tracing pricing", href: "/pricing" },
   ],
 };

@@ -1,6 +1,6 @@
 apiVersion: v2
-name: kaneo
-description: "Kaneo: Project management that doesn't become the project."
+name: tracing
+description: "Tracing: Project management that doesn't become the project."
 type: application
 version: 2.49.0
 appVersion: "2.49.0"
@@ -10,14 +10,12 @@ keywords:
   - task-management
   - productivity
   - collaboration
-home: https://kaneo.app
+home: https://github.com/Go-Figure-App/tracing
 sources:
-  - https://github.com/usekaneo/kaneo
-icon: https://assets.kaneo.app/logo-text.png
+  - https://github.com/Go-Figure-App/tracing
 maintainers:
-  - name: Kaneo Team
-    url: https://github.com/usekaneo
-    email: info@kaneo.app
+  - name: Tracing Team
+    url: https://github.com/Go-Figure-App
 annotations:
   artifacthub.io/license: MIT
   artifacthub.io/containsSecurityUpdates: "false"

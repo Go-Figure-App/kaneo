@@ -4,7 +4,7 @@ import { rankAndLabel } from "./rank.mjs";
 
 const event = { action: "opened", issue: { number: 42 } };
 const env = {
-  GITHUB_REPOSITORY: "usekaneo/kaneo",
+  GITHUB_REPOSITORY: "Go-Figure-App/tracing",
   GH_TOKEN: "github-test-token",
   OPENROUTER_API_KEY: "openrouter-test-key",
 };

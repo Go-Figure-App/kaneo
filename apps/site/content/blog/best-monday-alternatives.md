@@ -18,7 +18,7 @@ This is a comparison of the 10 tools worth looking at, including the open-source
 
 ## TL;DR: the 10 best monday.com alternatives
 
-1. **[Kaneo](/monday-alternative)** for teams who want boards, Gantt and calendar views, custom fields, and workflow rules with no seat minimum, self-hostable for free.
+1. **[Tracing](/monday-alternative)** for teams who want boards, Gantt and calendar views, custom fields, and workflow rules with no seat minimum, self-hostable for free.
 2. **[ClickUp](/clickup-alternative)** for the closest like-for-like work OS at a lower per-seat price.
 3. **[Asana](/asana-alternative)** for cross-team coordination, portfolios, and goals.
 4. **[Trello](/trello-alternative)** for the simplest board and the most usable free tier.
@@ -45,7 +45,7 @@ This is a comparison of the 10 tools worth looking at, including the open-source
 
 | Tool | Open source | Self-host | Seat minimum | SSO included | Starting price |
 | --- | --- | --- | --- | --- | --- |
-| Kaneo | Yes (MIT) | Yes | None | Yes, on every plan | Cloud from $4/mo, self-host free |
+| Tracing | Yes (MIT) | Yes | None | Yes, on every plan | Cloud from $4/mo, self-host free |
 | ClickUp | No | No | None | Business tier and above | From $7 per user / month |
 | Asana | No | No | None | Enterprise tier | From $10.99 per user / month |
 | Trello | No | No | None | Enterprise tier | Free tier, then per user |
@@ -59,7 +59,7 @@ This is a comparison of the 10 tools worth looking at, including the open-source
 
 ## How we evaluated these tools
 
-We build Kaneo, which is the first entry. So the criteria are stated up front, and every tool below has a section explaining when it is the better choice than ours.
+We build Tracing, which is the first entry. So the criteria are stated up front, and every tool below has a section explaining when it is the better choice than ours.
 
 1. **Pricing shape.** Per user, flat rate, or free, and specifically whether there is a seat minimum.
 2. **What the free tier really allows** in boards, users, and features.
@@ -68,15 +68,15 @@ We build Kaneo, which is the first entry. So the criteria are stated up front, a
 5. **Fit for non-engineering work**, since that is what most monday.com boards are.
 6. **Data portability.** Export, import, and a documented API.
 7. **Operational burden** for the self-hosted options.
-8. **Where it genuinely beats Kaneo.**
+8. **Where it genuinely beats Tracing.**
 
 ## The 10 best monday.com alternatives in 2026
 
-### 1. Kaneo
+### 1. Tracing
 
-Kaneo covers project delivery with boards, lists, backlog planning, Gantt and calendar views, and custom fields for project-specific details. Configurable workflow columns and rules can move tasks when integration events arrive. Roles, labels, priorities, task relations, comments, attachments, and time tracking round out the day-to-day workflow.
+Tracing covers project delivery with boards, lists, backlog planning, Gantt and calendar views, and custom fields for project-specific details. Configurable workflow columns and rules can move tasks when integration events arrive. Roles, labels, priorities, task relations, comments, attachments, and time tracking round out the day-to-day workflow.
 
-The pricing model is the part that matters most here. Kaneo Cloud bills on exact headcount at $5 per user a month with no minimum, so a team of eleven pays for eleven people rather than the next seat block up. It is hosted in the EU, with backups, updates, and email support included, and single sign-on on every plan instead of an Enterprise contract. Kaneo is open source under the MIT licence too, so exporting everything or moving it onto your own server stays an option you can actually take.
+The pricing model is the part that matters most here. Tracing Cloud bills on exact headcount at $5 per user a month with no minimum, so a team of eleven pays for eleven people rather than the next seat block up. It is hosted in the EU, with backups, updates, and email support included, and single sign-on on every plan instead of an Enterprise contract. Tracing is open source under the MIT licence too, so exporting everything or moving it onto your own server stays an option you can actually take.
 
 **Key features**
 
@@ -87,7 +87,7 @@ The pricing model is the part that matters most here. Kaneo Cloud bills on exact
 - Workspace roles and permissions
 - Labels, priorities, task relations, comments, attachments, and time tracking
 - Single sign-on with Google, GitHub, Discord, or any OIDC provider, on every plan
-- Automatic backups, updates, and email support on Kaneo Cloud
+- Automatic backups, updates, and email support on Tracing Cloud
 - Public REST API, API keys, webhooks, and an MCP server for AI agents
 - GitHub, GitLab, and Gitea integrations, plus notifications in Slack, Discord, Telegram, and Mattermost
 - Per-project JSON export and import
@@ -96,11 +96,11 @@ The pricing model is the part that matters most here. Kaneo Cloud bills on exact
 
 **Cons:** No dashboard builder, intake forms, CRM or HR template library, or app marketplace. Custom fields support text, numbers, dates, dropdowns, and checkboxes; they do not provide monday.com-style formula or mirror columns. Workflow rules map integration events to columns rather than offering a general automation recipe builder.
 
-**Pricing:** Kaneo Cloud is $4 a month for one user and $5 per user a month for teams, 14-day trial, no credit card. Annual billing works out at $3.33 and $4.17 a month. Self-hosting under MIT is available if you would rather run it yourself.
+**Pricing:** Tracing Cloud is $4 a month for one user and $5 per user a month for teams, 14-day trial, no credit card. Annual billing works out at $3.33 and $4.17 a month. Self-hosting under MIT is available if you would rather run it yourself.
 
 **Best for:** Teams who want a fast project tracker priced on their actual headcount, and who are not using monday.com's work-OS layer.
 
-**Why choose it over monday.com:** You pay for the people you have rather than the block you fall into, single sign-on is included, and there is nothing to configure before the board is useful. See the [Kaneo vs monday.com comparison](/monday-alternative).
+**Why choose it over monday.com:** You pay for the people you have rather than the block you fall into, single sign-on is included, and there is nothing to configure before the board is useful. See the [Tracing vs monday.com comparison](/monday-alternative).
 
 ### 2. ClickUp
 
@@ -116,7 +116,7 @@ ClickUp is the closest like-for-like alternative: tasks, docs, whiteboards, chat
 
 **Best for:** Teams who want the work-OS breadth but not the seat-block pricing.
 
-**Why choose it over monday.com:** Comparable scope, lower cost, exact headcount. Compare with [Kaneo vs ClickUp](/clickup-alternative) if the breadth is the part you would turn off.
+**Why choose it over monday.com:** Comparable scope, lower cost, exact headcount. Compare with [Tracing vs ClickUp](/clickup-alternative) if the breadth is the part you would turn off.
 
 ### 3. Asana
 
@@ -132,7 +132,7 @@ Asana is stronger than monday.com at coordination specifically: portfolios, goal
 
 **Best for:** Program managers who need portfolio-level visibility.
 
-**Why choose it over monday.com:** Better rollup reporting and a calmer interface. See [Kaneo vs Asana](/asana-alternative) if you want the tracker without the coordination layer.
+**Why choose it over monday.com:** Better rollup reporting and a calmer interface. See [Tracing vs Asana](/asana-alternative) if you want the tracker without the coordination layer.
 
 ### 4. Trello
 
@@ -148,7 +148,7 @@ Trello is the simplest board that works, with the most usable free tier of any h
 
 **Best for:** Small teams who need a board and nothing else.
 
-**Why choose it over monday.com:** Radically simpler and much cheaper. If you want that simplicity self-hosted, see [Kaneo vs Trello](/trello-alternative) or our guide to [self-hosted Trello alternatives](/guides/self-hosted-trello-alternatives).
+**Why choose it over monday.com:** Radically simpler and much cheaper. If you want that simplicity self-hosted, see [Tracing vs Trello](/trello-alternative) or our guide to [self-hosted Trello alternatives](/guides/self-hosted-trello-alternatives).
 
 ### 5. Notion
 
@@ -164,7 +164,7 @@ Notion is a flexible workspace for documents, wikis, and databases. Teams run pr
 
 **Best for:** Teams whose work is documents first and tasks second.
 
-**Why choose it over monday.com:** One tool for docs and light tracking instead of a platform. Compare with [Kaneo vs Notion](/notion-alternative) when the database starts getting in the way.
+**Why choose it over monday.com:** One tool for docs and light tracking instead of a platform. Compare with [Tracing vs Notion](/notion-alternative) when the database starts getting in the way.
 
 ### 6. Basecamp
 
@@ -180,7 +180,7 @@ Basecamp charges a flat monthly fee rather than per user. At forty people that i
 
 **Best for:** Agencies and companies whose project tool is also their internal communication tool.
 
-**Why choose it over monday.com:** The bill stops tracking your headcount. See [Kaneo vs Basecamp](/basecamp-alternative) if you want the board and backlog back.
+**Why choose it over monday.com:** The bill stops tracking your headcount. See [Tracing vs Basecamp](/basecamp-alternative) if you want the board and backlog back.
 
 ### 7. Wrike
 
@@ -196,7 +196,7 @@ Wrike targets larger marketing, professional services, and operations teams with
 
 **Best for:** Operations and professional services teams running billable work at scale.
 
-**Why choose it over monday.com:** Deeper proofing and resource allocation. See [Kaneo vs Wrike](/wrike-alternative) for one feature set instead of user bands.
+**Why choose it over monday.com:** Deeper proofing and resource allocation. See [Tracing vs Wrike](/wrike-alternative) for one feature set instead of user bands.
 
 ### 8. Plane
 
@@ -212,7 +212,7 @@ Plane is an open-source tracker with a modern interface, closest in shape to Lin
 
 **Best for:** Engineering teams who want a modern tracker on their own infrastructure.
 
-**Why choose it over monday.com:** No seats, no blocks, and full data ownership. Compare deployment weight and licensing on [Kaneo vs Plane](/plane-alternative).
+**Why choose it over monday.com:** No seats, no blocks, and full data ownership. Compare deployment weight and licensing on [Tracing vs Plane](/plane-alternative).
 
 ### 9. OpenProject
 
@@ -228,7 +228,7 @@ OpenProject is the most complete open-source option for classical project manage
 
 **Best for:** Teams needing Gantt charts, budgets, and cost reporting on their own infrastructure.
 
-**Why choose it over monday.com:** Comparable planning depth with no per-seat cost when self-hosted. See [Kaneo vs OpenProject](/openproject-alternative) for the lighter trade.
+**Why choose it over monday.com:** Comparable planning depth with no per-seat cost when self-hosted. See [Tracing vs OpenProject](/openproject-alternative) for the lighter trade.
 
 ### 10. Vikunja
 
@@ -244,17 +244,17 @@ Vikunja is a self-hostable task manager aimed at individuals and small teams. Fa
 
 **Best for:** Individuals and very small teams who mostly manage their own work.
 
-**Why choose it over monday.com:** No per-seat cost at all, and it runs on almost anything. See [Kaneo vs Vikunja](/vikunja-alternative) for the team-oriented comparison.
+**Why choose it over monday.com:** No per-seat cost at all, and it runs on almost anything. See [Tracing vs Vikunja](/vikunja-alternative) for the team-oriented comparison.
 
 ## How to choose
 
-- **The seat blocks are the problem.** Kaneo bills on exact headcount. ClickUp and Basecamp's flat rate also avoid blocks.
+- **The seat blocks are the problem.** Tracing bills on exact headcount. ClickUp and Basecamp's flat rate also avoid blocks.
 - **You want the work-OS breadth, cheaper.** ClickUp.
 - **You need portfolio rollups.** Asana.
-- **You must own the data.** Kaneo, Plane, OpenProject, or Vikunja.
+- **You must own the data.** Tracing, Plane, OpenProject, or Vikunja.
 - **You need Gantt charts and budgets.** OpenProject.
 - **You run billable client work.** Wrike.
-- **You need SSO without an Enterprise contract.** Kaneo or Vikunja. See the [free SSO guide](/guides/project-management-tools-with-free-sso).
+- **You need SSO without an Enterprise contract.** Tracing or Vikunja. See the [free SSO guide](/guides/project-management-tools-with-free-sso).
 - **You use the dashboards, forms, and CRM boards.** Stay on monday.com. Very little here replaces that combination.
 
 ## What it costs at ten and fifty users
@@ -266,27 +266,27 @@ Rough monthly figures at August 2026 list prices, before annual discounts, to sh
 | Asana (Starter) | ~$110 | ~$550 |
 | Wrike (Team) | ~$100 | ~$500 |
 | ClickUp (Unlimited) | ~$70 | ~$350 |
-| Kaneo Cloud | $50 | $250 |
-| Kaneo self-hosted | Cost of a VPS, plus your time | Cost of a VPS, plus your time |
+| Tracing Cloud | $50 | $250 |
+| Tracing self-hosted | Cost of a VPS, plus your time | Cost of a VPS, plus your time |
 | Basecamp | Flat rate | Flat rate |
 
-Kaneo Cloud is the cheapest managed row there, and unlike monday.com it bills on your actual headcount rather than the seat block you land in, so the number moves one person at a time instead of jumping. Basecamp's flat rate and the self-hosted line do not scale with headcount at all, though the self-hosted line trades the bill for somebody's time.
+Tracing Cloud is the cheapest managed row there, and unlike monday.com it bills on your actual headcount rather than the seat block you land in, so the number moves one person at a time instead of jumping. Basecamp's flat rate and the self-hosted line do not scale with headcount at all, though the self-hosted line trades the bill for somebody's time.
 
 ## Migrating off monday.com
 
 monday.com exports boards to Excel and CSV and has a documented GraphQL API, so a scripted migration is realistic. What tends to break is column types, especially status columns, mirror columns, and formula columns, which have no equivalent in most trackers.
 
-Export one active board first and import it somewhere as a test. Map status columns to the target tool's workflow columns deliberately rather than by name matching, check that assignees resolve by email, and confirm that update threads and files came across. Keep monday.com readable for a quarter rather than cancelling the same week. Kaneo has a public REST API and per-project JSON import, and we will help with a migration script if you open an issue on [GitHub](https://github.com/usekaneo/kaneo).
+Export one active board first and import it somewhere as a test. Map status columns to the target tool's workflow columns deliberately rather than by name matching, check that assignees resolve by email, and confirm that update threads and files came across. Keep monday.com readable for a quarter rather than cancelling the same week. Tracing has a public REST API and per-project JSON import, and we will help with a migration script if you open an issue on [GitHub](https://github.com/Go-Figure-App/tracing).
 
 ## Frequently asked questions
 
 ### What is the best free alternative to monday.com?
 
-ClickUp's free tier is the most feature-generous of the hosted plans and Trello's is the most immediately usable. If you are willing to run a server, Kaneo is MIT licensed and self-hostable. Once you price in the server, the upgrades, and the backups, a managed plan usually wins, and Kaneo Cloud starts at $4 a month with single sign-on included.
+ClickUp's free tier is the most feature-generous of the hosted plans and Trello's is the most immediately usable. If you are willing to run a server, Tracing is MIT licensed and self-hostable. Once you price in the server, the upgrades, and the backups, a managed plan usually wins, and Tracing Cloud starts at $4 a month with single sign-on included.
 
 ### Is there an open-source alternative to monday.com?
 
-Yes, though nothing open source replicates the full work-OS scope. Kaneo (MIT), Plane (AGPL-3.0 Community edition), OpenProject (GPLv3 Community edition), and Vikunja (AGPLv3) are the main self-hostable options. Each covers the project-tracking part well and none of them ship a CRM.
+Yes, though nothing open source replicates the full work-OS scope. Tracing (MIT), Plane (AGPL-3.0 Community edition), OpenProject (GPLv3 Community edition), and Vikunja (AGPLv3) are the main self-hostable options. Each covers the project-tracking part well and none of them ship a CRM.
 
 ### Can monday.com be self-hosted?
 
@@ -298,7 +298,7 @@ Users are sold in tiers rather than by exact headcount, so a team whose size fal
 
 ### Which monday.com alternative is cheapest for a large team?
 
-Among managed tools, Basecamp's flat rate wins at genuine scale, and Kaneo Cloud at $5 per user a month with no seat minimum is roughly half of Asana's entry tier and bills on exact headcount. Self-hosting an open-source tool is cheaper on paper, because the bill is a server rather than a headcount, provided you have someone to run it.
+Among managed tools, Basecamp's flat rate wins at genuine scale, and Tracing Cloud at $5 per user a month with no seat minimum is roughly half of Asana's entry tier and bills on exact headcount. Self-hosting an open-source tool is cheaper on paper, because the bill is a server rather than a headcount, provided you have someone to run it.
 
 ### Does monday.com include single sign-on?
 
@@ -308,4 +308,4 @@ SSO is an Enterprise-tier feature. If you need SAML or OIDC against your own ide
 
 If you use monday.com's dashboards, forms, automations, and CRM boards, keep it. That combination is genuinely hard to reassemble from other tools.
 
-If your team needs boards, schedules, custom fields, time tracking, and integration-driven workflow rules, Kaneo covers that work with a smaller setup. Kaneo Cloud is $5 per user a month billed on exact headcount, hosted in the EU, with single sign-on on every plan and backups and updates handled for you. Fourteen-day trial, no credit card, and an open-source codebase underneath so you are never locked in.
+If your team needs boards, schedules, custom fields, time tracking, and integration-driven workflow rules, Tracing covers that work with a smaller setup. Tracing Cloud is $5 per user a month billed on exact headcount, hosted in the EU, with single sign-on on every plan and backups and updates handled for you. Fourteen-day trial, no credit card, and an open-source codebase underneath so you are never locked in.

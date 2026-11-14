@@ -36,7 +36,7 @@ export function TaskRow({
   project?: string | null;
   labels?: TaskLabel[];
   dueDate?: string | null;
-  /** Column slug; drawn with the column's default Kaneo icon. */
+  /** Column slug; drawn with the column's default Tracing icon. */
   status?: string;
   /** The column's own icon name, when it has one. */
   statusIcon?: string | null;

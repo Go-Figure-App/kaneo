@@ -28,7 +28,7 @@ export function breadcrumbJsonLd(items: { name: string; path: string }[]) {
       "@type": "ListItem",
       position: index + 1,
       name: item.name,
-      item: `https://kaneo.app${item.path}`,
+      item: `https://tracing.gofigureapp.io${item.path}`,
     })),
   };
 }

@@ -1,12 +1,12 @@
 name: Bug report
-description: Report something that is not working in Kaneo
+description: Report something that is not working in Tracing
 type: Bug
 labels: [bug]
 body:
   - type: markdown
     attributes:
       value: |
-        This form is for bug reports only. To suggest an improvement, submit or vote on a feature request at [Kaneo Feedback](https://feedback.kaneo.app).
+        This form is for bug reports only. To suggest an improvement, submit or vote on a feature request at [Tracing Feedback](https://github.com/Go-Figure-App/tracing/issues).
 
   - type: textarea
     id: description
@@ -26,4 +26,4 @@ body:
     id: environment
     attributes:
       label: Environment
-      description: Include your Kaneo version and deployment method. Add browser or OS details if relevant.
+      description: Include your Tracing version and deployment method. Add browser or OS details if relevant.

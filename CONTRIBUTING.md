@@ -1,6 +1,6 @@
-# Contributing to Kaneo
+# Contributing to Tracing
 
-Thanks for wanting to contribute to Kaneo! Whether you're fixing bugs, adding features, or improving docs, we appreciate your help.
+Thanks for wanting to contribute to Tracing! Whether you're fixing bugs, adding features, or improving docs, we appreciate your help.
 
 ## Table of Contents
 
@@ -37,10 +37,10 @@ Follow the [local development setup guide](ENVIRONMENT_SETUP.md) for prerequisit
 
 ### Finding Something to Work On
 
-- **Browse [issues ready for contribution](https://github.com/usekaneo/kaneo/issues?q=is%3Aissue%20is%3Aopen%20label%3Aready-for-contribution)** - the "good first issue" ones are a nice place to start
+- **Browse [issues ready for contribution](https://github.com/Go-Figure-App/tracing/issues?q=is%3Aissue%20is%3Aopen%20label%3Aready-for-contribution)** - the "good first issue" ones are a nice place to start
 - **Check our [Discord](https://discord.gg/rU4tSyhXXU)** - we often discuss features and bugs there
 - **Found a bug?** Open an issue first and wait for a maintainer to give the go-ahead before sending a PR (unless you're [exempt](#contribution-eligibility))
-- **Have a feature idea?** Submit it at [Kaneo Feedback](https://feedback.kaneo.app). Accepted requests become GitHub issues for implementation.
+- **Have a feature idea?** Submit it at [Tracing Feedback](https://github.com/Go-Figure-App/tracing/issues). Accepted requests become GitHub issues for implementation.
 
 ### Contribution Eligibility
 
@@ -168,8 +168,8 @@ workspace dependencies before compiling, testing, or checking types. Build and
 typecheck results are cached; tests and development servers always run. Web builds
 always run too, so a cached build cannot skip a Sentry source-map upload.
 
-Use `pnpm --filter @kaneo/web dev` to start just the web app, or
-`pnpm exec vp run --filter @kaneo/api test` to run API unit tests with dependency
+Use `pnpm --filter @tracing/web dev` to start just the web app, or
+`pnpm exec vp run --filter @tracing/api test` to run API unit tests with dependency
 builds. `pnpm exec vp test run` runs the unit-test projects directly; PostgreSQL
 integration tests remain behind `pnpm test:integration`.
 
@@ -193,7 +193,7 @@ We use [conventional commits](https://www.conventionalcommits.org/) to keep our 
 
 ### Localization (i18n)
 
-Kaneo uses [i18next](https://www.i18next.com/) with [react-i18next](https://react.i18next.com/) in the web app. We want user-facing copy to stay consistent, translatable, and easy to maintain.
+Tracing uses [i18next](https://www.i18next.com/) with [react-i18next](https://react.i18next.com/) in the web app. We want user-facing copy to stay consistent, translatable, and easy to maintain.
 
 #### Approach
 
@@ -282,16 +282,16 @@ Please read and follow our [AI Contribution Policy](AI_POLICY.md), which adopts 
 ## Need Help?
 
 - **Discord**: Join our [Discord server](https://discord.gg/rU4tSyhXXU) for real-time help
-- **Bugs**: Open a [GitHub issue](https://github.com/usekaneo/kaneo/issues)
-- **Feature requests**: Submit and vote on ideas at [Kaneo Feedback](https://feedback.kaneo.app)
+- **Bugs**: Open a [GitHub issue](https://github.com/Go-Figure-App/tracing/issues)
+- **Feature requests**: Submit and vote on ideas at [Tracing Feedback](https://github.com/Go-Figure-App/tracing/issues)
 - **Discussions**: Use GitHub Discussions for questions about contributing
 
 ## Types of Contributions We Love
 
 - **Bug fixes** - Found something broken? Open an issue so we can agree on the fix
 - **New features** - Have an idea? Let's discuss it first
-- **Documentation** - Help others understand how to use Kaneo
+- **Documentation** - Help others understand how to use Tracing
 - **Performance improvements** - Make things faster
-- **Accessibility** - Help make Kaneo usable for everyone
+- **Accessibility** - Help make Tracing usable for everyone
 
-Thanks for contributing to Kaneo! 🚀
+Thanks for contributing to Tracing! 🚀

@@ -72,7 +72,7 @@ import Svg, { Circle as SvgCircle, G, Path } from "react-native-svg";
 import { useColors } from "@/theme";
 
 /**
- * The icon names Kaneo stores on projects and workflow columns (`project.icon`, `column.icon`),
+ * The icon names Tracing stores on projects and workflow columns (`project.icon`, `column.icon`),
  * mapped to the same lucide icons the web app renders.
  */
 const NAMED_ICONS: Record<string, LucideIcon> = {
@@ -144,7 +144,7 @@ const NAMED_ICONS: Record<string, LucideIcon> = {
   Archive,
 };
 
-/** Kaneo's default icon for each built-in column slug. */
+/** Tracing's default icon for each built-in column slug. */
 const STATUS_ICONS: Record<string, string> = {
   "to-do": "Circle",
   "in-progress": "CircleDot",
@@ -156,7 +156,7 @@ const STATUS_ICONS: Record<string, string> = {
 
 /**
  * A workflow column's icon, resolved like the web app: the column's own icon, then the default for
- * its slug, then a check for final columns and a plain circle for the rest. Always muted; Kaneo keeps
+ * its slug, then a check for final columns and a plain circle for the rest. Always muted; Tracing keeps
  * status monochrome and saves color for priority, due dates and labels.
  */
 export function StatusIcon({
@@ -178,7 +178,7 @@ export function StatusIcon({
   return <Icon size={size} color={color ?? c.muted} strokeWidth={2} />;
 }
 
-/** A project's icon (`project.icon`), defaulting to Kaneo's `Layout`. */
+/** A project's icon (`project.icon`), defaulting to Tracing's `Layout`. */
 export function ProjectIcon({
   name,
   size = 16,

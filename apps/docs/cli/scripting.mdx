@@ -3,7 +3,7 @@ title: Scripts and agents
 description: JSON output, jq filters, stdin, confirmations, raw API calls and the agent skill.
 ---
 
-The CLI uses JSON mode when you pass `--json` or `--jq`, set `KANEO_JSON=true`, or pipe its output:
+The CLI uses JSON mode when you pass `--json` or `--jq`, set `TRACING_JSON=true`, or pipe its output:
 
 - A successful command prints exactly one JSON value on stdout.
 - A failed command prints `{"error": "message"}` on stdout and exits with code 1.
@@ -52,7 +52,7 @@ kaneo task delete KAN-12 --yes
 
 ## Call the API directly
 
-`kaneo api` sends an authenticated request to any Kaneo API endpoint, like `gh api` does for GitHub. It uses the same server, credentials and output modes as the other commands. The path is under `/api`, and the `/api` prefix is optional:
+`kaneo api` sends an authenticated request to any Tracing API endpoint, like `gh api` does for GitHub. It uses the same server, credentials and output modes as the other commands. The path is under `/api`, and the `/api` prefix is optional:
 
 ```bash
 kaneo api GET /user/me
@@ -65,10 +65,10 @@ kaneo api POST /time-entry --input entry.json
 
 ## Agent skill
 
-Coding agents such as Claude Code, Codex and Cursor can manage your Kaneo work through the CLI. The `kaneo-cli` skill shows them how: check the login and workspace first, read the JSON output, address tasks by ticket ID, and confirm with you before deleting anything.
+Coding agents such as Claude Code, Codex and Cursor can manage your Tracing work through the CLI. The `kaneo-cli` skill shows them how: check the login and workspace first, read the JSON output, address tasks by ticket ID, and confirm with you before deleting anything.
 
 ```bash
-npx skills add usekaneo/kaneo --skill kaneo-cli
+npx skills add Go-Figure-App/tracing --skill kaneo-cli
 ```
 
-Add `-g` to install it for every project. The skill is a single file in [`skills/kaneo-cli`](https://github.com/usekaneo/kaneo/tree/main/skills/kaneo-cli), so you can also copy it into your agent's skills folder by hand. Agents that should talk to Kaneo without a shell can use the [MCP server](/core/integrations/mcp) instead.
+Add `-g` to install it for every project. The skill is a single file in [`skills/kaneo-cli`](https://github.com/Go-Figure-App/tracing/tree/main/skills/kaneo-cli), so you can also copy it into your agent's skills folder by hand. Agents that should talk to Tracing without a shell can use the [MCP server](/core/integrations/mcp) instead.

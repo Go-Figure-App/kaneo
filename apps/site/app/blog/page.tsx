@@ -14,10 +14,12 @@ import { withSocialMetadata } from "@/lib/metadata";
 export const metadata: Metadata = withSocialMetadata({
   title: "Blog",
   description:
-    "Round-ups, comparisons, and honest writing from the Kaneo team on choosing, self-hosting, and paying for project management software.",
+    "Round-ups, comparisons, and honest writing from the Tracing team on choosing, self-hosting, and paying for project management software.",
   alternates: {
     canonical: "/blog",
-    types: { "application/rss+xml": "https://kaneo.app/blog/rss.xml" },
+    types: {
+      "application/rss+xml": "https://tracing.gofigureapp.io/blog/rss.xml",
+    },
   },
 });
 
@@ -30,7 +32,7 @@ export default function Page() {
     <>
       <JsonLd
         data={breadcrumbJsonLd([
-          { name: "Kaneo", path: "/" },
+          { name: "Tracing", path: "/" },
           { name: "Blog", path: "/blog" },
         ])}
       />
@@ -38,16 +40,16 @@ export default function Page() {
         data={{
           "@context": "https://schema.org",
           "@type": "Blog",
-          name: "Kaneo blog",
-          url: "https://kaneo.app/blog",
+          name: "Tracing blog",
+          url: "https://tracing.gofigureapp.io/blog",
           inLanguage: "en",
-          publisher: { "@type": "Organization", name: "Kaneo" },
+          publisher: { "@type": "Organization", name: "Tracing" },
           blogPost: posts.map((post) => ({
             "@type": "BlogPosting",
             headline: post.title,
             description: post.excerpt,
             datePublished: post.date,
-            url: `https://kaneo.app${blogPath(post.slug)}`,
+            url: `https://tracing.gofigureapp.io${blogPath(post.slug)}`,
             author: { "@type": "Person", name: post.author.name },
           })),
         }}

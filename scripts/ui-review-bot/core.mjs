@@ -230,7 +230,7 @@ export async function completion({
       headers: {
         Authorization: `Bearer ${token}`,
         "Content-Type": "application/json",
-        "X-OpenRouter-Title": "Kaneo UI Review - Local",
+        "X-OpenRouter-Title": "Tracing UI Review - Local",
       },
       body: JSON.stringify({
         model: requestModel,

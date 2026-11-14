@@ -33,9 +33,9 @@ postgresql:
     pullPolicy: IfNotPresent
   # Database configuration
   auth:
-    database: kaneo
-    username: kaneo_user
-    password: kaneo_password
+    database: tracing
+    username: tracing_user
+    password: tracing_password
     # Use existing secret for database credentials (optional)
     existingSecret: ""
     secretKeys:
@@ -60,12 +60,12 @@ postgresql:
   #   requests:
   #     cpu: 100m
   #     memory: 128Mi
-# Kaneo application configuration (combined API + web frontend)
-kaneo:
+# Tracing application configuration (combined API + web frontend)
+tracing:
   image:
-    repository: ghcr.io/usekaneo/kaneo
-    # Defaults to Chart.appVersion when empty.
-    tag: ""
+    # Build Dockerfile.tracing and load it into your cluster, or set your registry.
+    repository: tracing
+    tag: local
     pullPolicy: IfNotPresent
   securityContext: {}
   service:
@@ -83,9 +83,9 @@ kaneo:
   #     memory: 128Mi
 
   env:
-    # Public URL of this Kaneo instance (e.g. https://kaneo.example.com)
-    # Required public HTTP(S) origin, e.g. https://kaneo.example.com.
-    # KANEO_API_URL is derived automatically as clientUrl/api if not set
+    # Public URL of this Tracing instance (e.g. https://tracing.example.com)
+    # Required public HTTP(S) origin, e.g. https://tracing.example.com.
+    # TRACING_API_URL is derived automatically as clientUrl/api if not set
     clientUrl: ""
     # Allowed CORS origins. Accepts a comma-separated string or YAML list.
     # Defaults to clientUrl when left empty.
@@ -104,26 +104,26 @@ kaneo:
     database:
       # Use external PostgreSQL (set postgresql.enabled to false)
       # Important: when using external postgres, make sure you have set up the db user correctly:
-      #   CREATE DATABASE kaneo;
-      #   CREATE USER kaneo_user WITH PASSWORD 'your_password';
-      #   GRANT ALL PRIVILEGES ON DATABASE kaneo TO kaneo_user;
-      #   \c kaneo;
-      #   GRANT USAGE ON SCHEMA public TO kaneo_user;
-      #   GRANT CREATE ON SCHEMA public TO kaneo_user;
-      #   ALTER SCHEMA public OWNER TO kaneo_user;
+      #   CREATE DATABASE tracing;
+      #   CREATE USER tracing_user WITH PASSWORD 'your_password';
+      #   GRANT ALL PRIVILEGES ON DATABASE tracing TO tracing_user;
+      #   \c tracing;
+      #   GRANT USAGE ON SCHEMA public TO tracing_user;
+      #   GRANT CREATE ON SCHEMA public TO tracing_user;
+      #   ALTER SCHEMA public OWNER TO tracing_user;
       external:
         enabled: false
         host: ""
         port: 5432
-        database: kaneo
-        username: kaneo_user
+        database: tracing
+        username: tracing_user
         password: ""
         # Use existing secret for external database credentials in the form of a uri, e.g.: "postgresql://user:pass@host:port/db"
         existingSecret:
           enabled: false
           name: ""
           passwordKey: postgres_uri
-  # Additional environment variables for the kaneo container.
+  # Additional environment variables for the tracing container.
   # Each entry is a standard Kubernetes EnvVar (supports `value` or `valueFrom`).
   # Useful for CUSTOM_OAUTH_*, SMTP_*, etc. without editing the chart.
   # extraEnv entries are appended after chart-defined vars; duplicate names override.
@@ -143,13 +143,13 @@ kaneo:
   livenessProbe:
     httpGet:
       path: /api/health
-      port: kaneo
+      port: tracing
     initialDelaySeconds: 60
     periodSeconds: 10
   readinessProbe:
     httpGet:
       path: /api/health
-      port: kaneo
+      port: tracing
     initialDelaySeconds: 30
     periodSeconds: 10
 # Ingress configuration
@@ -158,11 +158,11 @@ ingress:
   className: nginx
   annotations: {}
   hosts:
-    - host: kaneo.local
+    - host: tracing.local
       paths:
         - path: /
           pathType: Prefix
-          service: kaneo
+          service: tracing
           port: 5173
   tls: []
 
@@ -179,5 +179,5 @@ gateway:
             type: PathPrefix
             value: /
       backendRefs:
-        - service: kaneo
+        - service: tracing
           port: 5173

@@ -1,21 +1,21 @@
 ---
 title: "Nginx and HTTPS"
-description: "Serve the bundled Kaneo container on one domain with working realtime updates."
+description: "Serve the bundled Tracing container on one domain with working realtime updates."
 ---
 
-This example uses Nginx installed on the same host as the [Docker Compose deployment](/core/installation/docker-compose). The Kaneo container is available only at `127.0.0.1:5173`.
+This example uses Nginx installed on the same host as the [Docker Compose deployment](/core/installation/docker-compose). The Tracing container is available only at `127.0.0.1:5173`.
 
 You need a domain pointing at the server and a valid TLS certificate. The paths below assume a certificate for `kaneo.example.com` already exists. Obtain one with your certificate manager before enabling the HTTPS server block.
 
 ## Configure one public origin
 
-Set this in Kaneo's `.env`:
+Set this in Tracing's `.env`:
 
 ```env
-KANEO_CLIENT_URL=https://kaneo.example.com
+TRACING_CLIENT_URL=https://kaneo.example.com
 ```
 
-Leave `KANEO_API_URL` unset for the bundled image. It serves the web app and `/api` through the same public origin.
+Leave `TRACING_API_URL` unset for the bundled image. It serves the web app and `/api` through the same public origin.
 
 ```bash
 docker compose up -d --force-recreate kaneo
@@ -25,7 +25,7 @@ docker compose up -d --force-recreate kaneo
 
 Configure `TRUSTED_PROXIES` for this host-Nginx setup before serving traffic. Requests pass through host Nginx, Docker's published port, and the bundled Nginx before reaching the API. The API trusts loopback by default, but the bundled Nginx also appends its Docker-side peer address. Without trusting that hop, visitors can share the gateway address in session records and IP-based rate limits.
 
-Find the gateway for the Kaneo container's network:
+Find the gateway for the Tracing container's network:
 
 ```bash
 docker inspect "$(docker compose ps -q kaneo)" --format '{{range $name, $network := .NetworkSettings.Networks}}{{$name}} gateway={{$network.Gateway}}{{println}}{{end}}'
@@ -100,7 +100,7 @@ Sign in and open a project in two browser sessions. Change a task in one and con
 
 ## Other network layouts
 
-If Nginx runs in another container, `127.0.0.1` refers to that proxy container. Put it on the same Docker network as Kaneo and use `http://kaneo:5173` as the upstream.
+If Nginx runs in another container, `127.0.0.1` refers to that proxy container. Put it on the same Docker network as Tracing and use `http://kaneo:5173` as the upstream.
 
 Configure [`TRUSTED_PROXIES`](/core/installation/environment-variables#proxies) for this different proxy chain so client addresses remain correct. Trust only the proxy addresses or a dedicated proxy subnet.
 

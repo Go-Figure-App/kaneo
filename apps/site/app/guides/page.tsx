@@ -26,7 +26,7 @@ export default function Page() {
     <>
       <JsonLd
         data={breadcrumbJsonLd([
-          { name: "Kaneo", path: "/" },
+          { name: "Tracing", path: "/" },
           { name: "Guides", path: "/guides" },
         ])}
       />
@@ -34,14 +34,14 @@ export default function Page() {
         data={{
           "@context": "https://schema.org",
           "@type": "ItemList",
-          name: "Kaneo guides",
+          name: "Tracing guides",
           itemListElement: guideGroups
             .flatMap((group) => group.guides)
             .map((guide, index) => ({
               "@type": "ListItem",
               position: index + 1,
               name: guide.question,
-              url: `https://kaneo.app${guidePath(guide.slug)}`,
+              url: `https://tracing.gofigureapp.io${guidePath(guide.slug)}`,
             })),
         }}
       />
@@ -52,7 +52,7 @@ export default function Page() {
             <PageIntro
               eyebrow="Guides"
               title={<>Straight answers about project tools</>}
-              description="The questions people actually ask before choosing a project manager, answered without pretending Kaneo is the answer to all of them."
+              description="The questions people actually ask before choosing a project manager, answered without pretending Tracing is the answer to all of them."
             />
 
             <div className="mt-12 space-y-14">

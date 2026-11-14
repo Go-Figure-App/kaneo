@@ -74,11 +74,11 @@ export const whatIsKanban: Guide = {
       ],
     },
     {
-      heading: "A kanban board in Kaneo",
+      heading: "A kanban board in Tracing",
       body: [
-        "Every Kaneo project opens on a kanban board. Set the columns in the project's workflow settings to match how work really moves, and turn on Done for the column where finished work lands. Cards show labels, priority, assignees, and dates, and you can drag them between columns.",
+        "Every Tracing project opens on a kanban board. Set the columns in the project's workflow settings to match how work really moves, and turn on Done for the column where finished work lands. Cards show labels, priority, assignees, and dates, and you can drag them between columns.",
         "Keep ideas out of the active board by putting them in the Backlog, so the board only shows work someone could pick up. Mark blocked work with a Blocks relation so the dependency is visible on the task.",
-        'Kaneo does not enforce WIP limits. Most small teams agree a limit and check it at a weekly review; writing the limit into the column name, such as "In Progress (3)", is a simple reminder.',
+        'Tracing does not enforce WIP limits. Most small teams agree a limit and check it at a weekly review; writing the limit into the column name, such as "In Progress (3)", is a simple reminder.',
       ],
     },
   ],
@@ -101,7 +101,7 @@ export const whatIsKanban: Guide = {
     {
       question: "Is there a free kanban board?",
       answer:
-        "Yes, several. Kaneo is free to self-host under the MIT license and includes a backlog, Gantt view, and single sign-on alongside the board. Our guide to free kanban software compares the main options.",
+        "Yes, several. Tracing is free to self-host under the MIT license and includes a backlog, Gantt view, and single sign-on alongside the board. Our guide to free kanban software compares the main options.",
     },
   ],
   related: [

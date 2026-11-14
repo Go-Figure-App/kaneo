@@ -1,5 +1,4 @@
 import type { Metadata, Viewport } from "next";
-import Script from "next/script";
 import { ThemeSync } from "@/components/landing/theme-sync";
 import { landing } from "@/lib/landing";
 import "./globals.css";
@@ -15,10 +14,10 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://kaneo.app"),
+  metadataBase: new URL("https://tracing.gofigureapp.io"),
   title: {
     default: siteTitle,
-    template: "%s | Kaneo",
+    template: "%s | Tracing",
   },
   description: siteDescription,
   keywords: [
@@ -30,14 +29,14 @@ export const metadata: Metadata = {
     "issue tracking",
     "team collaboration",
   ],
-  applicationName: "Kaneo",
+  applicationName: "Tracing",
   alternates: {
     canonical: "/",
   },
   openGraph: {
     type: "website",
-    url: "https://kaneo.app",
-    siteName: "Kaneo",
+    url: "https://tracing.gofigureapp.io",
+    siteName: "Tracing",
     title: siteTitle,
     description: siteDescription,
     images: [
@@ -45,7 +44,7 @@ export const metadata: Metadata = {
         url: "/images/hero.png",
         width: 1200,
         height: 630,
-        alt: "Kaneo",
+        alt: "Tracing",
       },
     ],
   },
@@ -65,52 +64,42 @@ export const metadata: Metadata = {
     apple: "/apple-touch-icon.png",
   },
   category: "productivity",
-  creator: "Kaneo",
-  publisher: "Kaneo",
+  creator: "Tracing",
+  publisher: "Tracing",
 };
 
 const jsonLd = [
   {
     "@context": "https://schema.org",
     "@type": "Organization",
-    name: "Kaneo",
-    url: "https://kaneo.app",
-    logo: "https://kaneo.app/logo-512.png",
-    sameAs: ["https://github.com/usekaneo/kaneo"],
+    name: "Tracing",
+    url: "https://tracing.gofigureapp.io",
+    logo: "https://tracing.gofigureapp.io/logo-512.png",
+    sameAs: ["https://github.com/Go-Figure-App/tracing"],
   },
   {
     "@context": "https://schema.org",
     "@type": "WebSite",
-    name: "Kaneo",
-    url: "https://kaneo.app",
+    name: "Tracing",
+    url: "https://tracing.gofigureapp.io",
     inLanguage: "en",
   },
   {
     "@context": "https://schema.org",
     "@type": "SoftwareApplication",
-    name: "Kaneo",
+    name: "Tracing",
     applicationCategory: "BusinessApplication",
     operatingSystem: "Web, Linux, macOS, Windows",
     description: siteDescription,
-    url: "https://kaneo.app",
-    image: "https://kaneo.app/images/hero.png",
-    license: "https://github.com/usekaneo/kaneo/blob/main/LICENSE",
-    offers: [
-      {
-        "@type": "Offer",
-        name: "Kaneo Cloud Personal",
-        price: "4",
-        priceCurrency: "USD",
-        url: "https://kaneo.app/pricing",
-      },
-      {
-        "@type": "Offer",
-        name: "Kaneo Cloud Team",
-        price: "5",
-        priceCurrency: "USD",
-        url: "https://kaneo.app/pricing",
-      },
-    ],
+    url: "https://tracing.gofigureapp.io",
+    image: "https://tracing.gofigureapp.io/images/hero.png",
+    license: "https://github.com/Go-Figure-App/tracing/blob/main/LICENSE",
+    offers: {
+      "@type": "Offer",
+      price: "0",
+      priceCurrency: "USD",
+      url: "https://github.com/Go-Figure-App/tracing",
+    },
   },
 ];
 
@@ -145,17 +134,6 @@ export default function RootLayout({
           // eslint-disable-next-line react/no-danger -- JSON-LD structured data must be inlined as a script tag for search engines to parse.
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
-        <Script
-          defer
-          data-domain="kaneo.app"
-          src="https://plausible.kaneo.app/js/script.file-downloads.hash.outbound-links.pageview-props.revenue.tagged-events.js"
-          strategy="afterInteractive"
-        />
-        <Script id="plausible-init" strategy="afterInteractive">
-          {
-            "window.plausible = window.plausible || function() { (window.plausible.q = window.plausible.q || []).push(arguments) }"
-          }
-        </Script>
       </body>
     </html>
   );

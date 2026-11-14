@@ -16,7 +16,7 @@ export type DevicePoll =
   | { kind: "denied" }
   | { kind: "expired" };
 
-/** Confirms the address points at a Kaneo instance and returns its sign-in options. */
+/** Confirms the address points at a Tracing instance and returns its sign-in options. */
 export async function probe(serverUrl: string): Promise<InstanceConfig> {
   try {
     const config = await request<InstanceConfig>("api/config", { serverUrl });

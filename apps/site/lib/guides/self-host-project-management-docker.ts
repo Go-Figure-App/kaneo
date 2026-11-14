@@ -6,7 +6,7 @@ export const selfHostProjectManagementDocker: Guide = {
   question: "How do I self-host a project management tool with Docker?",
   title: "How to self-host project management with Docker",
   description:
-    "A practical guide to self-hosting a project manager with Docker Compose: what you need, how to run Kaneo, and what to get right on backups, TLS, and updates.",
+    "A practical guide to self-hosting a project manager with Docker Compose: what you need, how to run Tracing, and what to get right on backups, TLS, and updates.",
   summary: landing.selfHostingGuide.summary,
   answer: landing.selfHostingGuide.answer,
   sections: [
@@ -21,9 +21,9 @@ export const selfHostProjectManagementDocker: Guide = {
     {
       heading: "The compose file",
       body: [
-        "Kaneo runs as one application container alongside PostgreSQL. The container serves both the API and the web app on port 5173, so the reverse proxy has a single upstream.",
+        "Tracing runs as one application container alongside PostgreSQL. The container serves both the API and the web app on port 5173, so the reverse proxy has a single upstream.",
         landing.selfHostingGuide.compose,
-        "If you would rather not write it yourself, the drim CLI sets up Kaneo, PostgreSQL, and HTTPS in one step: run drim setup on a fresh server and answer the prompts.",
+        "If you would rather not write it yourself, the drim CLI sets up Tracing, PostgreSQL, and HTTPS in one step: run drim setup on a fresh server and answer the prompts.",
       ],
       items: [
         {
@@ -53,21 +53,21 @@ export const selfHostProjectManagementDocker: Guide = {
       body: [
         "TLS as an afterthought. Put Caddy, Traefik, or nginx in front from the first day, not after someone has typed a password over plain HTTP. Caddy needs about four lines for automatic certificates.",
         landing.selfHostingGuide.backups,
-        "Pinning to latest and never updating, or updating blind. Pin a version tag, read the release notes, and take a database dump before upgrading. Kaneo's migrations run automatically on start and are written to work on existing installations, but a dump costs nothing.",
-        "Skipping single sign-on because it looks like work. Connecting Google, GitHub, Discord, or your own OIDC provider takes minutes in Kaneo and is free on every build, and it removes an entire class of password problems.",
+        "Pinning to latest and never updating, or updating blind. Pin a version tag, read the release notes, and take a database dump before upgrading. Tracing's migrations run automatically on start and are written to work on existing installations, but a dump costs nothing.",
+        "Skipping single sign-on because it looks like work. Connecting Google, GitHub, Discord, or your own OIDC provider takes minutes in Tracing and is free on every build, and it removes an entire class of password problems.",
       ],
     },
     {
       heading: "Is self-hosting worth it?",
       body: [
         landing.selfHostingGuide.worth,
-        "It is not worth it if nobody wants to own updates and backups. That is a real job, small but recurring. If no one wants it, a managed cloud is the honest answer, and Kaneo Cloud is $4 a month for one person or $5 per user a month for a team, running the same MIT-licensed software you could host yourself.",
+        "It is not worth it if nobody wants to own updates and backups. That is a real job, small but recurring. If no one wants it, a managed cloud is the honest answer, and Tracing Cloud is $4 a month for one person or $5 per user a month for a team, running the same MIT-licensed software you could host yourself.",
       ],
     },
   ],
   faq: [
     {
-      question: "What are the minimum requirements to self-host Kaneo?",
+      question: "What are the minimum requirements to self-host Tracing?",
       answer: landing.selfHostingGuide.minimum,
     },
     {
@@ -76,9 +76,9 @@ export const selfHostProjectManagementDocker: Guide = {
         "Yes, for a small team. The requirements are modest. Put it behind a tunnel or a reverse proxy with TLS rather than exposing ports directly, and keep backups somewhere other than the same SD card.",
     },
     {
-      question: "Does Kaneo run on Kubernetes?",
+      question: "Does Tracing run on Kubernetes?",
       answer:
-        "Yes. There is an official Helm chart in the repository under charts/kaneo, which covers the API, web app, database configuration, and ingress.",
+        "Yes. There is an official Helm chart in the repository under charts/tracing, which covers the API, web app, database configuration, and ingress.",
     },
     {
       question: "How do updates work?",

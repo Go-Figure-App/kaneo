@@ -5,18 +5,18 @@ export const bestOpenSourceProjectManagement: Guide = {
   question: "What is the best open-source project management software?",
   title: "10 Best Open-Source Project Management Tools (2026)",
   description:
-    "The best open-source project management tools in 2026 are Kaneo, OpenProject, Plane, Redmine, Taiga, and Vikunja. Compare licences, paid tiers, and setup.",
+    "The best open-source project management tools in 2026 are Tracing, OpenProject, Plane, Redmine, Taiga, and Vikunja. Compare licences, paid tiers, and setup.",
   summary:
     "Ten self-hostable tools compared by licence, footprint, and what each one keeps behind a paid tier.",
   answer:
-    "The best open-source project management software for most teams is Kaneo, OpenProject, or Plane. Kaneo is the pick for a modern, MIT-licensed tracker that runs as one container with single sign-on included, OpenProject for classical project management with Gantt charts and budgets, and Plane for a Linear-style interface. Redmine wins on plugins, Taiga on Scrum, and Vikunja on personal task management. Check the licence and the paid-tier line before you commit, because that is what changes later.",
+    "The best open-source project management software for most teams is Tracing, OpenProject, or Plane. Tracing is the pick for a modern, MIT-licensed tracker that runs as one container with single sign-on included, OpenProject for classical project management with Gantt charts and budgets, and Plane for a Linear-style interface. Redmine wins on plugins, Taiga on Scrum, and Vikunja on personal task management. Check the licence and the paid-tier line before you commit, because that is what changes later.",
   sections: [
     {
       heading: "At a glance",
       table: {
         columns: ["Tool", "Licence", "Paid edition or add-on", "Best for"],
         rows: [
-          ["Kaneo", "MIT", "None", "Small teams that want it light"],
+          ["Tracing", "MIT", "None", "Small teams that want it light"],
           [
             "OpenProject",
             "GPLv3 (Community)",
@@ -53,9 +53,9 @@ export const bestOpenSourceProjectManagement: Guide = {
       heading: "The short list",
       items: [
         {
-          name: "Kaneo",
+          name: "Tracing",
           meta: "MIT",
-          href: "https://kaneo.app",
+          href: "https://tracing.gofigureapp.io",
           body: "A focused tracker with boards, backlog, Gantt and calendar views, custom fields, workflow rules, roles, time tracking, and an API. One container plus PostgreSQL, with a Helm chart. Single sign-on through Google, GitHub, Discord, or any OIDC provider is in the free build, and there is no paid edition holding features back. Best for teams that want something small they can own.",
         },
         {
@@ -118,7 +118,7 @@ export const bestOpenSourceProjectManagement: Guide = {
       heading: "How to choose without regretting it later",
       body: [
         "Start with the licence, because it decides what can be taken away. MIT and GPL are open-source licences with settled meanings. Source-available licences such as PLANKA's Fair Use licence, and open-core products with an Enterprise add-on, reserve the right to move a feature you rely on into a paid tier. That is a legitimate way to fund development, and it is also a risk you should price in.",
-        "Then check where single sign-on lives. It is the most commonly gated feature in this category, and it is the one that turns a free self-hosted tool into a paid one the moment your company adopts an identity provider. Kaneo, Vikunja, and WeKan include OIDC in the free build. OpenProject, Plane, and PLANKA do not.",
+        "Then check where single sign-on lives. It is the most commonly gated feature in this category, and it is the one that turns a free self-hosted tool into a paid one the moment your company adopts an identity provider. Tracing, Vikunja, and WeKan include OIDC in the free build. OpenProject, Plane, and PLANKA do not.",
         "Then look at what you have to operate. A single container plus PostgreSQL is a Sunday-afternoon install and a boring backup story. A multi-service platform needs someone who will keep it patched. Be honest about which of those you have.",
         "Finally, check that data can leave. A JSON export, a documented API, or both. If you cannot get your tasks out, none of the other freedoms matter much.",
       ],
@@ -126,8 +126,8 @@ export const bestOpenSourceProjectManagement: Guide = {
     {
       heading: "What each one is genuinely best at",
       body: [
-        "For a small software team that wants a board, a backlog, and no administration: Kaneo or Plane. For classical project management with schedules and budgets: OpenProject. For Scrum with real sprint mechanics: Taiga. For a mature tracker with a plugin for everything: Redmine. For personal task management with a good mobile experience: Vikunja. For the lightest possible install: Kanboard.",
-        "We build Kaneo, so treat the recommendation accordingly. Kaneo includes Gantt and calendar planning, custom fields, and time tracking. It does not provide budgets, cost reporting, baseline comparisons, or sprint burndowns; choose a tool with those capabilities if your team depends on them.",
+        "For a small software team that wants a board, a backlog, and no administration: Tracing or Plane. For classical project management with schedules and budgets: OpenProject. For Scrum with real sprint mechanics: Taiga. For a mature tracker with a plugin for everything: Redmine. For personal task management with a good mobile experience: Vikunja. For the lightest possible install: Kanboard.",
+        "We build Tracing, so treat the recommendation accordingly. Tracing includes Gantt and calendar planning, custom fields, and time tracking. It does not provide budgets, cost reporting, baseline comparisons, or sprint burndowns; choose a tool with those capabilities if your team depends on them.",
       ],
     },
   ],
@@ -135,24 +135,24 @@ export const bestOpenSourceProjectManagement: Guide = {
     {
       question: "What is the best free open-source alternative to Jira?",
       answer:
-        "Kaneo, Plane, OpenProject, Redmine, and Taiga are the five most commonly recommended. Kaneo is the lightest to run and MIT licensed with SSO included. OpenProject is the closest to Jira in scope. Redmine has the largest plugin ecosystem.",
+        "Tracing, Plane, OpenProject, Redmine, and Taiga are the five most commonly recommended. Tracing is the lightest to run and MIT licensed with SSO included. OpenProject is the closest to Jira in scope. Redmine has the largest plugin ecosystem.",
     },
     {
       question: "Is open-source project management software really free?",
       answer:
-        "The software is, but check two things: whether the licence is an OSI-approved open-source licence or a source-available one, and whether features such as single sign-on, audit logs, or time tracking sit behind a paid edition. Kaneo, Redmine, Taiga, WeKan, and Kanboard have no paid edition. OpenProject, Plane, PLANKA, and Vikunja Pro do.",
+        "The software is, but check two things: whether the licence is an OSI-approved open-source licence or a source-available one, and whether features such as single sign-on, audit logs, or time tracking sit behind a paid edition. Tracing, Redmine, Taiga, WeKan, and Kanboard have no paid edition. OpenProject, Plane, PLANKA, and Vikunja Pro do.",
     },
     {
       question:
         "Which open-source project management tool is easiest to self-host?",
       answer:
-        "Kanboard is the smallest, PHP with an optional SQLite file. Kaneo and Vikunja are close behind: one container plus a database, with Kaneo also shipping an official Helm chart. OpenProject, Plane, Taiga, and Huly all run several services.",
+        "Kanboard is the smallest, PHP with an optional SQLite file. Tracing and Vikunja are close behind: one container plus a database, with Tracing also shipping an official Helm chart. OpenProject, Plane, Taiga, and Huly all run several services.",
     },
     {
       question:
         "Which features are behind the paid tier in open-core project management tools?",
       answer:
-        "Single sign-on is the most common one. OpenProject keeps SSO and custom themes for its Enterprise add-on. Plane puts SSO, advanced controls, and time tracking on paid tiers. Vikunja Pro adds an admin panel, audit logs, and time tracking. PLANKA moved OIDC single sign-on to its Pro tier in version 2.2. Kaneo has no paid edition.",
+        "Single sign-on is the most common one. OpenProject keeps SSO and custom themes for its Enterprise add-on. Plane puts SSO, advanced controls, and time tracking on paid tiers. Vikunja Pro adds an admin panel, audit logs, and time tracking. PLANKA moved OIDC single sign-on to its Pro tier in version 2.2. Tracing has no paid edition.",
     },
     {
       question: "Vikunja vs Plane: which should I pick?",
@@ -162,12 +162,12 @@ export const bestOpenSourceProjectManagement: Guide = {
     {
       question: "Do any of them include single sign-on for free?",
       answer:
-        "Kaneo, Vikunja, and WeKan support OIDC on the free self-hosted build. Redmine and Kanboard can do it through plugins. OpenProject, Plane, and PLANKA reserve it for a paid edition or tier.",
+        "Tracing, Vikunja, and WeKan support OIDC on the free self-hosted build. Redmine and Kanboard can do it through plugins. OpenProject, Plane, and PLANKA reserve it for a paid edition or tier.",
     },
   ],
   related: [
-    { label: "Kaneo vs Jira", href: "/jira-alternative" },
-    { label: "Kaneo vs Plane", href: "/plane-alternative" },
+    { label: "Tracing vs Jira", href: "/jira-alternative" },
+    { label: "Tracing vs Plane", href: "/plane-alternative" },
     {
       label: "Free, open-source Jira alternatives",
       href: "/guides/open-source-jira-alternatives",

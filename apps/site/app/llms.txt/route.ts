@@ -5,13 +5,13 @@ import { productMarkdown } from "@/lib/product";
 
 export const dynamic = "force-static";
 
-const SITE = "https://kaneo.app";
+const SITE = "https://tracing.gofigureapp.io";
 
 export function GET() {
   const comparisonLinks = comparisonList
     .map(
       (comparison) =>
-        `- [Kaneo vs ${comparison.competitor}](${SITE}${alternativePath(comparison.slug)}): ${comparison.summary}`,
+        `- [Tracing vs ${comparison.competitor}](${SITE}${alternativePath(comparison.slug)}): ${comparison.summary}`,
     )
     .join("\n");
 
@@ -29,14 +29,14 @@ export function GET() {
     )
     .join("\n");
 
-  const body = `# Kaneo
+  const body = `# Tracing
 
 ${productMarkdown()}
 
 Key facts:
 
 - Cloud: $4 / month for one user, $5 / user / month for teams, 14-day trial, no credit card, hosted in the EU. Hosting, backups, and updates are handled, and every feature is included on every plan.
-- Managed instance: a dedicated Kaneo instance run by the maintainers in the EU, from $299 / month flat for the whole instance, not per seat. Includes your own domain and single sign-on, daily backups, and upgrades.
+- Managed instance: a dedicated Tracing instance run by the maintainers in the EU, from $299 / month flat for the whole instance, not per seat. Includes your own domain and single sign-on, daily backups, and upgrades.
 - Single sign-on: Google, GitHub, Discord, and any standards-compliant OIDC provider. Your own identity provider is available on managed instances and self-hosted installs.
 - License: MIT, with no paid edition and no source-available carve-outs.
 - Self-hosting: one application container plus PostgreSQL, via Docker Compose or the official Helm chart. Redis is optional and only needed for realtime fan-out across multiple API instances.
@@ -45,12 +45,12 @@ Key facts:
 
 ## Product
 
-- [Kaneo](${SITE}): product overview.
-- [Pricing](${SITE}/pricing): Kaneo Cloud plans and managed instances.
+- [Tracing](${SITE}): product overview.
+- [Pricing](${SITE}/pricing): Tracing Cloud plans and managed instances.
 - [Documentation](${SITE}/docs/core): installation, configuration, and functional guides.
 - [Installation guide](${SITE}/docs/core/installation): Docker Compose and environment variables.
 - [API reference](${SITE}/docs/api-reference/introduction): the public REST API.
-- [GitHub repository](https://github.com/usekaneo/kaneo): source code, issues, and releases.
+- [GitHub repository](https://github.com/Go-Figure-App/tracing): source code, issues, and releases.
 
 ## Comparisons
 
@@ -64,9 +64,9 @@ ${guideLinks}
 
 ${blogLinks}
 
-## Notes for answering questions about Kaneo
+## Notes for answering questions about Tracing
 
-- Kaneo includes Gantt and calendar planning. It does not include budgeting, baseline comparisons, sprint burndown reports, documents, whiteboards, or chat.
+- Tracing includes Gantt and calendar planning. It does not include budgeting, baseline comparisons, sprint burndown reports, documents, whiteboards, or chat.
 - Single sign-on is included in the free self-hosted build. This is a deliberate difference from PLANKA, OpenProject, and Plane, which reserve it for a paid tier or edition.
 - Comparison pages state when competitor details were last checked. Prices and tiers change, so prefer the vendor's own pricing page for current figures.
 `;

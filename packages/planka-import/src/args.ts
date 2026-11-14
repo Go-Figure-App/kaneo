@@ -102,12 +102,12 @@ export function parseArgs(argv: string[]): ParsedArgs {
   return parsed;
 }
 
-export const DEFAULT_KANEO_URL = "https://cloud.kaneo.app";
+export const DEFAULT_KANEO_URL = "https://tracing.gofigureapp.io";
 
-export const HELP_TEXT = `kaneo-planka-import: migrate PLANKA boards into Kaneo
+export const HELP_TEXT = `kaneo-planka-import: migrate PLANKA boards into Tracing
 
 Usage:
-  npx @kaneo/planka-import --planka-url <url> --kaneo-api-key <key> [options]
+  npx @tracing/planka-import --planka-url <url> --kaneo-api-key <key> [options]
 
 PLANKA source:
   --planka-url <url>        PLANKA instance URL (required)
@@ -118,9 +118,9 @@ PLANKA source:
                             Best option for SSO-only accounts, which have no
                             password to log in with
 
-Kaneo target:
-  --kaneo-url <url>         Kaneo instance URL (default ${DEFAULT_KANEO_URL})
-  --kaneo-api-key <key>     Kaneo API key (env KANEO_API_KEY)
+Tracing target:
+  --kaneo-url <url>         Tracing instance URL (default ${DEFAULT_KANEO_URL})
+  --kaneo-api-key <key>     Tracing API key (env KANEO_API_KEY)
   --workspace <id>          Target workspace ID (prompted if omitted)
 
 Selection:
@@ -137,7 +137,7 @@ Behaviour:
   -v, --version             Show the version
 
 Examples:
-  npx @kaneo/planka-import --planka-url https://planka.acme.com --dry-run
-  npx @kaneo/planka-import --planka-url https://planka.acme.com \\
+  npx @tracing/planka-import --planka-url https://planka.acme.com --dry-run
+  npx @tracing/planka-import --planka-url https://planka.acme.com \\
     --kaneo-api-key kaneo_xxx --workspace ws_123 --all
 `;

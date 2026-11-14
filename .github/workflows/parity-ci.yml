@@ -15,7 +15,7 @@ concurrency:
 
 jobs:
   quality:
-    if: github.repository == 'Go-Figure-App/kaneo'
+    if: (github.repository == 'Go-Figure-App/tracing' || github.repository == 'Go-Figure-App/kaneo')
     name: Quality and contracts
     runs-on: ubuntu-24.04
     timeout-minutes: 30
@@ -38,7 +38,7 @@ jobs:
       - run: pnpm typecheck
 
   unit:
-    if: github.repository == 'Go-Figure-App/kaneo'
+    if: (github.repository == 'Go-Figure-App/tracing' || github.repository == 'Go-Figure-App/kaneo')
     name: Workspace unit tests
     runs-on: ubuntu-24.04
     timeout-minutes: 30
@@ -57,7 +57,7 @@ jobs:
           node --test scripts/security/*.test.mjs scripts/ci/*.test.mjs scripts/contribution-eligibility/*.test.mjs
 
   integration:
-    if: github.repository == 'Go-Figure-App/kaneo'
+    if: (github.repository == 'Go-Figure-App/tracing' || github.repository == 'Go-Figure-App/kaneo')
     name: API integration (${{ matrix.shard }}/4)
     runs-on: ubuntu-24.04
     timeout-minutes: 30
@@ -95,7 +95,7 @@ jobs:
       - run: pnpm --filter @tracing/api exec vp run test:integration:run --shard=${{ matrix.shard }}/4
 
   browser:
-    if: github.repository == 'Go-Figure-App/kaneo'
+    if: (github.repository == 'Go-Figure-App/tracing' || github.repository == 'Go-Figure-App/kaneo')
     name: Docker and browser flows
     runs-on: ubuntu-24.04
     timeout-minutes: 45
@@ -114,7 +114,7 @@ jobs:
         uses: docker/build-push-action@c3c9e263c25d99ce0380d002d59b67737d91b0dc # v7
         with:
           context: .
-          file: Dockerfile.kaneo
+          file: Dockerfile.tracing
           platforms: linux/amd64
           push: false
           load: true
@@ -144,7 +144,7 @@ jobs:
         run: docker compose -f tests/e2e/compose.yml down --volumes
 
   result:
-    if: ${{ always() && github.repository == 'Go-Figure-App/kaneo' }}
+    if: ${{ always() && (github.repository == 'Go-Figure-App/tracing' || github.repository == 'Go-Figure-App/kaneo') }}
     name: Go Figure CI result
     needs: [quality, unit, integration, browser]
     runs-on: ubuntu-24.04

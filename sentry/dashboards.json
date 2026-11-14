@@ -7,7 +7,7 @@
 	"_comment_field_types": "Widget queries use Sentry's discover query syntax. Performance widgets use dataset: events_analytics_platform (with is_transaction:true) per the current Sentry API. Error widgets use dataset: events.",
 	"dashboards": [
 		{
-			"title": "Kaneo: Backend Overview",
+			"title": "Tracing: Backend Overview",
 			"description": "API errors, latency, and request volume for kaneo-api.",
 			"widgets": [
 				{
@@ -73,7 +73,7 @@
 			]
 		},
 		{
-			"title": "Kaneo: Frontend Overview",
+			"title": "Tracing: Frontend Overview",
 			"description": "Web errors, page loads, and web vitals for kaneo-web.",
 			"widgets": [
 				{
@@ -139,7 +139,7 @@
 			]
 		},
 		{
-			"title": "Kaneo: MCP",
+			"title": "Tracing: MCP",
 			"description": "MCP tool traffic, error rate, and latency.",
 			"widgets": [
 				{
@@ -205,7 +205,7 @@
 			]
 		},
 		{
-			"title": "Kaneo: Cron Monitors",
+			"title": "Tracing: Cron Monitors",
 			"description": "Scheduled-job check-ins from apps/api/src/scheduler/index.ts. Monitors appear in Sentry once each cron has run at least once.",
 			"widgets": [
 				{

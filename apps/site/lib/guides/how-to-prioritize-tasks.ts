@@ -98,9 +98,9 @@ export const howToPrioritizeTasks: Guide = {
       ],
     },
     {
-      heading: "Prioritizing in Kaneo",
+      heading: "Prioritizing in Tracing",
       body: [
-        "Every Kaneo task has a priority: urgent, high, medium, low, or none. Cards on the board show it, and Filter narrows any view by priority, so the weekly review can start from urgent and high.",
+        "Every Tracing task has a priority: urgent, high, medium, low, or none. Cards on the board show it, and Filter narrows any view by priority, so the weekly review can start from urgent and high.",
         "Keep candidates in the Backlog and move only the top of the list onto the board. For MoSCoW, use labels or a dropdown custom field with Must, Should, Could, and Won't; for RICE or weighted scoring, number custom fields hold the inputs, and you can filter by them.",
       ],
     },

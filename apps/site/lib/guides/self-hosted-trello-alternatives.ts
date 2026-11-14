@@ -9,7 +9,7 @@ export const selfHostedTrelloAlternatives: Guide = {
   summary:
     "Trello has no on-premise edition. Here are the boards that do, and their catches.",
   answer:
-    "Trello has no self-hosted edition, so a self-hosted Trello alternative means switching tools. Kaneo, PLANKA, WeKan, Kanboard, and Vikunja are the main options. Kaneo is MIT licensed with single sign-on and a backlog in the free build, PLANKA is closest to Trello's card design but keeps SSO for its paid tier, and WeKan and Kanboard are the most minimal.",
+    "Trello has no self-hosted edition, so a self-hosted Trello alternative means switching tools. Tracing, PLANKA, WeKan, Kanboard, and Vikunja are the main options. Tracing is MIT licensed with single sign-on and a backlog in the free build, PLANKA is closest to Trello's card design but keeps SSO for its paid tier, and WeKan and Kanboard are the most minimal.",
   sections: [
     {
       heading: "At a glance",
@@ -17,7 +17,7 @@ export const selfHostedTrelloAlternatives: Guide = {
         columns: ["Board", "Licence", "SSO in the free build", "Best for"],
         rows: [
           [
-            "Kaneo",
+            "Tracing",
             "MIT",
             "Yes, any OIDC provider",
             "Teams that need a backlog and roles",
@@ -44,7 +44,7 @@ export const selfHostedTrelloAlternatives: Guide = {
       heading: "The options",
       items: [
         {
-          name: "Kaneo",
+          name: "Tracing",
           meta: "MIT",
           href: "/trello-alternative",
           body: "A clean board with a backlog, workflow columns, labels, priorities, assignees, comments, attachments, time tracking, and workspace roles. One container plus PostgreSQL, single sign-on through any OIDC provider, JSON export per project. Best if you expect to outgrow a pure board.",
@@ -85,7 +85,7 @@ export const selfHostedTrelloAlternatives: Guide = {
       heading: "What to check before you commit",
       body: [
         "Can you export? Trello gives you board JSON on the way out, and the tool you move to should offer the same courtesy. PLANKA currently does not have an export feature, which is why our importer talks to its API directly.",
-        "Where does single sign-on live? On a self-hosted board, this is the feature most likely to sit behind a paid tier. Kaneo, WeKan, and Vikunja include it free.",
+        "Where does single sign-on live? On a self-hosted board, this is the feature most likely to sit behind a paid tier. Tracing, WeKan, and Vikunja include it free.",
         "Who runs it in six months? Every self-hosted board needs backups, TLS, and updates. Prefer the smallest thing that does the job: one container and PostgreSQL is a very different commitment from a multi-service platform.",
       ],
     },
@@ -93,7 +93,7 @@ export const selfHostedTrelloAlternatives: Guide = {
       heading: "Getting your Trello boards out",
       body: [
         "Trello exports each board to JSON from the board menu on every plan, including cards, lists, labels, and members. Comments come from the 1,000 most recent actions only, so older history on a busy board may be missing. Attachments are links rather than files, so download them separately if they matter.",
-        "From there it is a scripting job against the target tool's API. Kaneo has a documented public API and per-project JSON import, so a board of a few hundred cards is an afternoon. Import into a scratch project first and check assignee matching, which usually happens by email address.",
+        "From there it is a scripting job against the target tool's API. Tracing has a documented public API and per-project JSON import, so a board of a few hundred cards is an afternoon. Import into a scratch project first and check assignee matching, which usually happens by email address.",
       ],
     },
   ],
@@ -106,22 +106,22 @@ export const selfHostedTrelloAlternatives: Guide = {
     {
       question: "What is the closest open-source tool to Trello?",
       answer:
-        "PLANKA is closest in card design and interaction. Kaneo keeps the same simplicity and adds a backlog, workflows, roles, and time tracking, and is MIT licensed with SSO included.",
+        "PLANKA is closest in card design and interaction. Tracing keeps the same simplicity and adds a backlog, workflows, roles, and time tracking, and is MIT licensed with SSO included.",
     },
     {
       question: "Is there a free self-hosted kanban board?",
       answer:
-        "Several. Kaneo, WeKan, and Kanboard are MIT licensed and free to self-host with no user limits or feature gates. Vikunja is free under AGPLv3 with a paid Pro add-on for some features.",
+        "Several. Tracing, WeKan, and Kanboard are MIT licensed and free to self-host with no user limits or feature gates. Vikunja is free under AGPLv3 with a paid Pro add-on for some features.",
     },
     {
-      question: "How do I import Trello boards into Kaneo?",
+      question: "How do I import Trello boards into Tracing?",
       answer:
-        "Export the board to JSON from Trello, then create the tasks through Kaneo's public API or its per-project JSON import. There is no one-click importer yet. If you want one, open an issue on GitHub, since import work is prioritised by demand.",
+        "Export the board to JSON from Trello, then create the tasks through Tracing's public API or its per-project JSON import. There is no one-click importer yet. If you want one, open an issue on GitHub, since import work is prioritised by demand.",
     },
   ],
   related: [
-    { label: "Kaneo vs Trello", href: "/trello-alternative" },
-    { label: "Kaneo vs PLANKA", href: "/planka-alternative" },
+    { label: "Tracing vs Trello", href: "/trello-alternative" },
+    { label: "Tracing vs PLANKA", href: "/planka-alternative" },
     {
       label: "Best free kanban board software",
       href: "/guides/best-free-kanban-board-software",

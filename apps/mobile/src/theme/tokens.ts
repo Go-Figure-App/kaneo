@@ -1,5 +1,5 @@
 /**
- * Design tokens taken from the Kaneo web app's own theme (shadcn-style CSS variables): neutral ink
+ * Design tokens taken from the Tracing web app's own theme (shadcn-style CSS variables): neutral ink
  * on white, translucent borders, Geist type, and color only where it carries meaning. Light values
  * come from `:root`, dark values from `.dark`.
  */
@@ -22,9 +22,9 @@ export type Palette = {
   danger: string;
   dangerSoft: string;
   dangerBorder: string;
-  /** Kaneo's `destructive` (red-500): destructive button fills and error rings. */
+  /** Tracing's `destructive` (red-500): destructive button fills and error rings. */
   dangerRing: string;
-  /** Kaneo's info, warning and success colors; the `Fg` variants are for text and icons. */
+  /** Tracing's info, warning and success colors; the `Fg` variants are for text and icons. */
   info: string;
   infoFg: string;
   warning: string;

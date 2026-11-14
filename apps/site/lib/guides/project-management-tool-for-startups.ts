@@ -9,7 +9,7 @@ export const projectManagementToolForStartups: Guide = {
   summary:
     "Setup time, admin overhead, and cost as you hire matter more than feature count at a startup.",
   answer:
-    "The best project management tool for a startup is one the whole team uses on day one, that nobody has to administer, and whose price stays predictable as you hire. Kaneo Cloud fits that shape: boards, backlogs, and timelines ready in minutes, GitHub issues and pull requests linked to tasks, and $5 per user a month with every feature included and nothing to run yourself.",
+    "The best project management tool for a startup is one the whole team uses on day one, that nobody has to administer, and whose price stays predictable as you hire. Tracing Cloud fits that shape: boards, backlogs, and timelines ready in minutes, GitHub issues and pull requests linked to tasks, and $5 per user a month with every feature included and nothing to run yourself.",
   sections: [
     {
       heading: "What a startup needs from a tracker",
@@ -25,7 +25,7 @@ export const projectManagementToolForStartups: Guide = {
       heading: "Project management tools startups pick, and where each fits",
       items: [
         {
-          name: "Kaneo Cloud",
+          name: "Tracing Cloud",
           href: "/pricing",
           meta: "$5 per user a month",
           body: "Boards, lists, backlogs, Gantt and calendar views, subtasks, and dependencies, without a configuration phase. GitHub issues and pull requests link to tasks, roles and permissions are built in, and hosting, backups, and updates are handled for you.",
@@ -58,7 +58,7 @@ export const projectManagementToolForStartups: Guide = {
       ],
     },
     {
-      heading: "What Kaneo Cloud costs as you grow",
+      heading: "What Tracing Cloud costs as you grow",
       body: [
         "Every plan includes every feature. The only thing that changes with headcount is the number of seats.",
       ],
@@ -84,7 +84,7 @@ export const projectManagementToolForStartups: Guide = {
     {
       question: "Is there a free trial?",
       answer:
-        "Yes. Kaneo Cloud has a 14-day free trial with no credit card required. After that it is $5 per user a month, or $50 per user a year, with every feature included.",
+        "Yes. Tracing Cloud has a 14-day free trial with no credit card required. After that it is $5 per user a month, or $50 per user a year, with every feature included.",
     },
     {
       question: "When should a startup start using a project management tool?",
@@ -92,14 +92,14 @@ export const projectManagementToolForStartups: Guide = {
         "As soon as more than two people depend on each other's work. Before that, a shared list is enough. After that, a board with a backlog stops work from getting lost in chat threads.",
     },
     {
-      question: "Does Kaneo work for non-engineers on the team?",
+      question: "Does Tracing work for non-engineers on the team?",
       answer:
         "Yes. Boards, lists, and calendar views are plain enough for founders, design, and operations, while engineers get keyboard shortcuts, GitHub links, and a public API.",
     },
     {
       question: "What happens to our data if we outgrow it?",
       answer:
-        "Each project exports to JSON and the API is documented, so moving out is a scripting job. Kaneo is also open source, so you can run it on your own servers later without changing tools.",
+        "Each project exports to JSON and the API is documented, so moving out is a scripting job. Tracing is also open source, so you can run it on your own servers later without changing tools.",
     },
   ],
   related: [

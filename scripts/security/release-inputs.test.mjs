@@ -38,7 +38,7 @@ for (const version of [
     const fixture = mkdtempSync(resolve(tmpdir(), "kaneo-release-input-"));
     try {
       mkdirSync(resolve(fixture, "scripts/release"), { recursive: true });
-      mkdirSync(resolve(fixture, "charts/kaneo"), { recursive: true });
+      mkdirSync(resolve(fixture, "charts/tracing"), { recursive: true });
       copyFileSync(
         resolve(root, "scripts/release/apply-version.mjs"),
         resolve(fixture, "scripts/release/apply-version.mjs"),
@@ -46,7 +46,10 @@ for (const version of [
       const originalPackage = '{\n  "version": "0.0.0"\n}\n';
       const originalChart = 'version: 0.0.0\nappVersion: "0.0.0"\n';
       writeFileSync(resolve(fixture, "package.json"), originalPackage);
-      writeFileSync(resolve(fixture, "charts/kaneo/Chart.yaml"), originalChart);
+      writeFileSync(
+        resolve(fixture, "charts/tracing/Chart.yaml"),
+        originalChart,
+      );
       const result = spawnSync("sh", ["-c", command], {
         cwd: fixture,
         env: { ...process.env, RELEASE_VERSION: version },
@@ -66,7 +69,7 @@ for (const version of [
           originalPackage,
         );
         assert.equal(
-          readFileSync(resolve(fixture, "charts/kaneo/Chart.yaml"), "utf8"),
+          readFileSync(resolve(fixture, "charts/tracing/Chart.yaml"), "utf8"),
           originalChart,
         );
       }

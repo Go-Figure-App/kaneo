@@ -102,7 +102,7 @@ export const projectCharter: Guide = {
       ],
     },
     {
-      heading: "Keeping the charter with the work in Kaneo",
+      heading: "Keeping the charter with the work in Tracing",
       body: [
         "Put the charter in the project description under project settings, so it sits next to the tasks it authorises and every new member sees it first. Link to the signed version if your organisation keeps one elsewhere.",
         "Turn the milestones into tasks with due dates and a milestone label, and they appear on the project's Gantt and Calendar views. The deliverables in the scope section become the first tasks in the backlog.",

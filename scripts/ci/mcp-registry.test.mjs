@@ -57,7 +57,9 @@ test("registry lookup retries an interrupted response without retaining its part
   let requests = 0;
   const expected = {
     servers: [
-      { server: { name: "io.github.usekaneo/kaneo", version: "0.1.12" } },
+      {
+        server: { name: "io.github.usekaneo/kaneo", version: "0.1.12" },
+      },
     ],
   };
   const result = await runLookup((_request, response) => {

@@ -1,8 +1,8 @@
-# Kaneo
+# Tracing
 
-Kaneo is a fast, simple, self-hosted project manager. The Hono API owns domain behavior and authorization; the React app uses its typed client. PostgreSQL stores durable state, events and WebSockets keep clients current, and Redis is optional for delivery across API instances.
+Tracing is a fast, simple, self-hosted project manager. The Hono API owns domain behavior and authorization; the React app uses its typed client. PostgreSQL stores durable state, events and WebSockets keep clients current, and Redis is optional for delivery across API instances.
 
-People use Kaneo to manage active work on instances they control. Changes reach existing tasks, workspaces, and deployments, not just a fresh dev setup. Protect what they rely on: quick boards, straightforward workflows, reliable live updates, and self-hosting that stays simple. A change that weakens those needs a compelling product reason.
+People use Tracing to manage active work on instances they control. Changes reach existing tasks, workspaces, and deployments, not just a fresh dev setup. Protect what they rely on: quick boards, straightforward workflows, reliable live updates, and self-hosting that stays simple. A change that weakens those needs a compelling product reason.
 
 Treat this guide as a set of defaults. The developer's request takes precedence.
 
@@ -20,18 +20,18 @@ Treat this guide as a set of defaults. The developer's request takes precedence.
 - `apps/web` — React UI, fetchers, TanStack Query hooks, and realtime cache updates.
 - `apps/mobile` — Expo/React Native app for Android and iOS with its own HTTP client; see `apps/mobile/AGENTS.md`.
 - `packages/libs` — typed Hono client and URL helpers; `packages/permissions` — permission vocabulary and built-in roles.
-- `packages/mcp` — published stdio MCP package.
+- `packages/mcp` — source-built stdio MCP package.
 - `apps/docs` — product and API docs; `apps/site` — public site and docs host.
-- `charts/kaneo` — Helm chart; `tests/api` and `tests/api-integration` — API tests.
+- `charts/tracing` — Helm chart; `tests/api` and `tests/api-integration` — API tests.
 
 ## Follow a change through
 
 The common mistake is finishing one path while leaving another stale. Check the surfaces your change actually touches:
 
 - API: Keep handlers thin and behavior in controllers. Use `createRoute`, Zod request and response schemas, `HTTPException` for expected failures, and `requireWorkspacePermission` for workspace actions. Middleware declared on `createRoute` runs before validators, so it must read the raw request instead of `c.req.valid()`.
-- Client: Use `@kaneo/libs`, fetchers in `apps/web/src/fetchers/`, and TanStack Query hooks. Update invalidation and visible loading, error, and current states.
+- Client: Use `@tracing/libs`, fetchers in `apps/web/src/fetchers/`, and TanStack Query hooks. Update invalidation and visible loading, error, and current states.
 - Realtime: If a mutation drives activity, notifications, integrations, or live UI, use `publishEvent()` and check WebSocket delivery and cache updates. Redis fan-out must remain optional.
-- Data: Put schema and relations in `apps/api/src/database/`. Generate a migration with `pnpm --filter @kaneo/api db:generate`, inspect its SQL, and account for existing installations.
+- Data: Put schema and relations in `apps/api/src/database/`. Generate a migration with `pnpm --filter @tracing/api db:generate`, inspect its SQL, and account for existing installations.
 - Public contracts: Keep Zod validation and OpenAPI descriptions accurate. After route or schema changes, run `pnpm openapi:check:fix`; `apps/docs/openapi.json` is committed.
 - UI: Put user-facing copy in static i18n keys, with `i18n/en-US.json` as the source. Check accessibility and the reverse action: assign/unassign, connect/disconnect, enable/disable.
 - Other entry points: Consider the mobile app, MCP, API keys, webhooks, Docker, Helm, and docs when the behavior reaches them.

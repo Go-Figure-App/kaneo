@@ -188,7 +188,7 @@ test("reads immutable source blobs, falls back to a fork, and never runs PR code
   const { state, fetcher } = fixture({
     files: [file],
     intercept: ({ pathname, response }) =>
-      pathname.startsWith("/repos/usekaneo/kaneo/git/blobs/")
+      pathname.startsWith("/repos/Go-Figure-App/tracing/git/blobs/")
         ? response({}, 404)
         : null,
   });
@@ -213,7 +213,10 @@ test("label-creation races are repaired when another PR created the label", asyn
   const { state, fetcher } = fixture({
     labelExists: false,
     intercept: ({ pathname, method, state: current, response }) => {
-      if (pathname === "/repos/usekaneo/kaneo/labels" && method === "POST") {
+      if (
+        pathname === "/repos/Go-Figure-App/tracing/labels" &&
+        method === "POST"
+      ) {
         current.labelExists = true;
         return response({}, 422);
       }

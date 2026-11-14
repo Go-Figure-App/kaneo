@@ -6,7 +6,7 @@ import {
   it,
   vi,
 } from "vite-plus/test";
-import { KaneoClient } from "./kaneo.js";
+import { TracingClient } from "./kaneo.js";
 
 function limited(retryAfter?: string): Response {
   return new Response(JSON.stringify({ message: "Rate limit exceeded" }), {
@@ -19,7 +19,7 @@ function ok(body: unknown): Response {
   return new Response(JSON.stringify(body), { status: 200 });
 }
 
-describe("KaneoClient rate limiting", () => {
+describe("TracingClient rate limiting", () => {
   const fetchMock = vi.fn<typeof fetch>();
 
   beforeEach(() => {
@@ -38,7 +38,7 @@ describe("KaneoClient rate limiting", () => {
       .mockResolvedValueOnce(limited("30"))
       .mockResolvedValueOnce(ok([]));
     const onRateLimit = vi.fn();
-    const client = new KaneoClient({
+    const client = new TracingClient({
       baseUrl: "https://kaneo.test",
       apiKey: "key",
       onRateLimit,
@@ -56,7 +56,7 @@ describe("KaneoClient rate limiting", () => {
 
   it("fails fast when Retry-After is a long usage quota", async () => {
     fetchMock.mockResolvedValueOnce(limited(String(6 * 3600)));
-    const client = new KaneoClient({
+    const client = new TracingClient({
       baseUrl: "https://kaneo.test",
       apiKey: "key",
     });
@@ -69,7 +69,7 @@ describe("KaneoClient rate limiting", () => {
 
   it("fails when a 429 has no Retry-After", async () => {
     fetchMock.mockResolvedValueOnce(limited());
-    const client = new KaneoClient({
+    const client = new TracingClient({
       baseUrl: "https://kaneo.test",
       apiKey: "key",
     });
@@ -81,7 +81,7 @@ describe("KaneoClient rate limiting", () => {
 
   it("gives up after repeated 429s", async () => {
     fetchMock.mockImplementation(async () => limited("1"));
-    const client = new KaneoClient({
+    const client = new TracingClient({
       baseUrl: "https://kaneo.test",
       apiKey: "key",
     });
@@ -97,13 +97,13 @@ describe("KaneoClient rate limiting", () => {
     fetchMock.mockResolvedValueOnce(
       new Response("Unauthorized", { status: 401 }),
     );
-    const client = new KaneoClient({
+    const client = new TracingClient({
       baseUrl: "https://kaneo.test",
       apiKey: "key",
     });
 
     await expect(client.listWorkspaces()).rejects.toThrow(
-      /check your Kaneo API key/,
+      /check your Tracing API key/,
     );
     expect(fetchMock).toHaveBeenCalledTimes(1);
   });

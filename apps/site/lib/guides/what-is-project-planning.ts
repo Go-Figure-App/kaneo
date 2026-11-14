@@ -97,7 +97,7 @@ export const whatIsProjectPlanning: Guide = {
       ],
     },
     {
-      heading: "Planning a project in Kaneo",
+      heading: "Planning a project in Tracing",
       body: [
         "Create a project and put everything you have into its Backlog first: choose Plan, add a title, and set a priority or label where it helps. Ideas do not need an owner or a date to be worth keeping, and the backlog stays out of the way of the active board.",
         "Write the goal and the out-of-scope list in the project description under project settings, so everyone sees the same boundary.",
@@ -130,7 +130,7 @@ export const whatIsProjectPlanning: Guide = {
     {
       question: "Do I need special software to plan a project?",
       answer:
-        "Not to start. A document and a shared board will do. Software helps once you need dates, dependencies, and status in one place that everyone can see. Kaneo covers that with a backlog, board, and Gantt view, and it is free to self-host.",
+        "Not to start. A document and a shared board will do. Software helps once you need dates, dependencies, and status in one place that everyone can see. Tracing covers that with a backlog, board, and Gantt view, and it is free to self-host.",
     },
   ],
   related: [

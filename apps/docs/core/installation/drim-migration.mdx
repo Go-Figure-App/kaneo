@@ -54,9 +54,9 @@ Check `docker compose ps` and request `/api/health` through your public URL. Sig
 | Problem | What to check |
 | --- | --- |
 | drim cannot find a deployment | Run it beside `docker-compose.yml`. |
-| Kaneo looks like a new installation | Check the Compose project name, mounted database volume, and database URL. Stop the application before creating new data. |
+| Tracing looks like a new installation | Check the Compose project name, mounted database volume, and database URL. Stop the application before creating new data. |
 | Database login fails | Use the original database credentials. Changing `.env` does not reset an existing PostgreSQL password. |
 | Everyone was signed out | Check whether `AUTH_SECRET` changed. |
-| Proxy cannot reach Kaneo | Check the service name, shared network, and port 5173. |
+| Proxy cannot reach Tracing | Check the service name, shared network, and port 5173. |
 
 Keep the backup and original configuration until the deployment is verified. If a newer image migrated the database, [recovery](/core/operations/backups) requires its matching backup, not just an older Compose file.

@@ -1,9 +1,9 @@
 ---
-title: "Self-host Kaneo"
+title: "Self-host Tracing"
 description: "Choose a deployment method and know what you need to run it."
 ---
 
-Kaneo runs as one application container plus PostgreSQL. You can add file storage and email when you need them. Redis is only needed when multiple API instances must share live updates.
+Tracing runs as one application container plus PostgreSQL. You can add file storage and email when you need them. Redis is only needed when multiple API instances must share live updates.
 
 ## Choose your setup
 
@@ -13,10 +13,10 @@ Kaneo runs as one application container plus PostgreSQL. You can add file storag
 | [drim](/core/installation/drim) | You want a CLI to generate the deployment and set up Caddy for HTTPS. |
 | [Coolify](/core/deployments/coolify) | You already deploy applications through Coolify. |
 | [Railway](/core/deployments/railway) | You want a hosted deployment without managing a server. |
-| [Helm](https://github.com/usekaneo/kaneo/tree/main/charts/kaneo) | You already operate a Kubernetes cluster. |
+| [Helm](https://github.com/Go-Figure-App/tracing/tree/main/charts/tracing) | You already operate a Kubernetes cluster. |
 
 <Tip>
-  Rather not run it yourself? We host [managed instances](https://kaneo.app/pricing#managed-instance) in the EU with your own domain, single sign-on, daily backups, and upgrades handled for you, from $299 a month for the whole instance. For a small team, [Kaneo Cloud](https://kaneo.app/pricing) starts at $4 a month.
+  Rather not run it yourself? We host [managed instances](https://tracing.gofigureapp.io/pricing#managed-instance) in the EU with your own domain, single sign-on, daily backups, and upgrades handled for you, from $299 a month for the whole instance. For a small team, [Tracing Cloud](https://tracing.gofigureapp.io/pricing) starts at $4 a month.
 </Tip>
 
 For a small installation, plan for at least 2 GB of memory and 10 GB of free disk as a starting point. Leave additional space for database growth, uploaded files, and backups. Compose deployments need Docker and Docker Compose V2.
@@ -26,10 +26,10 @@ For a small installation, plan for at least 2 GB of memory and 10 GB of free dis
 ```mermaid
 flowchart LR
   Browser[Your browser] -->|HTTPS| Proxy[Reverse proxy]
-  Proxy --> Kaneo[Kaneo: web app and API]
-  Kaneo --> DB[(PostgreSQL)]
+  Proxy --> Tracing[Tracing: web app and API]
+  Tracing --> DB[(PostgreSQL)]
   Browser -->|File uploads| Storage[(Optional S3 storage)]
-  Kaneo -->|Read and validate files| Storage
+  Tracing -->|Read and validate files| Storage
 ```
 
 PostgreSQL stores accounts, projects, tasks, comments, and upload records. File contents live in your configured object storage. Account avatars are stored in PostgreSQL.
