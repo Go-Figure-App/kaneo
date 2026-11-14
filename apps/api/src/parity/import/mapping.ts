@@ -79,7 +79,10 @@ export function mapProject(data: ProjectPlanning): ImportedProject {
     })),
     labels: [...labels.values()].map((label) => ({
       key: label.id,
-      name: label.parent ? `${label.parent.name}/${label.name}` : label.name,
+      name:
+        label.parent && !label.name.startsWith(`${label.parent.name}/`)
+          ? `${label.parent.name}/${label.name}`
+          : label.name,
       color: label.color ?? "gray",
     })),
     tasks: [...data.issues]

@@ -612,3 +612,6 @@ Saved display preferences can opt into archived projects. The default remains
 active projects; the opt-in keeps workspace activity and per-project access
 checks, and is forwarded by both web and mobile. This preserves Linear views
 that explicitly include archived items without restoring those projects.
+
+The live export also contains already-qualified grouped label names. The import
+mapper adds a group prefix only when absent, preserving both Linear shapes.

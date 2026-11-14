@@ -5,6 +5,35 @@ import { category } from "./mapping";
 import { fixtureFetch, linearFixture, page } from "./__fixtures__/linear";
 
 describe("Linear planning source", () => {
+  it("keeps grouped labels qualified exactly once", async () => {
+    const fixture = linearFixture();
+    fixture.issues.get("project-a")![0]!.labels = page([
+      {
+        id: "qualified",
+        name: "Area/Legal",
+        color: null,
+        parent: { name: "Area" },
+      },
+      {
+        id: "unqualified",
+        name: "Mobile",
+        color: null,
+        parent: { name: "Area" },
+      },
+    ]);
+    const { source } = await connectPlanningSource({
+      apiKey: "synthetic",
+      fetch: fixtureFetch(fixture),
+    });
+    await source.listProjects();
+    const project = await source.readProject("project:project-a", {
+      includeComments: false,
+    });
+    expect(project.labels.map((label) => label.name)).toEqual([
+      "Area/Legal",
+      "Area/Mobile",
+    ]);
+  });
   it("retries failed workspace reads and then shares the successful result", async () => {
     const base = fixtureFetch(linearFixture());
     let attempts = 0;

@@ -114,6 +114,10 @@ it("filters archived issues by their recorded workflow without changing archive 
   expect(
     await matching(c.workspace.id, { ...filter, operator: "is-not" }),
   ).toEqual([c.alphaTask.id, c.second.id].sort());
+  // A task may be archived directly after creation, without earlier changes.
+  await db.execute(sql`delete from ${schema.activityTable}
+    where task_id = ${c.open.id} and event_data->>'newStatus' <> 'archived'`);
+  expect(await matching(c.workspace.id, filter)).toEqual([c.open.id]);
   // A matching slug in another project must not resolve a deleted state.
   await db.insert(schema.columnTable).values({
     projectId: c.beta.id,

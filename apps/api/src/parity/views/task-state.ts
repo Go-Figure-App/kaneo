@@ -8,10 +8,12 @@ export const taskState = sql<string>`coalesce(${columnTable.name}, CASE
     select workflow.name from ${columnTable} workflow
     where workflow.project_id = ${taskTable.projectId}
       and workflow.slug = (
-        select history.event_data->>'newStatus' from ${activityTable} history
+        select coalesce(
+          nullif(history.event_data->>'newStatus', 'archived'),
+          history.event_data->>'oldStatus'
+        ) from ${activityTable} history
         where history.task_id = ${taskTable.id}
           and history.type = 'status_changed'
-          and history.event_data->>'newStatus' <> 'archived'
         order by history.created_at desc, history.id desc limit 1
       )
     limit 1
